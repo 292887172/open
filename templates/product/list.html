@@ -1,0 +1,150 @@
+{% extends "product/base.tpl" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    产品管理
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'common/css/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <style>
+    .wrapper {
+        width: 1200px;
+        padding: 0;
+        margin: 0 auto;
+    }
+    .mt20 {
+        margin-top: 20px;
+    }
+    .goods span {
+        height: 30px;
+    }
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 0;
+    }
+    .nav > li > a:hover {
+        color: #ffffff;
+        background: transparent;
+    }
+    </style>
+{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+    <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+
+{% endblock %}
+{% block content %}
+    <div class="title">
+        <div class="wrapper">
+            <div style="height: 34px; margin: 11px 0;">
+                <div class="col-lg-10">
+                    <form class="form-inline" name="productListQueryForm" method="GET" action="">
+                        <input type="text" class="form-control" name="search" placeholder="输入产品名称" value="{{ keyword }}">
+                        <input type="submit" class="btn btn-md btn-success" value="搜索">
+                        {% if keyword %}
+                        <a href="{% url 'product/list' %}" class="btn btn-md btn-success">显示全部</a>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="col-lg-2">
+                    <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
+                        <i class="fa fa-plus"></i>
+                        <span class="text">添加产品</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <!-- 已发布的产品 -->
+        <h4 class="title-sub"><span class="old">已发布的产品</span></h4>
+        <div class="goodsBox">
+            {% if not published_apps %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;暂无已发布的产品{% endif %}
+            {% for app in published_apps %}
+                <div class="goods-list" style="height: 215px;">
+                    <div class="status bg-success">已发布</div>
+                    <dl>
+                        <dt>
+                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
+                            <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        </dt>
+                        <dd>
+                            <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- 未发布的产品 -->
+        <h4 class="title-sub"><span class="none">未发布的产品</span></h4>
+        <div class="goodsBox">
+            {% if not unpublished_apps and not publishing_apps %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;暂无未发布的产品{% endif %}
+            {% for app in publishing_apps %}
+                <div class="goods-list" style="height: 215px;">
+                    <div class="status suc">审核中</div>
+                    <dl>
+                        <dt>
+                            <a href="/product/main?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
+                            <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        </dt>
+                        <dd>
+                            <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+            {% for app in unpublished_apps %}
+                <div class="goods-list" style="height: 215px;">
+                    <div class="status unpublish">未发布</div>
+                    <dl>
+                        <dt>
+                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
+                            <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        </dt>
+                        <dd>
+                            <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- 未通过的产品 -->
+        {% if failed_apps %}
+            <h4 class="title-sub"><span class="none">未通过的产品</span></h4>
+            <div class="goodsBox">
+
+                {% for app in failed_apps %}
+                    <div class="goods-list" style="height: 215px;">
+                        <div class="status fail">未通过</div>
+                        <dl>
+                            <dt>
+                                <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
+                                <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                            </dt>
+                            <dd>
+                                <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                                <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
+                                <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                            </dd>
+                        </dl>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block end_script %}
+    <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+{% endblock %}

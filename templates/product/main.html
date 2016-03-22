@@ -1,0 +1,320 @@
+{% extends "product/base.tpl" %}
+{% load staticfiles %}
+{% block title %}
+    产品管理
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'common/css/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/animate.css' %}"/>
+    <style>
+        .wrapper {
+            width: 1200px;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+
+    </style>
+{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+    <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+
+{% endblock %}
+{% block content %}
+    <div ng-controller="ProductBaseCtrl">
+        <div class="title">
+            <div class="wrapper">
+                <div class="goods">
+                    <img src="{% if app.app_logo %}{{ app.app_logo }}{% endif %}"
+                         onerror="this.src='{% static "image/global/default.png" %}'">
+                    <h2>{{ app.app_name }}</h2>
+            <span>
+            智能家居
+            </span>
+            <span style="max-width:135px; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;">
+                {% if app.app_model %}
+                    {{ app.app_model }}
+                {% else %}
+                    无型号
+                {% endif %}
+            </span>
+            <span style="background-color: #808080;color:#fff;font-weight: bold;">
+                {% if app.check_status == 0 %}
+                    未发布
+                {% elif app.check_status == 1 %}
+                    审核中
+                {% elif app.check_status == 2 %}
+                    已发布
+                {% elif app.check_status == -1 %}
+                    未通过
+                {% endif %}
+            </span>
+                </div>
+                <div class="gd-opt">
+                    <div class="time">创建时间：{{ app.app_create_date }}</div>
+                    <div class="option hide">
+                        <span>选项<i></i></span>
+
+                        <div class="option-list">
+                            <s></s>
+                            <ul>
+                                <li><a href="#">导出产品</a></li>
+                                <li><a href="#">导入并覆盖当前产品</a></li>
+                                <li>
+                                    <a href="#" id="delLink">删除产品</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="apply" ng-controller="ProductBaseCtrl">
+                        {% if app.check_status == 0 %}
+                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
+                               ng-click="ReleaseProduct()"><i class="fa fa-arrow-circle-o-up"></i><span class="text">申请发布</span></a>
+                        {% elif app.check_status == 1 %}
+                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
+                               ng-click="CancelReleaseProduct()"><i class="fa fa-arrow-circle-o-down"></i><span
+                                    class="text">取消发布</span></a>
+                        {% elif app.check_status == 2 %}
+                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
+                               ng-click="OffProduct()"><i class="fa fa-arrow-circle-o-down"></i><span
+                                    class="text">我要下架</span></a>
+                        {% elif app.check_status == -1 %}
+                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
+                               ng-click="ReleaseProduct()"><i class="fa fa-arrow-circle-o-up"></i><span class="text">重新发布</span></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if app.check_remarks and app.check_status == -1 %}
+            <div class="wrapper">
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <i class="fa fa-bell-o"></i>&nbsp;&nbsp;[应用未通过原因]&nbsp;&nbsp;<span>{{ app.check_remarks }}</span>
+                </div>
+            </div>
+        {% endif %}
+        <div class="wrapper mt20 fn-clear">
+            <div class="leftSide">
+                <div class="box1">
+                    <!-- 左侧菜单 begin -->
+                    <div class="menuBox">
+                        <h3>产品信息</h3>
+                        <ul>
+                            <li id="infoMenu" class="jsNavItem" data-id="infoMenu" ng-click="nav.selected('infoMenu')">
+                                <a href="#/info">
+                                    <i class="fa fa-inbox"></i>基本信息
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+                        <h3>产品服务</h3>
+                        <ul>
+                            <li id="taskSystemMenu" ng-hide="true" class="jsNavItem" data-id="taskSystemMenu"
+                                ng-click="nav.selected('taskSystemMenu')">
+                                <a href="#/server">
+                                    <i class="fa fa-inbox"></i>未开放
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+                        <h3>生产测试</h3>
+                        <ul>
+                            <li id="debugMenu" ng-hide="true" class="jsNavItem" data-id="debugMenu"
+                                ng-click="nav.selected('debugMenu')">
+                                <a href="#/debug">
+                                    <i class="fa fa-inbox"></i>产品测试
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+                        <h3>开发者</h3>
+                        <ul>
+                            <li id="devMenu" class="jsNavItem" data-id="devMenu" ng-click="nav.selected('devMenu')">
+                                <a href="#/dev">
+                                    <i class="fa fa-inbox"></i>开发者中心
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 左侧菜单 end -->
+                </div>
+            </div>
+            <!-- 主内容 -->
+            <div class="rightMain" id="proRightMain" ng-view>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block end_fixed_script %}
+    <script src="{% static "angular/angular.min.js" %}"></script>
+    <script src="{% static "angular/angular-route.min.js" %}"></script>
+    <script src="{% static "ng/product/app.js" %}"></script>
+    <script src="{% static "ng/product/controller.js" %}"></script>
+    <script src="{% static "ng/product/info/controller.js" %}"></script>
+    <script src="{% static "ng/product/dev/controller.js" %}"></script>
+    <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
+    <script>
+
+        angular.module('Product.base', ['ngRoute'])
+                .controller('ProductBaseCtrl', ['$scope', function ($scope) {
+                    // 应用信息
+                    $scope.app_check_status = "{{ app.check_status }}";
+                    $scope.visible =
+                            "{% if app.check_status == 1 or app.check_status == 2 %}true{% else %}false{% endif %}";
+                    $scope.disabled = $scope.visible;
+                    $scope.csrf_token = "{% if csrf_token %}{{ csrf_token }}{% endif %}";
+                    $scope.appid = "{% if app.app_appid %}{{ app.app_appid }}{% endif %}";
+                    $scope.app_secret = "{% if app.app_appsecret %}{{ app.app_appsecret }}{% endif %}";
+                    $scope.app_id = "{% if app.app_id %}{{ app.app_id }}{% endif %}";
+                    $scope.app_name = "{% if app.app_name %}{{ app.app_name|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_category = "{% if app.app_category %}{{ app.app_category|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_model = "{% if app.app_model %}{{ app.app_model|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_describe = "{% if app.app_describe %}{{ app.app_describe|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_site = "{% if app.app_site %}{{ app.app_site|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_logo = "{% if app.app_logo %}{{ app.app_logo|safe|linebreaksbr }}{% endif %}" || "/static/image/global/default.png";
+                    $scope.app_config_push_url = "{% if app.app_push_url %}{{ app.app_push_url|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
+                    // 应用类目
+                    $scope.secondProType = [
+                        {
+                            "name": "家电类",
+                            "value": "家电类"
+                        },
+                        {
+                            "name": "厨房类",
+                            "value": "厨房类"
+                        },
+                        {
+                            "name": "卫浴类",
+                            "value": "卫浴类"
+                        },
+                        {
+                            "name": "环境类",
+                            "value": "环境类"
+                        }
+                    ];
+                    // 发布表单
+                    $scope.releaseFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id
+                    };
+                    // 取消发布表单
+                    $scope.cancelReleaseFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id
+                    };
+                    // 下架表单
+                    $scope.offFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id
+                    };
+                    // 基本信息表单
+                    $scope.infoFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id,
+                        "app_name": $scope.app_name,
+                        "app_category": $scope.app_category,
+                        "app_model": $scope.app_model,
+                        "app_describe": $scope.app_describe,
+                        "app_site": $scope.app_site,
+                        "app_logo": $scope.app_logo
+                    };
+                    // 配置信息表单
+                    $scope.configFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id,
+                        "app_config_push_url": $scope.app_config_push_url,
+                        "app_config_push_token": $scope.app_config_push_token
+                    };
+                    // 重置密钥表单
+                    $scope.resetSecretFormData = {
+                        "csrfmiddlewaretoken": $scope.csrf_token,
+                        "app_id": $scope.app_id
+                    };
+                    // 接口权限表数据
+                    $scope.apiListTable = [
+                        '<style>',
+                        'a, a:visited {',
+                        'color: #459ae9;',
+                        'text-decoration: none;',
+                        '}',
+                        'a:hover {',
+                        'color: #459ae9;',
+                        'text-decoration: underline;',
+                        '}',
+                        '</style>',
+                        '<style>',
+                        'a, a:visited {',
+                        'color: #459ae9;',
+                        'text-decoration: none;',
+                        '}',
+                        'a:hover {',
+                        'color: #459ae9;',
+                        'text-decoration: underline;',
+                        '}',
+                        '</style>',
+                        '<div class="panel-heading">',
+                        '<span class="label bg-success pull-right m-t-xs">version 1.0.1</span>&nbsp;',
+                        '</div>',
+                        '<table class="table table-striped m-b-none">',
+                        '<thead>',
+                        '<tr>',
+                        '<th>类目</th>',
+                        '<th>功能</th>',
+                        '<th style="width: 250px;">接口</th>',
+                        '<th class="text-right" style="width: 150px;">每日调用上限/次</th>',
+                        '<th>接口状态</th>',
+                        '<th>操作</th>',
+                        '</tr>',
+                        '</thead>',
+                        '<tbody>',
+                        {% for api in api_list %}
+                            '<tr>',
+                            '<td>{% if api.api_classify %}{{ api.api_classify }}{% endif %}</td>',
+                            '<td>{% if api.api_function %}{{ api.api_function }}{% endif %}</td>',
+                            '<td><a href="{% if api.api_doc_url %}{{ api.api_doc_url }}{% endif %}" target="_blank">{% if api.api_name %}{{ api.api_name }}{% endif %}</a></td>',
+                            '<td class="text-right">{% if api.api_invoke_total %}{{ api.api_invoke_total }}{% else %}无上限{% endif %}</td>',
+                            '<td>已获得</td>',
+                            '<td></td>',
+                            '</tr>',
+                        {% endfor %}
+                        '</tbody>',
+                        '</table>'
+                    ].join("");
+                    //控制左侧导航nav选中
+                    $scope.nav = {
+                        selected: function (id) {
+                            jQuery(".jsNavItem").removeClass('hover');
+                            jQuery(".jsNavItem[data-id='" + id + "']").addClass('hover');
+                        }
+                    };
+                }]);
+    </script>
+{% endblock %}

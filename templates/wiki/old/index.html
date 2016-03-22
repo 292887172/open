@@ -1,0 +1,140 @@
+{% extends "wiki/old/base.tpl" %} {%load staticfiles%}
+<!-- 样式 -->
+{%block styles%}
+<style>
+.jiszhic{
+background:#262626;
+}
+#cloud {
+	position: relative;
+	width: 250px;
+	height: 240px;
+	margin: 5px auto 0;
+}
+
+#cloud a {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-family: Microsoft YaHei;
+	color: silver;
+	font-weight: normal;
+	text-decoration: none;
+	padding: 3px 4px;
+}
+
+#cloud a:hover {
+	border: 1px solid #eee;
+	background: aliceblue;
+}
+
+#cloud .blue {
+	color: blue;
+}
+
+#cloud .red {
+	color: pink;
+}
+
+#cloud .yellow {
+	color: yellow;
+}
+
+p {
+	font: 16px Microsoft YaHei;
+	text-align: center;
+	color: #ba0c0c;
+}
+
+p a {
+	font-size: 12px;
+	color: #ba0c0c;
+}
+
+p a:hover {
+	color: red;
+}
+
+p a:hover {
+	color: red;
+}
+</style>
+{%endblock%}
+<!--内容 -->
+{%block content%}
+<div class="zibng_left">
+
+	<div class="erjnav">
+		<ul>
+		</ul>
+	</div>
+	<div class="jiszhic">
+		
+		<div id="cloud">
+			{% for item in data %}
+			 <a href="doc?id={{item.id}}">{{item.describe}}</a>
+			{%endfor%}
+			<a href="#">厂商</a>
+			<a href="#">油烟机</a>
+			<a href="#">家庭圈</a>
+			<a href="http://smart.56iq.net">56iq智能云</a>
+			<a href="#">wiki</a>
+			<a href="http://a.56iq.net">微屏幕</a>
+			<a href="http://www.56iq.com">数字标牌</a>
+			<a href="http://web.56iq.net">Web2.0</a>
+			<a href="#">开发者</a>
+			<a href="#">HTML5</a>
+			<a href="#">CSS3</a>
+			<a href="#">微信</a>
+			<a href="#">chrome</a>
+			<a href="#">android</a>
+			<a href="#">eclipse</a>
+			<a href="#">用户体验</a>
+			<a href="#">hadoop</a>
+			<a href="#">mongodb</a>
+			<a href="#">memcached</a>
+			<a href="#">python</a>
+			<a href="#">django</a>
+			<a href="#">Eve</a>
+			<a href="#">virtualbox</a>
+			<a href="#">linux</a>
+			<a href="#">xmpp</a>
+			<a href="#">RESTful</a>
+			<a href="#">nginx</a>
+			<a href="#">LVS</a>
+			<a href="#">requests</a>
+			<a href="#">cloud</a>
+			<a href="#">Tag</a>
+		</div>
+	</div>
+</div>
+<div class="zibng_left_s"></div>
+<div class="zibng_right">
+
+	<div class="zbshyw">
+		<h2>API文档</h2>
+		<div class="kfwnd">
+			<ul>
+				{% for item in data %}
+				<li><span><a href="doc?id={{item.id}}">{{item.describe}}{{item.address}}
+					</a></span></li> {%endfor%}
+			</ul>
+		</div>
+	</div>
+</div>
+{%endblock%} {%block scripts%}
+<script>
+	$(function() {
+		//选中的选项
+		var index = 0;
+		$(".nav ul li a:eq(" + index + ")").addClass("hover");
+		var arr=["#331613","#7C48A0","red","#CCC179","yellow","green","blue","#1f1f1f","pink","purple","aliceblue","#1A5C7E","#D5C4C3"];
+		var links=$("#cloud a");
+		$.each(links,function(index,item){
+			$(item).css("color",arr[index%arr.length]);
+		});
+
+	});
+</script>
+<script src="{% static 'js/wiki/tag.js'%}"></script>
+{%endblock%}

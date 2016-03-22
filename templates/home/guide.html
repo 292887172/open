@@ -1,0 +1,100 @@
+{% extends 'home/base.tpl' %}
+{% load filter %}
+{% load staticfiles %}
+{% block title %}
+    开发指南
+{% endblock %}
+{% block style %}
+    <style>
+        .wrapper {
+            width: 1200px;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+    </style>
+{% endblock %}
+{% block menu %}
+    {% create_menu 2 user.developer.developer_id %}
+
+{% endblock %}
+{% block right %}
+    <div class="rightMain"></div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        var ad = location.hash;
+        // 从URL中获取相关的链接地址
+        var n_url = ad.replace('#', '/');
+        // 区分点击底部链接还是在guide页面点击的跳转
+        if (n_url == '/hz') {
+            $(".menu-li").removeClass("hover");
+            $(".ui-hz").addClass("hover");
+        }
+        else if (n_url == '/contact') {
+            $(".menu-li").removeClass("hover");
+            $(".ui-con").addClass("hover");
+        }
+        else {
+            n_url = '/zny'
+        }
+        $.ajax({
+            type: "get",
+            url: n_url,
+            data: "",
+            success: function (msg) {
+
+                $(".rightMain").html(msg);
+            },
+            error: function () {
+            }
+        });
+        function addHover(url, liobj) {
+            $(".menu-li").removeClass("hover");
+            // 解决在guide页面点击底部联系我们无反应的问题
+            if (url == 'contact') {
+                $(".ui-con").addClass("hover");
+                url = '/contact'
+            }
+            else {
+                $(liobj).addClass("hover");
+            }
+
+            if (url != null) {
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    data: "",
+                    success: function (msg) {
+
+                        $(".rightMain").html(msg);
+                    },
+                    error: function () {
+                    }
+                })
+            }
+
+
+        }
+    </script>
+{% endblock %}

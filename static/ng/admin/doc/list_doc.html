@@ -1,0 +1,111 @@
+<header class="header bg-light dk">
+    <p>全部文档</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <p><a href="#/doc/add" class="btn btn-primary btn-s-xs" target="_blank">添加文档</a>&nbsp;&nbsp;&nbsp;  <a href="http://www.markdown.cn/" target="_blank">Markdown语法说明</a></p>
+
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="delDocModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    提示
+                </h4>
+            </div>
+            <div class="modal-body">
+                请确认：删除文档
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="button" id="delModalDocId" data-id="" ng-click="delDoc($event)"
+                        class="btn btn-success btn-s-xs">
+                    确定
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script>
+
+    var toUrlHtml = function (val, item) {
+        return val == "" || val == null ? "无预览" : '<a href="/center/doc_show/' + item.doc_id + '" target="_blank" class="text-info">预览</a>';
+    };
+
+    var toDocTypeHtml = function (val) {
+        var re = "";
+        switch (val) {
+            case 0:
+                re = "接口文档";
+                break;
+            case 1:
+                re = "介绍文档";
+                break;
+            case 2:
+                re = "内部加密文档";
+                break;
+            default :
+                re = "文档类型错误"
+
+
+        }
+        return re
+    };
+    var toApiNameHtml = function (val, item) {
+        return val == "" || val == null ? item.doc_name : val.substring(0, 37);
+    };
+
+    var toControlHtml = function (val) {
+        return '<a href="/center/editormd?doc_id=' + val + '" target="_blank" class="text-info">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                '<a href="javascript:void(0)" data-toggle="modal" data-target="#delDocModal" data-id="' + val + '"><i class="fa fa-times text-danger"></i>删除</a>'
+    };
+
+    var cols = [
+        {title: '文档编号', name: 'doc_id', width: 20, align: 'center', lockDisplay: true},
+        {title: '文档名称', name: 'api_name', align: 'center', lockDisplay: true, renderer: toApiNameHtml},
+        {title: 'md文件', name: 'doc_markdown', width: 50, align: 'center', lockDisplay: false, hidden: true},
+        {title: '文档预览', name: 'doc_html', align: 'center', lockDisplay: false, renderer: toUrlHtml},
+        {title: '文档类型', name: 'doc_type', align: 'center', lockDisplay: true, renderer: toDocTypeHtml},
+
+        {title: '更新时间', name: 'doc_update_date', width: 60, align: 'center', lockDisplay: true},
+        {title: '操作', name: 'doc_id', align: 'center', lockDisplay: true, renderer: toControlHtml}
+    ];
+
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/doc/data",
+        method: 'get',
+        sortName: 'doc_id',
+        sortStatus: 'asc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: '510px',
+        cols: cols,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#delModalDocId").attr("data-id", item.doc_id).attr("data-row", rowIndex);
+    })
+</script>

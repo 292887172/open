@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
+    <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
+    <title>{% block title %}{% endblock %} 智能厨房电器方案提供商</title>
+    <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
+    {#    <link rel="stylesheet" href="{% static 'css/home/main.css' %}"/>#}
+
+
+</head>
+<body>
+
+<div class=" box2 relative">
+    <div class="hbox">
+        <h3 class="tit6">技术方案：</h3>
+
+        <p>WIFI接入</p>
+
+        <p class="mt10"><span class="downBlock"><a href="#"><i class="icon-arrow-down"></i>WIFI设备与53iq智能云通信协议</a></span>
+        </p>
+    </div>
+    <div class="line2 mt30"></div>
+    <div class="hbox mt20">
+        <p>SDK下载</p>
+
+        <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/open-sdk-python.zip' %}"><i
+                class="icon-arrow-down"></i>Python SDK</a></span></p>
+
+        <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/open-sdk-java.zip' %}"><i
+                class="icon-arrow-down"></i>JAVA SDK</a></span></p>
+
+        <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/open-sdk-csharp.zip' %}"><i
+                class="icon-arrow-down"></i>.NET SDK</a></span></p>
+
+        <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/53iq-sdk-php.zip' %}"><i
+                class="icon-arrow-down"></i>PHP SDK</a></span></p>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

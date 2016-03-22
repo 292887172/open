@@ -1,0 +1,86 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
+    <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
+    <title>{% block title %}{% endblock %} 智能厨房电器方案提供商</title>
+    <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
+{#    <link rel="stylesheet" href="{% static 'css/home/main.css' %}"/>#}
+    <style>
+        .tit6{
+            padding-bottom: 0px;
+font-size: 24px;
+font-weight: bolder;
+color: #333;
+padding-left: 20px;
+padding-top: 20px;
+        }
+        .txt2{
+            font-size: 18px;
+            line-height: 35px;
+        }
+        .txt3{
+            padding-top: 40px;
+            padding-bottom: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+        .txt3 b{
+            font-weight: initial!important;
+            font-size: 18px;
+        }
+        .textL{
+            padding-top: 30px;
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+        .plr26{
+            width: 700px;
+            height: 300px;
+            padding-left: 100px;
+
+        }
+    </style>
+
+</head>
+<body>
+<div class="relative">
+    <div class="hbox">
+        <h3 class="tit6">大屏智能方案</h3>
+        <div class="plrb25">
+            <p class="txt2 mt20">大屏智能套件 + 厨房智能云，适用于油烟机集成灶、冰箱冰柜、橱柜等</p>
+
+            <p class="textC"><img src="{% static 'image/home/big1.jpg' %}"></p>
+        </div>
+    </div>
+
+    <div class="hbox">
+        <h3 class="tit6 mt20">特点与优势</h3>
+        <div class="plr26">
+            <p class="textL"><img src="{% static 'image/home/big2.png' %}"></p>
+            <p class="textL"><img src="{% static 'image/home/big3.png' %}"></p>
+
+        </div>
+    </div>
+    <div class="hbox">
+
+        <div class="plr26">
+
+            <p class="textL"><img src="{% static 'image/home/big4.png' %}"></p>
+            <p class="textL"><img src="{% static 'image/home/big5.png' %}"></p>
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

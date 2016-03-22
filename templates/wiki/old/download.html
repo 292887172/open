@@ -1,0 +1,32 @@
+{% extends "wiki/old/base.tpl" %}
+<!-- 样式 -->
+{%block styles%} {%endblock%}
+<!--内容 -->
+{%block content%}
+<div class="zibng_left">
+	<div style="height: 1000px; float: left;"></div>
+</div>
+<div class="zibng_left_s"></div>
+<div class="zibng_right">
+
+	<div class="zbshyw">
+		<h2>资源下载</h2>
+		<div class="ziyxz">
+			<ul>
+				<li><a href="#">php sdk</a></li>
+				<li><a href="#">.net sdk</a></li>
+				<li><a href="#">java sdk</a></li>
+				<li><a href="#">python sdk</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{%endblock%} {%block scripts%}
+<script>
+	$(function() {
+		//选中的选项
+		var index = 3;
+		$(".nav ul li a:eq(" + index + ")").addClass("hover");
+	})
+</script>
+{%endblock%}

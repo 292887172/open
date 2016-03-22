@@ -1,0 +1,91 @@
+<header class="header bg-light dk">
+    <p>全部接口</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               提示
+            </h4>
+         </div>
+         <div class="modal-body">
+            请确认：删除接口
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" id="delModalApiId" data-id="" ng-click="delApi($event)" class="btn btn-success btn-s-xs">
+                确定
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    // 描述Html
+    var toDescribeHtml = function (val) {
+        return val == "" || val == null ? "无描述" : val.substring(0, 37);
+    };
+
+    // 应用网站预览Html
+    var toReadHtml = function (val) {
+        return val == "" || val == null ? "无预览" : '<a href="' + val + '" target="_blank" class="text-info">文档预览</a>';
+    };
+
+    // 操作Html
+    var toControlHtml = function (val) {
+        return '<a href="javascript:void(0)" data-toggle="modal" data-target="#delModal" data-id="'+val+'"><i class="fa fa-times text-danger"></i>删除</a>'+'&nbsp;'+
+                        '<a href="#/api/edit?id='+val+'" data-id="'+val+'"><i class="fa fa-check text-success"></i>编辑</a>'
+    };
+    // 查看详细Html
+    var toDetailHtml = function (val) {
+        return '<a href="/center/admin/api/modal/detail?id='+val+'" data-toggle="ajaxModal" class="text-info">查看</a>'
+    };
+    //列
+    var cols = [
+        {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
+        {title: '名称', name: 'name', align: 'center', lockDisplay: true},
+        {title: '请求类型', name: 'method', width: 50, align: 'center', lockDisplay: true},
+        {title: '描述', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
+        {title: '文档', name: 'doc', align: 'center', lockDisplay: true, renderer: toReadHtml},
+        {title: '提交时间', name: 'createtime', align: 'center', lockDisplay: true, sortable: true},
+        {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
+        {title: '操作', name: 'id', width: 80, align: 'center', lockDisplay: true, renderer: toControlHtml}
+    ];
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/api/list/data",
+        method: 'get',
+        sortName: 'createtime',
+        sortStatus: 'desc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: 550,
+        cols: cols,
+        cellSelected: true,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#delModalApiId").attr("data-id", item.id).attr("data-row", rowIndex);
+    })
+</script>

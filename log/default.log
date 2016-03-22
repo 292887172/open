@@ -1,0 +1,333 @@
+2015-11-02 08:41:59,790 [Thread-63:140731775706880] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 09:05:21,262 [Thread-3:140518341568256] [django.request:231] [ERROR]- Internal Server Error: /center/get_doc_menu
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/center/doc_views.py", line 175, in get_doc_menu
+    return HttpResponse(json.dumps(doc_menu))
+  File "/home/tsengdavid/.pythonbrew/pythons/Python-3.4.1/lib/python3.4/json/__init__.py", line 230, in dumps
+    return _default_encoder.encode(obj)
+  File "/home/tsengdavid/.pythonbrew/pythons/Python-3.4.1/lib/python3.4/json/encoder.py", line 192, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/home/tsengdavid/.pythonbrew/pythons/Python-3.4.1/lib/python3.4/json/encoder.py", line 250, in iterencode
+    return _iterencode(o, 0)
+  File "/home/tsengdavid/.pythonbrew/pythons/Python-3.4.1/lib/python3.4/json/encoder.py", line 173, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: [<DocMenu: DocMenu object>, <DocMenu: DocMenu object>] is not JSON serializable
+2015-11-02 09:21:46,144 [Thread-1:140495650289408] [django.request:231] [ERROR]- Internal Server Error: /center/get_doc_menu
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/center/doc_views.py", line 186, in get_doc_menu
+    return JsonResponse(ret)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/http/response.py", line 476, in __init__
+    raise TypeError('In order to allow non-dict objects to be '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False
+2015-11-02 09:21:47,116 [Thread-3:140495641896704] [django.request:231] [ERROR]- Internal Server Error: /center/get_doc_menu
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/center/doc_views.py", line 186, in get_doc_menu
+    return JsonResponse(ret)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/http/response.py", line 476, in __init__
+    raise TypeError('In order to allow non-dict objects to be '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False
+2015-11-02 09:22:32,585 [Thread-1:140570292057856] [django.request:231] [ERROR]- Internal Server Error: /center/get_doc_menu
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/center/doc_views.py", line 187, in get_doc_menu
+    return JsonResponse(ret)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/http/response.py", line 476, in __init__
+    raise TypeError('In order to allow non-dict objects to be '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False
+2015-11-02 10:40:32,596 [Thread-1:139653921699584] [django.request:231] [ERROR]- Internal Server Error: /center/doc_menu
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/center/doc_views.py", line 175, in doc_menu
+    data = request.body.encode("utf-8")
+AttributeError: 'bytes' object has no attribute 'encode'
+2015-11-02 11:21:57,631 [Thread-280:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:21:57,659 [Thread-282:139727625774848] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:22:04,772 [Thread-302:139727625774848] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:22:04,808 [Thread-304:139727894210304] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:22:11,731 [Thread-328:139727894210304] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:22:11,768 [Thread-330:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:27:16,321 [Thread-408:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:27:16,342 [Thread-409:139727885817600] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:27:18,532 [Thread-434:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:27:18,564 [Thread-436:139727902603008] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:27:28,613 [Thread-469:139727902603008] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:27:28,657 [Thread-472:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:28:20,497 [Thread-506:139727634167552] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:28:20,528 [Thread-508:139727877424896] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:28:22,706 [Thread-541:139727877424896] [django.request:143] [WARNING]- Not Found: /wiki/angular.min.js.map
+2015-11-02 11:28:22,737 [Thread-543:139727885817600] [django.request:143] [WARNING]- Not Found: /wiki/angular-route.min.js.map
+2015-11-02 11:31:50,389 [Thread-641:139727885817600] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 14:17:10,448 [Thread-10:140703992637184] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 14:17:10,967 [Thread-11:140703992637184] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 14:28:10,647 [Thread-36:140650336208640] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 19:01:52,071 [Thread-39:140604788832000] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-02 19:01:52,603 [Thread-40:140604788832000] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-03 21:06:35,575 [Thread-189:139872666797824] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-04 09:40:20,641 [Thread-62:140463205771008] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-04 09:40:21,273 [Thread-63:140463205771008] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-04 09:56:08,606 [Thread-4:140514275878656] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:02,929 [Thread-10:140513948727040] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:03,914 [Thread-11:140514229872384] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:04,914 [Thread-12:140514284271360] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:05,706 [Thread-13:140514238265088] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:08,878 [Thread-14:140514363471616] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-04 09:57:09,704 [Thread-15:140514275878656] [django.request:231] [ERROR]- Internal Server Error: /center/doc_show/8
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: api_create_doc() got an unexpected keyword argument 'doc_id'
+2015-11-05 19:35:54,405 [Thread-80:139749215880960] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-05 19:35:55,106 [Thread-81:139749215880960] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-05 20:44:49,484 [Thread-472:139749215880960] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-05 21:02:51,151 [Thread-488:139749215880960] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-05 21:04:03,056 [Thread-502:139748815169280] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-05 21:11:09,725 [Thread-588:139749225920256] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-05 21:11:09,749 [Thread-589:139749225920256] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-06 08:42:29,265 [Thread-33:140484670314240] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-06 10:35:07,791 [Thread-27:140333125891840] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-06 14:35:02,693 [Thread-17:139949758674688] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-06 14:35:04,268 [Thread-20:139949758674688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-06 14:35:04,310 [Thread-22:139949758674688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-12 20:40:58,366 [Thread-130:140415847450368] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-12 21:48:58,264 [Thread-3:139800411301632] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-13 09:40:49,564 [Thread-9:140306880415488] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-13 10:51:40,302 [Thread-170:140306888546048] [django.request:231] [ERROR]- Internal Server Error: /guide
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 286, in parse
+    compile_func = self.tags[command]
+KeyError: 'create_menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/home/views.py", line 18, in guide
+    return render(request, "home/guide.html", locals())
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 162, in compile_string
+    return parser.parse()
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 288, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 343, in invalid_block_tag
+    (command, get_text_list(["'%s'" % p for p in parse_until])))
+django.template.base.TemplateSyntaxError: Invalid block tag: 'create_menu', expected 'endblock'
+2015-11-13 10:51:41,632 [Thread-171:140306905331456] [django.request:231] [ERROR]- Internal Server Error: /guide
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 286, in parse
+    compile_func = self.tags[command]
+KeyError: 'create_menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsengdavid/PycharmProjects/open/app/home/views.py", line 18, in guide
+    return render(request, "home/guide.html", locals())
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 162, in compile_string
+    return parser.parse()
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 288, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/tsengdavid/.pythonbrew/venvs/Python-3.4.1/openenv/lib/python3.4/site-packages/django/template/base.py", line 343, in invalid_block_tag
+    (command, get_text_list(["'%s'" % p for p in parse_until])))
+django.template.base.TemplateSyntaxError: Invalid block tag: 'create_menu', expected 'endblock'
+2015-11-13 10:56:27,403 [Thread-12:139678460180224] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-13 10:56:30,459 [Thread-15:139678501435136] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 10:57:31,540 [Thread-11:140288420574976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 10:57:47,593 [Thread-16:140288420574976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 10:57:52,180 [Thread-21:140288420574976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 10:58:52,897 [Thread-11:140532226774784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 10:58:52,940 [Thread-12:140532226774784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 11:08:17,554 [Thread-91:140238233958144] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-13 11:15:26,227 [Thread-169:140238115661568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 11:22:24,454 [Thread-22:139783145973504] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 11:31:28,454 [Thread-16:140489238312704] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 11:32:10,745 [Thread-27:140489229920000] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 11:33:12,553 [Thread-39:140489221527296] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-13 12:42:54,570 [Thread-82:140489221527296] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 13:54:37,252 [Thread-105:140684673677056] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-18 13:55:16,441 [Thread-126:140684329740032] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-18 13:55:19,101 [Thread-134:140684621444864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 13:55:33,454 [Thread-142:140684621444864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 13:55:36,336 [Thread-160:140684304561920] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 13:55:42,026 [Thread-166:140684304561920] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 13:55:56,838 [Thread-193:140684338132736] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 13:56:10,800 [Thread-222:140683792869120] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 13:56:57,233 [Thread-250:140684296169216] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 13:57:55,148 [Thread-279:140684621444864] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:02:06,298 [Thread-284:140684673677056] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2015-11-18 14:02:06,495 [Thread-285:140684673677056] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-18 14:02:18,108 [Thread-286:140684673677056] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2015-11-18 14:02:38,802 [Thread-310:140684673677056] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-11-18 14:02:40,426 [Thread-313:140684665284352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:02:40,509 [Thread-315:140684673677056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:05:06,837 [Thread-27:139850351101696] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:05:12,536 [Thread-57:139850351101696] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:05:16,374 [Thread-86:139850376279808] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:06:51,102 [Thread-245:139850376279808] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:07:17,978 [Thread-274:139850342708992] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 14:18:19,309 [Thread-380:139850334316288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:26:49,438 [Thread-632:139850342708992] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:35:54,636 [Thread-771:139850376279808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:35:58,926 [Thread-781:139850367887104] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:36:00,342 [Thread-795:139850334316288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:36:12,513 [Thread-809:139850367887104] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 14:47:11,920 [Thread-880:139849831016192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 15:03:03,855 [Thread-1294:139850367887104] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:03:14,425 [Thread-1323:139850342708992] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:04:06,531 [Thread-1351:139850367887104] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:04:10,026 [Thread-1380:139850359494400] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:04:45,556 [Thread-1409:139850351101696] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:05:16,931 [Thread-1437:139850325923584] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:08:59,263 [Thread-1466:139850587698944] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:09:40,027 [Thread-1494:139850334316288] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:10:08,377 [Thread-1524:139850334316288] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:12:42,502 [Thread-1622:139850587698944] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:13:08,102 [Thread-1650:139850342708992] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:13:26,175 [Thread-1678:139850376279808] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:14:48,469 [Thread-1705:139850359494400] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:18:56,704 [Thread-1921:139850342708992] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:28:14,392 [Thread-1948:139850351101696] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:28:26,591 [Thread-1975:139849839408896] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:34:08,903 [Thread-2005:139850325923584] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:34:29,395 [Thread-2033:139850376279808] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:35:10,299 [Thread-2037:139850376279808] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-18 15:35:48,278 [Thread-2083:139850367887104] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 15:36:08,980 [Thread-2121:139849805838080] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:37:04,452 [Thread-2149:139850334316288] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:40:28,794 [Thread-2174:139850342708992] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:42:22,479 [Thread-4:140078412199680] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-18 15:52:03,104 [Thread-51:140078126978816] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:52:10,322 [Thread-76:140078411937536] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:52:49,290 [Thread-99:140078118586112] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:53:07,855 [Thread-121:140078118586112] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:53:30,695 [Thread-143:140078395152128] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:53:54,900 [Thread-165:140078395152128] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:54:16,690 [Thread-187:140078395152128] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:54:54,803 [Thread-209:140078143764224] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:55:40,893 [Thread-231:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:55:59,919 [Thread-253:140078395152128] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:56:55,926 [Thread-272:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:57:07,569 [Thread-290:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:57:33,129 [Thread-303:140078630631168] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 15:58:38,395 [Thread-316:140078403544832] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:13:11,559 [Thread-359:140078411937536] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:15:14,175 [Thread-412:140078630631168] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:16:49,331 [Thread-450:140078395152128] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:17:38,502 [Thread-471:140078126978816] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:22:55,559 [Thread-492:140078126978816] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:23:15,138 [Thread-513:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:27:14,691 [Thread-636:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:28:37,641 [Thread-677:140078630631168] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:29:37,276 [Thread-701:140078630631168] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:30:48,742 [Thread-744:140078630631168] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:31:47,173 [Thread-768:140078135371520] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:34:14,698 [Thread-28:140672218851072] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:35:37,867 [Thread-87:140671906207488] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:40:54,312 [Thread-29:140365193520896] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-11-18 16:47:20,210 [Thread-56:140365218699008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-11-18 16:55:07,491 [Thread-85:140365235484416] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-12-09 09:25:07,158 [Thread-32:140209798637312] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2015-12-09 09:25:08,663 [Thread-38:140209765066496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-12-09 09:25:08,810 [Thread-39:140209807030016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2015-12-09 09:25:30,743 [Thread-88:140209765066496] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-12-09 09:25:35,979 [Thread-92:140209765066496] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-12-09 09:25:41,589 [Thread-94:140209781851904] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2015-12-09 09:25:46,880 [Thread-96:140209765066496] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2016-01-11 14:21:35,313 [Thread-224:140503270024960] [django.request:143] [WARNING]- Not Found: /favicon.ico

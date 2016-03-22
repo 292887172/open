@@ -1,0 +1,823 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% block title %}
+    注册
+{% endblock %}
+{% block style %}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/theme.css"/>#}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/font-awesome.min.css"/>#}
+    <link rel="stylesheet" href="{% static 'bootstrap/app.css' %}"/>
+    <!--<link rel="stylesheet" href="{% static 'theme/bsplus/css/simple-line-icons.css' %}"/>-->
+    <style>
+        .container-narrow {
+            width: 95%;
+            max-width: 710px;
+            margin: 5% auto;
+        }
+
+        .widget-header > i {
+            font-size: 16px;
+            padding: 15px 10px 15px 11px;
+            text-align: center;
+            width: 40px;
+        }
+
+        .widget-header h5 {
+            margin: 0;
+            padding: 15px 0 0;
+            font-size: 16px;
+            float: left;
+            color: #62687e;
+            font-weight: 200;
+            text-indent: 2em;
+        }
+
+        .widget-header {
+            background-color: #efefef;
+            -moz-border-radius: 3px 3px 0 0;
+            -webkit-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+            min-height: 51px;
+            border: 1px solid #DDDDDD;
+            width: 710px;
+        }
+
+        .widget-body {
+            padding: 0;
+            border-style: solid;
+            border-width: 0 1px 1px;
+            border-color: #ccc;
+            background-color: #fff;
+            width: 660px;
+        }
+
+        .col-sm-9 {
+            width: 50%;
+            position: relative;
+        }
+
+        .col-sm-3 {
+            width: 135px;
+        }
+
+        .col-sm-6 {
+            width: 430px;
+        }
+
+        .rg-form-left {
+            width: 75%;
+            float: left;
+        }
+
+        .rg-form-right {
+            float: right;
+            width: 22%;
+            height: 659px;
+            border-left: 1px solid #e0e0e0;
+            padding-left: 16px;
+        }
+
+        a {
+            color: #428bca;
+        }
+
+        .btn {
+            border-radius: 2px;
+            background-image: none !important;
+            border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-large {
+            padding: 5px 19px;
+            font-size: 17.5px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        .btn-block {
+            display: block;
+            width: 275px;
+            margin-left: 95px;
+            padding-right: 0;
+            padding-left: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+        }
+
+        legend {
+            border-bottom: initial !important;
+        }
+
+        .ui-loading-img {
+            position: relative;
+            top: -36px;
+            width: 33px;
+            height: 33px;
+            left: 58%;
+            display: none;
+        }
+
+        .ui-error-text {
+            position: absolute;
+            top: 5px;
+            right: -38%;
+            width: 104px;
+            font-size: 12px !important;
+        }
+
+        .ui-from-validate {
+            width: 75px;
+        }
+
+        .btn-identify {
+            position: relative;
+            top: -34px;
+            left: 36%;
+        }
+
+        .ui-validate-text {
+            position: relative;
+            top: -34px;
+            left: 42%;
+        }
+
+        .ui-error-text-red {
+            color: #f00 !important;
+        }
+
+        .ui-input-red {
+            border: 1px solid #f00 !important;
+        }
+
+        .footer {
+            background: initial;
+        }
+
+        .col-sm-9 a {
+            position: relative;
+            top: -30px;
+            left: 100px;
+        }
+
+        .col-sm-9 a:hover {
+            color: #428bca;
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="widget container-narrow">
+                        <div class="widget-header">
+                            <i class="icon-edit"></i>
+                            <h5>注册新账号</h5>
+                        </div>
+                        <div class="widget-body clearfix" style="padding:25px;">
+                            <div class="rg-form-left">
+
+                                <input type="hidden" name="csrfmiddlewaretoken"
+                                       value="VBEpbyLRhNzRSTmaP1VPY0FmsY9QHfRS">
+                                <legend style="font-size: 16px; color:#555; width: 270px" class="">
+                                </legend>
+                                {% if rg_method == 'email' %}
+                                    使用邮箱注册或使用<em><a href="register">手机注册</a></em>
+
+                                    <div class="col-sm-6">
+
+                                        <form method="post" enctype="multipart/form-data"
+                                              class="form-horizontal">
+                                            <section>
+
+                                                <div class="panel-body">
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em> 邮箱地址：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="ui-account-text"
+                                                                   name="username">
+
+                                                            <p class="ui-error-text" id="ui-account-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>请设置密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password-text"
+                                                                   name="password">
+
+                                                            <p class="ui-error-text" id="ui-password-error"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>请确认密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password2-text"
+                                                                   name="password2">
+
+                                                            <p class="ui-error-text" id="ui-password2-error"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">参与开发的产品：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-dproducts-text"
+                                                                   name="dproducts">
+
+                                                            <p class="ui-error-text" id="ui-dproducts-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">人数：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="ui-persons-text"
+                                                                   name="persons">
+
+                                                            <p class="ui-error-text" id="ui-persons-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">专长：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-expertise-text"
+                                                                   name="expertise">
+
+                                                            <p class="ui-error-text" id="ui-expertise-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">已出货的产品：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-sproducts-text"
+                                                                   name="sproducts ">
+
+                                                            <p class="ui-error-text" id="ui-sproducts-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">合作方式：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-intent-text"
+                                                                   name="intent ">
+
+                                                            <p class="ui-error-text" id="ui-intent-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>验证码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text"
+                                                                   class="form-control ui-from-validate"
+                                                                   placeholder="验证码"
+                                                                   id="ui-validate_code"
+                                                                   name="validate">
+                                                            <img class="ui-error-text ui-validate-text"
+                                                                 src="validate_code"
+                                                                 onclick="this.src='validate_code?v='+Math.random();"
+                                                                 title="点击更换验证码"
+                                                                 style="cursor:pointer;vertical-align: middle;height: 37px;width: 129px;"
+                                                                 alt="验证码"/>
+                                                            <a href="javascript:void(0)"
+                                                               onclick="$('.ui-validate-text').click()" title="看不清，换一换">换一换</a>
+
+                                                            <p class="ui-error-text"
+                                                               id="ui-code-error"></p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </section>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    使用手机注册或使用<em><a href="register?rg=email">邮箱注册</a></em>
+
+                                    <div class="col-sm-6">
+
+                                        <form method="post" onsubmit="return can_submit()" enctype="multipart/form-data"
+                                              class="form-horizontal">
+                                            <section>
+
+                                                <div class="panel-body">
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>手机号：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="ui-account-text"
+                                                                   name="username">
+
+                                                            <p class="ui-error-text" id="ui-account-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>请设置密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password-text"
+                                                                   name="password">
+
+                                                            <p class="ui-error-text" id="ui-password-error"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>请确认密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password2-text"
+                                                                   name="password2">
+
+                                                            <p class="ui-error-text" id="ui-password2-error"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">参与开发的产品：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-dproducts-text"
+                                                                   name="dproducts">
+
+                                                            <p class="ui-error-text" id="ui-dproducts-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">人数：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="ui-persons-text"
+                                                                   name="persons">
+
+                                                            <p class="ui-error-text" id="ui-persons-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">专长：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-expertise-text"
+                                                                   name="expertise">
+
+                                                            <p class="ui-error-text" id="ui-expertise-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">已出货的产品：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-sproducts-text"
+                                                                   name="sproducts ">
+
+                                                            <p class="ui-error-text" id="ui-sproducts-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">合作方式：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control"
+                                                                   id="ui-intent-text"
+                                                                   name="intent ">
+
+                                                            <p class="ui-error-text" id="ui-intent-error">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label"><em>*</em>验证码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="text"
+                                                                   class="form-control ui-from-validate"
+                                                                   placeholder="验证码"
+                                                                   id="ui-validate_code"
+                                                                   name="validate">
+                                                            <button type="button" class="btn btn-identify "
+                                                                    id="get-check-code" disabled>
+                                                                获取短信验证码
+                                                            </button>
+                                                            <p style="left: 102%!important;" class="ui-error-text"
+                                                               id="ui-code-error"></p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </section>
+                                        </form>
+                                    </div>
+                                {% endif %}
+
+                                <button style="position: relative" type="submit" class="btn btn-large btn-block"
+                                        id="btnRegister">注册
+                                </button>
+                                <img class="ui-loading-img" src="{% static 'image/ajax-loader.gif' %}"></div>
+
+
+                            <div class="rg-form-right">
+                                <label class="ui-have-account">已有账号？请直接<a href="{% url 'login' %}">登录</a></label>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--/row-fluid-->
+            </div>
+            <!--/span10-->
+        </div>
+        <!--/row-fluid-->
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+
+            //读取cookies
+            function getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg))
+                    return unescape(arr[2]);
+                else
+                    return null;
+            }
+
+            //写cookies
+            function setCookie(name, value) {
+                var minute = 1;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + minute * 60 * 1000);
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+            }
+
+            //删除cookies
+            function delCookie(name) {
+                var exp = new Date();
+                exp.setTime(exp.getTime() - 1);
+                var cval = getCookie(name);
+                if (cval != null)
+                    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+            }
+
+            function set_time(count) {
+                var t = setInterval(function () {
+                    if (count <= 1) {
+                        clearInterval(t);
+                        delCookie('count');
+                        $('#get-check-code').text('获取短信验证码').removeAttr('disabled').addClass('active');
+
+                    } else {
+                        count -= 1;
+                        setCookie('count', count);
+                        $('#get-check-code').text('重新获取验证码(' + count + ')');
+                    }
+                }, 1000);
+            }
+
+            var count = getCookie('count');
+            if (count != null) {
+                count = parseInt(count);
+                set_time(count);
+            }
+            $("#get-check-code").click(function () {
+
+                var tel = $("#ui-account-text").val();
+                //合法手机号，开始发送短信验证码
+                if (verify_phone(tel)) {
+                    $(this).removeClass('active');
+                    $(this).prop('disabled', true);
+                    $.ajax({
+                        url: '{% url 'send_sms' %}',
+                        type: "POST",
+                        data: {'tel': tel, 'user_id': tel},
+                        success: function (response) {
+                            response = jQuery.parseJSON(response);
+                            if (response['status'] == '1') {
+                                $("#ui-code-error").text('激活码发送成功');
+                                set_time(60);
+                            }
+                            else {
+                                $("#ui-code-error").text('激活码发送失败');
+                            }
+                        },
+                        error: function () {
+                            $("#ui-code-error").text('网络错误，请重试');
+                        }
+                    });
+                }
+                else {
+                    $("#ui-account-text").addClass('ui-input-red');
+                    $("#ui-account-error").addClass('ui-error-text-red').text('请正确填写手机号');
+                }
+            });
+            $("#ui-account-text").focus(function () {
+                $("#ui-account-text").removeClass('ui-input-red');
+                $("#ui-account-error").removeClass('ui-error-text-red').text("完成验证后可直接用该号登录，找回密码");
+            });
+            $("#ui-account-text").blur(function () {
+                //验证手机号合法性
+                var tel = $("#ui-account-text").val();
+                if (getQueryString('rg')) {
+                    if (verify_email(tel)) {
+                        //验证帐号是否已经注册,返回ok表示已经存在,error表示不存在当前可用
+                        $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
+                            if (data['status'] == 'error') {
+                                $("#ui-account-text").removeClass('ui-input-red');
+                                $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
+                            }
+                            else {
+                                $("#ui-account-text").addClass('ui-input-red');
+                                $("#ui-account-error").addClass('ui-error-text-red').html("该邮箱已被注册，直接<strong><a href='login'>登录</a></strong>");
+                            }
+                        }, 'json');
+                    }
+                    else {
+                        $("#ui-account-text").addClass('ui-input-red');
+                        $("#ui-account-error").addClass('ui-error-text-red').text('请正确填写邮箱地址');
+                    }
+                }
+                else {
+                    if (verify_phone(tel)) {
+                        //验证帐号是否已经注册,返回ok表示已经存在,error表示不存在当前可用
+                        $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
+                            if (data['status'] == 'error') {
+                                $("#ui-account-text").removeClass('ui-input-red');
+                                $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
+                                $('#get-check-code').removeAttr('disabled').addClass('active');
+                            }
+                            else {
+                                $("#ui-account-text").addClass('ui-input-red');
+                                $("#ui-account-error").addClass('ui-error-text-red').html("该手机号已被注册，直接<strong><a href='login'>登录</a></strong>");
+                                $("#get-check-code").attr('disabled', true).removeClass('active');
+                            }
+                        }, 'json');
+                    }
+                    else {
+                        $("#ui-account-text").addClass('ui-input-red');
+                        $("#ui-account-error").addClass('ui-error-text-red').text('请正确填写手机号');
+                        $("#get-check-code").attr('disabled', true).removeClass('active');
+                    }
+                }
+            });
+
+            //验证密码
+            $("#ui-password-text").focus(function () {
+                $("#ui-password-text").removeClass('ui-input-red');
+                $("#ui-password-error").removeClass('ui-error-text-red').text('6-15字符，建议英文，数字和符号组成');
+            });
+            $("#ui-password-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                if (!password) {
+                    $("#ui-password-text").addClass('ui-input-red');
+                    $("#ui-password-error").addClass('ui-error-text-red').text('请输入密码');
+                }
+                else {
+                    $("#ui-password-text").removeClass('ui-input-red');
+                    $("#ui-password-error").removeClass('ui-error-text-red').text('');
+                }
+            });
+            $("#ui-password2-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                var password2 = $("#ui-password2-text").val();
+                if (password2 != password) {
+                    $("#ui-password2-text").addClass('ui-input-red');
+                    $("#ui-password2-error").addClass('ui-error-text-red').text('两次输入密码不相同');
+
+                }
+                else {
+                    $("#ui-password2-text").removeClass('ui-input-red');
+                    $("#ui-password2-error").removeClass('ui-error-text-red').text('');
+                }
+
+            });
+            //参与开发的产品
+            $("#ui-dproducts-text").focus(function () {
+                $("#ui-dproducts-text").removeClass('ui-input-red');
+                $("#ui-dproducts-error").removeClass('ui-error-text-red').text("");
+            });
+            //团队人数
+            $("#ui-persons-text").blur(function () {
+                var teamPersons = $("#ui-persons-text").val();
+                //判断正整数
+                var re = /^[1-9]+[0-9]*]*$/;
+                if (!re.test(teamPersons)) {
+                    $("#ui-persons-text").addClass('ui-input-red');
+                    $("#ui-persons-error").addClass('ui-error-text-red').text('请输入正整数');
+                }
+                else {
+                    $("#ui-persons-text").removeClass('ui-input-red');
+                    $("#ui-persons-error").removeClass('ui-error-text-red').text('');
+                }
+            });
+            //专长
+            $("#ui-expertise-text").focus(function () {
+                $("#ui-expertise-text").removeClass('ui-input-red');
+                $("#ui-expertise-error").removeClass('ui-error-text-red').text("");
+
+            });
+            //已出货的产品(列举)
+            $("#ui-sproducts-text").focus(function () {
+                $("#ui-sproducts-text").removeClass('ui-input-red');
+                $("#ui-sproducts-error").removeClass('ui-error-text-red').text("");
+            });
+            //合作方式
+            $("#ui-intent-text").focus(function () {
+                $("#ui-intent-text").removeClass('ui-input-red');
+                $("#ui-intent-error").removeClass('ui-error-text-red').text("");
+            });
+            $("#btnRegister").click(function () {
+                var tel = $("#ui-account-text").val();
+                var password = $("#ui-password-text").val();
+                var code = $("#ui-validate_code").val();
+                var dproducts = $("#ui-dproducts-text").val();
+                var persons = $("#ui-persons-text").val();
+                var expertise = $("#ui-expertise-text").val();
+                var sproducts = $("#ui-sproducts-text").val();
+                var intent = $("#ui-intent-text").val();
+                if (getQueryString('rg')) {
+                    if (verify_email(tel)) {
+                        if (password) {
+                            if (code) {
+                                var data2_obj = {
+                                    'password': password,
+                                    'rg': getQueryString('rg'),
+                                    'user_id': tel,
+                                    'code': code,
+                                    'dproducts': dproducts,
+                                    'persons': persons,
+                                    'expertise': expertise,
+                                    'sproducts': sproducts,
+                                    'intent': intent
+                                };
+                                $.ajax({
+                                    url: "{% url 'register' %}",
+                                    type: "POST",
+                                    data: data2_obj,
+                                    error: function () {
+                                        $("#btnRegister").text("注册");
+                                        $(".ui-loading-img").hide();
+
+                                    },
+                                    beforeSend: function () {
+                                        $("#btnRegister").text('注册中');
+                                        $(".ui-loading-img").show()
+                                    },
+                                    success: function (response) {
+                                        response = jQuery.parseJSON(response);
+
+                                        if (response['status'] == 1) {
+                                            url = response['url'];
+                                            window.location.href = url;
+                                        }
+                                        else {
+                                            $("#btnRegister").text("注册");
+                                            $(".ui-loading-img").hide();
+                                            alert(response['error'])
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                $("#ui-validate_code").addClass('ui-input-red');
+                                $("#ui-code-error").addClass('ui-error-text-red').text('请正确填写验证码');
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (verify_phone(tel)) {
+                        if (password) {
+                            if (code) {
+                                var data_obj = {
+                                    'password': password,
+                                    'user_id': tel,
+                                    'code': code,
+                                    'dproducts': dproducts,
+                                    'persons': persons,
+                                    'expertise': expertise,
+                                    'sproducts': sproducts,
+                                    'intent': intent
+                                };
+                                $.ajax({
+                                    url: "{% url 'register' %}",
+                                    type: "POST",
+                                    data: data_obj,
+                                    error: function () {
+                                        $("#btnRegister").text("注册");
+                                        $(".ui-loading-img").hide();
+                                    },
+                                    beforeSend: function () {
+                                        $("#btnRegister").text('注册中');
+                                        $(".ui-loading-img").show()
+                                    },
+                                    success: function (response) {
+                                        response = jQuery.parseJSON(response);
+
+                                        if (response['status'] == 1) {
+                                            url = response['url'];
+                                            window.location.href = url;
+                                        }
+                                        else {
+                                            $("#btnRegister").text("注册");
+                                            $(".ui-loading-img").hide();
+                                            alert(response['error'])
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                $("#ui-validate_code").addClass('ui-input-red');
+                                $("#ui-code-error").addClass('ui-error-text-red').text('请正确填写验证码');
+                            }
+                        }
+                    }
+                }
+            });
+
+            /**
+             * 验证手机号码
+             * @param email
+             * @returns {boolean}
+             */
+
+            var verify_email = function (email) {
+                return (/^[a-zA-Z0-9._\-]{1,}@[a-zA-Z0-9_\-]{1,}\.[a-zA-Z0-9_\-.]{1,}$/).test(email);
+            };
+            /**
+             * 验证手机号码
+             * @param tel
+             * @returns {boolean}
+             */
+            var verify_phone = function (tel) {
+                return /^0?1[3|4|5|7|8][0-9]\d{8}$/.test(tel);
+            };
+            /**
+             * 获取URL中参数值
+             * @param name
+             * @returns {*}
+             */
+            var getQueryString = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null)
+                    return unescape(r[2]);
+                return null;
+            }
+        });
+
+    </script>
+{% endblock %}

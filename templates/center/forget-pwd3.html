@@ -1,0 +1,327 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% block title %}
+    找回密码
+{% endblock %}
+{% block style %}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/theme.css"/>#}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/font-awesome.min.css"/>#}
+    <link rel="stylesheet" href="{% static 'bootstrap/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'theme/bsplus/css/simple-line-icons.css' %}"/>
+    <style>
+        .container-narrow {
+            width: 95%;
+            max-width: 710px;
+            margin: 5% auto;
+        }
+
+        .widget-header > i {
+            font-size: 16px;
+            padding: 15px 10px 15px 11px;
+            text-align: center;
+            width: 40px;
+        }
+
+        .widget-header h5 {
+            margin: 0;
+            padding: 15px 0 0;
+            font-size: 16px;
+            float: left;
+            color: #62687e;
+            font-weight: 200;
+            text-indent: 2em;
+        }
+
+        .widget-header {
+            background-color: #efefef;
+            -moz-border-radius: 3px 3px 0 0;
+            -webkit-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+            min-height: 51px;
+            border: 1px solid #DDDDDD;
+            width: 710px;
+        }
+
+        .widget-body {
+            padding: 0;
+            border-style: solid;
+            border-width: 0 1px 1px;
+            border-color: #ccc;
+            background-color: #fff;
+            width: 660px;
+        }
+
+        .col-sm-9 {
+            width: 50%;
+            position: relative;
+        }
+
+        .col-sm-3 {
+            width: 135px;
+        }
+
+        .col-sm-6 {
+            width: 430px;
+        }
+
+
+        a {
+            color: #428bca;
+        }
+
+        .btn {
+            border-radius: 2px;
+            background-image: none !important;
+            border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-large {
+            padding: 5px 19px;
+            font-size: 17.5px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        .btn-block {
+            display: block;
+            width: 275px;
+            margin-left: 95px;
+            padding-right: 0;
+            padding-left: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+        }
+
+        legend {
+            border-bottom: initial !important;
+        }
+
+        .ui-loading-img {
+            position: relative;
+            top: -36px;
+            width: 33px;
+            height: 33px;
+            left: 58%;
+            display: none;
+        }
+
+        .ui-error-text {
+            position: absolute;
+            top: 4px;
+            left: 95%;
+            width: 114px;
+            font-size: 12px !important;
+        }
+
+        .ui-from-validate {
+            width: 75px;
+        }
+
+        .btn-identify {
+            position: relative;
+            top: -34px;
+            left: 36%;
+        }
+        .ui-validate-text{
+            position: relative;
+            top: -34px;
+            left: 42%;
+        }
+        .ui-error-text-red {
+            color: #f00 !important;
+        }
+
+        .ui-input-red {
+            border: 1px solid #f00 !important;
+        }
+    .rg-form-left ul{
+        height: 40px;
+
+    }
+    .rg-form-left ul li{
+        display: inline-block;
+        float: left;
+        width: 33%;
+        line-height: 40px;
+        color: #666;
+        text-align: center;
+        font-size: 15px;
+    }
+    .cur{
+
+        color: #fff!important;
+    }
+     .ui-steps{
+        background: url("{% static 'image/center/step3.jpg' %}") no-repeat center;
+    }
+    .footer{
+        background: initial;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="widget container-narrow">
+                        <div class="widget-header">
+                            <i class="icon-edit"></i>
+                            <h5>找回密码</h5>
+                        </div>
+                        <div class="widget-body clearfix" style="padding:25px;">
+                            <div class="rg-form-left">
+
+                                <input type="hidden" name="csrfmiddlewaretoken"
+                                       value="VBEpbyLRhNzRSTmaP1VPY0FmsY9QHfRS">
+
+                                <ul class="ui-steps">
+                                    <li class="cur">①确认账号</li><li class="cur">②安全验证</li><li class="cur">③重置密码</li>
+                                </ul>
+
+
+                                    <div class="col-sm-6">
+
+                                        <form method="post" enctype="multipart/form-data"
+                                              class="form-horizontal">
+                                            <section>
+
+                                                <div class="panel-body">
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label"><em>*</em>新密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password-text"
+                                                                   name="password">
+
+                                                            <p class="ui-error-text" id="ui-password-error"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label"><em>*</em>请确认密码：</label>
+
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control"
+                                                                   id="ui-password2-text"
+                                                                   name="password2">
+
+                                                            <p class="ui-error-text" id="ui-password2-error"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </section>
+                                        </form>
+                                    </div>
+                                <button style="position: relative" type="submit" class="btn btn-large btn-block"
+                                        id="btnSave">确认
+                                </button>
+                                <img class="ui-loading-img" src="{% static 'image/ajax-loader.gif' %}"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/row-fluid-->
+            </div>
+            <!--/span10-->
+        </div>
+        <!--/row-fluid-->
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+
+
+            //验证密码
+            $("#ui-password-text").focus(function () {
+                $("#ui-password-text").removeClass('ui-input-red');
+                $("#ui-password-error").removeClass('ui-error-text-red').text('6-15字符，建议英文，数字和符号组成');
+
+            });
+            $("#ui-password-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                if (!password) {
+                    $("#ui-password-text").addClass('ui-input-red');
+                    $("#ui-password-error").addClass('ui-error-text-red').text('请输入密码');
+
+                }
+                else {
+                    $("#ui-password-text").removeClass('ui-input-red');
+                    $("#ui-password-error").removeClass('ui-error-text-red').text('');
+
+                }
+
+            });
+            $("#ui-password2-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                var password2 = $("#ui-password2-text").val();
+                if (password2 != password) {
+                    $("#ui-password2-text").addClass('ui-input-red');
+                    $("#ui-password2-error").addClass('ui-error-text-red').text('两次输入密码不相同');
+
+                }
+                else {
+                    $("#ui-password2-text").removeClass('ui-input-red');
+                    $("#ui-password2-error").removeClass('ui-error-text-red').text('');
+                }
+
+            });
+
+            $("#btnSave").click(function () {
+                var password = $("#ui-password-text").val();
+                var password2 = $("#ui-password2-text").val();
+                    if (password) {
+                        if (password == password2) {
+                            var data_obj = {
+
+                                'pwd': password,
+                                'type':'third'
+                            };
+                            $.ajax({
+                                url: "{% url 'forget_pwd' %}",
+                                type: "POST",
+                                data: data_obj,
+                                error: function () {
+                                    $("#btnSave").text("确认");
+                                    $(".ui-loading-img").hide();
+
+                                },
+                                beforeSend: function () {
+                                    $("#btnSave").text('验证中');
+                                    $(".ui-loading-img").show()
+                                 },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+
+                                    if (response['status'] == 1) {
+                                        alert(response['error']);
+                                        url = response['url'];
+                                        window.location.href = url;
+                                    }
+                                    else{
+                                        $("#btnSave").text("确认");
+                                        $(".ui-loading-img").hide();
+                                        alert(response['error'])
+                                    }
+
+                                }
+
+                            });
+                        }
+                        else{
+                            $("#ui-password2-text").removeClass('ui-input-red');
+                            $("#ui-password2-error").addClass('ui-error-text-red').text('两次输入密码不相同');
+                        }
+                    }
+                })
+            });
+    </script>
+{% endblock %}

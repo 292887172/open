@@ -1,0 +1,139 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+
+{% block head_style %}
+    <link rel="stylesheet" href="{% static "common/js/mmGrid/mmGrid.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/js/mmGrid/mmPaginator.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/js/mmGrid/theme/bootstrap/mmGrid-bootstrap.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/js/mmGrid/theme/bootstrap/mmPaginator-bootstrap.css" %}"
+          type="text/css"/>
+    <link rel="stylesheet" href="{% static 'angular/plugin/ngDialog/ngDialog.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'angular/plugin/ngDialog/ngDialog-theme-default.min.css' %}"/>
+    <link rel="stylesheet" href="{% static "angular/plugin/angular-ui-tree/angular-ui-tree.min.css" %}"/>
+{% endblock %}
+
+{% block body_content %}
+    <section id="content">
+        <section class="vbox" ng-controller="AdminBaseCtrl" ng-view>
+
+        </section>
+    </section>
+{% endblock %}
+{% block end_fixed_script %}
+    <script src="{% static "angular/angular.min.js" %}"></script>
+    <script src="{% static "angular/angular-route.min.js" %}"></script>
+    <script src="{% static "angular/plugin/ngDialog/ngDialog.min.js" %}"></script>
+    <script src="{% static "angular/plugin/angular-ui-tree/angular-ui-tree.min.js" %}"></script>
+    <script src="{% static "ng/admin/app.js" %}"></script>
+    <script src="{% static "ng/admin/controller.js" %}"></script>
+    <script src="{% static "ng/admin/index/controller.js" %}"></script>
+    <script src="{% static "ng/admin/user/controller.js" %}"></script>
+    <script src="{% static "ng/admin/application/controller.js" %}"></script>
+    <script src="{% static "ng/admin/api/controller.js" %}"></script>
+    <script src="{% static "ng/admin/doc/controller.js" %}"></script>
+
+    <script src="{% static "common/js/mmGrid/mmGrid.js" %}"></script>
+    <script src="{% static "common/js/mmGrid/mmPaginator.js" %}"></script>
+    <script>
+        angular.module('Admin.base', ['ngRoute'])
+                .controller('AdminBaseCtrl', ['$scope', function ($scope) {
+                    $scope.csrf_token = "{{ csrf_token }}";
+
+                    $scope.apiMethedSelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "GET",
+                            "value": "GET"
+                        },
+                        {
+                            "name": "POST",
+                            "value": "POST"
+                        },
+                        {
+                            "name": "PUT",
+                            "value": "PUT"
+                        },
+                        {
+                            "name": "DELETE",
+                            "value": "DELETE"
+                        }
+                    ];
+                    $scope.apiTypeSelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "通用接口",
+                            "value": 0
+                        },
+                        {
+                            "name": "鉴权接口",
+                            "value": 1
+                        }
+                    ];
+                    $scope.apiClassifySelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "对话服务",
+                            "value": "对话服务"
+                        },
+                        {
+                            "name": "功能服务",
+                            "value": "功能服务"
+                        }
+                    ];
+                    $scope.apiFunctionSelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "基础支持",
+                            "value": "基础支持"
+                        },
+                        {
+                            "name": "设备接口",
+                            "value": "设备接口"
+                        }
+                    ];
+                    $scope.apiLevelSelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "0",
+                            "value": 0
+                        },
+                        {
+                            "name": "1",
+                            "value": 1
+                        }
+                    ];
+                    $scope.apiGroupSelectItems = [
+                        {
+                            "name": "请选择",
+                            "value": ""
+                        },
+                        {
+                            "name": "0",
+                            "value": 0
+                        },
+                        {
+                            "name": "1",
+                            "value": 1
+                        }
+                    ];
+                }]);
+    </script>
+{% endblock %}
+{% block end_script %}
+
+{% endblock %}

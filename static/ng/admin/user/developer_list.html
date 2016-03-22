@@ -1,0 +1,96 @@
+<header class="header bg-light dk">
+    <p>所有开发者</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="toggleForbidModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               提示
+            </h4>
+         </div>
+         <div class="modal-body" id="modalBody">
+            请确认禁用该用户：禁用
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" id="toggleForbidModalDeveloperId" data-id="" ng-click="toggleForbidDeveloper($event)" class="btn btn-success btn-s-xs">
+                确定
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    // 应用网站预览Html
+    var toReadHtml = function (val) {
+        return val == "" || val == null ? "无预览" : '<a href="' + val + '" target="_blank" class="text-info">产品预览</a>';
+    };
+
+    // 操作Html
+    var toControlHtml = function (val) {
+        if (val == 0){
+            return '<a href="javascript:void(0)" data-toggle="modal" data-target="#toggleForbidModal" data-id="'+val+'"><i class="fa fa-times text-danger"></i>禁用</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+        }else if (val == 1){
+            return '<a href="javascript:void(0)" data-toggle="modal" data-target="#toggleForbidModal" data-id="'+val+'"><i class="fa fa-check text-success"></i>启用</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+        }
+    };
+    // 查看详细Html
+    var toDetailHtml = function (val) {
+        val = val.replace(" ", "");
+        return '<a href="/center/admin/developer/modal/detail?id='+val+'&t='+(new Date()).valueOf()+ '" data-toggle="ajaxModal" class="text-info">查看</a>'
+    };
+    //列
+    var cols = [
+        {title: '账号', name: 'id', align: 'center', lockDisplay: true},
+        {title: '职位', name: 'job', align: 'center', lockDisplay: true},
+        {title: '公司', name: 'inc', align: 'center', lockDisplay: true},
+        {title: '厂家', name: 'factory', align: 'center', lockDisplay: true},
+        {title: '团队人数', name: 'person', width: 60, align: 'center', lockDisplay: true},
+        {title: '网站', name: 'site', align: 'center', lockDisplay: true, renderer: toReadHtml},
+        {title: '提交时间', name: 'createtime', align: 'center', lockDisplay: true, sortable: true},
+        {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
+        {title: '操作', name: 'is_forbid', width: 100, align: 'center', lockDisplay: true, renderer: toControlHtml}
+    ];
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/developer/list/data",
+        method: 'get',
+        sortName: 'createtime',
+        sortStatus: 'desc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: 550,
+        cols: cols,
+        cellSelected: true,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#toggleForbidModalDeveloperId").attr("data-id", item.id).attr("data-row", rowIndex);
+        if (item.is_forbid == 0){
+            return $("#modalBody").html("请确认禁用该用户：禁用");
+        }else{
+            return $("#modalBody").html("请确认启用该用户：启用");
+        }
+    })
+</script>

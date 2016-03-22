@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>数据库设计 &mdash; open 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="open 1.0 documentation" href="index.html" />
+    <link rel="next" title="进度规划与分工" href="plan.html" />
+    <link rel="prev" title="主要模块" href="module.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">open 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>数据库设计<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>基本信息<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>主机：192.168.0.62</li>
+<li>数据库名称：ebdb_open</li>
+<li>帐号：root</li>
+<li>密码：53iq.com</li>
+<li>端口号：3306</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>表结构<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sql"><div class="highlight"><pre><span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_account</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_account</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_account</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_account_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_from_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_password</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;密码&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;账号类型（0：普通账号 ，1：运营账号）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户邮箱&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_phone</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;手机号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户状态（0：未通过审核，1：可用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：启用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_last_login</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;上次登录时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_pdproducts</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>  <span class="k">COMMENT</span> <span class="s1">&#39;参与开发的产品&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_number</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="k">COMMENT</span> <span class="s1">&#39;人数&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_expertise</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>  <span class="k">COMMENT</span> <span class="s1">&#39;专长&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_sproducts</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>  <span class="k">COMMENT</span> <span class="s1">&#39;已出货的产品&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_account_cooperation</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>  <span class="k">COMMENT</span> <span class="s1">&#39;合作方式&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_account_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;用户表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_api</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_url</span><span class="o">`</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口类型（0：普通接口）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_request_type</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;请求方式&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_params</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口参数（json字符串）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_return</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口返回值（json字符串）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_describe</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口描述&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_doc_url</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_action_url</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;未获得时链接到的操作地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_port</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;80&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;端口号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_classify</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口分类&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_function</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口功能&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_level</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口等级（0：普通接口，1：高级接口，2：内部接口）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_group</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口分类（0：普通应用,1：内部接口,2：某某合作伙伴应用,&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_invoke_total</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;每日调用次数（0：未限制，其他表示具体次数）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_level</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">16</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;接口表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_api_auth</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api_auth</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_api_auth</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_aa_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口权限编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_aa_invoke_total</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;每次调用次数（0：未限制，其他表示具体次数）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_aa_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_aa_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_aa_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_2</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_3</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_aa_invoke_total</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FK_Reference_4</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span><span class="p">,</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FK_Reference_5</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;接口权限表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_app</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_describe</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用描述&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_site</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用描述网站&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_logo</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用图标&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_action</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;操作类型（1：添加，2：修改，3：删除）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_check_status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核状态（0：审核中，1：审核通过，-1：审核未通过）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_check_remarks</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核备注&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_appid</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;appid&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_appsecret</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;appsecret&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_brand</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备品牌&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_category</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备类别&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_model</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备型号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_level</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口等级（0：普通接口，1：高级接口，2：内部接口&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_group</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口分类（0：普通应用,1：内部接口,2：某某合作伙伴应用,&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_push_url</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备消息推送地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_push_token</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备消息推送验证Token&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_device_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_protocol_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_update_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;更新时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FK_Reference_6</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">74</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;应用表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_app_history</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app_history</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_app_history</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_describe</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用描述&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_site</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用描述网站&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_logo</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用图标&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_action</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;操作类型（1：添加，2：修改，3：删除）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_check_status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核状态（0：审核中，1：审核通过，-1：审核未通过）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_check_remarks</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核备注&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_appid</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;appid&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_appsecret</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;appsecret&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_brand</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备品牌&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_category</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备类别&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_model</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备型号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_level</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口等级（0：普通接口，1：高级接口，2：内部接口&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_group</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口分类（0：普通应用,1：内部接口,2：某某合作伙伴应用,&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_push_url</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备消息推送地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_push_token</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备消息推送验证Token&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_device_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_protocol_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_update_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;更新时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_app_delete_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;删除时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">63</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;应用历史表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_developer</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_account</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_factory</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;厂商名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_symbol</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;厂商标识（这个一定不能为空哦）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_from</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者来源（1：平台用户，2：设备管理系统厂商，3：qq）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_inc</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_site</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队网址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_address</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队所在地&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_person</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发团队人数&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_realname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;联系人姓名&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_job</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;联系人职务&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_mobile</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;手机&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;邮箱&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_action</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;操作类型（1：添加，2：修改，3：删除）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_check_status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核状态（0：审核中，1：审核通过，-1：审核未通过）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_check_remarks</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核备注&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_update_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;更新时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;开发者表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_developer_hostory</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer_hostory</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_developer_hostory</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_account</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_factory</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;厂商名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_symbol</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;厂商标识（这个一定不能为空哦）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_from</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者来源（1：平台用户，2：设备管理系统厂商，3：qq）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_inc</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_is_forbid</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否禁用（0：未禁用，1：禁用）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_site</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队网址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_address</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;公司/团队所在地&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_person</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发团队人数&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_realname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;联系人姓名&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_job</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;联系人职务&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_mobile</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;手机&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;邮箱&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_action</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;操作类型（1：添加，2：修改，3：删除）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_check_status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核状态（0：审核中，1：审核通过，-1：审核未通过）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_check_remarks</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;审核备注&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_update_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;更新时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_developer_delete_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;删除时间&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;开发者表历史表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_doc</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号（只有接口文档此项不为空）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_markdown</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口文档（Markdown源码，保存示例代码和详细说明）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_html</span><span class="o">`</span> <span class="nb">text</span> <span class="k">COMMENT</span> <span class="s1">&#39;生成的html&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_type</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档类型（0：接口文档，1：介绍文档，2：内部加密文档）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_create_date</span><span class="o">`</span> <span class="k">timestamp</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_update_date</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;更新时间&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档名称&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">FK_Reference_2</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FK_Reference_2</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">22</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;文档表&#39;</span><span class="p">;</span>
+
+<span class="c1">-- ----------------------------</span>
+<span class="c1">-- Table structure for ebt_doc_menu</span>
+<span class="c1">-- ----------------------------</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc_menu</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_doc_menu</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">ebf_dm_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档菜单编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档编号&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;菜单名称&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_is_parent</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;是否为目录菜单（0：非目录菜单，1：目录菜单）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_url</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;#&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;菜单url地址&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_class</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;菜单样式&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_depth</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;1&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;菜单深度（1：一级菜单，2：二级菜单）&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_ordernum</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">ebf_dm_parent_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;上级菜单编号（根目录的上级菜单为0）&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_dm_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">Index_1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FK_Reference_7</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">ndbcluster</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">194</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;文档菜单表&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">数据库设计</a><ul>
+<li><a class="reference internal" href="#id2">基本信息</a></li>
+<li><a class="reference internal" href="#id3">表结构</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="module.html"
+                        title="previous chapter">主要模块</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="plan.html"
+                        title="next chapter">进度规划与分工</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="plan.html" title="进度规划与分工"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="module.html" title="主要模块"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, 53iq.
+    </div>
+  </body>
+</html>

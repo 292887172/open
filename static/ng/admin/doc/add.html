@@ -1,0 +1,84 @@
+<header class="header bg-light dk">
+    <p>添加文档</p>
+</header>
+
+<section class="scrollable padder" ng-controller="DocAddCtrl">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <form id="addDocForm" class="form-horizontal" data-validate="parsley">
+                <section class="panel panel-default">
+                    <header class="panel-heading">
+                        <strong>第一步 选择要添加的文档类型</strong>
+
+                    </header>
+
+                    <div class="panel-body">
+
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文档类型</label>
+
+
+                            <div class="col-sm-10">
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="0" ng-change="hideApi()" name="doc-type"
+                                           ng-model="addDocFormData.doc_type"
+                                            >接口文档
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="1" ng-change="hideApi()" name="doc-type"
+                                           ng-model="addDocFormData.doc_type"
+                                            >介绍文档
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="2 " ng-change="hideApi()" name="doc-type"
+                                           ng-model="addDocFormData.doc_type">
+                                    内部加密文档
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group" ng-hide="myhide">
+                            <label class="col-sm-4 control-label">选择要添加文档的api</label>
+                            <select ng-model="addDocFormData.api_id"
+                                    ng-options="value.pk as value.fields.api_name for value in apis">
+                                <option value="">请选择</option>
+                            </select>
+
+                        </div>
+                         <div class="form-group" ng-show="myhide">
+                            <label class="col-sm-2 control-label">文档名称</label>
+
+
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="文档名称"
+                                       ng-model="addDocFormData.doc_name">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <footer class="panel-footer text-right bg-light lter">
+                        <img src="/static/image/loading.gif" ng-show="loading" alt=""/>
+                        <button type="submit" class="btn btn-success btn-s-xs" ng-click="submitDocForm()">下一步</button>
+                    </footer>
+                </section>
+
+            </form>
+        </div>
+    </div>
+
+
+</section>
+<script type="text/ng-template" id="firstDialogId">
+    <div class="ngdialog-message">
+        <h3>消息</h3>
+
+        <p ng-show="ngDialogId" ng-model="msg.content">{[{ ngDialogData.foo }]}</p>
+
+    </div>
+</script>

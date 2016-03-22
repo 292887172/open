@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+from django.conf.urls import url,patterns
+
+urlpatterns = patterns(
+    'app.home.views',
+    # url(r'^$', 'home', name='home'),
+    url(r'^$', 'home', name='home'),
+    url(r'^guide$', 'guide', name='home/guide'),
+    url(r'^test$', 'test', name='test'),
+    url(r'^left$', 'left', name='left'),
+    url(r'^top$', 'top', name='top'),
+    url(r'^hz$', 'hz', name='hz'),
+    url(r'^zy$', 'zy', name='zy'),
+    url(r'^zny$', 'zny', name='zny'),
+    url(r'^kfz$', 'kfz', name='kfz'),
+    url(r'^sdk$', 'sdk', name='sdk'),
+    url(r'^big$', 'big', name='big'),
+    url(r'^contact$', 'contact', name='contact'),
+
+)

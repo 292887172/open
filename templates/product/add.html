@@ -1,0 +1,150 @@
+{% extends "product/base.tpl" %}
+{% load staticfiles %}
+
+{% block title %}
+    产品管理
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'common/css/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <style>
+        .wrapper {
+            width: 1200px;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+    <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper mt20">
+        <div class="contbox">
+            <div class="box3 fn-clear add_newProduct_main">
+                <div class="add_newProduct_box">
+                    <h3 class="pmTit">添加新产品</h3>
+
+                    <div>
+                        <form action="" method="POST" name="productAddForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="developer_id" value="{{ developer.developer_id }}"/>
+                            <input type="hidden" name="product_describe" value="hello world"/>
+                            <h4 class="infoTit">填写基本信息</h4>
+                            <dl class="fmInfo">
+                                <dt>产品名称</dt>
+                                <dd>
+                                    <input type="text" name="product_name" id="productNameText" maxlength="18"
+                                           class="w280 form-control" placeholder="请填写产品名称">
+                                    <span class="tips-error hiden" id="productNameTips"></span>
+                                </dd>
+                            </dl>
+                            <dl class="fmInfo">
+                                <dt>型号</dt>
+                                <dd>
+                                    <input type="text" name="product_model" id="productModelText" maxlength="48"
+                                           class="w280 form-control" placeholder="请填写型号，如：A1">
+                                    <span class="tips-error hiden" id="productModelTips"></span>
+                                </dd>
+                            </dl>
+                            <dl class="fmInfo">
+                                <dt>分类</dt>
+                                <dd>
+                                    智能家居 /
+                                    <select name="product_category" id="product_category" class="sel1">
+                                        <option value="家电类">家电类</option>
+                                        <option value="厨房类">厨房类</option>
+                                        <option value="卫浴类">卫浴类</option>
+                                        <option value="环境类">环境类</option>
+                                    </select>
+                                    <span class="tips-error hiden" id="productTypeTips"></span>
+                                </dd>
+                            </dl>
+                            <h4 class="infoTit02 mt30">
+                                选择技术方案 <span class="f12">（方案确定后不能更改）</span>
+                            </h4>
+                            <ul class="choose_plan_list">
+                                <li class="choose_plan_item choose_plan_item02">
+                                    <p class="plan_title">屏幕式智能套件方案</p>
+
+                                    <div class="plan_box plan_box_choose">
+                                        <p class="nav_nav lev01">云</p>
+
+                                        <p class="s01 lev02">WiFi/3G等</p>
+
+                                        <p class="nav_nav lev03">设备</p>
+
+                                        <p class="txt">油烟机、热水器、净化器等</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
+
+                            <div class="tac mt20 hide">
+                                <div class="checkbox i-checks">
+                                    <label>
+                                        <input id="chk" type="checkbox" value="已同意协议" name="protocol">
+                                        <i></i>
+                                        我已阅读并接受<a href="http://www.baidu.com" class="linkBlue" id="agreement">《53iq智能云开发者协议》</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tac mt20">
+                                <span><button id="go" type="button" class="btn btn-s-lg btn-success">继 续</button></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="box-leadIn hide">
+                    <h3 class="tit5">导入已有的产品</h3>
+
+                    <div class=" plr20">
+                        <div class="row">
+                            <div class="col-lg-8">导入 XXX 文件来创建新产品</div>
+                            <div class="col-lg-4"><a href="#" class="btn btn-s-sm btn-success">导 入</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block end_script %}
+    <script>
+        $(document).ready(function () {
+            $('#go').on('click', function (e) {
+                if ($("#productNameText").val() != "") {
+                    $("form[name=productAddForm]").submit();
+                } else {
+                    alert("产品名称不能为空");
+                }
+            });
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,618 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% load filter %}
+{% block title %}
+    找回密码
+{% endblock %}
+{% block style %}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/theme.css"/>#}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/font-awesome.min.css"/>#}
+    <link rel="stylesheet" href="{% static 'bootstrap/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'theme/bsplus/css/simple-line-icons.css' %}"/>
+    <style>
+        .container-narrow {
+            width: 95%;
+            max-width: 710px;
+            margin: 5% auto;
+        }
+
+        .widget-header > i {
+            font-size: 16px;
+            padding: 15px 10px 15px 11px;
+            text-align: center;
+            width: 40px;
+        }
+
+        .widget-header h5 {
+            margin: 0;
+            padding: 15px 0 0;
+            font-size: 16px;
+            float: left;
+            color: #62687e;
+            font-weight: 200;
+            text-indent: 2em;
+        }
+
+        .widget-header {
+            background-color: #efefef;
+            -moz-border-radius: 3px 3px 0 0;
+            -webkit-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+            min-height: 51px;
+            border: 1px solid #DDDDDD;
+            width: 710px;
+        }
+
+        .widget-body {
+            padding: 0;
+            border-style: solid;
+            border-width: 0 1px 1px;
+            border-color: #ccc;
+            background-color: #fff;
+            width: 660px;
+        }
+
+        .col-sm-9 {
+            width: 50%;
+            position: relative;
+        }
+
+        .col-sm-3 {
+            width: 135px;
+        }
+
+        .col-sm-6 {
+            width: 430px;
+        }
+
+        a {
+            color: #428bca;
+        }
+
+        .btn {
+            border-radius: 2px;
+            background-image: none !important;
+            border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-large {
+            padding: 5px 19px;
+            font-size: 17.5px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        .btn-block {
+            display: block;
+            width: 275px;
+            margin-left: 95px;
+            padding-right: 0;
+            padding-left: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+        }
+
+        legend {
+            border-bottom: initial !important;
+        }
+
+        .ui-loading-img {
+            position: relative;
+            top: -36px;
+            width: 33px;
+            height: 33px;
+            left: 58%;
+            display: none;
+        }
+
+        .ui-error-text {
+            position: absolute;
+            top: 4px;
+            left: 95%;
+            width: 114px;
+            font-size: 12px !important;
+        }
+
+        .ui-from-validate {
+            width: 75px;
+        }
+
+        .btn-identify {
+            position: relative;
+            top: -34px;
+            left: 36%;
+            width: 149px;
+        }
+
+        .ui-validate-text {
+            position: relative;
+            top: -34px;
+            left: 42%;
+
+        }
+
+        .ui-error-text-red {
+            color: #f00 !important;
+        }
+
+        .ui-input-red {
+            border: 1px solid #f00 !important;
+        }
+
+        .rg-form-left ul {
+            height: 40px;
+
+        }
+
+        .rg-form-left ul li {
+            display: inline-block;
+            float: left;
+            width: 33%;
+            line-height: 40px;
+            color: #666;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .cur {
+
+            color: #fff !important;
+        }
+
+        .ui-steps {
+            background: url("{% static 'image/center/step2.jpg' %}") no-repeat center;
+        }
+
+        .m-t {
+            margin-top: 0px !important;
+        }
+
+        .footer {
+            background: initial;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="widget container-narrow">
+                        <div class="widget-header">
+                            <i class="icon-edit"></i>
+                            <h5>找回密码</h5>
+                        </div>
+                        <div class="widget-body clearfix" style="padding:25px;">
+                            <div class="rg-form-left">
+
+                                <input type="hidden" name="csrfmiddlewaretoken"
+                                       value="VBEpbyLRhNzRSTmaP1VPY0FmsY9QHfRS">
+
+                                <ul class="ui-steps">
+                                    <li class="cur">①确认账号</li>
+                                    <li class="cur">②安全验证</li>
+                                    <li>③重置密码</li>
+                                </ul>
+
+                                {% if phone or email %}
+                                <div class="col-sm-6">
+
+                                    <form method="post" enctype="multipart/form-data"
+                                          class="form-horizontal">
+                                        <div>
+
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">选择验证方式</label>
+
+                                                    <div class="col-sm-9">
+
+                                                        <select data-required="true" class="form-control m-t"
+                                                                id="method-sel">
+                                                            {% if phone and email %}
+                                                                <option value="phone" selected>手机号</option>
+                                                                <option value="email">邮箱</option>
+                                                            {% elif phone %}
+                                                                <option value="phone" selected>已验证手机</option>
+                                                            {% elif email %}
+                                                                <option value="email">已验证邮箱</option>
+                                                            {% else %}
+                                                            {% endif %}
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                                <div class="form-group">
+                                                    {% if phone and email %}
+                                                        <label class="col-sm-3 control-label"><em>*</em> 手机号：</label>
+
+                                                        <div class="col-sm-9" style="line-height: 33px">
+                                                            <p id="ui-account-text">{{ phone|cover_str|safe }} </p>
+                                                        </div>
+                                                    {% elif phone %}
+                                                        <label class="col-sm-3 control-label"><em>*</em> 已验证手机：</label>
+
+                                                        <div class="col-sm-9" style="line-height: 33px">
+                                                            <p id="ui-account-text">{{ phone|cover_str|safe }} </p>
+                                                        </div>
+                                                    {% elif email %}
+                                                        <label class="col-sm-3 control-label"><em>*</em> 已验证邮箱：</label>
+
+                                                        <div class="col-sm-9" style="line-height: 33px">
+                                                            <p id="ui-account-text">{{ email|cover_str|safe }}
+                                                            </p>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="line line-dashed b-b line-lg pull-in"></div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label"><em>*</em>验证码：</label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="text"
+                                                               class="form-control ui-from-validate"
+                                                               placeholder="验证码"
+                                                               id="ui-validate_code"
+                                                               name="validate">
+                                                        <button type="button" class="btn btn-identify "
+                                                                id="get-check-code">
+                                                            获取验证码
+                                                        </button>
+                                                        <p style="left: 102%!important;" class="ui-error-text"
+                                                           id="ui-code-error"></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                <button style="position: relative" type="button" class="btn btn-large btn-block"
+                                        id="btnSave">确认
+                                </button>
+                                <img class="ui-loading-img" src="{% static 'image/ajax-loader.gif' %}"></div>
+
+                             {% else %}
+                                                <p style="text-align: center;font-size: 15px;padding-top: 25px">该帐号暂未绑定任何手机或邮箱，无法修改密码，请联系管理员修改！</p>
+                                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!--/row-fluid-->
+            </div>
+            <!--/span10-->
+        </div>
+        <!--/row-fluid-->
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+            $("#method-sel").change(function () {
+                if ($("#method-sel").val() == 'email') {
+                    $("#ui-account-text").parent('div').prev('label').html("<em>*</em> 邮箱地址：");
+                    $("#ui-account-text").text("{{ email|cover_str|safe }}")
+                }
+                else {
+                    $("#ui-account-text").parent('div').prev('label').html("<em>*</em> 手机号：");
+                    $("#ui-account-text").text("{{ phone|cover_str|safe }}")
+                }
+            });
+            //读取cookies
+            function getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg))
+                    return unescape(arr[2]);
+                else
+                    return null;
+            }
+
+            //写cookies
+            function setCookie(name, value) {
+                var minute = 1;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + minute * 60 * 1000);
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+            }
+
+            //删除cookies
+            function delCookie(name) {
+                var exp = new Date();
+                exp.setTime(exp.getTime() - 1);
+                var cval = getCookie(name);
+                if (cval != null)
+                    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+            }
+
+            function set_time(count) {
+                var t = setInterval(function () {
+                    if (count <= 1) {
+                        clearInterval(t);
+                        delCookie('count');
+                        $('#get-check-code').text('获取验证码').removeAttr('disabled').addClass('active');
+
+                    } else {
+                        count -= 1;
+                        setCookie('count', count);
+                        $('#get-check-code').text('重新获取验证码(' + count + ')');
+                    }
+                }, 1000);
+            }
+
+            var count = getCookie('count');
+            if (count != null) {
+                count = parseInt(count);
+                set_time(count);
+            }
+            $("#get-check-code").click(function () {
+
+                var tel = "{{ phone }}";
+                var email = "{{ email }}";
+{#                if (tel != "None") {#}
+{#                    $(this).removeClass('active');#}
+{#                    $(this).prop('disabled', true);#}
+{#                    $.ajax({#}
+{#                        url: '{% url 'send_sms' %}',#}
+{#                        type: "POST",#}
+{#                        data: {'tel': tel, 'user_id': tel},#}
+{#                        success: function (response) {#}
+{#                            response = jQuery.parseJSON(response);#}
+                            {#                            console.log(response);#}
+{#                            if (response['status'] == '1') {#}
+{#                                $("#ui-code-error").text('验证码发送成功');#}
+{#                                set_time(60);#}
+{#                            }#}
+{#                            else {#}
+{#                                $("#ui-code-error").text('验证码发送失败');#}
+{#                            }#}
+{##}
+{#                        },#}
+{#                        error: function () {#}
+{#                            $("#ui-code-error").text('网络错误，请重试');#}
+{#                        }#}
+{##}
+{#                    });#}
+{#                }#}
+{#                else if (email) {#}
+{#                    $.ajax({#}
+{#                        url: '{% url 'send_email_code' %}',#}
+{#                        type: "POST",#}
+{#                        data: {'email': email, 'user_id': email},#}
+{#                        beforeSend: function () {#}
+{#                            $("#ui-code-error").text('正在发送');#}
+{#                            $("#get-check-code").removeClass('active');#}
+{#                            $("#get-check-code").prop('disabled', true);#}
+{#                        },#}
+{#                        success: function (response) {#}
+{#                            response = jQuery.parseJSON(response);#}
+{##}
+{#                            if (response['result'] == 'ok') {#}
+{#                                $("#ui-code-error").text('验证码发送成功');#}
+{##}
+{#                            }#}
+{#                            else {#}
+{#                                $("#ui-code-error").text('验证码发送失败');#}
+{#                            }#}
+{##}
+{#                        },#}
+{#                        error: function () {#}
+{#                            $("#ui-code-error").text('网络错误，请重试');#}
+{#                            $("#get-check-code").addClass('active');#}
+{#                            $("#get-check-code").prop('disabled', false);#}
+{#                        }#}
+{##}
+{#                    });#}
+{#                }#}
+
+
+                    if ($("#method-sel").val() == 'email') {
+
+                        //合法邮箱，开始发送邮箱验证码
+                        if (verify_email(email)) {
+
+                            $.ajax({
+                                url: '{% url 'send_email_code' %}',
+                                type: "POST",
+                                data: {'email': email, 'user_id': email},
+                                beforeSend: function () {
+                                    $("#ui-validate_code").removeClass('ui-input-red');
+                                    $("#ui-code-error").removeClass('ui-error-text-red').text('正在发送');
+                                    $("#get-check-code").removeClass('active');
+                                    $("#get-check-code").prop('disabled', true);
+                                },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+
+                                    if (response['result'] == 'ok') {
+                                        $("#ui-validate_code").removeClass('ui-input-red');
+                                        $("#ui-code-error").removeClass('ui-error-text-red').text('验证码发送成功');
+                                        setTimeout("myfun()",50000)
+                                    }
+                                    else {
+                                        $("#ui-validate_code").removeClass('ui-input-red');
+                                        $("#ui-code-error").removeClass('ui-error-text-red').text('验证码发送失败');
+                                        $("#get-check-code").addClass('active');
+                                        $("#get-check-code").prop('disabled', false);
+                                    }
+
+                                },
+                                error: function () {
+                                    $("#ui-validate_code").removeClass('ui-input-red');
+                                    $("#ui-code-error").removeClass('ui-error-text-red').text('网络错误，请重试');
+                                    $("#get-check-code").addClass('active');
+                                    $("#get-check-code").prop('disabled', false);
+                                }
+
+                            });
+
+                        }
+                        else {
+                            $("#ui-account-text").addClass('ui-input-red');
+                            $("#ui-account-error").addClass('ui-error-text-red').text('请输入正确手机号');
+                        }
+                    }
+                    else {
+                        //合法手机号，开始发送短信验证码
+                        if (verify_phone(tel)) {
+                            $.ajax({
+                                url: '{% url 'send_sms' %}',
+                                type: "POST",
+                                data: {'tel': tel, 'user_id': tel},
+                                beforeSend: function () {
+                                    $("#ui-validate_code").removeClass('ui-input-red');
+                                    $("#ui-code-error").removeClass('ui-error-text-red').text('正在发送');
+                                    $("#get-check-code").removeClass('active');
+                                    $("#get-check-code").prop('disabled', true);
+                                },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+                                    {#                            console.log(response);#}
+                                    if (response['status'] == '1') {
+                                        $("#ui-validate_code").removeClass('ui-input-red');
+                                        $("#ui-code-error").removeClass('ui-error-text-red').text('验证码发送成功');
+                                        set_time(60);
+                                    }
+                                    else {
+                                        $("#ui-validate_code").removeClass('ui-input-red');
+                                        $("#ui-code-error").removeClass('ui-error-text-red').text('验证码发送失败');
+                                    }
+
+                                },
+                                error: function () {
+                                    $("#ui-validate_code").removeClass('ui-input-red');
+                                    $("#ui-code-error").removeClass('ui-error-text-red').text('网络错误，请重试');
+                                }
+
+                            });
+
+                        }
+                        else {
+                            $("#ui-account-text").addClass('ui-input-red');
+                            $("#ui-account-error").addClass('ui-error-text-red').text('请输入正确手机号');
+                        }
+                    }
+            });
+
+
+
+            $("#btnSave").click(function () {
+                var user_id;
+                {% if phone and email %}
+                    user_id='';
+                {% elif phone %}
+                    user_id="{{ phone }}";
+                {% else %}
+                    user_id="{{ email }}";
+                {% endif %}
+
+                var code = $("#ui-validate_code").val();
+                var can_use = false;
+                if ($("#method-sel").val() == 'email') {
+                    user_id="{{ email }}";
+                    can_use = verify_email(user_id);
+
+                }
+                else {
+                    user_id="{{ phone }}";
+                    can_use = verify_phone(user_id);
+
+                }
+                if (can_use) {
+                    if (code) {
+                        var data_obj = {
+                            'user_id': user_id,
+                            'code': code,
+                            'type': 'second',
+                            'sel': $("#method-sel").val()
+                        };
+                        $.ajax({
+                            url: "{% url 'forget_pwd' %}",
+                            type: "POST",
+                            data: data_obj,
+                            error: function () {
+                                $("#btnSave").text("确认");
+                                $(".ui-loading-img").hide();
+
+                            },
+                            beforeSend: function () {
+                                $("#btnSave").text('验证中');
+                                $(".ui-loading-img").show()
+                            },
+                            success: function (response) {
+                                response = jQuery.parseJSON(response);
+
+                                if (response['status'] == 1) {
+                                    url = response['url'];
+                                    window.location.href = url;
+                                }
+                                else {
+                                    $("#btnSave").text("确认");
+                                    $(".ui-loading-img").hide();
+                                    alert(response['error'])
+                                }
+
+                            }
+
+                        });
+                    }
+                    else {
+                        $("#ui-validate_code").addClass('ui-input-red');
+                        $("#ui-code-error").addClass('ui-error-text-red').text('请正确填写验证码');
+
+                    }
+
+                }
+
+            })
+
+
+        });
+
+        /**
+         * 验证手机号码
+         * @param email
+         * @returns {boolean}
+         */
+
+        var verify_email = function (email) {
+            return (/^[a-zA-Z0-9._\-]{1,}@[a-zA-Z0-9_\-]{1,}\.[a-zA-Z0-9_\-.]{1,}$/).test(email);
+        };
+        /**
+         * 验证手机号码
+         * @param tel
+         * @returns {boolean}
+         */
+        var verify_phone = function (tel) {
+            return /^0?1[3|4|5|7|8][0-9]\d{8}$/.test(tel);
+        };
+        /**
+         * 获取URL中参数值
+         * @param name
+         * @returns {*}
+         */
+        var getQueryString = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return unescape(r[2]);
+            return null;
+        };
+        function myfun(){
+                        $("#get-check-code").addClass('active');
+                        $("#get-check-code").prop('disabled', false);
+                    }
+
+    </script>
+{% endblock %}

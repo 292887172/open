@@ -1,0 +1,201 @@
+{% extends 'home/base.tpl' %}
+{% load filter %}
+{% load staticfiles %}
+{% block title %}
+    首页
+{% endblock %}
+{% block style %}
+    <style>
+        .wrapper {
+            width: 1200px;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+
+        .cl {
+            margin-top: 50px;
+        }
+    </style>
+{% endblock %}
+{% block menu %}
+    {% create_menu 1 user.developer.developer_id %}
+{% endblock %}
+{% block content %}
+    <div class="m-banner">
+        <div class="hd">
+            <ul>
+                <!--li class="on"></li-->
+                <!--li class=""></li-->
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <li style="background:#1f284e"><img src="{% static 'image/home/banner1.png' %}" width="1200"
+                                                    height="500" alt=""></li>
+                <!--li style="background:#222222"><img src="/images/temp/banner2.png" width="1200" height="500" alt=""></li-->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 公告 -->
+    <div class="m-notice" style="display: none">
+        <div class="wrapper">
+            <i class="icon"></i>
+            <ul id="div_backdata">
+
+            </ul>
+            <a href="#" class="more" target="_blank">更多公告</a>
+        </div>
+    </div>
+
+    <!-- 合作项目 -->
+    <div class="m-project">
+        <div class="wrapper">
+            <ul class="cl">
+                <li class="p-list1">
+                    <img src="{% static 'image/home/main_icon01.png' %}" width="136" height="136" alt="">
+
+                    <div class="text">
+                        <h5><span>01.</span>初步洽谈</h5>
+
+                        <p>确定合作意向、讨论合作方式<br>
+                            规划合作目标</p>
+                    </div>
+                </li>
+                <li class="p-list2">
+                    <img src="{% static 'image/home/main_icon02.png' %}" width="136" height="136" alt="">
+
+                    <div class="text">
+                        <h5><span>02.</span>技术对接</h5>
+
+                        <p>注册成为开发者<br>讨论接入方式<br>
+                            确定技术方案</p>
+                    </div>
+                </li>
+                <li class="p-list3">
+                    <img src="{% static 'image/home/main_icon03.png' %}" width="136" height="136" alt="">
+
+                    <div class="text">
+                        <h5><span>03.</span>产品研发&测试</h5>
+
+                        <p>厂家研制新品<br>
+                            测试产品性能</p>
+                    </div>
+                </li>
+                <li class="p-list4">
+                    <img src="{% static 'image/home/main_icon04.png' %}" width="136" height="136" alt="">
+
+                    <div class="text">
+                        <h5><span>04.</span>批量排产&上线</h5>
+
+                        <p>制定排产计划<br>
+                            确定上线时间及推广方案</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="more">
+                <a href="/guide#hz">了解详情</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功案例 -->
+    <div class="m-case">
+        <div class="wrapper">
+            <h4>成功案例</h4>
+
+            <div class="case-box cl">
+                <div class="half">
+                    <div class="case-img mr10">
+                        <img src="{% static 'image/home/youyanji.png' %}" width="276" height="276" alt="">
+                    </div>
+                    <div class="case-text">
+                        <dl>
+                            <dt>智能油烟机</dt>
+                            <dd>高可靠，流畅的高端智能触屏互动体验。<br/>
+                                流畅的智能控制，精准的故障自检，一键报修响应。<br/>
+                                53iq智能云，智能增值服务系统。<br/>
+                                7、9寸大屏超低成本，2.4、4.3寸小屏可选。
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="case-img mr10">
+                        <img src="{% static 'image/home/xiyiji.png' %}" width="276" height="276" alt="">
+                    </div>
+                    <div class="case-text">
+                        <dl>
+                            <dt>智能洗衣机</dt>
+                            <dd>便捷的预约，智能控制，自动提醒人性化设计。<br>
+                                流畅的智能操控，精准的故障自检。<br>
+                                通过53i厨房智能云APP，可以在任何位置控制开关。<br>
+                                53iq厨房智能云，智能增值服务系统。
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-border">
+            <div class="wrapper">
+                <div class="case-box cl">
+                    <div class="half">
+                        <div class="case-img mr10">
+                            <img src="{% static 'image/home/binggui.png' %}" width="276" height="276" alt="">
+                        </div>
+                        <div class="case-text">
+                            <dl>
+                                <dt>智能冰箱</dt>
+                                <dd>智能化控制，食品智能管理，健康养生助手。<br/>
+                                    流畅的智能操控，精准的故障自检，及时的自动提醒。<br/>
+                                    53iq厨房智能云，智能增值服务系统。
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="half">
+                        <div class="case-img mr10">
+                            <img src="{% static 'image/home/jichengzao.png' %}" width="276" height="276" alt="">
+                        </div>
+                        <div class="case-text">
+                            <dl>
+                                <dt>智能集成灶</dt>
+                                <dd>高可靠，流畅的高端智能大屏互动体验。<br/>
+                                    节能联动，丰富在线菜谱。<br/>
+                                    便捷的智能联网，精准的故障自检，一键报修响应。<br/>
+                                    53iq厨房智能云，智能增值服务系统。
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,541 @@
+{% extends 'debug/base.tpl' %}
+{% load staticfiles %}
+
+{% block style %}
+    <style>
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+        .menuBox h3{
+            border-bottom: 1px solid #f5f5f5;
+            padding-left: 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #bfbfbf;
+            line-height: 34px;
+        }
+
+        .menuBox ul li a{
+            padding-left: 0;
+        }
+
+        .activate{
+            background:#37618f;
+        }
+
+        .activate a{
+            color:#FFF !important;
+            text-decoration:none;
+        }
+
+        .rightMain .box2 h4{
+            color: #333333;
+            opacity: 0.6;
+            border-bottom: 1px dashed lightgrey;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .rightMain .ui-explain{
+            margin-bottom: 20px;
+        }
+
+        .content{
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            color: #333;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        .content .frm-control-group{
+            margin-bottom: 20px;
+        }
+
+        .frm-control-group input,select{
+            width: 60%;
+            height: 30px;
+            padding-left: 10px;
+        }
+
+        .frm-control-group label{
+            display: inline-block;
+            width: 120px;
+            font-weight: unset;
+        }
+
+        .my-title{
+            width: auto!important;
+        }
+
+        .btn-send{
+            width: 150px;
+        }
+        .ul-args{
+            margin-top: 10px;
+        }
+
+        .ul-args label span{
+            color: red;
+            margin-right: 5px;
+        }
+
+        .bg-danger{
+            display: inline-block;
+            width: auto;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+
+        .my-result{
+            margin: 15px 0;
+            overflow: auto;
+        }
+
+        input[type='radio']{
+            height: auto;
+        }
+
+        .close:hover{
+            color: red;
+        }
+
+        .btn-add-params{
+            padding: 4px 12px;
+        }
+        .api-doc{
+            margin-left: 100px;
+            color: #37618f;
+        }
+
+    </style>
+{% endblock %}
+
+{% block title %}
+    接口调试
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li class="cur"><a href="{% url 'home/guide' %}">开发指南</a></li>
+    {% if user.account_id %}
+        <li><a href="{% url 'product/list' %}">产品管理</a></li>
+    {% endif %}
+    <li><a href="{% url 'center' %}">加入我们</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper mt20 fn-clear">
+        <div class="leftSide">
+            <div class="box1">
+                <!-- 左侧菜单 begin -->
+                <div class="menuBox">
+                    <h3>调试接口功能</h3>
+                    <ul>
+                        {% for a in api %}
+                            <li><a href="javascript:void(0)"><i class="icon11"></i>{{ a.api_name }}</a></li>
+                        {% endfor %}
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>自定义组合</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="rightMain">
+            <div class="box2 relative">
+                <h4>接口调试工具</h4>
+                <div class="ui-explain">
+                    <h4>使用说明</h4>
+                    <p>（1）选择合适的接口。</p>
+                    <p>（2）系统会生成该接口的参数表，您可以直接在文本框内填入对应的参数值。（红色星号表示该字段必填）</p>
+                    <p>（3）点击发送按钮，即可得到相应的调试信息。</p>
+                    <p>（4）如果需要调试自定参数的接口，可以点击左侧自定义组合进行测试。</p>
+                </div>
+                <h4>发送请求</h4>
+                <div id="content" class="content">
+                    <div class="frm-control-group">
+                        <label>一. 功能：</label>
+                        <label class="my-title"></label>
+                        <a class="api-doc" href="#" target="_blank">接口文档</a>
+                    </div>
+
+                    <div class="frm-control-group">
+                        <label>二. 请求方式：</label>
+                        <label class="radio-inline">
+                          <input type="radio" name="requestMethod"  value="0"> POST
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="requestMethod"  value="1"> GET
+                        </label>
+                    </div>
+
+                    <div class="frm-control-group">
+                        <label>三. 请求地址：</label>
+                        <input type="text" name="api_url" placeholder="测试的api地址" disabled/>
+                    </div>
+
+                    <div class="frm-control-group">
+                        <label>四. 参数列表：</label>
+                        <div class="api-params">
+                            <div class="ul-args">
+                                <label><span>*</span>命令：</label>
+                                <input type="text" name="cmd" disabled/>
+                                <span class="bg-danger hidden">命令不可以为空</span>
+                            </div>
+                            <div class="ul-args">
+                                <label><span>*</span>Token：</label>
+                                <input type="text" name="token"/>
+                                <span class="bg-danger hidden">Token不可以为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frm-control-group">
+                        <button class="btn btn-default btn-send">发送</button>
+                    </div>
+                </div>
+
+                <h4>请求结果</h4>
+                <div class="content">
+                    <div class="my-result"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function() {
+            var url = {
+                debug_interface: "{% url 'debug_interface' %}"
+            };
+            var api = {{ api|safe }};
+            // 初始化默认选中第一个接口
+            var li = $('.menuBox ul li');
+            li.first().addClass("activate");
+            $(".my-title").text(li.first().text());
+
+            if(api.length > 0) {
+                setRequest(api[0]);
+            }
+
+            /**
+             * 设置请求
+             * @param a
+             */
+            function setRequest(a){
+                // 清除添加参数的button
+                $('.btn-add-params').remove();
+
+                // 移除最后两个请求方式
+                if($(".radio-inline").length>=4) {
+                    removeLastRequestMethod();
+                    removeLastRequestMethod();
+                }
+                // 设置请求方式
+                var method = a.api_request_type;
+                if (method == 'POST'){
+                    setRequestMethod(0);
+                }else if(method == 'GET'){
+                    setRequestMethod(1);
+                }
+
+                // 设置请求地址
+                $("input[name='api_url']").val(a.api_url);
+                // 设置为disabled
+                $("input[name='api_url']").prop("disabled", true);
+                // 设置接口文档地址
+                $(".api-doc").attr('href', a.api_doc_url);
+                // 设置请求参数
+                setApiParams(a.api_params);
+            }
+
+            /**
+             * 设置请求方式
+             * @param value
+             */
+            function setRequestMethod(value){
+                // 这种状态的选中取消需要使用prop，使用设置属性的attr有时候会出现莫名其妙的问题
+                $("input[value='"+value+"']").prop("checked", true);
+            }
+
+            /**
+             * 添加请求的方式
+             * @param value
+             * @param method
+             */
+            function addRequestMethod(value, method){
+                var html = '<label class="radio-inline">'+
+                            '<input type="radio" name="requestMethod"  value="'+value+'">'+method+
+                            '</label>';
+                $(".radio-inline:last").after(html);
+            }
+
+            /**
+             * 删除最后一个请求方式
+             */
+            function removeLastRequestMethod(){
+                $(".radio-inline:last").remove();
+            }
+
+            /**
+             * api接口的参数设置
+             * @param params
+             */
+            function setApiParams(params){
+                var html = "";
+                params = JSON.parse(params);
+                params.forEach(function(e){
+                    html += get_params_template(e);
+                });
+                $(".api-params").empty().html(html);
+            }
+
+            /**
+             * 调试接口的参数模版
+             */
+            function get_params_template(e){
+                var tmp = '<div class="ul-args"><label>';
+                if(e.required == "true"){
+                    tmp += '<span>*</span>';
+                }
+                tmp += e.name+'：</label><input type="text" name="'+e.name+'" id="'+ e.type+'" value="'+ e.example+'" placeholder="'+ e.remark+'"/>';
+
+                if(e.required == "true"){
+                    tmp += '<span class="bg-danger bg-danger-value hidden">'+ e.name+'不可以为空</span>';
+                }
+
+                if(e.type.toLowerCase() == "integer"){
+                    tmp += '<span class="bg-danger bg-danger-type hidden">'+ e.name+'必须为整数</span>';
+                }else if(e.type.toLowerCase() == "float"){
+                    tmp += '<span class="bg-danger bg-danger-type hidden">'+ e.name+'必须为浮点数</span>';
+                }
+                tmp += '</div>';
+                return tmp;
+            }
+
+
+            // 左侧导航选择背景色变化以及右侧的内容随之变化
+            li.click(function () {
+                $(this).addClass("activate").siblings().removeClass("activate");
+                $(".my-title").text($(this).text());
+                $(".my-result").empty();
+                var index = $(this).index();
+                if(index == $(this).siblings().length){
+                    setCustom();
+                }else {
+                    setRequest(api[index]);
+                }
+            });
+
+            /**
+             * 用户自由设置
+             */
+            function setCustom(){
+                // 请求地址设置为可用并清空地址
+                var api_url = $("input[name='api_url']");
+                api_url.prop("disabled", false);
+                api_url.val("");
+
+                // 清空请求参数
+                var api_params = $('.api-params');
+                api_params.empty();
+                $('.btn-add-params').remove();
+                api_params.before('<button class="btn btn-default btn-add-params">添加参数</button>');
+                for(var i=0; i<3; i++){
+                    api_params.append(addParam());
+                }
+
+                // 设置请求方式(默认为GET请求)
+                setRequestMethod(1);
+                // 添加新的请求方式
+                if($(".radio-inline").length<=2) {
+                    addRequestMethod(2, 'PUT');
+                    addRequestMethod(3, 'DELETE');
+                }
+
+            }
+
+            /**
+             * 用户自己添加参数键值对
+             */
+            function addParam(){
+                return '<div class="ul-args">'+
+                        '<label style="width:150px;"><input style="width:90%;;" type="text" placeholder="参数名"></label>'+
+                        '<input type="text" placeholder="参数值"/>'+
+                        '<button type="button" class="close hidden" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                        '</div>';
+            }
+
+            // 设置自定义参数的删除和鼠标经过的样式
+            var frm_control_group = $(".frm-control-group");
+
+            frm_control_group.delegate(".btn-add-params", "click", function(){
+                $('.api-params').append(addParam());
+            });
+
+            frm_control_group.delegate(".close", "click", function(){
+                $(this).parent().remove();
+            });
+
+            frm_control_group.delegate(".ul-args", "mouseenter", function(){
+                $(this).children("button").removeClass("hidden");
+            });
+
+            frm_control_group.delegate(".ul-args", "mouseleave", function(){
+                $(this).children("button").addClass("hidden");
+            });
+
+            /**
+             * 验证字段是否为空
+             * @param value
+             * @param selector
+             */
+            function validate_field(value, selector){
+                selector = $(selector);
+                if (value == ""){
+                    selector.removeClass("hidden");
+                    return false;
+                }else{
+                    selector.addClass("hidden");
+                    return true;
+                }
+            }
+
+            /**
+             * 验证字段类型是否符合要求
+             * @param value
+             * @param type
+             * @param selector
+             */
+            function validate_field_type(value, type, selector){
+                type = type.toLowerCase();
+                if (type == "integer"){
+                    // 正则表达式判断是否为整数
+                    var reg = /^-?\d+$/;
+                }
+                else if (type == "float"){
+                    // 正则表达式判断是否为浮点数
+                    reg = /^(-?\d+)(\.\d+)?$/;
+                }else{
+                    reg = /^.+$/;
+                }
+
+                selector = $(selector);
+                if(reg.test(value)){
+                    selector.addClass("hidden");
+                    return true;
+                }else {
+                    selector.removeClass("hidden");
+                    return false;
+                }
+            }
+
+            /**
+             * 根据input的name获取值，并且去除两端空格
+             * @param name
+             */
+            function getInputValue(name){
+                return $("input[name='"+name+"']").val().trim();
+            }
+
+            // 提交信息
+            $(".btn-send").click(function(){
+                var flag = true;
+                var args = {};
+
+                var method = $("input[name='requestMethod']:checked").val();
+                if(method == ""){
+                    return false;
+                }
+
+                // 验证参数是否为空和参数类型
+                var index = $('.activate').index();
+
+                // 判断是不是最后一个自由组合的调试
+                if(index == $('.menuBox ul li').length-1){
+                    var api_url = $("input[name='api_url']").val();
+                    if (api_url == ""){
+                        return false;
+                    }
+                    args["api_url"] = api_url;
+
+                    var api_params = $('.api-params').children();
+                    for(var i=0;i<api_params.length;i++){
+                        var param_name = $(api_params[i]).children('label').children('input').val();
+                        var param_value = $(api_params[i]).children('input').val();
+                        if(param_name != ""){
+                            args[param_name] = param_value;
+                        }
+                    }
+                }else{
+                    var params = JSON.parse(api[index].api_params);
+                    params.forEach(function(e){
+                        var value = getInputValue(e.name);
+                        if(e.required === "true") {
+                            var input = $("input[name='" + e.name + "']");
+                            // 依次判断一个值是否为空和值的类型，有一个不符合就拒绝提交
+                            // 判断参数值是否为空
+                            var effective = validate_field(value, input.siblings(".bg-danger-value")[0]);
+                            if(effective) {
+                                // 判断参数是否是该字段需要的类型
+                                effective = validate_field_type(value, e.type, input.siblings(".bg-danger-type")[0]);
+                                if(effective){
+                                    args[e.name] = value;
+                                }else{
+                                    flag = false;
+                                }
+                            }else{
+                                flag = false;
+                            }
+                        }else if(value != ""){
+                            args[e.name] = value;
+                        }
+                    });
+                    if(!flag){
+                        return false;
+                    }
+                    args["api_url"] = api[index].api_url;
+                }
+
+                // 添加请求类型，如果请求类型不存在服务端报错
+                if(method == '0'){
+                    args['method'] = "POST";
+                }else if(method == '1'){
+                    args['method'] = "GET";
+                }else if(method == '2'){
+                    args['method'] = "PUT";
+                }else if(method == '3'){
+                    args['method'] = "DELETE";
+                }
+
+                // 发送post请求接口数据
+                postRequest(url.debug_interface, args);
+            });
+
+
+            /**
+             * post请求
+             * @param url
+             * @param args
+             */
+            function postRequest(url, args){
+                $('.btn-send').prop('disabled', true);
+                $.post(url, args, function(data){
+                    $(".my-result").text(data);
+                    $('.btn-send').prop('disabled', false);
+                });
+            }
+        })
+    </script>
+{% endblock %}

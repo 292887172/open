@@ -1,0 +1,111 @@
+<header class="header bg-light dk">
+    <p>全部应用</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="failModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               提示:
+            </h4>
+         </div>
+         <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">审核结果</label>
+                  <div class="col-lg-9">
+                    <p class="form-control-static">不通过</p>
+                  </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="input-id-1">填写原因</label>
+                  <div class="col-sm-7">
+                      <textarea class="form-control" id="remarkTextArea" rows="3" ng-model="checkFormData.remark"></textarea>
+                  </div>
+                </div>
+            </form>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
+                关闭
+            </button>
+            <button type="button" id="failModalAppId" data-id="" ng-click="failProduct($event)" class="btn btn-success btn-s-xs">
+                确定
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="text/javascript">
+    // 应用图标Html
+    var toLogoHtml = function (val) {
+        return '<img src="' + val + '" onerror="this.src=\'/static/image/global/default.png\'" width=64 height=64 alt="应用图标"/>'
+    };
+
+    // 描述Html
+    var toDescribeHtml = function (val) {
+        return val == "" || val == null ? "无描述" : val.substring(0, 37);
+    };
+
+    // 应用网站预览Html
+    var toReadHtml = function (val) {
+        return val == "" || val == null ? "无预览" : '<a href="' + val + '" target="_blank" class="text-info">产品预览</a>';
+    };
+
+    // 操作Html
+    var toControlHtml = function (val) {
+        return '<a href="javascript:void(0)" data-toggle="modal" data-target="#failModal" data-id="'+val+'"><i class="fa fa-times text-danger"></i>下架</a>'
+    };
+    // 查看详细Html
+    var toDetailHtml = function (val) {
+        return '<a href="/center/admin/application/modal/detail?id='+val+'" data-toggle="ajaxModal" class="text-info">查看</a>'
+    };
+
+    //列
+    var cols = [
+        {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
+        {title: '图标', name: 'logo', width: 60, align: 'center', lockDisplay: true, renderer: toLogoHtml},
+        {title: '名称', name: 'name', align: 'center',lockDisplay: true},
+        {title: '描述', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
+        {title: '网址', name: 'site', align: 'center', lockDisplay: true, renderer: toReadHtml},
+        {title: '通过时间', name: 'createtime', lockDisplay: true, align: 'center', sortable: true},
+        {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
+        {title: '操作', name: 'id', width: 130, align: 'center', lockDisplay: true, renderer: toControlHtml}
+    ];
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/application/data",
+        method: 'get',
+        sortName: 'createtime',
+        sortStatus: 'desc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: 550,
+        cols: cols,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#remarkTextArea").val("");
+        $("#failModalAppId").attr("data-id", item.id).attr("data-row", rowIndex);
+    })
+
+</script>

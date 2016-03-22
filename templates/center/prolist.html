@@ -1,0 +1,134 @@
+{% extends 'center/base.tpl' %}
+
+{% load staticfiles %}
+{% load filter %}
+{% block title %}
+    产品信息
+{% endblock %}
+{% block style %}
+    <style>
+        .cnt_box p.btn {
+            width: 100%;
+        }
+
+        .wrap .left_side {
+            float: left;
+            width: 22%;
+            height: 100%;
+            min-height: 720px;
+
+        }
+
+        .right_side {
+            background: #fff;
+            float: right;
+            width: 78%;
+            height: 100%;
+            min-height: 720px;
+
+        }
+
+        dt {
+            font-weight: initial !important;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .right_side_header {
+            width: 100%;
+            padding: 40px 0 40px;
+            color: #666;
+            font-size: 24px;
+            text-align: center;
+
+        }
+
+        .right_side_body {
+            padding: 30px 24px 24px 24px;
+        }
+
+        .check_status li div {
+            padding: 0 16px;
+            height: 64px;
+            width: 95%;
+            border-bottom: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+            line-height: 64px;
+        }
+        .check_status li div:hover{
+            background: #ffffcc;
+        }
+        .check_status li div span.name {
+            color: #444;
+            font-size: 16px;
+            position: relative;
+            float: left;
+            width: 62%;
+
+        }
+
+        .check_status li div span.times {
+            position: relative;
+            float: left;
+            width: 25%;
+        }
+
+
+        .check_status li p {
+            position: relative;
+            padding: 24px 40px;
+            border: 4px solid #ddd;
+            border-width: 3px 4px 4px;
+            background: #f6f6f6;
+            color: #666;
+            font-size: 14px;
+            line-height: 32px;
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="wrap">
+            <div class="left_side">
+                <ul>
+                    <li><a href="/center" class="menu_open">成为开发者</a>
+                        <ul>
+                            <li><a href="/center" class="on">基本信息</a></li>
+                            <li><a href="prolist" class="unable">产品信息</a></li>
+                            <li><a href="checklist" class="unable">审核状态</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_side">
+
+
+                    <div class="right_side_body">
+                    <ol class="check_status">
+                        <li>
+                            <div><span class="name"><strong>1、这是产品列表</strong></span><span class="times">2015-10-15 10:25&nbsp;</span><a
+                                    >查看 </a></div>
+
+                        </li>
+
+                    </ol>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+
+
+ACCOUNTSID = 'ff8080813cfb3fc6013cff7418fb0006'
+
+ACCOUNTTOKEN = '10670277a3ea4a018e58ffdc53fc1def'
+
+APPID = "8a48b5514f73ea32014f8240a6d0175a"

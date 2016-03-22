@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/home/main.css' %}"/>
+     <link rel="stylesheet" href="{% static 'theme/bsplus/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'theme/bsplus/css/simple-line-icons.css' %}"/>
+    <style>
+        .wrapper{
+            width: initial!important;
+            padding-left: 66px;
+            margin-top: 0px!important;
+        }
+        .box1{
+            min-height: 700px!important;
+        }
+    </style>
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script>
+            var menus = '{{ request.session.menus|safe }}';
+            menus = JSON.parse(menus);
+            console.log(menus);
+
+            function make_menu(parent_id, menus) {
+                    var len = menus.length;
+                    var html = '';
+                    if (len == 0) {
+                        return html;
+                    }
+                    for (var i = 0; i < len; i++) {
+                        var menu = menus[i];
+                        // 根节点+带有子菜单
+                        if (menu.menu_parent_id == parent_id && menu.menu_is_parent == 1) {
+                            html += '<div class="menuBox"><h3>'+menu.menu_name+'</h3><ul>';
+                            html += make_menu(menu.menu_id, menus);
+                            html += '</ul></div>';
+                        }
+
+                        else if (menu.menu_parent_id == parent_id && menu.menu_is_parent == 0 && parent_id == 0) {
+                            html += '<li><a href="' + menu.menu_url + '" target="mainFrame"> <i class="fa ' + menu.menu_class + '"></i> ' +
+                            '<span>' + menu.menu_name + '</span></a></li>';
+                        } else if (menu.menu_parent_id == parent_id && parent_id != 0) {
+                            html += '<li class="menu-li" onclick="addHover(this)"><a target="mainFrame" href="' + menu.menu_url + '" ><i class="fa ' + menu.menu_class + '"></i>'
+                            + menu.menu_name + '</a></li>';
+                        }
+                    }
+                    return html;
+                }
+            function addHover(liobj){
+           $(".menu-li").removeClass("hover");
+           $(liobj).addClass("hover")
+       }
+       $(function(){
+           var html = make_menu(0, menus);
+                console.log(html);
+                $('.box1').html(html);
+
+
+       })
+
+    </script>
+</head>
+<body>
+    <section class="wrapper mt20 fn-clear">
+        <div class="leftSide">
+            <div class="box1">
+
+
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>

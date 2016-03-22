@@ -1,0 +1,203 @@
+{% extends "wiki/old/base.tpl" %}
+<!-- 样式 -->
+{%block styles%}
+<style type="text/css">
+.zbshyw a {
+	color: blue;
+	display: inline-block;
+}
+
+h2 {
+	font-weight: bolder;
+}
+
+table {
+	font-family: "Microsoft Yahei";
+	font-size: 18px;
+}
+
+table, td {
+	border: 1px solid black;
+	padding: 5px;
+	color: black;
+}
+
+.zbshyw {
+	font-size: 18px;
+}
+
+pre {
+	background: #f0f1f8;
+	border: 1px solid #d4d8eb;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 5px;
+	padding: 0 1em;
+}
+</style>
+{%endblock%}
+<!--内容 -->
+{%block content%}
+<div class="zibng_left">
+	<div style="height: 1000px; float: left;"></div>
+
+	<div class="jiszhic">
+		<div class="jiszhic_a">API文档列表</div>
+		<div class="jiszhic_b">
+			<ul>
+				{% for item in data %}
+				<li><a href="doc?id={{item.api_id}}">{{item.title}}</a></li>
+				{%endfor%}
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="zibng_left_s"></div>
+<div class="zibng_right">
+	<div class="zbshyw">
+		<h2>{{cnt.title}}</h2>
+
+		<br /> {% if cnt.api %} <a href="webtools?id={{cnt.api.id}}">调试该接口</a>
+		{%endif%} <br />
+		<div class="kfwnd">{{cnt.content|safe}}
+	
+		<h2>认证授权</h2>
+		<br />
+		<p>使用Http Basic Authentication方式进行授权</p>
+		<p>客户端调用时在请求头中添加Authorization：</p>
+		<h3>Authorization: "Basic appid:appsecret的base64加密字符串"</h3>
+		<p>appid:smartsys</p>
+		<p>appsecret:smart.56iq.net</p>
+		<br />
+		<p>android示例代码</p>
+		<pre>
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.AbstractHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+......
+......
+CookieStore cookieStore;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+	new Thread() {
+		@Override
+		public void run() {
+String result = null;
+try {
+	String url = "http://smart.56iq.net:8002";
+	L.d("url:" + url);
+	HttpGet httpReq = new HttpGet(url);
+	httpReq.addHeader(BasicScheme.authenticate(
+	new UsernamePasswordCredentials("smartsys", "smart.56iq.net"),
+			"UTF-8", false));
+	DefaultHttpClient httpClient = new DefaultHttpClient();
+	HttpResponse httpResponse = httpClient.execute(httpReq);
+
+	StringBuilder builder = new StringBuilder();
+	BufferedReader reader = new BufferedReader(
+			new InputStreamReader(httpResponse.getEntity()
+					.getContent()));
+	for (String s = reader.readLine(); s != null; s = reader
+			.readLine()) {
+		builder.append(s);
+	}
+	result = builder.toString();
+	L.d("result:" + result);
+	// 保存Cookie
+	CookieStore cookieStore = ((AbstractHttpClient) httpClient)
+	.getCookieStore();
+} catch (Exception e) {
+	L.e("error:" + e.toString());
+}
+L.d("结束了");
+		}
+	}.start();
+
+}
+......
+......
+		</pre>
+		<br />
+		<p>curl示例</p>
+		<pre>
+		
+curl -u smartsys:smart.56iq.net http://smart.56iq.net:8002
+		</pre>
+		<br />
+		<p>C#示例代码</p>
+		<pre>
+		
+string apiUrl="http://smart.56iq.net:8002"
+using(WebClient wcl=new WebClient()) {
+    const string auth =  "smartsys:smart.56iq.net";
+    wcl.Credentials = new CredentialCache();
+    encodeStr=Convert.ToBase64String(new ASCIIEncoding().GetBytes(auth));
+    wcl.Headers.Add("Authorization", "Basic " + encodeStr);
+    Console.WriteLine(Encoding.UTF8.GetString(wcl.DownloadData(apiUrl)));
+}
+		</pre>
+		<br />
+		<p>python示例代码</p>
+		<pre>
+import requests
+url="http://smart.56iq.net:8002"
+r=requests.get(url, params={}, auth=("smartsys", "smart.56iq.net"))
+print(r.text)
+		</pre>
+		<br />
+		<p>javascript示例代码</p>
+		<pre>
+//用jquery实现
+var auth = {
+	username : "smartsys",
+	password : "smart.56iq.net",
+	authenticate : function(auth) {
+		var header = "Basic ";
+		//需要引入jquery base64插件
+		header+= $.base64Encode(this.username + ":" + this.password);
+		$.ajax({
+			type : "GET",
+			url : "http://smart.dwsoft.com:8002",
+			beforeSend : function(req) {
+				req.setRequestHeader('Authorization', header);
+			},
+			dataType : "json",
+			success : this.success,
+		});
+	},
+	success : function(res) {
+		prompt("", JSON.stringify(res));
+	},
+}
+auth.authenticate();
+		</pre>
+		<br /> {% for item in data %}
+		<p>
+			<a href="doc?id={{item.api_id}}">{{item.title}}</a>
+		</p>
+
+		{%endfor%}
+		</div>
+	</div>
+
+
+</div>
+
+
+
+{%endblock%} {%block scripts%}
+<script>
+	$(function() {
+		//选中的选项
+		var index = 2;
+		$(".nav ul li a:eq(" + index + ")").addClass("hover");
+	})
+</script>
+{%endblock%}

@@ -1,0 +1,358 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% block title %}
+    注册
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bootstrap/app.css' %}"/>
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/font-awesome.min.css"/>#}
+    <style>
+        .container-narrow {
+            width: 95%;
+            max-width: 710px;
+            margin: 5% auto;
+        }
+
+        .widget-header > i {
+            font-size: 16px;
+            padding: 15px 10px 15px 11px;
+            text-align: center;
+            width: 40px;
+        }
+
+        .widget-header h5 {
+            margin: 0;
+            padding: 15px 0 0;
+            font-size: 16px;
+            float: left;
+            color: #62687e;
+            font-weight: 200;
+            text-indent: 2em;
+        }
+
+        .widget-body {
+            padding: 0;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 630px;
+            height: 460px;
+        }
+
+        .widget-body h2 {
+            color: #333;
+            font-size: 28px;
+            font-weight: normal;
+            height: 42px;
+            line-height: 42px;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .widget-body p {
+            color: #999;
+            margin: 0;
+            font-size: 16px;
+            padding: 3px 0 3px 30px;
+        }
+
+        .col-sm-9 {
+            width: 50%;
+            position: relative;
+        }
+
+        .col-sm-6 {
+            width: 80%;
+        }
+
+        .btn-s-xs {
+            min-width: 360px;
+            margin-left: 15%;
+            border-radius: 10px;
+            height: 50px;
+            color: #000 !important;
+            outline: none;
+            border-color: #f5f5f5;
+            letter-spacing: 6px;
+            font-size: 15px;
+        }
+
+        em {
+            color: red;
+            margin-right: 6px;
+        }
+
+        .ui-error-text {
+            position: absolute;
+            top: 4px;
+            left: 86%;
+            width: 233px;
+            font-size: 13px !important;
+        }
+        .col-sm-3{
+            width: 130px;
+        }
+        .ui-error-text-red {
+            color: #f00 !important;
+        }
+
+        .ui-input-red {
+            border: 1px solid #f00 !important;
+        }
+
+        .ui-from-validate {
+            width: 110px;
+        }
+
+        .ui-validate-text {
+            top: 0px !important;
+            left: 50% !important;
+        }
+
+        form {
+            padding-left: 20px;
+        }
+    .col-sm-9 a{
+        position: relative;
+        top:-25px;
+        left: 270px;
+        color: #428bca;
+    }
+    .col-sm-9 a:hover{
+        color: #428bca;
+        text-decoration: underline;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="widget container-narrow">
+
+                        <div class="widget-body clearfix" style="padding:25px;">
+                            <h2>只差一步，即可完成登录设置</h2>
+
+                            <p>快速完成53iq账号创建</p>
+
+                            <p>完成账号创建后，即可直接登录53iq开放平台哦！</p>
+
+                            <div class="col-sm-6">
+
+                                <form method="post" onsubmit="return can_submit()" enctype="multipart/form-data"
+                                      class="form-horizontal">
+                                    <section>
+
+                                        <div class="panel-body">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"><em>*</em>用户名：</label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="ui-username-text"
+                                                           name="username">
+                                                    <input type="hidden" name="from_id" id="from_id" value="{{ from_id }}">
+                                                    <p class="ui-error-text" id="ui-user-error">
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"><em>*</em>请设置密码：</label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="ui-password-text"
+                                                           name="password">
+
+                                                    <p class="ui-error-text" id="ui-password-error"></p>
+                                                </div>
+                                            </div>
+                                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"><em>*</em>请确认密码：</label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="ui-password2-text"
+                                                           name="password2">
+
+                                                    <p class="ui-error-text" id="ui-password2-error"></p>
+                                                </div>
+                                            </div>
+                                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"><em>*</em>验证码：</label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="text"
+                                                           class="form-control ui-from-validate" placeholder="验证码"
+                                                           id="ui-validate_code"
+                                                           name="validate"><img class="ui-error-text ui-validate-text"
+                                                                                src="validate_code"
+                                                                                onclick="this.src='validate_code?v='+Math.random();"
+                                                                                title="点击更换验证码"
+                                                                                style="cursor:pointer;vertical-align: middle;height: 37px;width: 129px;"
+                                                                                alt="验证码"/>
+                                                    <a href="javascript:void(0)" onclick="$('.ui-validate-text').click()" title="看不清，换一换">换一换</a>
+                                                    <p class="ui-error-text" id="ui-code-error"></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <footer style="position: relative">
+                                            <button type="button" class="btn  btn-s-xs" id="BtnSubmit">立即注册</button>
+                                            <img id="loading-img" style="width: 30px;position: absolute;left: 61%;top:10px;display: none" src="{% static 'image/ajax-loader.gif' %}">
+                                        </footer>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--/row-fluid-->
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        var can_user = false;
+        var can_password = false;
+        function can_submit() {
+
+            return (can_user && can_password);
+
+        }
+        $(function () {
+            $("#ui-username-text").focus(function () {
+                $("#ui-username-text").removeClass("ui-input-red");
+                $("#ui-user-error").removeClass("ui-error-text-red").text("4-20位字符，支持英文，数字及‘-’，‘_’组合");
+
+            });
+            $("#ui-username-text").blur(function () {
+                var user = $("#ui-username-text").val();
+                if (user.length < 4) {
+                    $("#ui-username-text").addClass("ui-input-red");
+                    $("#ui-user-error").addClass("ui-error-text-red").text("用户名在4-20位字符之间");
+                    can_user = false;
+                }
+                else {
+                    $.post('{% url 'check_user_name' %}', {'username': user}, function (data) {
+                        // 检查用户名是否存在，返回ok表示已经存在，error表示可用
+                        if(data['status']=='error'){
+                            $("#ui-user-error").html('<img src="{% static 'image/sucess.png' %}">');
+                            can_user = true
+                        }
+                        else{
+                            $("#ui-username-text").addClass("ui-input-red");
+                            $("#ui-user-error").addClass("ui-error-text-red").text("用户名已经存在");
+                            can_user = false;
+                        }
+
+                    }, 'json');
+
+
+                }
+
+            });
+
+            //验证密码
+            $("#ui-password-text").focus(function () {
+                $("#ui-password-text").removeClass("ui-input-red");
+                $("#ui-password-error").removeClass("ui-error-text-red").text("6-15字符组合，可使用字母，数字或符号的组合");
+            });
+            $("#ui-password-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                if (password.length < 6) {
+                    $("#ui-password-text").addClass("ui-input-red");
+                    $("#ui-password-error").addClass("ui-error-text-red").text("密码长度在6-15字符之间");
+                    can_password = false;
+                }
+                else {
+                    $("#ui-password-error").text("")
+                }
+
+            });
+            $("#ui-password2-text").focus(function () {
+                $("#ui-password2-text").removeClass("ui-input-red");
+                $("#ui-password2-error").removeClass("ui-error-text-red").text("请再次输入密码");
+            });
+            $("#ui-password2-text").blur(function () {
+                var password = $("#ui-password-text").val();
+                var password2 = $("#ui-password2-text").val();
+                if (password2 != password) {
+                    $("#ui-password2-text").addClass("ui-input-red");
+                    $("#ui-password2-error").addClass("ui-error-text-red").text('两次输入密码不一致');
+
+                    can_password = false
+                }
+                else {
+                    $("#ui-password2-error").text("");
+                    can_password = true
+                }
+
+            });
+            $("#BtnSubmit").click(function(){
+                var user_name = $("#ui-username-text").val();
+                var pwd = $("#ui-password-text").val();
+                var pwd2 = $("#ui-password2-text").val();
+                var code = $("#ui-validate_code").val();
+                var from_id = $("#from_id").val();
+                if (user_name && pwd &&pwd==pwd2){
+                    if(can_user&&can_password){
+                        if (code){
+                            var data_obj = {
+                                'username':user_name,
+                                'from_id':from_id,
+                                'password':pwd,
+                                'validate':code
+                            };
+                            jQuery.ajax({
+                                url: location.href,
+                                type: "POST",
+                                data: data_obj,
+                                error: function () {
+                                    $("#BtnSubmit").text('立即注册');
+                                    $("#loading-img").hide();
+
+                                },
+                                beforeSend: function () {
+                                    $("#BtnSubmit").text('正在注册');
+                                    $("#loading-img").show()
+                                 },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+{#                                    console.log(response);#}
+                                    if (response['status'] == 'ok') {
+                                        window.location.href='/center'
+                                    }
+                                    else{
+                                        $("#BtnSubmit").text('立即注册');
+                                        $("#loading-img").hide();
+                                        alert(response['msg'])
+                                    }
+
+                                }
+
+                            });
+
+                        }
+                        else{
+                            $("#ui-validate_code").addClass("ui-input-red");
+                            $("#ui-code-error").addClass("ui-error-text-red").text("验证码错误");
+                        }
+                    }
+
+                }
+            })
+        })
+    </script>
+{% endblock %}

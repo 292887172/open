@@ -1,0 +1,641 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 清除内外边距 */
+body {
+    background: #fff url(../../image/wiki/doc_bg.png) repeat-y;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fieldset, legend, button, input, textarea, th, td div {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 设置默认字体 */
+/*body, button, input, select, textarea {font:12px/1 宋体, Tahoma, Helvetica, Arial,  "\5b8b\4f53", sans-serif;}*/
+body, button, input, select, textarea {
+    font-size: 12px;
+    font-family: "宋体", Tahoma, "微软雅黑", Arial, "\5b8b\4f53", sans-serif;
+    color: #5f5f5f
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 18px;
+    width: 100%;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    color: #333;
+}
+
+h3 {
+    font-size: 16px;
+    font-family: "微软雅黑";
+    font-weight: normal;
+    color: #1a5c7e;
+    text-indent: 12px;
+}
+
+h4, h5, h6 {
+    font-size: 100%;
+}
+
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+
+code, kbd, pre, samp, tt {
+    font-family: "Courier New", Courier, monospace;
+}
+
+small {
+    font-size: 12px;
+}
+
+/* 重置列表元素 */
+ul, ol {
+    list-style: none;
+}
+
+/* 重置文本格式元素 */
+a {
+    text-decoration: none;
+    color: #5f5f5f
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+abbr[title], acronym[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+/* 重置表单元素 */
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: none;
+}
+
+/* 注：optgroup 无法扶正 */
+/* 重置表格元素 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 重置 hr */
+hr {
+    border: none;
+    height: 1px;
+}
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html {
+    overflow-y: scroll;
+}
+
+/*清除浮动*/
+.wrapfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.wrapfix {
+    zoom: 1;
+}
+
+.text_right {
+    text-align: right;
+}
+
+.text_left {
+    text-align: left;
+}
+
+/*头部*/
+.nav {
+    width: 100%;
+    height: 80px;
+    background: #1a5c7e;
+    float: left;
+
+}
+
+.nav li {
+    display: block;
+    float: left;
+    height: 80px;
+}
+
+.nav li a {
+    display: block;
+    float: left;
+    width: 150px;
+    height: 80px;
+    font-family: "微软雅黑";
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    line-height: 80px;
+}
+
+.nav li a.hover {
+    background: #257198;
+}
+
+.nav h1 {
+    float: left;
+    width: 310px;
+    height: 80px;
+}
+
+.nav_sjoe {
+    height: 80px;
+}
+
+* html .nav_sjoe {
+    height: 0px;
+}
+
+/*中间*/
+.zibng {
+    float: left;
+    min-width: 1200px;
+}
+
+.zibng_left {
+    float: left;
+    width: 310px;
+    left: 0px;
+
+    border-right: 2px solid #ECF1E9;
+}
+
+.zibng_left_s {
+    float: left;
+    width: 5px;
+    height: 500px;
+}
+
+* html .zibng_left_s {
+    float: left;
+    width: 0px;
+    height: 1000px;
+}
+
+.jiszhic {
+    width: 280px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+    background: #fafafa;
+    border-radius: 10px 10px 10px 10px;
+}
+
+* html .jiszhic {
+    margin-left: 10px;
+}
+
+.jiszhic_a {
+    font-family: "微软雅黑";
+    font-size: 18px;
+    color: #1a5c7e;
+}
+
+.jiszhic_b {
+    width: 250px;
+}
+
+.jiszhic_b li {
+    font-family: "微软雅黑";
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.zibng_right {
+
+    min-width: 750px;
+    max-width: 880px;
+    margin-left: 310px;
+    margin-top: 0;
+}
+
+.zbshyw {
+    width: 100%;
+    margin-left: 30px;
+    padding: 30px 0;
+
+}
+
+* html .zbshyw {
+    margin-left: 15px;
+}
+
+.zbshyw_a {
+    width: auto;
+    float: left;
+}
+
+.zbshyw_a a {
+    display: block;
+    float: left;
+    color: #666;
+    font-size: 14px;
+    margin: 10px 20px 0 0;
+    font-family: "微软雅黑";
+}
+
+.zbshyw_a a:hover {
+    color: #1a5c7e;
+}
+
+.kfwnd {
+    min-width: 750px;
+    float: left;
+}
+
+.kfwnd li {
+    float: left;
+    width: 350px;
+    margin-right: 10px;
+    background: #fffef6;
+    border: 1px solid #f3edcd;
+    margin-top: 10px;
+    padding: 5px 0 10px 0;
+}
+
+.kfwnd li span {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.kfwnd li span a:hover {
+    color: #1a5c7e;
+}
+
+/*2013-3-22修改开始，by taranchen*/
+.doclist {
+    width: 750px;
+    float: left;
+}
+
+.doclist li {
+    float: left;
+    width: 750px;
+    margin-right: 10px;
+    background: #fffef6;
+    border: 1px solid #f3edcd;
+    margin-top: 10px;
+    padding: 5px 0 10px 0;
+}
+
+.doclist li span {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.doclist li span a:hover {
+    color: #1a5c7e;
+}
+
+/*2013-3-22修改结束 by taranchen*/
+
+.ziyxz {
+    float: left;
+    padding-top: 10px;
+}
+
+.ziyxz li {
+    float: left;
+    padding-right: 15px;
+}
+
+.ziyxz li a {
+    float: left;
+    width: 150px;
+    height: 30px;
+    background: #e3f4fd;
+    display: block;
+    border: 1px solid #c0dfef;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color: #1a5c7e;
+    line-height: 30px;
+    text-align: center;
+    text-indent: 0px;
+}
+
+.ziyxz li a:hover {
+    background: #c3e1f0;
+}
+
+.zbshyw_a li {
+    display: block;
+}
+
+.zbshyw_a li a {
+    font-family: "宋体";
+    font-size: 12px;
+    background: url(../../image/wiki/doc_dfd1.png) repeat-y;
+    text-indent: 20px;
+    line-height: 16px;
+    float: none;
+}
+
+* html .zbshyw_a li a {
+    margin: 0px;
+}
+
+.zbshyw_a li a:hover {
+    background: url(../../image/wiki/doc_dfd2.png) repeat-y;
+}
+
+.kuangqil {
+    width: 700px;
+    background: #edf6ee;
+    border: 1px dashed #99cc99;
+    font-family: "微软雅黑";
+    color: #5a775a;
+    padding: 10px;
+    margin-top: 10px;
+    word-wrap: break-word;
+}
+
+.zbshyw_s {
+    width: 100%;
+    margin-left: 30px;
+    padding: 10px 0;
+    float: left;
+    border-bottom: 1px dashed #d7dcd4;
+}
+
+* html .zbshyw_s {
+    margin-left: 15px;
+}
+
+.zbshyw_s p {
+    padding-top: 10px;
+}
+
+.kfcrcs {
+    width: 720px;
+    padding-top: 10px;
+}
+
+.kfcrcs table {
+    width: 720px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.kfcrcs table tr {
+    height: 30px;
+    width: 100%;
+}
+
+.kfcrcs table th {
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    background: #f7f7f7;
+    border-right: none;
+    font-weight: normal;
+    color: #486483;
+}
+
+.kfcrcs table tr td {
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    border-right: none;
+    text-indent: 10px;
+    color: #444;
+}
+
+.kfcrcs table tr td.mc {
+    color: #486483;
+}
+
+.erjnav {
+    float: left;
+    width: 300px;
+    padding: 20px 0;
+}
+
+.erjnav li {
+    width: 200px;
+    height: 35px;
+    display: block;
+    float: left;
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+.erjnav li a {
+    width: 200px;
+    height: 35px;
+    background: #fff;
+    display: block;
+    border-radius: 4px 4px 4px 4px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    text-align: center;
+    line-height: 35px;
+    border: 1px solid #dfdfdf;
+}
+
+.erjnav li a:hover {
+    background: #257198;
+    color: #fff;
+    border: 1px solid #257198;
+}
+
+.erjnav li a.dianq {
+    background: #257198;
+    color: #fff;
+    border: 1px solid #257198;
+}
+
+.zbshyw_d {
+    width: 100%;
+    margin-left: 30px;
+    padding: 20px 0;
+    float: left;
+}
+
+* html .zbshyw_d {
+    margin-left: 15px;
+}
+
+.zbshyw_d p {
+    line-height: 30px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    padding-top: 10px;
+    color: #1a5c7e;
+}
+
+.zbshyw_d span {
+    line-height: 25px;
+    padding-top: 10px;
+    display: block;
+}
+
+.zbshyw_d table tr td {
+    line-height: 30px;
+    padding-top: 15px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.zbshyw_d table tr td .formdin {
+    border: 1px solid #257198;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    height: 28px;
+}
+
+.zbshyw_d table tr td .formdinclick {
+    border: 1px solid #257198;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    height: 28px;
+}
+
+.zbshyw_d table tr td .formdinmulti {
+    border: 1px solid #257198;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    height: 60px;
+}
+
+.zbshyw_d table tr td .formdinmulticlick {
+    border: 1px solid #257198;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    height: 60px;
+}
+
+.api_test_input {
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.kfyounav {
+    width: 720px;
+}
+
+.kfyounav li {
+    display: block;
+
+    height: 30px;
+    margin: 10px 10px 0 0;
+    float: left;
+}
+
+.kfyounav li a {
+    padding: 0px 15px;
+    float: left;
+    height: 30px;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    background: #f7fafd;
+    border: 1px solid #e2eef7;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #336699;
+}
+
+.kfyounav li a:hover {
+    background: #eff5fa;
+}
+
+/*底部*/
+.foot {
+    float: left;
+    width: 100%;
+    height: 50px;
+    /* background:#ecf1e9;
+    border-top:1px solid #d7dcd4; */
+    margin-top: 50px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    line-height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+{% extends "wiki/old/base.tpl" %} {%load staticfiles%}
+<!-- 样式 -->
+{%block styles%}
+<link rel="stylesheet" href="{%static 'css/wiki/webtools.css'%}" />
+<style>
+.key {
+	width: 100%;
+	text-align: left;
+	color: silver;
+}
+
+.key input {
+	border: none;
+	color: gray;
+}
+.form_debuger{
+padding-left:8px;
+}
+</style>
+{%endblock%}
+<!--内容 -->
+{%block content%}
+
+<div class="zibng_left">
+	<div style="height: 1000px; float: left;"></div>
+	<div class="erjnav">
+		<ul id="ulApiList">
+			{% for item in data %}
+			<li><a href="javascript:void(0)"
+				data-param="{{item.parameters}}" data-id="{{item.id}}"
+				data-url=":{{item.port}}{{item.address}}">{{ item.describe }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<div class="zibng_left_s"></div>
+<div class="zibng_right">
+
+	<div class="wrapper">
+
+		<div class="wrapper_right">
+			<form class="form_debuger" target="oauth_form" action="service"
+				method="post" onsubmit="return common.submit(this)"
+				enctype="application/x-www-form-urlencoded">
+				<div class="form_debuger" id="oauth_form">
+					<h3 class="t1">请求地址</h3>
+					<div>
+						<span class="cgi_url_span"> <input type="text"
+							placeholder="http://" name="api_url" class="input_text cgi_url">
+							<span class="host_list none">
+								<dl id="host_list">
+								</dl>
+						</span>
+						</span> <select name="api_method">
+							<option value="post">post</option>
+							<option value="get">get</option>
+							<option value="patch">patch</option>
+							<option value="put">put</option>
+							<option value="delete">delete</option>
+						</select>
+					</div>
+				</div>
+				<br />
+				<div class="key">
+				<p>请求方式说明：get-查询，post-添加，patch-更新，put-替换，delete-删除</p>
+					appid&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" name="appid"
+						value="smartsys" /><br /> appsecret&nbsp;&nbsp;:&nbsp;&nbsp;<input
+						type="text" name="appsecret" value="smart.56iq.net" /><br />
+						etag&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" name="etag"
+						placeholder="执行更新、替换、删除时必填" style="width:250px;border:#eee 1px solid ;" />
+				</div>
+
+
+				<p style="width: 100%; text-align: center;">
+					<a style="text-decoration: underline;" href="javascript:void(0)"
+						id="viewDoc" target="_blank">查看文档</a>
+				</p>
+
+				<div id="params_panel">
+					<h3 class="t1">
+						参数列表 <span class="t1_right"> <a href="javascript:;"
+							class="para_add btn2" id="add_para_pic" type="file">添加文件参数</a> <a
+							href="javascript:;" class="para_add btn2" id="add_para"
+							type="text">添加普通参数</a>
+						</span>
+					</h3>
+					<ul class="para_list" id="para_list">
+						<li><input type="text" class="input_text para_name"
+							placeholder="参数名"> = <input type="text"
+							class="input_text para_value" placeholder="参数值" name="aaa">
+							<a href="javascript:;" class="para_del icon_del" title="删除">×</a>
+						</li>
+					</ul>
+				</div>
+				<div align="center" class="mb25">
+					<input type="submit" value="发送请求" class="btn2">
+				</div>
+			</form>
+			<iframe width="680" height="300" src="about:blank" frameborder="0"
+				marginwidth="0" marginheight="0" style="padding: 0;"
+				id="oauth_form_result" name="oauth_form" class="form_result"
+				srcolling="no"></iframe>
+		</div>
+	</div>
+</div>
+{%endblock%} {%block scripts%}
+<script src="{%static 'js/common.min.js'%}"></script>
+<script src="{%static 'js/wiki/common.js'%}"></script>
+<script src="{%static 'js/wiki/common_dialog.js'%}"></script>
+<script>
+	$(function() {
+		//选中的选项
+		var index = 1;
+		$(".nav ul li a:eq(" + index + ")").addClass("hover");
+		if (common && common._dialog) {
+			window.common && common.init("opent");
+		} else {
+			var caller = arguments.callee;
+			setTimeout(function() {
+				caller();
+			}, 100);
+		}
+	});
+</script>
+{%endblock%}

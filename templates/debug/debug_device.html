@@ -1,0 +1,323 @@
+{% extends 'debug/base.tpl' %}
+{% load staticfiles %}
+
+{% block style %}
+    <style>
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 0;
+        }
+
+        .nav > li > a:hover {
+            color: #ffffff;
+            background: transparent;
+        }
+        .menuBox h3{
+            border-bottom: 1px solid #f5f5f5;
+            padding-left: 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #bfbfbf;
+            line-height: 34px;
+        }
+
+        .menuBox ul li a{
+            padding-left: 0;
+        }
+
+        .activate{
+            background:#37618f;
+        }
+        .activate a{
+            color:#FFF !important;
+            text-decoration:none;
+        }
+
+        .rightMain .box2 h4{
+            color: #333333;
+            opacity: 0.6;
+            border-bottom: 1px dashed lightgrey;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .rightMain .ui-explain{
+            margin-bottom: 20px;
+        }
+
+        .content{
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            color: #333;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        .content .frm-control-group{
+            margin-bottom: 20px;
+        }
+
+        .frm-control-group input,select{
+            width: 70%;
+            height: 30px;
+            padding-left: 10px;
+        }
+
+        .frm-control-group label{
+            display: inline-block;
+            width: 100px;
+            font-weight: unset;
+        }
+
+        .my-title{
+            width: auto!important;
+        }
+
+        .btn-default{
+            width: 150px;
+        }
+        .ul-args{
+            margin-top: 10px;
+        }
+        .ul-args label span{
+            color: red;
+            margin-right: 5px;
+        }
+
+        .bg-danger{
+            display: inline-block;
+            width: auto;
+            padding: 5px 10px;
+        }
+
+        .my-result{
+            margin-top: 20px;
+        }
+
+        .open{
+            background-color: lightgrey;
+        }
+
+    </style>
+{% endblock %}
+
+{% block title %}
+    设备调试
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li class="cur"><a href="{% url 'home/guide' %}">开发指南</a></li>
+    {% if user.account_id %}
+        <li><a href="{% url 'product/list' %}">产品管理</a></li>
+    {% endif %}
+    <li><a href="{% url 'center' %}">加入我们</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper mt20 fn-clear">
+        <div class="leftSide">
+            <div class="box1">
+                <!-- 左侧菜单 begin -->
+                <div class="menuBox">
+                    <h3>调试设备功能</h3>
+                    <ul>
+                        <li class="activate"><a href="javascript:void(0)"><i class="icon11"></i>关闭电源</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>照明</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>大风</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>小风</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>延时</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>消毒</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>烘干</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>中风</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>蜂鸣</a></li>
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>查询设备状态</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="rightMain">
+            <div class="box2 relative">
+                <h4>设备调试工具</h4>
+                <div class="ui-explain">
+                    <h4>使用说明</h4>
+                    <p>（1）选择合适的命令。</p>
+                    <p>（2）系统会生成该接口的参数表，您可以直接在文本框内填入对应的参数值。（红色星号表示该字段必填）</p>
+                    <p>（3）点击检查问题按钮，即可得到相应的调试信息。</p>
+                    <p>（4）请求结果中的value表示：电源|小风|大风|照明|消毒|烘干|延时|中风|蜂鸣（1表示开启，0表示关闭）</p>
+                    <p>（5）大风、小风、中风是互斥的，一个打开，其他会被关闭</p>
+                </div>
+                <h4>发送请求</h4>
+                <div id="content" class="content">
+                    <div class="frm-control-group">
+                        <label>一. 功能：</label>
+                        <label class="my-title">关闭电源</label>
+                    </div>
+
+                    <div class="frm-control-group">
+                        <label>二. 请求方式：</label>
+                        <input type="text" name="requestMethod" value="POST" disabled/>
+                    </div>
+                    <div class="frm-control-group">
+                        <label>三. 参数列表：</label>
+                        <div class="ul-args open-close">
+                            <label><span>*</span>开启/关闭：</label>
+                            <select name="openOrClose" disabled>
+                                <option value="1">开启</option>
+                                <option value="0">关闭</option>
+                            </select>
+                        </div>
+                        <div class="ul-args">
+                            <label><span>*</span>命令：</label>
+                            <input type="text" name="cmd" disabled/>
+                            <span class="bg-danger my-cmd-bg-danger hidden">命令不可以为空</span>
+                        </div>
+                        <div class="ul-args">
+                            <label><span>*</span>Token：</label>
+                            <input type="text" name="token"/>
+                            <span class="bg-danger my-token-bg-danger hidden">Token不可以为空</span>
+                        </div>
+                    </div>
+                    <div class="frm-control-group">
+                        <button class="btn btn-default btn-send">发送</button>
+                    </div>
+                </div>
+
+                <h4>请求结果</h4>
+                <div class="content">
+                    <div class="my-status">
+                        <button class="btn btn-default">电源</button>
+                        <button class="btn btn-default">照明</button>
+                        <button class="btn btn-default">大风</button>
+                        <button class="btn btn-default">小风</button>
+                        <button class="btn btn-default">延时</button>
+                        <button class="btn btn-default">消毒</button>
+                        <button class="btn btn-default">烘干</button>
+                        <button class="btn btn-default">中风</button>
+                        <button class="btn btn-default">蜂鸣</button>
+                    </div>
+                    <div class="my-result"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script>
+        $(function(){
+
+            var url = {
+                send_cmd: "{% url 'debug_device' %}"
+            };
+            var device_id = "ACCF2362E057";
+
+            function get_cmd(cmd){
+                return '{"msg":{"type":"sandbox","value":"'+cmd+'|3|'+device_id+'","remarks":""}}';
+            }
+
+            $("input[name='cmd']").val(get_cmd(-1));
+
+            // 左侧导航选择背景色变化
+            $('.menuBox ul li').click(function(){
+                if(!$(this).hasClass("activate")) {
+                    $(this).addClass("activate").siblings().removeClass("activate");
+                    $(".my-title").text($(this).text());
+
+                    $('.open-close').removeClass('hidden');
+
+                    var index = $(this).index();
+                    // 在关闭电源的时候只有一个命令
+                    if (parseInt(index) == 0){
+                        $("select[name='openOrClose']").attr("disabled", 'disabled');
+                    }else{
+                        $("select[name='openOrClose']").prop("disabled", false);
+                    }
+                    if(index<=8) {
+                        $("select[name='openOrClose']").val(1);
+                        $("input[name='cmd']").val(get_cmd(index * 2 - 1));
+                    }else if(index == 9){
+                        $('.open-close').addClass('hidden');
+                        $("input[name='cmd']").val(get_cmd("query_state"));
+                    }
+                }
+            });
+
+            function validate_field(value, selector){
+                if (value == ""){
+                    selector.removeClass("hidden");
+                    return false;
+                }else{
+                    selector.addClass("hidden");
+                    return true;
+                }
+            }
+
+            // token值的提示
+            $("input[name='token']").blur(function(){
+                validate_field($(this).val(), $('.my-token-bg-danger'));
+            });
+
+            $("select[name='openOrClose']").change(function(){
+                var mode = $(this).val();
+                var index = $('.activate').index();
+                if(parseInt(mode) == 0){
+                    $("input[name='cmd']").val(get_cmd(index*2));
+                }else{
+                    $("input[name='cmd']").val(get_cmd(index*2-1));
+                }
+            });
+
+
+            function set_btn_status(i, value){
+                if(value == "1"){
+                    $('.my-status').children().eq(i).addClass('open');
+                }else{
+                    $('.my-status').children().eq(i).removeClass('open');
+                }
+            }
+
+            function convert_status(value){
+                var status = value.split("|");
+                status.forEach(function(e, i){
+                    set_btn_status(i, e);
+                })
+
+            }
+
+            $('.btn-send').click(function(){
+                var cmd = $("input[name='cmd']").val();
+                var token = $("input[name='token']").val();
+
+                if(!validate_field(cmd, $(".my-cmd-bg-danger"))){
+                    return false;
+                }
+
+                if(!validate_field(token, $('.my-token-bg-danger'))){
+                    return false;
+                }
+
+                $(this).prop("disabled", true);
+
+                $.post(url.send_cmd, {'token': token, 'cmd': cmd}, function(data){
+                    $('.btn-send').prop("disabled", false);
+                    if (data instanceof Object){
+                        $(".my-result").text(JSON.stringify(data));
+                    }else{
+                        $(".my-result").text(data);
+                        data = JSON.parse(data);
+                    }
+                    if(data.status == 0){
+                        convert_status(data.value);
+                    }
+                }, "json");
+            });
+        })
+    </script>
+{% endblock %}

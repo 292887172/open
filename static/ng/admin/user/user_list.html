@@ -1,0 +1,98 @@
+<header class="header bg-light dk">
+    <p>所有开发者</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="toggleForbidModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               提示
+            </h4>
+         </div>
+         <div class="modal-body" id="modalBody">
+            请确认禁用该用户：禁用
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" id="toggleForbidModalUserId" data-id="" ng-click="toggleForbidUser($event)" class="btn btn-success btn-s-xs">
+                确定
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    // 操作Html
+    var toControlHtml = function (val) {
+        if (val == 0){
+            return '<a href="javascript:void(0)" data-toggle="modal" data-target="#toggleForbidModal" data-id="'+val+'"><i class="fa fa-times text-danger"></i>禁用</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+        }else if (val == 1){
+            return '<a href="javascript:void(0)" data-toggle="modal" data-target="#toggleForbidModal" data-id="'+val+'"><i class="fa fa-check text-success"></i>启用</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+        }
+    };
+
+    // 类型Html
+    var toTypeHtml = function (val) {
+        if (val == 0){
+            return '<span class="text-info">普通账号</span>';
+        }else if (val == 1){
+            return '<span class="text-dark">运营账号</span>';
+        }else if (val == 2){
+            return '<span class="text-primary">厂商账号</span>';
+        }else{
+            return val;
+        }
+    };
+
+    //列
+    var cols = [
+        {title: '账号', name: 'id', align: 'center', lockDisplay: true},
+        {title: '来源', name: 'f', align: 'center', lockDisplay: true},
+        {title: '类型', name: 't', align: 'center', lockDisplay: true, renderer: toTypeHtml},
+        {title: '邮箱', name: 'email', align: 'center', lockDisplay: true},
+        {title: '联系方式', name: 'phone', width: 60, align: 'center', lockDisplay: true},
+        {title: '创建时间', name: 'createtime', align: 'center', lockDisplay: true, sortable: true},
+        {title: '操作', name: 'is_forbid', width: 100, align: 'center', lockDisplay: true, renderer: toControlHtml}
+    ];
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/user/list/data",
+        method: 'get',
+        sortName: 'createtime',
+        sortStatus: 'desc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: 550,
+        cols: cols,
+        cellSelected: true,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#toggleForbidModalUserId").attr("data-id", item.id).attr("data-row", rowIndex);
+        if (item.is_forbid == 0){
+            return $("#modalBody").html("请确认禁用该用户：禁用");
+        }else{
+            return $("#modalBody").html("请确认启用该用户：启用");
+        }
+    })
+</script>

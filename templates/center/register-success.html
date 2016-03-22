@@ -1,0 +1,137 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% block title %}
+    注册成功
+{% endblock %}
+{% block style %}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/theme.css"/>#}
+    {#    <link rel="stylesheet" href="http://io.device.53iq.com/static/web/css/font-awesome.min.css"/>#}
+    <style>
+        .ui-content {
+            width: 100%;
+            text-align: center;
+        }
+
+        .ui-success-show {
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .ui-success-img {
+
+            width: 90px;
+            height: 90px;
+            margin-left: -15%;
+            margin-top: 20px;
+        }
+
+        .ui-success-text {
+            color: #ff6600;
+            position: absolute;
+            font-size: 24px;
+            margin-top: -47px;
+            left: 47%;
+
+        }
+    .ui-back{
+        width: 100px;
+        height: 30px;
+        line-height: 27px;
+    }
+    .ui-developer{
+        width: 130px;
+        height: 30px;
+        line-height: 27px;
+    }
+    dl{
+        padding-left: 61px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 600px;
+        padding-bottom: 74px;
+    }
+    dt{
+        margin-bottom: 25px;
+        font-size: 16px;
+    }
+    dd{
+        margin-bottom: 6px;
+        color: #808080;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="ui-content">
+       {% if rg %}
+           <div class="ui-success-show">
+            <img class="ui-success-img" src="{% static 'image/yes_ok.png' %}">
+
+            <p class="ui-success-text">感谢您的注册，请立即验证邮箱地址。</p>
+
+            <!--/row-fluid-->
+        </div>
+        <div style="margin-top: 45px">
+            <dl style="border-bottom: 1px solid #ccc">
+                <dt>登录您的邮箱激活账号!</dt>
+                <dd>我们已经将确认邮件发送到您的邮箱 {{ user }}</dd>
+                <dd>请进入邮箱完成激活流程,点击邮件里的确认链接即可登录。</dd>
+                <dd>请您到邮箱中进行确认,确认后直接<a href="">登录</a></dd>
+
+
+            </dl>
+            <dl>
+                <dt>还没有收到确认邮件?</dt>
+                <dd>1.到垃圾邮件目录里找找，或者<a href="#">点击这里</a>重新发送注册确认邮件</dd>
+                <dd>2.如果您始终无法验证成功，请<a href="register">重新注册</a>。</dd>
+
+
+            </dl>
+
+        </div>
+        {% else %}
+           <div class="ui-success-show">
+            <img class="ui-success-img" src="{% static 'image/yes_ok.png' %}">
+
+            <p class="ui-success-text">恭喜您注册成功！</p>
+
+            <!--/row-fluid-->
+        </div>
+        <div style="margin-top: 45px">
+            <button class="ui-back" id="btnBack">回到首页</button>
+            <button class="ui-developer" id="btnComplete">完善开发者资料</button><br><br>
+            <p><b style="color: #ff6600;" id="ui-time-text">5</b>  秒后自动跳转到首页</p></div>
+        {% endif %}
+
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+            function set_time(count) {
+                var t = setInterval(function () {
+                    if (count <= 0) {
+                        clearInterval(t);
+                        window.location.href = '/'
+                    } else {
+                        count -= 1;
+                        $('#ui-time-text').text(count);
+                    }
+                }, 1000);
+            }
+            {% if not rg %}
+            set_time(5);
+            {% endif %}
+            $("#btnBack").click(function(){
+                window.location.href = '/'
+            });
+            $("#btnComplete").click(function(){
+                window.location.href = '/center'
+            })
+        })
+    </script>
+{% endblock %}

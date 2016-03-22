@@ -1,0 +1,513 @@
+{% extends 'center/base.tpl' %}
+{% load staticfiles %}
+{% load filter %}
+{% block title %}
+    首页
+{% endblock %}
+{% block style %}
+
+    <style>
+        .cnt_box p.btn {
+            width: 100%;
+        }
+
+        dt {
+            font-weight: initial !important;
+        }
+
+        .error {
+            display: inline-block;
+            padding: 0 0 0 16px;
+            background: url("{% static 'image/ico_error.png' %}") left center no-repeat !important;
+            color: #b40000;
+            font-size: 12px;
+        }
+
+        .success {
+            background: initial !important;
+        }
+
+        .sel1 {
+            border: 1px solid #999;
+            border-radius: 4px;
+            padding: 5px;
+            height: 32px;
+            color: #999;
+            min-width: 284px;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .ui-submit-btn {
+            width: 295px;
+            height: 55px;
+            margin-top: 10px;
+            font-size: 16px;
+            letter-spacing: 9px;
+            border-radius: 8px;
+            color: #fff;
+            background: #1990ff;
+        }
+
+        .ui-sub-p {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .disable {
+            background: #bbb;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="wrap">
+            <div class="left_side">
+                <ul>
+                    <li><a href="/center" class="menu_open">成为开发者</a>
+                        <ul>
+                            <li><a href="/center" class="on">基本信息</a></li>
+                            {% if user.developer.developer_id %}
+{#                            <li><a href="#" class="unable">产品信息</a></li>#}
+                            <li><a href="checklist" class="unable">审核状态</a></li>
+                            {% else %}
+{#                            <li><a href="#" class="unable">产品信息</a></li>#}
+                            <li><a href="#" class="unable">审核状态</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="cnt_box">
+                {% if user.developer.developer_id %}
+                    {% if user.developer.developer_check_status == -1 %}
+                        <form id="form1" method="post">
+
+                        <dl>
+                            <dt>开发者账号：</dt>
+                            <dd><strong class="user">{{ user.account_id }} </strong>
+                                <input type="hidden" id="user_from" value="{{ user.account_from_id|is_none }}">
+
+                                <p>建议使用53iq企业账户，便于您的管理。</p></dd>
+                        </dl>
+                        <h3>公司/团队信息</h3>
+                        <dl>
+                            <dt><span>*</span>公司/团队名称：</dt>
+                            <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
+                                                                   value="{{ user.developer.developer_inc|is_none }}"
+                                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
+                                                                   maxlength="64">
+                                <span id="coNameErrorId" class="error"></span></dd>
+                            <dt>公司/团队网址：</dt>
+                            <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value="{{ user.developer.developer_site|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
+                                       maxlength="255">
+                                <span id="coNetUrlErrorId" class=""></span></dd>
+                            <dt>公司/团队所在地：</dt>
+                            <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value="{{ user.developer.developer_address|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
+                                       maxlength="255">
+                                <span id="coAddressErrorId" class=""></span></dd>
+                            <dt><span>*</span>开发团队人数：</dt>
+                            <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="{{ user.developer.developer_person|is_none }}" class="txt"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
+                                       maxlength="64">
+                                <span id="coDevScaleErrorId" class="error"></span></dd>
+                        </dl>
+                        <h3>联系人信息</h3>
+                        <dl>
+                            <dt><span>*</span>联系人姓名：</dt>
+                            <dd><label for="inContactName"></label><input type="text" name="coContactName" id="inContactName" class="txt" value="{{ user.developer.developer_realname|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
+                                       maxlength="64">
+                                <span id="coContactNameErrorId" class="error"></span></dd>
+                            <dt><span>*</span>联系人职务：</dt>
+                            <dd><label for="inContactRole"></label><input type="text" name="coContactRole" id="inContactRole" class="txt" value="{{ user.developer.developer_job|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人职务'))"
+                                       maxlength="64">
+                                <span id="coContactRoleErrorId" class="error"></span></dd>
+                            <dt><span>*</span>手机：</dt>
+                            <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value="{{ user.developer.developer_mobile|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
+                                       maxlength="11">
+                                <span id="coContactMobileErrorId" class="error"></span></dd>
+                            <dt>固定电话：</dt>
+                            <dd><label for="inContactPhone"></label><input type="text" name="coContactPhone" id="inContactPhone" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyPhone(this,false,64))"
+                                       maxlength="64">
+                                <span id="coContactPhoneErrorId" class=""></span></dd>
+                            <dt>QQ：</dt>
+                            <dd><label for="inContactQq"></label><input type="text" name="coContactQq" id="inContactQq" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNum(this,false,20))"
+                                       maxlength="20">
+                                <span id="coContactQqErrorId" class=""></span></dd>
+                            <dt><span>*</span>邮箱：</dt>
+                            <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value="{{ user.developer.developer_email|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
+                                       maxlength="64">
+                                <span id="devEmailErrorId" class="error"></span></dd>
+                            <dt><span>*</span>邮箱验证码：</dt>
+                            <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
+                                <a id="getDevCodeId">获取邮箱验证码</a><span
+                                        id="devCodeMsgId"></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
+                            </dd>
+
+                        </dl>
+                        <h3>合作厂商信息</h3>
+                        <dl>{% if fac_info %}
+                                <dt><span>*</span>合作厂商名称：</dt>
+                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled
+                                       maxlength="64">
+                                <span id="coFacErrorId" class="error"></span></dd>
+                            <dt><span>*</span>合作厂商唯一标识：</dt>
+                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled
+                                       maxlength="255">
+                                <span id="coFacUidErrorId" class="error success"></span></dd>
+                            <dt></dt>
+                            {% else %}
+                            <dt><span>*</span>合作厂商名称：</dt>
+                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value="{{ user.developer.developer_factory|is_none }}"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"
+                                       maxlength="64">
+                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>
+                            <dt><span>*</span>合作厂商唯一标识：</dt>
+                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""
+                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"
+                                       maxlength="255">
+                                <span id="coFacUidErrorId" class="error"></span></dd>
+                            <dt></dt>
+
+                            {% endif %}
+                            <dd><label><input type="checkbox" name="agree" id="agree" checked=""
+                                              onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
+                                                                                                 target="_blank">《53iq智能云开发者协议》</a></label>
+                                &nbsp;&nbsp; <span id="agreeErrorId" class="" style="visibility:hidden;">请接受服务条款</span>
+                            </dd>
+
+                        </dl>
+
+                        <p class="ui-sub-p">
+                            <button type="button" id="submitBtn" class="ui-submit-btn btn disable" disabled>提交</button>
+                            &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
+                        </p>
+                    </form>
+                        {% else %}
+                    <dl>
+                        <dt>开发者账号：</dt>
+                        <dd><strong class="user">{{ user.account_id|is_none }} </strong>
+
+                    </dl>
+                    <h3>公司/团队信息</h3>
+                    <dl>
+                        <dt><span>*</span>公司/团队名称：</dt>
+                        <dd>{{ user.developer.developer_inc|is_none }}</dd>
+                        <dt>公司/团队网址：</dt>
+                        <dd>{{ user.developer.developer_site|is_none }}</dd>
+                        <dt>公司/团队所在地：</dt>
+                        <dd>{{ user.developer.developer_address|is_none }}</dd>
+                        <dt><span>*</span>开发团队人数：</dt>
+                        <dd>{{ user.developer.developer_person|is_none }}</dd>
+                    </dl>
+                    <h3>联系人信息</h3>
+                    <dl>
+                        <dt><span>*</span>联系人姓名：</dt>
+                        <dd>{{ user.developer.developer_realname|is_none }}</dd>
+                        <dt><span>*</span>联系人职务：</dt>
+                        <dd>{{ user.developer.developer_job|is_none }}</dd>
+                        <dt><span>*</span>手机：</dt>
+                        <dd>{{ user.developer.developer_mobile|is_none }}</dd>
+
+                        <dt><span>*</span>邮箱：</dt>
+                        <dd>{{ user.developer.developer_email|is_none }}</dd>
+                    </dl>
+                    <h3>合作厂商信息</h3>
+                    <dl>
+                        <dt><span>*</span>合作厂商名称：</dt>
+                        <dd>{{ user.developer.developer_factory|is_none }}</dd>
+                        <dt><span>*</span>合作厂商唯一标识：</dt>
+                        <dd>{{ user.developer.developer_symbol|is_none }}</dd>
+                    </dl>
+                        {% endif %}
+
+                {% else %}
+                    <form id="form1" method="post">
+
+                        <dl>
+                            <dt>开发者账号：</dt>
+                            <dd><strong class="user">{{ user.account_id|is_none }}</strong>
+                                <input type="hidden" id="user_from" value="{{ user.account_from_id|is_none }}">
+
+                                <p>建议使用53iq企业账户，便于您的管理。</p></dd>
+                        </dl>
+                        <h3>公司/团队信息</h3>
+                        <dl>
+                            <dt><span>*</span>公司/团队名称：</dt>
+                            <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
+                                                                   value=""
+                                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
+                                                                   maxlength="64">
+                                <span id="coNameErrorId" class="error"></span></dd>
+                            <dt>公司/团队网址：</dt>
+                            <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
+                                       maxlength="255">
+                                <span id="coNetUrlErrorId" class=""></span></dd>
+                            <dt>公司/团队所在地：</dt>
+                            <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
+                                       maxlength="255">
+                                <span id="coAddressErrorId" class=""></span></dd>
+                            <dt><span>*</span>开发团队人数：</dt>
+                            <!-- 开发团队人数未输入，默认为空-->
+                            {% if user.account_team_persons == None %}
+                            <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="" class="txt"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
+                                       maxlength="64">
+                                <span id="coDevScaleErrorId" class="error"></span></dd>
+                             <!--开发团队人数已输入，默认填充-->
+                             {% else %}
+                                <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="{{ user.account_team_persons }}" class="txt"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
+                                       maxlength="64">
+                                <span id="coDevScaleErrorId" class="error"></span></dd>
+                             {% endif %}
+                        </dl>
+                        <h3>联系人信息</h3>
+                        <dl>
+                            <dt><span>*</span>联系人姓名：</dt>
+                            <dd><label for="inContactName"></label><input type="text" name="coContactName" id="inContactName" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
+                                       maxlength="64">
+                                <span id="coContactNameErrorId" class="error"></span></dd>
+                            <dt><span>*</span>联系人职务：</dt>
+                            <dd><label for="inContactRole"></label><input type="text" name="coContactRole" id="inContactRole" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人职务'))"
+                                       maxlength="64">
+                                <span id="coContactRoleErrorId" class="error"></span></dd>
+                            <dt><span>*</span>手机：</dt>
+                            <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
+                                       maxlength="11">
+                                <span id="coContactMobileErrorId" class="error"></span></dd>
+                            <dt>固定电话：</dt>
+                            <dd><label for="inContactPhone"></label><input type="text" name="coContactPhone" id="inContactPhone" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyPhone(this,false,64))"
+                                       maxlength="64">
+                                <span id="coContactPhoneErrorId" class=""></span></dd>
+                            <dt>QQ：</dt>
+                            <dd><label for="inContactQq"></label><input type="text" name="coContactQq" id="inContactQq" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNum(this,false,20))"
+                                       maxlength="20">
+                                <span id="coContactQqErrorId" class=""></span></dd>
+                            <dt><span>*</span>邮箱：</dt>
+                            <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
+                                       maxlength="64">
+                                <span id="devEmailErrorId" class="error"></span></dd>
+                            <dt><span>*</span>邮箱验证码：</dt>
+                            <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
+                                <a id="getDevCodeId">获取邮箱验证码</a><span
+                                        id="devCodeMsgId"></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
+                            </dd>
+
+                        </dl>
+                        <h3>合作厂商信息</h3>
+                        <dl>{% if fac_info %}
+                                <dt><span>*</span>合作厂商名称：</dt>
+                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled
+                                       maxlength="64">
+                                <span id="coFacErrorId" class="error"></span></dd>
+                            <dt><span>*</span>合作厂商唯一标识：</dt>
+                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled
+                                       maxlength="255">
+                                <span id="coFacUidErrorId" class="error success"></span></dd>
+                            <dt></dt>
+                            {% else %}
+                            <dt><span>*</span>合作厂商名称：</dt>
+                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value=""
+                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"
+                                       maxlength="64">
+                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>
+                            <dt><span>*</span>合作厂商唯一标识：</dt>
+                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""
+                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"
+                                       maxlength="255">
+                                <span id="coFacUidErrorId" class="error"></span></dd>
+                            <dt></dt>
+
+                            {% endif %}
+                            <dd><label><input type="checkbox" name="agree" id="agree" checked=""
+                                              onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
+                                                                                                 target="_blank">《53iq智能云开发者协议》</a></label>
+                                &nbsp;&nbsp; <span id="agreeErrorId" class="" style="visibility:hidden;">请接受服务条款</span>
+                            </dd>
+
+                        </dl>
+
+                        <p class="ui-sub-p">
+                            <button type="button" id="submitBtn" class="ui-submit-btn btn disable" disabled>提交</button>
+                            &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
+                        </p>
+                    </form>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+    <div class="mask" id="mask" style="display:none"></div>
+    <div class="pop_win" id="pop_win" style="display:none">
+        <div></div>
+        <p id="urlId" style="display: none"></p>
+        <p><a href="javascript:void(0)" onclick="DevAppInfo.cAlert()">确定</a></p>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" language="JavaScript" src="{% static 'js/center/devApp.js' %}"
+            charset="utf-8"></script>
+    <script>
+
+        function show_error_msg(self, id, msg) {
+            if ($(self).val().length == 0) {
+                $("#" + id).text(msg);
+
+            }
+            else {
+                $("#" + id).text("");
+
+            }
+        }
+        $(function () {
+            $("#inFac").blur(function () {
+                var fac_uid = $("#inFacUid").val();
+                var fac_name = $("#inFac").val();
+                if (fac_name != '' && fac_uid != '') {
+                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
+                        if (data['status'] == 'ok') {
+                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
+                            DevAppInfo.changeButtonCSS(true)
+                        }
+                        else {
+                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
+                        }
+                    }, 'json');
+                }
+            });
+            $("#inFacUid").blur(function () {
+                var fac_uid = $("#inFacUid").val();
+                var fac_name = $("#inFac").val();
+                if (fac_name == null || fac_name == '') {
+                    $("#coFacErrorId").text('请输入合作厂商名称');
+
+                }
+                else {
+                    $("#coFacErrorId").text('');
+                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
+                        if (data['status'] == 'ok') {
+                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
+
+                            DevAppInfo.changeButtonCSS(true)
+
+                        }
+                        else {
+                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
+                        }
+                    }, 'json');
+                }
+            });
+            $("#getDevCodeId").click(function () {
+                var email = $("#inEmail").val();
+                if (DevAppInfo.isNomalEmail(email)) {
+                    $("#devEmailErrorId").text("");
+                    $("#getDevCodeId").text("正在发送");
+                    $("#devCodeMsgId").html('<img src="{% static 'image/loading.gif' %}">');
+                    $.post('{% url 'send_email_code' %}', {'email': email}, function (data) {
+                        if (data['result'] == 'ok') {
+                            DevAppInfo.sAlert('验证码已发送到邮箱');
+                        }
+                        else {
+                            DevAppInfo.sAlert('验证码发送失败，确认邮箱地址是否正确')
+
+                        }
+                        $("#getDevCodeId").text("获取邮箱验证码");
+                        $("#devCodeMsgId").html("");
+                    }, 'json');
+
+
+                }
+                else {
+
+                    $("#devEmailErrorId").text('请输入正确的邮箱地址')
+                }
+
+            });
+            $("#submitBtn").click(function () {
+                if (DevAppInfo.changeButtonCSS(true)) {
+                    bootbox.confirm('确认提交，一旦提交开发者信息将无法修改', function (result) {
+                        if (result) {
+                            var user_account = "{{ user.account_id }}";
+                            var data_obj = {
+                                'user': user_account,
+                                'user_from': $("#user_from").val(),
+                                'coName': $("#inName").val(),
+                                'coNetUrl': $("#inNetUrl").val(),
+                                'coAddress': $("#inAddress").val(),
+                                'coDevScale': $("#inDevScale").val(),
+                                'coContactName': $("#inContactName").val(),
+                                'coContactRole': $("#inContactRole").val(),
+                                'coContactMobile': $("#inContactMobile").val(),
+                                'coContactPhone': $("#inContactPhone").val(),
+                                'coContactQq': $("#inContactQq").val(),
+                                'devEmail': $("#inEmail").val(),
+                                'devCode': $("#inCode").val(),
+                                'factory_name': $("#inFac").val(),
+                                'coFacUid': $("#inFacUid").val()
+                            };
+                            jQuery.ajax({
+                                url: location.href,
+                                type: "POST",
+                                data: data_obj,
+                                error: function () {
+                                    console.log("error");
+                                },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+{#                                    console.log(response);#}
+{#                                    console.log(response['status']);#}
+{#                                    console.log(response['msg']);#}
+                                    if (response['status'] == 'ok') {
+
+                                        DevAppInfo.sAlert(response['msg']);
+                                        $("#urlId").text('center');
+                                    }
+                                    else{
+                                        DevAppInfo.sAlert(response['msg'])
+                                    }
+                                }
+
+                            });
+
+
+                        }
+                        else {
+                          //  alert('34')
+                        }
+                    })
+                }
+            })
+        });
+
+
+    </script>
+    {#    <script src="{% static 'js/center/product.js' %}"></script>#}
+{% endblock %}

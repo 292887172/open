@@ -1,0 +1,266 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]><html lang="en" class="app" ng-app="Admin" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html lang="en" class="app" ng-app="Admin" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html lang="en" class="app" ng-app="Admin" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>-->
+<html lang="en" class="app" ng-app="Admin" class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}开放平台管理{% endblock %} - 53iq开放平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
+    <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
+    <link rel="stylesheet" href="{% static "common/css/bootstrap.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/css/animate.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/css/font-awesome.min.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/css/simple-line-icons.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/css/font.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "common/css/app.css" %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'common/css/nestable.css' %}">
+
+    {% block head_fixed_style %}{% endblock %}
+    {% block head_style %}{% endblock %}
+    {% block head_fixed_script %}{% endblock %}
+    {% block head_script %}{% endblock %}
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9088d602c7fd9fd4bfb8f3472bd734b7";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body class="">
+<section class="vbox">
+    <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
+        <div class="navbar-header aside bg-info">
+            <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                <i class="icon-list"></i>
+            </a>
+            <a href="#/index" class="navbar-brand text-lt">
+                <i class="icon-earphones-alt"></i>
+                {#                <img src="images/logo.png" alt="." class="hide">#}
+                <span class="hidden-nav-xs m-l-sm">平台管理</span>
+            </a>
+            <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+                <i class="icon-settings"></i>
+            </a>
+        </div>
+        <ul class="nav navbar-nav hidden-xs">
+            <li>
+                <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
+                    <i class="fa fa-indent text"></i>
+                    <i class="fa fa-dedent text-active"></i>
+                </a>
+            </li>
+        </ul>
+        <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+            <div class="form-group">
+                <div class="input-group">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+            </span>
+                    <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索...">
+                </div>
+            </div>
+        </form>
+        <div class="navbar-right ">
+            <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle bg clear" data-toggle="dropdown">
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="http://wx.qlogo.cn/mmopen/ZTYKOnkIIKUzp1PGrkKABhv1Pc9M1pEZosrSGicdWjEb2OnqiaQsruf8fd2U3j8v1VCnsqZbRN2XY9aiaPsuZbT98fQsiauuZG51/0"
+                     alt="...">
+              </span>
+                        {{ user.account_id }} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight">
+                        <li>
+                            <span class="arrow top"></span>
+                            <a href="javascript:void(0)">个人设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <span class="arrow top"></span>
+                            <a href="{% url "modify_pwd_admin" %}">修改密码</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{% url "logout" %}">退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <section class="hbox stretch">
+            <!-- .aside -->
+            <aside class="bg-black dk aside hidden-print" id="nav">
+                <section class="vbox">
+                    <section class="scrollable">
+                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+                             data-size="10px" data-railOpacity="0.2">
+                            <!-- nav -->
+                            <nav class="nav-primary hidden-xs">
+                                <ul class="nav bg clearfix">
+                                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                        控制面板
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <i class="icon-paper-plane icon text-danger"></i>
+                                            <span class="font-bold">全站概况</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/application">
+                                            <i class="icon-grid icon text-success"></i>
+                                            <span class="font-bold">应用概况</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/api">
+                                            <i class="icon-social-dropbox icon text-info"></i>
+                                            <span class="font-bold">接口概况</span>
+                                        </a>
+                                    </li>
+                                    <li class="m-b hidden-nav-xs"></li>
+                                </ul>
+                                <ul class="nav" data-ride="collapse">
+                                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                        开放平台
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="auto">
+                                            <span class="pull-right text-muted">
+                                              <i class="fa fa-angle-left text"></i>
+                                              <i class="fa fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-users icon"></i>
+                                            <span>用户管理</span>
+                                        </a>
+                                        <ul class="nav dk text-sm">
+                                            <li>
+                                                <a href="#/user/list" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+                                                    <span>全部用户</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#/developer/list" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+                                                    <span>所有开发者</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#/developer/check" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+                                                    <span>开发者审核</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="auto">
+                                            <span class="pull-right text-muted">
+                                              <i class="fa fa-angle-left text"></i>
+                                              <i class="fa fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-grid icon"></i>
+                                            <span>应用管理</span>
+                                        </a>
+                                        <ul class="nav dk text-sm">
+                                            <li>
+                                                <a href="#/application/list" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>全部应用</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#/application/check" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>应用审核</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="auto">
+                                            <span class="pull-right text-muted">
+                                              <i class="fa fa-angle-left text"></i>
+                                              <i class="fa fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-social-dropbox icon"></i>
+                                            <span>接口管理</span>
+                                        </a>
+                                        <ul class="nav dk text-sm">
+                                            <li>
+                                                <a href="#/api/list" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>全部接口</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#/api/add" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>添加接口</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#/doc/list_doc" class="auto">
+
+                                            <i class="icon-book-open icon"></i>
+                                            <span>文档管理</span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="#/doc/menu" class="auto">
+
+                                           <i class="fa fa-list-ul"></i>
+                                            <span>菜单管理</span>
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- / nav -->
+                        </div>
+                    </section>
+                </section>
+            </aside>
+            <!-- /.aside -->
+            {% block body_content %}
+                <section id="content">
+                    <section class="vbox">
+                        <section class="scrollable padder" ng-controller="AdminBaseCtrl" ng-view>
+                        </section>
+                    </section>
+                </section>
+            {% endblock %}
+        </section>
+    </section>
+    <script src="{% static "common/js/jquery.min.js" %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static "common/js/bootstrap.js" %}"></script>
+    <!-- App -->
+    <script src="{% static "common/js/app.js" %}"></script>
+    <script src="{% static "common/js/app.plugin.js" %}"></script>
+    <script src="{% static "common/js/slimscroll/jquery.slimscroll.min.js" %}"></script>
+
+    {% block end_fixed_script %}{% endblock %}
+    {% block end_script %}{% endblock %}
+</body>
+</html>

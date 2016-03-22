@@ -1,0 +1,86 @@
+<div class="box2 relative">
+    <div class="hl-help">
+        <span class="linkBlue">基本信息</span>
+    </div>
+    <div class="mt20">
+        <form action="" name="ProductInfoForm" method="post">
+            <input type='hidden' name='csrfmiddlewaretoken' ng-model="infoFormData.csrfmiddlewaretoken"/>
+            <input type="hidden" name="app_id" ng-model="infoFormData.app_id"/>
+            <div class="boxInfo">
+                <h3 class="tit5">基本信息</h3>
+                <dl class="fmInfo">
+                    <dt>产品名称</dt>
+                    <dd>
+                        <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="productNameTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>型号</dt>
+                    <dd>
+                        <input type="text" id="productModelText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_model" class="w400 form-control" maxlength="48">
+                        <span class="st" style="color:#999">可选</span>
+                        <span class="tips-error hiden" id="productModelTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>分类</dt>
+                    <dd>
+                        智能家居 /
+                        <select name="select" id="secondProType" ng-disabled="{[{ disabled }]}" class="sel1" ng-model="infoFormData.app_category"
+                                ng-options="t.value as t.name for t in secondProType">
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>设备类型</dt>
+                    <dd style="padding-top: 5px;">
+                        普通设备
+                    </dd>
+                </dl>
+            </div>
+            <div class="boxInfo">
+                <h3 class="tit5">产品信息</h3>
+                <dl class="fmInfo">
+                    <dt>产品描述</dt>
+                    <dd>
+                        <textarea rows="3" id="productDescriptionlText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_describe"
+                               maxlength="256" class="w400 form-control" placeholder="请填写产品可实现的功能等整体描述"></textarea>
+                        <span class="tips-error hiden" id="productDescriptionlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品网址</dt>
+                    <dd>
+                        <input type="text" id="productDescriptionlUrl" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_site"
+                               maxlength="512" class="w400 form-control" placeholder="请填写产品简介的url地址，以http://开头">
+                        <span class="tips-error hiden" id="productDescriptionlUrlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品图片</dt>
+                    <dd>
+                        <p class="iptTxt ft9">(建议尺寸为200像素×200像素的PNG图片，大小不超过1M)</p>
+                        <div class="upload" id="productImgDiv" style="float:left; width:100px;height:100px;">
+                            <img id="productImg" class="upload-photo" ng-src="{[{ productImgSrc }]}" src="{[{ infoFormData.app_logo }]}" onerror="this.src=''" width="100" height="100" style="display: block; vertical-align: top;">
+                            <span class="tips-error hiden" id="productImgTips" ng-model="productImgTips"></span>
+                            <div id="" class="moxie-shim moxie-shim-html5"
+                                 style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; overflow: hidden; z-index: 0;">
+                                <input id="productImgFile" name="productImgFile" fileread="productImgSrc" ng-hide="{[{ visible }]}" type="file"
+                                       style="font-size: 999px; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                       multiple="" accept="image/jpeg,image/gif,image/png">
+                            </div>
+                        </div>
+                        <input id="upload-input-id" type="hidden" name="product.app_logo" value="">
+                    </dd>
+                </dl>
+            </div>
+        </form>
+        <div class="boxInfo" ng-hide="{[{ visible }]}"></div>
+        <div class="ml100 mt10 mb20" ng-hide="{[{ visible }]}" id="butActDiv">
+            <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitInfoForm()">保 存</a></span>
+            <span><a href="javascript:" onclick="window.location.reload();" class="btn-gray">取 消</a></span>
+        </div>
+    </div>
+</div>
+<script src="/static/js/common/ajaxfileupload.min.js"></script>

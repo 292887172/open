@@ -1,0 +1,51 @@
+<div class="box2 relative">
+    <div class="hl-help">
+        <span class="linkBlue">开发者中心</span>
+    </div>
+	<div class="mt20">
+        <form action="" name="ProductDevForm" method="post">
+            <input type='hidden' name='csrfmiddlewaretoken' ng-model="configFormData.csrfmiddlewaretoken" />
+            <input type="hidden" name="app_id" ng-model="configFormData.app_id"/>
+            <div class="boxInfo">
+                <h3 class="tit5">服务器配置</h3>
+                <dl class="fmInfo">
+                    <dt class="relative" style="z-index:10;">
+                        推送配置
+                    </dt>
+                    <dd>
+                        <span class="iptTxt mr10">URL(服务器推送地址：无需推送请留空)</span>
+                        <input type="text" id="productConfigPushUrl" ng-model="configFormData.app_config_push_url" class="w400 form-control" placeholder="" title="URL(服务器地址)" value="">
+
+                        <span class="iptTxt mr10">Token(令牌)</span>
+                        <input type="text" id="productConfigPushToken" ng-model="configFormData.app_config_push_token" class="w400 form-control" placeholder="" title="URL(服务器地址)" value="">
+                    </dd>
+                </dl>
+            </div>
+            <div class="ml100 mt10 mb20" id="butActDiv">
+                <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitConfigForm()">保 存</a></span>
+                <span><a href="javascript:" onclick="window.location.reload();" class="btn-gray">刷 新</a></span>
+            </div>
+            <div class="boxInfo">
+                <h3 class="tit5">开发配置</h3>
+                <dl class="fmInfo">
+                    <dt class="relative" style="z-index:10;">
+                        密钥配置
+                    </dt>
+                    <dd>
+                        <span class="iptTxt mr10">AppID(应用ID)</span><label class="w400" for="">{[{ appid }]}</label>
+                        <br/>
+                        <span class="iptTxt mr10">AppSecret(应用密钥)</span><label for="" class="w400">{[{ app_secret }]}</label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="ml100 mt10 mb20" id="butActDiv">
+                <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="ResetAppSecret()">重置AppSecret</a></span>
+            </div>
+            <div class="boxInfo">
+                <h3 class="tit5">接口权限表</h3>
+                    <div class="panel panel-default" ng-bind-html="apiListTable|trustHtml">
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
