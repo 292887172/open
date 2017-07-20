@@ -331,3 +331,305 @@ django.template.base.TemplateSyntaxError: Invalid block tag: 'create_menu', expe
 2015-12-09 09:25:41,589 [Thread-94:140209781851904] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
 2015-12-09 09:25:46,880 [Thread-96:140209765066496] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
 2016-01-11 14:21:35,313 [Thread-224:140503270024960] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2016-11-04 10:38:23,069 [Thread-1:140129964521216] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/middleware.py", line 42, in process_response
+    request.session.save()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    result = func(self.cache_key,
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 19, in cache_key
+    return KEY_PREFIX + self._get_or_create_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 155, in _get_or_create_session_key
+    self._session_key = self._get_new_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 149, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 63, in exists
+    return (KEY_PREFIX + session_key) in self._cache
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 182, in __contains__
+    return self.has_key(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 154, in has_key
+    return self.get(key, version=version) is not None
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 82, in get
+    val = self._cache.get(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 171, in _cache
+    self._client = self._lib.Client(self._servers, pickleProtocol=pickle.HIGHEST_PROTOCOL)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/memcache.py", line 225, in __init__
+    file = StringIO()
+NameError: name 'StringIO' is not defined
+2016-11-04 10:38:24,587 [Thread-3:140129884698368] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2016-11-04 10:38:32,497 [Thread-4:140129884698368] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/middleware.py", line 42, in process_response
+    request.session.save()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    result = func(self.cache_key,
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 19, in cache_key
+    return KEY_PREFIX + self._get_or_create_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 155, in _get_or_create_session_key
+    self._session_key = self._get_new_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 149, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 63, in exists
+    return (KEY_PREFIX + session_key) in self._cache
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 182, in __contains__
+    return self.has_key(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 154, in has_key
+    return self.get(key, version=version) is not None
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 82, in get
+    val = self._cache.get(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 171, in _cache
+    self._client = self._lib.Client(self._servers, pickleProtocol=pickle.HIGHEST_PROTOCOL)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/memcache.py", line 225, in __init__
+    file = StringIO()
+NameError: name 'StringIO' is not defined
+2016-11-04 10:39:15,867 [Thread-1:140062809159424] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/middleware.py", line 42, in process_response
+    request.session.save()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    result = func(self.cache_key,
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 19, in cache_key
+    return KEY_PREFIX + self._get_or_create_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 155, in _get_or_create_session_key
+    self._session_key = self._get_new_session_key()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/base.py", line 149, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/sessions/backends/cache.py", line 63, in exists
+    return (KEY_PREFIX + session_key) in self._cache
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 182, in __contains__
+    return self.has_key(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/base.py", line 154, in has_key
+    return self.get(key, version=version) is not None
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 82, in get
+    val = self._cache.get(key)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/cache/backends/memcached.py", line 171, in _cache
+    self._client = self._lib.Client(self._servers, pickleProtocol=pickle.HIGHEST_PROTOCOL)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/memcache.py", line 225, in __init__
+    file = BytesIO()
+NameError: name 'BytesIO' is not defined
+2017-07-14 09:01:34,973 [Thread-27:140290786576128] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-14 09:04:00,155 [Thread-29:140290778183424] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-14 15:49:15,583 [Thread-12:140455278794496] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/center/views.py", line 94, in home
+    fac_info = get_factory_info(request.user.account_from_id)
+  File "/home/rdy/git-workspace/open/common/smart_helper.py", line 53, in get_factory_info
+    conn = SysMysqlHandler().conn
+  File "/home/rdy/git-workspace/open/base/connection.py", line 69, in __init__
+    cursorclass=pymysql.cursors.DictCursor)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
+    self._connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 838, in _connect
+    self._request_authentication()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 1021, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 893, in _read_packet
+    packet.check_error()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 369, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 120, in raise_mysql_exception
+    _check_mysql_exception(errinfo)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 115, in _check_mysql_exception
+    raise InternalError(errno, errorvalue)
+pymysql.err.InternalError: (1049, "Unknown database 'ebdb_smartsys'")
+2017-07-14 15:49:16,560 [Thread-13:140455287187200] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-07-14 16:26:13,407 [Thread-41:140467391096576] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-14 16:32:24,669 [Thread-39:140358021265152] [django.request:231] [ERROR]- Internal Server Error: /assets/images/dev/arrow_d.png
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 122, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 471, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
+    self._connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 838, in _connect
+    self._request_authentication()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 1021, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 893, in _read_packet
+    packet.check_error()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 369, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 120, in raise_mysql_exception
+    _check_mysql_exception(errinfo)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 115, in _check_mysql_exception
+    raise InternalError(errno, errorvalue)
+pymysql.err.InternalError: (1226, "User 'open' has exceeded the 'max_connections_per_hour' resource (current value: 10)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 34, in process_request
+    if user and hasattr(user, 'get_session_auth_hash'):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/functional.py", line 357, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 158, in get_user
+    user = backend.get_user(user_id)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/backends.py", line 69, in get_user
+    return UserModel._default_manager.get(pk=user_id)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 351, in get
+    num = len(clone)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 122, in __len__
+    self._fetch_all()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 784, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 165, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 138, in _cursor
+    self.ensure_connection()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/six.py", line 549, in reraise
+    raise value.with_traceback(tb)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 122, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 471, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
+    self._connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 838, in _connect
+    self._request_authentication()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 1021, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 893, in _read_packet
+    packet.check_error()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 369, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 120, in raise_mysql_exception
+    _check_mysql_exception(errinfo)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 115, in _check_mysql_exception
+    raise InternalError(errno, errorvalue)
+django.db.utils.InternalError: (1226, "User 'open' has exceeded the 'max_connections_per_hour' resource (current value: 10)")
+2017-07-14 16:32:29,315 [Thread-40:140358021265152] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 122, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 471, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
+    self._connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 838, in _connect
+    self._request_authentication()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 1021, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 893, in _read_packet
+    packet.check_error()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 369, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 120, in raise_mysql_exception
+    _check_mysql_exception(errinfo)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 115, in _check_mysql_exception
+    raise InternalError(errno, errorvalue)
+pymysql.err.InternalError: (1226, "User 'open' has exceeded the 'max_connections_per_hour' resource (current value: 10)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 34, in process_request
+    if user and hasattr(user, 'get_session_auth_hash'):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/functional.py", line 357, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 158, in get_user
+    user = backend.get_user(user_id)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/backends.py", line 69, in get_user
+    return UserModel._default_manager.get(pk=user_id)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 351, in get
+    num = len(clone)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 122, in __len__
+    self._fetch_all()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 784, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 165, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 138, in _cursor
+    self.ensure_connection()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/utils/six.py", line 549, in reraise
+    raise value.with_traceback(tb)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 133, in ensure_connection
+    self.connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/__init__.py", line 122, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 471, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
+    self._connect()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 838, in _connect
+    self._request_authentication()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 1021, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 893, in _read_packet
+    packet.check_error()
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 369, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 120, in raise_mysql_exception
+    _check_mysql_exception(errinfo)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/pymysql/err.py", line 115, in _check_mysql_exception
+    raise InternalError(errno, errorvalue)
+django.db.utils.InternalError: (1226, "User 'open' has exceeded the 'max_connections_per_hour' resource (current value: 10)")
+2017-07-14 16:33:47,661 [Thread-55:140358046443264] [django.request:143] [WARNING]- Not Found: /product/list/None

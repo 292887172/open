@@ -134,7 +134,7 @@ def login(request):
     try:
         request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/center")
         if request.user.account_id:
-            print('1234')
+
             return HttpResponseRedirect("/guide")
     except Exception as e:
         logging.getLogger('').info(str(e))

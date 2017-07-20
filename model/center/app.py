@@ -18,6 +18,8 @@ class App(models.Model):
     developer = models.ForeignKey(Developer, null=True, db_column='ebf_developer_id', related_name='developer_related_app')
     # 应用名称
     app_name = models.CharField(max_length=64, db_column='ebf_app_name')
+    # 应用包名
+    package_name = models.CharField(max_length=128, db_column='ebf_app_package_name')
     # 应用描述
     app_describe = models.TextField(null=True, db_column='ebf_app_describe')
     # 应用描述网站
@@ -40,6 +42,10 @@ class App(models.Model):
     app_brand = models.CharField(max_length=64, null=True, db_column='ebf_app_brand')
     # 设备类别
     app_category = models.CharField(max_length=64, null=True, db_column='ebf_app_category')
+    # app配置文件地址
+    app_config_path = models.CharField(max_length=512, null=True, db_column='ebf_app_config_path')
+    # app当前版本
+    app_currversion = models.IntegerField(max_length=11, null=True, db_column='ebf_app_currversion')
     # 设备型号
     app_model = models.CharField(max_length=64, null=True, db_column='ebf_app_model')
     # 应用等级

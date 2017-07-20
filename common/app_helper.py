@@ -46,7 +46,8 @@ def create_app(developer_id, app_name, app_model, app_category):
                           app_appid=app_app_id,
                           app_appsecret=app_app_secret,
                           app_model=app_model,
-                          app_category=app_category)
+                          app_category=app_category,
+                          package_name='')
                 app.save()
                 break
             except Exception as e:
