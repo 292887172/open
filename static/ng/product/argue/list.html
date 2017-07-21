@@ -1,0 +1,141 @@
+
+
+        <style>
+			html, body {
+		    width: 100%;
+		    height: 100%;
+		    padding: 0px;
+		    margin: 0px;
+		    overflow:hidden;
+		  }
+		  .addButton{
+		  	color:#fff;
+		  	text-decoration:none;
+		  	cursor:pointer;
+		  }
+		  .addButton:hover{
+		  	color:#fff;
+		  	text-decoration:none;
+		  	cursor:pointer;
+		  }
+		</style>
+
+		<div class="main-container">
+
+            <table id="grid-table"></table>
+            <div id="grid-pager"></div>
+
+		</div>
+
+        <script src="/static/assets/js/jquery-2.1.4.min.js"></script>
+
+
+
+		<!-- page specific plugin scripts -->
+        <script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
+        <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+        <script src="/static/assets/js/grid.locale-en.js"></script>
+        <script src="/static/assets/js/ace-elements.min.js"></script>
+        <script src="/static/assets/js/ace.min.js"></script>
+
+
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			var grid_data =
+			[
+				{id:"1",Stream_ID:"babylock",name:"童锁",isControl:"1",state:"1",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[{desc:"参数1",data:"2.2"}],mxsLength:"1",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"curstep",name:"当前步骤",isControl:"1",state:"1",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[],mxsLength:"0",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"curemp",name:"制作实时温度",isControl:"1",state:"0",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[],mxsLength:"0",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"dcuremp",name:"下管实时温度",isControl:"0",state:"0",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[],mxsLength:"0",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"dhecycle",name:"下加热周期",isControl:"0",state:"1",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[],mxsLength:"0",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"dhepipe",name:"下加热管开关",isControl:"1",state:"1",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[],mxsLength:"0",time:"2017-06-01 13:29:07"},
+				{id:"1",Stream_ID:"dpretemp",name:"下加热管预热温度",isControl:"1",state:"1",min:"1.1",max:"3.3",paramType:"2",corpName:"摄氏度",corpMark:"℃",mxs:[{desc:"参数1",data:"2.2"},{desc:"参数2",data:"2.3"}],mxsLength:"2",time:"2017-06-01 13:29:07"}
+			];
+
+			jQuery(function($) {
+				jQuery("#grid-table").jqGrid({
+					//url:ROOT_PATH + "ace/person/getAll",
+					//postData:{pid:"-1"},
+					//datatype: "json",
+					//mtype:"POST",
+					data: grid_data,
+					datatype: "local",
+					colNames:['id','Stream_ID', '参数名称','参数个数','是否可控', '修改时间', '是否启用','操作'],
+					colModel:[
+						{name:'id', hidden:true},
+						{name:'Stream_ID', width:80},
+						{name:'name', width:80},
+						{name:'mxsLength', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="" || cellvalue=="0"){
+										return '<a href="#" class="btn btn-white btn-xs" style="width:60px">暂无</a>';
+									}else{
+										return '<a href="#" class="btn btn-white btn-xs" style="width:60px">'+cellvalue+'</a>';
+									}
+							}
+						},
+						{name:'isControl', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="1"){
+										return '是';
+									}else{
+										return '否';
+									}
+							}
+						},
+						{name:'time', width:80,align:'center'},
+						{name:'state', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="1"){
+										return '<input id="" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span class="lbl middle"></span>';
+									}else{
+										return '<input id="" type="checkbox" class="ace ace-switch ace-switch-5"/><span class="lbl middle"></span>';
+									}
+							}
+						},
+						{name:' ', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									return '<a href="#" onclick="edit(\''+rowObject.id+'\')">编辑</a> | <a href="#" onclick="del(\''+rowObject.id+'\')">删除</a>';
+							}
+						}
+					],
+					//height:600,
+					viewrecords : true,
+					//rowNum:10,
+					//rowList:[10,20,30],
+					//pager : "#grid-pager",
+					altRows: false,
+					multiselect: false,
+	        multiboxonly: true,
+	        caption: "<a href='#' onclick='add()' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='export()' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i> 导出参数表</a>",
+	        gridComplete:function(){
+	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(4).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(5).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(6).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
+	        		$("#grid-table").jqGrid( 'setGridWidth', $("body").width() );
+	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+	        		$(window).resize(function() {
+							  $("#grid-table").jqGrid( 'setGridWidth', $("body").width() );
+				        $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+							});
+	        }
+				});
+			});
+			function add(){
+                alert("调用成功");
+				location.href="edit.html";
+			}
+			function edit(id){
+				location.href="edit.html?id="+id;
+			}
+			function del(id){
+				alert("删除成功");
+				var postData={};
+				$("#grid-table").jqGrid("setGridParam",{postData:postData}).trigger("reloadGrid");
+			}
+		</script>
+
+

@@ -182,3 +182,7 @@
 2017-07-14 16:26:12,644 [Thread-32:140467424667392] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
 2017-07-14 16:32:12,710 [Thread-19:140358021265152] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-07-14 16:32:22,720 [Thread-29:140358135920384] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-07-21 13:19:08,726 [Thread-3:2468] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-07-21 13:19:21,379 [Thread-10:14484] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-07-21 13:53:31,754 [Thread-3:1956] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-07-21 15:42:11,734 [Thread-303:7996] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
