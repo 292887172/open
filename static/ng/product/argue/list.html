@@ -1,44 +1,40 @@
 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-        <style>
-			html, body {
-		    width: 100%;
-		    height: 100%;
-		    padding: 0px;
-		    margin: 0px;
-		    overflow:hidden;
-		  }
-		  .addButton{
-		  	color:#fff;
-		  	text-decoration:none;
-		  	cursor:pointer;
-		  }
-		  .addButton:hover{
-		  	color:#fff;
-		  	text-decoration:none;
-		  	cursor:pointer;
-		  }
-		</style>
+    <div class="main-container">
 
-		<div class="main-container">
+        <table id="grid-table"></table>
+        <div id="grid-pager"></div>
 
-            <table id="grid-table"></table>
-            <div id="grid-pager"></div>
-
-		</div>
-
-        <script src="/static/assets/js/jquery-2.1.4.min.js"></script>
+    </div>
+    <!-- page specific plugin scripts -->
+    <script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+    <script src="/static/assets/js/grid.locale-en.js"></script>
+    <script src="/static/assets/js/ace-elements.min.js"></script>
 
 
-
-		<!-- page specific plugin scripts -->
-        <script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
-        <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
-        <script src="/static/assets/js/grid.locale-en.js"></script>
-        <script src="/static/assets/js/ace-elements.min.js"></script>
-        <script src="/static/assets/js/ace.min.js"></script>
-
-
+    <style>
+        html, body {
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        overflow:auto;
+      }
+      .addButton{
+        color:#fff;
+        text-decoration:none;
+        cursor:pointer;
+      }
+      .addButton:hover{
+        color:#fff;
+        text-decoration:none;
+        cursor:pointer;
+      }
+    </style>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -69,9 +65,9 @@
 						{name:'mxsLength', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="" || cellvalue=="0"){
-										return '<a href="#" class="btn btn-white btn-xs" style="width:60px">暂无</a>';
+										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px">暂无</a>';
 									}else{
-										return '<a href="#" class="btn btn-white btn-xs" style="width:60px">'+cellvalue+'</a>';
+										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px">'+cellvalue+'</a>';
 									}
 							}
 						},
@@ -96,7 +92,7 @@
 						},
 						{name:' ', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-									return '<a href="#" onclick="edit(\''+rowObject.id+'\')">编辑</a> | <a href="#" onclick="del(\''+rowObject.id+'\')">删除</a>';
+									return '<a onclick="edit(\''+rowObject.id+'\')">编辑</a> | <a href="#" onclick="del(\''+rowObject.id+'\')">删除</a>';
 							}
 						}
 					],
@@ -108,28 +104,29 @@
 					altRows: false,
 					multiselect: false,
 	        multiboxonly: true,
-	        caption: "<a href='#' onclick='add()' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='export()' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i> 导出参数表</a>",
-	        gridComplete:function(){
+            caption: "<a onclick='add()' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='export()' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i> 导出参数表</a>",
+
+            gridComplete:function(){
 	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(4).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(5).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(6).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
-	        		$("#grid-table").jqGrid( 'setGridWidth', $("body").width() );
+	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
 	        		$(window).resize(function() {
-							  $("#grid-table").jqGrid( 'setGridWidth', $("body").width() );
+							  $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 				        $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
 							});
 	        }
 				});
 			});
-			function add(){
-                alert("调用成功");
-				location.href="edit.html";
+
+            function add(){
+				location.href="#/edit";
 			}
 			function edit(id){
-				location.href="edit.html?id="+id;
+				location.href="#/edit?id="+id;
 			}
 			function del(id){
 				alert("删除成功");
@@ -137,5 +134,4 @@
 				$("#grid-table").jqGrid("setGridParam",{postData:postData}).trigger("reloadGrid");
 			}
 		</script>
-
 

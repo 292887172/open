@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="{% static 'common/css/app.css' %}"/>
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/animate.css' %}"/>
-
-
+    <script src="/static/assets/js/jquery-2.1.4.min.js"></script>
 <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.cs'%}" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
 
 
     <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css'%}" />
@@ -26,11 +25,16 @@
     <link rel="stylesheet" href="{% static 'assets/css/ace-skins.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/ace-rtl.min.css' %}" />
 
-    <link rel="stylesheet" href="{% static 'assets/js/html5shiv.min.js' %}" />
-    <link rel="stylesheet" href="{% static 'assets/js/respond.min.js' %}" />
 
 
     <style>
+       body {
+           background-color: #F5F5F5;
+           padding-bottom: 0;
+
+
+           line-height: 0;
+       }
         .wrapper {
             width: 1200px;
             padding: 0;
@@ -54,6 +58,10 @@
         .nav > li > a:hover {
             color: #ffffff;
             background: transparent;
+        }
+        .footer {
+            width: 300px;
+            background-color: #F5F5F5;
         }
 
     </style>
@@ -207,14 +215,17 @@
 {% endblock %}
 
 {% block end_fixed_script %}
-    <script src="{% static "angular/angular.min.js" %}"></script>
+    <script src="{% static "angular/angular.min.js/" %}"></script>
     <script src="{% static "angular/angular-route.min.js" %}"></script>
     <script src="{% static "ng/product/app.js" %}"></script>
     <script src="{% static "ng/product/controller.js" %}"></script>
     <script src="{% static "ng/product/info/controller.js" %}"></script>
     <script src="{% static "ng/product/dev/controller.js" %}"></script>
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
+    <script src="{% static "ng/product/edit/controller.js" %}"></script>
+
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
+
     <script>
 
         angular.module('Product.base', ['ngRoute'])
