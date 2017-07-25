@@ -58,6 +58,8 @@ class App(models.Model):
     app_push_token = models.CharField(max_length=2048, null=True, db_column='ebf_app_push_token')
     # 设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）
     app_device_type = models.IntegerField(max_length=2, default=0, db_column='ebf_app_device_type')
+    # 设备默认配置
+    device_conf = models.TextField(null=True, db_column='ebf_device_conf')
     # 协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）
     app_protocol_type = models.IntegerField(max_length=2, default=1, db_column='ebf_app_protocol_type')
     # 应用创建时间，auto_now_add,为添加时的时间，更新对象时不会有变动,auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间
