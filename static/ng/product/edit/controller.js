@@ -107,6 +107,21 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.min=min;
 				indata.max=max;
 				indata.mxsLength=mxsLength;
+
+				var url=location.href;
+                var num=url.indexOf('?id');
+
+                console.log("num:",num);
+
+                if (num){
+
+                    var str=url.substring(num+1);
+                    var id = str.split("=")[1];
+
+                    indata.id=id;
+                }
+
+
 				if(document.getElementsByName("isControl")[0].checked){
 					indata.isControl=1;//可控
 				}else{

@@ -227,6 +227,10 @@ def product_main(request):
             for i in range(len(data)):
                 if data[i].get("id","不存在id")==edit_id:
                     return JsonResponse({'data': data[i]})
+            edit_data=request.body
+            edit_data=edit_data.decode('utf-8')
+            print(edit_data)
+
         elif post_data=='del':
             del_id=request.POST.get("id")
             for i in range(len(data)):
@@ -240,17 +244,33 @@ def product_main(request):
         # 接受要添加的信息
         indata = request.body
         indata = indata.decode('utf-8')
-        indata=json.loads(indata)
-
-        # 添加当前时间和id(默认就是所在下标)
+        indata = json.loads(indata)
         dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
         indata["time"]=dt
-        indata['id']=str(len(data)+1)
-        # 保存修改
-        old_conf=data
-        old_conf.append(indata)
-        app.device_conf=json.dumps(old_conf)
-        app.save()
+        # 如果取得到id 就是编辑，否则就是添加
+        print(indata)
+        if indata.get("id"):
+            # 找到要更新的一条数据
+            print("++++++++++++++++++++++++++++++")
+            update_data={}
+            for i in range(len(data)):
+                if data[i]['id']==indata["id"]:
+                    update_data=data[i]
+                    data.pop(i)       # 删除要修改的数据
+                    break
+            update_data.update(indata)  # 更新修改过的数据 
+            data.append(update_data)    # 添加到data数据中
+            
+            app.device_conf=json.dumps(data)
+            app.save()
+        else:
+            print("----------------------------------")
+            indata['id']=str(len(data)+1)
+            # 保存修改
+            old_conf=data
+            old_conf.append(indata)
+            app.device_conf=json.dumps(old_conf)
+            #app.save()
 
 
         #  app操作

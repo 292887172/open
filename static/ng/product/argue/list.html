@@ -54,7 +54,6 @@
                             grid_data=data['data'];
                         }
                     });
-                    console.log(grid_data);
                 return grid_data
             }
             grid_data=deplayinfo();
@@ -148,13 +147,12 @@
                         type: "POST",
                         data: post_data,
                         async :false,
-                        success: function (data) {
-                            del_data=data['data'];
+                        success: function () {
+                            alert("删除成功");
+                            location.href="#/argue"
                         }
                     });
-				alert("删除成功");
-				var postData={};
-				$("#grid-table").jqGrid("setGridParam",{postData:postData}).trigger("reloadGrid");
+
 			}
 
 
