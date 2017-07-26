@@ -1701,3 +1701,2298 @@ django.db.utils.InternalError: (1226, "User 'open' has exceeded the 'max_connect
 2017-07-24 10:58:17,364 [Thread-1713:6156] [django.request:143] [WARNING]- Not Found: /product/main/edit.html
 2017-07-24 10:58:27,763 [Thread-1740:5284] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
 2017-07-24 11:00:50,496 [Thread-1939:2228] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 14:10:57,156 [Thread-1:3724] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\new_open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python34\lib\importlib\__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1471, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "E:\new_open\app\product\views.py", line 15, in <module>
+    from common.mongo_helper import get_db
+ImportError: No module named 'common.mongo_helper'
+2017-07-25 14:16:56,082 [Thread-23:2820] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-25 14:16:58,929 [Thread-28:1132] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-25 14:16:59,068 [Thread-29:6212] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-25 14:17:00,242 [Thread-32:14032] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:17:00,513 [Thread-33:912] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:17:01,117 [Thread-37:4928] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:17:48,833 [Thread-45:2060] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:17:49,281 [Thread-44:4948] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:17:50,036 [Thread-53:8360] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 295, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 220, in post
+    return HttpResponse(json.dumps(grid_data,separators=(",", ":")))
+NameError: name 'grid_data' is not defined
+2017-07-25 14:20:52,130 [Thread-56:16340] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:20:52,372 [Thread-57:8276] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:20:59,462 [Thread-67:2316] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:21:34,312 [Thread-73:9048] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:21:34,654 [Thread-75:13220] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:22:02,103 [Thread-84:7732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:44:31,876 [Thread-3:18336] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:44:50,823 [Thread-13:18296] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:46:03,956 [Thread-12:13692] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:46:04,178 [Thread-13:12540] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:52:07,265 [Thread-3:9988] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:52:07,500 [Thread-4:18120] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:52:51,895 [Thread-18:18264] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:54:15,879 [Thread-3:9876] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:54:16,340 [Thread-4:6004] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:55:51,306 [Thread-3:8360] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:56:25,637 [Thread-3:7648] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:56:26,083 [Thread-5:8648] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 14:59:54,608 [Thread-3:11580] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:00:02,980 [Thread-17:15384] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:01:40,926 [Thread-3:18988] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:15:06,910 [Thread-7:15820] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:15:07,360 [Thread-9:1100] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:15:08,905 [Thread-16:2952] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:15:09,192 [Thread-17:17776] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:15:10,443 [Thread-24:13800] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:16:09,089 [Thread-3:4628] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:16:10,263 [Thread-4:6152] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:17:42,319 [Thread-4:4180] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:20:54,182 [Thread-17:9064] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:21:14,553 [Thread-30:3228] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:21:32,910 [Thread-43:15476] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:21:33,323 [Thread-44:1948] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:22:09,741 [Thread-57:5504] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:22:10,290 [Thread-58:5556] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:22:24,897 [Thread-72:13900] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:24:25,957 [Thread-85:14404] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:26:18,274 [Thread-98:17148] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:26:18,641 [Thread-99:8744] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:26:30,985 [Thread-112:6936] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:26:31,388 [Thread-113:8140] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:27:01,226 [Thread-126:3888] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:27:01,700 [Thread-127:9112] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:27:48,536 [Thread-139:3972] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:37:32,374 [Thread-4:11108] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:46:49,245 [Thread-17:6352] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:46:49,723 [Thread-18:9676] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:47:12,327 [Thread-30:15684] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:47:12,822 [Thread-31:10564] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:47:22,403 [Thread-43:11420] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:47:22,786 [Thread-44:7808] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:54:23,458 [Thread-3:6816] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:54:23,871 [Thread-6:14880] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:54:25,099 [Thread-17:17772] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 300, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    return JsonResponse(json.loads(grid_data))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\http\response.py", line 476, in __init__
+    raise TypeError('In order to allow non-dict objects to be '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False
+2017-07-25 15:56:43,004 [Thread-3:18352] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:56:44,862 [Thread-14:12532] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 301, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    return JsonResponse(a)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\http\response.py", line 476, in __init__
+    raise TypeError('In order to allow non-dict objects to be '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False
+2017-07-25 15:58:44,019 [Thread-3:17288] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:58:44,354 [Thread-4:5732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:59:25,209 [Thread-17:14292] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:59:25,569 [Thread-18:15052] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 15:59:38,392 [Thread-58:13404] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:01:30,435 [Thread-73:14924] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:01:30,697 [Thread-74:19108] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:03:30,423 [Thread-115:3928] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:05:16,502 [Thread-3:11784] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:05:16,846 [Thread-4:4828] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:05:18,100 [Thread-15:16256] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 301, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 222, in post
+    a = json.loads(grid_data).encode()
+AttributeError: 'list' object has no attribute 'encode'
+2017-07-25 16:06:53,374 [Thread-3:17756] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:06:55,477 [Thread-14:9712] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 301, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 222, in post
+    a = json.loads(grid_data).decode()
+AttributeError: 'list' object has no attribute 'decode'
+2017-07-25 16:07:31,870 [Thread-16:11836] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:07:32,104 [Thread-17:16640] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:07:33,118 [Thread-28:6220] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 301, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 222, in post
+    a = json.loads(grid_data).decode()
+AttributeError: 'list' object has no attribute 'decode'
+2017-07-25 16:10:03,971 [Thread-3:17324] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:10:04,413 [Thread-4:18772] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:10:05,822 [Thread-15:18264] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 301, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 222, in post
+    a = json.loads(grid_data).encode('utf-8')
+AttributeError: 'list' object has no attribute 'encode'
+2017-07-25 16:12:10,955 [Thread-3:18536] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:12:11,345 [Thread-4:15916] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:16:47,189 [Thread-18:10836] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:22:36,858 [Thread-3:15388] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:22:37,243 [Thread-4:5920] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:24:35,474 [Thread-20:9528] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 16:26:16,747 [Thread-46:8844] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 16:26:57,043 [Thread-64:7780] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 303, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 237, in post
+    user_apps.device_conf.append(indata)
+AttributeError: 'str' object has no attribute 'append'
+2017-07-25 16:31:53,953 [Thread-7:5264] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 304, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-25 16:32:51,687 [Thread-24:19232] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:32:53,431 [Thread-36:188] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 304, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-25 16:33:10,036 [Thread-38:6332] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:33:11,265 [Thread-43:16508] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 304, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-25 16:38:08,212 [Thread-3:17724] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:38:19,158 [Thread-18:16504] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 16:45:06,486 [Thread-4:18748] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:45:06,847 [Thread-5:1564] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 16:45:07,737 [Thread-14:14648] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 16:45:31,564 [Thread-41:18940] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 17:08:03,518 [Thread-18:5872] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:08:05,242 [Thread-29:1120] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 17:09:37,062 [Thread-55:7732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:09:37,496 [Thread-56:4676] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:11:52,300 [Thread-3:1932] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:14:43,935 [Thread-3:18436] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:37:57,883 [Thread-23:12928] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:37:59,620 [Thread-32:14224] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:37:59,851 [Thread-33:17076] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:38:01,166 [Thread-40:12176] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 17:38:42,341 [Thread-51:18052] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 17:39:15,718 [Thread-69:9204] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 309, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 237, in post
+    app.objects.get('device_conf')
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:06:18,368 [Thread-1:18396] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python34\lib\importlib\__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "E:\new_open\app\product\views.py", line 243
+    print("device_config",app.device_conf)
+    ^
+IndentationError: unexpected indent
+2017-07-25 18:06:22,091 [Thread-3:14888] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python34\lib\importlib\__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "E:\new_open\app\product\views.py", line 243
+    print("device_config",app.device_conf)
+    ^
+IndentationError: unexpected indent
+2017-07-25 18:18:13,531 [Thread-1:6596] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 317, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 242, in post
+    aaa=aaa.objects.get(app.device_conf)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:20:40,267 [Thread-1:16684] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 317, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 242, in post
+    aaa=aaa.objects.filter(device_conf=app.device_conf)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:26:01,976 [Thread-1:18372] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 318, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 243, in post
+    aaa=aaa.objects.filter(device_conf=app.device_conf)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:28:32,790 [Thread-1:18120] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 319, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 244, in post
+    aaa=aaa.objects.filter(device_conf=app.device_conf)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:51:00,766 [Thread-1:6660] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 311, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 216, in post
+    app=App().objects.filter(app_id=app_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 206, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % type.__name__)
+AttributeError: Manager isn't accessible via App instances
+2017-07-25 18:54:03,731 [Thread-1:13172] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    print("device_config",app.device_conf)
+AttributeError: 'QuerySet' object has no attribute 'device_conf'
+2017-07-25 18:54:40,225 [Thread-21:3876] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 18:54:41,127 [Thread-32:6848] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 18:56:56,351 [Thread-3:8880] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 18:56:58,292 [Thread-13:9360] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 18:57:48,902 [Thread-3:12496] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 18:57:49,464 [Thread-4:13540] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 18:57:50,708 [Thread-14:16120] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 19:00:04,168 [Thread-3:2016] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:00:05,035 [Thread-13:2812] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 19:00:39,663 [Thread-36:14088] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 217, in post
+    print(app.device_conf.device_conf)
+AttributeError: 'str' object has no attribute 'device_conf'
+2017-07-25 19:01:31,029 [Thread-4:12968] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:01:31,583 [Thread-6:18124] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:01:32,736 [Thread-15:16360] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 224, in post
+    grid_data=app.device_conf.device_conf
+AttributeError: 'str' object has no attribute 'device_conf'
+2017-07-25 19:03:13,561 [Thread-3:4704] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:03:15,645 [Thread-14:18688] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 224, in post
+    grid_data=app.device_conf.device_conf
+AttributeError: 'str' object has no attribute 'device_conf'
+2017-07-25 19:11:03,997 [Thread-4:14764] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:17:05,357 [Thread-6:7484] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-25 19:17:44,156 [Thread-29:14784] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 310, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:20:47,146 [Thread-4:484] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:20:47,569 [Thread-5:15384] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:20:49,099 [Thread-16:12848] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 310, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:22:36,328 [Thread-18:7556] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:22:36,714 [Thread-19:12152] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:23:23,414 [Thread-3:9152] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:23:25,646 [Thread-8:18016] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 308, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 224, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:24:58,117 [Thread-18:14200] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:24:59,315 [Thread-30:376] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 309, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 224, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:27:33,349 [Thread-3:6264] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:27:33,644 [Thread-4:3144] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:27:34,827 [Thread-14:17284] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:29:26,960 [Thread-3:2352] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:29:27,420 [Thread-4:18724] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:29:28,928 [Thread-15:14924] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:31:46,357 [Thread-18:10876] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:31:46,799 [Thread-19:656] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:31:48,299 [Thread-29:17948] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:32:40,796 [Thread-58:14364] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:32:41,681 [Thread-72:17512] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:34:01,454 [Thread-3:6756] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:34:03,545 [Thread-14:12212] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 313, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:35:52,317 [Thread-16:18252] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:35:52,664 [Thread-17:15972] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:35:53,761 [Thread-28:8016] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 313, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 226, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:37:51,666 [Thread-3:13812] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:37:52,128 [Thread-4:18356] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:37:53,691 [Thread-15:12464] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 228, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:39:16,329 [Thread-9:16392] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:16,773 [Thread-10:7248] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:18,250 [Thread-19:11004] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:18,512 [Thread-21:12252] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:19,918 [Thread-28:8680] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:22,203 [Thread-34:6136] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    a=json.loads(grid_data.encode('utf-8'))
+  File "C:\Python34\lib\json\__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-07-25 19:39:55,624 [Thread-3:10036] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:55,890 [Thread-4:14788] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:39:56,939 [Thread-15:9516] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    a=json.loads(grid_data.decode('utf-8'))
+AttributeError: 'str' object has no attribute 'decode'
+2017-07-25 19:41:26,291 [Thread-3:18876] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:41:26,699 [Thread-4:8860] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:44:26,854 [Thread-4:17708] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:45:31,652 [Thread-3:9248] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:45:32,068 [Thread-4:9904] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:45:33,596 [Thread-15:4736] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 228, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:46:22,152 [Thread-17:3544] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:46:22,437 [Thread-18:18200] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:46:23,468 [Thread-28:17292] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 228, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:47:43,422 [Thread-3:14416] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:47:44,099 [Thread-14:16080] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 315, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 228, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:48:21,917 [Thread-3:9440] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:48:23,271 [Thread-14:14400] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 315, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 228, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-25 19:52:40,849 [Thread-3:1476] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-25 19:52:42,475 [Thread-14:7768] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 08:37:52,829 [Thread-26:10116] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 08:37:54,809 [Thread-32:18300] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 08:37:57,333 [Thread-47:17188] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:37:58,015 [Thread-52:15020] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:37:59,165 [Thread-59:17832] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 230, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 08:44:20,089 [Thread-3:19140] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:44:21,236 [Thread-13:6764] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    a = json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 08:46:41,322 [Thread-3:13052] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:46:42,244 [Thread-13:10372] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 314, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 227, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 08:50:51,813 [Thread-3:8364] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:50:52,970 [Thread-13:18908] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 08:54:09,917 [Thread-3:17368] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:54:10,118 [Thread-4:16192] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 08:54:11,130 [Thread-14:3212] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-07-26 09:03:06,980 [Thread-16:15364] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:03:07,373 [Thread-17:9432] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:03:08,822 [Thread-27:14720] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-07-26 09:04:08,520 [Thread-29:16836] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:04:08,969 [Thread-30:6972] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:04:10,656 [Thread-40:4164] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-07-26 09:09:03,753 [Thread-11:7404] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:09:04,215 [Thread-12:11188] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:09:05,554 [Thread-22:5932] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-07-26 09:09:56,813 [Thread-3:6360] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:09:57,723 [Thread-13:4892] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 315, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 239, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 09:10:10,057 [Thread-21:17944] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 09:10:22,648 [Thread-29:15416] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:10:24,746 [Thread-45:12072] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2017-07-26 09:10:24,830 [Thread-47:8120] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:10:24,931 [Thread-48:7104] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:10:25,974 [Thread-51:13200] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2017-07-26 09:10:26,231 [Thread-53:15332] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:11:17,830 [Thread-75:4284] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 09:11:20,006 [Thread-101:9528] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:11:20,916 [Thread-111:12628] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:12:32,914 [Thread-3:19060] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:12:33,692 [Thread-10:3644] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 09:12:53,616 [Thread-15:15864] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:12:54,035 [Thread-16:12520] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:12:55,512 [Thread-25:9948] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 09:18:34,701 [Thread-3:19156] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:18:35,664 [Thread-12:1932] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 09:18:46,737 [Thread-30:1992] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:18:47,711 [Thread-52:16996] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 359, in raw_decode
+    obj, end = self.scan_once(s, idx)
+ValueError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2017-07-26 09:37:23,932 [Thread-56:17136] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:37:24,211 [Thread-57:13344] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:37:25,144 [Thread-66:18708] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 16 (char 15)
+2017-07-26 09:41:28,932 [Thread-68:1372] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:41:30,706 [Thread-77:8876] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 16 (char 15)
+2017-07-26 09:43:46,415 [Thread-4:17660] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:43:46,729 [Thread-5:2200] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:43:47,920 [Thread-15:18836] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 312, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 225, in post
+    a=json.loads(grid_data)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 16 (char 15)
+2017-07-26 09:46:10,397 [Thread-3:7484] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:46:10,715 [Thread-4:11344] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:51:41,075 [Thread-3:7824] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:52:09,292 [Thread-15:1448] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:52:09,729 [Thread-16:13596] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:54:41,572 [Thread-28:14624] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:54:41,990 [Thread-29:13924] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 09:55:03,922 [Thread-48:12732] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 09:59:19,985 [Thread-5:16240] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:03:45,360 [Thread-5:6508] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:29:59,333 [Thread-3:18284] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:29:59,809 [Thread-4:5020] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:30:04,157 [Thread-19:12792] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:36:24,248 [Thread-5:18300] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:39:03,869 [Thread-36:13732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:39:04,308 [Thread-37:10464] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:39:05,703 [Thread-45:2664] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:39:05,951 [Thread-46:10432] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:39:07,265 [Thread-53:8964] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 10:40:58,858 [Thread-64:5892] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:53:20,174 [Thread-5:10940] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 10:56:42,447 [Thread-32:8112] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:20:04,390 [Thread-11:8840] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:20:59,097 [Thread-45:12172] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:21:00,207 [Thread-56:4940] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:21:53,862 [Thread-75:8740] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:21:54,276 [Thread-76:912] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:21:55,386 [Thread-85:10460] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:22:03,434 [Thread-112:12180] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:22:28,872 [Thread-131:16008] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:22:29,129 [Thread-132:18172] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:22:30,023 [Thread-141:13152] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:22:58,997 [Thread-4:6800] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:22:59,212 [Thread-5:9208] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:22:59,971 [Thread-14:11228] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:23:15,602 [Thread-43:10228] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 11:23:24,449 [Thread-51:12240] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:25,941 [Thread-66:14940] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2017-07-26 11:23:26,133 [Thread-68:11668] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:26,212 [Thread-69:14032] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:27,299 [Thread-72:7468] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2017-07-26 11:23:27,583 [Thread-74:14868] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:41,468 [Thread-108:11672] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 11:23:43,244 [Thread-113:10800] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:43,537 [Thread-115:17140] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:44,866 [Thread-122:8472] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:23:51,528 [Thread-132:17992] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:25:34,540 [Thread-158:8248] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:25:35,188 [Thread-165:17416] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:25:51,434 [Thread-184:8048] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:25:53,080 [Thread-191:7704] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:28:35,699 [Thread-21:18680] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:31:01,381 [Thread-83:16172] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:31:26,953 [Thread-145:5044] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:38:27,537 [Thread-190:6960] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:38:29,526 [Thread-198:9280] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:38:52,616 [Thread-217:12208] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:38:54,410 [Thread-225:1284] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:45:35,537 [Thread-244:3108] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:45:36,797 [Thread-252:2276] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:46:31,881 [Thread-271:660] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:46:32,911 [Thread-279:14472] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:47:34,865 [Thread-298:4372] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:47:35,291 [Thread-299:9240] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:47:36,309 [Thread-307:6072] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:47:53,555 [Thread-326:14144] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:47:55,169 [Thread-334:12576] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:50:10,474 [Thread-353:16076] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 11:50:11,265 [Thread-361:11624] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 11:50:17,686 [Thread-388:1948] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 12:18:49,724 [Thread-3:3852] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:18:50,101 [Thread-4:6160] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:18:51,299 [Thread-12:6064] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 12:18:52,219 [Thread-30:8464] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 233, in post
+    print(edit_id[i])
+IndexError: string index out of range
+2017-07-26 12:57:33,972 [Thread-9:16264] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:57:34,316 [Thread-10:9636] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:57:35,724 [Thread-18:10380] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:57:35,932 [Thread-19:14448] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:57:37,467 [Thread-26:4928] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:58:15,894 [Thread-37:4076] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 12:59:34,293 [Thread-3:11360] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 12:59:35,214 [Thread-12:956] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:00:49,781 [Thread-4:17440] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:00:51,374 [Thread-13:16964] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:01:24,862 [Thread-40:16212] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:10:20,868 [Thread-61:1732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:10:22,274 [Thread-71:13960] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:10:45,524 [Thread-98:14432] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:10:59,920 [Thread-125:1676] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:11:16,387 [Thread-152:8336] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:11:25,806 [Thread-179:7640] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:11:34,214 [Thread-206:17412] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:11:35,167 [Thread-224:2040] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 232, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 13:11:54,983 [Thread-231:13244] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:11:55,485 [Thread-232:14916] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:15:13,073 [Thread-247:3232] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:26:13,955 [Thread-266:2860] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:26:14,415 [Thread-267:16452] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:26:15,752 [Thread-277:17924] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:26:23,796 [Thread-304:5680] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:26:32,764 [Thread-331:6820] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:27:19,705 [Thread-358:11820] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:27:51,638 [Thread-384:3816] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:35:37,819 [Thread-411:11472] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:35:47,082 [Thread-437:7028] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:44:08,405 [Thread-472:11404] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:44:09,434 [Thread-484:18356] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:44:20,958 [Thread-511:13440] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:45:44,137 [Thread-538:8296] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:45:45,026 [Thread-556:16652] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 232, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 13:46:18,514 [Thread-563:15868] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:46:18,921 [Thread-564:16024] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:46:24,794 [Thread-579:8444] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:46:59,229 [Thread-599:10944] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:46:59,740 [Thread-600:15524] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:47:01,212 [Thread-610:8832] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 13:47:36,964 [Thread-638:16632] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:47:37,199 [Thread-640:15604] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:47:37,536 [Thread-641:6572] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:47:38,709 [Thread-648:13572] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:48:17,893 [Thread-655:12716] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:48:18,306 [Thread-657:7940] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:48:18,841 [Thread-658:11648] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 13:48:20,124 [Thread-665:15804] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:19:29,621 [Thread-6:6032] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 14:21:22,797 [Thread-10:8408] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 14:25:26,059 [Thread-30:11448] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:25:26,458 [Thread-31:16880] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:25:27,499 [Thread-41:12116] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 14:25:38,510 [Thread-67:5896] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 14:26:00,126 [Thread-93:3324] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 234, in post
+    if del_data[i]['id']==del_id:
+KeyError: 'id'
+2017-07-26 14:26:02,742 [Thread-96:2172] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:02,971 [Thread-97:10116] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:03,461 [Thread-98:10640] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:04,799 [Thread-105:3240] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:12,942 [Thread-111:5012] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 316, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 245, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 14:26:14,535 [Thread-113:10120] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:14,980 [Thread-115:748] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:15,378 [Thread-116:19280] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:26:16,594 [Thread-123:18156] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:31:36,082 [Thread-133:17268] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 14:59:35,573 [Thread-9:17208] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:59:35,932 [Thread-10:5732] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:59:37,142 [Thread-18:13528] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:59:37,335 [Thread-19:18660] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:59:38,888 [Thread-26:11032] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 14:59:58,669 [Thread-37:12520] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:01:38,580 [Thread-63:10116] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:01:43,782 [Thread-78:5704] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:04:04,145 [Thread-3:10184] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:04:04,499 [Thread-4:15736] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:04:09,277 [Thread-20:7628] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:04:10,188 [Thread-38:7736] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 327, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:10:24,869 [Thread-41:8796] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:10:26,223 [Thread-51:3108] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:10:27,203 [Thread-69:13596] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 327, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 229, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:11:53,580 [Thread-4:12096] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:11:55,311 [Thread-13:16904] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:11:56,343 [Thread-31:18240] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 330, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 232, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:13:05,486 [Thread-3:10764] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:13:14,343 [Thread-12:7484] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:13:18,241 [Thread-26:9972] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:13:19,227 [Thread-44:16324] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 330, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 232, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:14:51,163 [Thread-4:5468] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:14:51,381 [Thread-6:6896] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:14:52,641 [Thread-15:4916] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:16:31,261 [Thread-41:13280] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:35,899 [Thread-42:11360] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:39,248 [Thread-43:6436] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:42,566 [Thread-44:11692] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:43,416 [Thread-45:13832] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:44,183 [Thread-46:18312] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:16:44,865 [Thread-47:14204] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:17:59,917 [Thread-50:17076] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:18:03,062 [Thread-62:9512] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:18:05,212 [Thread-63:19072] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:18:33,804 [Thread-65:18300] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:18:36,848 [Thread-77:12544] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:18:38,582 [Thread-78:17160] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 252, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:20:25,675 [Thread-4:17244] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:20:29,629 [Thread-21:4776] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:21:05,479 [Thread-40:8660] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:21:06,963 [Thread-49:12292] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:21:12,710 [Thread-77:7760] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:24:31,390 [Thread-4:12752] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:24:35,103 [Thread-19:19128] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:25:34,074 [Thread-46:9092] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:25:59,317 [Thread-73:8248] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:26:11,050 [Thread-100:15936] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 15:26:18,065 [Thread-124:13616] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 250, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:26:28,940 [Thread-125:11076] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 240, in post
+    if del_data[i]['id']==del_id:
+KeyError: 'id'
+2017-07-26 15:26:49,797 [Thread-128:14696] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:26:50,168 [Thread-129:14780] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:26:59,735 [Thread-141:15460] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 240, in post
+    if del_data[i]['id']==del_id:
+KeyError: 'id'
+2017-07-26 15:27:03,958 [Thread-143:4164] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:27:04,448 [Thread-144:8148] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:30:14,965 [Thread-4:14384] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:30:15,304 [Thread-5:16024] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:30:32,750 [Thread-17:13276] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]['id']==del_id:
+KeyError: 'id'
+2017-07-26 15:31:06,276 [Thread-3:10844] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:31:34,098 [Thread-3:10176] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:32:04,975 [Thread-1:13428] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:32:07,299 [Thread-3:1092] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:34:35,947 [Thread-6:11008] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:34:40,881 [Thread-18:13596] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:34:59,137 [Thread-20:17340] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:35:04,236 [Thread-32:18012] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:35:06,508 [Thread-33:7512] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:35:15,496 [Thread-34:9500] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 251, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:35:18,640 [Thread-35:2152] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 241, in post
+    if del_data[i]["id"]==del_id:
+KeyError: 'id'
+2017-07-26 15:37:39,346 [Thread-4:13600] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:44:20,178 [Thread-18:13440] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:45:27,772 [Thread-3:8420] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:45:52,751 [Thread-16:18600] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:45:53,111 [Thread-17:18680] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:46:19,346 [Thread-56:8052] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:47:03,712 [Thread-106:14916] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:47:03,894 [Thread-107:2312] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:47:05,198 [Thread-119:15388] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:47:05,311 [Thread-121:13952] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:47:06,076 [Thread-128:15432] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:48:22,618 [Thread-159:18192] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 15:48:30,392 [Thread-166:10588] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 15:48:32,867 [Thread-171:10640] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 15:48:34,990 [Thread-177:2040] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:48:36,301 [Thread-191:17532] [django.request:143] [WARNING]- Not Found: /product/main/{[{ infoFormData.app_logo }]}
+2017-07-26 15:48:36,540 [Thread-193:3572] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:50:00,871 [Thread-19:11064] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:50:07,583 [Thread-46:17612] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 15:50:09,260 [Thread-51:984] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:50:09,623 [Thread-52:12768] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:50:10,784 [Thread-59:9004] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:51:10,958 [Thread-4:11960] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:51:11,260 [Thread-5:7652] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:52:37,886 [Thread-16:1300] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 250, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 15:53:30,267 [Thread-18:16832] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 15:53:30,692 [Thread-19:3672] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:00:14,673 [Thread-1:15768] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-07-26 16:00:31,834 [Thread-21:12712] [django.request:143] [WARNING]- Not Found: /assets/images/dev/arrow_d.png
+2017-07-26 16:00:42,419 [Thread-29:960] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:00:43,925 [Thread-39:12264] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:00:44,854 [Thread-45:16516] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:00:45,087 [Thread-48:8876] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:00:45,880 [Thread-52:17844] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:01:31,666 [Thread-64:10060] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 16:01:32,045 [Thread-65:6360] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-07-26 16:01:36,014 [Thread-91:584] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:01:37,351 [Thread-101:13568] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:02:19,335 [Thread-117:8488] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:02:20,432 [Thread-135:13572] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 230, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 16:06:12,603 [Thread-3:15184] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:06:13,683 [Thread-10:3760] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:06:14,423 [Thread-28:5596] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 321, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 230, in post
+    if edit_data[i]["id"]==edit_id:
+KeyError: 'id'
+2017-07-26 16:10:13,655 [Thread-4:9396] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:10:15,058 [Thread-11:8244] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:10:16,124 [Thread-29:9652] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 231, in post
+    if edit_data[i]["id"]==edit_id:
+KeyError: 'id'
+2017-07-26 16:11:05,314 [Thread-31:11220] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:12:21,624 [Thread-3:14616] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:12:21,816 [Thread-5:6944] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:12:22,609 [Thread-12:6376] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:12:23,291 [Thread-30:12008] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 322, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 231, in post
+    if edit_data[i]["id"]==edit_id:
+KeyError: 'id'
+2017-07-26 16:14:45,302 [Thread-3:15704] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:14:45,856 [Thread-4:10072] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:14:47,421 [Thread-11:7028] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:14:48,392 [Thread-29:13756] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 323, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 232, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 16:18:53,763 [Thread-32:18472] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:19:04,093 [Thread-4:7884] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 324, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 233, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 16:21:43,782 [Thread-3:7356] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:21:44,258 [Thread-4:1948] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:21:45,705 [Thread-11:8224] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:21:46,566 [Thread-29:17692] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 319, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 231, in post
+    if edit_data[i]['id']==edit_id:
+KeyError: 'id'
+2017-07-26 16:24:00,761 [Thread-3:5912] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:24:01,016 [Thread-4:15852] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:24:01,770 [Thread-12:14084] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:24:02,392 [Thread-30:8140] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 319, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 248, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:36:44,600 [Thread-8:15480] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:36:46,341 [Thread-16:13024] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:36:46,598 [Thread-17:14124] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:36:47,893 [Thread-24:14572] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:37:02,553 [Thread-35:11868] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:37:59,681 [Thread-10:856] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:38:38,216 [Thread-37:10924] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:40:14,979 [Thread-3:4076] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:40:15,139 [Thread-4:13172] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:40:15,946 [Thread-13:3572] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:42:23,678 [Thread-3:9232] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:42:24,665 [Thread-12:7176] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:47:30,093 [Thread-4:11796] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:47:30,904 [Thread-13:4636] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:47:47,857 [Thread-38:9100] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:47:53,150 [Thread-40:10244] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:47:53,593 [Thread-41:2664] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:48:00,115 [Thread-52:14300] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:48:03,994 [Thread-54:16428] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:48:04,408 [Thread-55:7528] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:48:17,408 [Thread-66:10612] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:48:21,127 [Thread-67:10536] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:48:23,771 [Thread-69:17588] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:49:40,343 [Thread-80:14896] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:49:47,024 [Thread-81:18568] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 320, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 247, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:50:06,601 [Thread-83:11188] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:50:06,983 [Thread-84:7832] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:52:16,369 [Thread-3:728] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:52:39,033 [Thread-6:18788] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:52:45,912 [Thread-33:18492] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:52:52,869 [Thread-60:16320] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:53:02,559 [Thread-87:5468] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:53:03,662 [Thread-105:14580] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 318, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 245, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:53:29,324 [Thread-112:5920] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:53:29,750 [Thread-113:1788] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:53:36,774 [Thread-128:2464] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:53:43,872 [Thread-155:9652] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:53:45,008 [Thread-173:8948] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\new_open\app\product\views.py", line 318, in product_main
+    return post()
+  File "E:\new_open\app\product\views.py", line 245, in post
+    indata=json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-07-26 16:53:58,689 [Thread-180:8928] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:54:02,823 [Thread-194:5980] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:54:59,749 [Thread-221:9196] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-07-26 16:58:22,156 [Thread-247:10244] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-07-26 16:58:32,653 [Thread-261:18612] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map

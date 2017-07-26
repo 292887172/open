@@ -1,13 +1,17 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+from django.views.decorators.csrf import csrf_exempt
 
 from model.center.app import App
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse,JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.db import models
+
+import time
 
 from common.app_helper import create_app
 from common.app_helper import del_app
@@ -80,6 +84,7 @@ def product_list(request):
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
         if app_id and action in ("del", "del"):
+
             if action == "del":
                 ret = del_app(app_id)
                 res["data"] = ret
@@ -110,6 +115,8 @@ def product_add(request):
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
+
+
         template = "product/add.html"
         content = dict(
             developer=developer
@@ -155,14 +162,25 @@ def product_add(request):
 # ----------------------------------- angular.js -----------------------------------
 
 @login_required
+@csrf_exempt
 def product_main(request):
     """
     应用详情
     :param request:
     :return:
     """
+    #  从数据库中读取出来信息，然后将数据保存到grid_data中
+    # db=get_db()
+    # data=db.argueinfo.find({},{'_id':0})
+    # if data:
+    #     grid_data=[]
+    #     for i in data:
+    #         grid_data.append(i)
+    #     print(grid_data)
+    grid_data=[]
     def get():
         # 上传图片回调
+
         res = request.GET.get("res", "")
         if res:
             return HttpResponse(res)
@@ -179,6 +197,7 @@ def product_main(request):
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
         app = user_apps
+
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
@@ -188,9 +207,53 @@ def product_main(request):
             app=app,
             api_list=api_list
         )
-        return render(request, template, content)
+        return render(request, template, locals())
 
     def post():
+        app_id = request.GET.get("ID", "")
+        app=App.objects.get(app_id=app_id)
+        grid_data=app.device_conf
+        data=json.loads(grid_data)
+        # 获取到数据库中的设备配置信息
+        post_data=request.POST.get("name")
+         # 接收页面传送信息
+        if post_data=='list':
+
+             #  如果是点击list.html页面就将数据传送给grid_data
+            return JsonResponse({'data': data})
+        # 获取要编辑的id对应的一组信息，将这一组要编辑的信息返回给edit页面，页面编辑后保存，将信息再次返回，然后对修改后的数据进行融合
+        elif post_data=='edit':
+            edit_id=request.POST.get("id")
+            for i in range(len(data)):
+                if data[i].get("id","不存在id")==edit_id:
+                    return JsonResponse({'data': data[i]})
+        elif post_data=='del':
+            del_id=request.POST.get("id")
+            for i in range(len(data)):
+                if data[i].get("id","不存在id")==del_id:
+                    data.pop(i)  #del_data.remove(del_data[i])
+                    break
+            after_data=json.dumps(data)
+            app.device_conf=after_data
+            app.save()
+
+        # 接受要添加的信息
+        indata = request.body
+        indata = indata.decode('utf-8')
+        indata=json.loads(indata)
+
+        # 添加当前时间和id(默认就是所在下标)
+        dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+        indata["time"]=dt
+        indata['id']=str(len(data)+1)
+        # 保存修改
+        old_conf=data
+        old_conf.append(indata)
+        app.device_conf=json.dumps(old_conf)
+        app.save()
+
+
+        #  app操作
         res = dict(
             code=10000
         )
@@ -248,5 +311,6 @@ def product_main(request):
 
     if request.method == "GET":
         return get()
+
     elif request.method == "POST":
         return post()
