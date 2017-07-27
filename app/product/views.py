@@ -169,15 +169,6 @@ def product_main(request):
     :param request:
     :return:
     """
-    #  从数据库中读取出来信息，然后将数据保存到grid_data中
-    # db=get_db()
-    # data=db.argueinfo.find({},{'_id':0})
-    # if data:
-    #     grid_data=[]
-    #     for i in data:
-    #         grid_data.append(i)
-    #     print(grid_data)
-    grid_data=[]
     def get():
         # 上传图片回调
 
@@ -208,71 +199,74 @@ def product_main(request):
             api_list=api_list
         )
         return render(request, template, locals())
-
+    def save_app(app,opera_data,data):
+        app.device_conf=json.dumps(opera_data)
+        app.save()
+        return JsonResponse({'data': data})
     def post():
         app_id = request.GET.get("ID", "")
         app=App.objects.get(app_id=app_id)
-        grid_data=app.device_conf
-        data=json.loads(grid_data)
+        opera_data=json.loads(app.device_conf)
         # 获取到数据库中的设备配置信息
         post_data=request.POST.get("name")
          # 接收页面传送信息
         if post_data=='list':
-
              #  如果是点击list.html页面就将数据传送给grid_data
-            return JsonResponse({'data': data})
-        # 获取要编辑的id对应的一组信息，将这一组要编辑的信息返回给edit页面，页面编辑后保存，将信息再次返回，然后对修改后的数据进行融合
+            flag=1
+            return JsonResponse({'data': opera_data})
+        # 获取要编辑的id对应的一组信息，将这一组要编辑的信息返回给edit页面
         elif post_data=='edit':
             edit_id=request.POST.get("id")
-            for i in range(len(data)):
-                if data[i].get("id","不存在id")==edit_id:
-                    return JsonResponse({'data': data[i]})
-            edit_data=request.body
-            edit_data=edit_data.decode('utf-8')
-            print(edit_data)
-
+            for i in range(len(opera_data)):
+                if opera_data[i].get("id","不存在id")==edit_id:
+                    return JsonResponse({'data': opera_data[i]})
         elif post_data=='del':
             del_id=request.POST.get("id")
-            for i in range(len(data)):
-                if data[i].get("id","不存在id")==del_id:
-                    data.pop(i)  #del_data.remove(del_data[i])
+            for i in range(len(opera_data)):
+                if opera_data[i].get("id","不存在id")==del_id:
+                    opera_data.pop(i)  #del_data.remove(del_data[i])
                     break
-            after_data=json.dumps(data)
-            app.device_conf=after_data
-            app.save()
-
-        # 接受要添加的信息
-        indata = request.body
-        indata = indata.decode('utf-8')
-        indata = json.loads(indata)
-        dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
-        indata["time"]=dt
-        # 如果取得到id 就是编辑，否则就是添加
-        print(indata)
-        if indata.get("id"):
-            # 找到要更新的一条数据
-            print("++++++++++++++++++++++++++++++")
-            update_data={}
-            for i in range(len(data)):
-                if data[i]['id']==indata["id"]:
-                    update_data=data[i]
-                    data.pop(i)       # 删除要修改的数据
+            save_app(app,opera_data,"del")
+        elif post_data=='state':
+            state_id=request.POST.get("id")
+            for i in range(len(opera_data)):
+                if opera_data[i]['id']==state_id:
+                    if opera_data[i]['state']=='0':
+                        opera_data[i]['state']='1'
+                    else:
+                        opera_data[i]['state']='0'
                     break
-            update_data.update(indata)  # 更新修改过的数据 
-            data.append(update_data)    # 添加到data数据中
-            
-            app.device_conf=json.dumps(data)
-            app.save()
+            save_app(app,opera_data,"state")
         else:
-            print("----------------------------------")
-            indata['id']=str(len(data)+1)
-            # 保存修改
-            old_conf=data
-            old_conf.append(indata)
-            app.device_conf=json.dumps(old_conf)
-            #app.save()
-
-
+            # 页面传递过来的数据，选择编辑、添加
+            indata = request.body
+            indata = indata.decode('utf-8')
+            indata = json.loads(indata)
+            dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+            indata["time"]=dt
+            # 如果取得到id 就是编辑，否则就是添加
+            if indata["id"]!=" ":
+                # 找到要更新的一条数据
+                update_data={}
+                for i in range(len(opera_data)):
+                    if opera_data[i]['id']==indata["id"]:
+                        update_data=opera_data[i]
+                        opera_data.pop(i)       # 删除要修改的数据
+                        break
+                update_data.update(indata)  # 更新修改过的数据
+                opera_data.append(update_data)
+                tt="modify_success"
+                save_app(app,opera_data,"modify_success")
+            else:
+                max_id=0
+                for i in opera_data:
+                    v_id=int(i['id'])
+                    if max_id<v_id:
+                        max_id=v_id
+                indata['id']=str(max_id+1)
+                opera_data.append(indata)
+                tt="add_success"
+            save_app(app,opera_data,tt)
         #  app操作
         res = dict(
             code=10000

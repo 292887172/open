@@ -109,19 +109,15 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.mxsLength=mxsLength;
 
 				var url=location.href;
-                var num=url.indexOf('?id');
-
-                console.log("num:",num);
-
-                if (num){
-
-                    var str=url.substring(num+1);
-                    var id = str.split("=")[1];
-
-                    indata.id=id;
+                var str=url.split("edit");
+                var id;
+                if  (str[1]){
+                    id=str[1].split("=")[1];
                 }
-
-
+                else {
+                    id=" ";
+                }
+                indata.id=id;
 				if(document.getElementsByName("isControl")[0].checked){
 					indata.isControl=1;//可控
 				}else{
@@ -141,9 +137,14 @@ angular.module('Product.edit', ['ngRoute'])
                     url: location.href,
                     data: indata,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                }).success(function () {
-
-                   alert("传输成功!");
+                }).success(function (data) {
+                    console.log(data['data']);
+                    if (data['date']=='add_success'){
+                        alert("添加成功!");
+                    }
+                    else {
+                        alert("修改成功!");
+                    }
 					location.href='#/argue';
                 }).error(function (error) {
                     alert("传输失败");
