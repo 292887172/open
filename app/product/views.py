@@ -171,7 +171,6 @@ def product_main(request):
     """
     def get():
         # 上传图片回调
-
         res = request.GET.get("res", "")
         if res:
             return HttpResponse(res)
@@ -188,7 +187,6 @@ def product_main(request):
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
         app = user_apps
-
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
@@ -211,10 +209,7 @@ def product_main(request):
         post_data=request.POST.get("name")
          # 接收页面传送信息
         if post_data=='list':
-             #  如果是点击list.html页面就将数据传送给grid_data
-            flag=1
             return JsonResponse({'data': opera_data})
-        # 获取要编辑的id对应的一组信息，将这一组要编辑的信息返回给edit页面
         elif post_data=='edit':
             edit_id=request.POST.get("id")
             for i in range(len(opera_data)):
@@ -237,6 +232,11 @@ def product_main(request):
                         opera_data[i]['state']='0'
                     break
             save_app(app,opera_data,"state")
+        elif post_data=='title':
+            id=request.POST.get('id')
+            for i in range(len(opera_data)):
+                if opera_data[i]['id']==id:
+                    return JsonResponse({'data': opera_data[i]['mxs']})
         else:
             # 页面传递过来的数据，选择编辑、添加
             indata = request.body
