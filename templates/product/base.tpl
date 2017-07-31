@@ -5,6 +5,7 @@
 <!--[if IE 8]>         <html lang="en" ng-app="Product" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="Product" class="no-js"> <!--<![endif]-->
 
+
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
@@ -59,10 +60,11 @@ var _hmt = _hmt || [];
 {% block content %}
 
 {% endblock %}
+
 <div class="footer">
     <p><a href="http://www.53iq.com/about" target="_blank">关于53iq</a>
-        <a href="/guide" >53iq云</a>
-        <a href="/guide#contact">联系我们</a>
+        <a href="/guide">53iq云</a>
+        <a href="/guide#contact" onclick="addHover('contact',this)">联系我们</a>
     </p>
 
     <p>Copyright©2015 53iq 版权所有</p>

@@ -10,7 +10,10 @@ angular.module('Product', [
     // 产品服务
     // 生产测试
     // 开发者
-    "Product.dev"
+    "Product.dev",
+    "Product.argue",
+    "Product.edit"
+
 ])
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');

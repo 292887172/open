@@ -1,0 +1,36 @@
+<style>
+    .tips{
+        z-index:9999;
+        float: left;
+        background: white;
+        position: absolute;
+        top: 45px;
+    }
+    th{
+        width:120px;
+        height: 30px
+    }
+    td{
+        word-break: break-all;
+    }
+
+</style>
+<div class="tips" style="" >
+<table class='tips-tbl' cellspacing='0' cellpadding='0'>
+    <thead >
+    <tr>
+        <th >传送数据 </th>
+        <th >数据说明</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0;i<mxs.length;i++){  %>
+        <tr>
+            <td ><%=mxs[i].desc %></td>
+            <td ><%=mxs[i].data %></td>
+        </tr>
+    <%  }  %>
+    </tbody>
+</table>
+</div>

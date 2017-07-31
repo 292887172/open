@@ -1,0 +1,207 @@
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <div class="main-container">
+
+        <table id="grid-table" ></table>
+        <div id="grid-pager"></div>
+
+    </div>
+    <!-- page specific plugin scripts -->
+    <script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+    <script src="/static/assets/js/grid.locale-en.js"></script>
+    <script src="/static/assets/js/ace-elements.min.js"></script>
+    <script src="/static/js/ejs.js"></script>
+
+    <style>
+        html, body {
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        overflow:auto;
+      }
+      .addButton{
+        color:#fff;
+        text-decoration:none;
+        cursor:pointer;
+      }
+      .addButton:hover{
+        color:#fff;
+        text-decoration:none;
+        cursor:pointer;
+      }
+
+        .ui-jqgrid tr.jqgrow td{
+            overflow: visible;
+            position: relative;
+        }
+
+
+    </style>
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+            function deplayinfo() {
+                var post_data = {"name": "list"};
+                    $.ajax({
+                        url:"#/argue",
+                        type: "POST",
+                        data: post_data,
+                        async :false,
+                        success: function (data) {
+                            grid_data=data['data'];
+                        }
+                    });
+                return grid_data
+            }
+            grid_data=deplayinfo();
+			jQuery(function($) {
+				jQuery("#grid-table").jqGrid({
+					//url:ROOT_PATH + "ace/person/getAll",
+					//postData:{pid:"-1"},
+					//datatype: "json",
+					//mtype:"POST",
+					data: grid_data,
+					datatype: "local",
+					colNames:['id','mxs','Stream_ID', '参数名称','参数个数','是否可控', '修改时间', '是否启用','操作'],
+					colModel:[
+						{name:'id', hidden:true},
+                        {name:'mxs',hidden:true},
+						{name:'Stream_ID', width:80},
+						{name:'name', width:80},
+						{name:'mxsLength', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="" || cellvalue=="0"){
+										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
+									}else{
+
+                                        var id="canshu";
+                                        id+=rowObject.id;
+                                        console.log("id:",id);
+
+										return '<a href="#/argue"  onmouseover=show_table(\''+rowObject.id+'\') onmouseout=hid_table(\''+rowObject.id+'\') class="btn btn-white btn-xs" style="width:60px;" >'+cellvalue+'</a><div id=\''+id+'\'></div>';
+									}
+							}
+						},
+						{name:'isControl', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="1"){
+										return '是';
+									}else{
+										return '否';
+									}
+							}
+						},
+						{name:'time', width:80,align:'center'},
+						{name:'state', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									if(cellvalue=="1"){
+										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span class="lbl middle"></span>';
+
+									}else{
+										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span class="lbl middle"></span>';
+									}
+							}
+						},
+						{name:'operation', width:80,align:'center',
+							formatter:function(cellvalue, options, rowObject){
+									return '<a href="#/edit?id='+rowObject.id+'" >编辑</a>| <a href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
+							}
+						}
+					],
+					//height:600,
+					viewrecords : true,
+					//rowNum:10,
+					//rowList:[10,20,30],
+					//pager : "#grid-pager",
+					altRows: false,
+					multiselect: false,
+	        multiboxonly: true,
+            caption: "<a onclick='add()' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i>添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='export()' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出参数表</a>",
+
+            gridComplete:function(){
+	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(4).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(5).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(6).attr("align","center");
+	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
+	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
+	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+	        		$(window).resize(function() {
+							  $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
+				        $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+							});
+	        }
+				});
+			});
+			function show_table(id) {
+                post_data={'name':'title','id':id};
+			    $.ajax({
+                   url:"#/argue",
+                    type:"POST",
+                    data:post_data,
+                    async :false,
+                    success: function (data) {
+                            mxs=data['data'];
+                            var b="";
+                            b='#canshu'+id;
+                            $(b).show();
+                            var group = new EJS({url: '/static/js/tmpl/table.ejs'}).render(mxs);
+                            var a="canshu";
+                            a+=id;
+                            console.log(a);
+                            document.getElementById(a).innerHTML=group;
+                        }
+                });
+            }
+            function hid_table(id) {
+			    a="#canshu"+id;
+                $(a).hide();
+            }
+			function state(id) {
+			    post_data={'name':'state','id':id};
+			    $.ajax({
+                   url:"#/argue",
+                    type:"POST",
+                    data:post_data,
+                    async :false,
+                    success: function () {
+                            alert("修改成功");
+                        }
+                });
+            }
+            function add(){
+
+                location.href="#/edit";
+			}
+			function edit(id){
+                //把id传给前台
+				location.href="#/edit?id="+id;
+			}
+			function del(id){
+			     post_data={'name':'del','id':id};
+                 $.ajax({
+                        url:"#/argue",
+                        type: "POST",
+                        data: post_data,
+                        //async :false,
+                        success: function (data) {
+                            location.reload();
+                            alert("删除成功");
+                        },
+                        error:function () {
+                            alert("删除失败")
+                        }
+                    });
+
+			}
+
+
+		</script>
+

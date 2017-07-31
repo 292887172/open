@@ -1,13 +1,17 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+from django.views.decorators.csrf import csrf_exempt
 
 from model.center.app import App
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse,JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.db import models
+
+import time
 
 from common.app_helper import create_app
 from common.app_helper import del_app
@@ -80,6 +84,7 @@ def product_list(request):
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
         if app_id and action in ("del", "del"):
+
             if action == "del":
                 ret = del_app(app_id)
                 res["data"] = ret
@@ -110,6 +115,8 @@ def product_add(request):
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
+
+
         template = "product/add.html"
         content = dict(
             developer=developer
@@ -155,6 +162,7 @@ def product_add(request):
 # ----------------------------------- angular.js -----------------------------------
 
 @login_required
+@csrf_exempt
 def product_main(request):
     """
     应用详情
@@ -188,9 +196,78 @@ def product_main(request):
             app=app,
             api_list=api_list
         )
-        return render(request, template, content)
-
+        return render(request, template, locals())
+    def save_app(app,opera_data,data):
+        app.device_conf=json.dumps(opera_data)
+        app.save()
+        return JsonResponse({'data': data})
     def post():
+        app_id = request.GET.get("ID", "")
+        app=App.objects.get(app_id=app_id)
+        opera_data=json.loads(app.device_conf)
+        # 获取到数据库中的设备配置信息
+        post_data=request.POST.get("name")
+         # 接收页面传送信息
+        if post_data=='list':
+            return JsonResponse({'data': opera_data})
+        elif post_data=='edit':
+            edit_id=request.POST.get("id")
+            for i in range(len(opera_data)):
+                if opera_data[i].get("id","不存在id")==edit_id:
+                    return JsonResponse({'data': opera_data[i]})
+        elif post_data=='del':
+            del_id=request.POST.get("id")
+            for i in range(len(opera_data)):
+                if opera_data[i].get("id","不存在id")==del_id:
+                    opera_data.pop(i)  #del_data.remove(del_data[i])
+                    break
+            save_app(app,opera_data,"del")
+        elif post_data=='state':
+            state_id=request.POST.get("id")
+            for i in range(len(opera_data)):
+                if opera_data[i]['id']==state_id:
+                    if opera_data[i]['state']=='0':
+                        opera_data[i]['state']='1'
+                    else:
+                        opera_data[i]['state']='0'
+                    break
+            save_app(app,opera_data,"state")
+        elif post_data=='title':
+            id=request.POST.get('id')
+            for i in range(len(opera_data)):
+                if opera_data[i]['id']==id:
+                    return JsonResponse({'data': opera_data[i]['mxs']})
+        else:
+            # 页面传递过来的数据，选择编辑、添加
+            indata = request.body
+            indata = indata.decode('utf-8')
+            indata = json.loads(indata)
+            dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+            indata["time"]=dt
+            # 如果取得到id 就是编辑，否则就是添加
+            if indata["id"]!=" ":
+                # 找到要更新的一条数据
+                update_data={}
+                for i in range(len(opera_data)):
+                    if opera_data[i]['id']==indata["id"]:
+                        update_data=opera_data[i]
+                        opera_data.pop(i)       # 删除要修改的数据
+                        break
+                update_data.update(indata)  # 更新修改过的数据
+                opera_data.append(update_data)
+                tt="modify_success"
+                save_app(app,opera_data,"modify_success")
+            else:
+                max_id=0
+                for i in opera_data:
+                    v_id=int(i['id'])
+                    if max_id<v_id:
+                        max_id=v_id
+                indata['id']=str(max_id+1)
+                opera_data.append(indata)
+                tt="add_success"
+            save_app(app,opera_data,tt)
+        #  app操作
         res = dict(
             code=10000
         )
@@ -248,5 +325,6 @@ def product_main(request):
 
     if request.method == "GET":
         return get()
+
     elif request.method == "POST":
         return post()
