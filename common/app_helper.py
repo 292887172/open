@@ -1,7 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-__author__ = 'achais'
+import json
 
 from django.core.paginator import Paginator
 from model.center.app import App
@@ -10,27 +9,28 @@ from model.center.developer import Developer
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
-from base.util import gen_app_app_secret
+from base.util import gen_app_app_secret, gen_app_default_conf
 from base.const import ConventionValue
 from common.api_helper import create_sandbox_api_app
 from common.api_helper import create_release_api_app
 from common.api_helper import delete_release_api_app
 from common.api_helper import delete_api_app
 from common.api_helper import reset_api_app_secret
-
+import time
 import logging
 import datetime
-
+__author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail):
     """
     创建应用
     :param developer_id: 开发者编号
     :param app_name: 应用名称
     :param app_model: 型号
     :param app_category: 分类
+    :param app_category_detail: 详细分类
     :return:
     """
     try:
@@ -41,12 +41,18 @@ def create_app(developer_id, app_name, app_model, app_category):
             try:
                 app_app_id = gen_app_app_id()
                 app_app_secret = gen_app_app_secret()
+                if app_category_detail:
+                    device_conf = json.dumps(gen_app_default_conf(app_category_detail))
+                else:
+                    device_conf = ''
                 app = App(developer=developer,
                           app_name=app_name,
                           app_appid=app_app_id,
                           app_appsecret=app_app_secret,
                           app_model=app_model,
                           app_category=app_category,
+                          device_conf=device_conf,
+                          app_config_path='',
                           package_name='')
                 app.save()
                 break

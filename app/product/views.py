@@ -116,7 +116,6 @@ def product_add(request):
         else:
             developer = request.user.developer
 
-
         template = "product/add.html"
         content = dict(
             developer=developer
@@ -127,6 +126,7 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
+        app_category_detail = request.POST.get("product_category_detail", "")
         app_model = request.POST.get("product_model", "")
         if not developer_id:
             ret["code"] = 100001
@@ -135,12 +135,14 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category:
+            if not developer_id or not app_name or not app_category or not app_category_detail:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category)
+            print('开始注册',time.time())
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail)
+            print('结束注册', time.time())
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
