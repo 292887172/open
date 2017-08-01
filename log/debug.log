@@ -325,3 +325,10 @@
 2017-07-31 18:39:54,427 [Thread-4620:13512] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-07-31 18:39:54,628 [Thread-4622:12344] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-07-31 18:40:46,801 [Thread-4624:14608] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 09:00:03,952 [Thread-23:140143181571840] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 09:00:09,232 [Thread-26:140143318480640] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-01 09:54:05,325 [Thread-292:140063111378688] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 12:22:29,936 [Thread-497:140409919383296] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 14:18:09,936 [Thread-12:140023661504256] [root:66] [ERROR]- [Errno 32] Broken pipe
+2017-08-01 14:18:09,945 [Thread-12:140023661504256] [root:154] [ERROR]- [Errno 32] Broken pipe
+2017-08-01 14:18:09,946 [Thread-12:140023661504256] [root:155] [ERROR]- 创建应用失败
