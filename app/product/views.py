@@ -210,6 +210,7 @@ def product_main(request):
         # 接收页面请求信息
         post_data=request.POST.get("name")
         if post_data=='list':
+
             # 显示所有列表信息
             return JsonResponse({'data': opera_data})
 

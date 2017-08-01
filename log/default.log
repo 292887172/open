@@ -5280,3 +5280,31 @@ ValueError: invalid literal for int() with base 10: ''
 2017-08-01 11:26:30,597 [Thread-791:10720] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
 2017-08-01 11:31:35,326 [Thread-813:10512] [django.request:143] [WARNING]- Not Found: /product/main/undefined
 2017-08-01 11:31:36,604 [Thread-825:14904] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-08-01 15:01:09,378 [Thread-27:5676] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-08-01 15:01:09,469 [Thread-28:7080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-08-01 15:01:09,749 [Thread-30:17624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-08-01 15:01:09,755 [Thread-29:11260] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-08-01 15:01:12,153 [Thread-44:5004] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:01:12,583 [Thread-49:1188] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:01:53,141 [Thread-84:7968] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:13:40,835 [Thread-21:11144] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:13:41,706 [Thread-37:13208] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python34\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Python34\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 336, in product_main
+    return post()
+  File "E:\workspace\open\app\product\views.py", line 251, in post
+    indata = json.loads(indata)
+  File "C:\Python34\lib\json\__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python34\lib\json\decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python34\lib\json\decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 15:15:41,865 [Thread-60:1472] [django.request:143] [WARNING]- Not Found: /product/main/undefined
