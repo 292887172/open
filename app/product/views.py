@@ -32,7 +32,6 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
-
 @login_required
 def product_list(request):
     """
@@ -115,8 +114,6 @@ def product_add(request):
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
-
-
         template = "product/add.html"
         content = dict(
             developer=developer
