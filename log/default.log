@@ -5308,3 +5308,10 @@ Traceback (most recent call last):
     raise ValueError(errmsg("Expecting value", s, err.value)) from None
 ValueError: Expecting value: line 1 column 1 (char 0)
 2017-08-01 15:15:41,865 [Thread-60:1472] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:11,037 [Thread-21:139913696655104] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-08-01 15:40:11,076 [Thread-22:139913577113344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-08-01 15:40:13,522 [Thread-49:139913568720640] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:14,263 [Thread-57:139913696655104] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:28,765 [Thread-87:139913696655104] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:52,729 [Thread-23:140337368213248] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:41:16,217 [Thread-40:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map

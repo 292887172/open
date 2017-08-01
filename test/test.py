@@ -7,4 +7,8 @@ root = "/home/rdy/git-workspace/open"
 for dirpath, dirnames, filenames in os.walk(root):
     for filepath in filenames:
         if '__' in dirpath:
-            print(dirpath)
+            try:
+                shutil.rmtree(dirpath)
+                print(dirpath)
+            except Exception as e:
+                pass

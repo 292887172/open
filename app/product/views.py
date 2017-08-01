@@ -214,7 +214,7 @@ def product_main(request):
         if post_data=='list':
 
             # 显示所有列表信息
-            return JsonResponse({'data': opera_data})
+            return JsonResponse({'rows': opera_data})
 
         elif post_data=='edit':
              # 编辑信息
