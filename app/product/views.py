@@ -209,7 +209,7 @@ def product_main(request):
         post_data=request.POST.get("name")
          # 接收页面传送信息
         if post_data=='list':
-            return JsonResponse({'data': opera_data})
+            return JsonResponse({'rows': opera_data})
         elif post_data=='edit':
             edit_id=request.POST.get("id")
             for i in range(len(opera_data)):
