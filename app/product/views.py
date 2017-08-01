@@ -197,32 +197,43 @@ def product_main(request):
             api_list=api_list
         )
         return render(request, template, locals())
+
     def save_app(app,opera_data,data):
+        # 保存修改后的device_config
         app.device_conf=json.dumps(opera_data)
         app.save()
         return JsonResponse({'data': data})
+
     def post():
+        # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
         app=App.objects.get(app_id=app_id)
         opera_data=json.loads(app.device_conf)
-        # 获取到数据库中的设备配置信息
+
+        # 接收页面请求信息
         post_data=request.POST.get("name")
-         # 接收页面传送信息
         if post_data=='list':
+            # 显示所有列表信息
             return JsonResponse({'data': opera_data})
+
         elif post_data=='edit':
+             # 编辑信息
             edit_id=request.POST.get("id")
             for i in range(len(opera_data)):
                 if opera_data[i].get("id","不存在id")==edit_id:
                     return JsonResponse({'data': opera_data[i]})
+
         elif post_data=='del':
+            # 删除信息
             del_id=request.POST.get("id")
             for i in range(len(opera_data)):
                 if opera_data[i].get("id","不存在id")==del_id:
                     opera_data.pop(i)  #del_data.remove(del_data[i])
                     break
             save_app(app,opera_data,"del")
+
         elif post_data=='state':
+            # 更改参数状态
             state_id=request.POST.get("id")
             for i in range(len(opera_data)):
                 if opera_data[i]['id']==state_id:
@@ -232,21 +243,16 @@ def product_main(request):
                         opera_data[i]['state']='0'
                     break
             save_app(app,opera_data,"state")
-        elif post_data=='title':
-            id=request.POST.get('id')
-            for i in range(len(opera_data)):
-                if opera_data[i]['id']==id:
-                    return JsonResponse({'data': opera_data[i]['mxs']})
+
         else:
-            # 页面传递过来的数据，选择编辑、添加
+            # 接收要编辑或者添加的数据
             indata = request.body
             indata = indata.decode('utf-8')
             indata = json.loads(indata)
             dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
             indata["time"]=dt
-            # 如果取得到id 就是编辑，否则就是添加
             if indata["id"]!=" ":
-                # 找到要更新的一条数据
+                # 编辑参数信息
                 update_data={}
                 for i in range(len(opera_data)):
                     if opera_data[i]['id']==indata["id"]:
@@ -256,8 +262,8 @@ def product_main(request):
                 update_data.update(indata)  # 更新修改过的数据
                 opera_data.append(update_data)
                 tt="modify_success"
-                save_app(app,opera_data,"modify_success")
             else:
+                # 添加一条参数信息
                 max_id=0
                 for i in opera_data:
                     v_id=int(i['id'])
@@ -267,6 +273,7 @@ def product_main(request):
                 opera_data.append(indata)
                 tt="add_success"
             save_app(app,opera_data,tt)
+
         #  app操作
         res = dict(
             code=10000

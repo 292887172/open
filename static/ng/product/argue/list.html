@@ -1,24 +1,15 @@
-
-
-
-
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
     <div class="main-container">
 
         <table id="grid-table" ></table>
         <div id="grid-pager"></div>
-
     </div>
     <!-- page specific plugin scripts -->
-    <script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
-    <script src="/static/assets/js/ace-elements.min.js"></script>
     <script src="/static/js/ejs.js"></script>
-
     <style>
         html, body {
         width: 100%;
@@ -37,13 +28,10 @@
         text-decoration:none;
         cursor:pointer;
       }
-
         .ui-jqgrid tr.jqgrow td{
             overflow: visible;
             position: relative;
         }
-
-
     </style>
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -83,8 +71,6 @@
 
                                         var id="canshu";
                                         id+=rowObject.id;
-                                        console.log("id:",id);
-
 										return '<a href="#/argue"  onmouseover=show_table(\''+rowObject.id+'\') onmouseout=hid_table(\''+rowObject.id+'\') class="btn btn-white btn-xs" style="width:60px;" >'+cellvalue+'</a><div id=\''+id+'\'></div>';
 									}
 							}
@@ -141,24 +127,19 @@
 				});
 			});
 			function show_table(id) {
-                post_data={'name':'title','id':id};
-			    $.ajax({
-                   url:"#/argue",
-                    type:"POST",
-                    data:post_data,
-                    async :false,
-                    success: function (data) {
-                            mxs=data['data'];
-                            var b="";
-                            b='#canshu'+id;
-                            $(b).show();
-                            var group = new EJS({url: '/static/js/tmpl/table.ejs'}).render(mxs);
-                            var a="canshu";
-                            a+=id;
-                            console.log(a);
-                            document.getElementById(a).innerHTML=group;
-                        }
-                });
+			    a="#canshu"+id;
+                $(a).show();
+			    for(var i=0 ;i<grid_data.length;i++)
+                {
+                    if (grid_data[i]['id'] ==id)
+                    {
+                        mxs=grid_data[i]['mxs'];
+                        var group = new EJS({url: '/static/js/tmpl/table.ejs'}).render(mxs);
+                        var a="canshu"+id;
+                        document.getElementById(a).innerHTML=group;
+                        break
+                    }
+                }
             }
             function hid_table(id) {
 			    a="#canshu"+id;
@@ -177,7 +158,6 @@
                 });
             }
             function add(){
-
                 location.href="#/edit";
 			}
 			function edit(id){
@@ -199,9 +179,5 @@
                             alert("删除失败")
                         }
                     });
-
 			}
-
-
 		</script>
-

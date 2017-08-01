@@ -325,3 +325,8 @@
 2017-07-31 18:39:54,427 [Thread-4620:13512] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-07-31 18:39:54,628 [Thread-4622:12344] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-07-31 18:40:46,801 [Thread-4624:14608] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 09:05:16,458 [Thread-14:2656] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 09:05:19,071 [Thread-17:19212] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-01 09:25:07,602 [Thread-819:10216] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 09:25:15,512 [Thread-826:5872] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-01 11:06:41,207 [Thread-484:7504] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
