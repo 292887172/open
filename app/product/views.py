@@ -273,7 +273,6 @@ def product_main(request):
                 opera_data.append(indata)
                 tt="add_success"
             save_app(app,opera_data,tt)
-
         #  app操作
         res = dict(
             code=10000
