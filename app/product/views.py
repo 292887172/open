@@ -108,7 +108,6 @@ def product_add(request):
     ret = dict(
         code=0
     )
-
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
@@ -125,6 +124,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_model = request.POST.get("product_model", "")
+        print("name",app_name)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -209,10 +209,11 @@ def product_main(request):
 
         # 接收页面请求信息
         post_data=request.POST.get("name")
+        print("name:",post_data)
         if post_data=='list':
 
             # 显示所有列表信息
-            return JsonResponse({'data': opera_data})
+            return JsonResponse({'rows': opera_data})
 
         elif post_data=='edit':
              # 编辑信息
@@ -242,10 +243,10 @@ def product_main(request):
                     break
             save_app(app,opera_data,"state")
 
-        else:
+        elif post_data=='save':
             # 接收要编辑或者添加的数据
-            indata = request.body
-            indata = indata.decode('utf-8')
+            indata = request.POST.get('d')
+            print(indata)
             indata = json.loads(indata)
             dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
             indata["time"]=dt

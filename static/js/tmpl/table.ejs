@@ -6,6 +6,7 @@
         background: white;
         position: absolute;
         top: 45px;
+        display: none;
     }
     th{
         height: 30px
@@ -14,6 +15,9 @@
         word-break: break-all;
     }
 </style>
+<a class="btn btn-white btn-xs" style="width:60px" onmouseover="show_table(this)" onmouseout="hide_table(this)"><%= cellvalue%></a>
+<div id="<%=id%>" style="display: none">
+
 <table class='tips-tbl' cellspacing='0' cellpadding='0' >
     <thead >
     <tr>
@@ -30,3 +34,4 @@
     <%  }  %>
     </tbody>
 </table>
+</div>

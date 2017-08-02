@@ -22,7 +22,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				if($.trim($('#name').val())==''){
 					alert("请填写参数名称信息!!");
-					return;
+					return;;
 				}
 				var min=0;
 				var max=0;
@@ -30,6 +30,7 @@ angular.module('Product.edit', ['ngRoute'])
 				var types=document.getElementsByName("paramType");
 				var paramDatas=document.getElementsByName("paramData");
 				var paramDescs=document.getElementsByName("paramDesc");
+
 				var errorType=-1;
 				var mxs=[];
 				if(types[0].checked){
@@ -130,15 +131,15 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				indata.corpName=$.trim($('#corpName').val());
 				indata.corpMark=$.trim($('#corpMark').val());
+				indata.mxsLength=$.trim($('#mxsLength').val());
 
 				//保存操作
-                $http({
+                $.ajax({
                     method: "POST",
                     url: location.href,
-                    data: indata,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    data: {"name": "save", "d": JSON.stringify(indata)}
+
                 }).success(function (data) {
-                    console.log(data['data']);
                     if (data['date']=='add_success'){
                         alert("添加成功!");
                     }

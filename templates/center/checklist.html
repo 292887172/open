@@ -113,20 +113,19 @@
                         <ul>
                             <li><a href="/center" class="unable">基本信息</a></li>
 {#                            <li><a href="#" class="unable">产品信息</a></li>#}
-                            <li><a href="checklist" class="on">审核状态</a></li>
+                            <li><a href="checklist" class="on">通知</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="right_side">
                 {% if user.developer.developer_check_status == 1 %}
-                    <div class="right_side_header"><p class="info"></p>恭喜，您的开发者申请已通过审核，欢迎您的加入！</div>
+
                     <div class="right_side_body">
                     <ol class="check_status">
                         <li>
                             <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
-                                    class="status status_ok">审核通过 </span></div>
-
+                                    class="status status_ok">厨房智能开发审核通过 </span></div>
                         </li>
 
 
