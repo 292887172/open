@@ -59,31 +59,7 @@
         <div class="leftSide">
             <div class="box1">
                 <!-- 左侧菜单 begin -->
-                <div class="menuBox">
-                    <h3>概况</h3>
-                    <ul>
-                        <li id="defaultMenuLi" class="menu-li hover" onclick="addHover('/zny',this)"><a
-                                href="#"><i class=" icon-rocket"></i>53iq厨房智能云</a></li>
-                        <li id="defaultMenuLi" class="menu-li"><a
-                                href="http://www.53iq.com/product" target="_blank"><i class="icon-screen-desktop"></i>屏幕式智能方案</a>
-                        </li>
 
-                    </ul>
-                </div>
-                <div class="menuBox">
-                    <h3>合作指南</h3>
-                    <ul>
-                        <li id="cooperation" class="menu-li ui-hz" onclick="addHover('/hz', this)"><a
-                                href="#"><i class=" icon-shuffle"></i>合作流程</a></li>
-                    </ul>
-                </div>
-                <div class="menuBox">
-                    <h3>加入我们</h3>
-                    <ul>
-                        <li class="menu-li" onclick="addHover('/kfz', this)"><a href="#"><i
-                                class="icon-user"></i>注册成为开发者</a></li>
-                    </ul>
-                </div>
                 <div class="menuBox">
                     <h3>文档中心</h3>
                     <ul>

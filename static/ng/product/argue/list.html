@@ -43,27 +43,27 @@
 					datatype: "json",
 					mtype:"POST",
 
-					colNames:['id','mxs','Stream_ID', '参数名称','参数个数','是否可控', '修改时间', '是否启用','操作'],
+					colNames:['id','mxs','Stream_ID', '长度', '参数名称','参数个数','是否可控', '是否启用','操作'],
 					colModel:[
-						{name:'id', hidden:true},
+						{name:'id' , width:80},
                         {name:'mxs',hidden:true},
 						{name:'Stream_ID', width:100, title:"234"},
+                        {name:'mxsLength',width:80},
 						{name:'name', width:80},
 						{name:'mxsLength', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="" || cellvalue=="0"){
 										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
 									}else{
-
-                                        var id="canshu";
-                                        id+=rowObject.id;
-										return '<a href="#/argue"  onmouseover=show_table(\''+rowObject.id+'\') onmouseout=hid_table(\''+rowObject.id+'\') class="btn btn-white btn-xs" style="width:60px;" >'+cellvalue+'</a><div id=\''+id+'\'></div>';
+                                        var id="canshu"+rowObject.id;
+                                        group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
+                                        return group;
 									}
 							}
 						},
 						{name:'isControl', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-						    console.log(cellvalue, options, rowObject);
+
 									if(cellvalue=="1"){
 										return '是';
 									}else{
@@ -71,10 +71,10 @@
 									}
 							}
 						},
-						{name:'time', width:80,align:'center'},
 						{name:'state', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="1"){
+
 										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span class="lbl middle"></span>';
 
 									}else{
@@ -113,24 +113,15 @@
 	        }
 				});
 			});
-			function show_table(id) {
-			    a="#canshu"+id;
-                $(a).show();
-			    for(var i=0 ;i<grid_data.length;i++)
-                {
-                    if (grid_data[i]['id'] ==id)
-                    {
-                        mxs=grid_data[i]['mxs'];
-                        var group = new EJS({url: '/static/js/tmpl/table.ejs'}).render(mxs);
-                        var a="canshu"+id;
-                        document.getElementById(a).innerHTML=group;
-                        break
-                    }
-                }
+            function show_table(item) {
+
+                $(item).parent('td').removeAttr('title');
+                $(item).nextAll('div').show();
+                $(item).nextAll('div').children('table').show()
             }
-            function hid_table(id) {
-			    a="#canshu"+id;
-                $(a).hide();
+            function hide_table(item) {
+                $(item).nextAll('div').hide();
+                $(item).nextAll('div').children('table').hide()
             }
 			function state(id) {
 			    post_data={'name':'state','id':id};
