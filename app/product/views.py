@@ -248,7 +248,9 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.body
             indata = indata.decode('utf-8')
+            print(indata)
             indata = json.loads(indata)
+            print(indata)
             dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
             indata["time"]=dt
             if indata["id"]!=" ":
@@ -334,3 +336,10 @@ def product_main(request):
 
     elif request.method == "POST":
         return post()
+
+
+@csrf_exempt
+def export(request):
+    # 导出配置文件
+    if request.method == 'POST':
+        return
