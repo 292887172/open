@@ -74,7 +74,7 @@
                                     <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> 长度 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="mxsLength" placeholder="请输入参数长度，如：16" class="col-xs-10 col-sm-5"/>
+											<input type="text" id="mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5"/>
 											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
 										</div>
 									</div>
@@ -239,6 +239,7 @@
 				$('#name').val(d.name);
 				$('#corpName').val(d.corpName);
 				$('#corpMark').val(d.corpMark);
+				$('#mxsLength').val(d.mxsLength);
 				if(d.isControl==1){
 					document.getElementsByName('isControl')[0].checked=true;
 				}else{

@@ -26,7 +26,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				var min=0;
 				var max=0;
-				var mxsLength=0;
+				var mxsNum=0;
 				var types=document.getElementsByName("paramType");
 				var paramDatas=document.getElementsByName("paramData");
 				var paramDescs=document.getElementsByName("paramDesc");
@@ -54,7 +54,7 @@ angular.module('Product.edit', ['ngRoute'])
 						}
 						mxs.push({data:data,desc:desc});
 					}
-					mxsLength=mxs.length+"";
+					mxsNum=mxs.length+"";
 				}
 				if(errorType==1){
 					alert("请填写数据说明和传送数据!!");
@@ -107,7 +107,7 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.mxs=mxs;
 				indata.min=min;
 				indata.max=max;
-				indata.mxsLength=mxsLength;
+				indata.mxsNum=mxsNum;
 
 				var url=location.href;
                 var str=url.split("edit");
