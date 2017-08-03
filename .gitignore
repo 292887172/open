@@ -12,17 +12,5 @@ gen
 # Django stuff:
 log/*
 *.pyc
-app/__pycache__/
-app/center/__pycache__/
-app/debug/__pycache__/
-app/home/__pycache__/
-app/product/__pycache__/
-app/wiki/__pycache__/
-conf/__pycache__/
 
-base/__pycache__/
-common/__pycache__/
-model/__pycache__/
-open/__pycache__/
-util/__pycache__/
 tmp/

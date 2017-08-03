@@ -330,3 +330,4 @@
 2017-08-01 09:25:07,602 [Thread-819:10216] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-08-01 09:25:15,512 [Thread-826:5872] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
 2017-08-01 11:06:41,207 [Thread-484:7504] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-01 15:40:04,720 [Thread-3:139913696655104] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'

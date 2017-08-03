@@ -77,16 +77,15 @@
                                 <dd>
                                     智能家居 /
                                     <select name="product_category" id="product_category" class="sel1">
-                                        <option value="家电类">家电类</option>
+                                        <option value="无">请选择分类</option>
+{#                                        <option value="家电类">家电类</option>#}
                                         <option value="厨房类">厨房类</option>
                                         <option value="卫浴类">卫浴类</option>
-                                        <option value="环境类">环境类</option>
+{#                                        <option value="环境类">环境类</option>#}
                                     </select>
-                                    <select name="product_category" id="product_category" class="sel1">
-                                        <option value="家电类">家电类</option>
-                                        <option value="厨房类">厨房类</option>
-                                        <option value="卫浴类">卫浴类</option>
-                                        <option value="环境类">环境类</option>
+                                    <select name="product_category_detail" id="product_category_detail" class="sel2">
+                                        <option value="无">请选择分类</option>
+
                                     </select>
                                     <span class="tips-error hiden" id="productTypeTips"></span>
                                 </dd>
@@ -153,6 +152,20 @@
                     alert("产品名称不能为空");
                 }
             });
+            $("#product_category").on('change',function () {
+                var value = $("#product_category option:selected").val();
+                if (value == '无'){
+                    html = '<option value="无">请选择分类</option>'
+                }
+                else if(value =='厨房类'){
+                    html = '<option value="1">烟机灶具</option><option value="2">蒸烤箱</option><option value="3">冰箱</option>' +
+                        '<option value="4">净水器</option>'
+                }
+                else if(value =='卫浴类'){
+                    html = '<option value="5">马桶</option><option value="6">热水器</option>'
+                }
+                $("#product_category_detail").html(html)
+            })
         })
     </script>
 {% endblock %}
