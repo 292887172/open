@@ -5308,3 +5308,178 @@ Traceback (most recent call last):
     raise ValueError(errmsg("Expecting value", s, err.value)) from None
 ValueError: Expecting value: line 1 column 1 (char 0)
 2017-08-01 15:15:41,865 [Thread-60:1472] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:11,037 [Thread-21:139913696655104] [django.request:143] [WARNING]- Not Found: /product/list/undefined
+2017-08-01 15:40:11,076 [Thread-22:139913577113344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-08-01 15:40:13,522 [Thread-49:139913568720640] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:14,263 [Thread-57:139913696655104] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:28,765 [Thread-87:139913696655104] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:40:52,729 [Thread-23:140337368213248] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:41:16,217 [Thread-40:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-08-01 15:42:19,590 [Thread-67:140337225910016] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:47:02,836 [Thread-83:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:47:12,701 [Thread-85:140337217517312] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 336, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 251, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 15:48:42,470 [Thread-93:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-08-01 15:51:39,138 [Thread-101:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:51:43,708 [Thread-124:140337376081664] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:51:44,552 [Thread-133:140337234302720] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 15:51:50,774 [Thread-135:140337234302720] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 336, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 251, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 15:59:24,503 [Thread-1:140249523631872] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 337, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 16:03:00,521 [Thread-1:140502204675840] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 16:04:11,266 [Thread-4:140502180607744] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 16:04:26,645 [Thread-5:140502180607744] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)
+2017-08-01 16:06:43,073 [Thread-3:140233738430208] [django.request:143] [WARNING]- Not Found: /product/main/undefined
+2017-08-01 16:06:43,759 [Thread-1:140233746822912] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 312, in loads
+    s.__class__.__name__))
+TypeError: the JSON object must be str, not 'bytes'
+2017-08-01 16:07:24,008 [Thread-1:140070302660352] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 250, in post
+    indata = indata.encode('utf-8')
+AttributeError: 'bytes' object has no attribute 'encode'
+2017-08-01 16:08:00,545 [Thread-1:140239122052864] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 338, in product_main
+    return post()
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 252, in post
+    indata = json.loads(indata)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/__init__.py", line 318, in loads
+    return _default_decoder.decode(s)
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 343, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/rdy/.pyenv/versions/3.4.1/lib/python3.4/json/decoder.py", line 361, in raw_decode
+    raise ValueError(errmsg("Expecting value", s, err.value)) from None
+ValueError: Expecting value: line 1 column 1 (char 0)

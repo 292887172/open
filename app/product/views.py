@@ -123,8 +123,8 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
+        app_category_detail = request.POST.get("product_category_detail", "")
         app_model = request.POST.get("product_model", "")
-        print("name",app_name)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -132,23 +132,26 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category:
+            if not developer_id or not app_name or not app_category or not app_category_detail:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
-                ret["code"] = 100002
+                ret["code"] = 100003
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的产品编号"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
         except Exception as e:
             logging.getLogger("root").error(e)
             logging.getLogger("root").error("创建应用失败")
-            return HttpResponse("")
+            ret["code"] = 100004
+            ret["msg"] = "created app error"
+            ret["message"] = "创建应用失败"
+            return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
     if request.method == "GET":
         return get()
@@ -209,7 +212,6 @@ def product_main(request):
 
         # 接收页面请求信息
         post_data=request.POST.get("name")
-        print("name:",post_data)
         if post_data=='list':
 
             # 显示所有列表信息
@@ -333,3 +335,10 @@ def product_main(request):
 
     elif request.method == "POST":
         return post()
+
+
+@csrf_exempt
+def export(request):
+    # 导出配置文件
+    if request.method == 'POST':
+        return
