@@ -137,18 +137,21 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
-                ret["code"] = 100002
+                ret["code"] = 100003
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的产品编号"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
         except Exception as e:
             logging.getLogger("root").error(e)
             logging.getLogger("root").error("创建应用失败")
-            return HttpResponse("")
+            ret["code"] = 100004
+            ret["msg"] = "created app error"
+            ret["message"] = "创建应用失败"
+            return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
     if request.method == "GET":
         return get()
