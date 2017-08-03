@@ -70,7 +70,7 @@ var _hmt = _hmt || [];
     <p>Copyright©2015 53iq 版权所有</p>
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-<script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% block end_fixed_script %}{% endblock %}
 {% block end_script %}{% endblock %}
 </body>

@@ -124,7 +124,6 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_model = request.POST.get("product_model", "")
-        print("name",app_name)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -138,6 +137,7 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             app_name = create_app(developer_id, app_name, app_model, app_category)
+
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:

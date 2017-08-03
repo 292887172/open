@@ -145,13 +145,22 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="menuBox">
                         <h3>产品参数</h3>
                         <ul>
                             <li id="argueMenu" class="jsNavItem" data-id="argueMenu" ng-click="nav.selected('argueMenu')">
                                 <a href="#/argue">
                                     <i class="fa fa-inbox"></i>基本参数
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+                        <h3>产品调试</h3>
+                        <ul>
+                            <li id="productTest" class="jsNavItem" data-id="productTest" ng-click="nav.selected('productTest')">
+                                <a href="https://oven.53iq.com/static/html/control.html?d=ABCDEFABCDEF">
+                                    <i class="fa fa-inbox"></i>产品调试
                                 </a>
                             </li>
                         </ul>
@@ -200,8 +209,9 @@
 {% endblock %}
 
 {% block end_fixed_script %}
-    <script src="{% static "angular/angular.min.js/" %}"></script>
-    <script src="{% static "angular/angular-route.min.js" %}"></script>
+
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="{% static "ng/product/app.js" %}"></script>
     <script src="{% static "ng/product/controller.js" %}"></script>
     <script src="{% static "ng/product/info/controller.js" %}"></script>
