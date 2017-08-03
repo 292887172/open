@@ -108,13 +108,11 @@ def product_add(request):
     ret = dict(
         code=0
     )
-
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
-
         template = "product/add.html"
         content = dict(
             developer=developer
@@ -244,13 +242,11 @@ def product_main(request):
                     break
             save_app(app,opera_data,"state")
 
-        else:
+        elif post_data=='save':
             # 接收要编辑或者添加的数据
-            indata = request.body
-            indata = indata.decode('utf-8')
+            indata = request.POST.get('d')
             print(indata)
             indata = json.loads(indata)
-            print(indata)
             dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
             indata["time"]=dt
             if indata["id"]!=" ":

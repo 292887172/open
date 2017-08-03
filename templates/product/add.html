@@ -100,7 +100,7 @@
                                     <div class="plan_box plan_box_choose">
                                         <p class="nav_nav lev01">云</p>
 
-                                        <p class="s01 lev02">WiFi/3G等</p>
+                                        <p class="s01 lev02">WiFi/Android等</p>
 
                                         <p class="nav_nav lev03">设备</p>
 
@@ -144,8 +144,10 @@
     <script>
         $(document).ready(function () {
             $('#go').on('click', function (e) {
+
                 if ($("#productNameText").val() != "") {
                     $("form[name=productAddForm]").submit();
+                    console.log("submit");
                 } else {
                     alert("产品名称不能为空");
                 }
