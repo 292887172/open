@@ -60,6 +60,9 @@
         .disable {
             background: #bbb;
         }
+    .wrap{
+        background: #fff;
+    }
     </style>
 
 {% endblock %}
@@ -67,16 +70,6 @@
 {% block content %}
     <div class="container">
         <div class="wrap">
-            <div class="left_side">
-                <ul>
-                    <li><a href="/center" class="menu_open">成为开发者</a>
-                        <ul>
-                            <li><a href="/center" class="on">基本信息</a></li>
-
-                        </ul>
-                    </li>
-                </ul>
-            </div>
             <div class="cnt_box">
                 {% if user.developer.developer_id %}
                     {% if user.developer.developer_check_status == -1 %}

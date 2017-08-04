@@ -11,13 +11,7 @@
             width: 100%;
         }
 
-        .wrap .left_side {
-            float: left;
-            width: 22%;
-            height: 100%;
-            min-height: 720px;
 
-        }
 
         .right_side {
             background: #fff;
@@ -73,11 +67,14 @@
         .check_status li div span.times {
             position: relative;
             float: left;
-            width: 25%;
+            width: 20%;
+            left: -42px;
         }
 
         .check_status li div span.status_ok {
             color: #438d00;
+            right: 100px;
+            position: absolute;
         }
 
         .check_status li p {
@@ -100,6 +97,9 @@
         .check_status li div span.status_error {
             color: #b40000;
         }
+        .wrap{
+            background: #fff;
+        }
     </style>
 
 {% endblock %}
@@ -107,17 +107,7 @@
 {% block content %}
     <div class="container">
         <div class="wrap">
-            <div class="left_side">
-                <ul>
-                    <li><a href="/center" class="menu_open">成为开发者</a>
-                        <ul>
-                            <li><a href="/center" class="unable">基本信息</a></li>
-{#                            <li><a href="#" class="unable">产品信息</a></li>#}
-                            <li><a href="checklist" class="on">通知</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+
             <div class="right_side">
                 {% if user.developer.developer_check_status == 1 %}
 
