@@ -6,11 +6,13 @@
 
         <table id="grid-table" ></table>
         <div id="grid-pager"></div>
+        <div id="ie-form"></div>
     </div>
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
+    <script src="/static/js/product/bootbox.js"></script>
     <style>
         html, body {
         width: 100%;
@@ -144,8 +146,36 @@
                 location.href="#/edit";
 			}
 			function export_parameter(){
+                var rows=$("#grid-table").getRowData();
+                bootbox.confirm("确定导出" + rows.length + "台设备的数据吗?", function (result) {
+                    if (result) {
+                        //$("#shadow").removeClass("hidden");
+                        //post_data={'name':'export','action':'action'};
 
-                alert('暂未开放');
+                        var form = document.createElement('form');
+                        form.action = '#/argue';
+                        form.method = 'post';
+
+                        var input = document.createElement("input");
+                        input.name = "name";
+                        input.type = "text";
+                        input.value = "export";
+                        form.appendChild(input);
+                        $("#ie-form").html(form);
+                        form.submit();
+                        /*
+                        $.ajax({
+                           url:"#/argue",
+                            type:"POST",
+                            data:post_data,
+                            async :false,
+                            success: function (data) {
+
+                                }
+                        });
+                        */
+                    }
+                })
 			}
 			function edit(id){
                 //把id传给前台

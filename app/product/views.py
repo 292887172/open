@@ -1,17 +1,11 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.views.decorators.csrf import csrf_exempt
-
-from model.center.app import App
-
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse,JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.db import models
-
-import time
 
 from common.app_helper import create_app
 from common.app_helper import del_app
@@ -24,9 +18,14 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
+from model.center.app import App
 
+import time
 import json
+import codecs
 import logging
+
+from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
 _code = StatusCode()
@@ -125,6 +124,8 @@ def product_add(request):
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", "")
         app_model = request.POST.get("product_model", "")
+        app_command=request.POST.get("product_command")
+        print("app_command",app_command)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -132,12 +133,12 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category or not app_category_detail:
+            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
@@ -216,14 +217,12 @@ def product_main(request):
 
             # 显示所有列表信息
             return JsonResponse({'rows': opera_data})
-
         elif post_data=='edit':
-             # 编辑信息
+             # 返回编辑页面信息
             edit_id=request.POST.get("id")
             for i in range(len(opera_data)):
                 if opera_data[i].get("id","不存在id")==edit_id:
                     return JsonResponse({'data': opera_data[i]})
-
         elif post_data=='del':
             # 删除信息
             del_id=request.POST.get("id")
@@ -232,7 +231,6 @@ def product_main(request):
                     opera_data.pop(i)  #del_data.remove(del_data[i])
                     break
             save_app(app,opera_data,"del")
-
         elif post_data=='state':
             # 更改参数状态
             state_id=request.POST.get("id")
@@ -244,11 +242,14 @@ def product_main(request):
                         opera_data[i]['state']='0'
                     break
             save_app(app,opera_data,"state")
+        elif post_data =="export":
+            res = date_deal(app_id)
+            return res
+
 
         elif post_data=='save':
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
-            print(indata)
             indata = json.loads(indata)
             dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
             indata["time"]=dt
@@ -258,9 +259,9 @@ def product_main(request):
                 for i in range(len(opera_data)):
                     if opera_data[i]['id']==indata["id"]:
                         update_data=opera_data[i]
-                        opera_data.pop(i)       # 删除要修改的数据
+                        opera_data.pop(i)
                         break
-                update_data.update(indata)  # 更新修改过的数据
+                update_data.update(indata)
                 opera_data.append(update_data)
                 tt="modify_success"
             else:
@@ -288,7 +289,7 @@ def product_main(request):
         app_logo = request.POST.get("app_logo", "")
         app_push_url = request.POST.get("app_config_push_url", "")
         app_push_token = request.POST.get("app_config_push_token", "")
-
+        app_command=request.POST.get("app_command","")
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -308,7 +309,7 @@ def product_main(request):
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_info":
                 # 更新基本信息
-                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo)
+                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,app_command)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
@@ -340,5 +341,11 @@ def product_main(request):
 @csrf_exempt
 def export(request):
     # 导出配置文件
+
     if request.method == 'POST':
-        return
+        action = request.POST.get("action", None)
+        if action is "export_excel":
+            id=request.GET.get("ID")
+            res = date_deal(id)
+        return res
+    return render(request, "product/main.html", locals())

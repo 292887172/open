@@ -242,6 +242,8 @@
                     $scope.app_logo = "{% if app.app_logo %}{{ app.app_logo|safe|linebreaksbr }}{% endif %}" || "/static/image/global/default.png";
                     $scope.app_config_push_url = "{% if app.app_push_url %}{{ app.app_push_url|safe|linebreaksbr }}{% endif %}";
                     $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_command="{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
+
                     // 应用类目
                     $scope.secondProType = [
                         {
@@ -285,7 +287,8 @@
                         "app_model": $scope.app_model,
                         "app_describe": $scope.app_describe,
                         "app_site": $scope.app_site,
-                        "app_logo": $scope.app_logo
+                        "app_logo": $scope.app_logo,
+                        "app_command":$scope.app_command
                     };
                     // 配置信息表单
                     $scope.configFormData = {

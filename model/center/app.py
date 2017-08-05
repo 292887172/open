@@ -66,6 +66,8 @@ class App(models.Model):
     app_create_date = models.DateTimeField(auto_now_add=True, db_column='ebf_app_create_date')
     # 应用更新时间
     app_update_date = models.DateTimeField(auto_now=True, db_column='ebf_app_update_date')
+    # 全指令
+    app_command = models.CharField(max_length=64, null=True, db_column='ebf_app_command')
 
     class Meta:
         app_label = 'center'
