@@ -23,7 +23,7 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -50,6 +50,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_appid=app_app_id,
                           app_appsecret=app_app_secret,
                           app_model=app_model,
+                          app_command=app_command,
                           app_category=app_category,
                           device_conf=device_conf,
                           app_config_path='',
@@ -226,7 +227,7 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo):
+def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,app_command):
     """
     更新应用基础信息
     :param app_id:
@@ -236,6 +237,7 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
     :param app_describe:
     :param app_site:
     :param app_logo:
+    :param app_command:
     :return:
     """
     try:
@@ -245,6 +247,7 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             app_site=app_site,
             app_category=app_category,
             app_model=app_model,
+            app_command=app_command,
             app_update_date=datetime.datetime.utcnow()
         )
         if app_logo:
