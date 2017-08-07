@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import io
 
 import datetime
@@ -28,12 +29,13 @@ def write_data(data, name, header):
             table.write(l, i, line[header[i]])
         l += 1
     # file.save('excel.xls')
-
     return file
-def save_json(data,file_name):
+
+def get_stream(data):
     file = io.StringIO()
+    print("data",data)
     data=json.dumps(data)
-    file.write(data,encode='utf-8')
+    file.write(data)
     res=file.getvalue()
     file.close()
     return  res
@@ -46,7 +48,6 @@ def get_excel_stream(data, name, header):
     res = excel_stream.getvalue()
     excel_stream.close()
     return res
-
 
 if __name__ == "__main__":
     # main()

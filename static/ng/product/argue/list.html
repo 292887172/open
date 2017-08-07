@@ -149,9 +149,6 @@
                 var rows=$("#grid-table").getRowData();
                 bootbox.confirm("确定导出" + rows.length + "台设备的数据吗?", function (result) {
                     if (result) {
-                        //$("#shadow").removeClass("hidden");
-                        //post_data={'name':'export','action':'action'};
-
                         var form = document.createElement('form');
                         form.action = '#/argue';
                         form.method = 'post';
@@ -163,17 +160,6 @@
                         form.appendChild(input);
                         $("#ie-form").html(form);
                         form.submit();
-                        /*
-                        $.ajax({
-                           url:"#/argue",
-                            type:"POST",
-                            data:post_data,
-                            async :false,
-                            success: function (data) {
-
-                                }
-                        });
-                        */
                     }
                 })
 			}
