@@ -35,6 +35,12 @@
             overflow: visible;
             position: relative;
         }
+        .ui-jqgrid-view>.ui-jqgrid-titlebar {
+            background: #343f6a
+        }
+        input[type=checkbox].ace.ace-switch.ace-switch-4:checked+.lbl::before, input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
+            background-color: #343f6a;
+        }
     </style>
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -85,7 +91,7 @@
 						},
 						{name:'operation', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-									return '<a href="#/edit?id='+rowObject.id+'" >编辑</a>| <a href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
+									return '<a style="color:#343f6a" href="#/edit?id='+rowObject.id+'" >编辑</a>| <a style="color:#343f6a" href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
 							}
 						}
 					],
@@ -152,7 +158,7 @@
                         var form = document.createElement('form');
                         form.action = '#/argue';
                         form.method = 'post';
-
+                        form.style="display: none";
                         var input = document.createElement("input");
                         input.name = "name";
                         input.type = "text";
