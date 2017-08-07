@@ -22,7 +22,6 @@ from model.center.app import App
 
 import time
 import json
-import codecs
 import logging
 
 from util.export_excel import date_deal
@@ -245,8 +244,6 @@ def product_main(request):
         elif post_data =="export":
             res = date_deal(app_id)
             return res
-
-
         elif post_data=='save':
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
