@@ -193,84 +193,84 @@ def product_main(request):
 
         template = "product/main.html"
         content = dict(
-            app=app,
-            api_list=api_list
+            app = app,
+            api_list = api_list
         )
         return render(request, template, locals())
 
     def save_app(app,opera_data,data):
         # 保存修改后的device_config
-        app.device_conf=json.dumps(opera_data)
+        app.device_conf = json.dumps(opera_data)
         app.save()
         return JsonResponse({'data': data})
 
     def post():
         # 根据ID获取到数据库中的设备配置信息
-        app_id = request.GET.get("ID", "")
-        app=App.objects.get(app_id=app_id)
-        opera_data=json.loads(app.device_conf)
+        app_id = request.GET.get("ID" , "")
+        app = App.objects.get(app_id = app_id)
+        opera_data = json.loads(app.device_conf)
 
         # 接收页面请求信息
-        post_data=request.POST.get("name")
-        if post_data=='list':
+        post_data = request.POST.get("name")
+        if post_data == 'list':
 
             # 显示所有列表信息
             return JsonResponse({'rows': opera_data})
-        elif post_data=='edit':
-             # 返回编辑页面信息
-            edit_id=request.POST.get("id")
+        elif post_data ==' edit':
+            # 返回编辑页面信息
+            edit_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i].get("id","不存在id")==edit_id:
+                if opera_data[i].get("id","不存在id") == edit_id:
                     return JsonResponse({'data': opera_data[i]})
-        elif post_data=='del':
+        elif post_data == 'del':
             # 删除信息
             del_id=request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i].get("id","不存在id")==del_id:
-                    opera_data.pop(i)  #del_data.remove(del_data[i])
+                if opera_data[i].get("id","不存在id") == del_id:
+                    opera_data.pop(i)
                     break
             save_app(app,opera_data,"del")
-        elif post_data=='state':
+        elif post_data == 'state':
             # 更改参数状态
-            state_id=request.POST.get("id")
+            state_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i]['id']==state_id:
-                    if opera_data[i]['state']=='0':
-                        opera_data[i]['state']='1'
+                if opera_data[i]['id'] == state_id:
+                    if opera_data[i]['state'] == '0':
+                        opera_data[i]['state'] = '1'
                     else:
-                        opera_data[i]['state']='0'
+                        opera_data[i]['state'] = '0'
                     break
             save_app(app,opera_data,"state")
-        elif post_data =="export":
+        elif post_data == "export":
             res = date_deal(app_id)
             return res
-        elif post_data=='save':
+        elif post_data == 'save':
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
-            dt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
-            indata["time"]=dt
-            if indata["id"]!=" ":
+            dt = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+            indata["time"] = dt
+            if indata["id"] != " ":
                 # 编辑参数信息
                 update_data={}
                 for i in range(len(opera_data)):
-                    if opera_data[i]['id']==indata["id"]:
-                        update_data=opera_data[i]
+                    if opera_data[i]['id'] == indata["id"]:
+                        update_data = opera_data[i]
                         opera_data.pop(i)
                         break
                 update_data.update(indata)
                 opera_data.append(update_data)
-                tt="modify_success"
+                tt = "modify_success"
             else:
                 # 添加一条参数信息
                 max_id=0
                 for i in opera_data:
-                    v_id=int(i['id'])
-                    if max_id<v_id:
+                    v_id = int(i['id'])
+                    if max_id < v_id:
                         max_id=v_id
-                indata['id']=str(max_id+1)
+                indata['id'] = str(max_id+1)
                 opera_data.append(indata)
-                tt="add_success"
+                tt = "add_success"
             save_app(app,opera_data,tt)
         #  app操作
         res = dict(

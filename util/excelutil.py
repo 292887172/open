@@ -3,6 +3,7 @@ import io
 
 import datetime
 import xlwt
+import xlrd
 import json
 
 import codecs
@@ -24,19 +25,24 @@ def write_data(data, name, header):
         return file
     l = 0  # 表示行
     n = len(header)
-    for line in data:
+    data1 = data[1:]
+    data1.sort(key=lambda x: int(x.get('id')))
+    for i in range(n):
+        table.write(l, i, data[0][header[i]])
+    for line in data1:
+        l += 1
         for i in range(n):
             table.write(l, i, line[header[i]])
-        l += 1
-    # file.save('excel.xls')
-    return file
+    excel_name = 'TRD.xls'
+    file.save(excel_name)
+    return excel_name
 
 def get_stream(data):
     file = io.StringIO()
     print("data",data)
-    data=json.dumps(data)
+    data = json.dumps(data)
     file.write(data)
-    res=file.getvalue()
+    res = file.getvalue()
     file.close()
     return  res
 
