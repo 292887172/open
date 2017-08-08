@@ -1,31 +1,16 @@
-<style>
-    .tips-tbl{
-        z-index:9999;
-        float: left;
-        width: 200px;
-        background: white;
-        position: absolute;
-        top: 45px;
-        display: none;
-    }
-    th{
-        height: 30px
-    }
-    td{
-        word-break: break-all;
-    }
-</style>
+
 <a class="btn btn-white btn-xs" style="width:60px" onmouseover="show_table(this)" onmouseout="hide_table(this)"><%= cellvalue%></a>
 <div id="<%=id%>" style="display: none">
 
-<table class='tips-tbl' cellspacing='0' cellpadding='0' >
+<table class='tips-tbl' cellspacing='0' cellpadding='0' style="z-index:9999;float: left;width: 200px;background: white;
+position: absolute;top: 45px;" >
     <thead >
-    <tr>
+    <tr style="height: 30px">
         <th >传送数据 </th>
         <th >数据说明</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody style="word-break: break-all;">
     <% for(var i=0;i<mxs.length;i++){  %>
         <tr>
             <td ><%=mxs[i].data %></td>
