@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
-import io
 
-import datetime
 import xlwt
-import xlrd
-import json
 
-import codecs
 __author__ = 'sunshine'
 
 
-def write_data(data, name, header):
+def write_data(data, header):
     """
     导出excel
     :param data:
@@ -18,53 +13,21 @@ def write_data(data, name, header):
     :param header:
     :return:
     """
+    excel_name = 'TRD.xls'
     file = xlwt.Workbook(encoding="utf-8")
-    table = file.add_sheet(name, cell_overwrite_ok=True)
-    print("excel_name",name)
+    table = file.add_sheet(excel_name, cell_overwrite_ok=True)
     if data is None:
         return file
-    l = 0  # 表示行
+    # l表示行
+    l = 0
     n = len(header)
     data1 = data[1:]
-    data1.sort(key=lambda x: int(x.get('id')))
+    data1.sort(key = lambda x: int(x.get('id')))
     for i in range(n):
         table.write(l, i, data[0][header[i]])
     for line in data1:
         l += 1
         for i in range(n):
             table.write(l, i, line[header[i]])
-    excel_name = 'TRD.xls'
     file.save(excel_name)
     return excel_name
-
-def get_stream(data):
-    file = io.StringIO()
-    print("data",data)
-    data = json.dumps(data)
-    file.write(data)
-    res = file.getvalue()
-    file.close()
-    return  res
-
-def get_excel_stream(data, name, header):
-    excel = write_data(data, name, header)
-    excel_stream = io.BytesIO()
-    print("excel_stream",excel_stream)
-    excel.save(excel_stream)
-    res = excel_stream.getvalue()
-    excel_stream.close()
-    return res
-
-if __name__ == "__main__":
-    # main()
-    data = [
-        ['a', 'b', 'c', 'd', 'e'],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-    ]
-    name = ['a', 'b', 'c', 'd', 'e']
-    get_excel_stream(data, 'demo', name)
-    pass
