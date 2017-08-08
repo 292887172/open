@@ -30,6 +30,7 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
+
 @login_required
 def product_list(request):
     """
@@ -123,8 +124,7 @@ def product_add(request):
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", "")
         app_model = request.POST.get("product_model", "")
-        app_command=request.POST.get("product_command")
-        print("app_command",app_command)
+        app_command = request.POST.get("product_command")
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -137,7 +137,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
@@ -206,30 +206,29 @@ def product_main(request):
 
     def post():
         # 根据ID获取到数据库中的设备配置信息
-        app_id = request.GET.get("ID" , "")
+        app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id = app_id)
         opera_data = json.loads(app.device_conf)
 
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
-
             # 显示所有列表信息
             return JsonResponse({'rows': opera_data})
-        elif post_data ==' edit':
+        elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i].get("id","不存在id") == edit_id:
+                if opera_data[i].get("id", "不存在id") == edit_id:
                     return JsonResponse({'data': opera_data[i]})
         elif post_data == 'del':
             # 删除信息
-            del_id=request.POST.get("id")
+            del_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i].get("id","不存在id") == del_id:
+                if opera_data[i].get("id", "不存在id") == del_id:
                     opera_data.pop(i)
                     break
-            save_app(app,opera_data,"del")
+            save_app(app, opera_data, "del")
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
@@ -240,7 +239,7 @@ def product_main(request):
                     else:
                         opera_data[i]['state'] = '0'
                     break
-            save_app(app,opera_data,"state")
+            save_app(app, opera_data, "state")
         elif post_data == "export":
             res = date_deal(app_id)
             return res
@@ -248,11 +247,11 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
-            dt = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+            dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
             if indata["id"] != " ":
                 # 编辑参数信息
-                update_data={}
+                update_data = {}
                 for i in range(len(opera_data)):
                     if opera_data[i]['id'] == indata["id"]:
                         update_data = opera_data[i]
@@ -263,15 +262,15 @@ def product_main(request):
                 tt = "modify_success"
             else:
                 # 添加一条参数信息
-                max_id=0
+                max_id = 0
                 for i in opera_data:
                     v_id = int(i['id'])
                     if max_id < v_id:
-                        max_id=v_id
+                        max_id = v_id
                 indata['id'] = str(max_id+1)
                 opera_data.append(indata)
                 tt = "add_success"
-            save_app(app,opera_data,tt)
+            save_app(app, opera_data, tt)
         #  app操作
         res = dict(
             code=10000
@@ -286,7 +285,7 @@ def product_main(request):
         app_logo = request.POST.get("app_logo", "")
         app_push_url = request.POST.get("app_config_push_url", "")
         app_push_token = request.POST.get("app_config_push_token", "")
-        app_command=request.POST.get("app_command","")
+        app_command = request.POST.get("app_command", "")
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -306,7 +305,7 @@ def product_main(request):
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_info":
                 # 更新基本信息
-                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,app_command)
+                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
@@ -338,11 +337,5 @@ def product_main(request):
 @csrf_exempt
 def export(request):
     # 导出配置文件
-
     if request.method == 'POST':
-        action = request.POST.get("action", None)
-        if action is "export_excel":
-            id=request.GET.get("ID")
-            res = date_deal(id)
-        return res
-    return render(request, "product/main.html", locals())
+        pass
