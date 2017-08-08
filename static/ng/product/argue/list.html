@@ -36,10 +36,11 @@
             position: relative;
         }
         .ui-jqgrid-view>.ui-jqgrid-titlebar {
-            background: #343f6a
+            background: #37618F
         }
         input[type=checkbox].ace.ace-switch.ace-switch-4:checked+.lbl::before, input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
-            background-color: #343f6a;
+            background-color: #37618F;
+            border-color: #37618F;
         }
     </style>
 		<!-- inline scripts related to this page -->
@@ -91,7 +92,7 @@
 						},
 						{name:'operation', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-									return '<a style="color:#343f6a" href="#/edit?id='+rowObject.id+'" >编辑</a>| <a style="color:#343f6a" href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
+									return '<a style="color:#37618F" href="#/edit?id='+rowObject.id+'" >编辑</a>| <a style="color:#37618F" href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
 							}
 						}
 					],
