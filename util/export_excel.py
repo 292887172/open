@@ -73,6 +73,7 @@ def date_deal(id):
             i['mxsLength'] = data['mxsLength']
             i['command'] = app.app_command
             tem.append(i)
+        tem.sort(key=lambda x: int(x.get('id')))
         res = write_zip(tem)
         return res
     except Exception as e:
