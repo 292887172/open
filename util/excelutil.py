@@ -19,7 +19,7 @@ def set_style(name, height, bold=False):
     return style
 
 
-def write_data(data, header):
+def write_data(data, header,filename):
     """
     导出excel
     :param data:
@@ -27,7 +27,7 @@ def write_data(data, header):
     :param header:
     :return:
     """
-    excel_name = 'TRD.xls'
+    excel_name = filename+".xls"
     file = xlwt.Workbook(encoding="utf-8")
     table = file.add_sheet(excel_name, cell_overwrite_ok=True)
     if data is None:

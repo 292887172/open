@@ -38,7 +38,7 @@
         .ui-jqgrid-view>.ui-jqgrid-titlebar {
             background: #37618F
         }
-        input[type=checkbox].ace.ace-switch.ace-switch-4:checked+.lbl::before, input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
+        input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
             background-color: #37618F;
             border-color: #37618F;
         }
@@ -154,7 +154,7 @@
 			}
 			function export_parameter(){
                 var rows=$("#grid-table").getRowData();
-                bootbox.confirm("确定导出" + rows.length + "台设备的数据吗?", function (result) {
+                bootbox.confirm("确定导出基本参数的数据吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
                         form.action = '#/argue';
