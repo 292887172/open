@@ -22,7 +22,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				if($.trim($('#name').val())==''){
 					alert("请填写参数名称信息!!");
-					return;;
+					return;
 				}
 				var min=0;
 				var max=0;

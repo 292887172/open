@@ -93,11 +93,14 @@
 						{name:'operation', width:80,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									return '<a style="color:#37618F" href="#/edit?id='+rowObject.id+'" >编辑</a>| <a style="color:#37618F" href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
-							}
+						}
 						}
 					],
 					//height:600,
 					viewrecords : true,
+                    sortable:true,
+                    sortname: 'id',
+                    sortorder: 'asc',
 					//rowNum:10,
 					//rowList:[10,20,30],
 					//pager : "#grid-pager",
@@ -117,19 +120,24 @@
 	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
 	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
-
 	        		$(window).resize(function() {
 							  $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 				        $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
-							});
 
-	        }
+							});
+	        },
+            loadComplete:function (rows) {
+                row = rows.rows;
+                for ( var i=0;i<row.length ;i++){
+                    id = "canshu";
+                    id += row[i].id;
+                    temp=document.getElementById(id);
+                    $(temp).parents('td').removeAttr('title');
+                }
+            }
 				});
 			});
-
             function show_table(item) {
-
-                $(item).parent('td').removeAttr('title');
                 $(item).nextAll('div').show();
                 $(item).nextAll('div').children('table').show()
             }
