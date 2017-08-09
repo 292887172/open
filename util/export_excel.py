@@ -10,9 +10,9 @@ from model.center.app import App
 
 
 def write_excel(items, filename):
-    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性', 'mxsLength': '长度(bit)', 'command': '全指令'}
+    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性', 'mxsLength': '长度(bit)', 'command': '全指令','permission':'权限'}
     items.insert(0, headers)
-    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command']
+    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command','permission']
     excel_name = write_data(items, header, filename)
     return excel_name
 
@@ -85,7 +85,13 @@ def date_deal(id):
             i["Stream_ID"] = data["Stream_ID"]
             i["mxsLength"] = data["mxsLength"]
             i["command"] = app.app_command
-            e_data.append(i)
+            print(type(data['isControl']))
+            if data["isControl"] == 1:
+                i['permission']='777'
+            else:
+                i['permission']='766'
+            if data['state']==1:
+                e_data.append(i)
         e_data.sort(key=lambda x: int(x.get("id")))
         j_data['function'] = e_data
         res = write_zip(e_data, j_data, export_name)
