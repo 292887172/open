@@ -90,7 +90,6 @@ def product_list(request):
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
-
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -213,7 +212,7 @@ def product_main(request):
         post_data = request.POST.get("name")
         if post_data == 'list':
             # 显示所有列表信息
-            return JsonResponse({'rows': opera_data})
+            return JsonResponse({'rows': opera_data,'check_state':app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id")
