@@ -35,7 +35,7 @@ def write_zip(e_data, j_data, export_name):
         e_name = write_excel(e_data, export_name[1])
         # 本地文件写入zip，重命名，然后删除本地临时文件
         z_file = zipfile.ZipFile(z_name, 'w')
-        z_file.write(j_name, "TDR.json")
+        z_file.write(j_name, "TRD.json")
         z_file.write(e_name, "TRD.xls")
         os.remove(j_name)
         os.remove(e_name)

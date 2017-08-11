@@ -19,11 +19,11 @@ def set_style(name, height, bold=False):
     return style
 
 
-def write_data(data, header,filename):
+def write_data(data, header, filename):
     """
     导出excel
     :param data:
-    :param name:
+    :param filename:
     :param header:
     :return:
     """

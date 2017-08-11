@@ -3,7 +3,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponse,JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -38,6 +38,7 @@ def product_list(request):
     :param request:
     :return:
     """
+
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
@@ -107,6 +108,7 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
@@ -169,6 +171,7 @@ def product_main(request):
     :param request:
     :return:
     """
+
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
@@ -193,12 +196,12 @@ def product_main(request):
 
         template = "product/main.html"
         content = dict(
-            app = app,
-            api_list = api_list
+            app=app,
+            api_list=api_list
         )
         return render(request, template, locals())
 
-    def save_app(app,opera_data,data):
+    def save_app(app, opera_data, data):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
         app.save()
@@ -207,7 +210,7 @@ def product_main(request):
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
-        app = App.objects.get(app_id = app_id)
+        app = App.objects.get(app_id=app_id)
         opera_data = json.loads(app.device_conf)
 
         # 接收页面请求信息
@@ -267,11 +270,11 @@ def product_main(request):
                     v_id = int(i['id'])
                     if max_id < v_id:
                         max_id = v_id
-                indata['id'] = str(max_id+1)
+                indata['id'] = str(max_id + 1)
                 opera_data.append(indata)
                 tt = "add_success"
             save_app(app, opera_data, tt)
-        #  app操作
+        # app操作
         res = dict(
             code=10000
         )
@@ -305,7 +308,8 @@ def product_main(request):
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_info":
                 # 更新基本信息
-                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command)
+                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
+                                      app_command)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
