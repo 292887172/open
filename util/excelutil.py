@@ -28,6 +28,7 @@ def write_data(data, header, filename):
     excel_name = filename + ".xls"
     file = xlwt.Workbook(encoding = "utf-8")
     table = file.add_sheet(excel_name, cell_overwrite_ok=True)
+
     if data is None:
         return file
     table.write_merge(0, 3, 0, 0, '对接信息', set_style('Arial', 220, True))
@@ -62,11 +63,11 @@ def write_data(data, header, filename):
     n = len(header)
     for index, line in enumerate(data):
         for i in range(n):
+            table.col(index).width=256*20
             if index == 0:
                 table.write(l, i, line[header[i]], set_style('Arial', 220, True))
             else:
                 table.write(l, i, line[header[i]])
         l += 1
-
     file.save(excel_name)
     return excel_name
