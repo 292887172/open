@@ -13,9 +13,7 @@ def set_style(name, height, bold=False):
     font.bold = bold
     font.color_index = 4
     font.height = height
-
     style.font = font
-
     return style
 
 
@@ -27,8 +25,8 @@ def write_data(data, header, filename):
     :param header:
     :return:
     """
-    excel_name = filename+".xls"
-    file = xlwt.Workbook(encoding="utf-8")
+    excel_name = filename + ".xls"
+    file = xlwt.Workbook(encoding = "utf-8")
     table = file.add_sheet(excel_name, cell_overwrite_ok=True)
     if data is None:
         return file

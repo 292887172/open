@@ -3,11 +3,11 @@
 <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <div class="main-container">
-
-        <table id="grid-table" ></table>
+        <table id="grid-table"></table>
         <div id="grid-pager"></div>
         <div id="ie-form"></div>
     </div>
+
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -36,12 +36,19 @@
             position: relative;
         }
         .ui-jqgrid-view>.ui-jqgrid-titlebar {
-            background: #37618F
+            background: #37618F;
+            width: 972px;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
             background-color: #37618F;
             border-color: #37618F;
         }
+{#        删除原来的idstyle，添加为972#}
+
+       .ui-jqgrid .ui-jqgrid-hbox {
+            padding-right: 0px;
+        }
+
     </style>
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -51,15 +58,14 @@
 					postData:{"name": "list"},
 					datatype: "json",
 					mtype:"POST",
-
-					colNames:['id','mxs','Stream_ID', '长度', '参数名称','参数个数','是否可控', '是否启用','操作'],
+					colNames:['id','Stream_ID', '长度', '参数名称','参数个数','是否可控', '是否启用','操作'],
 					colModel:[
-						{name:'id' , width:80,align:'center'},
-                        {name:'mxs',hidden:true},
-						{name:'Stream_ID', width:100, title:"234"},
-                        {name:'mxsLength',width:80,align:'center'},
-						{name:'name', width:80,align:'center'},
-						{name:'mxsNum', width:80,align:'center',
+						{name:'id' , width:112,align:'center'},
+
+						{name:'Stream_ID', width:145},
+                        {name:'mxsLength',width:102,align:'center'},
+						{name:'name', width:129,align:'center'},
+						{name:'mxsNum', width:122,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="" || cellvalue=="0"){
 										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
@@ -70,7 +76,7 @@
 									}
 							}
 						},
-						{name:'isControl', width:80,align:'center',
+						{name:'isControl', width:110,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="1"){
 										return '是';
@@ -79,32 +85,29 @@
 									}
 							}
 						},
-						{name:'state', width:80,align:'center',
+						{name:'state', width:133,align:'center',
 							formatter:function(cellvalue, options, rowObject){
 									if(cellvalue=="1"){
 
-										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span class="lbl middle"></span>';
+										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
 
 									}else{
-										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span class="lbl middle"></span>';
+										return '<input id="" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
 									}
 							}
 						},
-						{name:'operation', width:80,align:'center',
+						{name:'operation', width:121,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-									return '<a style="color:#37618F" href="#/edit?id='+rowObject.id+'" >编辑</a>| <a style="color:#37618F" href="#/argue" onclick="del(\''+rowObject.id+'\')">删除</a>';
-							}
+                            return "<a id='edit-hide' style='color:#37618F'  href='#/edit?id="+rowObject.id+"' >编辑</a>| <a style='color:#37618F' href='#/argue' onclick='del(\""+rowObject.id+"\")'>删除</a>";
+						}
 						}
 					],
 					//height:600,
 					viewrecords : true,
-					//rowNum:10,
-					//rowList:[10,20,30],
-					//pager : "#grid-pager",
-					altRows: false,
+					altRows: true,
 					multiselect: false,
 	        multiboxonly: true,
-            caption: "<a onclick='add()' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i>添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出参数表</a>",
+            caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加参数</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()'  class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出参数表</a>",
 
             gridComplete:function(){
                     $('.ui-jqgrid-sortable').eq(0).attr("align","center");
@@ -116,20 +119,29 @@
 	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
 	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
-	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
 
+	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
 	        		$(window).resize(function() {
 							  $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 				        $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+
 							});
 
-	        }
+	        },
+            loadComplete:function (rows) {
+                row = rows.rows;
+                for ( var i=0;i<row.length ;i++){
+                    id = "canshu";
+                    id += row[i].id;
+                    temp=document.getElementById(id);
+                    $(temp).parents('td').removeAttr('title');
+                }
+                document.getElementById('grid-table').style.width='972px';
+                document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0].style.width='971px';
+            }
 				});
 			});
-
             function show_table(item) {
-
-                $(item).parent('td').removeAttr('title');
                 $(item).nextAll('div').show();
                 $(item).nextAll('div').children('table').show()
             }
@@ -144,8 +156,8 @@
                     type:"POST",
                     data:post_data,
                     async :false,
-                    success: function () {
-                            alert("修改成功");
+                    success: function (data) {
+                        alert("修改成功");
                         }
                 });
             }
@@ -191,3 +203,11 @@
                     });
 			}
 		</script>
+<style>
+    .grid-table{
+        width: 972px;
+    }
+    .ui-jqgrid-htable ui-common-table {
+            width: 972px;
+        }
+</style>

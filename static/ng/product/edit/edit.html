@@ -26,13 +26,14 @@
 		  	cursor:pointer;
 		  }
 		</style>
+
 		<div class="main-container ace-save-state" id="main-container">
 			<div class="main-content">
 				<div class="main-content-inner">
 
 					<div class="page-content" style="padding-top:15px">
 						<span class="help-button">?</span>
-						<a class="addButton">了解如何填写参数</a>
+						<a  class="addButton">了解如何填写参数</a>
 						<div style="float:right"><a class="addButton" href="#/argue">取消并返回</a></div>
 						<div class="page-header" style="padding-bottom: 6px;"></div>
 						<h1 class="headerH1">参数信息</h1>
@@ -44,14 +45,14 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> Stream_ID </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="Stream_ID由字母、数字或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="Stream_ID由字母、数字或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
 											<br><br><div id="checkID" style="color:red;display:none"></div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> 参数名称 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="Stream_ID的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="Stream_ID的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
 											<br><br><div id="checkName" style="color:red;display:none"></div>
 										</div>
 									</div>
@@ -59,7 +60,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpName" style="text-align:right"> 单位名称 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="corpName" placeholder="请输入参数的单位名称，如：摄氏度" class="col-xs-10 col-sm-5" />
+											<input ng-disabled='{[{ disabled }]}' type="text" id="corpName" placeholder="请输入参数的单位名称，如：摄氏度" class="col-xs-10 col-sm-5" />
 											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
 										</div>
 									</div>
@@ -67,14 +68,14 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpMark" style="text-align:right"> 单位符号 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="corpMark" placeholder="请输入参数的单位名称，如：℃" class="col-xs-10 col-sm-5"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="corpMark" placeholder="请输入参数的单位名称，如：℃" class="col-xs-10 col-sm-5"/>
 											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> 长度 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input type="text" id="mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5"/>
 											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
 										</div>
 									</div>
@@ -84,15 +85,15 @@
 										<div class="col-sm-9 col-xs-9">
 												<div class="radio">
 														<label>
-															<input name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="1" checked/>
+															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="1" checked/>
 															<span class="lbl bigger-120"> int</span>
 														</label>
 														<label>
-															<input name="paramType" type="radio" class="ace input-lg" onclick="selectFloat(this)" value="2"/>
+															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectFloat(this)" value="2"/>
 															<span class="lbl bigger-120"> float</span>
 														</label>
 														<label>
-															<input name="paramType" type="radio" class="ace input-lg" onclick="selectString(this)" value="3"/>
+															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectString(this)" value="3"/>
 															<span class="lbl bigger-120"> string</span>
 														</label>
 												</div>
@@ -104,10 +105,10 @@
 														</tr>
 														<tr style="border-top:1px solid #ccc">
 															<td width=80px>
-																<input id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
+																<input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
 															</td>
 															<td width=80px align="right">
-																<input id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
+																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
 															</td>
 														</tr>
 													</table>
@@ -121,10 +122,10 @@
 														</tr>
 														<tr style="border-top:1px solid #ccc">
 															<td width=80px>
-																<input id="minFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
+																<input ng-disabled='{[{ disabled }]}' id="minFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
 															</td>
 															<td width=80px align="right">
-																<input id="maxFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
+																<input ng-disabled='{[{ disabled }]}' id="maxFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
 															</td>
 														</tr>
 													</table>
@@ -138,11 +139,11 @@
 										<div class="col-sm-9 col-xs-9">
 												<div class="radio">
 														<label>
-															<input name="isControl" type="radio" class="ace input-lg" value="1" checked/>
+															<input ng-disabled='{[{ disabled }]}' name="isControl" type="radio" class="ace input-lg" value="1" checked/>
 															<span class="lbl bigger-120"> 可控</span>
 														</label>
 														<label>
-															<input name="isControl" type="radio" class="ace input-lg" value="0"/>
+															<input ng-disabled='{[{ disabled }]}' name="isControl" type="radio" class="ace input-lg" value="0"/>
 															<span class="lbl bigger-120"> 不可控</span>
 														</label>
 												</div>
@@ -152,7 +153,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right"> 启用状态 </label>
 										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
-												<input id="state" type="checkbox" class="ace ace-switch ace-switch-5" value="1" checked/><span class="lbl middle"></span>
+												<input ng-disabled='{[{ disabled }]}' id="state" type="checkbox" class="ace ace-switch ace-switch-5" value="1" checked/><span class="lbl middle"></span>
 										</div>
 									</div>
 
@@ -161,7 +162,7 @@
 						</div><!-- /.row -->
 
 						<div class="page-header"></div>
-						<h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与京东智能云通信的数据及说明，例：数据说明   传送数据关              0开              1" title="">?</span></h1>
+						<h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与53iq智能云通信的数据及说明，例：数据说明   传送数据关              0开              1" title="">?</span></h1>
 						<div class="space-6"></div>
 
 						<div class="row">
@@ -177,18 +178,18 @@
 									<div class="form-group" id="addGroup">
 										<div class="col-sm-2 col-xs-2"></div>
 										<div class="col-sm-10 col-xs-10">
-											<a href='#' onclick='add();return false' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数值</a>
+											<a  ng-hide='{[{ visible }]}' href='#' onclick='add();return false' class='addButton'><i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数值</a>
 										</div>
 									</div>
 									<div class="clearfix form-actions" style="margin-bottom:-15px">
 										<div class="col-sm-2 col-xs-2"></div>
 
 										<div class="col-sm-3 col-xs-6">
-											<button class="btn btn-info" type="button"  ng-click="Save(id)">
-												<i class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>&nbsp
+											<button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
+												<i  class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>&nbsp
 
-											<button class="btn" type="reset">
-												<i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+											<button ng-hide='{[{ visible }]}' class="btn" onclick="javascript:window.location.reload()" >
+												<i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
 										</div>
 									</div>
 
@@ -206,13 +207,13 @@
 		<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/assets/js/bootstrap.min.js"></script>
 
-
 		<script type="text/javascript">
 
 			var url=location.href;
 			var num=url.indexOf('?id');
 			var str=url.substring(num+1);
 			var id = str.split("=")[1];
+
 			jQuery(function($) {
 			    $('[data-rel=popover]').popover({container:'body'});
 				if(location.href.indexOf('?id')>=0){//编辑
@@ -272,14 +273,14 @@
 					group+='<div class="form-group">';
 					group+='	<div class="col-sm-2 col-xs-2"></div>';
 					group+='	<div class="col-sm-2 col-xs-3">';
-					group+='		<input type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
+					group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-1 col-xs-2">';
-					group+='		<input type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
+					group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
-					group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-					group+='		<label> &nbsp;&nbsp;可选 </label>';
+					group+='		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
+					group+='		<label ng-hide="{[{ visible }]}"> &nbsp;&nbsp;可选 </label>';
 					group+='	</div>';
 					group+='</div>';
 					$("#addGroup").before(group);
