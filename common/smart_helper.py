@@ -46,7 +46,7 @@ def check_user_password(user, password):
 
 def get_factory_info(user_id):
     """
-    从ebdb_smartsys的ebt_factory表中获取所有厂家名称和id
+    从ebdb_smartsys的ebt_factory表中获取某厂家名称和id
     :return:
     """
 
@@ -68,6 +68,28 @@ def get_factory_info(user_id):
     finally:
         conn.close()
     return ''
+
+
+def get_factory_list():
+    """
+    从ebdb_smartsys的ebt_factory表中获取所有厂家名称和id
+    :return:
+    """
+
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sql = 'SELECT ebf_factory_uid as brandId,ebf_factory_name as brandName FROM ebt_factory'
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        return result
+    except Exception as e:
+        print(e)
+        pass
+    finally:
+        conn.close()
+    return ''
+
 
 def check_factory_uuid(factory_name, factory_uuid):
     """
@@ -100,5 +122,5 @@ def check_factory_uuid(factory_name, factory_uuid):
 
 
 if __name__ == '__main__':
-    r = get_factory_info('666')
-    print(r['phone'])
+    r = get_factory_list()
+    print(r)

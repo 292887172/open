@@ -21,7 +21,7 @@ def write_data(data, header, filename):
     """
     导出excel
     :param data:
-    :param name:
+    :param filename:
     :param header:
     :return:
     """

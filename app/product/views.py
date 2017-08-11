@@ -3,7 +3,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponse,JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -18,6 +18,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
+from common.smart_helper import get_factory_list
 from model.center.app import App
 
 import time
@@ -106,14 +107,17 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
+        factory_list = get_factory_list()
         template = "product/add.html"
         content = dict(
-            developer=developer
+            developer=developer,
+            factory_list=factory_list
         )
         return render(request, template, content)
 
@@ -122,6 +126,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", "")
+        app_factory_id = request.POST.get("brand_id", "")
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command")
         if not developer_id:
@@ -136,7 +141,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, app_factory_id)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
@@ -192,8 +197,8 @@ def product_main(request):
 
         template = "product/main.html"
         content = dict(
-            app = app,
-            api_list = api_list
+            app=app,
+            api_list=api_list
         )
         return render(request, template, locals())
 
@@ -205,7 +210,7 @@ def product_main(request):
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
-        app = App.objects.get(app_id = app_id)
+        app = App.objects.get(app_id=app_id)
         opera_data = json.loads(app.device_conf)
         opera_data.sort(key = lambda x: int(x.get("id")))
         # 接收页面请求信息
