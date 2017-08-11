@@ -198,18 +198,17 @@ def product_main(request):
         )
         return render(request, template, locals())
 
-    def save_app(app,opera_data,data):
+    def save_app(app, opera_data):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
         app.save()
-        return JsonResponse({'data': data})
 
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id = app_id)
         opera_data = json.loads(app.device_conf)
-
+        opera_data.sort(key = lambda x: int(x.get("id")))
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
@@ -228,7 +227,8 @@ def product_main(request):
                 if opera_data[i].get("id", "不存在id") == del_id:
                     opera_data.pop(i)
                     break
-            save_app(app, opera_data, "del")
+            save_app(app, opera_data)
+            return HttpResponse(json.dumps('del', separators=(",", ":")))
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
@@ -239,7 +239,8 @@ def product_main(request):
                     else:
                         opera_data[i]['state'] = '0'
                     break
-            save_app(app, opera_data, "state")
+            save_app(app, opera_data)
+            return HttpResponse(json.dumps('state', separators=(",", ":")))
         elif post_data == "export":
             res = date_deal(app_id)
             return res
@@ -259,7 +260,7 @@ def product_main(request):
                         break
                 update_data.update(indata)
                 opera_data.append(update_data)
-                tt = "modify_success"
+                tt = 0
             else:
                 # 添加一条参数信息
                 max_id = 0
@@ -269,8 +270,10 @@ def product_main(request):
                         max_id = v_id
                 indata['id'] = str(max_id+1)
                 opera_data.append(indata)
-                tt = "add_success"
-            save_app(app, opera_data, tt)
+                tt = 1
+            save_app(app,opera_data)
+            return HttpResponse(json.dumps(tt, separators=(",", ":")))
+
         #  app操作
         res = dict(
             code=10000

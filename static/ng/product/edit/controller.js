@@ -137,19 +137,20 @@ angular.module('Product.edit', ['ngRoute'])
                 $.ajax({
                     method: "POST",
                     url: location.href,
-                    data: {"name": "save", "d": JSON.stringify(indata)}
-
-                }).success(function (data) {
-                    if (data['date']=='add_success'){
-                        alert("添加成功!");
+                    data: {"name": "save", "d": JSON.stringify(indata)},
+                    success:(function (data) {
+                    data = parseInt(data);
+                    if (data) {
+                    	alert("添加成功!");
                     }
                     else {
                         alert("修改成功!");
                     }
 					location.href='#/argue';
-                }).error(function (error) {
-                    alert("传输失败");
                 })
+
+                })
+
         };
 
         /**
