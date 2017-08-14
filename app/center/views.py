@@ -30,6 +30,8 @@ from util.sms.verify_code import verify_sms_code
 from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
 from common.account_helper import change_user_pwd
+from model.center.app import App
+from common.app_helper import create_app
 
 _convention = ConventionValue()
 
@@ -82,6 +84,11 @@ def home(request):
                 re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
+                # 注册成功后将账号15267183467下的三个产品复制给新用户
+                copy_app = App.objects.filter(developer="1_15267183467")
+                app_name = re
+                for app in copy_app:
+                    create_app(app_name, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf, app.app_factory_id)
                 if re:
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
@@ -120,6 +127,7 @@ def login(request):
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
             uri = request.session[SESSION_REDIRECT_URI]
+            uri="/product/list"
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             if not remember:

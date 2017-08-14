@@ -25,6 +25,10 @@
 		  	text-decoration:none;
 		  	cursor:pointer;
 		  }
+
+            .col-sm-1 {
+                width: 16.6%;
+            }
 		</style>
 
 		<div class="main-container ace-save-state" id="main-container">
@@ -75,8 +79,8 @@
                                     <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> 长度 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5"/>
-											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
+											<br><br><div id="checkLength" style="color:red;display:none"></div>
 										</div>
 									</div>
 
@@ -112,7 +116,7 @@
 															</td>
 														</tr>
 													</table>
-													<div id="checkInt" style="margin-bottom:-25px;margin-left:-10px;color:red;display:none"></div>
+													<div id="checkInt" style="margin-left:-10px;color:red;display:none"></div>
 												</div>
 												<div id="selectFloat" style="background-color:#fff;display:none;margin-left:72px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
 													<table border=0>
@@ -129,7 +133,7 @@
 															</td>
 														</tr>
 													</table>
-													<div id="checkFloat" style="margin-bottom:-25px;margin-left:-10px;color:red;display:none"></div>
+													<div id="checkFloat" style="margin-left:-10px;color:red;display:none"></div>
 												</div>
 										</div>
 									</div>
@@ -171,8 +175,8 @@
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
 										<label class="col-sm-2 col-xs-2 no-padding-right">  </label>
-										<label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-										<label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>
+										<label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
+                                        <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
 									</div>
 
 									<div class="form-group" id="addGroup">
@@ -273,10 +277,10 @@
 					group+='<div class="form-group">';
 					group+='	<div class="col-sm-2 col-xs-2"></div>';
 					group+='	<div class="col-sm-2 col-xs-3">';
-					group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
+                    group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
 					group+='	</div>';
-					group+='	<div class="col-sm-1 col-xs-2">';
-					group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
+					group+='	<div class="col-sm-2 col-xs-2">';
+                    group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 					group+='		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -355,6 +359,14 @@
 					$('#checkName').css("display","block");
 				}else{
 					$('#checkName').css("display","none");
+				}
+			}
+			function checkLength(){
+				if($.trim($('#mxsLength').val())==''){
+					$('#checkLength').html("长度不能为空!!");
+					$('#checkLength').css("display","block");
+				}else{
+					$('#checkLength').css("display","none");
 				}
 			}
 			function checkInt(){
