@@ -93,19 +93,14 @@ def date_deal(id):
 
             # 写入json的数据
             i = {}
-            i['value_des'] = []
-            for l in data["mxs"]:
-                k = {}
-                k[l['data']] = l['desc']
-                i['value_des'].append(k)
+            i['value_des'] = data['mxs']
             i["id"] = data["id"]
             i["no"] = i["id"]
             i["name"] = data["Stream_ID"]
             i["title"] = data["name"]
             i["length"] = data["mxsLength"]
-            i["command"] = app.app_command
             i["value"] = 0
-            i["values"] = json.dumps([data["min"], data["max"]])
+            i["values"] = [data["min"], data["max"]]
             if str(data["isControl"]) == '1':
                 i['permission'] = '777'
                 j['permission'] = "读写"

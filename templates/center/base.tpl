@@ -38,13 +38,15 @@ var _hmt = _hmt || [];
         </h1>
         <ul class="menu">
             <li><a href="{% url 'home' %}">首页</a></li>
-            <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+
             {% if user.is_developer %}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
-
+                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
             {% elif user.developer.developer_id %}
+                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
             {% else %}
+                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a rel="nofollow" href="" class="on">加入我们</a></li>
             {% endif %}
 

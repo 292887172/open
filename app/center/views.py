@@ -18,10 +18,12 @@ from conf.sessionconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
+from model.center.app import App
 from util.auth import get_auth_user
 from util.sms.SendTemplateSMS import sendTemplateSMS
 from model.center.account import Account
 from common.smart_helper import check_user_password, check_factory_uuid, get_factory_info
+from common.app_helper import create_app
 from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
@@ -82,6 +84,11 @@ def home(request):
                 re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
+                # 注册成功后将账号15267183467下的三个产品复制给新用户
+                copy_app = App.objects.filter(developer="1_15267183467")
+                app_name = re
+                for app in copy_app:
+                    create_app(app_name, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf)
                 if re:
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
@@ -120,6 +127,7 @@ def login(request):
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
             uri = request.session[SESSION_REDIRECT_URI]
+            uri="/product/list"
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             if not remember:
@@ -225,7 +233,6 @@ def register(request):
         expertise = request.POST.get('expertise', "")
         sproducts = request.POST.get('sproducts', "")
         intent = request.POST.get('intent', "")
-
         # 人数为空时，默认为None
         if team_persons == '':
             team_persons = None
@@ -272,6 +279,7 @@ def register(request):
 
     if request.method == "GET":
         # 注册方式，默认是手机，可选邮箱注册
+
         rg_method = request.REQUEST.get('rg', 'phone')
     elif request.method == "POST":
         return post()

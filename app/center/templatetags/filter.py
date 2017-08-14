@@ -86,9 +86,9 @@ def create_menu(context, cur=0, dev_id=None):
     else:
         if dev_id:
             menu = [{"url": "/", "title": "首页"},
-                    {"url": "/guide", "title": "开发指南"},
                     # {"url": "/wiki", "title": "文档"},
                     {"url": "/product/list/", "title": "产品管理"},
+                    {"url": "/guide", "title": "开发指南"},
                     {"url": "/center", "title": "帐号管理"}]
 
         else:
