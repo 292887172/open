@@ -331,3 +331,313 @@
 2017-08-01 09:25:15,512 [Thread-826:5872] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
 2017-08-01 11:06:41,207 [Thread-484:7504] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-08-01 15:40:04,720 [Thread-3:139913696655104] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 13:37:34,321 [Thread-3:19340] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 15:24:59,508 [Thread-3:7032] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 15:53:16,509 [Thread-17:15552] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 15:53:23,464 [Thread-19:5632] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 15:54:20,374 [Thread-59:11944] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 15:54:29,729 [Thread-67:17696] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-03 15:56:17,713 [Thread-1:17860] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 16:05:45,019 [Thread-57:18292] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 17:16:15,699 [Thread-1:1548] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 17:45:36,244 [Thread-53:10348] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 17:46:07,379 [Thread-83:17852] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 17:56:50,285 [Thread-94:7184] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-03 18:21:59,726 [Thread-188:18744] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 08:44:27,037 [Thread-38:11956] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 09:03:52,799 [Thread-119:13188] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 09:04:02,446 [Thread-128:10668] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 09:08:07,049 [Thread-154:16816] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 09:09:10,776 [Thread-175:14232] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 09:14:57,129 [Thread-218:7352] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 09:17:20,605 [Thread-254:11752] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 09:17:59,430 [Thread-284:10092] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 09:18:08,874 [Thread-294:12060] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 12:21:58,073 [Thread-106:8116] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 12:23:13,093 [Thread-107:15820] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 12:23:23,382 [Thread-108:7856] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 12:25:34,094 [Thread-34:1444] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 12:28:15,267 [Thread-34:5504] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:08:43,534 [Thread-67:15056] [root:60] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:10:47,247 [Thread-34:7080] [root:61] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:12:19,165 [Thread-34:7736] [root:63] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:14:04,621 [Thread-34:2792] [root:64] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:16:20,852 [Thread-36:1176] [root:64] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:18:14,952 [Thread-34:4828] [root:65] [ERROR]- 'str' object has no attribute 'read'
+2017-08-04 13:48:34,810 [Thread-21:13956] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 13:55:55,413 [Thread-64:3376] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 13:58:52,800 [Thread-107:16656] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:02:14,701 [Thread-118:16416] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:03:43,561 [Thread-128:14408] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:04:25,980 [Thread-138:7680] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:05:05,226 [Thread-148:9700] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:09:10,333 [Thread-226:9024] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 14:20:46,690 [Thread-269:16672] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-04 16:00:34,270 [Thread-51:19184] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 16:24:00,666 [Thread-59:16708] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-04 18:04:38,830 [Thread-3:2720] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 09:42:12,776 [Thread-23:18044] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 09:42:21,485 [Thread-28:7236] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 10:28:08,732 [Thread-132:12056] [root:149] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:28:08,733 [Thread-132:12056] [root:150] [ERROR]- 创建应用失败
+2017-08-05 10:28:39,451 [Thread-134:13168] [root:149] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:28:39,452 [Thread-134:13168] [root:150] [ERROR]- 创建应用失败
+2017-08-05 10:28:40,945 [Thread-135:15916] [root:149] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:28:40,946 [Thread-135:15916] [root:150] [ERROR]- 创建应用失败
+2017-08-05 10:29:04,547 [Thread-145:6832] [root:149] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:29:04,548 [Thread-145:6832] [root:150] [ERROR]- 创建应用失败
+2017-08-05 10:29:41,873 [Thread-146:2620] [root:149] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:29:41,874 [Thread-146:2620] [root:150] [ERROR]- 创建应用失败
+2017-08-05 10:31:59,131 [Thread-25:6628] [root:150] [ERROR]- create_app() takes 5 positional arguments but 6 were given
+2017-08-05 10:31:59,132 [Thread-25:6628] [root:151] [ERROR]- 创建应用失败
+2017-08-05 11:50:38,310 [Thread-3:11756] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 13:52:26,478 [Thread-65:4636] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 13:52:40,344 [Thread-91:12568] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 13:52:40,378 [Thread-92:17796] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 15:24:39,449 [Thread-3:9544] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 16:15:34,222 [Thread-32:11644] [root:33] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-05 16:22:04,920 [Thread-32:12604] [root:65] [ERROR]- the JSON object must be str, not 'list'
+2017-08-05 16:24:45,241 [Thread-32:16564] [root:33] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-05 16:37:17,983 [Thread-32:10360] [root:67] [ERROR]- 'int' object is not subscriptable
+2017-08-05 17:25:02,011 [Thread-3:17988] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-05 17:25:23,414 [Thread-45:17456] [root:50] [ERROR]- descriptor 'decode' requires a 'bytes' object but received a 'list'
+2017-08-05 17:28:19,676 [Thread-32:10872] [root:50] [ERROR]- list index out of range
+2017-08-05 17:30:24,086 [Thread-1:1436] [root:50] [ERROR]- list index out of range
+2017-08-05 17:30:35,734 [Thread-4:8604] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 17:30:49,685 [Thread-20:12412] [root:50] [ERROR]- list index out of range
+2017-08-05 17:32:19,472 [Thread-3:4988] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 17:32:35,017 [Thread-60:12972] [root:50] [ERROR]- list index out of range
+2017-08-05 17:33:29,319 [Thread-4:9392] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 17:33:52,326 [Thread-61:16344] [root:50] [ERROR]- list index out of range
+2017-08-05 17:43:27,498 [Thread-1:13752] [root:49] [ERROR]- '_io.BufferedWriter' object has no attribute 'save'
+2017-08-05 17:43:33,138 [Thread-4:10212] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-05 17:43:48,353 [Thread-61:14728] [root:49] [ERROR]- '_io.BufferedWriter' object has no attribute 'save'
+2017-08-05 17:46:01,203 [Thread-1:17080] [root:49] [ERROR]- '_io.BufferedWriter' object has no attribute 'save'
+2017-08-05 17:46:20,401 [Thread-51:11480] [root:49] [ERROR]- '_io.BufferedWriter' object has no attribute 'save'
+2017-08-05 17:50:39,098 [Thread-1:4364] [root:49] [ERROR]- write() takes 2 positional arguments but 3 were given
+2017-08-05 17:50:50,562 [Thread-33:2720] [root:49] [ERROR]- write() takes 2 positional arguments but 3 were given
+2017-08-05 17:52:33,376 [Thread-34:11928] [root:49] [ERROR]- write() takes 2 positional arguments but 3 were given
+2017-08-05 17:52:56,930 [Thread-33:8552] [root:49] [ERROR]- '_io.BufferedWriter' object is not callable
+2017-08-05 17:53:24,105 [Thread-34:1720] [root:49] [ERROR]- '_io.BufferedWriter' object is not callable
+2017-08-05 18:12:57,140 [Thread-32:6468] [root:49] [ERROR]- 'str' does not support the buffer interface
+2017-08-07 08:53:42,359 [Thread-1:11008] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 08:53:42,361 [Thread-3:12712] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 08:54:12,037 [Thread-8:14868] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 09:50:28,952 [Thread-12:12108] [root:37] [ERROR]- write() takes no keyword arguments
+2017-08-07 09:50:28,955 [Thread-12:12108] [root:77] [ERROR]- argument should be string, bytes or integer, not HttpResponse
+2017-08-07 09:53:42,964 [Thread-11:13496] [root:37] [ERROR]- write() takes no keyword arguments
+2017-08-07 09:57:52,088 [Thread-1:11292] [root:37] [ERROR]- write() takes no keyword arguments
+2017-08-07 09:58:28,690 [Thread-18:3556] [root:37] [ERROR]- write() takes no keyword arguments
+2017-08-07 10:57:05,327 [Thread-3:14584] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 11:09:00,547 [Thread-32:6116] [root:88] [ERROR]- stat: path too long for Windows
+2017-08-07 11:19:07,511 [Thread-32:2852] [root:86] [ERROR]- Attempt to read ZIP archive that was already closed
+2017-08-07 11:19:49,755 [Thread-33:2784] [root:86] [ERROR]- Attempt to read ZIP archive that was already closed
+2017-08-07 11:32:52,188 [Thread-32:2972] [root:86] [ERROR]- Attempt to read ZIP archive that was already closed
+2017-08-07 11:33:40,318 [Thread-33:5232] [root:86] [ERROR]- Attempt to read ZIP archive that was already closed
+2017-08-07 11:35:27,487 [Thread-1:6076] [root:86] [ERROR]- 'There is no item named 8192 in the archive'
+2017-08-07 11:35:38,339 [Thread-33:7308] [root:86] [ERROR]- 'There is no item named 8192 in the archive'
+2017-08-07 12:04:28,033 [Thread-1:12988] [root:81] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:04:50,028 [Thread-33:6956] [root:81] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:05:24,440 [Thread-34:9012] [root:81] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:05:56,009 [Thread-1:7832] [root:38] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:06:08,702 [Thread-33:8728] [root:38] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:09:48,917 [Thread-1:484] [root:39] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:10:25,834 [Thread-3:1816] [root:39] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:10:41,957 [Thread-34:15580] [root:39] [ERROR]- write() takes no keyword arguments
+2017-08-07 12:12:01,177 [Thread-5:15436] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 12:58:05,332 [Thread-3:12540] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 13:23:07,124 [Thread-32:10372] [root:62] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 13:36:50,190 [Thread-4:4764] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 13:40:17,386 [Thread-33:7012] [root:40] [ERROR]- string argument expected, got 'bytes'
+2017-08-07 13:42:24,423 [Thread-4:8220] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 13:59:36,119 [Thread-32:2236] [root:62] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 14:02:56,607 [Thread-62:5508] [root:40] [ERROR]- attribute 'encoding' of '_io._TextIOBase' objects is not writable
+2017-08-07 14:03:04,884 [Thread-63:3952] [root:40] [ERROR]- attribute 'encoding' of '_io._TextIOBase' objects is not writable
+2017-08-07 14:03:15,970 [Thread-94:15148] [root:40] [ERROR]- attribute 'encoding' of '_io._TextIOBase' objects is not writable
+2017-08-07 14:04:43,598 [Thread-1:18560] [root:39] [ERROR]- name 'file_name' is not defined
+2017-08-07 14:04:46,406 [Thread-3:11520] [root:39] [ERROR]- name 'file_name' is not defined
+2017-08-07 14:04:56,245 [Thread-34:14956] [root:39] [ERROR]- name 'file_name' is not defined
+2017-08-07 14:22:58,273 [Thread-3:9976] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 14:48:41,851 [Thread-32:11332] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 14:49:47,237 [Thread-1:6720] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 14:49:47,862 [Thread-3:8664] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:22:24,161 [Thread-3:6508] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 15:22:42,262 [Thread-45:10268] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:23:18,929 [Thread-46:14032] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:23:44,879 [Thread-35:14000] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:25:38,466 [Thread-4:13164] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 15:25:54,525 [Thread-61:6136] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:27:59,199 [Thread-35:2924] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 15:30:02,314 [Thread-36:13932] [root:26] [ERROR]- unorderable types: dict() < dict()
+2017-08-07 18:19:10,359 [Thread-61:15172] [root:44] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 18:23:11,417 [Thread-1:12828] [root:43] [ERROR]- [Errno 13] Permission denied: 'TRD.xls'
+2017-08-07 18:23:14,881 [Thread-3:15496] [root:43] [ERROR]- [Errno 13] Permission denied: 'TRD.xls'
+2017-08-07 18:23:21,674 [Thread-5:12608] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 18:27:48,012 [Thread-1:9732] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 18:32:30,771 [Thread-1:14500] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 18:32:52,601 [Thread-71:4612] [root:45] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 18:53:44,932 [Thread-3:4796] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 18:56:35,256 [Thread-1:15892] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 18:56:57,005 [Thread-59:18360] [root:54] [ERROR]- __init__() got an unexpected keyword argument 'mimetype'
+2017-08-07 19:16:56,537 [Thread-32:16668] [root:53] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:26:58,803 [Thread-32:8484] [root:55] [ERROR]- 'str' object has no attribute 'tobuf'
+2017-08-07 19:29:42,694 [Thread-32:3856] [root:55] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:32:45,900 [Thread-33:8336] [root:55] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:33:49,022 [Thread-32:12128] [root:87] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:37:16,802 [Thread-1:14812] [root:86] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:37:20,087 [Thread-3:3544] [root:86] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:37:22,265 [Thread-4:5804] [root:86] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:37:39,099 [Thread-35:14780] [root:86] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:39:08,529 [Thread-1:13108] [root:57] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:39:19,733 [Thread-33:19428] [root:57] [ERROR]- 'str' object has no attribute 'read'
+2017-08-07 19:41:44,345 [Thread-33:17932] [root:58] [ERROR]- read() missing 1 required positional argument: 'name'
+2017-08-07 19:48:31,880 [Thread-32:12352] [root:49] [ERROR]- 'gbk' codec can't decode byte 0x9e in position 11: illegal multibyte sequence
+2017-08-07 19:49:19,217 [Thread-4:9772] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-07 19:51:02,333 [Thread-63:12376] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 19:51:14,047 [Thread-71:8432] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-07 19:56:23,277 [Thread-32:6448] [root:51] [ERROR]- 'gbk' codec can't decode byte 0x9f in position 11: illegal multibyte sequence
+2017-08-07 19:57:06,069 [Thread-4:14268] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 09:53:37,282 [Thread-6:11792] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 09:53:45,710 [Thread-9:10020] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 09:53:55,472 [Thread-27:13808] [root:51] [ERROR]- ZipFile() requires mode "r", "w", or "a"
+2017-08-08 09:55:18,160 [Thread-14:16492] [root:51] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 22: illegal multibyte sequence
+2017-08-08 10:00:37,113 [Thread-1:8804] [root:52] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 22: illegal multibyte sequence
+2017-08-08 10:00:39,358 [Thread-3:14440] [root:52] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 22: illegal multibyte sequence
+2017-08-08 10:00:57,567 [Thread-10:964] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 10:01:06,472 [Thread-24:12564] [root:52] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 22: illegal multibyte sequence
+2017-08-08 10:01:55,692 [Thread-11:4708] [root:53] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 22: illegal multibyte sequence
+2017-08-08 10:06:30,167 [Thread-11:10776] [root:53] [ERROR]- 'gbk' codec can't decode byte 0x91 in position 18: illegal multibyte sequence
+2017-08-08 12:31:06,796 [Thread-98:18404] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 12:31:07,770 [Thread-105:4116] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 12:31:11,072 [Thread-109:15144] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 13:17:27,366 [Thread-32:19024] [root:50] [ERROR]- must be str, not list
+2017-08-08 15:21:11,602 [Thread-9:9208] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 15:21:18,072 [Thread-10:19040] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 16:44:16,481 [Thread-3:15608] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 16:44:35,858 [Thread-45:15928] [root:57] [ERROR]- [Errno 2] No such file or directory: '15267183467'
+2017-08-08 16:57:52,318 [Thread-1:6364] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 16:58:00,810 [Thread-4:5064] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 16:58:29,579 [Thread-61:14680] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 17:00:48,771 [Thread-4:7004] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 17:01:42,164 [Thread-73:1896] [root:54] [ERROR]- [Errno 2] No such file or directory: '智能油烟机TRD.zip'
+2017-08-08 17:03:12,919 [Thread-3:6632] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-08 17:05:37,378 [Thread-32:8104] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 17:10:06,542 [Thread-29:18076] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 17:15:50,870 [Thread-28:8780] [root:54] [ERROR]- [WinError 2] 系统找不到指定的文件。: 'TRD.json'
+2017-08-08 17:20:30,299 [Thread-28:5616] [root:55] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 17:24:01,751 [Thread-3:2720] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-08 17:24:48,964 [Thread-19:3104] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-08 17:25:48,103 [Thread-20:18992] [root:54] [ERROR]- "There is no item named '15267183467.json' in the archive"
+2017-08-09 08:37:46,530 [Thread-14:6712] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 08:37:55,406 [Thread-17:4864] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 10:16:52,048 [Thread-1473:6992] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 10:16:56,090 [Thread-1476:8960] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 10:17:21,777 [Thread-1504:16468] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:05:34,035 [Thread-1510:9304] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:06:16,766 [Thread-1520:10596] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:24:01,914 [Thread-1545:16404] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:24:06,756 [Thread-1548:9736] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:24:10,039 [Thread-1549:13996] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:24:40,569 [Thread-1597:16844] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:25:02,022 [Thread-1606:11724] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:25:17,205 [Thread-1610:8932] [root:411] [INFO]- Account matching query does not exist.
+2017-08-09 11:26:23,534 [Thread-1617:10976] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:26:40,547 [Thread-1620:18840] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:26:44,065 [Thread-1624:6828] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:27:58,228 [Thread-1627:5700] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:29:29,232 [Thread-1653:16116] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:29:42,675 [Thread-1662:5488] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:32:48,670 [Thread-1673:13000] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:32:50,499 [Thread-1674:14692] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:32:56,280 [Thread-1685:16368] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:33:02,090 [Thread-1690:6096] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:33:06,161 [Thread-1692:16468] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 11:38:41,768 [Thread-1794:14572] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 11:38:44,105 [Thread-1797:10136] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 13:11:52,731 [Thread-2138:4988] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 13:13:29,841 [Thread-2167:580] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 14:30:41,695 [Thread-2208:11392] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-09 14:30:46,961 [Thread-2218:11144] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 15:57:00,131 [Thread-2327:15912] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 16:48:25,059 [Thread-3497:8836] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 18:57:30,553 [Thread-3:4672] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-09 19:05:31,326 [Thread-44:2644] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 08:41:53,588 [Thread-8:12648] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 08:41:56,921 [Thread-11:17208] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 10:42:11,074 [Thread-1329:404] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 10:42:27,748 [Thread-1331:8196] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 10:43:56,298 [Thread-1333:15812] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:27:39,808 [Thread-1985:17484] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 11:28:10,632 [Thread-2023:6236] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:28:31,158 [Thread-2062:8616] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:28:46,911 [Thread-2082:13228] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:28:50,592 [Thread-2092:18396] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 11:29:41,637 [Thread-2132:2948] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 11:29:57,389 [Thread-2161:16120] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:30:23,266 [Thread-2190:12400] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 11:34:29,360 [Thread-2219:14720] [root:411] [INFO]- Account matching query does not exist.
+2017-08-10 12:05:34,311 [Thread-2225:21408] [root:411] [INFO]- Account matching query does not exist.
+2017-08-10 12:22:33,370 [Thread-2226:20716] [root:411] [INFO]- Account matching query does not exist.
+2017-08-10 12:59:08,802 [Thread-2263:12276] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 12:59:25,395 [Thread-2282:19184] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 13:00:06,866 [Thread-2292:20068] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 13:25:16,054 [Thread-178:16448] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 13:25:32,434 [Thread-208:19748] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 13:26:00,422 [Thread-257:14456] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 13:26:07,811 [Thread-267:20052] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 14:48:59,842 [Thread-227:14744] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 15:03:36,845 [Thread-509:8960] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 15:27:14,622 [Thread-773:21300] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 17:27:30,545 [Thread-3781:5104] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 18:49:06,626 [Thread-68:17180] [root:99] [ERROR]- 'remarks'
+2017-08-10 18:50:19,329 [Thread-1:16860] [root:53] [ERROR]- 'id'
+2017-08-10 19:00:34,201 [Thread-1:20960] [root:53] [ERROR]- 'id'
+2017-08-10 19:00:52,842 [Thread-3:8524] [root:53] [ERROR]- 'id'
+2017-08-10 19:10:22,910 [Thread-33:4860] [root:55] [ERROR]- local variable 'data' referenced before assignment
+2017-08-10 19:28:06,049 [Thread-3:12740] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-10 19:35:43,561 [Thread-36:19552] [root:58] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:39:36,917 [Thread-33:12356] [root:59] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:40:54,281 [Thread-34:7796] [root:59] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:41:26,806 [Thread-33:12944] [root:59] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:46:35,542 [Thread-33:6896] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:58:41,077 [Thread-1:13652] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:58:44,292 [Thread-3:10708] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:58:51,560 [Thread-4:15696] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:58:54,032 [Thread-5:3816] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 19:58:59,402 [Thread-7:21112] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-10 19:59:14,546 [Thread-64:21456] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:03:38,458 [Thread-65:6872] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:05:29,998 [Thread-33:20704] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:11:13,000 [Thread-34:14216] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:12:04,408 [Thread-35:17552] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:12:18,894 [Thread-1:21436] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-10 20:12:42,215 [Thread-3:14856] [root:60] [ERROR]- Unexpected data type <class 'dict'>
+2017-08-11 08:51:30,816 [Thread-5:6340] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 08:51:33,355 [Thread-8:9772] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 09:21:41,004 [Thread-11:3320] [root:126] [ERROR]- 'isControl'
+2017-08-11 09:22:50,421 [Thread-13:6880] [root:126] [ERROR]- 'isControl'
+2017-08-11 09:50:14,085 [Thread-11:10508] [root:58] [ERROR]- unexpected end of regular expression
+2017-08-11 10:27:06,755 [Thread-45:14272] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 10:56:26,959 [Thread-74:13092] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 10:56:31,714 [Thread-76:11508] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 12:58:43,532 [Thread-555:4372] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 12:58:44,423 [Thread-557:6292] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 12:58:48,456 [Thread-566:9032] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 13:04:39,966 [Thread-568:1908] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 13:18:14,740 [Thread-33:13836] [root:56] [ERROR]- col() missing 1 required positional argument: 'indx'
+2017-08-11 13:20:54,575 [Thread-33:11852] [root:56] [ERROR]- 'method' object has no attribute 'width'
+2017-08-11 13:32:21,767 [Thread-33:5224] [root:56] [ERROR]- col() takes 2 positional arguments but 4 were given
+2017-08-11 13:54:07,627 [Thread-77:13340] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 13:54:17,465 [Thread-106:5992] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 13:54:27,132 [Thread-116:6856] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 14:15:50,819 [Thread-389:14048] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 14:16:00,830 [Thread-418:2548] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 14:17:07,720 [Thread-529:2144] [root:184] [ERROR]- 'NoneType' object does not support item deletion
+2017-08-11 14:17:55,868 [Thread-535:10496] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2017-08-11 14:18:20,991 [Thread-539:12368] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2017-08-11 14:19:11,159 [Thread-570:3544] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 14:19:34,222 [Thread-588:5792] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 14:46:09,237 [Thread-37:14796] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 15:12:39,080 [Thread-79:1020] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-08-11 16:29:35,013 [Thread-552:13844] [root:140] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-08-11 16:29:38,063 [Thread-562:4404] [root:52] [INFO]- 'SESSION_LOGIN_THIRD'
