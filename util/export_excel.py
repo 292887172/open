@@ -23,8 +23,6 @@ def write_json(items, filename):
     file = open(filename, 'w')
     data = json.dumps(items).encode('utf-8')
     data = data.decode('unicode-escape')
-    data = re.sub(r'",', '",\n\t', data)
-    data = re.sub(r'],', '],\n\t', data)
     file.write(data)
     file.close()
     return file.name

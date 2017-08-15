@@ -44,7 +44,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                 app_app_id = gen_app_app_id()
                 app_app_secret = gen_app_app_secret()
                 if app_category_detail and not device_conf:
-                        device_conf = json.dumps(gen_app_default_conf(app_category_detail))
+                        device_conf = ""
                 app = App(developer=developer,
                           app_name=app_name,
                           app_appid=app_app_id,
