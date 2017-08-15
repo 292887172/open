@@ -67,7 +67,9 @@ class App(models.Model):
     # 应用更新时间
     app_update_date = models.DateTimeField(auto_now=True, db_column='ebf_app_update_date')
     # 全指令
-    app_command = models.CharField(max_length=64, null=True, db_column='ebf_app_command')
+    app_command = models.CharField(max_length=8, null=True, db_column='ebf_app_command')
+    # 厂家/品牌uid
+    app_factory_uid = models.CharField(max_length=64, null=True, db_column='ebf_app_factory_uid')
 
     class Meta:
         app_label = 'center'

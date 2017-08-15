@@ -3,7 +3,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponse,JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -18,6 +18,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
+from common.smart_helper import get_factory_list
 from model.center.app import App
 
 import time
@@ -106,14 +107,17 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
+        factory_list = get_factory_list()
         template = "product/add.html"
         content = dict(
-            developer=developer
+            developer=developer,
+            factory_list=factory_list
         )
         return render(request, template, content)
 
@@ -122,6 +126,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", "")
+        app_factory_id = request.POST.get("brand_id", "")
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command")
         device_conf = ''
@@ -137,7 +142,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:

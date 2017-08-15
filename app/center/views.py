@@ -18,12 +18,10 @@ from conf.sessionconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
-from model.center.app import App
 from util.auth import get_auth_user
 from util.sms.SendTemplateSMS import sendTemplateSMS
 from model.center.account import Account
 from common.smart_helper import check_user_password, check_factory_uuid, get_factory_info
-from common.app_helper import create_app
 from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
@@ -32,6 +30,8 @@ from util.sms.verify_code import verify_sms_code
 from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
 from common.account_helper import change_user_pwd
+from model.center.app import App
+from common.app_helper import create_app
 
 _convention = ConventionValue()
 
@@ -88,7 +88,7 @@ def home(request):
                 copy_app = App.objects.filter(developer="1_15267183467")
                 app_name = re
                 for app in copy_app:
-                    create_app(app_name, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf)
+                    create_app(app_name, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf, app.app_factory_id)
                 if re:
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
@@ -233,6 +233,7 @@ def register(request):
         expertise = request.POST.get('expertise', "")
         sproducts = request.POST.get('sproducts', "")
         intent = request.POST.get('intent', "")
+
         # 人数为空时，默认为None
         if team_persons == '':
             team_persons = None
@@ -279,7 +280,6 @@ def register(request):
 
     if request.method == "GET":
         # 注册方式，默认是手机，可选邮箱注册
-
         rg_method = request.REQUEST.get('rg', 'phone')
     elif request.method == "POST":
         return post()

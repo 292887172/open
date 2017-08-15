@@ -33,6 +33,23 @@
             color: #ffffff;
             background: transparent;
         }
+    .vague {
+        width: 360px;
+        max-height: 280px;
+        overflow: auto;
+        position: absolute;
+        top: 263px;
+        border: #ddd 1px solid;
+        z-index: 999;
+        background: #fff;
+    }
+    .vague li {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: #999;
+        cursor: pointer;
+    }
     </style>
 {% endblock %}
 
@@ -62,6 +79,16 @@
                                     <input type="text" name="product_name" id="productNameText" maxlength="18"
                                            class="w280 form-control" placeholder="请填写产品名称">
                                     <span class="tips-error hiden" id="productNameTips"></span>
+                                </dd>
+                            </dl>
+                            <dl class="fmInfo">
+                                <dt>品牌</dt>
+                                <dd>
+                                    <input type="hidden" name="brand_id" id="brandId">
+                                    <input type="text" name="brand_name" id="brandNameText" maxlength="18"
+                                           class="w280 form-control" placeholder="暂无品牌" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
+                                    <span class="tips-error hiden" id="brandNameTips"></span>
+                                    <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
                                 </dd>
                             </dl>
                             <dl class="fmInfo">
@@ -109,7 +136,7 @@
                                     <div class="plan_box plan_box_choose">
                                         <p class="nav_nav lev01">云</p>
 
-                                        <p class="s01 lev02">WiFi/Android等</p>
+                                        <p class="s01 lev02">WiFi/Android屏等</p>
 
                                         <p class="nav_nav lev03">设备</p>
 
@@ -151,30 +178,63 @@
 
 {% block end_script %}
     <script>
-        $(document).ready(function () {
-            $('#go').on('click', function (e) {
+    var brandListData = {{ factory_list|safe }};
+    function showBrandList(ulID, qVal) {
+        $("#" + ulID).show();
+        $("#" + ulID).html("");
+        if(qVal){
+            for(var i=0; i< brandListData.length; i++)
+            {
+                var brandName = brandListData[i].brandName;
+                if(brandName.indexOf(qVal) == -1)
+                {
+                    continue;
+                }
+                $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='"+brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+            }
+        }
+        else
+        {
+            for(var i=0; i<brandListData.length; i++)
+            {
+                $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+            }
+        }
+    }
+    function clickQueryDiv(liObj) {
+        var $liObj = $(liObj);
+        var $textObj = $liObj.parent().parent().children(":first");
+        $textObj.val($liObj.html());
+        $textObj.attr("title", $liObj.html());
+        $("#brandId").val($liObj.attr("id"));
 
-                if ($("#productNameText").val() != "") {
-                    $("form[name=productAddForm]").submit();
-                    console.log("submit");
-                } else {
-                    alert("产品名称不能为空");
-                }
-            });
-            $("#product_category").on('change',function () {
-                var value = $("#product_category option:selected").val();
-                if (value == '无'){
-                    html = '<option value="无">请选择分类</option>'
-                }
-                else if(value =='厨房类'){
-                    html = '<option value="1">烟机灶具</option><option value="2">蒸烤箱</option><option value="3">冰箱</option>' +
-                        '<option value="4">净水器</option>'
-                }
-                else if(value =='卫浴类'){
-                    html = '<option value="5">马桶</option><option value="6">热水器</option>'
-                }
-                $("#product_category_detail").html(html)
-            })
-        })
+        $liObj.parent().hide();
+    }
+    $(document).ready(function () {
+        $('#go').on('click', function (e) {
+
+            if ($("#productNameText").val() != "") {
+                $("form[name=productAddForm]").submit();
+                console.log("submit");
+            } else {
+                alert("产品名称不能为空");
+            }
+        });
+        $("#product_category").on('change',function () {
+            var value = $("#product_category option:selected").val();
+            if (value == '无'){
+                html = '<option value="无">请选择分类</option>'
+            }
+            else if(value =='厨房类'){
+                html = '<option value="1">烟机灶具</option><option value="2">蒸烤箱</option><option value="3">冰箱</option>' +
+                    '<option value="4">净水器</option>'
+            }
+            else if(value =='卫浴类'){
+                html = '<option value="5">马桶</option><option value="6">热水器</option>'
+            }
+            $("#product_category_detail").html(html)
+        });
+
+    })
     </script>
 {% endblock %}
