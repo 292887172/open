@@ -84,12 +84,11 @@ def home(request):
                 re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
-                # 注册成功后将账号15267183467下的三个产品复制给新用户
-                copy_app = App.objects.filter(developer="1_15267183467")
-                app_name = re
-                for app in copy_app:
-                    create_app(app_name, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf, app.app_factory_id)
                 if re:
+                    # 注册成功后将账号15267183467下的三个产品复制给新用户
+                    copy_app = App.objects.filter(developer="1_15267183467")
+                    for app in copy_app:
+                        create_app(re, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf, app.app_factory_uid)
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
                     return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))
