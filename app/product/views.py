@@ -198,8 +198,8 @@ def product_main(request):
 
         template = "product/main.html"
         content = dict(
-            app=app,
-            api_list=api_list
+            app = app,
+            api_list = api_list
         )
         return render(request, template, locals())
 
@@ -211,7 +211,7 @@ def product_main(request):
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
-        app = App.objects.get(app_id=app_id)
+        app = App.objects.get(app_id = app_id)
         opera_data = json.loads(app.device_conf)
         opera_data.sort(key = lambda x: int(x.get("id")))
         # 接收页面请求信息
