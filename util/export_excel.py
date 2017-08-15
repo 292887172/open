@@ -61,7 +61,7 @@ def date_deal(id):
     :return:
     """
     try:
-        app = App.objects.get(app_id = id)
+        app = App.objects.get(app_id=id)
         export_name = []
         temp = app.developer_id
         temp = temp.split('_')[1]
@@ -97,6 +97,7 @@ def date_deal(id):
             i["name"] = data["Stream_ID"]
             i["title"] = data["name"]
             i["length"] = data["mxsLength"]
+            i['unit'] = data['corpMark']
             i["value"] = 0
             i["values"] = [data["min"], data["max"]]
             if str(data["isControl"]) == '1':
