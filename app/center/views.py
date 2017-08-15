@@ -126,7 +126,7 @@ def login(request):
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
             uri = request.session[SESSION_REDIRECT_URI]
-            uri="/product/list"
+            uri = "/product/list"
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             if not remember:

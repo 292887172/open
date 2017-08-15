@@ -142,7 +142,8 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id)
+            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+                                  device_conf, app_factory_id)
             if app_name:
                 return HttpResponseRedirect(reverse("product/list"))
             else:
@@ -191,6 +192,7 @@ def product_main(request):
             return HttpResponseRedirect(reverse("center"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
+
         app = user_apps
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
@@ -198,8 +200,8 @@ def product_main(request):
 
         template = "product/main.html"
         content = dict(
-            app = app,
-            api_list = api_list
+            app=app,
+            api_list=api_list
         )
         return render(request, template, locals())
 
@@ -211,14 +213,14 @@ def product_main(request):
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
-        app = App.objects.get(app_id = app_id)
+        app = App.objects.get(app_id=app_id)
         opera_data = json.loads(app.device_conf)
         opera_data.sort(key = lambda x: int(x.get("id")))
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
             # 显示所有列表信息
-            return JsonResponse({'rows': opera_data,'check_state':app.check_status})
+            return JsonResponse({'rows': opera_data, 'check_state':app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id")
@@ -237,12 +239,12 @@ def product_main(request):
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
-            for i in range(len(opera_data)):
-                if opera_data[i]['id'] == state_id:
-                    if opera_data[i]['state'] == '0':
-                        opera_data[i]['state'] = '1'
-                    else:
-                        opera_data[i]['state'] = '0'
+            for i in opera_data:
+                if i['id'] == state_id:
+                    if str(i['state']) == '0':
+                        i['state'] = '1'
+                    elif str(i['state']) == '1':
+                        i['state'] = '0'
                     break
             save_app(app, opera_data)
             return HttpResponse(json.dumps('state', separators=(",", ":")))
@@ -255,28 +257,20 @@ def product_main(request):
             indata = json.loads(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
-            if indata["id"] != " ":
+            if indata["id"]:
                 # 编辑参数信息
-                update_data = {}
-                for i in range(len(opera_data)):
-                    if opera_data[i]['id'] == indata["id"]:
-                        update_data = opera_data[i]
-                        opera_data.pop(i)
+                for i in opera_data:
+                    indata['id'] = int(indata['id'])
+                    if int(i['id']) == indata['id']:
+                        i.update(indata)
                         break
-                update_data.update(indata)
-                opera_data.append(update_data)
                 tt = 0
             else:
-                # 添加一条参数信息
-                max_id = 0
-                for i in opera_data:
-                    v_id = int(i['id'])
-                    if max_id < v_id:
-                        max_id = v_id
-                indata['id'] = str(max_id+1)
+                # 添加一条参数信息首先获取当前最大id
+                indata['id'] = int(opera_data[-1]['id'])+1
                 opera_data.append(indata)
                 tt = 1
-            save_app(app,opera_data)
+            save_app(app, opera_data)
             return HttpResponse(json.dumps(tt, separators=(",", ":")))
 
         #  app操作
@@ -313,7 +307,8 @@ def product_main(request):
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_info":
                 # 更新基本信息
-                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command)
+                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
+                                      app_command)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":

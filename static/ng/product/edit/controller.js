@@ -24,6 +24,10 @@ angular.module('Product.edit', ['ngRoute'])
 					alert("请填写参数名称信息!!");
 					return;
 				}
+				if($.trim($('#mxsLength').val())==''){
+					alert("请填写参数长度!!");
+					return;
+				}
 				var min=0;
 				var max=0;
 				var mxsNum=0;
