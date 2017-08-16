@@ -86,7 +86,7 @@
                                 <dd>
                                     <input type="hidden" name="brand_id" id="brandId">
                                     <input type="text" name="brand_name" id="brandNameText" maxlength="18"
-                                           class="w280 form-control" placeholder="暂无品牌" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
+                                           class="w280 form-control" placeholder="品牌名称" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
                                     <span class="tips-error hiden" id="brandNameTips"></span>
                                     <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
                                 </dd>
@@ -120,10 +120,12 @@
                             <dl class="fmInfo">
                                 <dt>指令类型</dt>
                                 <dd>
-                                    <select name="product_command" id="product_command" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
+                                    <select name="product_command" onclick="showHide()" id="product_command" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
                                         <option value="是" selected="selected">全指令</option>
                                         <option value="否">单指令</option>
                                     </select>
+                                    <label id="mylabel1"  style="display: none;left: 20px;position: relative;">&nbsp;&nbsp;支持单个原子功能独立控制</label>
+                                    <label id="mylabel2"  style="left: 20px;position: relative;"> &nbsp;&nbsp;每个数据帧都要传输所有原子功能状态</label>
                                 </dd>
                             </dl>
                             <h4 class="infoTit02 mt30">
@@ -210,12 +212,25 @@
 
         $liObj.parent().hide();
     }
+    function showHide() {
+            var a=$("#product_command").val();
+            console.log(a);
+            if (a=='是'){
+                $("#mylabel1").hide();
+                $("#mylabel2").show();
+            }
+            else {
+                $("#mylabel2").hide();
+                $("#mylabel1").show();
+            }
+    }
     $(document).ready(function () {
         $('#go').on('click', function (e) {
-
             if ($("#productNameText").val() != "") {
+                console.log("--------------------");
                 $("form[name=productAddForm]").submit();
                 console.log("submit");
+
             } else {
                 alert("产品名称不能为空");
             }

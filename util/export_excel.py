@@ -12,7 +12,7 @@ from model.center.app import App
 
 def write_excel(items, filename):
     headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性', 'mxsLength': '长度(bit)', 'command': '全指令','permission':'权限'}
-    items.insert(0, headers)
+    items['function'].insert(0, headers)
     header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command','permission']
     excel_name = write_data(items, header, filename)
     return excel_name
@@ -68,12 +68,19 @@ def date_deal(id):
         export_name.append(app.app_name)
         export_name.append(temp)
 
-        temp = []
-        e_data = []
+        temp1_data = []
+        temp2_data = []
+        e_data = {}
         j_data = {}
+        key = app.app_appid
+        len_key = len(key) - 8
+        e_data['secret'] = app.app_appsecret
+        e_data['key'] = key[len_key:]
+        e_data['model'] = app.app_model
         j_data['name'] = app.app_name
         j_data['model'] = app.app_model
-        j_data['key'] = "0053iq11"
+        j_data['key'] = key[len_key:]
+        j_data['secret'] = app.app_appsecret
         config_data = json.loads(app.device_conf)
         for data in config_data:
             # 写入Excel的数据
@@ -107,9 +114,10 @@ def date_deal(id):
                 i['permission'] = '477'
                 j['permission'] = "读"
             if str(data['state']) == '1':
-                temp.append(i)
-                e_data.append(j)
-        j_data['function'] = temp
+                temp1_data.append(i)
+                temp2_data.append(j)
+        e_data['function'] = temp2_data
+        j_data['function'] = temp1_data
         res = write_zip(e_data, j_data, export_name)
         return res
     except Exception as e:
