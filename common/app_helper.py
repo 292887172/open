@@ -62,7 +62,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                 del e
         # 同步到 RESTFul API
         create_sandbox_api_app(app_app_id, app_app_secret)
-        return app_name
+        return app.app_id
     except Exception as e:
         logging.getLogger("").error(e)
         return ""

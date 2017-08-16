@@ -47,14 +47,14 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<form method="post" class="form-horizontal" role="form">
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> Stream_ID </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> *Stream_ID </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="Stream_ID由字母、数字或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
 											<br><br><div id="checkID" style="color:red;display:none"></div>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> 参数名称 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> *参数名称 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="Stream_ID的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
 											<br><br><div id="checkName" style="color:red;display:none"></div>
@@ -65,7 +65,7 @@
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpName" style="text-align:right"> 单位名称 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="corpName" placeholder="请输入参数的单位名称，如：摄氏度" class="col-xs-10 col-sm-5" />
-											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
+
 										</div>
 									</div>
 
@@ -73,11 +73,10 @@
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpMark" style="text-align:right"> 单位符号 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="corpMark" placeholder="请输入参数的单位名称，如：℃" class="col-xs-10 col-sm-5"/>
-											<label style="margin-top:6px"> &nbsp;&nbsp;可选 </label>
 										</div>
 									</div>
                                     <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> 长度 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> *长度 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="请输入参数位数，如：8" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
 											<br><br><div id="checkLength" style="color:red;display:none"></div>
@@ -85,7 +84,7 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"> 参数类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型，如选择int/float型，还需填写参数的最大/最小值。" title="">?</span> </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"> *参数类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型，如选择int/float型，还需填写参数的最大/最小值。" title="">?</span> </label>
 										<div class="col-sm-9 col-xs-9">
 												<div class="radio">
 														<label>
@@ -284,7 +283,6 @@
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 					group+='		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-					group+='		<label ng-hide="{[{ visible }]}"> &nbsp;&nbsp;可选 </label>';
 					group+='	</div>';
 					group+='</div>';
 					$("#addGroup").before(group);
@@ -334,7 +332,6 @@
 				group+='	</div>';
 				group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 				group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-				group+='		<label> &nbsp;&nbsp;可选 </label>';
 				group+='	</div>';
 				group+='</div>';
 				$("#addGroup").before(group);

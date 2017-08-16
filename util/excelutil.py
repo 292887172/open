@@ -46,24 +46,24 @@ def write_data(data, header, filename):
     table.write(4, 1, '品牌')
     table.write(4, 2, '纳帕集成灶')
     table.write(5, 1, '型号')
-    table.write(5, 2, 'NP-01')
+    table.write(5, 2, data['model'])
     table.write_merge(6, 9, 0, 0, '授权信息', set_style('Arial', 220, True))
     table.write_merge(6, 7, 1, 1, '沙箱环境')
     table.write_merge(8, 9, 1, 1, '生产环境')
     table.write(6, 2, 'key')
-    table.write(6, 3, 'qwertyui111')
+    table.write(6, 3, data['key'])
     table.write(7, 2, 'secret')
-    table.write(7, 3, 'qwasd')
+    table.write(7, 3, data['secret'])
     table.write(8, 2, 'key')
-    table.write(8, 3, 'qwertyui111')
+    table.write(8, 3, data['key'])
     table.write(9, 2, 'secret')
-    table.write(9, 3, 'qwasd')
+    table.write(9, 3, data['secret'])
     # l表示行
     l = 10
     n = len(header)
-    for index, line in enumerate(data):
+    for index, line in enumerate(data['function']):
         for i in range(n):
-            table.col(index).width=256*20
+            table.col(index).width=256*30
             if index == 0:
                 table.write(l, i, line[header[i]], set_style('Arial', 220, True))
             else:
