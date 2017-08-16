@@ -148,10 +148,11 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_name = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                   device_conf, app_factory_id)
-            if app_name:
-                return HttpResponseRedirect(reverse("product/list"))
+            if app_id:
+                url = '/product/main/?ID=' + str(app_id) + '#/info'
+                return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
                 ret["msg"] = "invalid app_id"
@@ -220,8 +221,12 @@ def product_main(request):
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id=app_id)
-        opera_data = json.loads(app.device_conf)
-        opera_data.sort(key = lambda x: int(x.get("id")))
+        opera_data = []
+        try :
+            opera_data = json.loads(app.device_conf)
+            opera_data.sort(key = lambda x: int(x.get("id")))
+        except Exception as e:
+            print(e)
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
@@ -231,7 +236,7 @@ def product_main(request):
             # 返回编辑页面信息
             edit_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if opera_data[i].get("id", "不存在id") == edit_id:
+                if str(opera_data[i]['id']) == edit_id:
                     return JsonResponse({'data': opera_data[i]})
         elif post_data == 'del':
             # 删除信息
