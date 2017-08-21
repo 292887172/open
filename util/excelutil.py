@@ -26,7 +26,7 @@ def write_data(data, header, filename):
     :return:
     """
     excel_name = filename + ".xls"
-    file = xlwt.Workbook(encoding = "utf-8")
+    file = xlwt.Workbook(encoding="utf-8")
     table = file.add_sheet(excel_name, cell_overwrite_ok=True)
 
     if data is None:
@@ -63,7 +63,7 @@ def write_data(data, header, filename):
     n = len(header)
     for index, line in enumerate(data['function']):
         for i in range(n):
-            table.col(index).width=256*30
+            table.col(index).width = 256*30
             if index == 0:
                 table.write(l, i, line[header[i]], set_style('Arial', 220, True))
             else:

@@ -46,6 +46,11 @@
             width: 300px;
 
         }
+    .highlight{
+        color: #FFF;
+        background: #808080;
+        border: 1px solid #808080;
+    }
 
     </style>
 {% endblock %}
@@ -53,7 +58,7 @@
     <li><a href="{% url 'home' %}">首页</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
-
+    <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}
 
 {% block content %}
@@ -65,6 +70,8 @@
                     <img src="{% if app.app_logo %}{{ app.app_logo }}{% endif %}"
                          onerror="this.src='{% static "image/global/default.png" %}'">
                     <h2>{{ app.app_name }}</h2>
+                <span class="highlight"> UUID {{ key }}</span>
+                <span class="highlight" title="{{ app.app_appsecret }}"> SecretKey</span>
             <span>
             智能家居
             </span>
@@ -157,9 +164,9 @@
                     </div>
                     <div class="menuBox">
                         <ul>
-                            <li id="productTest" class="jsNavItem" data-id="productTest" ng-click="nav.selected('productTest')">
-                                <a href="https://oven.53iq.com/static/html/control.html?d=ABCDEFABCDEF" target="_blank">
-                                    <i class="fa fa-inbox"></i>产品调试
+                            <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
+                                <a href="#/device">
+                                    <i class="fa fa-inbox"></i>设备管理
                                 </a>
                             </li>
                         </ul>
@@ -217,6 +224,7 @@
     <script src="{% static "ng/product/dev/controller.js" %}"></script>
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
     <script src="{% static "ng/product/edit/controller.js" %}"></script>
+    <script src="{% static "ng/product/device/controller.js" %}"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
 
@@ -241,8 +249,8 @@
                     $scope.app_logo = "{% if app.app_logo %}{{ app.app_logo|safe|linebreaksbr }}{% endif %}" || "/static/image/global/default.png";
                     $scope.app_config_push_url = "{% if app.app_push_url %}{{ app.app_push_url|safe|linebreaksbr }}{% endif %}";
                     $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
-                    $scope.app_command="{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
-
+                    $scope.app_command = "{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_device_type ="{% if device_type %}{{ device_type|safe|linebreaksbr }}{% endif %}";
                     // 应用类目
                     $scope.secondProType = [
                         {
@@ -256,10 +264,6 @@
                         {
                             "name": "卫浴类",
                             "value": "卫浴类"
-                        },
-                        {
-                            "name": "环境类",
-                            "value": "环境类"
                         }
                     ];
                     // 发布表单
@@ -287,7 +291,8 @@
                         "app_describe": $scope.app_describe,
                         "app_site": $scope.app_site,
                         "app_logo": $scope.app_logo,
-                        "app_command":$scope.app_command
+                        "app_command":$scope.app_command,
+                        "app_device_type":$scope.app_device_type
                     };
                     // 配置信息表单
                     $scope.configFormData = {
@@ -301,7 +306,51 @@
                         "csrfmiddlewaretoken": $scope.csrf_token,
                         "app_id": $scope.app_id
                     };
-                    // 接口权限表数据
+                    // <a href="https://oven.53iq.com/static/html/control.html?d=ABCDEFABCDEF" target="_blank">
+                    // 设备管理表数据
+                $scope.deviceListTable=[
+                        '<style>',
+                        'a, a:visited {',
+                        'color: #459ae9;',
+                        'text-decoration: none;',
+                        '}',
+                        'a:hover {',
+                        'color: #459ae9;',
+                        'text-decoration: underline;',
+                        '}',
+                        '</style>',
+                        '<style>',
+                        'a, a:visited {',
+                        'color: #459ae9;',
+                        'text-decoration: none;',
+                        '}',
+                        'a:hover {',
+                        'color: #459ae9;',
+                        'text-decoration: underline;',
+                        '}',
+                        '</style>',
+                        '<table class="table table-striped m-b-none">',
+                        '<thead>',
+                        '<tr>',
+                        '<th>id</th>',
+                        '<th>mac</th>',
+                        '<th>时间</th>',
+                        '<th>调试</th>',
+                        '</tr>',
+                        '</thead>',
+                        '<tbody>',
+                        {% for dev in device_list %}
+                            '<tr>',
+                            '<td>{{dev.ebf_device_id }}</td>',
+                            '<td>{% if dev.ebf_device_mac %}{{ dev.ebf_device_mac }}{% endif %}</td>',
+                            '<td>{% if dev.ebf_device_oc_date %}{{ dev.ebf_device_oc_date }}{% endif %}</td>',
+                            '<td>{% if dev.ebf_device_mac %}<a href="https://oven.53iq.com/static/html/control.html?d={{ dev.ebf_device_mac }}" target="_blank" >调试</a>{% endif %}</td>',
+                            '</tr>',
+                        {% endfor %}
+                        '</tbody>',
+                        '</table>'
+                    ].join("");
+
                     $scope.apiListTable = [
                         '<style>',
                         'a, a:visited {',
