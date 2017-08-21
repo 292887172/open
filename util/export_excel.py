@@ -1,9 +1,7 @@
 import os
-import re
 import json
 import logging
 import zipfile
-
 from django.http import HttpResponse
 
 from util.excelutil import write_data
@@ -11,9 +9,10 @@ from model.center.app import App
 
 
 def write_excel(items, filename):
-    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性', 'mxsLength': '长度(bit)', 'command': '全指令','permission':'权限'}
+    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
+               'mxsLength': '长度(bit)', 'command': '全指令', 'permission': '权限'}
     items['function'].insert(0, headers)
-    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command','permission']
+    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command', 'permission']
     excel_name = write_data(items, header, filename)
     return excel_name
 
@@ -55,19 +54,18 @@ def write_zip(e_data, j_data, export_name):
         print(e)
 
 
-def date_deal(id):
+def date_deal(app_id):
     """
      数据处理，分别写入json和excel的数据
     :return:
     """
     try:
-        app = App.objects.get(app_id=id)
+        app = App.objects.get(app_id=app_id)
         export_name = []
         temp = app.developer_id
         temp = temp.split('_')[1]
         export_name.append(app.app_name)
         export_name.append(temp)
-
         temp1_data = []
         temp2_data = []
         e_data = {}
