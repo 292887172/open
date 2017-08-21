@@ -18,7 +18,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
-from common.smart_helper import get_factory_list
+from common.smart_helper import get_factory_list,get_device_type,get_device_list
 from model.center.app import App
 
 import time
@@ -149,7 +149,7 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                  device_conf, app_factory_id)
+                                device_conf, app_factory_id)
             if app_id:
                 url = '/product/main/?ID=' + str(app_id) + '#/info'
                 return HttpResponseRedirect(url)
@@ -201,14 +201,21 @@ def product_main(request):
             return HttpResponseRedirect(reverse("product/list"))
 
         app = user_apps
+        device_type = get_device_type(app.app_device_type)
+        device_list = get_device_list(app.app_appid)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
-
+        app_key = app.app_appid
+        len_key = len(app_key) - 8
+        key = app_key[len_key:]
         template = "product/main.html"
         content = dict(
             app=app,
-            api_list=api_list
+            api_list=api_list,
+            key=key,
+            device_type=device_type,
+            device_list=device_list
         )
         return render(request, template, locals())
 
@@ -222,16 +229,17 @@ def product_main(request):
         app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id=app_id)
         opera_data = []
-        try :
+        try:
             opera_data = json.loads(app.device_conf)
-            opera_data.sort(key = lambda x: int(x.get("id")))
+            opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
+            logging.info("读取数据库中设备配置信息失败", e)
             print(e)
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
             # 显示所有列表信息
-            return JsonResponse({'rows': opera_data, 'check_state':app.check_status})
+            return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id")

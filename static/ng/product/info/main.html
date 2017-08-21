@@ -1,3 +1,14 @@
+<style>
+    .label-command{
+        display: none;
+        left: 20px;
+        position: relative;
+        color: #999;
+        top: 36px;
+        left: -107px;
+        height: 33px;
+    }
+</style>
 <div class="box2 relative">
     <div class="hl-help">
         <span class="linkBlue">基本信息</span>
@@ -27,9 +38,13 @@
                     <dt>分类</dt>
                     <dd>
                         智能家居 /
-                        <select name="select" id="secondProType" ng-disabled="{[{ disabled }]}" class="sel1" ng-model="infoFormData.app_category"
+                        <select name="secondProType" id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
                                 ng-options="t.value as t.name for t in secondProType">
                         </select>
+                        <select name="secondDevType" id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2">
+                            <option value="">{[{app_device_type}]}</option>
+                        </select>
+
                     </dd>
                 </dl>
                 <dl class="fmInfo">
@@ -41,10 +56,13 @@
                 <dl class="fmInfo">
                     <dt>指令类型</dt>
                     <dd>
-                        <select name="select" id="selectCommand" ng-disabled="{[{ disabled }]}"  class="sel2" ng-model="infoFormData.app_command" style="width:90px;">
+                        <select name="select" id="selectCommand" ng-disabled="{[{ disabled }]}" ng-click="showHide()" class="sel2" ng-model="infoFormData.app_command" style="width:90px;">
                             <option value="是" selected="selected">全指令</option>
                             <option value="否" >单指令</option>
                         </select>
+
+                        <label id="mylabel1"  class="label-command" >&nbsp;支持单个原子功能独立控制</label>
+                        <label id="mylabel2"  class="label-command" > &nbsp每个数据帧都要传输所有原子功能状态</label>
                     </dd>
                 </dl>
             </div>
@@ -92,5 +110,33 @@
         </div>
     </div>
 </div>
+<script>
+    if (a=$("#selectCommand").val()=='是'){
+            $("#mylabel2").show();
+        }
+        else {
+            $("#mylabel1").show();
+        }
 
+    $("#secondProType").on('change',function () {
+        var value = $("#secondProType option:selected").val();
+        var type_name = value.split('string:')[1];
+        var html = '';
+        if (type_name == '无'){
+            html = '<option value="无">请选择分类</option>';
+        }
+        else if(type_name =='厨房类'){
+            html = '<option value="1">油烟机</option><option value="2">集成灶</option>' +
+                '<option value="4">洗衣机</option>';
+        }
+        else if(type_name =='卫浴类'){
+
+            html = '<option value="6">冰箱</option><option value="7">自动售货机</option>';
+        }
+        else if(type_name == '家电类'){
+            html = '<option value="3">医疗冰柜</option><option value="5">电视机</option>';
+        }
+        $("#secondDevType").html(html);
+    });
+</script>
 <script src="/static/js/common/ajaxfileupload.min.js"></script>

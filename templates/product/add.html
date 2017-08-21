@@ -50,6 +50,13 @@
         color: #999;
         cursor: pointer;
     }
+    .label-command{
+        left: 20px;
+        position: relative;
+        color: #999;
+        top: 26px;
+        left: -99px;
+    }
     </style>
 {% endblock %}
 
@@ -112,7 +119,6 @@
                                     </select>
                                     <select name="product_category_detail" id="product_category_detail" class="sel2">
                                         <option value="无">请选择分类</option>
-
                                     </select>
                                     <span class="tips-error hiden" id="productTypeTips"></span>
                                 </dd>
@@ -124,8 +130,8 @@
                                         <option value="是" selected="selected">全指令</option>
                                         <option value="否">单指令</option>
                                     </select>
-                                    <label id="mylabel1"  style="display: none;left: 20px;position: relative;">&nbsp;&nbsp;支持单个原子功能独立控制</label>
-                                    <label id="mylabel2"  style="left: 20px;position: relative;"> &nbsp;&nbsp;每个数据帧都要传输所有原子功能状态</label>
+                                    <label id="mylabel1" class="label-command" style="display: none;" >支持单个原子功能独立控制</label>
+                                    <label id="mylabel2" class="label-command">每个数据帧都要传输所有原子功能状态</label>
                                 </dd>
                             </dl>
                             <h4 class="infoTit02 mt30">
@@ -227,7 +233,6 @@
     $(document).ready(function () {
         $('#go').on('click', function (e) {
             if ($("#productNameText").val() != "") {
-                console.log("--------------------");
                 $("form[name=productAddForm]").submit();
                 console.log("submit");
 

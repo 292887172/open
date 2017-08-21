@@ -10,6 +10,8 @@ angular.module('Product', [
     // 产品服务
     // 生产测试
     // 开发者
+    // 设备管理
+    "Product.device",
     "Product.dev",
     "Product.argue",
     "Product.edit"

@@ -40,6 +40,18 @@ angular.module('Product.info', ['ngRoute'])
          * 提交基本信息表单
          * @constructor
          */
+        $scope.showHide=function () {
+            var a=$("#selectCommand").val();
+            console.log(a);
+            if (a=='是'){
+                $("#mylabel1").hide();
+                $("#mylabel2").show();
+            }
+            else {
+                $("#mylabel2").hide();
+                $("#mylabel1").show();
+            }
+        };
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
             if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")){
