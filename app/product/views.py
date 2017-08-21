@@ -125,7 +125,13 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
-        app_category_detail = request.POST.get("product_category_detail", "")
+        app_category_detail = request.POST.get("product_category_detail", 0)
+        if app_category_detail:
+            try:
+                app_category_detail = int(app_category_detail)
+            except ValueError:
+                app_category_detail = 0
+                pass
         app_factory_id = request.POST.get("brand_id", "")
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command")

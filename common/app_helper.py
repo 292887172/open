@@ -52,6 +52,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_model=app_model,
                           app_command=app_command,
                           app_category=app_category,
+                          app_device_type=app_category_detail,
                           device_conf=device_conf,
                           app_config_path='',
                           package_name='',
