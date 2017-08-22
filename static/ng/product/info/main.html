@@ -122,15 +122,11 @@
         var type_name = value.split('string:')[1];
         var html = '';
         if(type_name =='厨房类'){
-            html = '<option value="1">油烟机</option><option value="2">集成灶</option>' +
-                '<option value="3">医疗冰柜</option>';
+            html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
+                '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
         }
         else if(type_name =='卫浴类'){
-
-            html = '<option value="4">洗衣机</option><option value="5">电视机</option>';
-        }
-        else if(type_name == '家电类'){
-            html = '<option value="6">冰箱</option><option value="7">自动售货机</option>';
+            html = '<option value="12">马桶</option><option value="19">热水器</option>'
         }
         $("#secondDevType").html(html);
     });
