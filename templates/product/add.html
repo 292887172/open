@@ -57,6 +57,7 @@
         top: 26px;
         left: -99px;
     }
+
     </style>
 {% endblock %}
 
@@ -123,15 +124,26 @@
                                     <span class="tips-error hiden" id="productTypeTips"></span>
                                 </dd>
                             </dl>
+
                             <dl class="fmInfo">
+                                <dt>产品类型</dt>
+                                <dd>
+                                    <select name="product_group" onclick="HideCommand()" id="product_group" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
+                                        <option value="1" >普通App</option>
+                                        <option value="2" selected="selected">普通电控</option>
+                                    </select>
+                                </dd>
+                            </dl>
+
+                            <dl class="fmInfo" id="command-type">
                                 <dt>指令类型</dt>
                                 <dd>
                                     <select name="product_command" onclick="showHide()" id="product_command" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
                                         <option value="是" selected="selected">全指令</option>
                                         <option value="否">单指令</option>
                                     </select>
-                                    <label id="mylabel1" class="label-command" style="display: none;" >支持单个原子功能独立控制</label>
-                                    <label id="mylabel2" class="label-command">每个数据帧都要传输所有原子功能状态</label>
+                                    <label id="my-label-1" class="label-command" style="display: none;" >支持单个原子功能独立控制</label>
+                                    <label id="my-label-2" class="label-command">每个数据帧都要传输所有原子功能状态</label>
                                 </dd>
                             </dl>
                             <h4 class="infoTit02 mt30">
@@ -220,15 +232,23 @@
     }
     function showHide() {
             var a=$("#product_command").val();
-            console.log(a);
             if (a=='是'){
-                $("#mylabel1").hide();
-                $("#mylabel2").show();
+                $("#my-label-1").hide();
+                $("#my-label-2").show();
             }
             else {
-                $("#mylabel2").hide();
-                $("#mylabel1").show();
+                $("#my-label-2").hide();
+                $("#my-label-1").show();
             }
+    }
+    function HideCommand() {
+        var a=$("#product_group").val();
+        if (a=='1'){
+            $('#command-type').css("display","none");
+        }
+        else {
+            $('#command-type').css("display","block");
+        }
     }
     $(document).ready(function () {
         $('#go').on('click', function (e) {

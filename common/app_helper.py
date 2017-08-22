@@ -23,7 +23,7 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id, app_group):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -33,6 +33,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     :param app_category_detail: 详细分类
     :param app_command: app是否全指令
     :param app_factory_id: app品牌id
+    :param app_group: 产品类型
     :return:
     """
     try:
@@ -57,6 +58,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_config_path='',
                           package_name='',
                           app_factory_uid=app_factory_id,
+                          app_group=app_group
                           )
                 app.save()
                 break
@@ -230,7 +232,7 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type):
+def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type, app_group):
     """
     更新应用基础信息
     :param app_id:
@@ -242,6 +244,7 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
     :param app_logo:
     :param app_command:
     :param app_device_type:
+    :param app_group：
     :return:
     """
     try:
@@ -253,7 +256,8 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             app_model=app_model,
             app_command=app_command,
             app_update_date=datetime.datetime.utcnow(),
-            app_device_type=app_device_type
+            app_device_type=app_device_type,
+            app_group=app_group
         )
         if app_logo:
             params["app_logo"] = app_logo

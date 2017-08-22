@@ -36,24 +36,63 @@ angular.module('Product.info', ['ngRoute'])
             else return false;
         };
 
+        // 一开始获取产品的设备类型，如果是普通app就不显示出指令类型选择
+        if ($scope.infoFormData.app_group=='1'){
+            $('#command-type').css("display","none");
+        }
+        else {
+            $('#command-type').css("display","block");
+        }
+
+        // 类似的将根据指令类型显示出提示
+        if ($("#selectCommand").val()=='是'){
+            $("#my-label-2").show();
+        }
+        else {
+            $("#my-label-1").show();
+        }
+
+        //指令提示功能根据选择不同，将不同提示显示
+        $scope.showHide=function () {
+            var a=$("#selectCommand").val();
+            if (a=='是'){
+                $("#my-label-1").hide();
+                $("#my-label-2").show();
+            }
+            else {
+                $("#my-label-2").hide();
+                $("#my-label-1").show();
+            }
+        };
+        $scope.HideCommand=function () {
+            var a=$("#product_type option:selected").val();
+             a= a.split('string:')[1];
+            if (a=='1'){
+                $('#command-type').css("display","none");
+            }
+            else {
+                $('#command-type').css("display","block");
+            }
+        };
+        $scope.change=function () {
+            var value = $("#secondProType option:selected").val();
+            var type_name = value.split('string:')[1];
+            var html = '';
+            if(type_name =='厨房类'){
+                html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
+                    '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
+            }
+            else if(type_name =='卫浴类'){
+                html = '<option value="12">马桶</option><option value="19">热水器</option>'
+            }
+            $("#secondDevType").html(html);
+        };
         /**
          * 提交基本信息表单
          * @constructor
          */
-        $scope.showHide=function () {
-            var a=$("#selectCommand").val();
-            if (a=='是'){
-                $("#mylabel1").hide();
-                $("#mylabel2").show();
-            }
-            else {
-                $("#mylabel2").hide();
-                $("#mylabel1").show();
-            }
-        };
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
-            $scope.infoFormData.app_device_value=$("#secondDevType option:selected").val();
             if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")){
                 $.ajaxFileUpload({
                     url: "http://dldir.56iq.net/api/upload/?type=callback&t="+new Date().getTime(),

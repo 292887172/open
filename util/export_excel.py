@@ -54,6 +54,60 @@ def write_zip(e_data, j_data, export_name):
         print(e)
 
 
+def deal_json(app):
+    temp1_data = []
+    temp2_data = []
+    e_data = {}
+    j_data = {}
+    key = app.app_appid
+    len_key = len(key) - 8
+    e_data['secret'] = app.app_appsecret
+    e_data['key'] = key[len_key:]
+    e_data['model'] = app.app_model
+    j_data['name'] = app.app_name
+    j_data['model'] = app.app_model
+    j_data['key'] = key[len_key:]
+    j_data['secret'] = app.app_appsecret
+    config_data = json.loads(app.device_conf)
+    for data in config_data:
+        # 写入Excel的数据
+        j = {}
+        j["remarks"] = ""
+        for l in range(len(data["mxs"])):
+            j["remarks"] += data["mxs"][l]["data"]
+            j["remarks"] += data["mxs"][l]["desc"]
+        j['id'] = data['id']
+        j["name"] = data["name"]
+        j["Stream_ID"] = data["Stream_ID"]
+        j["mxsLength"] = data["mxsLength"]
+        j["command"] = app.app_command
+        j["values"] = json.dumps([data["min"], data["max"]])
+
+        # 写入json的数据
+        i = {}
+        i['value_des'] = data['mxs']
+        i["id"] = data["id"]
+        i["no"] = i["id"]
+        i["name"] = data["Stream_ID"]
+        i["title"] = data["name"]
+        i["length"] = data["mxsLength"]
+        i['unit'] = data['corpMark']
+        i["value"] = 0
+        i["values"] = [data["min"], data["max"]]
+        if str(data["isControl"]) == '1':
+            i['permission'] = '777'
+            j['permission'] = "读写"
+        else:
+            i['permission'] = '477'
+            j['permission'] = "读"
+        if str(data['state']) == '1':
+            temp1_data.append(i)
+            temp2_data.append(j)
+    e_data['function'] = temp2_data
+    j_data['function'] = temp1_data
+    return {'e_data':e_data,'j_data':j_data}
+
+
 def date_deal(app_id):
     """
      数据处理，分别写入json和excel的数据
@@ -66,57 +120,8 @@ def date_deal(app_id):
         temp = temp.split('_')[1]
         export_name.append(app.app_name)
         export_name.append(temp)
-        temp1_data = []
-        temp2_data = []
-        e_data = {}
-        j_data = {}
-        key = app.app_appid
-        len_key = len(key) - 8
-        e_data['secret'] = app.app_appsecret
-        e_data['key'] = key[len_key:]
-        e_data['model'] = app.app_model
-        j_data['name'] = app.app_name
-        j_data['model'] = app.app_model
-        j_data['key'] = key[len_key:]
-        j_data['secret'] = app.app_appsecret
-        config_data = json.loads(app.device_conf)
-        for data in config_data:
-            # 写入Excel的数据
-            j = {}
-            j["remarks"] = ""
-            for l in range(len(data["mxs"])):
-                j["remarks"] += data["mxs"][l]["data"]
-                j["remarks"] += data["mxs"][l]["desc"]
-            j['id'] = data['id']
-            j["name"] = data["name"]
-            j["Stream_ID"] = data["Stream_ID"]
-            j["mxsLength"] = data["mxsLength"]
-            j["command"] = app.app_command
-            j["values"] = json.dumps([data["min"], data["max"]])
-
-            # 写入json的数据
-            i = {}
-            i['value_des'] = data['mxs']
-            i["id"] = data["id"]
-            i["no"] = i["id"]
-            i["name"] = data["Stream_ID"]
-            i["title"] = data["name"]
-            i["length"] = data["mxsLength"]
-            i['unit'] = data['corpMark']
-            i["value"] = 0
-            i["values"] = [data["min"], data["max"]]
-            if str(data["isControl"]) == '1':
-                i['permission'] = '777'
-                j['permission'] = "读写"
-            else:
-                i['permission'] = '477'
-                j['permission'] = "读"
-            if str(data['state']) == '1':
-                temp1_data.append(i)
-                temp2_data.append(j)
-        e_data['function'] = temp2_data
-        j_data['function'] = temp1_data
-        res = write_zip(e_data, j_data, export_name)
+        re = deal_json(app)
+        res = write_zip(re['e_data'], re['j_data'], export_name)
         return res
     except Exception as e:
         logging.error(e)
