@@ -41,10 +41,9 @@
                         <select name="secondProType" id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
                                 ng-options="t.value as t.name for t in secondProType">
                         </select>
-                        <select name="secondDevType" id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2">
-                            <option value="">{[{app_device_type}]}</option>
+                        <select name="secondDevType" id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2" ng-model="infoFormData.app_device_value" style="width: 86px;">
+                            <option value="{[{app_device_value}]}">{[{app_device_name}]}</option>
                         </select>
-
                     </dd>
                 </dl>
                 <dl class="fmInfo">
@@ -122,19 +121,16 @@
         var value = $("#secondProType option:selected").val();
         var type_name = value.split('string:')[1];
         var html = '';
-        if (type_name == '无'){
-            html = '<option value="无">请选择分类</option>';
-        }
-        else if(type_name =='厨房类'){
+        if(type_name =='厨房类'){
             html = '<option value="1">油烟机</option><option value="2">集成灶</option>' +
-                '<option value="4">洗衣机</option>';
+                '<option value="3">医疗冰柜</option>';
         }
         else if(type_name =='卫浴类'){
 
-            html = '<option value="6">冰箱</option><option value="7">自动售货机</option>';
+            html = '<option value="4">洗衣机</option><option value="5">电视机</option>';
         }
         else if(type_name == '家电类'){
-            html = '<option value="3">医疗冰柜</option><option value="5">电视机</option>';
+            html = '<option value="6">冰箱</option><option value="7">自动售货机</option>';
         }
         $("#secondDevType").html(html);
     });
