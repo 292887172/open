@@ -18,6 +18,7 @@ from conf.sessionconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
+from conf.newuserconf import *
 from util.auth import get_auth_user
 from util.sms.SendTemplateSMS import sendTemplateSMS
 from model.center.account import Account
@@ -86,9 +87,10 @@ def home(request):
                                       factory_uuid, user, user_from)
                 if re:
                     # 注册成功后将账号15267183467下的三个产品复制给新用户
-                    copy_app = App.objects.filter(developer="1_15267183467")
-                    for app in copy_app:
-                        create_app(re, app.app_name, app.app_model, app.app_category, 1, app.app_command, app.device_conf, app.app_factory_uid)
+                    for i in range(len(APP_NAME)):
+                        result = create_app(re, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], 1, APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], DEVICE_TYPE[i])
+                        result.app_logo = APP_LOGO[i]
+                        result.save()
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
                     return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))

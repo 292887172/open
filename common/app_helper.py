@@ -23,7 +23,7 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id, app_device_type):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -55,14 +55,15 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           device_conf=device_conf,
                           app_config_path='',
                           package_name='',
-                          app_factory_uid=app_factory_id)
+                          app_factory_uid=app_factory_id,
+                          app_device_type=app_device_type)
                 app.save()
                 break
             except Exception as e:
                 del e
         # 同步到 RESTFul API
         create_sandbox_api_app(app_app_id, app_app_secret)
-        return app.app_id
+        return app
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
@@ -228,7 +229,7 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,app_command):
+def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type):
     """
     更新应用基础信息
     :param app_id:
@@ -239,6 +240,7 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
     :param app_site:
     :param app_logo:
     :param app_command:
+    :param app_device_type:
     :return:
     """
     try:
@@ -249,7 +251,8 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             app_category=app_category,
             app_model=app_model,
             app_command=app_command,
-            app_update_date=datetime.datetime.utcnow()
+            app_update_date=datetime.datetime.utcnow(),
+            app_device_type=app_device_type
         )
         if app_logo:
             params["app_logo"] = app_logo

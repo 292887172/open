@@ -42,7 +42,6 @@ angular.module('Product.info', ['ngRoute'])
          */
         $scope.showHide=function () {
             var a=$("#selectCommand").val();
-            console.log(a);
             if (a=='是'){
                 $("#mylabel1").hide();
                 $("#mylabel2").show();
@@ -54,6 +53,7 @@ angular.module('Product.info', ['ngRoute'])
         };
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
+            $scope.infoFormData.app_device_value=$("#secondDevType option:selected").val();
             if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")){
                 $.ajaxFileUpload({
                     url: "http://dldir.56iq.net/api/upload/?type=callback&t="+new Date().getTime(),
