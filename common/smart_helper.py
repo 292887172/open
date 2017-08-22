@@ -1,10 +1,10 @@
 import logging
 
 import pymysql
-
+import json
 from base.connection import SysMysqlHandler
 from base.crypto import md5_en
-
+from util.export_excel import deal_json
 
 def check_user_password(user, password):
     """
@@ -42,6 +42,40 @@ def check_user_password(user, password):
     finally:
         conn.close()
     return obj
+
+
+def update_app_protocol(app):
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        re = deal_json(app)
+        device_conf = json.dumps(re['j_data'])
+        key_value = re['j_data']['key']
+        sqlOne = "SELECT ebf_pc_device_key FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key_value)
+        cursor.execute(sqlOne)
+        test = cursor.fetchone()
+        if not test:
+            sql = "INSERT INTO ebt_protocol_conf(" \
+                  "ebf_pc_factory_uid, " \
+                  "ebf_pc_device_type," \
+                  "ebf_pc_device_model," \
+                  "ebf_pc_device_key," \
+                  "ebf_pc_conf," \
+                  "ebf_pc_create_date," \
+                  "ebf_pc_secret) "
+            sql += "VALUES('%s','%s','%s','%s','%s','%s','%s')"%(app.app_factory_uid, app.app_device_type,
+                                                                 app.app_model, key_value, device_conf, app.app_create_date,
+                                                                 app.app_appsecret)
+        else:
+            sql = "UPDATE ebt_protocol_conf SET ebf_pc_factory_uid='%s', ebf_pc_device_type='%s', ebf_pc_device_model='%s', ebf_pc_conf='%s', ebf_pc_create_date='%s', ebf_pc_secret='%s' WHERE ebf_pc_device_key='%s'"%\
+                  (app.app_factory_uid, app.app_device_type,app.app_model, device_conf, app.app_create_date,app.app_appsecret, key_value)
+        cursor.execute(sql)
+        conn.commit()
+    except Exception as e:
+        print(e)
+        pass
+    finally:
+        conn.close()
 
 
 def get_device_type(device_type):

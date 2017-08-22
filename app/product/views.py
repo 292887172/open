@@ -18,7 +18,10 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
-from common.smart_helper import get_factory_list,get_device_type,get_device_list
+from common.smart_helper import get_factory_list
+from common.smart_helper import get_device_type
+from common.smart_helper import get_device_list
+from common.smart_helper import update_app_protocol
 from model.center.app import App
 
 import time
@@ -58,6 +61,7 @@ def product_list(request):
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
                 published_apps.append(app)
+                update_app_protocol(app)
             elif app.check_status == _convention.APP_CHECKING:
                 publishing_apps.append(app)
             # 未发布
@@ -134,8 +138,8 @@ def product_add(request):
                 pass
         app_factory_id = request.POST.get("brand_id", "")
         app_model = request.POST.get("product_model", "")
-        app_command = request.POST.get("product_command")
-        app_device_type = request.POST.get("product_category_detail")
+        app_command = request.POST.get("product_command", "")
+        app_group = request.POST.get("product_group", "")
         device_conf = ''
         if not developer_id:
             ret["code"] = 100001
@@ -144,13 +148,14 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command:
+            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command\
+                    or not app_group:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id)
+                                device_conf, app_factory_id, app_group)
             if result.app_id:
                 url = '/product/main/?ID=' + str(result.app_id) + '#/info'
                 return HttpResponseRedirect(url)
@@ -309,6 +314,7 @@ def product_main(request):
         app_push_token = request.POST.get("app_config_push_token", "")
         app_command = request.POST.get("app_command", "")
         app_device_value = request.POST.get("app_device_value", "")
+        app_group = request.POST.get("app_group", "")
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -329,7 +335,7 @@ def product_main(request):
             elif action == "update_info":
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
-                                      app_command, app_device_value)
+                                      app_command, app_device_value, app_group)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
