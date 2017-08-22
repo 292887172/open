@@ -144,14 +144,13 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command\
-                    or not app_device_type:
+            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_device_type)
+                                device_conf, app_factory_id)
             if result.app_id:
                 url = '/product/main/?ID=' + str(result.app_id) + '#/info'
                 return HttpResponseRedirect(url)

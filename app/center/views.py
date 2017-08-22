@@ -88,7 +88,7 @@ def home(request):
                 if re:
                     # 注册成功后将账号15267183467下的三个产品复制给新用户
                     for i in range(len(APP_NAME)):
-                        result = create_app(re, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], 1, APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], DEVICE_TYPE[i])
+                        result = create_app(re, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i])
                         result.app_logo = APP_LOGO[i]
                         result.save()
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
