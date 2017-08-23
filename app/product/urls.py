@@ -8,5 +8,5 @@ urlpatterns = patterns(
     url(r"^list/$", "product_list", name="product/list"),
     url(r"^add/$", "product_add", name="product/add"),
     url(r"^main/$", "product_main", name="product/main"),
-    url(r"^export/$", "export", name="product/export"),
+    url(r"^verify/$", "key_verify", name="product/key_verify"),
 )
