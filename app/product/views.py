@@ -22,11 +22,13 @@ from common.smart_helper import get_factory_list
 from common.smart_helper import get_device_type
 from common.smart_helper import get_device_list
 from common.smart_helper import update_app_protocol
+from common.util import parse_response
 from model.center.app import App
 
 import time
 import json
 import logging
+import os
 
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
@@ -365,7 +367,17 @@ def product_main(request):
 
 
 @csrf_exempt
-def export(request):
-    # 导出配置文件
+def key_verify(request):
+    # 验证key
     if request.method == 'POST':
+        key = request.POST.get("key", "")
+        if not key:
+            return JsonResponse(parse_response(code=_code.INVALID_APP_ID_CODE, msg=_code.INVALID_APP_ID_MSG))
+        app = App.objects.filter(app_appid__endswith=key)
+        flag = os.path.exists('static/file/'+key+'.zip')
+        if app and flag:
+            url_add = 'http://test.open.53iq.com/static/file/'+key+'.zip'
+            return JsonResponse(parse_response(code=_code.SUCCESS_CODE, msg=_code.SUCCESS_MSG, data=url_add))
+        return JsonResponse(parse_response(code=_code.INVALID_APP_ID_CODE, msg=_code.INVALID_APP_ID_MSG))
+    elif request.method == 'GET':
         pass
