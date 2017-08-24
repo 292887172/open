@@ -120,7 +120,7 @@ angular.module('Product.edit', ['ngRoute'])
                     id=str[1].split("=")[1];
                 }
                 else {
-                    id=" ";
+                    id="";
                 }
                 indata.id=id;
 				if(document.getElementsByName("isControl")[0].checked){

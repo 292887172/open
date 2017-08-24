@@ -63,8 +63,8 @@
 
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}
 
@@ -270,7 +270,7 @@
                     '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
             }
             else if(value =='卫浴类'){
-                html = '<option value="12">马桶</option><option value="19">热水器</option>'
+                html = '<option value="12">马桶</option><option value="19">饮水机</option>'
             }
             $("#product_category_detail").html(html)
         });

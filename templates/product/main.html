@@ -56,8 +56,8 @@
 {% endblock %}
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}
 
@@ -253,7 +253,8 @@
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_value = "{% if app.app_device_type %}{{ app.app_device_type|safe|linebreaksbr }}{% endif %}";
                     $scope.app_group = "{% if app.app_group %}{{ app.app_group|safe|linebreaksbr }}{% endif %}";
-                    $scope.flag = "{{ device_list }}";
+
+
                     // 应用类目
 
                     $scope.secondProType = [
@@ -320,50 +321,7 @@
                     };
                     // <a href="https://oven.53iq.com/static/html/control.html?d=ABCDEFABCDEF" target="_blank">
                     // 设备管理表数据
-                $scope.deviceListTable=[
-                        '<style>',
-                        'a, a:visited {',
-                        'color: #459ae9;',
-                        'text-decoration: none;',
-                        '}',
-                        'a:hover {',
-                        'color: #459ae9;',
-                        'text-decoration: underline;',
-                        '}',
-                        '</style>',
-                        '<style>',
-                        'a, a:visited {',
-                        'color: #459ae9;',
-                        'text-decoration: none;',
-                        '}',
-                        'a:hover {',
-                        'color: #459ae9;',
-                        'text-decoration: underline;',
-                        '}',
-                        '</style>',
-                        '<div class="panel-heading">',
-                        '</div>',
-                        '<table class="table table-striped m-b-none" id="blocks">',
-                        '<thead>',
-                        '<tr>',
-                        '<th>id</th>',
-                        '<th>mac</th>',
-                        '<th>时间</th>',
-                        '<th>调试</th>',
-                        '</tr>',
-                        '</thead>',
-                        '<tbody>',
-                        {% for dev in device_list %}
-                            '<tr>',
-                            '<td>{{dev.ebf_device_id }}</td>',
-                            '<td>{% if dev.ebf_device_mac %}{{ dev.ebf_device_mac }}{% endif %}</td>',
-                            '<td>{% if dev.ebf_device_oc_date %}{{ dev.ebf_device_oc_date }}{% endif %}</td>',
-                            '<td>{% if dev.ebf_device_mac %}<a href="https://oven.53iq.com/static/html/control.html?d={{ dev.ebf_device_mac }}" target="_blank" >调试</a>{% endif %}</td>',
-                            '</tr>',
-                        {% endfor %}
-                        '</tbody>',
-                        '</table>'
-                    ].join("");
+
 
                     $scope.apiListTable = [
                         '<style>',

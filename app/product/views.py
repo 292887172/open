@@ -142,7 +142,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-        device_conf = ''
+        device_conf = ""
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -150,7 +150,7 @@ def product_add(request):
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category or not app_category_detail or not app_command\
+            if not developer_id or not app_name or not app_category or not app_command \
                     or not app_group:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
@@ -210,7 +210,6 @@ def product_main(request):
 
         app = user_apps
         device_name = get_device_type(app.app_device_type)
-        device_list = get_device_list(app.app_appid)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
@@ -223,7 +222,6 @@ def product_main(request):
             api_list=api_list,
             key=key,
             device_name=device_name,
-            device_list=device_list
         )
         return render(request, template, locals())
 
@@ -238,8 +236,9 @@ def product_main(request):
         app = App.objects.get(app_id=app_id)
         opera_data = []
         try:
-            opera_data = json.loads(app.device_conf)
-            opera_data.sort(key=lambda x: int(x.get("id")))
+            if app.device_conf:
+                opera_data = json.loads(app.device_conf)
+                opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
             print(e)
@@ -256,9 +255,9 @@ def product_main(request):
                     return JsonResponse({'data': opera_data[i]})
         elif post_data == 'del':
             # 删除信息
-            del_id = request.POST.get("id")
+            del_id = int(request.POST.get("id"))
             for i in range(len(opera_data)):
-                if opera_data[i].get("id", "不存在id") == del_id:
+                if int(opera_data[i].get("id", "不存在id")) == del_id:
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
@@ -282,8 +281,10 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
+            print(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
+            print("id is ",indata['id'])
             if indata["id"]:
                 # 编辑参数信息
                 for i in opera_data:
@@ -294,11 +295,20 @@ def product_main(request):
                 tt = 0
             else:
                 # 添加一条参数信息首先获取当前最大id
-                indata['id'] = int(opera_data[-1]['id'])+1
+                if opera_data:
+                    indata['id'] = int(opera_data[-1]['id'])+1
+                else:
+                    indata['id'] = 1
                 opera_data.append(indata)
                 tt = 1
             save_app(app, opera_data)
             return HttpResponse(json.dumps(tt, separators=(",", ":")))
+
+        # 获取设备列表
+        device_table = request.POST.get("device","")
+        if device_table =='device_table':
+            device_list = get_device_list(app.app_appid)
+            return JsonResponse({'data':device_list})
 
         #  app操作
         res = dict(
