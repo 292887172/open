@@ -83,7 +83,7 @@ angular.module('Product.info', ['ngRoute'])
                     '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
             }
             else if(type_name =='卫浴类'){
-                html = '<option value="12">马桶</option><option value="19">热水器</option>'
+                html = '<option value="12">马桶</option><option value="19">饮水机</option>'
             }
             $("#secondDevType").html(html);
         };
@@ -93,6 +93,7 @@ angular.module('Product.info', ['ngRoute'])
          */
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
+            $scope.infoFormData.app_device_value = $("#secondDevType option:selected").val();
             if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")){
                 $.ajaxFileUpload({
                     url: "http://dldir.56iq.net/api/upload/?type=callback&t="+new Date().getTime(),

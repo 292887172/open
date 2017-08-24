@@ -38,11 +38,11 @@
                     <dt>分类</dt>
                     <dd>
                         智能家居 /
-                        <select name="secondProType" id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
+                        <select name="secondProType"  id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
                                 ng-options="t.value as t.name for t in secondProType">
                         </select>
-                        <select name="secondDevType" id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2" ng-model="infoFormData.app_device_value" style="width: 86px;">
-                            <option value="{[{app_device_value}]}" selected>{[{app_device_name}]}</option>
+                        <select name="secondDevType"  id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2" ng-model="infoFormData.app_device_value" style="width: 86px;">
+                            <option value="{[{app_device_value}]}" >{[{app_device_name}]}</option>
                         </select>
                     </dd>
                 </dl>
@@ -50,15 +50,15 @@
                     <dt>设备类型</dt>
 
                     <dd style="padding-top: 5px;">
-                        <select name="product_type" ng-click="HideCommand()" id="product_type" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_group" class="sel2"  style="width:90px;"
+                        <select name="product_type"  ng-click="HideCommand()" id="product_type" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_group" class="sel2"  style="width:90px;"
                            ng-options="t.value as t.name for t in product_type">
                         </select>
                     </dd>
                 </dl>
-                <dl class="fmInfo" id="command-type">
+                <dl class="fmInfo" id="command-type" >
                     <dt>指令类型</dt>
                     <dd>
-                        <select name="select" id="selectCommand" ng-disabled="{[{ disabled }]}" ng-click="showHide()" class="sel2" ng-model="infoFormData.app_command" style="width:90px;">
+                        <select name="app_command" id="selectCommand"  ng-disabled="{[{ disabled }]}" ng-click="showHide()" class="sel2" ng-model="infoFormData.app_command" style="width:90px;">
                             <option value="是" selected="selected">全指令</option>
                             <option value="否" >单指令</option>
                         </select>
@@ -73,7 +73,7 @@
                 <dl class="fmInfo">
                     <dt>产品描述</dt>
                     <dd>
-                        <textarea rows="3" id="productDescriptionlText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_describe"
+                        <textarea rows="3"  id="productDescriptionlText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_describe"
                                maxlength="256" class="w400 form-control" placeholder="请填写产品可实现的功能等整体描述"></textarea>
                         <span class="tips-error hiden" id="productDescriptionlTips"></span>
                     </dd>
@@ -81,7 +81,7 @@
                 <dl class="fmInfo">
                     <dt>产品网址</dt>
                     <dd>
-                        <input type="text" id="productDescriptionlUrl" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_site"
+                        <input  type="text" id="productDescriptionlUrl" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_site"
                                maxlength="512" class="w400 form-control" placeholder="请填写产品简介的url地址，以http://开头">
                         <span class="tips-error hiden" id="productDescriptionlUrlTips"></span>
                     </dd>
@@ -91,7 +91,7 @@
                     <dd>
                         <p class="iptTxt ft9">(建议尺寸为200像素×200像素的PNG图片，大小不超过1M)</p>
                         <div class="upload" id="productImgDiv" style="float:left; width:100px;height:100px;">
-                            <img id="productImg" class="upload-photo" ng-src="{[{ productImgSrc }]}" src="{[{ infoFormData.app_logo }]}" onerror="this.src=''" width="100" height="100" style="display: block; vertical-align: top;">
+                            <img id="productImg" name="app_logo" class="upload-photo" ng-src="{[{ productImgSrc }]}" src="{[{ infoFormData.app_logo }]}" onerror="this.src=''" width="100" height="100" style="display: block; vertical-align: top;">
                             <span class="tips-error hiden" id="productImgTips" ng-model="productImgTips"></span>
                             <div id="" class="moxie-shim moxie-shim-html5"
                                  style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; overflow: hidden; z-index: 0;">

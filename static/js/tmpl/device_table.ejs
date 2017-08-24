@@ -1,0 +1,28 @@
+<div class="panel-heading"></div>
+<table class="table table-striped m-b-none">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>mac</th>
+        <th>时间</th>
+        <th>调试</th>
+    </tr>
+    </thead>
+    <tbody id="table-device">
+    <% for(var i=0;i<device_list.length;i++){ %>
+        <tr>
+            <td><%=device_list[i].ebf_device_id%></td>
+            <td><%=device_list[i].ebf_device_mac %></td>
+            <td><%=device_list[i].ebf_device_oc_date %></td>
+            <td>
+            <% if (device_list[i].ebf_device_mac) {%>
+            <a href="https://oven.53iq.com/static/html/control.html?d=<%=device_list[i].ebf_device_mac%>" target="_blank" >调试</a>
+            <%}%>
+            </td>
+        </tr>
+
+    <% } %>
+    </tbody>
+</table>
+
+
