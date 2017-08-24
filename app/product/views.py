@@ -372,12 +372,14 @@ def key_verify(request):
     if request.method == 'POST':
         key = request.POST.get("key", "")
         if not key:
-            return JsonResponse(parse_response(code=_code.INVALID_APP_ID_CODE, msg=_code.INVALID_APP_ID_MSG))
+            return JsonResponse(parse_response(code=_code.MISSING_APP_KEY_CODE, msg=_code.MISSING_APP_KEY_MSG))
         app = App.objects.filter(app_appid__endswith=key)
         flag = os.path.exists('static/file/'+key+'.zip')
         if app and flag:
-            url_add = 'http://test.open.53iq.com/static/file/'+key+'.zip'
+            http_host = request.META.get('HTTP_HOST')
+
+            url_add = http_host+'/static/file/'+key+'.zip'
             return JsonResponse(parse_response(code=_code.SUCCESS_CODE, msg=_code.SUCCESS_MSG, data=url_add))
-        return JsonResponse(parse_response(code=_code.INVALID_APP_ID_CODE, msg=_code.INVALID_APP_ID_MSG))
+        return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
-        pass
+        return HttpResponse("hi!")

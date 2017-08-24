@@ -85,6 +85,10 @@ class StatusCode(object):
     INVALID_ACCESS_TOKEN_CODE = 40003
     INVALID_ACCESS_TOKEN_MSG = "invalid access_token"
     INVALID_ACCESS_TOKEN_MESSAGE = ""
+    # access_token无效
+    INVALID_APP_KEY_CODE = 40004
+    INVALID_APP_KEY_MSG = "invalid app_key"
+    INVALID_APP_KEY_MESSAGE = "app_key无效"
     # application_id无效
     INVALID_APPLICATION_ID_CODE = 40009
     INVALID_APPLICATION_ID_MSG = "invalid application_id"
@@ -94,6 +98,10 @@ class StatusCode(object):
     MISSING_APPLICATION_ID_CODE = 41001
     MISSING_APPLICATION_ID_MSG = "missing application_id"
     MISSING_APPLICATION_ID_MESSAGE = "缺少应用编号"
+    # 缺少application_id参数
+    MISSING_APP_KEY_CODE = 41001
+    MISSING_APP_KEY_MSG = "missing app_key"
+    MISSING_APP_KEY_MESSAGE = "缺少设备授权key"
     # ============================= 45xxx ==================== 45xxx 是某某东西超出了限制(例如:API调用次数超出限制)
     OVER_FETCH_ACCESS_TOKEN_NUMBER_CODE = 45001
     OVER_FETCH_ACCESS_TOKEN_NUMBER_MSG = "api freq out of limit"
