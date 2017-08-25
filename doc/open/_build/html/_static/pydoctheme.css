@@ -29,11 +29,8 @@ div.sphinxsidebar {
     border-radius: 5px;
     line-height: 130%;
     font-size: smaller;
-    position: relative;
 }
-div.sphinxsidebarwrapper {
-    position: relative;
-}
+
 div.sphinxsidebar h3, div.sphinxsidebar h4 {
     margin-top: 1.5em;
 }
@@ -179,12 +176,12 @@ table.docutils {
 }
 
 table.docutils td, table.docutils th {
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     border-radius: 3px;
 }
 
 table p, table li {
-    text-align: left;
+    text-align: left !important;
 }
 table td p:last-child {
     margin-bottom: 0;
@@ -201,7 +198,7 @@ table.docutils td {
 }
 
 table.footnote, table.footnote td {
-    border: 0;
+    border: 0 !important;
 }
 
 div.footer {
@@ -226,29 +223,29 @@ div.footer a:hover {
 
 div.sphinxsidebar,
 .related a {
-    font-family: 'Myriad Pro', 'Trebuchet Ms', 'Segoe UI', sans-serif;
+    font-family: 'Myriad Pro', 'Trebuchet Ms', 'Segoe UI', sans-serif !important;
 }
 pre, code, tt {
-    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace;
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace !important;
 }
 
-div.body pre {
-    border: 1px solid #ddd;
-    background-color: #fffdfd;
-    white-space: pre-wrap;
+pre {
+    border: 1px solid #ddd !important;
+    background-color: #fffdfd !important;
+    white-space: pre-wrap !important;
     /* css-3 */
-    white-space: -moz-pre-wrap;
+    white-space: -moz-pre-wrap !important;
     /* Mozilla, since 1999 */
-    white-space: -pre-wrap;
+    white-space: -pre-wrap !important;
     /* Opera 4-6 */
-    white-space: -o-pre-wrap;
+    white-space: -o-pre-wrap !important;
     /* Opera 7 */
-    word-wrap: break-word;
+    word-wrap: break-word !important;
     /* Internet Explorer 5.5+ */
 }
 
 div.viewcode-block:target {
-    background-color: #FFF4E6;
+    background-color: #FFF4E6 !important;
 }
 .toctree-l1 {
     font-size: 115%;
