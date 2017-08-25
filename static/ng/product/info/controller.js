@@ -100,7 +100,9 @@ angular.module('Product.info', ['ngRoute'])
                     fileElementId: "productImgFile",
                     dataType: 'json',
                     success: function (data) {
-                        $scope.infoFormData.app_logo = data;
+                        if (data!='undefined'){
+                            $scope.infoFormData.app_logo = data;
+                        }
                     },
                     error: function (data, status, e) {
                         console.log(status);
