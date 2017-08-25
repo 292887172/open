@@ -92,8 +92,8 @@
                             <dl class="fmInfo">
                                 <dt>品牌</dt>
                                 <dd>
-                                    <input type="hidden" name="brand_id" id="brandId">
-                                    <input type="text" name="brand_name" id="brandNameText" maxlength="18"
+                                    <input type="hidden" name="brand_id" id="brand_id">
+                                    <input type="text" name="brand_id" id="brandNameText" maxlength="18"
                                            class="w280 form-control" placeholder="品牌名称" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
                                     <span class="tips-error hiden" id="brandNameTips"></span>
                                     <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
@@ -254,7 +254,7 @@
         $('#go').on('click', function (e) {
             if ($("#productNameText").val() != "") {
                 $("form[name=productAddForm]").submit();
-                console.log("submit");
+
 
             } else {
                 alert("产品名称不能为空");
