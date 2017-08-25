@@ -26,6 +26,14 @@
                         <span class="tips-error hiden" id="productNameTips"></span>
                     </dd>
                 </dl>
+
+                <dl class="fmInfo">
+                    <dt>品牌</dt>
+                    <dd>
+                        <input type="text" id="brandNameText" maxlength="18" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_band" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="brandNameTips"></span>
+                    </dd>
+                </dl>
                 <dl class="fmInfo">
                     <dt>型号</dt>
                     <dd>
@@ -42,7 +50,7 @@
                                 ng-options="t.value as t.name for t in secondProType">
                         </select>
                         <select name="secondDevType"  id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel2" ng-model="infoFormData.app_device_value" style="width: 86px;">
-                            <option value="{[{app_device_value}]}" >{[{app_device_name}]}</option>
+                            <option value="{[{app_device_value}]}" selected>{[{app_device_name}]}</option>
                         </select>
                     </dd>
                 </dl>
