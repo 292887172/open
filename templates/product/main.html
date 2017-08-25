@@ -253,7 +253,7 @@
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_value = "{% if app.app_device_type %}{{ app.app_device_type|safe|linebreaksbr }}{% endif %}";
                     $scope.app_group = "{% if app.app_group %}{{ app.app_group|safe|linebreaksbr }}{% endif %}";
-
+                    $scope.app_band = "{% if app.app_factory_uid %}{{ app.app_factory_uid }}{% endif %}";
 
                     // 应用类目
 
@@ -305,7 +305,8 @@
                         "app_command": $scope.app_command,
                         "app_device_name": $scope.app_device_name,
                         "app_device_value": $scope.app_device_value,
-                        "app_group": $scope.app_group
+                        "app_group": $scope.app_group,
+                        "app_band": $scope.app_band
                     };
                     // 配置信息表单
                     $scope.configFormData = {

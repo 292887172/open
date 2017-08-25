@@ -327,6 +327,7 @@ def product_main(request):
         app_command = request.POST.get("app_command", "")
         app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
+        app_factory_uid = request.POST.get("app_band","")
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -347,7 +348,7 @@ def product_main(request):
             elif action == "update_info":
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
-                                      app_command, app_device_value, app_group)
+                                      app_command, app_device_value, app_group, app_factory_uid)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":

@@ -94,50 +94,55 @@ angular.module('Product.info', ['ngRoute'])
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
             $scope.infoFormData.app_device_value = $("#secondDevType option:selected").val();
-            if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")){
-                $.ajaxFileUpload({
-                    url: "http://dldir.56iq.net/api/upload/?type=callback&t="+new Date().getTime(),
-                    fileElementId: "productImgFile",
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data!='undefined'){
-                            $scope.infoFormData.app_logo = data;
-                        }
-                    },
-                    error: function (data, status, e) {
-                        console.log(status);
-                    },
-                    complete: function (res) {
-                        $scope.infoFormData.action = "update_info";
-                        $http({
-                            method: "POST",
-                            url: location.href,
-                            data: $.param($scope.infoFormData),
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        }).success(function (data) {
-                            if(data.code == 10000) {
-                                window.location.reload();
+            if (!$scope.infoFormData.app_name){
+                alert("产品名称不能为空");
+            }
+            else {
+                if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")) {
+                    $.ajaxFileUpload({
+                        url: "http://dldir.56iq.net/api/upload/?type=callback&t=" + new Date().getTime(),
+                        fileElementId: "productImgFile",
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data != 'undefined') {
+                                $scope.infoFormData.app_logo = data;
                             }
-                        }).error(function (error) {
-                            alert(error);
-                        })
-                    }
-                });
-            }else{
-                $scope.infoFormData.action = "update_info";
-                $scope.infoFormData.app_logo = "";
-                $http({
-                    method: "POST",
-                    url: location.href,
-                    data: $.param($scope.infoFormData),
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                }).success(function (data) {
-                    if(data.code == 10000) {
-                        window.location.reload();
-                    }
-                }).error(function (error) {
-                    alert(error);
-                })
+                        },
+                        error: function (data, status, e) {
+                            console.log(status);
+                        },
+                        complete: function (res) {
+                            $scope.infoFormData.action = "update_info";
+                            $http({
+                                method: "POST",
+                                url: location.href,
+                                data: $.param($scope.infoFormData),
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                            }).success(function (data) {
+                                if (data.code == 10000) {
+                                    window.location.reload();
+                                }
+                            }).error(function (error) {
+                                alert(error);
+                            })
+                        }
+                    });
+                } else {
+                    $scope.infoFormData.action = "update_info";
+                    $scope.infoFormData.app_logo = "";
+                    $http({
+                        method: "POST",
+                        url: location.href,
+                        data: $.param($scope.infoFormData),
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).success(function (data) {
+                        if (data.code == 10000) {
+                            window.location.reload();
+                        }
+                    }).error(function (error) {
+                        alert(error);
+                    })
+                }
             }
 
         };

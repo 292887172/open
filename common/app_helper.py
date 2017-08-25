@@ -232,7 +232,7 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type, app_group):
+def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type, app_group, app_factory_uid):
     """
     更新应用基础信息
     :param app_id:
@@ -245,6 +245,7 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
     :param app_command:
     :param app_device_type:
     :param app_group：
+    :param app_factory_uid:
     :return:
     """
     try:
@@ -257,11 +258,11 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             app_command=app_command,
             app_update_date=datetime.datetime.utcnow(),
             app_device_type=app_device_type,
-            app_group=app_group
+            app_group=app_group,
+            app_factory_uid=app_factory_uid,
         )
         if app_logo:
             params["app_logo"] = app_logo
-
         update_line = App.objects.filter(app_id=int(app_id)).update(**params)
         if update_line > 0:
             return True
