@@ -78,7 +78,10 @@ angular.module('Product.info', ['ngRoute'])
             var value = $("#secondProType option:selected").val();
             var type_name = value.split('string:')[1];
             var html = '';
-            if(type_name =='厨房类'){
+            if (type_name == '无'){
+                html = '<option value="0">请选择分类</option>'
+            }
+            else if(type_name =='厨房类'){
                 html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
                     '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
             }
