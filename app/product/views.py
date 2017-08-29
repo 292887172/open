@@ -261,7 +261,7 @@ def product_main(request):
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
-            return HttpResponse(json.dumps('del', separators=(",", ":")))
+            return HttpResponse('del_success')
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
@@ -273,7 +273,7 @@ def product_main(request):
                         i['state'] = '0'
                     break
             save_app(app, opera_data)
-            return HttpResponse(json.dumps('state', separators=(",", ":")))
+            return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
             return res
@@ -281,28 +281,25 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
-            print(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
-            print("id is ",indata['id'])
             if indata["id"]:
                 # 编辑参数信息
                 for i in opera_data:
-                    indata['id'] = int(indata['id'])
-                    if int(i['id']) == indata['id']:
+                    if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
-                tt = 0
+                tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
                 if opera_data:
-                    indata['id'] = int(opera_data[-1]['id'])+1
+                    indata['id'] = str(int(opera_data[-1]['id'])+1)
                 else:
-                    indata['id'] = 1
+                    indata['id'] = '1'
                 opera_data.append(indata)
-                tt = 1
+                tt = "add_success"
             save_app(app, opera_data)
-            return HttpResponse(json.dumps(tt, separators=(",", ":")))
+            return HttpResponse(tt)
 
         # 获取设备列表
         device_table = request.POST.get("device","")
