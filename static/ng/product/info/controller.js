@@ -51,7 +51,6 @@ angular.module('Product.info', ['ngRoute'])
         else {
             $("#my-label-1").show();
         }
-
         //指令提示功能根据选择不同，将不同提示显示
         $scope.showHide=function () {
             var a=$("#selectCommand").val();

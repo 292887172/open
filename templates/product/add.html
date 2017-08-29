@@ -255,7 +255,6 @@
             if ($("#productNameText").val() != "") {
                 $("form[name=productAddForm]").submit();
 
-
             } else {
                 alert("产品名称不能为空");
             }
@@ -263,7 +262,7 @@
         $("#product_category").on('change',function () {
             var value = $("#product_category option:selected").val();
             if (value == '无'){
-                html = '<option value="无">请选择分类</option>'
+                html = '<option value="0">请选择分类</option>'
             }
             else if(value =='厨房类'){
                 html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
