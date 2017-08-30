@@ -382,6 +382,7 @@ def product_main(request):
 def key_verify(request):
     # 验证key
     if request.method == 'POST':
+
         key = request.POST.get("key", "")
         if not key:
             return JsonResponse(parse_response(code=_code.MISSING_APP_KEY_CODE, msg=_code.MISSING_APP_KEY_MSG))
@@ -390,7 +391,7 @@ def key_verify(request):
         if app and flag:
             http_host = request.META.get('HTTP_HOST')
 
-            url_add = http_host+'/static/file/'+key+'.zip'
+            url_add = 'http://'+http_host+'/static/file/'+key+'.zip'
             return JsonResponse(parse_response(code=_code.SUCCESS_CODE, msg=_code.SUCCESS_MSG, data=url_add))
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
