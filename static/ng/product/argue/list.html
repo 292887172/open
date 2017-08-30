@@ -168,7 +168,10 @@
                     data:post_data,
                     async :false,
                     success: function (data) {
-                        alert("修改成功");
+                       if(data=='change_success'){
+                           alert("修改成功");
+                       }
+                       location.reload();
                         }
                 });
             }
@@ -224,8 +227,12 @@
                         type: "POST",
                         data: post_data,
                         success: function (data) {
+                            console.log(data);
+                            if(data=="del_success")
+                            {
+                                alert("删除成功");
+                            }
                             location.reload();
-                            alert("删除成功");
                         },
                         error:function () {
                             alert("删除失败")

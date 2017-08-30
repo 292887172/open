@@ -251,13 +251,16 @@
                     $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
                     $scope.app_command = "{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
-                    $scope.app_device_value = "{% if app.app_device_type %}{{ app.app_device_type|safe|linebreaksbr }}{% endif %}";
-                    $scope.app_group = "{% if app.app_group %}{{ app.app_group|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_device_value = "{{ app.app_device_type|safe|linebreaksbr }}";
+                    $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
                     $scope.app_band = "{% if app.app_factory_uid %}{{ app.app_factory_uid }}{% endif %}";
-
                     // 应用类目
 
                     $scope.secondProType = [
+                        {
+                            "name": "无",
+                            "value": "无"
+                        },
                         {
                             "name": "厨房类",
                             "value": "厨房类"
@@ -268,6 +271,10 @@
                         }
                     ];
                     $scope.product_type=[
+                        {
+                            "name": '无',
+                            "value": '0'
+                        },
                         {
                             "name": "普通电控",
                             "value": "2"

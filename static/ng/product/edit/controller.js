@@ -143,12 +143,11 @@ angular.module('Product.edit', ['ngRoute'])
                     url: location.href,
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
-                    data = parseInt(data);
-                    if (data) {
-                    	alert("添加成功!");
+                    if (data=="modify_success") {
+                    	alert("修改成功!");
                     }
-                    else {
-                        alert("修改成功!");
+                    else if(data=="add_success"){
+                    	alert("添加成功!");
                     }
 					location.href='#/argue';
                 })

@@ -128,7 +128,6 @@ def login(request):
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
             uri = request.session[SESSION_REDIRECT_URI]
-            uri = "/product/list"
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             if not remember:
@@ -141,7 +140,7 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/center")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
         if request.user.account_id:
 
             return HttpResponseRedirect("/guide")
