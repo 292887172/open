@@ -153,6 +153,46 @@ def get_factory_info(user_id):
     return ''
 
 
+def get_factory_id(factory_name):
+    """
+    从ebdb_smartsys的ebt_factory表中获取厂家名称对应的id
+    :return:
+    """
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sql = 'SELECT ebf_factory_uid  FROM ebt_factory WHERE ebf_factory_name="{0}"'.format(factory_name)
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        return result['ebf_factory_uid']
+    except Exception as e:
+        print(e)
+        pass
+    finally:
+        conn.close()
+    return ''
+
+
+def get_factory_name(factory_uid):
+    """
+    从ebdb_smartsys的ebt_factory表中获取厂家名称对应的id
+    :return:
+    """
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sql = 'SELECT ebf_factory_name  FROM ebt_factory WHERE ebf_factory_uid="{0}"'.format(factory_uid)
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        return result['ebf_factory_name']
+    except Exception as e:
+        print(e)
+        pass
+    finally:
+        conn.close()
+    return ''
+
+
 def get_factory_list():
     """
     从ebdb_smartsys的ebt_factory表中获取所有厂家名称和id

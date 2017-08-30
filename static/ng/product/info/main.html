@@ -8,6 +8,24 @@
         left: -107px;
         height: 33px;
     }
+    .vague {
+        width: 360px;
+        max-height: 280px;
+        overflow: auto;
+        position: absolute;
+        top: 280px;
+        border: #ddd 1px solid;
+        z-index: 999;
+        background: #fff;
+        left: 115px;
+    }
+    .vague li {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: #999;
+        cursor: pointer;
+    }
 </style>
 <div class="box2 relative">
     <div class="hl-help">
@@ -30,8 +48,10 @@
                 <dl class="fmInfo">
                     <dt>品牌</dt>
                     <dd>
-                        <input type="text" id="brandNameText" maxlength="18" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_band" class="w400 form-control" maxlength="18">
+                        <input type="hidden" name="brand_id" id="brand_id" value="{[{ infoFormData.app_factory_uid }]}" ng-model="infoFormData.app_factory_uid" >
+                        <input type="text" id="brandNameText" maxlength="18" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.band_name" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl',this.value)" class="w400 form-control" maxlength="18">
                         <span class="tips-error hiden" id="brandNameTips"></span>
+                        <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
                     </dd>
                 </dl>
                 <dl class="fmInfo">
@@ -121,3 +141,50 @@
     </div>
 </div>
 <script src="/static/js/common/ajaxfileupload.min.js"></script>
+{% block end_script %}
+<script>
+    var brandListData = '';
+    $.ajax({
+            url:location.href,
+            type:"POST",
+            data:{'data':"factory_list"},
+            async :false,
+            success: function (data) {
+                brandListData = data['data']
+            }
+    });
+    function clickQueryDiv (liObj) {
+            var $liObj = $(liObj);
+            var $textObj = $liObj.parent().parent().children(":first");
+            $textObj.val($liObj.html());
+            $textObj.attr("title", $liObj.html());
+            $("#brandNameText").val($liObj.text());
+            $("#brand_id").val($liObj.attr("id"));
+
+            $liObj.parent().hide();
+        }
+    function showBrandList(ulID, temp,qVal) {
+
+            $("#" + ulID).show();
+            $("#" + ulID).html("");
+            if(qVal){
+                for(var i=0; i< brandListData.length; i++)
+                {
+                    var brandName = brandListData[i].brandName;
+                    if(brandName.indexOf(qVal) == -1)
+                    {
+                        continue;
+                    }
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='"+brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+                }
+            }
+            else
+            {
+                for(var i=0; i<brandListData.length; i++)
+                {
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+                }
+            }
+    }
+</script>
+{% endblock %}
