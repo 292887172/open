@@ -382,7 +382,7 @@ def product_main(request):
 def key_verify(request):
     # 验证key
     if request.method == 'POST':
-        print(request)
+
         key = request.POST.get("key", "")
         if not key:
             return JsonResponse(parse_response(code=_code.MISSING_APP_KEY_CODE, msg=_code.MISSING_APP_KEY_MSG))
