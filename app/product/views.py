@@ -61,7 +61,6 @@ def product_list(request):
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
                 published_apps.append(app)
-                update_app_protocol(app)
             elif app.check_status == _convention.APP_CHECKING:
                 publishing_apps.append(app)
             # 未发布
