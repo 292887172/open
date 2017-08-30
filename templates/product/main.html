@@ -253,7 +253,8 @@
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_value = "{{ app.app_device_type|safe|linebreaksbr }}";
                     $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
-                    $scope.app_band = "{% if app.app_factory_uid %}{{ app.app_factory_uid }}{% endif %}";
+                    $scope.band_name = "{{ band_name }}";
+                    $scope.app_factory_uid = "{{ app.app_factory_uid }}";
                     // 应用类目
 
                     $scope.secondProType = [
@@ -313,7 +314,8 @@
                         "app_device_name": $scope.app_device_name,
                         "app_device_value": $scope.app_device_value,
                         "app_group": $scope.app_group,
-                        "app_band": $scope.app_band
+                        "band_name": $scope.band_name,
+                        "app_factory_uid": $scope.app_factory_uid
                     };
                     // 配置信息表单
                     $scope.configFormData = {
