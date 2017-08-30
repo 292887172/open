@@ -50,7 +50,7 @@
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> *Stream_ID </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="Stream_ID由字母、数字或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
-											<br><br><div id="checkID" style="color:red;display:none"></div>
+											<br><br><div id="checkID" style="color:red;display:none;"></div>
 										</div>
 									</div>
 									<div class="form-group">
@@ -85,7 +85,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"> *参数类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型，如选择int/float型，还需填写参数的最大/最小值。" title="">?</span> </label>
-										<div class="col-sm-9 col-xs-9">
+										<div class="col-sm-9 col-xs-9" id="param-type">
 												<div class="radio">
 														<label>
 															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="1" checked/>
@@ -115,9 +115,9 @@
 															</td>
 														</tr>
 													</table>
-													<div id="checkInt" style="margin-left:-10px;color:red;display:none"></div>
+													<div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
 												</div>
-												<div id="selectFloat" style="background-color:#fff;display:none;margin-left:72px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+												<div id="selectFloat" style="background-color:#fff;display:none;margin-left:72px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
 													<table border=0>
 														<tr>
 															<td height=30px align="center">最小值</td>
@@ -132,7 +132,7 @@
 															</td>
 														</tr>
 													</table>
-													<div id="checkFloat" style="margin-left:-10px;color:red;display:none"></div>
+													<div id="checkFloat" style="margin-left:-10px;color:red;display:none;left: 286px;top: 77px;position:absolute"></div>
 												</div>
 										</div>
 									</div>
@@ -325,10 +325,10 @@
 				group+='<div class="form-group">';
 				group+='	<div class="col-sm-2 col-xs-2"></div>';
 				group+='	<div class="col-sm-2 col-xs-3">';
-				group+='		<input type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12"/>';
+				group+='		<input type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
 				group+='	</div>';
 				group+='	<div class="col-sm-1 col-xs-2">';
-				group+='		<input type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
+				group+='		<input type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12"/>';
 				group+='	</div>';
 				group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 				group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';

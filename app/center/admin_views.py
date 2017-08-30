@@ -27,10 +27,12 @@ from common.developer_helper import pass_developer
 from common.developer_helper import toggle_forbid_developer
 from common.account_helper import fetch_user_list_data
 from common.account_helper import toggle_forbid_user
+from common.smart_helper import update_app_protocol
 from base.convert import date2ymdhms
 from base.convert import utctime2localtime
 from django.contrib.auth import authenticate
 from model.center.account import Account, MyUserManager
+from model.center.app import App
 import logging
 from conf.sessionconf import *
 
@@ -94,6 +96,9 @@ def admin_home(request):
                 # 产品审核通过
                 app_id = request.POST.get("app_id", "")
                 ret = pass_app(app_id)
+                app = App.objects.get(app_id=app_id)
+                if str(app.app_group) == '2':
+                    update_app_protocol(app)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "del_api":
