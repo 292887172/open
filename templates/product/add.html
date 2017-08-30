@@ -93,7 +93,7 @@
                                 <dt>品牌</dt>
                                 <dd>
                                     <input type="hidden" name="brand_id" id="brand_id">
-                                    <input type="text" name="brand_id" id="brandNameText" maxlength="18"
+                                    <input type="text" name="brandName" id="brandNameText" maxlength="18"
                                            class="w280 form-control" placeholder="品牌名称" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
                                     <span class="tips-error hiden" id="brandNameTips"></span>
                                     <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
@@ -226,9 +226,10 @@
         var $textObj = $liObj.parent().parent().children(":first");
         $textObj.val($liObj.html());
         $textObj.attr("title", $liObj.html());
-        $("#brandId").val($liObj.attr("id"));
-
+        $("#brandNameText").val($liObj.text());
+        $("#brand_id").val($liObj.attr("id"));
         $liObj.parent().hide();
+
     }
     function showHide() {
             var a=$("#product_command").val();

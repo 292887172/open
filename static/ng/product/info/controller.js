@@ -95,6 +95,10 @@ angular.module('Product.info', ['ngRoute'])
          */
         $scope.SubmitInfoForm = function () {
             var productImg = $("#productImg");
+            if (!$("#brandNameText").val()) {
+                $("#brand_id").val('');
+            }
+            $scope.infoFormData.app_factory_uid = $("#brand_id").val();
             $scope.infoFormData.app_device_value = $("#secondDevType option:selected").val();
             if (!$scope.infoFormData.app_name){
                 alert("产品名称不能为空");

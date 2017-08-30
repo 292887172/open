@@ -18,10 +18,8 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
-from common.smart_helper import get_factory_list
-from common.smart_helper import get_device_type
-from common.smart_helper import get_device_list
-from common.smart_helper import update_app_protocol
+from common.smart_helper import *
+
 from common.util import parse_response
 from model.center.app import App
 
@@ -138,7 +136,8 @@ def product_add(request):
             except ValueError:
                 app_category_detail = 0
                 pass
-        app_factory_id = request.POST.get("brand_id", "")
+        factory_name = request.POST.get("brand_id", "")
+        app_factory_id = get_factory_id(factory_name)
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
@@ -213,6 +212,7 @@ def product_main(request):
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
+        band_name = get_factory_name(app.app_factory_uid)
         app_key = app.app_appid
         len_key = len(app_key) - 8
         key = app_key[len_key:]
@@ -222,6 +222,7 @@ def product_main(request):
             api_list=api_list,
             key=key,
             device_name=device_name,
+            band_name=band_name,
         )
         return render(request, template, locals())
 
@@ -255,9 +256,9 @@ def product_main(request):
                     return JsonResponse({'data': opera_data[i]})
         elif post_data == 'del':
             # 删除信息
-            del_id = int(request.POST.get("id"))
+            del_id = request.POST.get("id")
             for i in range(len(opera_data)):
-                if int(opera_data[i].get("id", "不存在id")) == del_id:
+                if str(opera_data[i].get("id")) == del_id:
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
@@ -266,14 +267,13 @@ def product_main(request):
             # 更改参数状态
             state_id = request.POST.get("id")
             for i in opera_data:
-                if i['id'] == state_id:
+                if str(i['id']) == state_id:
                     if str(i['state']) == '0':
                         i['state'] = '1'
                     elif str(i['state']) == '1':
                         i['state'] = '0'
-                    break
-            save_app(app, opera_data)
-            return HttpResponse('change_success')
+                    save_app(app, opera_data)
+                    return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
             return res
@@ -302,11 +302,15 @@ def product_main(request):
             return HttpResponse(tt)
 
         # 获取设备列表
-        device_table = request.POST.get("device","")
-        if device_table =='device_table':
+        device_table = request.POST.get("device", "")
+        if device_table == 'device_table':
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data':device_list})
-
+            return JsonResponse({'data': device_list})
+        # 获取工厂列表
+        data = request.POST.get("data", "")
+        if data == "factory_list":
+            factory_list = get_factory_list()
+            return JsonResponse({'data': factory_list})
         #  app操作
         res = dict(
             code=10000
@@ -324,7 +328,7 @@ def product_main(request):
         app_command = request.POST.get("app_command", "")
         app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
-        app_factory_uid = request.POST.get("app_band","")
+        app_factory_uid = request.POST.get("app_factory_uid", "")
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
