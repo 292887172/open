@@ -103,7 +103,7 @@
         <a href="/guide#contact" onclick="addHover('contact',this)">联系我们</a>
     </p>
 
-    <p>Copyright©2015 53iq 版权所有</p>
+    <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>

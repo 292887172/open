@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>数据库设计 &mdash; open 1.0 documentation</title>
-    
+    <title>数据库设计 &#8212; open 1.0 documentation</title>
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
-    <link rel="top" title="open 1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="进度规划与分工" href="plan.html" />
     <link rel="prev" title="主要模块" href="module.html" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -32,12 +30,12 @@
     
 
   </head>
-  <body role="document">
+  <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
-        <li><a href="index.html">open 1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">open 1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     
@@ -62,10 +60,10 @@
 </div>
 <div class="section" id="id3">
 <h2>表结构<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-sql"><div class="highlight"><pre><span class="c1">-- ----------------------------</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_account</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_account</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_account</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_account</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_account_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_account_from_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -88,7 +86,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_api</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_api</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_api_url</span><span class="o">`</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口地址&#39;</span><span class="p">,</span>
@@ -115,7 +113,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_api_auth</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api_auth</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_api_auth</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_api_auth</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_aa_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口权限编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号&#39;</span><span class="p">,</span>
@@ -134,7 +132,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_app</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_app</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
@@ -167,7 +165,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_app_history</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app_history</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_app_history</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_app_history</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_app_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;应用编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
@@ -199,7 +197,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_developer</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_developer</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_developer_account</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
@@ -226,7 +224,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_developer_hostory</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer_hostory</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_developer_hostory</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_developer_hostory</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_developer_id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;开发者账号（开发者来源+下划线+账号拼接起来）&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_developer_account</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;用户账号&#39;</span><span class="p">,</span>
@@ -254,7 +252,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_doc</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_doc</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_api_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;接口编号（只有接口文档此项不为空）&#39;</span><span class="p">,</span>
@@ -272,7 +270,7 @@
 <span class="c1">-- ----------------------------</span>
 <span class="c1">-- Table structure for ebt_doc_menu</span>
 <span class="c1">-- ----------------------------</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc_menu</span><span class="o">`</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ebt_doc_menu</span><span class="o">`</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">ebt_doc_menu</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ebf_dm_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档菜单编号&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">ebf_doc_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;文档编号&#39;</span><span class="p">,</span>
@@ -319,14 +317,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -349,7 +344,7 @@
     </div>
 
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, 53iq.
+        &#169; Copyright 2015, 53iq.
     </div>
   </body>
 </html>
