@@ -249,10 +249,15 @@ def product_main(request):
             return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_id = request.POST.get("id")
+            edit_id = request.POST.get("id","")
+            streamId = []
+            edit_data = {}
             for i in range(len(opera_data)):
+                streamId.append(opera_data[i]['Stream_ID'])
                 if str(opera_data[i]['id']) == edit_id:
-                    return JsonResponse({'data': opera_data[i]})
+                    edit_data = opera_data[i]
+                    return JsonResponse({'data': edit_data})
+            return JsonResponse({'streamIds': streamId})
         elif post_data == 'del':
             # 删除信息
             del_id = request.POST.get("id")

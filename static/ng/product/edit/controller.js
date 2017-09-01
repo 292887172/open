@@ -16,6 +16,7 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
+        	alert_ID();
             if($.trim($('#Stream_ID').val())==''){
 					alert("请填写参数ID信息!!");
 					return ;
@@ -37,14 +38,7 @@ angular.module('Product.edit', ['ngRoute'])
 
 				var errorType=-1;
 				var mxs=[];
-				if(types[0].checked){
-					var msg=checkInt();
-					if(msg.length>0){
-						alert(msg);
-						return;
-					}
-					min=parseInt($.trim($('#minInt').val()));
-					max=parseInt($.trim($('#maxInt').val()));
+				function save_mxs(min,max,flag) {
 					for(var i=0;i<paramDatas.length;i++){
 						var data=$.trim(paramDatas[i].value);
 						var desc=$.trim(paramDescs[i].value);
@@ -52,23 +46,41 @@ angular.module('Product.edit', ['ngRoute'])
 							errorType=1;
 							break;
 						}
-						if(parseInt(data) < min || parseInt(data) > max){
-							errorType=0;
-							break;
+						if(flag == 'int'){
+							if(parseInt(data) < min || parseInt(data) > max){
+								errorType=0;
+								break;
+							}
+						}
+						else if(flag == 'float')
+						{
+							if(parseFloat(data) < min || parseFloat(data) > max){
+								errorType=0;
+								break;
+							}
+						}
+						else {
+							if (!(data in flag)){
+								errorType = 2;
+								break
+							}
 						}
 						mxs.push({data:data,desc:desc});
 					}
 					mxsNum=mxs.length+"";
+                }
+				if(types[0].checked){
+					var msg=checkInt();
+
+					if(msg.length>0){
+						alert(msg);
+						return;
+					}
+					min=parseInt($.trim($('#minInt').val()));
+					max=parseInt($.trim($('#maxInt').val()));
+					save_mxs(min,max,"int");
 				}
-				if(errorType==1){
-					alert("请填写数据说明和传送数据!!");
-					return;
-				}
-				if(errorType==0){
-					alert("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
-					return;
-				}
-				if(types[1].checked){
+				else if(types[1].checked){
 					var msg=checkFloat();
 					if(msg.length>0){
 						alert(msg);
@@ -76,26 +88,43 @@ angular.module('Product.edit', ['ngRoute'])
 					}
 					min=parseFloat($.trim($('#minFloat').val()));
 					max=parseFloat($.trim($('#maxFloat').val()));
-					for(var i=0;i<paramDatas.length;i++){
-						var data=$.trim(paramDatas[i].value);
-						var desc=$.trim(paramDescs[i].value);
-						if(desc=="" || data==""){
-							errorType=1;
-							break;
-						}
-						if(parseFloat(data) < min || parseFloat(data) > max){
-							errorType=0;
-							break;
-						}
-						mxs.push({data:data,desc:desc});
-					}
+					save_mxs(min,max,"float");
 				}
+				else if(types[2].checked){
+					for(var i=0;i<paramDatas.length;i++) {
+                        var data = $.trim(paramDatas[i].value);
+                        var desc = $.trim(paramDescs[i].value);
+                        mxs.push({data:data,desc:desc});
+                    }
+                    mxsNum=mxs.length+"";
+				}
+				else if(types[3].checked){
+					var enum_value=$.trim($('#maxEnum').val());
+					min ='';
+					max = enum_value;
+					enum_value = enum_value.split(' ');
+					save_mxs(1,1,enum_value);
+				}
+				else if (types[4].checked) {
+                	var msg=checkTimer();
+					if(msg.length>0){
+						alert(msg);
+						return;
+					}
+					min=parseInt($.trim($('#minTimer').val()));
+					max=parseInt($.trim($('#maxTimer').val()));
+					save_mxs(min,max,"int");
+                }
 				if(errorType==1){
 					alert("请填写数据说明和传送数据!!");
 					return;
 				}
 				if(errorType==0){
 					alert("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
+					return;
+				}
+				if(errorType==2){
+					alert("传输数据必须在枚举值:"+enum_value+"中");
 					return;
 				}
 				var indata={};
@@ -105,8 +134,13 @@ angular.module('Product.edit', ['ngRoute'])
 					indata.paramType=1;//整数
 				}else if(types[1].checked){
 					indata.paramType=2;//浮点数
-				}else{
+				}else if(types[2].checked){
 					indata.paramType=3;//字符串
+				}else if(types[3].checked){
+					indata.paramType=4;//枚举
+				}
+				else {
+					indata.paramType=5;//定时型
 				}
 				indata.mxs=mxs;
 				indata.min=min;
