@@ -10,15 +10,15 @@ a:hover{text-decoration:underline;}
 img{border:none;}
 
 /* 头部 */
-#header{position:relative; z-index:10; height:90px; background:#343f6a;}
+#header{position:relative; z-index:10; height:90px; background:#F1F4F9;}
 #header .cnt{width:1120px; height:90px; margin:0 auto;}
 #header .cnt h1{float:left;}
 #header .cnt h1 img{margin:20px 0;}
 #header .cnt .menu{float:right; height:90px;}
 #header .cnt .menu li{float:left; height:90px;}
-#header .cnt .menu li a{display:block; padding:0 23px; background:#343f6a; color:#cbd1d8; font-size:14px; line-height:90px;}
+#header .cnt .menu li a{display:block; padding:0 23px; background:#F1F4F9; color:#333; font-size:14px; line-height:90px;}
 #header .cnt .menu li a:hover{ text-decoration:none;}
-#header .cnt .menu li a.on{background:#2a3547;}
+#header .cnt .menu li a.on{background:#ff6202;color: #fff}
 #header .cnt .menu li a.login_out{display:block; width:100%; height:38px; padding:0; border-top:1px solid #384254; background:#2a3547; line-height:38px; text-align:center; text-indent:23Ppx}
 
 /* 尾部 */
@@ -37,7 +37,7 @@ img{border:none;}
 .no_bt{border-top:none !important;}
 
 
-.wrap{width:1118px; border:1px solid #ccc; border-width:0 1px; background:#e2e9ef; overflow:hidden;}
+.wrap{width:1118px; background:#e2e9ef; overflow:hidden;}
 .wrap .left_side{float:left; width:22%;}
 .wrap .cnt_box{min-height:720px; margin:0 0 0 240px; padding:24px 60px; background:#fff; overflow:hidden;}
 
