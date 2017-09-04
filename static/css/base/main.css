@@ -55,7 +55,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .nav{ float:left; margin:35px 0 35px 90px; height:20px;}
 .nav li{ float:left; padding:0 20px; font-size:14px;}
 .nav li a{ color:#9a9fb5;}
-.nav li a:hover,.nav li.cur a{ color:#FFF; text-decoration:none;}
+.nav li a:hover,.nav li.cur a{ color:#FFF; text-decoration:none; border-bottom: 3px solid #ff6202;width: 67px; text-align: center;}
 .user{ float:right; margin:29px 0; height:32px; overflow:hidden; color:#FFF;}
 .user i{ display:inline-block; *display:inline; zoom:1; vertical-align:middle; width:32px; height:32px; margin-right:10px; overflow:hidden; }
 .user i img{ width:32px; height:32px; border-radius:50%;}
@@ -117,7 +117,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .goods-list dl dd p span{display:inline-block; *display:inline; zoom:1; padding:7px 10px; height:14px; line-height:14px; border:1px solid #808080; border-radius:6px; color:#808080; font-size:12px;}
 .goods-list dl dd p span.highlight{ color:#FFF; background:#dddddd; border:1px solid #dddddd;}
 .goods-list .status{ position:absolute; top:1px; right:0px; line-height:30px; height:30px; padding:0 20px; border-radius: 0 0 3px 3px; color:#FFF;  }
-.goods-list .status.suc{ background:#f39800;}
+.goods-list .status.suc{ background:#ff6202;}
 .goods-list .status.fail{ background:#c91423;}
 .goods-list .status.unpublish{ background:#c3c8d1;}
 

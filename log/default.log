@@ -11805,3 +11805,5 @@ AttributeError: 'WSGIRequest' object has no attribute 'headers'
 2017-08-25 18:50:21,394 [Thread-556:140477481232128] [django.request:143] [WARNING]- Not Found: /api/check_device_status
 2017-08-25 18:50:31,363 [Thread-557:140477481232128] [django.request:143] [WARNING]- Not Found: /api/check_device_status
 2017-08-25 18:50:31,392 [Thread-558:140477472839424] [django.request:143] [WARNING]- Not Found: /api/check_device_status
+2017-09-02 16:45:49,437 [Thread-378:2160] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-02 16:45:56,378 [Thread-384:14964] [django.request:143] [WARNING]- Not Found: /center/admin/null
