@@ -55,7 +55,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .nav{ float:left; margin:35px 0 35px 90px; height:20px;}
 .nav li{ float:left; padding:0 20px; font-size:14px;}
 .nav li a{ color:#9a9fb5;}
-.nav li a:hover,.nav li.cur a{ color:#FFF; text-decoration:none; border-bottom: 3px solid #ff6202;width: 67px; text-align: center;}
+.nav li a:hover,.nav li.cur a{ color:#FFF; text-decoration:none; }
 .user{ float:right; margin:29px 0; height:32px; overflow:hidden; color:#FFF;}
 .user i{ display:inline-block; *display:inline; zoom:1; vertical-align:middle; width:32px; height:32px; margin-right:10px; overflow:hidden; }
 .user i img{ width:32px; height:32px; border-radius:50%;}

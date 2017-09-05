@@ -80,11 +80,16 @@
         margin: 25px;
         font-size: 16px;
     }
+    .curr{
+
+    color: #FFF;  text-decoration: none;  border-bottom: 3px solid #ff6202;  width: 67px;  text-align: center;  position: relative;  left: -4px;
+
+    }
     </style>
 {% endblock %}
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+    <li class=""><a href="{% url "product/list" %}">产品管理<div class="curr"></div></a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}
