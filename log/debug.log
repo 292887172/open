@@ -1150,3 +1150,4 @@
 2017-09-04 17:27:53,907 [Thread-105:9440] [root:148] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-04 17:30:29,967 [Thread-149:17936] [root:148] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-04 20:11:57,493 [Thread-234:752] [root:148] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-05 20:46:41,261 [Thread-268:140712881919744] [root:141] [INFO]- 'AnonymousUser' object has no attribute 'account_id'

@@ -1,0 +1,181 @@
+
+    <link href="/static/demo/css/mui.min.css" rel="stylesheet"/>
+     <link href="/static/demo/css/mui.picker.css" rel="stylesheet"/>
+    <link href="/static/demo/css/mui.poppicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/demo/css/oven.css">
+    <link rel="stylesheet" href="/static/demo/css/control-app.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+
+<div class="mui-content" id="DeviceConf" v-cloak="">
+<h1 class="mui-headerH1">烤箱Test10000023</h1>
+    <ul class="mui-table-view mui-grid-view mui-grid-9" >
+        <li class="mui-table-view-cell mui-media mui-col-xs-2 mui-col-sm-2" v-for="f in funcList">
+        <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
+            <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
+            <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
+            <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
+            <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
+        </div>
+        </li>
+    </ul>
+</div>
+<script src="/static/demo/js/mui.min.js"></script>
+<script src="/static/demo/js/mui.picker.js"></script>
+<script src="/static/demo/js/my_poppicker.js"></script>
+<script src="/static/demo/js/vue.min.js"></script>
+<script src="/static/demo/js/time.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/demo/js/vue-resource.js"></script>
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/demo/js/oven.js"></script>
+<script>
+     mui.init({
+        swipeBack: false //禁用右滑关闭功能
+    });
+      // 初始化级联选择控件
+
+    var DatePicker = new mui.PopPicker({
+        layer: 2
+    });
+</script>
+<script>
+    //获取url中"?"符后的字串
+
+    function GetRequest() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    Request = GetRequest();
+    var mac = Request['d'];
+    console.log(mac);
+    if(mac==undefined){
+        mac = 'AABBCCDDEEFF';
+    }
+    function DyPoppicker(name) {
+        //级联示例
+        
+        DatePicker.setData(timeData);
+        set_hour = 1;
+        set_minute = 0;
+        DatePicker.pickers[0].setSelectedIndex(set_hour, 200);
+        if (set_hour > 0) {
+            DatePicker.pickers[1].setSelectedIndex(set_minute, 200)
+        }
+        else {
+            DatePicker.pickers[1].setSelectedIndex(set_minute - 1, 200)
+        }
+        DatePicker.show(function (items) {
+        console.log(items[0].text + " " + items[1].text);
+       
+        //返回 false 可以阻止选择框的关闭
+        // return false;
+        });
+
+
+
+    }
+    Vue.filter('widget1', function (value) {
+        console.log(value);
+        return true
+    });
+
+    var devices = new Vue({
+        el: '#DeviceConf',
+        data: {
+            funcList: [],
+            show: false,
+            title: '设备功能列表'
+        },
+        created: function ()  {
+             console.log('created is triggered.');
+             console.log(pc_conf.functions);
+            this.funcList = pc_conf.functions;
+            this.title = pc_conf.name;
+            mui('.mui-progressbar').progressbar({progress: 89}).show();
+        },
+
+        methods: {
+           
+            reversedWidget: function (value, type) {
+
+                if(value==type){
+                    return true
+                }
+                else if(type=='other')
+                    return true
+            },
+            sendCommand: function (name, value) {
+                console.log(name);
+                 DyPoppicker(name);
+
+            }
+        },
+        computed: {}
+
+    });
+    setTimeout(function () {
+        $("div.mui-picker-rule-left").last().text('分钟');
+        $("div.mui-picker-inner").last().css('margin-left', '0');
+
+
+    }, 500);
+    function confirm(){
+        DatePicker.hide();
+        mui.alert('虚拟设备暂不支持改功能')
+     //监听input事件，获取range的value值，也可以直接element.value获取该range的值
+    }
+    var rangeList = document.querySelectorAll('input[type="range"]');
+    for (var i = 0, len = rangeList.length; i < len; i++) {
+        rangeList[i].addEventListener('input', function () {
+            try {
+                var range = parseInt(this.max) - parseInt(this.min);
+                var progress_value = ((parseInt(this.value) - parseInt(this.min)) / range) * 100;
+
+                mui('.mui-progressbar').progressbar({progress: progress_value}).show();
+            } catch (e) {
+                console.log(e);
+                mui('.mui-progressbar').progressbar({progress: 0}).show();
+            }
+
+            document.getElementById('block-range-tem').innerHTML = this.value + "℃";
+           
+        });
+       
+
+    }
+    //读取cookies
+
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+        if (arr = document.cookie.match(reg))
+
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+    function StatusSync(dataJson) {
+        for (var i = 0; i < devices.funcList.length; i++) {
+            var n = devices.funcList[i].name;
+            if (dataJson.hasOwnProperty('POWER') & dataJson['POWER'] == 0){
+                devices.funcList[i].value = 0
+            }
+            else {
+                if (dataJson.hasOwnProperty(n)) {
+                devices.funcList[i].value = dataJson[devices.funcList[i].name];
+            }}
+        }
+    }
+</script>

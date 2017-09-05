@@ -1,0 +1,120 @@
+
+body{
+    background-color: #252429; 
+}
+.mui-content{
+    background-color: initial;
+}
+.mui-grid-view.mui-grid-9{
+    background-color: initial;
+    border: 0
+}
+.mui-table-view{
+    background-color: initial;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+    border: 0;
+    margin-bottom: 3%;
+    margin-right: 1.5%;
+    margin-left: 1.8%;
+}
+
+.mui-icon{
+    width: 65px;
+    height: 73px;
+    background-size: 100%;
+    background-position-y: 10px;
+    background-repeat: no-repeat;
+}
+.mui-div-botton{
+    border: 1px solid #343338;
+    height: 125px;
+    background-color:#343338;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1), 0px 6px 22px rgba(0, 0, 0, .7);
+}
+.mui-div-botton:active{
+    background-color: #252429
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+    color: #bbb;
+    font-size: 18px
+}
+.mui-headerH1{
+    margin: 8% 0;
+    text-align: center;
+    color: #fff;
+    font-weight: 100
+}
+.mui-media-body-c{
+    color: #fff!important;
+}
+
+
+.mui-icon-control{
+    background-image: url("../img/more.png");
+}
+.mui-icon-control-c{
+    background-image: url("../img/more-c.png");
+}
+
+#FAST_HEAT.mui-icon-control{
+    background-image: url("../img/fast_heat.png");
+}
+#FAST_HEAT.mui-icon-control-c{
+    background-image: url("../img/fast_heat-c.png");
+}
+#WIND_BAKING.mui-icon-control{
+    background-image: url("../img/wind_baking.png");
+}
+#WIND_BAKING.mui-icon-control-c{
+    background-image: url("../img/wind_baking-c.png");
+}
+#BAKE.mui-icon-control{
+    background-image: url("../img/bake.png");
+}
+#BAKE.mui-icon-control-c{
+    background-image: url("../img/bake-c.png");
+}
+#BOTTOM_HEAT.mui-icon-control{
+    background-image: url("../img/bottom_heat.png");
+}
+#BOTTOM_HEAT.mui-icon-control-c{
+    background-image: url("../img/bottom_heat-c.png");
+}
+#FAN_GRILL.mui-icon-control{
+    background-image: url("../img/fan_grill.png");
+}
+#FAN_GRILL.mui-icon-control-c{
+    background-image: url("../img/fan_grill-c.png");
+}
+#BARBECUE.mui-icon-control{
+    background-image: url("../img/barbecue.png");
+}
+#BARBECUE.mui-icon-control-c{
+    background-image: url("../img/barbecue-c.png");
+}
+#STRONG_ROAST.mui-icon-control{
+    background-image: url("../img/strong_roast.png");
+}
+#STRONG_ROAST.mui-icon-control-c{
+    background-image: url("../img/strong_roast-c.png");
+}
+#CAKE.mui-icon-control{
+    background-image: url("../img/cake.png");
+}
+#CAKE.mui-icon-control-c{
+    background-image: url("../img/cake-c.png");
+}
+#BREAD.mui-icon-control{
+    background-image: url("../img/bread.png");
+}
+#BREAD.mui-icon-control-c{
+    background-image: url("../img/bread-c.png");
+}
+#MEAT.mui-icon-control{
+    background-image: url("../img/meat.png");
+}
+#MEAT.mui-icon-control-c{
+    background-image: url("../img/meat-c.png");
+}
