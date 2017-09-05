@@ -92,6 +92,8 @@
                     已发布
                 {% elif app.check_status == -1 %}
                     未通过
+                {% elif app.check_status == 3 %}
+                    体验产品
                 {% endif %}
             </span>
                 </div>
@@ -172,17 +174,18 @@
                             </li>
                         </ul>
                     </div>
+                    {% if app.check_status == 3 %}
                     <div class="menuBox">
-                        <h3>产品服务</h3>
+
                         <ul>
-                            <li id="taskSystemMenu" ng-hide="true" class="jsNavItem" data-id="taskSystemMenu"
-                                ng-click="nav.selected('taskSystemMenu')">
-                                <a href="#/server">
-                                    <i class="fa fa-inbox"></i>未开放
+                            <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
+                                <a href="#/{{ app.app_name }}">
+                                    <i class="fa fa-inbox"></i>产品体验
                                 </a>
                             </li>
                         </ul>
                     </div>
+                    {% endif %}
                     <div class="menuBox">
                         <h3>生产测试</h3>
                         <ul>
@@ -226,6 +229,7 @@
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
     <script src="{% static "ng/product/edit/controller.js" %}"></script>
     <script src="{% static "ng/product/device/controller.js" %}"></script>
+    <script src="{% static "ng/product/oven/controller.js" %}"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
 
@@ -388,6 +392,10 @@
                         selected: function (id) {
                             jQuery(".jsNavItem").removeClass('hover');
                             jQuery(".jsNavItem[data-id='" + id + "']").addClass('hover');
+                        },
+                        show:function (id) {
+                            console.log('++++', id);
+                            return false
                         }
                     };
                 }]);
