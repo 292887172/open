@@ -2,7 +2,7 @@
     {% for m in menu %}
 
         {% if forloop.counter == cur %}
-            <li class="cur"><a href="{{ m.url }}">{{ m.title }}</a></li>
+            <li ><a class="nav-current" href="{{ m.url }}">{{ m.title }}</a></li>
         {% else %}
             <li><a href="{{ m.url }}">{{ m.title }}</a></li>
         {% endif %}

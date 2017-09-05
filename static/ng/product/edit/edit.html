@@ -536,9 +536,9 @@
 			    var data=$.trim($('#Stream_ID').val());
                 for (var i = 0; i < StreamIds.length; i++) {
                     if (StreamIds[i] == data) {
-                        alert("参数名称已经存在!!");
-					    return;
+                        return false;
                     }
+                    else {return true}
                 }
             }
 		</script>
