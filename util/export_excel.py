@@ -11,7 +11,7 @@ from model.center.app import App
 def write_excel(items, filename):
     headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
                'mxsLength': '长度(bit)', 'command': '全指令', 'permission': '权限'}
-    items['function'].insert(0, headers)
+    items['functions'].insert(0, headers)
     header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command', 'permission']
     excel_name = write_data(items, header, filename)
     return excel_name
@@ -103,8 +103,8 @@ def deal_json(app):
         if str(data['state']) == '1':
             temp1_data.append(i)
             temp2_data.append(j)
-    e_data['function'] = temp2_data
-    j_data['function'] = temp1_data
+    e_data['functions'] = temp2_data
+    j_data['functions'] = temp1_data
     return {'e_data':e_data,'j_data':j_data}
 
 

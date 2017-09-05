@@ -16,7 +16,10 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
-        	alert_ID();
+        	if (!alert_ID()){
+        		alert("参数名称已经存在!!");
+				return ;
+			}
             if($.trim($('#Stream_ID').val())==''){
 					alert("请填写参数ID信息!!");
 					return ;

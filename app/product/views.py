@@ -57,6 +57,7 @@ def product_list(request):
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
+        default_apps = []
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -69,13 +70,16 @@ def product_list(request):
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
                 failed_apps.append(app)
+            elif app.check_status == _convention.APP_DEFAULT:
+                default_apps.append(app)
         template = "product/list.html"
         content = dict(
             keyword=keyword,
             published_apps=published_apps,
             publishing_apps=publishing_apps,
             unpublished_apps=unpublished_apps,
-            failed_apps=failed_apps
+            failed_apps=failed_apps,
+            default_apps=default_apps
         )
         return render(request, template, content)
 

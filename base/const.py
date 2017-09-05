@@ -33,6 +33,7 @@ class ConventionValue(object):
     APP_CHECKING = 1
     APP_CHECKED = 2
     APP_CHECK_FAILED = -1
+    APP_DEFAULT = 3
     # 用户的权限,0:普通用户,1:运营人员,2:厂商账号
     USER_IS_ACCOUNT = 0
     USER_IS_ADMIN = 1

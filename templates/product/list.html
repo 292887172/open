@@ -20,11 +20,6 @@
     .goods span {
         height: 30px;
     }
-    .nav > li > a {
-        position: relative;
-        display: block;
-        padding: 0;
-    }
     .nav > li > a:hover {
         background: transparent;
     }
@@ -43,6 +38,20 @@
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
         line-height: 25px;
+    }
+    .set-create{
+        background-color: #5cb85c;
+        border: 1px solid #5cb85c;
+        text-align: center;
+        margin: 18px;
+        height: 31px;
+        width: 70px;
+        color: black;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+
     }
     .set-float{
         top: 32px;position: relative;
@@ -80,16 +89,14 @@
         margin: 25px;
         font-size: 16px;
     }
-    .curr{
-
-    color: #FFF;  text-decoration: none;  border-bottom: 3px solid #ff6202;  width: 67px;  text-align: center;  position: relative;  left: -4px;
-
+    .nav-current{
+        text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
     }
     </style>
 {% endblock %}
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li class=""><a href="{% url "product/list" %}">产品管理<div class="curr"></div></a></li>
+    <li class="cur"><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}
@@ -120,6 +127,15 @@
         <!-- 已发布的产品 -->
         <h4 class="title-sub"><span class="old">产品列表</span></h4>
         <div class="goodsBox">
+        {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps %}
+            <div style="text-align: center">
+                <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
+                <p style="color: #868586;">数百种APP界面随意挑选组合</p>
+                <a href="{% url "product/add" %}"><button type="button" class="set-create">创建</button> </a>
+
+            </div>
+
+        {% endif %}
             {% for app in published_apps %}
                 <div class="goods-list" style="height: 215px;">
                 <div class="status bg-success">已发布</div>
@@ -214,10 +230,19 @@
         </div>
         <div class="right">
             <h3 style="float: right;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
-
-            <div style="left: 534px;"> <img src="/static/image/product/20170904-1.png"><div style="border: 1px solid #999;height: 30px;width: 100px;top: 31px;left: 20%;text-align:center"><span >集成灶</span ></div></div>
-            <div style="left: 559px;"> <img src="/static/image/product/20170904-2.png"><div style="border: 1px solid #999;height: 30px;width: 100px;top: 31px;left: 20%;text-align:center"><span >油烟机</span></div></div>
-            <div style="left: 584px;"> <img src="/static/image/product/20170904-3.png"><div style="border: 1px solid #999;height: 30px;width: 100px;top: 31px;left: 20%;text-align:center"><span >蒸烤箱</span></div></div>
+            {% for app in default_apps %}
+                {% if  forloop.counter == 1 %}
+                    <div style="left: 534px;">
+                {% elif forloop.counter == 2 %}
+                    <div style="left: 559px;">
+                {% else  %}
+                    <div style="left: 584px;">
+                {% endif %}
+                <a href="{% url 'product/main' %}?ID={{ app.app_id }}">
+                <img src="/static/image/product/20170904-{{ forloop.counter }}.png"></a>
+                <div style="border: 1px solid #999;height: 30px;width: 100px;top: 31px;left: 20%;text-align:center"><span >{{ app.app_name }}</span ></div>
+                </div>
+            {% endfor %}
 
 
         </div>
