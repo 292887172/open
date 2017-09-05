@@ -115,7 +115,7 @@ def get_device_list(device_secret):
     key = device_secret[len(device_secret)-8:]
     try:
         cursor = conn.cursor()
-        sql = 'SELECT ebf_device_id,ebf_device_oc_date,ebf_device_mac FROM ebt_device WHERE SUBSTRING(ebf_device_secret,-8)="{0}"'.format(key)
+        sql = 'SELECT ebf_device_id,ebf_device_create_date as ebf_device_oc_date,ebf_device_mac FROM ebt_device WHERE SUBSTRING(ebf_device_secret,-8)="{0}"'.format(key)
         cursor.execute(sql)
         re = cursor.fetchall()
         if re:
