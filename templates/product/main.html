@@ -34,13 +34,6 @@
         .goods span {
             height: 30px;
         }
-
-        .nav > li > a {
-            position: relative;
-            display: block;
-            padding: 0;
-        }
-
         .nav > li > a:hover {
 
             background: transparent;
@@ -49,17 +42,22 @@
             width: 300px;
 
         }
-    .highlight{
-
-        background: #808080;
-        border: 1px solid #808080;
-    }
+        .nav>li>a {
+            padding: 5px;
+        }
+        .highlight{
+            background: #808080;
+            border: 1px solid #808080;
+        }
+        .nav-current{
+            text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
+        }
 
     </style>
 {% endblock %}
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li class="cur"><a href="{% url "product/list" %}">产品管理</a></li>
+    <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
 {% endblock %}

@@ -23,7 +23,7 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id, app_group):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf, app_factory_id, app_group, check_status):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -31,9 +31,10 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     :param app_model: 型号
     :param app_category: 分类
     :param app_category_detail: 详细分类
-    :param app_command: app是否全指令
+    :param app_command: 指令类型
     :param app_factory_id: app品牌id
-    :param app_group: 产品类型
+    :param app_group: 设备类型
+    :param check_status: 产品审核状态
     :return:
     """
     try:
@@ -58,7 +59,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_config_path='',
                           package_name='',
                           app_factory_uid=app_factory_id,
-                          app_group=app_group
+                          app_group=app_group,
+                          check_status=check_status,
                           )
                 app.save()
                 break

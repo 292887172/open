@@ -54,9 +54,11 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .logo{ float:left; width:290px; height:50px; vertical-align:middle; margin:20px 0; overflow:hidden;}
 .nav{ float:left; margin:35px 0 35px 90px; height:20px;}
 .nav li{ float:left; padding:0 20px; font-size:14px;}
-.nav li a{ color:#333;}
 
-.nav li a:hover,.nav li.cur a{ color:#333;text-decoration:none; border-bottom: 3px solid #ff6202;width: 67px; text-align: center;}
+.nav li a{ color:#333; padding-left: 5px; padding-right: 5px; text-align: center;}
+
+.nav li a:hover{ color:#333;  text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;}
+
 .user{ float:right; margin:29px 0; height:32px; overflow:hidden; color:#333;}
 .user i{ display:inline-block; *display:inline; zoom:1; vertical-align:middle; width:32px; height:32px; margin-right:10px; overflow:hidden; }
 .user i img{ width:32px; height:32px; border-radius:50%;}
@@ -220,9 +222,9 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 /*btn*/
 .btn-blue,.btn-gray,.btn-blue2{ display:inline-block; height:40px; padding:0 42px; line-height:40px; font-size:14px; border-radius:4px;}
 .btn-blue2{ padding:0 20px;}
-.btn-blue,.btn-blue2{ color:#FFF; background:#37618f; }
+.btn-blue,.btn-blue2{ color:#FFF; background:#ff6202; }
 .btn-gray{ color:#333; background:#dddddd;}
-.btn-blue:hover,.btn-blue2:hover{ background:#315780; color:#FFF; text-decoration:none;}
+.btn-blue:hover,.btn-blue2:hover{ background:#ff6202; color:#FFF; text-decoration:none;}
 .btn-gray:hover{ background:#c6c6c6; color:#333; text-decoration:none;}
 .btn-add,.btn-in{display:inline-block; height:36px; padding:0 16px; line-height:36px; border:2px solid #37618f; font-size:14px; border-radius:4px;}
 .btn-add{ color:#37618f; background:#FFF;}
