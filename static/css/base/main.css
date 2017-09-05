@@ -281,7 +281,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .tips-error{ display:block; color:#c91423; font-size:12px; line-height:20px;}
 .iptTxt{ line-height:32px;}
 .mt10{ margin-top:10px;}
-.boxInfo{ padding:10px 0; margin-bottom:10px; border-top:1px solid #dddddd;}
+.boxInfo{ padding:10px 0; margin-bottom:20px; border-top:1px solid #dddddd;}
 
 /*åŸºæœ¬ä¿¡æ¯*/
 .upload{ position:relative; width:100px; height:100px;}
