@@ -139,7 +139,7 @@ def product_add(request):
             except ValueError:
                 app_category_detail = 0
                 pass
-        factory_name = request.POST.get("brand_id", "")
+        factory_name = request.POST.get("brandName", "")
         app_factory_id = get_factory_id(factory_name)
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
