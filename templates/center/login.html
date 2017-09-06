@@ -193,8 +193,8 @@
                                     {% csrf_token %}
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input name="account" class="btn-block" type="text" id="inputEmail"
-                                               placeholder="用户名/邮箱/已验证手机" autofocus="autofocus">
+                                        <input name="account" class="btn-block" type="text" id="inputEmail" value="{% if username %}{{ username|safe }}{% else %}{% endif %}"
+                                               placeholder="用户名/邮箱/已验证手机">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -206,7 +206,7 @@
                                 <div class="control-group">
                                     <div class="controls clearfix" style="float: left">
                                         <label style="width:auto" class="checkbox pull-left">
-                                            <input name="remember" type="checkbox"> 记住账号
+                                            <input name="remember" type="checkbox" class="ui-remember-account" checked> 记住账号
                                         </label>
                                         <!--<a style="padding: 5px 0px 0px 5px;" href="#" class="pull-right">忘记密码?</a>-->
                                     </div>
@@ -243,5 +243,12 @@
 {% endblock %}
 
 {% block script %}
-
+    <script>
+    $(function () {
+         var username = '{{ username }}';
+         if (username != '') {
+            $(".ui-remember-account").click()
+        }
+    })
+    </script>
 {% endblock %}
