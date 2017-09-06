@@ -12,6 +12,7 @@ urlpatterns = patterns(
     url(r'^hz$', 'hz', name='hz'),
     url(r'^zy$', 'zy', name='zy'),
     url(r'^zny$', 'zny', name='zny'),
+    url(r'^dynamic$', 'dynamic', name='dynamic'),
     url(r'^kfz$', 'kfz', name='kfz'),
     url(r'^sdk$', 'sdk', name='sdk'),
     url(r'^big$', 'big', name='big'),

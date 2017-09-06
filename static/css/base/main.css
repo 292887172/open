@@ -342,9 +342,13 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .log_in .sub li a{color:#fff;font-size:12px;display:block;}
 .log_in .sub li a:hover{text-decoration: none;}
 .log_in .sub li a i.icon{width:12px;height:12px;margin-right:5px;background: url(../images/sp.png) no-repeat -50px -200px;}
-.sign_out{text-align:center;padding:29px 0;}
-.sign_out a{background:#ff6202;width:80px;height:32px;line-height:32px;text-align: center;display:inline-block;color:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
-.sign_out a:hover{opacity: 0.85;text-decoration: none;color: #fff}
+.sign_out{text-align:center;padding:38px 0;}
+.sign_out a{width:80px;height:32px;line-height:32px;text-align: center;display:inline-block;color: #333}
+.sign_out a:hover{text-decoration: none}
+.sign_out a.user-login{
+    background:#ff6202;
+    color:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
+}
 
 
 /* å‚æ•°ä¿¡æ¯ */
@@ -985,4 +989,28 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
 .gateway_info_box{display:none;}
 .menuBox ul{
     margin: 0 0 10px 0px;;
+}
+.sign_out{
+            width: 140px;
+            float: right;
+    position: relative;
+        }
+        .login_out{
+            height: 38px;
+    padding: 0;
+    border-top: 1px solid #ddd;
+    background: #ddd;
+    line-height: 38px;
+    text-align: center;
+        }
+        a .corner {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 0 0 10px;
+    background: url(/static/image/sanjiao.png) center center no-repeat;
+    vertical-align: middle;
+            position: absolute;
+    top: 50px;
+    left: 110px;
 }
