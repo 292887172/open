@@ -6,6 +6,8 @@ import json
 import random
 import logging
 import base64
+
+import datetime
 import django
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -123,8 +125,12 @@ def login(request):
             uri = request.session[SESSION_REDIRECT_URI]
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
-            if not remember:
-                request.session.set_expiry(0)
+            # 将用户登录信息保存到cookie
+            if remember:
+                dt = datetime.datetime.now() + datetime.timedelta(hours=168)
+                response.set_cookie(COOKIE_USER_ACCOUNT, account, expires=dt)
+            else:
+                response.delete_cookie(COOKIE_USER_ACCOUNT)
             django.contrib.auth.login(request, user_obj)
             return response
         except Exception as e:
@@ -139,6 +145,8 @@ def login(request):
             return HttpResponseRedirect("/guide")
     except Exception as e:
         logging.getLogger('').info(str(e))
+    if COOKIE_USER_ACCOUNT in request.COOKIES:
+        username = request.COOKIES[COOKIE_USER_ACCOUNT]
     return render(request, "center/login.html", locals())
 
 

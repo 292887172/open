@@ -1,0 +1,129 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
+    <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
+    <title>{% block title %}{% endblock %} 智能厨房电器方案提供商</title>
+    <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
+    <style>
+
+        .hbox {
+            height: 85px;
+        }
+
+        .hbox ul {
+            padding-top: 15px;
+        }
+
+        .hbox ul li {
+            padding-top: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #ccc;
+            height: 60px;
+            padding-left: 13px;
+        }
+        .ui-notify-img{
+            float: left;
+        }
+        .ui-notify-div{
+           float: left;
+            width: 90%;
+            line-height: 48px;
+        }
+        .ui-notify-div p{
+            float: left;
+        }
+        .ui-span-line{
+            display: block;
+            float: left;
+            position: relative;
+            top: 15px;
+            width: 1px;
+            height: 20px;
+            background: #ccc;
+        }
+        .hbox1 h3{
+            float: left;
+            line-height: 50px;
+            width: 75%;
+        }
+        .hbox1{
+            height: 50px;
+            padding-left: 23px;
+            background-color: #F1F4F9;
+            line-height: 50px;
+        }
+        .btn-orange{
+            background-color: #ff6202;
+            border: 1px solid #ff6202;
+            width: 120px;
+        }
+        .btn-orange:hover{
+            background-color: #ff6202;
+            border: 1px solid #ff6202;
+            opacity: 0.85;
+        }
+        .hbox-p1{
+            float: left;
+            width: 78%;
+            line-height: 30px;
+        }
+        .hbox-p2{
+            line-height: 30px;
+            float: left;
+            width: 22%;
+        }
+        .ui-tips-hot{
+            width: 10px;
+            color: #fff;
+            background: #ff6202;
+            padding: 2px;
+            position: relative;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-left: 10px;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="box2 relative">
+    <div class="hbox">
+        <div class="col-lg-12 col-md-12 col-sm-12"><img class="ui-notify-img" src="{% static 'image/center/notify.png' %}">
+            <div class="ui-notify-div"><p style="width: 70%;padding-left: 1%">自助开放平台1.0版本正式发布</p>
+                <p style="width: 19%">2017-090-06</p><span class="ui-span-line"></span>
+                <p style="width: 6%;text-align: center">更多</p></div>
+        </div>
+
+    </div>
+
+    <div class="hbox1">
+        <h3>产品</h3>
+         <div class="col-lg-2 col-md-2 col-sm-2">
+                    <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success btn-orange">
+                        <i class="fa fa-plus"></i>
+                        <span class="text">添加产品</span>
+                    </a>
+         </div>
+    </div>
+    <div class="hbox">
+        <ul>
+            <li> <p class="hbox-p1">集成灶提交审核<span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">2017-09-06</p> </li>
+            <li> <p class="hbox-p1">森田集成灶最新编辑 <span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">2017-08-16</p> </li>
+            <li> <p class="hbox-p1">开发者资料审核通过</p><p class="hbox-p2">2017-06-27</p> </li>
+        </ul>
+    </div>
+
+
+
+</div>
+
+</body>
+
+</html>

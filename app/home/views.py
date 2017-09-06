@@ -75,6 +75,15 @@ def zny(request):
     return render(request, 'home/zny.html', locals())
 
 
+def dynamic(request):
+    """
+    最新动态
+    :param request:
+    :return:
+    """
+    return render(request, 'home/dynamic.html', locals())
+
+
 def zy(request):
     """
     资源提供

@@ -3,14 +3,14 @@
 
 /* 共用部 分*/
 body,div,p,ul,ol,li,dt,dd,h1,h2,h3,h4,h5,h6,h7{margin:0; padding:0;font-family:microsoft yahei !important; box-sizing:content-box !important;}
-body{background-color:#f8f8f8;}
+body{background-color:#F1F4F9;}
 ul,ol,li{list-style:none;}
 a{text-decoration:none;}
 a:hover{text-decoration:underline;}
 img{border:none;}
 
 /* 头部 */
-#header{position:relative; z-index:10; height:90px; background:#F1F4F9;}
+#header{position:relative; z-index:10; height:90px; background:#F1F4F9;border-bottom: 1px solid #ccc}
 #header .cnt{width:1120px; height:90px; margin:0 auto;}
 #header .cnt h1{float:left;}
 #header .cnt h1 img{margin:20px 0;}

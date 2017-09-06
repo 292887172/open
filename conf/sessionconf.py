@@ -29,5 +29,7 @@ SESSION_LOGIN_THIRD = "SESSION_LOGIN_THIRD"
 # 注册成功标志
 SESSION_REGISTER_SUCCESS = "SESSION_REGISTER_SUCCESS"
 
-
+#################################################################
+# 记住登录账户的cookie key
+COOKIE_USER_ACCOUNT = "COOKIE_USER_ACCOUNT"
 

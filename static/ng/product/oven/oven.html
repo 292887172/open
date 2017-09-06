@@ -27,12 +27,7 @@
 <script src="/static/demo/js/mui.min.js"></script>
 <script src="/static/demo/js/mui.picker.js"></script>
 <script src="/static/demo/js/my_poppicker.js"></script>
-<script src="/static/demo/js/vue.min.js"></script>
-<script src="/static/demo/js/time.data.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/demo/js/vue-resource.js"></script>
-<script src="/static/demo/js/jquery.min.js"></script>
-<script src="/static/demo/js/oven.js"></script>
-<script>
+     <script>
      mui.init({
         swipeBack: false //禁用右滑关闭功能
     });
@@ -41,34 +36,22 @@
     var DatePicker = new mui.PopPicker({
         layer: 2
     });
+    var set_temp = 200;
+    var set_hour = 1;
+    var set_minute = 0;
 </script>
-<script>
-    //获取url中"?"符后的字串
+<script src="/static/demo/js/vue.min.js"></script>
+<script src="/static/demo/js/time.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/demo/js/vue-resource.js"></script>
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/demo/js/oven.js"></script>
 
-    function GetRequest() {
-        var url = location.search;
-        var theRequest = new Object();
-        if (url.indexOf("?") != -1) {
-            var str = url.substr(1);
-            strs = str.split("&");
-            for(var i = 0; i < strs.length; i ++) {
-                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-            }
-        }
-        return theRequest;
-    }
-    Request = GetRequest();
-    var mac = Request['d'];
-    console.log(mac);
-    if(mac==undefined){
-        mac = 'AABBCCDDEEFF';
-    }
+<script>
+
     function DyPoppicker(name) {
         //级联示例
         
         DatePicker.setData(timeData);
-        set_hour = 1;
-        set_minute = 0;
         DatePicker.pickers[0].setSelectedIndex(set_hour, 200);
         if (set_hour > 0) {
             DatePicker.pickers[1].setSelectedIndex(set_minute, 200)
@@ -154,28 +137,5 @@
         });
        
 
-    }
-    //读取cookies
-
-    function getCookie(name) {
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-        if (arr = document.cookie.match(reg))
-
-            return unescape(arr[2]);
-        else
-            return null;
-    }
-    function StatusSync(dataJson) {
-        for (var i = 0; i < devices.funcList.length; i++) {
-            var n = devices.funcList[i].name;
-            if (dataJson.hasOwnProperty('POWER') & dataJson['POWER'] == 0){
-                devices.funcList[i].value = 0
-            }
-            else {
-                if (dataJson.hasOwnProperty(n)) {
-                devices.funcList[i].value = dataJson[devices.funcList[i].name];
-            }}
-        }
     }
 </script>
