@@ -14,7 +14,8 @@ angular.module('Product', [
     "Product.device",
     "Product.dev",
     "Product.argue",
-    "Product.edit"
+    "Product.edit",
+    "Product.oven"
 
 ])
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
