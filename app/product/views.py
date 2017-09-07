@@ -285,6 +285,17 @@ def product_main(request):
         elif post_data == "export":
             res = date_deal(app_id)
             return res
+        elif post_data == "save_conf":
+            if str(app.app_group) == '2':
+                res = update_app_protocol(app)
+                if res:
+                    data = {'code': 0, 'msg': 'ok'}
+                else:
+                    data = {'code': -1, 'msg': '请先完善产品功能配置信息'}
+                return JsonResponse(data)
+            else:
+                data = {'code': -1, 'msg': '该产品暂不支持调试'}
+                return JsonResponse(data)
         elif post_data == 'save':
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')

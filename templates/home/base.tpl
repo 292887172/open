@@ -38,11 +38,7 @@
 
         {% endblock %}
 
-        <div class="user" style="position: relative">
-            <p style="position: absolute;top: 44px;font-size: 16px;right: 130px;">电话：0571-88868856</p>
 
-
-        </div>
     <div class="sign_out">
         {% if user.account_id %}
                 <!-- 登录 -->

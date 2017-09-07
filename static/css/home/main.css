@@ -54,8 +54,8 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 /*header*/
 .header{ position:relative; height:90px; background:#F1F4F9;}
 .logo{ float:left; width:290px; height:50px; vertical-align:middle; margin:20px 0; overflow:hidden;}
-.nav{ float:left; margin:35px 0 35px 90px; height:20px;}
-.nav li{ float:left; padding:0 20px; font-size:14px;}
+.nav{ float:left; margin:21px 0 0px 90px; height:50px;}
+.nav li{ float:left; padding:0 20px; font-size:16px;}
 .nav li a{ color:#333; padding-left: 5px; padding-right: 5px; text-align: center;}
 .nav li a:hover{ color:#333;  text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;}
 .user{ float:right; margin:29px 0; height:32px; overflow:hidden; color:#333;}
@@ -341,7 +341,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .log_in .sub li a{color:#fff;font-size:12px;display:block;}
 .log_in .sub li a:hover{text-decoration: none;}
 .log_in .sub li a i.icon{width:12px;height:12px;margin-right:5px;background: url(../images/sp.png) no-repeat -50px -200px;}
-.sign_out{text-align:center;padding:38px 0;}
+.sign_out{text-align:center;padding:25px 0;}
 .sign_out a{width:80px;height:32px;line-height:32px;text-align: center;display:inline-block;color: #333}
 .sign_out a:hover{text-decoration: none}
 .sign_out a.user-login{
@@ -1019,6 +1019,6 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
     background: url(/static/image/sanjiao.png) center center no-repeat;
     vertical-align: middle;
             position: absolute;
-    top: 50px;
+    top: 36px;
     left: 110px;
 }
