@@ -33,7 +33,7 @@
     <div class="mui-left">
 
         <div class="mui-col-sm-9" >
-            <img id="smoke" src="/static/demo/img/lightclose.png" style="width: 162%;margin-top: 18px;">
+            <img id="smoke" src="/static/demo/img/lightclose.png" style="width: 162%;margin-top: 2px;">
             <img src="/static/demo/img/small_wind_1.png" id="picture" style="width: 162%;margin-top: -67%;display: none">
         </div>
 
@@ -102,6 +102,19 @@
                 else if(type=='other')
                     return true
             },
+            checkPower:function () {
+              // 检查电源是否打开
+                for (var j = 0; j < this.funcList.length; j++) {
+                    var tmp = this.funcList[j];
+                    if (tmp.name=='POWER'){
+                        if(tmp.value){
+                            return true
+                        }
+                        else return false
+
+                    }
+                }
+            },
             sendCommand: function (name, value) {
                 small = get_wind(this.funcList,"SMALL_WIND");
                 mid = get_wind(this.funcList,"MIDDLE_WIND");
@@ -110,6 +123,15 @@
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
+                        if(name!="POWER"){
+                            if(!this.checkPower()){
+                                 mui.alert('电源未打开，请先打开电源');
+                                 return false
+                             }
+                        }
+                        if(name == "TIME_OFF"){
+                            mui.alert('虚拟设备暂不支持改功能');
+                        }
                         tmp.value = !tmp.value;
                         if(name == "POWER"){
                             sync_lamp(tmp.value, this.funcList);
@@ -117,10 +139,6 @@
                         else if(name=="LIGHT"){
                             sync_power(tmp.value, this.funcList)
                         }
-                        else if(name == "TIME_OFF"){
-                            mui.alert('虚拟设备暂不支持改功能');
-                        }
-
                         if(name =="SMALL_WIND"){
                             if (small.value){
                                 mid.value = 0;
@@ -197,12 +215,19 @@
                      lamp.value = 1;
                  }
                  else {
-                     lamp.value = 0;
+                      for(var i=0;i<funcList.length;i++){
+                            funcList[i].value=0;
+                        }
+                        clearInterval(timer1);
+                        clearInterval(timer2);
+                        clearInterval(timer3);
+                        $("#picture").css('display', 'none');
                  }
                  power_switch(value,lamp.value);
                  break;
              }
         }
+
     }
     function sync_power(value, funcList) {
         for(var i =0;i <funcList.length;i++){

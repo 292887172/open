@@ -35,14 +35,16 @@
         <div class="mui-row">
             <div class="mui-col-sm-9">
                 <div class="left-nav">
-                    <img id="risk" src="/static/demo/img/icon_stove_num_low.png">
-                    <p style="font-size: 10rem;color: #ff6202;left: -12%;">10<br><span style="color: #E8E7EA;margin: 25px;font-size: 18px;top: 19px;">炉灶风险值</span></p>
+                    <img src="/static/demo/img/icon_stove_num_low.png">
+                    <p id="timer" style="font-size: 10rem;color: #ff6202;left: -12%;margin-top: -42px;">00<br>
+                    </p>
+                    <p style="color: #E8E7EA;margin: 25px;font-size: 18px;top: 37px;">炉灶风险值</p>
                 </div>
 
             </div>
             <div class="mui-col-sm-9">
                 <div>
-                    <h1 id="setTime" style="color: #FEFEFE;font-size: 6rem; font-weight: 100;margin-left: -14px">00:00</h1>
+                    <h1 id="setTime" style="color: #FEFEFE;font-size: 6rem; font-weight: 100;margin-left: -14px;margin-top: -30px;margin-bottom: 20px;">00:00</h1>
                     <p style="margin-left: 20%;color: #E8E7EA;font-size: 18px">持续工作时间</p>
                 </div>
             </div>
@@ -89,6 +91,7 @@
     }
     var c=0;
     var t;
+    var t1;
     var devices = new Vue({
         el: '#DeviceConf',
         data: {
@@ -114,24 +117,60 @@
                 else if(type=='other')
                     return true
             },
+            checkPower:function () {
+              // 检查电源是否打开
+                for (var j = 0; j < this.funcList.length; j++) {
+                    var tmp = this.funcList[j];
+                    if (tmp.name=='POWER'){
+                        if(tmp.value){
+                            return true
+                        }
+                        else return false
+
+                    }
+                }
+            },
             sendCommand: function (name, value) {
+                dis =get_tmp(this.funcList,"DISINFECT");
+                dry =get_tmp(this.funcList,"DRY");
+
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
+                        if(name!="POWER"){
+                            if(!this.checkPower()){
+                                 mui.alert('电源未打开，请先打开电源');
+                                 return false
+                             }
+                        }
                         if(name == "TIME_OFF"){
                             mui.alert('虚拟设备暂不支持改功能');
                             break
                         }
                         tmp.value = !tmp.value;
                         if(name == "POWER"){
-                            power_switch(value)
+                            power_switch(value,this.funcList)
                         }
-                        else if(name == "DISINFECT" || name == "DRY"){
-                            if(value){
-                                stopCount();
+                        if(name == "DISINFECT"){
+                            if(tmp.value)
+                            {
+                                dry.value=0;
+                                timedCount(name);
+                                stopCount("DRY")
                             }
                             else{
-                                timedCount();
+                                stopCount(name)
+                            }
+                        }
+                        else if(name == "DRY"){
+                            if(tmp.value)
+                            {
+                                dis.value=0;
+                                timedCount(name);
+                                stopCount("DISINFECT")
+                            }
+                            else{
+                                stopCount(name)
                             }
                         }
                     }
@@ -142,8 +181,15 @@
         },
         computed: {}
     });
-
-    function timedCount(els) {
+    function get_tmp(funcList,name) {
+        for (var i = 0; i < funcList.length; i++) {
+            var lamp = funcList[i];
+            if (lamp.name == name) {
+                return lamp;
+            }
+        }
+    }
+    function timedCount(name) {
         var temptextmin=$('#setTime');
         min = parseInt(c / 60);// 分钟数
         if(min>=60){
@@ -158,21 +204,35 @@
         }
         temptextmin.text(min + ":" + lastsecs);
         c=c+1 ;
-        t=setTimeout("timedCount()",1000);
+        if(name=="DISINFECT"){
+            t=setTimeout(function(){ timedCount(name);},1000);
+        }
+        else if(name=="DRY"){
+            t1=setTimeout(function(){ timedCount(name);},1000);
+        }
     }
-    function stopCount() {
-        clearTimeout(t) ;
+    function stopCount(name) {
+        if(name=="DISINFECT"){
+            clearTimeout(t);
+        }
+        else if(name=="DRY"){
+            clearTimeout(t1);
+        }
         c=0;
-        t='';
     }
-    function power_switch(temp) {
+    function power_switch(temp,funcList) {
         if(!temp){
-             $("#risk")[0].src = "/static/demo/img/icon_stove_num_high.png";
-             $("#risk").parent().children('p').text("70");
+
+             $("#timer").text("10");
         }
         else{
-            $("#risk")[0].src = "/static/demo/img/icon_stove_num_low.png";
-            $("#risk").parent().children('p').text("10");
+            $("#timer").text("00");
+
+            stopCount("DISINFECT");
+            stopCount("DRY");
+            for(var i=0;i<funcList.length;i++){
+                funcList[i].value=0;
+            }
         }
     }
 </script>

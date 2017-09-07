@@ -18,22 +18,21 @@ body{
 }
 .mui-grid-view.mui-grid-9 .mui-table-view-cell{
     border: 0;
-    margin-bottom: 9%;
+    margin-bottom: 6%;
     margin-right: 2.5%;
     margin-left: 5.8%;
-    margin-top: 1%;
 }
 
 .mui-icon{
     width: 65px;
     height: 100px;
     background-size: 100%;
-    background-position-y: 31px;
+    background-position-y: 20px;
     background-repeat: no-repeat;
 }
 .mui-div-botton{
     border: 1px solid #343338;
-    height: 142px;
+    height: 125px;
     width: 132px;
     background-color:#343338;
     border-radius: 10px;
@@ -47,6 +46,7 @@ body{
     font-size: 18px;
     height: 20px;
     overflow:inherit;
+    margin-top: -10%;
 }
 .mui-headerH1{
     margin: 8% 0;
