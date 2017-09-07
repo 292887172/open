@@ -13,7 +13,8 @@
         color: #808080;
     }
 </style>
-<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
+
+<script src="/static/js/product/bootbox.js"></script>
 <script src="/static/js/ejs.js"></script>
 <script type="text/javascript">
     jQuery(function($) {
@@ -46,6 +47,40 @@
         }
 
     });
+    function DebugDevice(item) {
+        // href="https://oven.53iq.com/static/html/control.html?d=<%=device_list[i].ebf_device_mac%
+        var mac = $(item).data('mac');
+
+        var dialog = bootbox.dialog({
+                    title: '正在申请调试权限',
+                    message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+                });
+        $.ajax({
+            url: location.href,
+            type: "POST",
+            data: {'name': 'save_conf'},
+            success: function (data) {
+                dialog.modal('hide');
+                if(data['code']== 0){
+                    window.location.href = 'https://oven.53iq.com/static/html/control.html?d='+mac
+                }
+                else{
+                    bootbox.alert(data['msg'])
+                }
+                console.log(data);
+
+            },
+            error: function (e) {
+                alert(e)
+            },
+            complete:function () {
+                setTimeout(function () {
+                    dialog.modal('hide')
+                },1000);
+            }
+        });
+
+    }
     function goPage(pno,psize) {
             var itable = document.getElementById("table-device");
             var num = itable.rows.length;

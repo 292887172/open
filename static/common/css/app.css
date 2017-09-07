@@ -1506,7 +1506,7 @@ fieldset[disabled] .btn-dark.active {
 }
 .btn {
   font-weight: 500;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 .btn-icon {
   padding-left: 0 !important;

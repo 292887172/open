@@ -15,7 +15,7 @@
             <td><%=device_list[i].ebf_device_oc_date %></td>
             <td>
             <% if (device_list[i].ebf_device_mac) {%>
-            <a href="https://oven.53iq.com/static/html/control.html?d=<%=device_list[i].ebf_device_mac%>" target="_blank" >调试</a>
+            <a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="<%=device_list[i].ebf_device_mac%>" target="_blank" >调试</a>
             <%}%>
             </td>
         </tr>

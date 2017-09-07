@@ -42,14 +42,7 @@ var _hmt = _hmt || [];
 
             {% endblock %}
         </ul>
-        <div class="user" style="position: relative;width: 300px;
-    margin: 0;
-    height: auto;
-    overflow: visible;">
-            <p style="position: absolute;top: 40px;font-size: 16px;right: 130px;">电话：0571-88868856</p>
 
-
-        </div>
     <div class="sign_out">
          {% if user.account_id %}
                 <!-- 登录 -->

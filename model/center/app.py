@@ -50,7 +50,7 @@ class App(models.Model):
     app_model = models.CharField(max_length=64, null=True, db_column='ebf_app_model')
     # 应用等级
     app_level = models.IntegerField(max_length=3, default=0, db_column='ebf_app_level')
-    # 应用分组
+    # 应用分组，1普通app，2普通电控
     app_group = models.IntegerField(max_length=8, default=0, db_column='ebf_app_group')
     # 设备消息推送地址
     app_push_url = models.CharField(max_length=2048, null=True, db_column='ebf_app_push_url')

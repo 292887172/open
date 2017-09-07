@@ -26,42 +26,46 @@
         .nav > li > a {
             position: relative;
             display: block;
-            padding: 0;
+
         }
 
         .nav > li > a:hover {
 
             background: transparent;
         }
-    .vague {
-        width: 360px;
-        max-height: 280px;
-        overflow: auto;
-        position: absolute;
-        top: 263px;
-        border: #ddd 1px solid;
-        z-index: 999;
-        background: #fff;
-    }
-    .vague li {
-        height: 30px;
-        line-height: 30px;
-        padding: 0 10px;
-        color: #999;
-        cursor: pointer;
-    }
-    .label-command{
-        left: 20px;
-        position: relative;
-        color: #999;
-        top: 26px;
-        left: -99px;
-    }
-    .nav-current {
-    text-decoration: none;
-    border-bottom: 3px solid #ff6202;
-    height: 35px;
-}
+
+        .vague {
+            width: 360px;
+            max-height: 280px;
+            overflow: auto;
+            position: absolute;
+            top: 263px;
+            border: #ddd 1px solid;
+            z-index: 999;
+            background: #fff;
+        }
+
+        .vague li {
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .label-command {
+            left: 20px;
+            position: relative;
+            color: #999;
+            top: 26px;
+            left: -99px;
+        }
+
+        .nav-current {
+            text-decoration: none;
+            border-bottom: 3px solid #ff6202;
+            height: 35px;
+        }
     </style>
 {% endblock %}
 
@@ -69,7 +73,7 @@
     <li><a href="{% url 'home' %}">首页</a></li>
     <li class="cur"><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-    <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
+
 {% endblock %}
 
 {% block content %}
@@ -82,104 +86,116 @@
                     <div>
                         <form action="" method="POST" name="productAddForm">
                             {% csrf_token %}
-                            <input type="hidden" name="developer_id" value="{{ developer.developer_id }}"/>
-                            <input type="hidden" name="product_describe" value="hello world"/>
-                            <h4 class="infoTit">填写基本信息</h4>
-                            <dl class="fmInfo">
-                                <dt>产品名称</dt>
-                                <dd>
-                                    <input type="text" name="product_name" id="productNameText" maxlength="18"
-                                           class="w280 form-control" placeholder="请填写产品名称">
-                                    <span class="tips-error hiden" id="productNameTips"></span>
-                                </dd>
-                            </dl>
-                            <dl class="fmInfo">
-                                <dt>品牌</dt>
-                                <dd>
-                                    <input type="hidden" name="brand_id" id="brand_id">
-                                    <input type="text" name="brandName" id="brandNameText" maxlength="18"
-                                           class="w280 form-control" placeholder="品牌名称" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl', this.value)">
-                                    <span class="tips-error hiden" id="brandNameTips"></span>
-                                    <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
-                                </dd>
-                            </dl>
-                            <dl class="fmInfo">
-                                <dt>型号</dt>
-                                <dd>
-                                    <input type="text" name="product_model" id="productModelText" maxlength="48"
-                                           class="w280 form-control" placeholder="请填写型号，如：A1">
-                                    <span class="tips-error hiden" id="productModelTips"></span>
-                                </dd>
-                            </dl>
-                            <dl class="fmInfo">
-                                <dt>分类</dt>
-                                <dd>
-                                    智能家居 /
-                                    <select name="product_category" id="product_category" class="sel1">
-                                        <option value="无">请选择分类</option>
-{#                                        <option value="家电类">家电类</option>#}
-                                        <option value="厨房类">厨房类</option>
-                                        <option value="卫浴类">卫浴类</option>
-{#                                        <option value="环境类">环境类</option>#}
-                                    </select>
-                                    <select name="product_category_detail" id="product_category_detail" class="sel2">
-                                        <option value="无">请选择分类</option>
-                                    </select>
-                                    <span class="tips-error hiden" id="productTypeTips"></span>
-                                </dd>
-                            </dl>
+                            <div style="float: left;width: 60%">
+                                <input type="hidden" name="developer_id" value="{{ developer.developer_id }}"/>
+                                <input type="hidden" name="product_describe" value="hello world"/>
+                                <h4 class="infoTit">填写基本信息</h4>
+                                <dl class="fmInfo">
+                                    <dt>产品名称</dt>
+                                    <dd>
+                                        <input type="text" name="product_name" id="productNameText" maxlength="18"
+                                               class="w280 form-control" placeholder="请填写产品名称">
+                                        <span class="tips-error hiden" id="productNameTips"></span>
+                                    </dd>
+                                </dl>
+                                <dl class="fmInfo">
+                                    <dt>品牌</dt>
+                                    <dd>
+                                        <input type="hidden" name="brand_id" id="brand_id">
+                                        <input type="text" name="brandName" id="brandNameText" maxlength="18"
+                                               class="w280 form-control" placeholder="品牌名称"
+                                               onclick="showBrandList('brandAddUl');"
+                                               onkeyup="showBrandList('brandAddUl', this.value)">
+                                        <span class="tips-error hiden" id="brandNameTips"></span>
+                                        <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';"
+                                            onmouseout="this.style.display='none';" style="display: none;"></ul>
+                                    </dd>
+                                </dl>
+                                <dl class="fmInfo">
+                                    <dt>型号</dt>
+                                    <dd>
+                                        <input type="text" name="product_model" id="productModelText" maxlength="48"
+                                               class="w280 form-control" placeholder="请填写型号，如：A1">
+                                        <span class="tips-error hiden" id="productModelTips"></span>
+                                    </dd>
+                                </dl>
+                                <dl class="fmInfo">
+                                    <dt>分类</dt>
+                                    <dd>
+                                        智能家居 /
+                                        <select name="product_category" id="product_category" class="sel1">
+                                            <option value="无">请选择分类</option>
+                                            {#                                        <option value="家电类">家电类</option>#}
+                                            <option value="厨房类">厨房类</option>
+                                            <option value="卫浴类">卫浴类</option>
+                                            {#                                        <option value="环境类">环境类</option>#}
+                                        </select>
+                                        <select name="product_category_detail" id="product_category_detail"
+                                                class="sel2">
+                                            <option value="无">请选择分类</option>
+                                        </select>
+                                        <span class="tips-error hiden" id="productTypeTips"></span>
+                                    </dd>
+                                </dl>
 
-                            <dl class="fmInfo">
-                                <dt>产品类型</dt>
-                                <dd>
-                                    <select name="product_group" onclick="HideCommand()" id="product_group" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
-                                        <option value="1" >普通App</option>
-                                        <option value="2" selected="selected">普通电控</option>
-                                    </select>
-                                </dd>
-                            </dl>
+                                <dl class="fmInfo">
+                                    <dt>产品类型</dt>
+                                    <dd>
+                                        <select name="product_group" onclick="HideCommand()" id="product_group"
+                                                ng-disabled="{[{ disabled }]}" class="sel2" style="width:90px;">
+                                            <option value="1">普通App</option>
+                                            <option value="2" selected="selected">普通电控</option>
+                                        </select>
+                                    </dd>
+                                </dl>
 
-                            <dl class="fmInfo" id="command-type">
-                                <dt>指令类型</dt>
-                                <dd>
-                                    <select name="product_command" onclick="showHide()" id="product_command" ng-disabled="{[{ disabled }]}"  class="sel2"  style="width:90px;">
-                                        <option value="是" selected="selected">全指令</option>
-                                        <option value="否">单指令</option>
-                                    </select>
-                                    <label id="my-label-1" class="label-command" style="display: none;" >支持单个原子功能独立控制</label>
-                                    <label id="my-label-2" class="label-command">每个数据帧都要传输所有原子功能状态</label>
-                                </dd>
-                            </dl>
-                            <h4 class="infoTit02 mt30">
-                                选择技术方案 <span class="f12">（方案确定后不能更改）</span>
-                            </h4>
-                            <ul class="choose_plan_list">
-                                <li class="choose_plan_item choose_plan_item02">
-                                    <p class="plan_title">屏幕式智能套件方案</p>
+                                <dl class="fmInfo" id="command-type">
+                                    <dt>指令类型</dt>
+                                    <dd>
+                                        <select name="product_command" onclick="showHide()" id="product_command"
+                                                ng-disabled="{[{ disabled }]}" class="sel2" style="width:90px;">
+                                            <option value="是" selected="selected">全指令</option>
+                                            <option value="否">单指令</option>
+                                        </select>
+                                        <label id="my-label-1" class="label-command"
+                                               style="display: none;">支持单个原子功能独立控制</label>
+                                        <label id="my-label-2" class="label-command">每个数据帧都要传输所有原子功能状态</label>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div style="float: right;width: 40%">
+                                <h4 class="infoTit02">
+                                    选择技术方案 <span class="f12">（方案确定后不能更改）</span>
+                                </h4>
+                                <ul class="choose_plan_list">
+                                    <li class="choose_plan_item choose_plan_item02">
+                                        <p class="plan_title">屏幕式智能套件方案</p>
 
-                                    <div class="plan_box plan_box_choose">
-                                        <p class="nav_nav lev01">云</p>
+                                        <div class="plan_box plan_box_choose">
+                                            <p class="nav_nav lev01">云</p>
 
-                                        <p class="s01 lev02">WiFi/Android屏等</p>
+                                            <p class="s01 lev02">WiFi/Android屏等</p>
 
-                                        <p class="nav_nav lev03">设备</p>
+                                            <p class="nav_nav lev03">设备</p>
 
-                                        <p class="txt">油烟机、热水器、净化器等</p>
+                                            <p class="txt">油烟机、热水器、净化器等</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
+
+                                <div class="tac  mt20 hide">
+                                    <div class="checkbox i-checks">
+                                        <label>
+                                            <input id="chk" type="checkbox" value="已同意协议" name="protocol">
+                                            <i></i>
+                                            我已阅读并接受<a href="#" class="linkBlue" id="agreement">《53iq智能云开发者协议》</a>
+                                        </label>
                                     </div>
-                                </li>
-                            </ul>
-                            <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
-
-                            <div class="tac mt20 hide">
-                                <div class="checkbox i-checks">
-                                    <label>
-                                        <input id="chk" type="checkbox" value="已同意协议" name="protocol">
-                                        <i></i>
-                                        我已阅读并接受<a href="http://www.baidu.com" class="linkBlue" id="agreement">《53iq智能云开发者协议》</a>
-                                    </label>
                                 </div>
                             </div>
-                            <div class="tac mt20">
+
+                            <div class="tac mt30" style="float: left;width: 100%">
                                 <span><button id="go" type="button" class="btn btn-s-lg btn-success">继 续</button></span>
                             </div>
                         </form>
@@ -202,42 +218,38 @@
 
 {% block end_script %}
     <script>
-    var brandListData = {{ factory_list|safe }};
-    function showBrandList(ulID, qVal) {
-        $("#" + ulID).show();
-        $("#" + ulID).html("");
-        if(qVal){
-            for(var i=0; i< brandListData.length; i++)
-            {
-                var brandName = brandListData[i].brandName;
-                if(brandName.indexOf(qVal) == -1)
-                {
-                    continue;
+        var brandListData = {{ factory_list|safe }};
+        function showBrandList(ulID, qVal) {
+            $("#" + ulID).show();
+            $("#" + ulID).html("");
+            if (qVal) {
+                for (var i = 0; i < brandListData.length; i++) {
+                    var brandName = brandListData[i].brandName;
+                    if (brandName.indexOf(qVal) == -1) {
+                        continue;
+                    }
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId + "'>" + brandListData[i].brandName + "</li>"));
                 }
-                $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='"+brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+            }
+            else {
+                for (var i = 0; i < brandListData.length; i++) {
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId + "'>" + brandListData[i].brandName + "</li>"));
+                }
             }
         }
-        else
-        {
-            for(var i=0; i<brandListData.length; i++)
-            {
-                $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
-            }
-        }
-    }
-    function clickQueryDiv(liObj) {
-        var $liObj = $(liObj);
-        var $textObj = $liObj.parent().parent().children(":first");
-        $textObj.val($liObj.html());
-        $textObj.attr("title", $liObj.html());
-        $("#brandNameText").val($liObj.text());
-        $("#brand_id").val($liObj.attr("id"));
-        $liObj.parent().hide();
+        function clickQueryDiv(liObj) {
+            var $liObj = $(liObj);
+            var $textObj = $liObj.parent().parent().children(":first");
+            $textObj.val($liObj.html());
+            $textObj.attr("title", $liObj.html());
+            $("#brandNameText").val($liObj.text());
+            $("#brand_id").val($liObj.attr("id"));
+            $liObj.parent().hide();
 
-    }
-    function showHide() {
-            var a=$("#product_command").val();
-            if (a=='是'){
+        }
+        function showHide() {
+            var a = $("#product_command").val();
+            if (a == '是') {
                 $("#my-label-1").hide();
                 $("#my-label-2").show();
             }
@@ -245,40 +257,40 @@
                 $("#my-label-2").hide();
                 $("#my-label-1").show();
             }
-    }
-    function HideCommand() {
-        var a=$("#product_group").val();
-        if (a=='1'){
-            $('#command-type').css("display","none");
         }
-        else {
-            $('#command-type').css("display","block");
+        function HideCommand() {
+            var a = $("#product_group").val();
+            if (a == '1') {
+                $('#command-type').css("display", "none");
+            }
+            else {
+                $('#command-type').css("display", "block");
+            }
         }
-    }
-    $(document).ready(function () {
-        $('#go').on('click', function (e) {
-            if ($("#productNameText").val() != "") {
-                $("form[name=productAddForm]").submit();
+        $(document).ready(function () {
+            $('#go').on('click', function (e) {
+                if ($("#productNameText").val() != "") {
+                    $("form[name=productAddForm]").submit();
 
-            } else {
-                alert("产品名称不能为空");
-            }
-        });
-        $("#product_category").on('change',function () {
-            var value = $("#product_category option:selected").val();
-            if (value == '无'){
-                html = '<option value="0">请选择分类</option>'
-            }
-            else if(value =='厨房类'){
-                html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
-                    '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
-            }
-            else if(value =='卫浴类'){
-                html = '<option value="12">马桶</option><option value="19">饮水机</option>'
-            }
-            $("#product_category_detail").html(html)
-        });
+                } else {
+                    alert("产品名称不能为空");
+                }
+            });
+            $("#product_category").on('change', function () {
+                var value = $("#product_category option:selected").val();
+                if (value == '无') {
+                    html = '<option value="0">请选择分类</option>'
+                }
+                else if (value == '厨房类') {
+                    html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
+                        '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
+                }
+                else if (value == '卫浴类') {
+                    html = '<option value="12">马桶</option><option value="19">饮水机</option>'
+                }
+                $("#product_category_detail").html(html)
+            });
 
-    })
+        })
     </script>
 {% endblock %}
