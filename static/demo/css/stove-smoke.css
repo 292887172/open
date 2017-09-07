@@ -1,3 +1,33 @@
+.mui-content-padded{
+    text-align: center;
+    color: #FEFEFE;
+
+}
+.mui-left{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+.mui-right{
+
+    width: 70%;
+    height: 100%;
+    float: left;
+    border-left: 1px #bbb solid;
+}
+.left-nav p,.left-nav p span,.left-nav img{
+    position: relative;
+}
+.left-nav img{
+    left: 91%;
+    top: -34px;
+}
+.mui-content{
+    background: #252429;;
+}
+.mui-col-sm-9{
+    padding: 33px;
+}
 .mui-input-row.mui-input-range {
     overflow: hidden;
     padding-left: 20px;

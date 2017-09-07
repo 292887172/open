@@ -61,7 +61,7 @@ def write_data(data, header, filename):
     # l表示行
     l = 10
     n = len(header)
-    for index, line in enumerate(data['function']):
+    for index, line in enumerate(data['functions']):
         for i in range(n):
             table.col(index).width = 256*30
             if index == 0:

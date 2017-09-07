@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="mui-control">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>油烟机</title>
+
+    <link href="/static/demo/css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/demo/css/control-alter-app.css">
+    <link rel="stylesheet" href="/static/demo/css/stove-smoke.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+</head>
+<body style="background: #252429;">
+<script src="/static/demo/js/vue.min.js"></script>
+<script src="/static/demo/js/vue-resource.js"></script>
+
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/demo/js/smoking.js"></script>
+<script src="/static/demo/js/mui.min.js"> </script>
+
+
+<div class="mui-content" id="DeviceConf" v-cloak="">
+    <div class="mui-content-padded">
+        <h1 class="mui-headerH1">油烟机100056</h1>
+    </div>
+
+    <div class="mui-left">
+
+        <div class="mui-col-sm-9" >
+            <img id="smoke" src="/static/demo/img/lightclose.png" style="width: 162%;margin-top: 18px;">
+            <img src="/static/demo/img/small_wind_1.png" id="picture" style="width: 162%;margin-top: -67%;display: none">
+        </div>
+
+    </div>
+    <div class="mui-right">
+        <ul class="mui-table-view mui-grid-view mui-grid-9" >
+            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
+                <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
+                    <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
+                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
+                    <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
+                    <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+   mui.init({
+        swipeBack: false //禁用右滑关闭功能
+    });
+</script>
+<script>
+    function GetRequest() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    Request = GetRequest();
+    var mac = Request['d'];
+    var timer1;
+    var timer2;
+    var timer3;
+    console.log(mac);
+    if(mac==undefined){
+        mac = 'AABBCCDDEEFF';
+    }
+    var devices = new Vue({
+        el: '#DeviceConf',
+        data: {
+            funcList: [],
+            show: false,
+            title: '设备功能列表'
+        },
+        created: function ()  {
+             console.log('created is triggered.');
+             console.log(pc_conf.functions);
+            this.funcList = pc_conf.functions;
+            this.title = pc_conf.name;
+        },
+
+        methods: {
+
+            reversedWidget: function (value, type) {
+
+                if(value==type){
+                    return true
+                }
+                else if(type=='other')
+                    return true
+            },
+            sendCommand: function (name, value) {
+                small = get_wind(this.funcList,"SMALL_WIND");
+                mid = get_wind(this.funcList,"MIDDLE_WIND");
+                big = get_wind(this.funcList,"BIG_WIND");
+
+                for (var j = 0; j < this.funcList.length; j++) {
+                    var tmp = this.funcList[j];
+                    if (tmp.name == name){
+                        tmp.value = !tmp.value;
+                        if(name == "POWER"){
+                            sync_lamp(tmp.value, this.funcList);
+                        }
+                        else if(name=="LIGHT"){
+                            sync_power(tmp.value, this.funcList)
+                        }
+                        else if(name == "TIME_OFF"){
+                            mui.alert('虚拟设备暂不支持改功能');
+                        }
+
+                        if(name =="SMALL_WIND"){
+                            if (small.value){
+                                mid.value = 0;
+                                big.value = 0;
+                                clearInterval(timer2);
+                                clearInterval(timer3);
+                            }
+                            play(tmp.value,"small","timer1");
+                        }
+                        else if(name == "MIDDLE_WIND"){
+                            if (mid.value){
+                                small.value = 0;
+                                big.value = 0;
+                                clearInterval(timer1);
+                                clearInterval(timer3);
+                            }
+                            play(tmp.value,"middle","timer2");
+                        }
+                        else if(name == "BIG_WIND"){
+                            if (big.value){
+                                small.value = 0;
+                                mid.value = 0;
+                                clearInterval(timer2);
+                                clearInterval(timer1);
+                            }
+                            play(tmp.value,"big","timer3");
+                        }
+                        }
+                }
+            }
+        },
+        computed: {}
+    });
+    function get_wind(funcList,name) {
+        for (var i = 0; i < funcList.length; i++) {
+            var lamp = funcList[i];
+            if (lamp.name == name) {
+                return lamp;
+            }
+        }
+    }
+    function play(value,size,timer) {
+        if (value) {
+            var i = 1;
+            $("#picture").css('display', 'block');
+            if(size == "small"){
+                timer1 = setInterval(go, 1000);
+            }
+            else if(size =="middle"){
+                timer2 = setInterval(go, 800);
+            }
+            else if(size =="big"){
+                timer3 = setInterval(go, 600);
+            }
+            function go() {
+                if (i > 4) {
+                    i = 1;
+                }
+                $("#picture")[0].src = "/static/demo/img/"+size+"_wind_" + i + ".png";
+                i++;
+            }
+        }
+        else {
+            clearInterval(timer);
+            $("#picture")[0].src = "";
+            $("#picture").css('display', 'none');
+        }
+    }
+    function sync_lamp(value, funcList) {
+        for(var i =0;i <funcList.length;i++){
+             var lamp =  funcList[i];
+             if(lamp.name == "LIGHT"){
+                 if(value){
+                     lamp.value = 1;
+                 }
+                 else {
+                     lamp.value = 0;
+                 }
+                 power_switch(value,lamp.value);
+                 break;
+             }
+        }
+    }
+    function sync_power(value, funcList) {
+        for(var i =0;i <funcList.length;i++){
+             var power =  funcList[i];
+             if(power.name == "POWER"){
+                 power_switch(power.value,value);
+                 break;
+             }
+        }
+    }
+    function power_switch(power,lamp) {
+        if(power && lamp){
+             $("#smoke")[0].src = "/static/demo/img/lightopen.png";
+        }
+        else{
+            $("#smoke")[0].src = "/static/demo/img/lightclose.png";
+        }
+
+ }
+</script>
+</body>
+</html>

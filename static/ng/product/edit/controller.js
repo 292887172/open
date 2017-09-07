@@ -16,7 +16,7 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
-        	if (!alert_ID()){
+        	if (alert_ID()=="exist"){
         		alert("参数名称已经存在!!");
 				return ;
 			}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="mui-control">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>集成灶</title>
+
+    <link href="/static/demo/css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/demo/css/control-alter-app.css">
+    <link rel="stylesheet" href="/static/demo/css/stove-smoke.css">
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+</head>
+<body style="background: #252429;">
+<script src="/static/demo/js/vue.min.js"></script>
+<script src="/static/demo/js/vue-resource.js"></script>
+<script src="/static/demo/js/jsapi.js"></script>
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/demo/js/collect.js"></script>
+<script src="/static/demo/js/mui.min.js"> </script>
+
+
+<div class="mui-content" id="DeviceConf" v-cloak="">
+    <div class="mui-content-padded">
+        <h1 class="mui-headerH1">集成灶100056</h1>
+    </div>
+
+    <div class="mui-left">
+        <div class="mui-row">
+            <div class="mui-col-sm-9">
+                <div class="left-nav">
+                    <img id="risk" src="/static/demo/img/icon_stove_num_low.png">
+                    <p style="font-size: 10rem;color: #ff6202;left: -12%;">10<br><span style="color: #E8E7EA;margin: 25px;font-size: 18px;top: 19px;">炉灶风险值</span></p>
+                </div>
+
+            </div>
+            <div class="mui-col-sm-9">
+                <div>
+                    <h1 id="setTime" style="color: #FEFEFE;font-size: 6rem; font-weight: 100;margin-left: -14px">00:00</h1>
+                    <p style="margin-left: 20%;color: #E8E7EA;font-size: 18px">持续工作时间</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mui-right">
+        <ul class="mui-table-view mui-grid-view mui-grid-9" >
+            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
+                <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
+                    <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
+                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
+                    <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
+                    <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+
+
+   mui.init({
+        swipeBack: false //禁用右滑关闭功能
+    });
+</script>
+<script>
+    function GetRequest() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    Request = GetRequest();
+    var mac = Request['d'];
+    console.log(mac);
+    if(mac==undefined){
+        mac = 'AABBCCDDEEFF';
+    }
+    var c=0;
+    var t;
+    var devices = new Vue({
+        el: '#DeviceConf',
+        data: {
+            funcList: [],
+            show: false,
+            title: '设备功能列表'
+        },
+        created: function ()  {
+             console.log('created is triggered.');
+             console.log(pc_conf.functions);
+            this.funcList = pc_conf.functions;
+            this.title = pc_conf.name;
+            mui('.mui-progressbar').progressbar({progress: 89}).show();
+        },
+
+        methods: {
+
+            reversedWidget: function (value, type) {
+
+                if(value==type){
+                    return true
+                }
+                else if(type=='other')
+                    return true
+            },
+            sendCommand: function (name, value) {
+                for (var j = 0; j < this.funcList.length; j++) {
+                    var tmp = this.funcList[j];
+                    if (tmp.name == name){
+                        if(name == "TIME_OFF"){
+                            mui.alert('虚拟设备暂不支持改功能');
+                            break
+                        }
+                        tmp.value = !tmp.value;
+                        if(name == "POWER"){
+                            power_switch(value)
+                        }
+                        else if(name == "DISINFECT" || name == "DRY"){
+                            if(value){
+                                stopCount();
+                            }
+                            else{
+                                timedCount();
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        },
+        computed: {}
+    });
+
+    function timedCount(els) {
+        var temptextmin=$('#setTime');
+        min = parseInt(c / 60);// 分钟数
+        if(min>=60){
+            minmin=min%60
+        }
+        lastsecs = c % 60;
+        if(min<10){
+            min = "0" + min;
+        }
+        if (lastsecs<10){
+            lastsecs = "0" + lastsecs;
+        }
+        temptextmin.text(min + ":" + lastsecs);
+        c=c+1 ;
+        t=setTimeout("timedCount()",1000);
+    }
+    function stopCount() {
+        clearTimeout(t) ;
+        c=0;
+        t='';
+    }
+    function power_switch(temp) {
+        if(!temp){
+             $("#risk")[0].src = "/static/demo/img/icon_stove_num_high.png";
+             $("#risk").parent().children('p').text("70");
+        }
+        else{
+            $("#risk")[0].src = "/static/demo/img/icon_stove_num_low.png";
+            $("#risk").parent().children('p').text("10");
+        }
+    }
+</script>
+</body>
+</html>
