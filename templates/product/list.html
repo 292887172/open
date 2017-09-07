@@ -1,5 +1,5 @@
-{% extends "product/base.tpl" %}
-
+{% extends "home/base.tpl" %}
+{% load filter %}
 {% load staticfiles %}
 
 {% block title %}
@@ -10,9 +10,12 @@
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
     <style>
     .wrapper {
-        width: 1200px;
+
         padding: 0;
         margin: 0 auto;
+    }
+    .header{
+        margin-bottom: 16px;
     }
     .mt20 {
         margin-top: 20px;
@@ -24,7 +27,7 @@
         background: transparent;
     }
     .footer{
-        margin: 205px auto 0;
+        margin: 100px auto 0;
     }
     .set-radius{
         background-color: #ccc;
@@ -33,7 +36,7 @@
         height:30px;
         width:30px;
         float: left;
-        margin: 19px 19px;
+        margin: 9px 9px;
         border-radius: 50%;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
@@ -58,19 +61,17 @@
         float: left;
     }
     .right{
-            top: -58px;
-            position: relative;
-            left: -23%;
+            float: right;
     }
     .right div{
-        position: relative;
-        top: 41px;
+
         float: left;
         border:2px solid;
         border-color: rgba(0,0,0,0.4);
         padding:3px;
         width: 158px;
-        height: 170px;
+        height: 160px;
+        margin-right: 20px;
     }
     .right div img{
         top: 14px;
@@ -92,19 +93,23 @@
     .nav-current{
         text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
     }
+    .left{
+        float: left;
+        width: 40%;
+        margin-left: 10px;
+
+    }
     </style>
 {% endblock %}
 {% block menu %}
-    <li><a href="{% url 'home' %}">首页</a></li>
-    <li class="cur"><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-    <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
+    {% create_menu 2 user.developer.developer_id %}
+
 {% endblock %}
 {% block content %}
     <div class="title">
         <div class="wrapper">
             <div style="height: 34px; margin: 11px 0;">
-                <div class="col-lg-10">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <form class="form-inline" name="productListQueryForm" method="GET" action="">
                         <input type="text" class="form-control" name="search" placeholder="输入产品名称" value="{{ keyword }}">
                         <input type="submit" class="btn btn-md btn-success" value="搜索">
@@ -113,7 +118,7 @@
                         {% endif %}
                     </form>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-2 col-sm-2">
                     <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
                         <i class="fa fa-plus"></i>
                         <span class="text">添加产品</span>
@@ -123,7 +128,7 @@
         </div>
     </div>
 
-    <div class="wrapper">
+    <div class="wrapper mt20">
         <!-- 已发布的产品 -->
         <h4 class="title-sub"><span class="old">产品列表</span></h4>
         <div class="goodsBox">
@@ -211,7 +216,7 @@
 
         <div class="left">
             <h3 style="font-size: 20px;color: #868586"><b>53iq 厨房智能产品开发到量产5步走</b></h3><br>
-            <span style="font-size: 16px;display: inline-block;width: 27%;text-align: center;">更有完整的方案，SoC类产品真正免开发</span><br>
+            <span style="font-size: 16px;text-align: center;">更有完整的方案，SoC类产品真正免开发</span><br>
             <div class="set-float">
                 <img  src="/static/image/product/20180904-2.png"><p>功能定义》</p ><div class="set-radius"><span >1</span></div>
             </div>
@@ -229,7 +234,7 @@
             </div>
         </div>
         <div class="right">
-            <h3 style="float: right;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
+            <h3 style="margin-bottom: 20px;text-align:center;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
             {% for app in default_apps %}
                 {% if  forloop.counter == 1 %}
                     <div style="left: 534px;">
@@ -238,10 +243,10 @@
                 {% else  %}
                     <div style="left: 584px;">
                 {% endif %}
-
-                <img src="/static/image/product/20170904-{{ forloop.counter }}.png">
                 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/{{ app.app_name }}">
-                <div style="border: 1px solid #999;height: 30px;width: 100px;top: 31px;left: 20%;text-align:center"><span >{{ app.app_name }}</span ></div></a>
+                <img src="/static/image/product/20170904-{{ forloop.counter }}.png">
+                <div style="border: 1px solid #999;height: 30px;width: 100px;margin-top: 22px;margin-left: 28px;text-align:center"><span >{{ app.app_name }}</span ></div></a>
+
                 </div>
             {% endfor %}
 

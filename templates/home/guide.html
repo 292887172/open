@@ -41,6 +41,7 @@
 {% block script %}
     <script>
         var ad = location.hash;
+        var user_id = "{{ user.developer.developer_id }}";
         // 从URL中获取相关的链接地址
         var n_url = ad.replace('#', '/');
         // 区分点击底部链接还是在guide页面点击的跳转
@@ -53,7 +54,13 @@
             $(".ui-con").addClass("hover");
         }
         else {
-            n_url = '/zny'
+            if(user_id!=''){
+                n_url = '/dynamic'
+            }
+            else{
+                 n_url = '/zny'
+            }
+
         }
         $.ajax({
             type: "get",

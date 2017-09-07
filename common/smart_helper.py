@@ -71,12 +71,14 @@ def update_app_protocol(app):
                   (app.app_factory_uid, app.app_device_type,app.app_model, device_conf, app.app_create_date,app.app_appsecret, key_value)
         cursor.execute(sql)
         conn.commit()
+        res = True
     except Exception as e:
         print(e)
+        res = False
         pass
     finally:
         conn.close()
-
+    return res
 
 def get_device_type(device_type):
     """
