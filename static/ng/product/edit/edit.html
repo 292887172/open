@@ -249,7 +249,7 @@
 
                 var edit_data={};
                 var post_data = {"name": "edit","id":id};
-                var flag = false;
+                var flag ;
                 $.ajax({
                     url:"#/edit",
                     type: "POST",
@@ -261,6 +261,7 @@
                             StreamIds = data['streamIds'];
                             flag = true
                         }
+                        else{flag = false;}
                     }
                 });
                 if(flag == false){
@@ -523,9 +524,9 @@
 			    var data=$.trim($('#Stream_ID').val());
                 for (var i = 0; i < StreamIds.length; i++) {
                     if (StreamIds[i] == data) {
-                        return false;
+                        return "exist";
                     }
-                    else {return true}
+                    else {return "not-exist"}
                 }
             }
 		</script>
