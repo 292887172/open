@@ -5,7 +5,7 @@
 
 angular.module('Product.oven', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/智能烤箱', {
+        $routeProvider.when('/demo/:type', {
             templateUrl: "/static/ng/product/oven/demo.html",
             controller: "deviceCtrl"
 
@@ -13,7 +13,8 @@ angular.module('Product.oven', ['ngRoute'])
         });
     }])
 
-    .controller('deviceCtrl', ['$scope', "$http", function ($scope, $http) {
+    .controller('deviceCtrl', ['$scope', "$routeParams", function ($scope, $routeParams) {
         $scope.nav.selected("demoMenu");
+        $scope.params=$routeParams;
 
     }]);
