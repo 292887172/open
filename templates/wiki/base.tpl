@@ -17,13 +17,12 @@
         .leftSide {
             float: left;
             width: 204px;
+            border: 1px solid #dddddd;
+            margin-bottom: -9999px;
+            padding-bottom: 9999px;
+            background-color: #fff;
         }
 
-        .box1 {
-            border: 1px solid #dddddd;
-        {#            border-right: 0;#} background: #FFF;
-            min-height: 750px;
-        }
 
         .rightMain {
             float: right;
@@ -32,6 +31,7 @@
             min-height: 750px;
             background-color: #fff;
             border: 1px solid #ddd;
+            border-bottom: 0;
         }
 
         .menuBox {
@@ -82,7 +82,10 @@
         a:hover {
             text-decoration: none;
         }
-
+        .footer{
+            background-color: #F1F4F9;
+            border-top:1px solid #ddd
+        }
         .footer ul {
             width: 100%;
         }

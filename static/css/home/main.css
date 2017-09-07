@@ -1008,11 +1008,8 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
         }
         .login_out{
             height: 38px;
-    padding: 0;
-    border-top: 1px solid #ddd;
-    background: #ddd;
-    line-height: 38px;
-    text-align: center;
+            padding: 0;
+            text-align: center;
         }
         a .corner {
     display: inline-block;
