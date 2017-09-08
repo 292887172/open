@@ -104,13 +104,9 @@
              console.log(pc_conf.functions);
             this.funcList = pc_conf.functions;
             this.title = pc_conf.name;
-            mui('.mui-progressbar').progressbar({progress: 89}).show();
         },
-
         methods: {
-
             reversedWidget: function (value, type) {
-
                 if(value==type){
                     return true
                 }
@@ -130,10 +126,31 @@
                     }
                 }
             },
+            get_func: function(name) {
+                for (var i = 0; i < this.funcList.length; i++) {
+                    var tmp = this.funcList[i];
+                    if (tmp.name == name) {
+                        return tmp;
+                    }
+                }
+            },
+            sync_power_all: function(value) {
+                if(!value){
+                     $("#timer").text("10");
+                }
+                else{
+                    $("#timer").text("00");
+                    stopCount("DISINFECT");
+                    stopCount("DRY");
+                    $('#setTime').text("00:00");
+                    for(var i=0;i<this.funcList.length;i++){
+                        this.funcList[i].value=0;
+                    }
+                }
+            },
             sendCommand: function (name, value) {
-                dis =get_tmp(this.funcList,"DISINFECT");
-                dry =get_tmp(this.funcList,"DRY");
-
+                dis =this.get_func("DISINFECT");
+                dry =this.get_func("DRY");
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
@@ -145,11 +162,11 @@
                         }
                         if(name == "TIME_OFF"){
                             mui.alert('虚拟设备暂不支持该功能');
-                            break
+                            return false
                         }
                         tmp.value = !tmp.value;
                         if(name == "POWER"){
-                            power_switch(value,this.funcList)
+                            this.sync_power_all(value)
                         }
                         if(name == "DISINFECT"){
                             if(tmp.value)
@@ -181,36 +198,28 @@
         },
         computed: {}
     });
-    function get_tmp(funcList,name) {
-        for (var i = 0; i < funcList.length; i++) {
-            var lamp = funcList[i];
-            if (lamp.name == name) {
-                return lamp;
+    function timedCount(name) {
+            var temptextmin=$('#setTime');
+            min = parseInt(c / 60);// 分钟数
+            if(min>=60){
+                minmin=min%60
+            }
+            lastsecs = c % 60;
+            if(min<10){
+                min = "0" + min;
+            }
+            if (lastsecs<10){
+                lastsecs = "0" + lastsecs;
+            }
+            temptextmin.text(min + ":" + lastsecs);
+            c=c+1 ;
+            if(name=="DISINFECT"){
+                t=setTimeout(function(){ timedCount(name);},1000);
+            }
+            else if(name=="DRY"){
+                t1=setTimeout(function(){ timedCount(name);},1000);
             }
         }
-    }
-    function timedCount(name) {
-        var temptextmin=$('#setTime');
-        min = parseInt(c / 60);// 分钟数
-        if(min>=60){
-            minmin=min%60
-        }
-        lastsecs = c % 60;
-        if(min<10){
-            min = "0" + min;
-        }
-        if (lastsecs<10){
-            lastsecs = "0" + lastsecs;
-        }
-        temptextmin.text(min + ":" + lastsecs);
-        c=c+1 ;
-        if(name=="DISINFECT"){
-            t=setTimeout(function(){ timedCount(name);},1000);
-        }
-        else if(name=="DRY"){
-            t1=setTimeout(function(){ timedCount(name);},1000);
-        }
-    }
     function stopCount(name) {
         if(name=="DISINFECT"){
             clearTimeout(t);
@@ -219,21 +228,6 @@
             clearTimeout(t1);
         }
         c=0;
-    }
-    function power_switch(temp,funcList) {
-        if(!temp){
-
-             $("#timer").text("10");
-        }
-        else{
-            $("#timer").text("00");
-
-            stopCount("DISINFECT");
-            stopCount("DRY");
-            for(var i=0;i<funcList.length;i++){
-                funcList[i].value=0;
-            }
-        }
     }
 </script>
 </body>

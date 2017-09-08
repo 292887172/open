@@ -177,10 +177,9 @@
                     </div>
                     {% if app.check_status == 3 %}
                     <div class="menuBox">
-
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
-                                <a href="#/{{ app.app_name }}">
+                                <a href="#/demo/{{ app.app_name }}">
                                     <i class="fa fa-inbox"></i>产品体验
                                 </a>
                             </li>
@@ -241,7 +240,7 @@
                     // 应用信息
                     $scope.app_check_status = "{{ app.check_status }}";
                     $scope.visible =
-                            "{% if app.check_status == 1 or app.check_status == 2 %}true{% else %}false{% endif %}";
+                            "{% if app.check_status == 1 or app.check_status == 2 or app.check_status == 3 %}true{% else %}false{% endif %}";
                     $scope.disabled = $scope.visible;
                     $scope.csrf_token = "{% if csrf_token %}{{ csrf_token }}{% endif %}";
                     $scope.appid = "{% if app.app_appid %}{{ app.app_appid }}{% endif %}";
