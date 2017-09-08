@@ -246,8 +246,12 @@
     <script>
     $(function () {
          var username = '{{ username }}';
-         if (username == '') {
-            $(".ui-remember-account").click()
+         if (username != '') {
+             if(!$("input[type='checkbox']").is(':checked')){
+                 $(".ui-remember-account").click()
+             }
+
+
         }
     })
     </script>
