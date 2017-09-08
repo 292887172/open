@@ -7,13 +7,13 @@ angular.module('Product.oven', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/demo/:type', {
             templateUrl: "/static/ng/product/oven/demo.html",
-            controller: "deviceCtrl"
+            controller: "ovenCtrl"
 
 
         });
     }])
 
-    .controller('deviceCtrl', ['$scope', "$routeParams", function ($scope, $routeParams) {
+    .controller('ovenCtrl', ['$scope', "$routeParams", function ($scope, $routeParams) {
         $scope.nav.selected("demoMenu");
         $scope.params=$routeParams;
 

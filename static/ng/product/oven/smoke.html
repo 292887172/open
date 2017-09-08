@@ -74,7 +74,6 @@
     var timer1;
     var timer2;
     var timer3;
-    console.log(mac);
     if(mac==undefined){
         mac = 'AABBCCDDEEFF';
     }
@@ -86,16 +85,12 @@
             title: '设备功能列表'
         },
         created: function ()  {
-             console.log('created is triggered.');
-             console.log(pc_conf.functions);
             this.funcList = pc_conf.functions;
             this.title = pc_conf.name;
         },
-
         methods: {
 
             reversedWidget: function (value, type) {
-
                 if(value==type){
                     return true
                 }
@@ -111,14 +106,75 @@
                             return true
                         }
                         else return false
-
                     }
                 }
             },
+            get_func: function(name) {
+                for (var i = 0; i < this.funcList.length; i++) {
+                    var tmp = this.funcList[i];
+                    if (tmp.name == name) {
+                        return tmp;
+                    }
+                }
+            },
+            play: function(tmp,timer) {
+                if (tmp.value) {
+                    var i = 1;
+                    var wind = tmp.name.toLowerCase().split('_')[0];
+                    $("#picture").css('display', 'block');
+                    if(tmp.name == "SMALL_WIND"){
+                        timer1 = setInterval(go, 900);
+                    }
+                    else if(tmp.name =="MIDDLE_WIND"){
+                        timer2 = setInterval(go, 800);
+                    }
+                    else if(tmp.name =="BIG_WIND"){
+                        timer3 = setInterval(go, 600);
+                    }
+                    function go() {
+                        if (i > 4) {
+                            i = 1;
+                        }
+                        $("#picture")[0].src = "/static/demo/img/"+wind+"_wind_" + i + ".png";
+                        i++;
+                    }
+                }
+                else {
+                    clearInterval(timer);
+                    $("#picture")[0].src = "";
+                    $("#picture").css('display', 'none');
+                }
+            },
+            sync_power_all:function (value) {
+                lamp = this.get_func("LIGHT");
+                if(value){
+                     lamp.value = 1;
+                     $("#smoke")[0].src = "/static/demo/img/lightopen.png";
+                }
+                else {
+                      for(var i=0;i<this.funcList.length;i++){
+                            this.funcList[i].value=0;
+                        }
+                        clearInterval(timer1);
+                        clearInterval(timer2);
+                        clearInterval(timer3);
+                        $("#picture")[0].src = "";
+                        $("#picture").css('display', 'none');
+                        $("#smoke")[0].src = "/static/demo/img/lightclose.png";
+                }
+            },
+            clickLamp: function(value) {
+                if(value){
+                    $("#smoke")[0].src = "/static/demo/img/lightopen.png";
+                }
+                else{
+                    $("#smoke")[0].src = "/static/demo/img/lightclose.png";
+                }
+            },
             sendCommand: function (name, value) {
-                small = get_wind(this.funcList,"SMALL_WIND");
-                mid = get_wind(this.funcList,"MIDDLE_WIND");
-                big = get_wind(this.funcList,"BIG_WIND");
+                small = this.get_func("SMALL_WIND");
+                mid = this.get_func("MIDDLE_WIND");
+                big = this.get_func("BIG_WIND");
 
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
@@ -131,13 +187,14 @@
                         }
                         if(name == "TIME_OFF"){
                             mui.alert('虚拟设备暂不支持该功能');
+                            return false
                         }
                         tmp.value = !tmp.value;
                         if(name == "POWER"){
-                            sync_lamp(tmp.value, this.funcList);
+                            this.sync_power_all(tmp.value);
                         }
                         else if(name=="LIGHT"){
-                            sync_power(tmp.value, this.funcList)
+                            this.clickLamp(tmp.value)
                         }
                         if(name =="SMALL_WIND"){
                             if (small.value){
@@ -146,7 +203,7 @@
                                 clearInterval(timer2);
                                 clearInterval(timer3);
                             }
-                            play(tmp.value,"small","timer1");
+                            this.play(tmp,"timer1");
                         }
                         else if(name == "MIDDLE_WIND"){
                             if (mid.value){
@@ -155,7 +212,7 @@
                                 clearInterval(timer1);
                                 clearInterval(timer3);
                             }
-                            play(tmp.value,"middle","timer2");
+                            this.play(tmp,"timer2");
                         }
                         else if(name == "BIG_WIND"){
                             if (big.value){
@@ -164,7 +221,7 @@
                                 clearInterval(timer2);
                                 clearInterval(timer1);
                             }
-                            play(tmp.value,"big","timer3");
+                            this.play(tmp,"timer3");
                         }
                         }
                 }
@@ -172,81 +229,6 @@
         },
         computed: {}
     });
-    function get_wind(funcList,name) {
-        for (var i = 0; i < funcList.length; i++) {
-            var lamp = funcList[i];
-            if (lamp.name == name) {
-                return lamp;
-            }
-        }
-    }
-    function play(value,size,timer) {
-        if (value) {
-            var i = 1;
-            $("#picture").css('display', 'block');
-            if(size == "small"){
-                timer1 = setInterval(go, 1000);
-            }
-            else if(size =="middle"){
-                timer2 = setInterval(go, 800);
-            }
-            else if(size =="big"){
-                timer3 = setInterval(go, 600);
-            }
-            function go() {
-                if (i > 4) {
-                    i = 1;
-                }
-                $("#picture")[0].src = "/static/demo/img/"+size+"_wind_" + i + ".png";
-                i++;
-            }
-        }
-        else {
-            clearInterval(timer);
-            $("#picture")[0].src = "";
-            $("#picture").css('display', 'none');
-        }
-    }
-    function sync_lamp(value, funcList) {
-        for(var i =0;i <funcList.length;i++){
-             var lamp =  funcList[i];
-             if(lamp.name == "LIGHT"){
-                 if(value){
-                     lamp.value = 1;
-                 }
-                 else {
-                      for(var i=0;i<funcList.length;i++){
-                            funcList[i].value=0;
-                        }
-                        clearInterval(timer1);
-                        clearInterval(timer2);
-                        clearInterval(timer3);
-                        $("#picture").css('display', 'none');
-                 }
-                 power_switch(value,lamp.value);
-                 break;
-             }
-        }
-
-    }
-    function sync_power(value, funcList) {
-        for(var i =0;i <funcList.length;i++){
-             var power =  funcList[i];
-             if(power.name == "POWER"){
-                 power_switch(power.value,value);
-                 break;
-             }
-        }
-    }
-    function power_switch(power,lamp) {
-        if(power && lamp){
-             $("#smoke")[0].src = "/static/demo/img/lightopen.png";
-        }
-        else{
-            $("#smoke")[0].src = "/static/demo/img/lightclose.png";
-        }
-
- }
 </script>
 </body>
 </html>
