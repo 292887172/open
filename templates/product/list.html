@@ -119,7 +119,7 @@
                 </div>
         </div>
         <div class="goodsBox">
-        {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps %}
+        {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword%}
             <div style="text-align: center">
                 <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
                 <p style="color: #868586;">数百种APP界面随意挑选组合</p>
@@ -144,7 +144,6 @@
                 </dl>
                 </div>
             {% endfor %}
-
 
             {% for app in publishing_apps %}
                 <div class="goods-list" style="height: 215px;">

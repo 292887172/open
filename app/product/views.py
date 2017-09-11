@@ -52,12 +52,16 @@ def product_list(request):
             user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword)
         else:
             user_apps = developer.developer_related_app.all()
-        # 已经发布, 未发布, 未通过审核
+        # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         published_apps = []
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
         default_apps = []
+        user_apps_all = developer.developer_related_app.all()
+        for app in user_apps_all:
+            if app.check_status == _convention.APP_DEFAULT:
+                default_apps.append(app)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -70,8 +74,6 @@ def product_list(request):
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
                 failed_apps.append(app)
-            elif app.check_status == _convention.APP_DEFAULT:
-                default_apps.append(app)
         template = "product/list.html"
         content = dict(
             keyword=keyword,
