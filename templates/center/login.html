@@ -1,10 +1,13 @@
-{% extends 'center/base.tpl' %}
+{% extends 'product/base.tpl' %}
 {% load staticfiles %}
 {% block title %}
     登录
 {% endblock %}
 {% block style %}
     <style>
+        .sign_out{
+            display: none;
+        }
         .row-fluid {
             width: 100%;
             font-size: 14px;
@@ -178,6 +181,7 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="container">
         <div class="row-fluid">
             <div class="span12">
