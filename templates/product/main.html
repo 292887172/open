@@ -341,21 +341,17 @@
                     $scope.apiListTable = [
                         '<style>',
                         'a, a:visited {',
-                        'color: #459ae9;',
                         'text-decoration: none;',
                         '}',
                         'a:hover {',
-                        'color: #459ae9;',
                         'text-decoration: underline;',
                         '}',
                         '</style>',
                         '<style>',
                         'a, a:visited {',
-                        'color: #459ae9;',
                         'text-decoration: none;',
                         '}',
                         'a:hover {',
-                        'color: #459ae9;',
                         'text-decoration: underline;',
                         '}',
                         '</style>',
@@ -392,10 +388,6 @@
                         selected: function (id) {
                             jQuery(".jsNavItem").removeClass('hover');
                             jQuery(".jsNavItem[data-id='" + id + "']").addClass('hover');
-                        },
-                        show:function (id) {
-                            console.log('++++', id);
-                            return false
                         }
                     };
                 }]);

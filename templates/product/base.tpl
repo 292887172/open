@@ -46,9 +46,9 @@ var _hmt = _hmt || [];
     <div class="sign_out">
          {% if user.account_id %}
                 <!-- 登录 -->
-                <a href="" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
+                <a onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
                        style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
-                    <div onmouseout="$('.login_out').hide()" style="position: absolute">
+                    <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                          <a rel="nofollow" href="/center?" class="login_out"
                        onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
                        {% if user.developer.developer_id %}

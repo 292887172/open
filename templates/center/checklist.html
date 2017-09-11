@@ -1,4 +1,4 @@
-{% extends 'center/base.tpl' %}
+{% extends 'product/base.tpl' %}
 
 {% load staticfiles %}
 {% load filter %}
@@ -6,6 +6,7 @@
     审核状态
 {% endblock %}
 {% block style %}
+    <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
     <style>
         .cnt_box p.btn {
             width: 100%;
@@ -103,7 +104,12 @@
     </style>
 
 {% endblock %}
+{% block menu %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
 
+{% endblock %}
 {% block content %}
     <div class="container">
         <div class="wrap">

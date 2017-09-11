@@ -63,7 +63,7 @@
     .right{
             float: right;
     }
-    .right div{
+    .left div{
 
         float: left;
         border:2px solid;
@@ -73,7 +73,7 @@
         height: 160px;
         margin-right: 20px;
     }
-    .right div img{
+    .left div img{
         top: 14px;
         position: relative;
         left: 25%;
@@ -95,7 +95,7 @@
     }
     .left{
         float: left;
-        width: 40%;
+        width: 45%;
         margin-left: 10px;
 
     }
@@ -106,31 +106,18 @@
 
 {% endblock %}
 {% block content %}
-    <div class="title">
-        <div class="wrapper">
-            <div style="height: 34px; margin: 11px 0;">
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <form class="form-inline" name="productListQueryForm" method="GET" action="">
-                        <input type="text" class="form-control" name="search" placeholder="输入产品名称" value="{{ keyword }}">
-                        <input type="submit" class="btn btn-md btn-success" value="搜索">
-                        {% if keyword %}
-                        <a href="{% url 'product/list' %}" class="btn btn-md btn-success">显示全部</a>
-                        {% endif %}
-                    </form>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2">
+
+
+    <div class="wrapper mt20">
+        <!-- 已发布的产品 -->
+        <div class="title-sub"><span class="old">产品列表</span>
+            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
                     <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
                         <i class="fa fa-plus"></i>
                         <span class="text">添加产品</span>
                     </a>
                 </div>
-            </div>
         </div>
-    </div>
-
-    <div class="wrapper mt20">
-        <!-- 已发布的产品 -->
-        <h4 class="title-sub"><span class="old">产品列表</span></h4>
         <div class="goodsBox">
         {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword%}
             <div style="text-align: center">
@@ -212,27 +199,7 @@
     </div>
     <hr  style="border-top: 1px solid #dddddd;position: relative;top: 59px;margin-bottom: 92px;width: 100%;"/>
     <div class="wrapper">
-
         <div class="left">
-            <h3 style="font-size: 20px;color: #868586"><b>53iq 厨房智能产品开发到量产5步走</b></h3><br>
-            <span style="font-size: 16px;text-align: center;">更有完整的方案，SoC类产品真正免开发</span><br>
-            <div class="set-float">
-                <img  src="/static/image/product/20180904-2.png"><p>功能定义》</p ><div class="set-radius"><span >1</span></div>
-            </div>
-            <div class="set-float" >
-                <img  src="/static/image/product/20180904-1.png"><p>APP界面》</p><div class="set-radius"><span>2</span></div>
-            </div >
-            <div class="set-float">
-                <img  src="/static/image/product/20180904-5.png"><p>硬件调试》</p><div class="set-radius"><span>3</span></div>
-            </div>
-            <div class="set-float">
-                <img  src="/static/image/product/20180904-4.png"><p>扩展功能》</p><div class="set-radius"><span>4</span></div>
-            </div>
-            <div class="set-float">
-                <img  src="/static/image/product/20180904-3.png"><p>批量投产</p><div class="set-radius"><span>5</span></div>
-            </div>
-        </div>
-        <div class="right">
             <h3 style="margin-bottom: 20px;text-align:center;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
             {% for app in default_apps %}
                 {% if  forloop.counter == 1 %}
@@ -251,6 +218,26 @@
 
 
         </div>
+        <div class="right">
+            <h3 style="font-size: 20px;color: #868586"><b>53iq 厨房智能产品开发到量产5步走</b></h3><br>
+            <span style="font-size: 16px;text-align: center;">更有完整的方案，SoC类产品真正免开发</span><br>
+            <div class="set-float">
+                <img  src="/static/image/product/20180904-2.png"><p>功能定义》</p ><div class="set-radius"><span >1</span></div>
+            </div>
+            <div class="set-float" >
+                <img  src="/static/image/product/20180904-1.png"><p>APP界面》</p><div class="set-radius"><span>2</span></div>
+            </div >
+            <div class="set-float">
+                <img  src="/static/image/product/20180904-5.png"><p>硬件调试》</p><div class="set-radius"><span>3</span></div>
+            </div>
+            <div class="set-float">
+                <img  src="/static/image/product/20180904-4.png"><p>扩展功能》</p><div class="set-radius"><span>4</span></div>
+            </div>
+            <div class="set-float">
+                <img  src="/static/image/product/20180904-3.png"><p>批量投产</p><div class="set-radius"><span>5</span></div>
+            </div>
+        </div>
+
 
     </div>
     <hr style="border-top: 1px solid #dddddd;position: relative;top: 50px;width: 100%;"/>
