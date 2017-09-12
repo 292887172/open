@@ -116,7 +116,6 @@
 
 <div class="footer">
     <p><a href="http://www.53iq.com/about" target="_blank">关于53iq</a>
-        <a href="/guide">53iq云</a>
         <a href="/guide#contact" onclick="addHover('contact',this)">联系我们</a>
     </p>
 
