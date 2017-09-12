@@ -66,8 +66,7 @@
     .left div{
 
         float: left;
-        border:2px solid;
-        border-color: rgba(0,0,0,0.4);
+        background-color: #fff;
         padding:3px;
         width: 158px;
         height: 160px;
@@ -137,7 +136,10 @@
                         <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
-                        <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                        <div class="goods-title">
+                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
+                            <span class="label bg-white" style="font-size: ;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
+                        </div>
                         <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
                         <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
                     </dd>
@@ -154,7 +156,9 @@
                             <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                         </dt>
                         <dd>
-                            <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
+                            <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
+                            <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
+                            </div>
                             <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
                             <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
                         </dd>
@@ -170,9 +174,11 @@
                         <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
-                        <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
-                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
-                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                        <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
+                        <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
+                        </div>
+                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">电控调试</span></p>
+                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI调试</span></p>
                     </dd>
                 </dl>
                 </div>
@@ -187,8 +193,8 @@
                         </dt>
                         <dd>
                             <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
-                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
-                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">电控调试</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI调试</span></p>
                         </dd>
                     </dl>
                 </div>
@@ -211,7 +217,7 @@
                 {% endif %}
                 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
                 <img src="/static/image/product/20170904-{{ forloop.counter }}.png">
-                <div style="border: 1px solid #999;height: 30px;width: 100px;margin-top: 22px;margin-left: 28px;text-align:center"><span >{{ app.app_name }}</span ></div></a>
+                <div style="height: 30px;width: 100px;margin-top: 22px;margin-left: 28px;text-align:center"><span >{{ app.app_name }}</span ></div></a>
 
                 </div>
             {% endfor %}
