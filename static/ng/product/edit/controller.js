@@ -17,19 +17,19 @@ angular.module('Product.edit', ['ngRoute'])
          */
         $scope.Save = function () {
         	if (alert_ID()=="exist"){
-        		alert("参数名称已经存在!!");
+        		alert("该功能标识已经存在!!");
 				return ;
 			}
             if($.trim($('#Stream_ID').val())==''){
-					alert("请填写参数ID信息!!");
+					alert("请填写功能标识符!!");
 					return ;
 				}
 				if($.trim($('#name').val())==''){
-					alert("请填写参数名称信息!!");
+					alert("请填写功能名称信息!!");
 					return;
 				}
 				if($.trim($('#mxsLength').val())==''){
-					alert("请填写参数长度!!");
+					alert("请填写功能参数长度!!");
 					return;
 				}
 				var min=0;
@@ -63,10 +63,18 @@ angular.module('Product.edit', ['ngRoute'])
 							}
 						}
 						else {
-							if (!(data in flag)){
+							var temp = 0;
+							for(var i=0;i<flag.length;i++){
+									if (data == flag[i]){
+									temp = 1;
+									break;
+								}
+							}
+							if(temp==0){
 								errorType = 2;
 								break
 							}
+
 						}
 						mxs.push({data:data,desc:desc});
 					}

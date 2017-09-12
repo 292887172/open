@@ -36,16 +36,16 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<form method="post" class="form-horizontal" role="form">
 									<div class="form-group">
-                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>Stream_ID </label>
+                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="Stream_ID由字母、数字或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="由大写字母、或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
 											<br><br><div id="checkID" style="color:red;display:none;"></div>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>参数名称 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="Stream_ID的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
 											<br><br><div id="checkName" style="color:red;display:none"></div>
 										</div>
 									</div>
@@ -73,7 +73,7 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>参数类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型!数值型(int/float)：可线性调节数值型的功能，如温度调节20~40°C；定时类型:可选择型调节时间范围，如工作时间；枚举型：自定义的有限集合值，如档位的高、中、低；字符串型：以字符串形式传输功能点。" title="">?</span> </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型!数值型(int/float)：可线性调节数值型的功能，如温度调节20~40°C；定时类型:可选择型调节时间范围，如工作时间；枚举型：自定义的有限集合值，如档位的高、中、低；字符串型：以字符串形式传输功能点。" title="">?</span> </label>
 										<div class="col-sm-9 col-xs-9" id="param-type">
 												<div class="radio">
 														<label>
@@ -264,8 +264,8 @@
                         else{flag = false;}
                     }
                 });
+                $('[data-rel=popover]').popover({container:'body'});
                 if(flag == false){
-                    $('[data-rel=popover]').popover({container:'body'});
                     var obj={id:id,Stream_ID:edit_data["Stream_ID"],name:edit_data["name"],isControl:edit_data["isControl"],state:edit_data["state"],min:edit_data["min"],max:edit_data["max"],paramType:edit_data["paramType"],corpName:edit_data["corpName"],corpMark:edit_data["corpMark"],mxs:edit_data["mxs"],mxsLength:edit_data["mxsLength"],time:edit_data["time"]};
                     loadData(obj);
                 }
@@ -410,7 +410,7 @@
 				$(ths.parentNode.parentNode).remove();
 			}
 			function checkID(){
-				var role=/^[A-Z0-9_]*$/;
+				var role=/^[A-Z_]*$/;
 				var data=$.trim($('#Stream_ID').val());
 
                 var temp =false;
@@ -421,7 +421,7 @@
                     }
                 }
                 if (data == '' || role.test(data) == false) {
-                    $('#checkID').html("参数ID由大写字母、数字或下划线组成，不能重复!!");
+                    $('#checkID').html("该参数以大写字母和下划线组成、不能重复");
                     $('#checkID').css("display", "block");
                 }
                 else if(temp){
@@ -434,7 +434,7 @@
 			}
 			function checkName(){
 				if($.trim($('#name').val())==''){
-					$('#checkName').html("参数名不能为空!!");
+					$('#checkName').html("功能名称不能为空!!");
 					$('#checkName').css("display","block");
 				}else{
 					$('#checkName').css("display","none");
