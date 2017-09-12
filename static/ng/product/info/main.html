@@ -38,10 +38,11 @@
             <div class="boxInfo">
                 <h3 class="tit5">基本信息</h3>
                 <dl class="fmInfo">
-                    <dt>产品名称</dt>
+                    <dt><span style="color: #d43f3a;">*</span>产品名称</dt>
                     <dd>
-                        <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
+                        <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" onblur="checkProductName()" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
                         <span class="tips-error hiden" id="productNameTips"></span>
+                        <div id="checkProduct" style="color:red;display:none;top: -29px;left: 204px;position: relative;"></div>
                     </dd>
                 </dl>
 
@@ -153,6 +154,17 @@
                 brandListData = data['data']
             }
     });
+    function checkProductName() {
+        value = $("#productNameText").val();
+        if (!value){
+            $("#checkProduct").html("产品名称不能为空");
+            $("#checkProduct").css('display','block')
+        }
+        else {
+
+            $("#checkProduct").css('display','none')
+        }
+    }
     function clickQueryDiv (liObj) {
             var $liObj = $(liObj);
             var $textObj = $liObj.parent().parent().children(":first");
