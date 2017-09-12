@@ -145,9 +145,9 @@
 	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
 	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 
-	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height()-600 );
+	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height()-100 );
 	        		$(window).resize(function() {
-							  $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
+							$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
                             $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
 
 							});
