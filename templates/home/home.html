@@ -28,6 +28,12 @@
         .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
+        h2, .h2{
+            color: #16DDDD;
+        }
+        .m-project li {
+            height: 150px;
+        }
     </style>
 {% endblock %}
 {% block menu %}
@@ -65,44 +71,20 @@
     <div class="m-project">
         <div class="wrapper">
             <ul class="cl">
-                <li class="p-list1">
-                    <img src="{% static 'image/home/main_icon01.png' %}" width="136" height="136" alt="">
-
-                    <div class="text">
-                        <h5><span>01.</span>初步洽谈</h5>
-
-                        <p>确定合作意向、讨论合作方式<br>
-                            规划合作目标</p>
-                    </div>
-                </li>
                 <li class="p-list2">
-                    <img src="{% static 'image/home/main_icon02.png' %}" width="136" height="136" alt="">
-
                     <div class="text">
-                        <h5><span>02.</span>技术对接</h5>
-
-                        <p>注册成为开发者<br>讨论接入方式<br>
-                            确定技术方案</p>
+                        <h2>1.注册 </h2>
                     </div>
                 </li>
                 <li class="p-list3">
-                    <img src="{% static 'image/home/main_icon03.png' %}" width="136" height="136" alt="">
 
                     <div class="text">
-                        <h5><span>03.</span>产品研发&测试</h5>
-
-                        <p>厂家研制新品<br>
-                            测试产品性能</p>
+                        <h2>2.开发测试</h2>
                     </div>
                 </li>
                 <li class="p-list4">
-                    <img src="{% static 'image/home/main_icon04.png' %}" width="136" height="136" alt="">
-
                     <div class="text">
-                        <h5><span>04.</span>批量排产&上线</h5>
-
-                        <p>制定排产计划<br>
-                            确定上线时间及推广方案</p>
+                        <h2>3.发布生产</h2>
                     </div>
                 </li>
             </ul>
@@ -154,7 +136,7 @@
             </div>
         </div>
 
-        <div class="mt-border">
+        <div class="mt-border" style="margin-top: 100px;border-top:none">
             <div class="wrapper">
                 <div class="case-box cl">
                     <div class="half">

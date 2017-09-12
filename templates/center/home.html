@@ -6,6 +6,7 @@
 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
+
     <style>
         .cnt_box p.btn {
             width: 100%;
@@ -364,10 +365,13 @@
 
 {% endblock %}
 
-{% block script %}
+{% block end_script %}
     <script type="text/javascript" language="JavaScript" src="{% static 'js/center/devApp.js' %}"
             charset="utf-8"></script>
+    <script type="text/javascript" language="JavaScript" src="{% static 'js/center/bootbox.js' %}"
+            charset="utf-8"></script>
     <script>
+
 
         function show_error_msg(self, id, msg) {
             if ($(self).val().length == 0) {
