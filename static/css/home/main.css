@@ -242,7 +242,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 /*leftMenu*/
 .menuBox{ border-top:1px solid #f5f5f5; padding:10px 0;}
 .menuBox:first-child{ border-top:0;}
-.menuBox h3{ font-size:14px; font-weight:400; color:#bfbfbf; padding-left:70px; line-height:34px;}
+.menuBox h3{ font-size:14px; font-weight:400; color:#bfbfbf; padding-left:25px; line-height:34px;}
 .menuBox ul li{ height:55px; line-height:55px;}
 .menuBox ul li a{ display:block; height:55px; padding-left:35px; color:#333; font-size:14px;}
 .menuBox ul li:hover,.menuBox ul li.hover{ background:#e6e6e6;border-left: 3px solid #ff6202;color:#ff6202 }
