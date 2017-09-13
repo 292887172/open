@@ -78,14 +78,14 @@
                 <!-- 左侧菜单 begin -->
 
                 <div class="menuBox">
-                    <h3>文档中心</h3>
+                    <h3><b>文档中心</b></h3>
                     <ul>
                         <li class="menu-li"><a href="/wiki" target="_blank"><i
                                 class="icon-book-open"></i>开发者文档</a></li>
                     </ul>
                 </div>
                 <div class="menuBox">
-                    <h3>调试工具</h3>
+                    <h3><b>调试工具</b></h3>
                     <ul>
                         <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i
                                 class="icon-wrench"></i>调试接口</a></li>
@@ -94,14 +94,14 @@
                     </ul>
                 </div>
                 <div class="menuBox">
-                    <h3>下载中心</h3>
+
                     <ul>
                         <li class="menu-li" onclick="addHover('/sdk',this)"><a href="#"><i
                                 class="icon-cloud-download"></i>下载中心</a></li>
                     </ul>
                 </div>
                 <div class="menuBox">
-                    <h3>联系我们</h3>
+
                     <ul>
                         <li class="menu-li ui-con" onclick="addHover('/contact',this)"><a href="#"><i
                                 class="icon-call-out"></i>联系我们</a></li>
