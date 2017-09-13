@@ -78,13 +78,6 @@
                 <!-- 左侧菜单 begin -->
 
                 <div class="menuBox">
-                    <h3><b>文档中心</b></h3>
-                    <ul>
-                        <li class="menu-li"><a href="/wiki" target="_blank"><i
-                                class="icon-book-open"></i>开发者文档</a></li>
-                    </ul>
-                </div>
-                <div class="menuBox">
                     <h3><b>调试工具</b></h3>
                     <ul>
                         <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i

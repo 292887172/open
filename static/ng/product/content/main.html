@@ -1,0 +1,199 @@
+<style>
+    .label-command{
+        display: none;
+        left: 20px;
+        position: relative;
+        color: #999;
+        top: 36px;
+        left: -107px;
+        height: 33px;
+    }
+    .vague {
+        width: 360px;
+        max-height: 280px;
+        overflow: auto;
+        position: absolute;
+        top: 280px;
+        border: #ddd 1px solid;
+        z-index: 999;
+        background: #fff;
+        left: 115px;
+    }
+    .vague li {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: #999;
+        cursor: pointer;
+    }
+</style>
+<div class="box2 relative">
+    <div class="mt20">
+        <form action="" name="ProductInfoForm" method="post">
+            <input type='hidden' name='csrfmiddlewaretoken' ng-model="infoFormData.csrfmiddlewaretoken"/>
+            <input type="hidden" name="app_id" ng-model="infoFormData.app_id"/>
+            <div class="boxInfo" style="border-top: none;">
+                <h3 class="tit5">基本信息</h3>
+                <dl class="fmInfo">
+                    <dt><span style="color: #d43f3a;">*</span>产品名称</dt>
+                    <dd>
+                        <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" onblur="checkProductName()" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="productNameTips"></span>
+                        <div id="checkProduct" style="color:red;display:none;top: -29px;left: 204px;position: relative;"></div>
+                    </dd>
+                </dl>
+
+                <dl class="fmInfo">
+                    <dt>品牌</dt>
+                    <dd>
+                        <input type="hidden" name="brand_id" id="brand_id" value="{[{ infoFormData.app_factory_uid }]}" ng-model="infoFormData.app_factory_uid" >
+                        <input type="text" id="brandNameText" maxlength="18" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.band_name" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl',this.value)" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="brandNameTips"></span>
+                        <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>型号</dt>
+                    <dd>
+                        <input type="text" id="productModelText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_model" class="w400 form-control" maxlength="48">
+                        <span class="st" style="color:#999">可选</span>
+                        <span class="tips-error hiden" id="productModelTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>分类</dt>
+                    <dd>
+                        智能家居 /
+                        <select name="secondProType"  id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
+                                ng-options="t.value as t.name for t in secondProType">
+                        </select>
+                        <select name="secondDevType"  id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel1" ng-model="infoFormData.app_device_value" style="width: 86px;">
+                            <option value="{[{app_device_value}]}" selected>{[{app_device_name}]}</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="fmInfo" >
+                    <dt>设备类型</dt>
+
+                    <dd style="padding-top: 5px;">
+                        <select name="product_type"  ng-click="HideCommand()" id="product_type" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_group" class="sel2"  style="width:90px;"
+                           ng-options="t.value as t.name for t in product_type">
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="fmInfo" id="command-type" >
+                    <dt>指令类型</dt>
+                    <dd>
+                        <select name="app_command" id="selectCommand"  ng-disabled="{[{ disabled }]}" ng-click="showHide()" class="sel2" ng-model="infoFormData.app_command" style="width:90px;">
+                            <option value="是" selected="selected">全指令</option>
+                            <option value="否" >单指令</option>
+                        </select>
+
+                        <label id="my-label-1"  class="label-command" >&nbsp;支持单个原子功能独立控制</label>
+                        <label id="my-label-2"  class="label-command" > &nbsp每个数据帧都要传输所有原子功能状态</label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="boxInfo">
+                <h3 class="tit5">产品信息</h3>
+                <dl class="fmInfo">
+                    <dt>产品描述</dt>
+                    <dd>
+                        <textarea rows="3"  id="productDescriptionlText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_describe"
+                               maxlength="256" class="w400 form-control" placeholder="请填写产品可实现的功能等整体描述"></textarea>
+                        <span class="tips-error hiden" id="productDescriptionlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品网址</dt>
+                    <dd>
+                        <input  type="text" id="productDescriptionlUrl" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_site"
+                               maxlength="512" class="w400 form-control" placeholder="请填写产品简介的url地址，以http://开头">
+                        <span class="tips-error hiden" id="productDescriptionlUrlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品图片</dt>
+                    <dd>
+                        <p class="iptTxt ft9">(建议尺寸为200像素×200像素的PNG图片，大小不超过1M)</p>
+                        <div class="upload" id="productImgDiv" style="float:left; width:100px;height:100px;">
+                            <img id="productImg" name="app_logo" class="upload-photo" ng-src="{[{ productImgSrc }]}" src="{[{ infoFormData.app_logo }]}" onerror="this.src=''" width="100" height="100" style="display: block; vertical-align: top;">
+                            <span class="tips-error hiden" id="productImgTips" ng-model="productImgTips"></span>
+                            <div id="" class="moxie-shim moxie-shim-html5"
+                                 style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; overflow: hidden; z-index: 0;">
+                                <input id="productImgFile" name="productImgFile" fileread="productImgSrc" ng-hide="{[{ visible }]}" type="file"
+                                       style="font-size: 999px; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                       multiple="" accept="image/jpeg,image/gif,image/png">
+                            </div>
+                        </div>
+                        <input id="upload-input-id" type="hidden" name="product.app_logo" value="">
+                    </dd>
+                </dl>
+            </div>
+        </form>
+        <div class="boxInfo" ng-hide="{[{ visible }]}"></div>
+        <div class="ml100 mt10 mb20" ng-hide="{[{ visible }]}" id="butActDiv">
+            <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitInfoForm()">保 存</a></span>
+            <span><a href="javascript:" onclick="window.location.reload();" class="btn-gray">取 消</a></span>
+        </div>
+    </div>
+</div>
+<script src="/static/js/common/ajaxfileupload.min.js"></script>
+{% block end_script %}
+<script>
+    var brandListData = '';
+    $.ajax({
+            url:location.href,
+            type:"POST",
+            data:{'data':"factory_list"},
+            async :false,
+            success: function (data) {
+                brandListData = data['data']
+            }
+    });
+    function checkProductName() {
+        value = $("#productNameText").val();
+        if (!value){
+            $("#checkProduct").html("产品名称不能为空");
+            $("#checkProduct").css('display','block')
+        }
+        else {
+
+            $("#checkProduct").css('display','none')
+        }
+    }
+    function clickQueryDiv (liObj) {
+            var $liObj = $(liObj);
+            var $textObj = $liObj.parent().parent().children(":first");
+            $textObj.val($liObj.html());
+            $textObj.attr("title", $liObj.html());
+            $("#brandNameText").val($liObj.text());
+            $("#brand_id").val($liObj.attr("id"));
+
+            $liObj.parent().hide();
+        }
+    function showBrandList(ulID, temp,qVal) {
+
+            $("#" + ulID).show();
+            $("#" + ulID).html("");
+            if(qVal){
+                for(var i=0; i< brandListData.length; i++)
+                {
+                    var brandName = brandListData[i].brandName;
+                    if(brandName.indexOf(qVal) == -1)
+                    {
+                        continue;
+                    }
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='"+brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+                }
+            }
+            else
+            {
+                for(var i=0; i<brandListData.length; i++)
+                {
+                    $("#" + ulID).append($("<li onclick='clickQueryDiv(this)' id='" + brandListData[i].brandId+"'>"+brandListData[i].brandName+"</li>"));
+                }
+            }
+    }
+</script>
+{% endblock %}

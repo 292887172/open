@@ -59,9 +59,11 @@
     .set-float{
         top: 32px;position: relative;
         float: left;
+        left: -6%
     }
     .right{
             float: right;
+            width: 30%;
     }
     .left div{
 
@@ -206,7 +208,7 @@
     <hr  style="border-top: 1px solid #dddddd;position: relative;top: 59px;margin-bottom: 92px;width: 100%;"/>
     <div class="wrapper">
         <div class="left">
-            <h3 style="margin-bottom: 20px;text-align:center;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
+            <h3 style="margin:0 0 20px -22%;text-align:center;font-size: 20px;color: #868586;"><b>样例方案</b></h3>
             {% for app in default_apps %}
                 {% if  forloop.counter == 1 %}
                     <div style="left: 534px;">
@@ -221,19 +223,17 @@
 
                 </div>
             {% endfor %}
-
-
         </div>
         <div class="right">
-            <h3 style="font-size: 20px;color: #868586"><b style="position: relative;left: -8%;">53iq 厨房智能产品开发到量产3步走</b></h3><br>
+            <h3 style="font-size: 20px;color: #868586"><b>3步开发出智能厨电</b></h3><br>
             <div class="set-float">
                 <img  src="/static/image/product/20180904-2.png"><p>定义产品》</p ><div class="set-radius"><span >1</span></div>
             </div>
             <div class="set-float" >
-                <img  src="/static/image/product/20180904-4.png" style="padding-left: 20px;"><p>协议开发与调试》</p><div class="set-radius" style="margin-left: 34px;"><span>2</span></div>
+                <img  src="/static/image/product/20180904-4.png" style="padding-left: 20px;"><p>反复调试后发布》</p><div class="set-radius" style="margin-left: 34px;"><span>2</span></div>
             </div >
             <div class="set-float">
-                <img  src="/static/image/product/20180904-1.png"><p>UI设计》</p><div class="set-radius"><span>3</span></div>
+                <img  src="/static/image/product/20180904-1.png"><p>APP界面》</p><div class="set-radius"><span>3</span></div>
             </div>
         </div>
 
