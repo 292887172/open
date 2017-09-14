@@ -49,8 +49,7 @@ var _hmt = _hmt || [];
                 <a onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
                        style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
-                         <a rel="nofollow" href="/center?" class="login_out"
-                       onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
+
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
@@ -58,12 +57,16 @@ var _hmt = _hmt || [];
                             <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="#"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                         {% endif %}
-                        <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'"
-                       onmouseover="$('.login_out').show()" class="login_out"
-                       style="width: 120px; cursor: pointer; display: none;">修改密码</a>
+
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'"
                        onmouseover="$('.login_out').show()" class="login_out"
                        style="width: 120px; cursor: pointer; display: none;">退出</a>
+                    <a rel="nofollow" href="/center?" class="login_out"
+                       onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
+                    <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'"
+                       onmouseover="$('.login_out').show()" class="login_out"
+                       style="width: 120px; cursor: pointer; display: none;">修改密码</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/guide#" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                     </div>
             {% else %}
                 <!-- 登录 -->

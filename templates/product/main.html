@@ -1,5 +1,6 @@
 {% extends "product/base.tpl" %}
 {% load staticfiles %}
+{% load filter %}
 {% block title %}
     产品管理
 {% endblock %}
@@ -57,83 +58,12 @@
     </style>
 {% endblock %}
 {% block menu %}
-    <li><a href="{% url 'home' %}">首页</a></li>
-    <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-
+   {% create_menu 2 user.developer.developer_id %}
 {% endblock %}
 
 {% block content %}
 
     <div ng-controller="ProductBaseCtrl">
-        <div class="title">
-            <div class="wrapper">
-                <div class="goods">
-                    <img src="{% if app.app_logo %}{{ app.app_logo }}{% endif %}"
-                         onerror="this.src='{% static "image/global/default.png" %}'">
-                    <h2>{{ app.app_name }}</h2>
-                <span class="highlight"> Key {{ key }}</span>
-                <span class="highlight" title="{{ app.app_appsecret }}"> Secret</span>
-            <span>
-            智能家居
-            </span>
-            <span style="max-width:135px; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;">
-                {% if app.app_model %}
-                    {{ app.app_model }}
-                {% else %}
-                    无型号
-                {% endif %}
-            </span>
-            <span style="background-color: #808080;color:#fff;font-weight: bold;">
-                {% if app.check_status == 0 %}
-                    未发布
-                {% elif app.check_status == 1 %}
-                    审核中
-                {% elif app.check_status == 2 %}
-                    已发布
-                {% elif app.check_status == -1 %}
-                    未通过
-                {% elif app.check_status == 3 %}
-                    体验产品
-                {% endif %}
-            </span>
-                </div>
-                <div class="gd-opt">
-                    <div class="time">创建时间：{{ app.app_create_date }}</div>
-                    <div class="option hide">
-                        <span>选项<i></i></span>
-
-                        <div class="option-list">
-                            <s></s>
-                            <ul>
-                                <li><a href="#">导出产品</a></li>
-                                <li><a href="#">导入并覆盖当前产品</a></li>
-                                <li>
-                                    <a href="#" id="delLink">删除产品</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="apply" ng-controller="ProductBaseCtrl">
-                        {% if app.check_status == 0 %}
-                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
-                               ng-click="ReleaseProduct()"><i class="fa fa-arrow-circle-o-up"></i><span class="text">申请发布</span></a>
-                        {% elif app.check_status == 1 %}
-                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
-                               ng-click="CancelReleaseProduct()"><i class="fa fa-arrow-circle-o-down"></i><span
-                                    class="text">取消发布</span></a>
-                        {% elif app.check_status == 2 %}
-                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
-                               ng-click="OffProduct()"><i class="fa fa-arrow-circle-o-down"></i><span
-                                    class="text">我要下架</span></a>
-                        {% elif app.check_status == -1 %}
-                            <a href="javascript:void(0)" id="releaseProductBut" ng-controller="MainCtrl"
-                               ng-click="ReleaseProduct()"><i class="fa fa-arrow-circle-o-up"></i><span class="text">重新发布</span></a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
         {% if app.check_remarks and app.check_status == -1 %}
             <div class="wrapper">
                 <div class="alert alert-danger">
@@ -146,6 +76,16 @@
             <div class="leftSide">
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
+                    <div class="menuBox">
+
+                        <ul>
+                            <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
+                                <a href="#/content">
+                                   <i class=""></i>产品控制台
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="menuBox">
 
                         <ul>
@@ -197,16 +137,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="menuBox">
 
-                        <ul>
-                            <li id="devMenu" class="jsNavItem" data-id="devMenu" ng-click="nav.selected('devMenu')">
-                                <a href="#/dev">
-                                    <i class="fa fa-arrows"></i>开发者中心
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <!-- 左侧菜单 end -->
                 </div>
             </div>
@@ -229,6 +160,7 @@
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
     <script src="{% static "ng/product/edit/controller.js" %}"></script>
     <script src="{% static "ng/product/device/controller.js" %}"></script>
+    <script src="{% static "ng/product/content/controller.js" %}"></script>
     <script src="{% static "ng/product/oven/controller.js" %}"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
@@ -260,8 +192,11 @@
                     $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
                     $scope.band_name = "{{ band_name }}";
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
+                    $scope.key = "{{ key }}";
+                    $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
+                    $scope.create_time = "{{ app.app_create_date  }}";
+                    $scope.apply_status = "{% if app.check_status == 0%} 申请发布 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
-
                     $scope.secondProType = [
                         {
                             "name": "无",
@@ -336,8 +271,6 @@
                     };
                     // <a href="https://oven.53iq.com/static/html/control.html?d=ABCDEFABCDEF" target="_blank">
                     // 设备管理表数据
-
-
                     $scope.apiListTable = [
                         '<style>',
                         'a, a:visited {',

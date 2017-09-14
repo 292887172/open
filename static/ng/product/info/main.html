@@ -28,14 +28,11 @@
     }
 </style>
 <div class="box2 relative">
-    <div class="hl-help">
-        <span class="linkBlue">基本信息</span>
-    </div>
     <div class="mt20">
         <form action="" name="ProductInfoForm" method="post">
             <input type='hidden' name='csrfmiddlewaretoken' ng-model="infoFormData.csrfmiddlewaretoken"/>
             <input type="hidden" name="app_id" ng-model="infoFormData.app_id"/>
-            <div class="boxInfo">
+            <div class="boxInfo" style="border-top: none">
                 <h3 class="tit5">基本信息</h3>
                 <dl class="fmInfo">
                     <dt><span style="color: #d43f3a;">*</span>产品名称</dt>
