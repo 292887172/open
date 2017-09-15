@@ -22,7 +22,7 @@ angular.module('Product', [
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
-    $routeProvider.otherwise({redirectTo: '/info'});
+    $routeProvider.otherwise({redirectTo: '/content'});
 }])
 .filter('trustHtml', function ($sce) {
     return function (input) {

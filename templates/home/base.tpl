@@ -107,7 +107,7 @@
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
 
-{% block end_script %}
+{% block script %}
 
 {% endblock %}
 </body>
