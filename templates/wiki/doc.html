@@ -20,15 +20,18 @@
         .goods span {
             height: 30px;
         }
+        .nav {
+            padding-left: 38%;
 
+        }
         .nav > li > a {
             position: relative;
             display: block;
-            padding: 0;
+            font-size: 16px;
         }
 
         .nav > li > a:hover {
-            color: #ffffff;
+
             background: transparent;
         }
 
@@ -97,9 +100,20 @@
     .editormd-preview-container ol.linenums li{
         list-style: none;
     }
+    .nav-current {
+            text-decoration: none;
+            border-bottom: 3px solid #ff6202;
+            height: 35px;
+        }
     </style>
 {% endblock %}
+{% block menu %}
 
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+    <li><a class="nav-current" href="/wiki/">开发文档</a></li>
+
+{% endblock %}
 {% block right %}
     <div class="rightMain markdown-body editormd-preview-container editormd-preview-active" previewcontainer="true">
         <div class="box2 relative ">
