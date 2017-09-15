@@ -1183,3 +1183,37 @@
 2017-09-08 15:37:48,870 [MainThread:14968] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): www.douguo.com
 2017-09-12 22:00:25,588 [Thread-24:140109525866240] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-12 22:00:41,775 [Thread-40:140109509080832] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-13 12:31:10,328 [Thread-899:5940] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-13 17:02:36,426 [Thread-112:17300] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-13 17:06:46,924 [Thread-192:16624] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:06:55,818 [Thread-193:17024] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:06:57,529 [Thread-194:3192] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:07:00,635 [Thread-195:17912] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:07:01,498 [Thread-196:8908] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:07:19,408 [Thread-211:16536] [root:187] [INFO]- Doc matching query does not exist.
+2017-09-13 17:26:19,500 [Thread-260:12080] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-13 17:29:10,115 [Thread-298:16820] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-13 20:12:46,002 [Thread-1653:2020] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 08:44:27,409 [Thread-24:2928] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 08:45:38,268 [Thread-78:17604] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 08:46:32,504 [Thread-98:9148] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 10:56:25,756 [Thread-1992:17696] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 13:06:55,906 [Thread-3150:15584] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 13:43:34,695 [Thread-3857:1308] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 14:06:41,006 [Thread-4406:18248] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 15:59:53,435 [Thread-4647:19400] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-14 16:31:00,778 [Thread-4892:14520] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 16:31:36,736 [Thread-4922:17712] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 16:34:17,139 [Thread-5010:9616] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 16:34:48,177 [Thread-5038:284] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 16:35:20,648 [Thread-5048:13996] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-14 16:35:48,544 [Thread-5071:15796] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 08:58:18,869 [Thread-12:18992] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-15 09:25:25,881 [Thread-68:10592] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 10:32:46,703 [Thread-959:13368] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-15 10:33:03,697 [Thread-975:8624] [root:420] [INFO]- Account matching query does not exist.
+2017-09-15 10:33:41,028 [Thread-989:17884] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 10:35:04,919 [Thread-1005:14596] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 10:35:05,941 [Thread-1006:17100] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 10:35:19,317 [Thread-1027:12040] [root:55] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-15 10:35:28,340 [Thread-1035:11984] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
