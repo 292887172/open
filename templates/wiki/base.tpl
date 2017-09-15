@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/wiki/global.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
     <style>
         .leftSide {
             float: left;
@@ -118,16 +119,11 @@
 </head>
 <body>
 <div id="header">
-    <div class="cnt">
-        <h1>
-            <a href="{% url 'wiki' %}"><img src="{% static 'image/wiki/logo-wd.png' %}" height="40"
-                                            title="53iq厨房智能云开发者文档"></a>
-        </h1>
-        <ul class="menu">
-            <li><a href="{% url 'home' %}">首页</a></li>
+    <ul class="nav">
+        {% block menu %}
 
-        </ul>
-    </div>
+        {% endblock %}
+    </ul>
 </div>
 {% block content %}
     <div class="wrapper mt20 fn-clear">
