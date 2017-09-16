@@ -20,7 +20,7 @@ from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
 
-from common.util import parse_response
+from common.util import parse_response, send_test_device_status
 from model.center.app import App
 
 import time
@@ -417,3 +417,12 @@ def key_verify(request):
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
         return HttpResponse("hi!")
+
+
+@csrf_exempt
+def control(request):
+    if request.method == 'POST':
+        data = request.body
+        data = json.loads(data.decode('utf-8'))
+        send_test_device_status(data['did'], data)
+        return HttpResponse(json.dumps({'code': 0}))

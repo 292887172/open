@@ -36,7 +36,7 @@
             <div class="mui-col-sm-9">
                 <div class="left-nav">
                     <img src="/static/demo/img/icon_stove_num_low.png">
-                    <p id="timer" style="font-size: 10rem;color: #ff6202;left: -12%;margin-top: -42px;">00<br>
+                    <p id="timer" style="font-size: 10rem;color: #ff6202;left: -12%;margin-top: -42px;">{{ danger }}<br>
                     </p>
                     <p style="color: #E8E7EA;margin: 25px;font-size: 18px;top: 37px;">炉灶风险值</p>
                 </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="mui-col-sm-9">
                 <div>
-                    <h1 id="setTime" style="color: #FEFEFE;font-size: 6rem; font-weight: 100;margin-left: -14px;margin-top: -30px;margin-bottom: 20px;">00:00</h1>
+                    <h1 id="setTime" style="color: #FEFEFE;font-size: 6rem; font-weight: 100;margin-left: -14px;margin-top: -30px;margin-bottom: 20px;">{{ minute }}:{{ second }}</h1>
                     <p style="margin-left: 20%;color: #E8E7EA;font-size: 18px">持续工作时间</p>
                 </div>
             </div>
@@ -63,12 +63,14 @@
         </ul>
     </div>
 </div>
+<script src="/static/js/orbited/Orbited.js"></script>
+<script src="/static/js/orbited/stomp.js"></script>
 <script>
-
-
    mui.init({
         swipeBack: false //禁用右滑关闭功能
     });
+   var is_connected = false; // 是否连接上stomp
+   var five_sec;
 </script>
 <script>
     function GetRequest() {
@@ -89,14 +91,15 @@
     if(mac==undefined){
         mac = 'AABBCCDDEEFF';
     }
-    var c=0;
     var t;
-    var t1;
     var devices = new Vue({
         el: '#DeviceConf',
         data: {
             funcList: [],
             show: false,
+            danger:'00',
+            minute:'00',
+            second:'00',
             title: '设备功能列表'
         },
         created: function ()  {
@@ -135,22 +138,22 @@
                 }
             },
             sync_power_all: function(value) {
-                if(!value){
-                     $("#timer").text("10");
+                if(value){
+                    // 电源开
+                     this.danger='10';
                 }
                 else{
-                    $("#timer").text("00");
+                    // 电源关
+                    this.danger='00';
+                    this.minute='00';
+                    this.second='00';
                     stopCount("DISINFECT");
-                    stopCount("DRY");
-                    $('#setTime').text("00:00");
                     for(var i=0;i<this.funcList.length;i++){
                         this.funcList[i].value=0;
                     }
                 }
             },
             sendCommand: function (name, value) {
-                dis =this.get_func("DISINFECT");
-                dry =this.get_func("DRY");
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
@@ -164,71 +167,180 @@
                             mui.alert('虚拟设备暂不支持该功能');
                             return false
                         }
-                        tmp.value = !tmp.value;
+                        if(value < tmp.values[1]){
+                            value++
+                        }
+                        else {
+                            value = tmp.values[0]
+                        }
+                        console.log(value, '+++');
+                        tmp.value = value;
                         if(name == "POWER"){
                             this.sync_power_all(value)
                         }
-                        if(name == "DISINFECT"){
+                        if(name == "DISINFECT" || name == "DRY"){
                             if(tmp.value)
                             {
-                                dry.value=0;
-                                timedCount(name);
-                                stopCount("DRY")
+                                stopCount(name);
+                                t=setInterval(function(){ timedCount(name);},1000);
                             }
                             else{
                                 stopCount(name)
                             }
                         }
-                        else if(name == "DRY"){
-                            if(tmp.value)
-                            {
-                                dis.value=0;
-                                timedCount(name);
-                                stopCount("DISINFECT")
-                            }
-                            else{
-                                stopCount(name)
-                            }
+                        else if(name == "WIND"){
+                            tmp.title = tmp.value_des[value];
                         }
                     }
 
                 }
+                send_data = {'did': 'test123', 'name': name, 'value': value};
+                this.$http.post('/product/control', JSON.stringify(send_data).toString()
+                         ).then(function (res) {
+                             res = JSON.parse(res.body);
+                             console.log(res);
+                             if(res['code']==-1){
+
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+
+                                 mui.toast('指令发送成功')
+                             }
+                         });
 
             }
         },
         computed: {}
     });
     function timedCount(name) {
-            var temptextmin=$('#setTime');
-            min = parseInt(c / 60);// 分钟数
-            if(min>=60){
-                minmin=min%60
+        var min=parseInt(devices.minute);
+        var sec=parseInt(devices.second);
+        sec++;
+        if(sec>59){
+            min++;
+            if (min>59){
+                min=0
             }
-            lastsecs = c % 60;
-            if(min<10){
-                min = "0" + min;
-            }
-            if (lastsecs<10){
-                lastsecs = "0" + lastsecs;
-            }
-            temptextmin.text(min + ":" + lastsecs);
-            c=c+1 ;
-            if(name=="DISINFECT"){
-                t=setTimeout(function(){ timedCount(name);},1000);
-            }
-            else if(name=="DRY"){
-                t1=setTimeout(function(){ timedCount(name);},1000);
-            }
+        }
+        if(min<10){
+            min = "0"+min
+        }
+        if(sec<10){
+            sec="0"+sec
+        }
+        console.log(min, sec, '++++');
+        devices.minute = min;
+        devices.second = sec;
+
+
         }
     function stopCount(name) {
-        if(name=="DISINFECT"){
-            clearTimeout(t);
-        }
-        else if(name=="DRY"){
-            clearTimeout(t1);
-        }
-        c=0;
+        devices.minute = "00";
+        devices.second = "00";
+        clearInterval(t);
     }
+    Orbited.settings.hostname = location.host;
+        try {
+            longpull()
+        } catch (e) {
+            console.log(e);
+        }
+
+        // 轮询
+        function longpull() {
+            if(!is_connected){
+                var stomp = new STOMPClient();
+                stomp.onopen = function () {
+                    console.log("Open Client");
+                };
+                stomp.onclose = function (c) {
+                    //alert("Lost connection, Code:" + c);
+                     is_connected = false;
+                    five_sec = setInterval(function () {
+                        longpull()
+                    }, 5000);
+                };
+                stomp.onerror = function (error) {
+                    //alert("Error : " + error);
+                };
+                stomp.onerrorframe = function (frame) {
+                    //alert("Error : " + frame.body);
+                };
+                stomp.onconnectedframe = function () {
+                    console.log("Connected. Subcribing");
+                    stomp.subscribe('/' + 'test123');
+                    // first_get_status();
+                };
+                stomp.onmessageframe = function (frame) {
+                    var data = JSON.parse(frame.body);
+                    var msg = data['msg'];
+
+                    var value = msg.value;
+                    var type = msg.type;
+                    console.log(type, value);
+
+                    // type==1时为遥控器状态控制,
+                    // 2500时为socket状态，其它的为音乐电台之类的
+                    if (type == 2500) {
+                        // socket状态
+                        ChangeStatus(value);
+                    }
+                    else if (type == 2501) {
+                        // 设备离线
+                    }
+                };
+                stomp.connect("localhost", 61613);
+                is_connected = true;
+                clearInterval(five_sec)
+                }
+
+        }
+        function ChangeStatus(val) {
+            // ” 0 |  0 |  0|   0|  0|   0|   0|  0|  0| 0 (| 0      |0)”,
+            // ”电源|照明|大风|小风|消毒|烘干|延时|中风|故障|火(| 运行时间|风险指数)”
+            // "  0   1   2    3   4    5   6    7    8   9      10      11"
+            var arr = val.split('|');
+            if (arr[2]=='1'){
+                var fan=3
+            }
+            else if(arr[3]=='1'){
+                fan=1
+            }
+            else if(arr[7]=='1'){
+                fan=2
+            }
+            else{
+                fan=0
+            }
+            tmp_status = [{'name':'POWER', 'value': arr[0]}, {'name':'LIGHT', 'value': arr[1]}, {'name':'WIND', 'value': fan},
+                {'name':'DISINFECT', 'value': arr[4]}, {'name':'DRY', 'value': arr[5]}
+            ];
+            for(var i=0;i<devices.funcList.length;i++){
+                 var n = devices.funcList[i].name;
+                 for (var j=0; j< tmp_status.length;j++){
+                     if(tmp_status[j].name=='POWER' && parseInt(tmp_status[j].value)==0){
+                        devices.funcList[i].value = 0;
+                         devices.danger='00';
+                         devices.minute='00';
+                         devices.second='00'
+                    }
+                    else{
+                        if(tmp_status[j].name == n){
+                            devices.funcList[i].value=parseInt(tmp_status[j].value);
+                            if(parseInt(tmp_status[j].value)>0){
+                                devices.danger='10';
+                            }
+                            if (name=='WIND'){
+                                // tmp.title = tmp.value_des[value];
+                                devices.funcList[i].title = devices.funcList[i].value_des[parseInt(tmp_status[j].value)]
+                            }
+                        }
+
+                     }
+                 }
+            }
+        }
 </script>
 </body>
 </html>

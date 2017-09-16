@@ -6,7 +6,7 @@ __author__ = 'achais'
 from pymongo import MongoClient
 import pymysql
 import redis
-from conf.redisconf import REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PWD
+from conf.redisconf import REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PWD, REDIS_HOST3
 from conf.mysqlconf import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PWD, MYSQL_DB
 from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL_PWD_SYS, MYSQL_DB_SYS
 from conf.mongoconf import SANDBOX_API_MONGODB_HOST, SANDBOX_API_MONGODB_PORT, SANDBOX_API_MONGODB_DATABASE
@@ -30,6 +30,17 @@ class RedisBaseHandler(object):
                                                      host=REDIS_HOST,
                                                      port=REDIS_PORT,
                                                      db=REDIS_DB,
+                                                     password=REDIS_PWD)
+        redis_client = redis.Redis(connection_pool=redis_connection_pool)
+        self.client = redis_client
+
+
+class Redis3(object):
+    def __init__(self, rdb=REDIS_DB):
+        redis_connection_pool = redis.ConnectionPool(max_connections=512,
+                                                     host=REDIS_HOST3,
+                                                     port=REDIS_PORT,
+                                                     db=rdb,
                                                      password=REDIS_PWD)
         redis_client = redis.Redis(connection_pool=redis_connection_pool)
         self.client = redis_client
