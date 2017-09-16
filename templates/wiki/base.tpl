@@ -32,7 +32,7 @@
             min-height: 750px;
             background-color: #fff;
             border: 1px solid #ddd;
-            border-bottom: 0;
+
         }
 
         .menuBox {
@@ -119,11 +119,41 @@
 </head>
 <body>
 <div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a>
+        </h1>
     <ul class="nav">
         {% block menu %}
 
         {% endblock %}
     </ul>
+<div class="sign_out">
+        {% if user.account_id %}
+                <!-- 登录 -->
+                <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
+                       style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
+                    <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
+                       {% if user.developer.developer_id %}
+                               <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
+                           style="width: 120px; cursor: pointer; display: none;">通知</a>
+                       {% else %}
+                            <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="#"
+                           style="width: 120px; cursor: pointer; display: none;">通知</a>
+                        {% endif %}
+                        <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
+                        <a rel="nofollow" href="/center?" class="login_out" onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
+                        <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/guide#" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                    </div>
+            {% else %}
+                <!-- 登录 -->
+
+
+                    <a class="user-login" href="{% url 'login' %}">登录</a>
+
+            {% endif %}
+    </div>
+</div>
 </div>
 {% block content %}
     <div class="wrapper mt20 fn-clear">
@@ -168,7 +198,7 @@
             $(".menuUl").prev('h5').children('i').removeClass('icon-caret-down');
             $(hobj).next('ul').show();
             $(hobj).children('i').addClass('icon-caret-down');
-            $(hobj).css('color', '#70ABD5')
+            $(hobj).css('color', '#ff6202')
         }
     }
     var menus = '{{ request.session.menus|safe }}';
