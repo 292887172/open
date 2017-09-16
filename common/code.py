@@ -153,3 +153,4 @@ class ResponseCode(object):
     # ============================= redis cache key =============
     DEVICE_DANGER_CODE_PREFIX = "device_danger_code_prefix"
     DEVICE_CONTROL_PREFIX = 'device_control_prefix'
+    TEST_DEVICE_STATUS_PREFIX = 'test_device_status_prefix'

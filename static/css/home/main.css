@@ -100,7 +100,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .mt20{ margin-top:20px;}
 .title-sub span.old{ font-size: 18px;
     float: left;display:block; border-left:3px solid #2980b9; height:18px; line-height:18px; overflow:hidden; color:#2980b9; padding-left:8px; font-weight:400;}
-.title-sub{ padding:20px 0;height: 60px}
+.title-sub{ padding:20px 0;height: 80px}
 .title-sub span.none{ border-left:3px solid #808080; color:#808080;}
 .goodsBox{ width:1218px; overflow:hidden;}
 .goods-list{ position:relative; float:left; width:366px; height:195px; padding:10px; margin-right:20px; margin-bottom:20px; background:#FFF;}
