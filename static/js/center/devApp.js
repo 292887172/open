@@ -298,7 +298,7 @@ var DevAppInfo = {
             this.changeCss(false);
             return false;
         }
-        if (!DevAppInfo.doVerifyValue('coName', 64, '公司/团队名称123', true)) {
+        if (!DevAppInfo.doVerifyValue('coName', 64, '公司/团队名称', true)) {
 
             this.changeCss(false);
             return false;
