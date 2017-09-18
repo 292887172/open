@@ -28,29 +28,30 @@ var csrftoken = getCookie('csrftoken');
 
 jQuery(document).ready(function () {
     jQuery("body").on("click", "#delProLink", function () {
-        var app_id = jQuery(this).attr("data-id");
-        if (app_id != "") {
-            jQuery.ajax({
-                url: location.href,
-                type: "POST",
-                data: {app_id: app_id, action: "del"},
-                error: function (e) {
-                    console.log("error");
-                },
-                success: function (response) {
-                    response = jQuery.parseJSON(response);
-                    console.log(response);
-                    if(response.code == 10000){
-                        location.href="/product/list";
+        if (confirm('确认提交，一旦提交开发者信息将无法修改')){
+            var app_id = jQuery(this).attr("data-id");
+            if (app_id != "") {
+                jQuery.ajax({
+                    url: location.href,
+                    type: "POST",
+                    data: {app_id: app_id, action: "del"},
+                    error: function (e) {
+                        console.log("error");
+                    },
+                    success: function (response) {
+                        response = jQuery.parseJSON(response);
+                        console.log(response);
+                        if (response.code == 10000) {
+                            location.href = "/product/list";
+                        }
+                    },
+                    beforeSend: function (xhr, settings) {
+                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        }
                     }
-                },
-                beforeSend: function (xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    }
-                }
-            })
+                })
+            }
         }
-
     })
 });
