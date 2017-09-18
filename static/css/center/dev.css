@@ -14,7 +14,7 @@ img{border:none;}
 #header .cnt{width:1120px; height:90px; margin:0 auto;}
 #header .cnt h1{float:left;}
 #header .cnt h1 img{margin:20px 0;}
-#header .cnt .menu{float:right; height:90px;}
+#header .cnt .menu{float:left; height:90px;}
 #header .cnt .menu li{float:left; height:90px;}
 #header .cnt .menu li a{display:block; padding:0 23px; background:#F1F4F9; color:#333; font-size:14px; line-height:90px;}
 #header .cnt .menu li a:hover{ text-decoration:none;}
@@ -62,7 +62,8 @@ img{border:none;}
 .cnt_box dd input.short{width:80px;}
 .cnt_box dd .error{display:inline-block; padding:0 0 0 16px; background:url(/assets/images/dev/ico_error.png) left center no-repeat; color:#b40000; font-size:12px;}
 .cnt_box dd strong{color:#b40000;}
-.cnt_box dd strong.user{margin:0 24px 0 0; font-size:24px;}
+.cnt_box dd strong.user{margin:0 24px 0 0; font-size:24px;
+    float: left;}
 .cnt_box dd p{color:#666; font-size:12px;}
 .cnt_box dd a{margin:0 16px 0 0;color:#4c6794; font-size:14px; text-decoration:underline;}
 .cnt_box dd a:hover{color:#247;}

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
     <style>
         #header .cnt .menu li a .corner{display:inline-block; width:6px; height:4px; margin:0 0 0 10px; background:url({% static 'image/sanjiao.png' %}) center center no-repeat; vertical-align:middle;}
-        </style>
+    </style>
     {% block style %}
 
     {% endblock %}
@@ -42,11 +42,14 @@ var _hmt = _hmt || [];
             {% if user.is_developer %}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+                <li><a href="/wiki/">开发文档</a></li>
             {% elif user.developer.developer_id %}
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+                <li><a href="/wiki/">开发文档</a></li>
                 <li><a rel="nofollow" href="/center?" class="on">帐号管理</a></li>
             {% else %}
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+                <li><a href="/wiki/">开发文档</a></li>
                 <li><a rel="nofollow" href="" class="on">加入我们</a></li>
             {% endif %}
 
