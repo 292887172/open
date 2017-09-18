@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /* 共用部 分*/
-body,div,p,ul,ol,li,dt,dd,h1,h2,h3,h4,h5,h6,h7{margin:0; padding:0;font-family:microsoft yahei !important; box-sizing:content-box !important;}
+body,div,p,ul,ol,li,dt,dd,h1,h2,h3,h4,h5,h6,h7{margin:0; padding:0;font-family:microsoft yahei; box-sizing:content-box !important;}
 body{background-color:#F1F4F9;}
 ul,ol,li{list-style:none;}
 a{text-decoration:none;}
