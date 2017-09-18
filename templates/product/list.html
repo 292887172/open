@@ -135,7 +135,6 @@
                 <dl>
                     <dt>
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
-                        <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title">
@@ -155,7 +154,6 @@
                     <dl>
                         <dt>
                             <a href="/product/main?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
-                            <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                         </dt>
                         <dd>
                             <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
@@ -244,4 +242,5 @@
 
 {% block script %}
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+
 {% endblock %}

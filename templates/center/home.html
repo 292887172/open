@@ -152,31 +152,32 @@
                             </dd>
 
                         </dl>
-                        <h3>合作厂商信息</h3>
-                        <dl>{% if fac_info %}
-                                <dt><span>*</span>合作厂商名称：</dt>
-                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled
-                                       maxlength="64">
-                                <span id="coFacErrorId" class="error"></span></dd>
-                            <dt><span>*</span>合作厂商唯一标识：</dt>
-                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled
-                                       maxlength="255">
-                                <span id="coFacUidErrorId" class="error success"></span></dd>
-                            <dt></dt>
-                            {% else %}
-                            <dt><span>*</span>合作厂商名称：</dt>
-                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value="{{ user.developer.developer_factory|is_none }}"
-                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"
-                                       maxlength="64">
-                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>
-                            <dt><span>*</span>合作厂商唯一标识：</dt>
-                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""
-                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"
-                                       maxlength="255">
-                                <span id="coFacUidErrorId" class="error"></span></dd>
-                            <dt></dt>
-
-                            {% endif %}
+{#                        <h3>合作厂商信息</h3>#}
+                        <dl>
+{#                            {% if fac_info %}#}
+{#                                <dt><span>*</span>合作厂商名称：</dt>#}
+{#                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled#}
+{#                                       maxlength="64">#}
+{#                                <span id="coFacErrorId" class="error"></span></dd>#}
+{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
+{#                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled#}
+{#                                       maxlength="255">#}
+{#                                <span id="coFacUidErrorId" class="error success"></span></dd>#}
+{#                            <dt></dt>#}
+{#                            {% else %}#}
+{#                            <dt><span>*</span>合作厂商名称：</dt>#}
+{#                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value="{{ user.developer.developer_factory|is_none }}"#}
+{#                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"#}
+{#                                       maxlength="64">#}
+{#                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>#}
+{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
+{#                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""#}
+{#                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"#}
+{#                                       maxlength="255">#}
+{#                                <span id="coFacUidErrorId" class="error"></span></dd>#}
+{#                            <dt></dt>#}
+{##}
+{#                            {% endif %}#}
                             <dd><label><input type="checkbox" name="agree" id="agree" checked=""
                                               onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
                                                                                                  target="_blank">《53iq智能云开发者协议》</a></label>
@@ -219,13 +220,13 @@
                         <dt><span>*</span>邮箱：</dt>
                         <dd>{{ user.developer.developer_email|is_none }}</dd>
                     </dl>
-                    <h3>合作厂商信息</h3>
-                    <dl>
-                        <dt><span>*</span>合作厂商名称：</dt>
-                        <dd>{{ user.developer.developer_factory|is_none }}</dd>
-                        <dt><span>*</span>合作厂商唯一标识：</dt>
-                        <dd>{{ user.developer.developer_symbol|is_none }}</dd>
-                    </dl>
+{#                    <h3>合作厂商信息</h3>#}
+{#                    <dl>#}
+{#                        <dt><span>*</span>合作厂商名称：</dt>#}
+{#                        <dd>{{ user.developer.developer_factory|is_none }}</dd>#}
+{#                        <dt><span>*</span>合作厂商唯一标识：</dt>#}
+{#                        <dd>{{ user.developer.developer_symbol|is_none }}</dd>#}
+{#                    </dl>#}
                         {% endif %}
 
                 {% else %}
@@ -312,31 +313,32 @@
                             </dd>
 
                         </dl>
-                        <h3>合作厂商信息</h3>
-                        <dl>{% if fac_info %}
-                                <dt><span>*</span>合作厂商名称：</dt>
-                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled
-                                       maxlength="64">
-                                <span id="coFacErrorId" class="error"></span></dd>
-                            <dt><span>*</span>合作厂商唯一标识：</dt>
-                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled
-                                       maxlength="255">
-                                <span id="coFacUidErrorId" class="error success"></span></dd>
-                            <dt></dt>
-                            {% else %}
-                            <dt><span>*</span>合作厂商名称：</dt>
-                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value=""
-                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"
-                                       maxlength="64">
-                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>
-                            <dt><span>*</span>合作厂商唯一标识：</dt>
-                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""
-                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"
-                                       maxlength="255">
-                                <span id="coFacUidErrorId" class="error"></span></dd>
-                            <dt></dt>
-
-                            {% endif %}
+{#                        <h3 >合作厂商信息</h3>#}
+                        <dl >
+{#                            {% if fac_info %}#}
+{#                            <dt><span>*</span>合作厂商名称：</dt>#}
+{#                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled#}
+{#                                       maxlength="64">#}
+{#                                <span id="coFacErrorId" class="error"></span></dd>#}
+{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
+{#                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled#}
+{#                                       maxlength="255">#}
+{#                                <span id="coFacUidErrorId" class="error success"></span></dd>#}
+{#                            <dt></dt>#}
+{#                            {% else %}#}
+{#                            <dt><span>*</span>合作厂商名称：</dt>#}
+{#                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value=""#}
+{#                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"#}
+{#                                       maxlength="64">#}
+{#                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>#}
+{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
+{#                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""#}
+{#                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"#}
+{#                                       maxlength="255">#}
+{#                                <span id="coFacUidErrorId" class="error"></span></dd>#}
+{#                            <dt></dt>#}
+{##}
+{#                            {% endif %}#}
                             <dd><label><input type="checkbox" name="agree" id="agree" checked=""
                                               onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
                                                                                                  target="_blank">《53iq智能云开发者协议》</a></label>
