@@ -148,7 +148,6 @@
             {% else %}
                 <!-- 登录 -->
 
-
                     <a class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
