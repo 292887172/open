@@ -11,7 +11,7 @@ img{border:none;}
 
 /* 头部 */
 #header{position:relative; z-index:10; height:90px; background:#F1F4F9;border-bottom: 1px solid #ccc}
-#header .cnt{width:1120px; height:90px; margin:0 auto;}
+#header .cnt{width:1200px; height:90px; margin:0 auto;}
 #header .cnt h1{float:left;}
 #header .cnt h1 img{margin:20px 0;}
 #header .cnt .menu{float:left; height:90px;}
@@ -65,8 +65,8 @@ img{border:none;}
 .cnt_box dd strong.user{margin:0 24px 0 0; font-size:24px;
     float: left;}
 .cnt_box dd p{color:#666; font-size:12px;}
-.cnt_box dd a{margin:0 16px 0 0;color:#4c6794; font-size:14px; text-decoration:underline;}
-.cnt_box dd a:hover{color:#247;}
+.cnt_box dd a{margin:0 16px 0 0;color:#ff6202; font-size:14px; text-decoration:underline;}
+.cnt_box dd a:hover{color:#ff6202;}
 .cnt_box dd label input{margin:0 8px 0 0;}
 .cnt_box dd.checkgroup label{display:inline-block; width:200px;}
 .cnt_box dd textarea{width:424px; height:104px; padding:8px; border-radius:4px; border:1px solid #999; color:#444; font-size:14px; font-weight:normal; line-height:24px;}
@@ -146,11 +146,11 @@ img{border:none;}
 .pop_win{position:fixed; left:50%; top:50%; width:480px; margin-left:-240px;}
 .pop_win div{min-height:40px; padding:32px 20px; background:#f6f6f6; border-radius:8px 8px 0 0; color:#666; font-size:18px; text-align:center; line-height:40px;}
 .pop_win p{min-height:60px; background:#bcd; border-radius:0 0 8px 8px; text-align:center;}
-.pop_win p a{display:inline-block; width:120px; height:40px; margin:10px 0; border-radius:4px; background:#1990ff; color:#fff; font-size:14px; text-align:center; line-height:40px;}
+.pop_win p a{display:inline-block; width:120px; height:40px; margin:10px 0; border-radius:4px; background:#ff6202; color:#fff; font-size:14px; text-align:center; line-height:40px;}
 .pop_win p a:hover{text-decoration:none;}
 
 
-.pop_win p a{display:inline-block; width:120px; height:40px; margin:10px 10px; border-radius:4px; background:#1990ff; color:#fff; font-size:14px; text-align:center; line-height:40px;}
+.pop_win p a{display:inline-block; width:120px; height:40px; margin:10px 10px; border-radius:4px; background:#ff6202; color:#fff; font-size:14px; text-align:center; line-height:40px;}
 .pop_win p a:hover{text-decoration:none;}
-.pop_win p a.enter{background:#1990ff;}
+.pop_win p a.enter{background:#ff6202;}
 .pop_win p a.cancel{background:#aaa;}

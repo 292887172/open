@@ -49,9 +49,9 @@ var _hmt = _hmt || [];
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a href="/wiki/">开发文档</a></li>
             {% elif user.developer.developer_id %}
+                <li><a href="{% url 'product/list' %}">产品管理</a></li>
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a href="/wiki/">开发文档</a></li>
-                <li><a rel="nofollow" href="/center?" class="nav-current">帐号管理</a></li>
             {% else %}
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a href="/wiki/">开发文档</a></li>
@@ -104,9 +104,6 @@ var _hmt = _hmt || [];
     <ul>
         <li><a href="http://www.53iq.com/about" target="_blank" rel="nofollow">关于53iq</a></li>
         <li>|</li>
-        <li><a href="/guide" >53iq云</a></li>
-        <li>|</li>
-
         <li><a href="/guide#contact"  rel="nofollow">联系我们</a></li>
 
     </ul>

@@ -19,12 +19,12 @@ body {
   margin: 0;
 }
 a {
-  color: #545a5f;
+  color: #303437;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #303437;
+  color: #ff6202;
   text-decoration: none;
 }
 label {
