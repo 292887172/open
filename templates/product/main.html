@@ -30,6 +30,7 @@
 
         .mt20 {
             margin-top: 20px;
+            border-top:1px solid #ccc ;
         }
 
         .goods span {
@@ -58,7 +59,7 @@
     </style>
 {% endblock %}
 {% block menu %}
-    <li><a href="{% url 'home' %}">首页</a></li>
+
     <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a href="/wiki/">开发文档</a></li>
@@ -85,7 +86,7 @@
                         <ul>
                             <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
                                 <a href="#/content">
-                                   <i class=""></i>产品控制台
+                                   <i class="fa fa-inbox"></i>产品控制台
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +96,7 @@
                         <ul>
                             <li id="infoMenu" class="jsNavItem" data-id="infoMenu" ng-click="nav.selected('infoMenu')">
                                 <a href="#/info">
-                                    <i class="fa fa-inbox"></i>基本信息
+                                    <i class="fa fa-inbox"></i>产品基本信息
                                 </a>
                             </li>
                         </ul>
@@ -105,7 +106,7 @@
                         <ul>
                             <li id="argueMenu" class="jsNavItem" data-id="argueMenu" ng-click="nav.selected('argueMenu')">
                                 <a href="#/argue">
-                                    <i class="fa fa-file-text-o"></i>基本参数
+                                    <i class="fa fa-file-text-o"></i>定义产品功能
                                 </a>
                             </li>
                         </ul>

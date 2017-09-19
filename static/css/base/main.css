@@ -146,7 +146,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .hl-icon{ display:inline-block; width:116px; height:82px; background:url(../images/icon-big.png) no-repeat; background-position:0 0; margin-bottom:30px}
 .hl-box .tit{ font-size:20px; color:#333; }
 .hl-box p{ margin:20px 0;}
-.hl-help{ font-size:13px; color:#37618f; line-height:20px; height:20px; }
+.hl-help{ font-size:13px; color:#ff6202; line-height:20px; height:20px; }
 .hl-help i,.hl-help a{ vertical-align:middle;}
 .icon-help{ display:inline-block; width:16px; height:16px; margin-right:3px; background:url(../images/icon-all.png) no-repeat; background-position:0 -60px;}
 .pt30{ padding-top:30px;}
@@ -280,7 +280,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .tips-error{ display:block; color:#c91423; font-size:12px; line-height:20px;}
 .iptTxt{ line-height:32px;}
 .mt10{ margin-top:10px;}
-.boxInfo{ padding:10px 0; margin-bottom:20px; border-top:1px solid #dddddd;}
+.boxInfo{ padding:10px 0; margin-bottom:20px; border-top:0px solid #dddddd;}
 
 /*åŸºæœ¬ä¿¡æ¯*/
 .upload{ position:relative; width:100px; height:100px;}
