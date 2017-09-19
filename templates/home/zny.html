@@ -37,6 +37,7 @@
 
         .hbox {
             padding: 10px 10px;
+            font-size: 15px;
         }
 
         .hbox ul {
@@ -46,6 +47,11 @@
         .hbox ul li {
             padding-top: 15px;
             font-size: 14px;
+            float: left;
+            width: 33%;
+        }
+        .cl{
+            text-align: center;
         }
     </style>
 
@@ -61,8 +67,29 @@
     </div>
 
     <div class="hbox">
-        <h3 class="tit6 mt20">厨电接入流程</h3>
-        <p class="textC"><img src="{% static 'image/home/lc.jpg' %}"></p>
+        <h2 style="text-align: center;">3步 实现厨电智能开发</h2>
+            <ul class="cl">
+                <li class="p-list2">
+                    <div class="text">
+                        <h3>1.注册 </h3>
+                    </div>
+                </li>
+                <li class="p-list3">
+
+                    <div class="text">
+                        <h3>2.开发测试</h3>
+                    </div>
+                </li>
+                <li class="p-list4">
+                    <div class="text">
+                        <h3>3.发布生产</h3>
+                    </div>
+                </li>
+            </ul>
+            <div style="text-align: center;margin-top: 40px">
+                 <img src="{% static 'image/home/znpt.jpg' %}" >
+            </div>
+
     </div>
 
 {#    <div class="line mt20"></div>#}

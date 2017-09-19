@@ -2,7 +2,7 @@
 import codecs
 import json
 
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 import markdown
 from model.center.doc_menu import DocMenu
 
@@ -10,7 +10,8 @@ from open import settings
 
 
 def home(request):
-    return render(request, "home/home.html", locals())
+    return HttpResponseRedirect('/center/login')
+    # return render(request, "home/home.html", locals())
 
 
 def guide(request):

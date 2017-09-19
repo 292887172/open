@@ -85,7 +85,7 @@ def create_menu(context, cur=0, dev_id=None):
         ret["menu"] = context["menu"]
     else:
         if dev_id:
-            menu = [{"url": "/", "title": "首页"},
+            menu = [
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/guide", "title": "开发指南"},
                     {"url": "/wiki/", "title": "开发文档"}
@@ -93,8 +93,8 @@ def create_menu(context, cur=0, dev_id=None):
 
         else:
             if cur > 1:
-                ret['cur'] = 2
-            menu = [{"url": "/", "title": "首页"},
+                ret['cur'] = 1
+            menu = [
                     {"url": "/guide", "title": "开发指南"},
                     {"url": "/wiki/", "title": "开发文档"}
                     ]

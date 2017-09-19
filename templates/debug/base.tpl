@@ -32,7 +32,7 @@ var _hmt = _hmt || [];
     <div class="wrapper">
         <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a></h1>
          <ul class="nav">
-            <li><a href="{% url 'home' %}">首页</a></li>
+
             {% if user.is_developer %}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
