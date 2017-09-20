@@ -60,8 +60,11 @@ small,
   border: 1px solid rgba(255,255,255,0.35);
   padding: 2px 6px;
 }
+.bg-white:hover{
+  background: #eee;
+}
 .bg-white:active{
-  background-color: #eee;
+  background-color: #fff;
   opacity: 0.85;
 }
 .badge-empty {
