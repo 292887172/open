@@ -7,6 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
+from base.util import gen_app_default_conf
 from common.app_helper import create_app
 from common.app_helper import del_app
 from common.app_helper import release_app
@@ -146,7 +147,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-        device_conf = ""
+        device_conf = gen_app_default_conf(app_category_detail)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -163,7 +164,7 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
-                url = '/product/main/?ID=' + str(result.app_id) + '#/info'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
