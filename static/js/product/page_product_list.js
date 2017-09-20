@@ -27,7 +27,7 @@ var csrftoken = getCookie('csrftoken');
 
 jQuery(document).ready(function () {
     jQuery("body").on("click", "#delProLink", function () {
-        if (confirm('确认提交，一旦提交开发者信息将无法修改')){
+        if (confirm('确认删除？')){
             var app_id = jQuery(this).attr("data-id");
             if (app_id != "") {
                 jQuery.ajax({

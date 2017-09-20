@@ -57,6 +57,19 @@
      .help-button{
          background-color: #333;
      }
+
+     .warnCont {
+        text-align: left;
+    }
+        .mt6 {
+        margin-top: 27px;
+    }
+     .popBox h3 {
+         background: none;
+    }
+    .btnBar{
+        background: none;
+    }
     </style>
     <div class="main-container">
         <div style="background: #fff">
@@ -77,6 +90,22 @@
         <div id="ie-form"></div>
 
     </div>
+    <div class="popBox" id="newHtmlBox" style="display: block;">
+        <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
+        <h3 style="text-align: center">温馨提示</h3>
+        <div class="cont mt20" style="margin-top: 20px;">
+            <div class="warnCont">
+                <p class="mt6">我们已经根据您的产品品类，为您推荐了标准参数，如果标准参数不能满足</p>
+                <p class="mt6">您的需求，您可以申请自定义参数，但需要审核通过后才能发布</p>
+            </div>
+        </div>
+        <p align="center"><input type="checkbox" id="check_continueShowTips">不再提示</p>
+        <div class="btnBar">
+              <span>
+                <a href="javascript:;" onclick="new_close()" class="btn-blue">知道了</a>
+              </span>
+        </div>
+    </div>
 
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
@@ -87,13 +116,17 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
             var streamID=[];
+            function new_close() {
+                $("#newHtmlBox").css('display','none');
+            }
 			jQuery(function($) {
+    
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
 					postData:{"name": "list"},
 					datatype: "json",
 					mtype:"POST",
-					colNames:['id','Stream_ID', '长度', '参数名称','参数个数','是否可控', '是否启用','操作'],
+					colNames:['id','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
 					colModel:[
 						{name:'id' , width:107,align:'center'},
 
