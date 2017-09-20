@@ -37,7 +37,7 @@ class Developer(models.Model):
     # 操作类型（1：添加，2：修改，3：删除）
     developer_action = models.IntegerField(max_length=2, null=True, db_column='ebf_developer_action')
     # 审核状态（0：审核中，1：审核通过，-1：审核未通过）
-    developer_check_status = models.IntegerField(max_length=2, default=0, db_column='ebf_developer_check_status')
+    developer_check_status = models.IntegerField(max_length=2, default=1, db_column='ebf_developer_check_status')
     # 审核备注
     developer_check_remarks = models.CharField(max_length=1024, null=True, db_column='ebf_developer_check_remarks')
     # 是否禁用（0：启用，1：禁用）

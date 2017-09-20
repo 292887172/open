@@ -217,6 +217,10 @@
 			}
 			function export_parameter(){
                 var rows = $("#grid-table").getRowData();
+                if(rows == ''){
+                    alert("暂无参数信息！");
+                    return;
+                }
                 bootbox.confirm("确定导出基本参数的数据吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');

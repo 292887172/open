@@ -12397,3 +12397,1435 @@ django.core.urlresolvers.NoReverseMatch: Reverse for 'home/wiki' with arguments 
 2017-09-15 10:11:16,980 [Thread-891:7216] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
 2017-09-15 10:35:38,264 [Thread-1046:5732] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2017-09-15 10:50:43,389 [Thread-1306:9840] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-15 11:18:48,547 [Thread-1406:2564] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 286, in parse
+    compile_func = self.tags[command]
+KeyError: 'create_menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\wiki\views.py", line 37, in wiki
+    return render(request, "wiki/doc.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 288, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 343, in invalid_block_tag
+    (command, get_text_list(["'%s'" % p for p in parse_until])))
+django.template.base.TemplateSyntaxError: Invalid block tag: 'create_menu', expected 'endblock'
+2017-09-18 09:23:30,687 [Thread-135:16448] [django.request:231] [ERROR]- Internal Server Error: /product/control
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.control didn't return an HttpResponse object. It returned None instead.
+2017-09-18 09:23:32,944 [Thread-136:18620] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 09:23:43,171 [Thread-141:17512] [django.request:231] [ERROR]- Internal Server Error: /product/control
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.control didn't return an HttpResponse object. It returned None instead.
+2017-09-18 09:24:30,135 [Thread-147:6668] [django.request:143] [WARNING]- Not Found: /product/control/
+2017-09-18 09:24:34,681 [Thread-148:6808] [django.request:231] [ERROR]- Internal Server Error: /product/control
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.control didn't return an HttpResponse object. It returned None instead.
+2017-09-18 09:25:37,082 [Thread-1:18624] [django.request:231] [ERROR]- Internal Server Error: /product/control
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.control didn't return an HttpResponse object. It returned None instead.
+2017-09-18 09:26:25,259 [Thread-3:8844] [django.request:143] [WARNING]- Not Found: /product
+2017-09-18 13:23:48,182 [Thread-586:5408] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 14:12:29,150 [Thread-1197:19056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:13:11,740 [Thread-1244:912] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:13:38,795 [Thread-1299:15544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:13:42,003 [Thread-1307:11680] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:15:18,550 [Thread-1361:14836] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:15:25,240 [Thread-1379:17204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:15:27,398 [Thread-1383:12756] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:23:48,036 [Thread-1399:2100] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:24:02,364 [Thread-1418:17948] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:27:07,174 [Thread-1437:10264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:27:07,761 [Thread-1441:13848] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:27:37,845 [Thread-1457:1552] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:28:22,244 [Thread-1476:16808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:28:25,223 [Thread-1480:9032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:28:32,719 [Thread-1498:7896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:29:26,617 [Thread-1516:800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:30:36,718 [Thread-1575:15456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:32:09,957 [Thread-1594:14596] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:32:37,670 [Thread-1613:1128] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:32:38,834 [Thread-1617:15964] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:33:12,706 [Thread-1633:18744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:33:13,553 [Thread-1637:3132] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:34:02,947 [Thread-1653:14524] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:34:18,760 [Thread-1674:17992] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:37:03,573 [Thread-1737:156] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:37:48,162 [Thread-1755:9880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:43:04,251 [Thread-1772:10704] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:46:15,100 [Thread-1797:16160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:48:48,305 [Thread-41:11768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:51:46,732 [Thread-20:19264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:55:50,707 [Thread-36:5780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 14:58:02,756 [Thread-20:4236] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:00:04,656 [Thread-35:4220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:01:58,522 [Thread-76:15480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:13:59,803 [Thread-14:1184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:18:48,359 [Thread-52:6688] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 15:18:49,014 [Thread-53:14100] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 15:19:01,275 [Thread-54:16908] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 15:19:08,038 [Thread-60:16168] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:23:41,127 [Thread-10:12224] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:23:57,910 [Thread-17:16016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:40:31,873 [Thread-50:10740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:49:28,507 [Thread-8:8384] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:55:22,404 [Thread-4:11624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 15:57:52,285 [Thread-29:17836] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 16:01:02,812 [Thread-70:10224] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 16:23:27,326 [Thread-99:5452] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 16:39:36,424 [Thread-14:14544] [django.request:99] [WARNING]- Forbidden (CSRF cookie not set.): /center/login
+2017-09-18 16:39:36,637 [Thread-15:9884] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 16:40:31,668 [Thread-48:1920] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 17:07:08,650 [Thread-125:16576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 17:11:38,777 [Thread-204:16516] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 17:21:18,182 [Thread-367:10824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 18:42:34,366 [Thread-685:6420] [django.request:143] [WARNING]- Not Found: /device/
+2017-09-18 18:42:39,451 [Thread-686:13892] [django.request:143] [WARNING]- Not Found: /dev
+2017-09-18 18:42:42,464 [Thread-687:14808] [django.request:143] [WARNING]- Not Found: /device/
+2017-09-18 18:42:55,482 [Thread-691:7880] [django.request:143] [WARNING]- Not Found: /device/user/login
+2017-09-18 18:44:01,455 [Thread-694:17632] [django.request:143] [WARNING]- Not Found: /device/
+2017-09-18 18:58:41,035 [Thread-744:4148] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\workspace\open\app\center\views.py", line 98, in home
+    return render(request, "center/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 305, in render
+    match = condition.eval(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 898, in eval
+    return self.value.resolve(context, ignore_failures=True)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 18:59:23,289 [Thread-745:10456] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\workspace\open\app\center\views.py", line 98, in home
+    return render(request, "center/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 305, in render
+    match = condition.eval(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 898, in eval
+    return self.value.resolve(context, ignore_failures=True)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 18:59:28,667 [Thread-746:12412] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:00:08,285 [Thread-751:16064] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:00:29,359 [Thread-752:5304] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:00:33,254 [Thread-753:16892] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:00:39,837 [Thread-754:6444] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:00:47,680 [Thread-755:13548] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:01:32,159 [Thread-756:18040] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 19:01:32,787 [Thread-757:13800] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 19:01:34,944 [Thread-758:9520] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 19:01:36,043 [Thread-759:4780] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /center/login
+2017-09-18 19:01:56,399 [Thread-760:5276] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:02:19,344 [Thread-764:7684] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:03:05,039 [Thread-765:3880] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:03:16,706 [Thread-766:11148] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:03:23,321 [Thread-767:6708] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:04:04,450 [Thread-768:3788] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:05:07,957 [Thread-769:14712] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:05:23,635 [Thread-770:3660] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:08:31,132 [Thread-775:18180] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+TypeError: 'Account' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\workspace\open\model\center\account.py", line 162, in developer
+    developer = Developer.objects.get(developer_account=account_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.developer.DoesNotExist: Developer matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\workspace\open\app\home\views.py", line 13, in home
+    return render(request, "home/home.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1206, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 1052, in <listcomp>
+    resolved_args = [var.resolve(context) for var in self.args]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 596, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+  File "E:\workspace\open\model\center\account.py", line 164, in developer
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-18 19:08:32,933 [Thread-776:4568] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-18 19:15:01,155 [Thread-137:17848] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 19:15:02,993 [Thread-143:7676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 19:47:52,862 [Thread-475:19356] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 19:49:49,344 [Thread-492:6212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-18 19:49:49,883 [Thread-497:9512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:23:02,604 [Thread-908:6064] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:41:45,803 [Thread-1278:5748] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:41:49,059 [Thread-1283:15264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:49:51,958 [Thread-1453:16260] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:59:26,319 [Thread-1609:3940] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 10:59:27,475 [Thread-1614:19196] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 11:07:58,355 [Thread-1895:5604] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 11:13:08,541 [Thread-1985:9868] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 11:58:41,429 [Thread-2423:1776] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 12:36:01,351 [Thread-2426:6364] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:15:16,348 [Thread-2712:6032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:22:55,928 [Thread-2789:7192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:28:40,684 [Thread-2818:17652] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:52:19,776 [Thread-2944:16192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:52:20,088 [Thread-2949:11400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 13:56:25,086 [Thread-2978:5928] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 14:29:45,756 [Thread-3386:9640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 14:30:37,907 [Thread-3447:7924] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:04:47,875 [Thread-3928:14472] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 15:27:44,491 [Thread-4046:2544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:31:27,359 [Thread-4103:12076] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:33:20,552 [Thread-4186:1248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:33:21,137 [Thread-4191:6480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:36:39,898 [Thread-4241:9964] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 15:50:22,772 [Thread-4324:14968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 15:58:25,208 [Thread-4369:6448] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 16:09:03,147 [Thread-4703:2544] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:10:51,201 [Thread-4733:8596] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:12:07,427 [Thread-4764:7244] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:23:32,059 [Thread-4795:8632] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:24:36,283 [Thread-4826:15048] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:25:07,391 [Thread-4856:2740] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:26:08,199 [Thread-4888:19268] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:31:33,948 [Thread-4921:7740] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:31:58,614 [Thread-4950:7900] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:37:10,183 [Thread-5139:18956] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:37:19,664 [Thread-5149:14748] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 16:45:09,437 [Thread-5225:18920] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 16:45:14,382 [Thread-5230:280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:01:36,978 [Thread-5293:6800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:01:40,103 [Thread-5298:15292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:02:38,092 [Thread-5349:3720] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:03:08,327 [Thread-5428:16520] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:30:18,922 [Thread-5547:2884] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 17:30:20,823 [Thread-5552:2304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:42:43,884 [Thread-34:16248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:46:28,101 [Thread-99:7764] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:46:29,067 [Thread-104:18464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:48:06,845 [Thread-118:2920] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:48:07,679 [Thread-123:12884] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:55:18,283 [Thread-161:19900] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 20:58:30,550 [Thread-241:8536] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-19 21:16:59,798 [Thread-282:20232] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-19 21:17:01,170 [Thread-287:4008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:46:26,073 [Thread-4:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:46:26,364 [Thread-5:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:47:30,654 [Thread-12:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:47:30,748 [Thread-13:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:50:38,394 [Thread-107:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:50:38,570 [Thread-108:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:51:11,186 [Thread-136:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:52:25,088 [Thread-155:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:53:14,467 [Thread-158:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 16:53:17,374 [Thread-163:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:01:41,311 [Thread-197:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:02:59,090 [Thread-218:139904450995968] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-20 17:08:55,107 [Thread-234:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:23:32,400 [Thread-267:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:50:27,665 [Thread-401:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:53:07,336 [Thread-423:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 17:58:37,808 [Thread-444:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:00:43,813 [Thread-465:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:01:32,221 [Thread-486:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:01:45,994 [Thread-506:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:04:04,714 [Thread-527:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:04:48,972 [Thread-549:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:46:49,470 [Thread-569:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:49:03,244 [Thread-590:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:54:45,808 [Thread-611:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 18:58:17,576 [Thread-631:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:02:50,389 [Thread-660:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:07:01,752 [Thread-683:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:11:37,567 [Thread-748:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:12:22,627 [Thread-755:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:12:22,772 [Thread-756:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:12:38,218 [Thread-761:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:13:27,758 [Thread-773:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:13:58,668 [Thread-792:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:13:58,849 [Thread-793:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:14:20,862 [Thread-809:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:14:32,529 [Thread-821:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:15:41,470 [Thread-832:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:15:41,632 [Thread-833:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:16:24,935 [Thread-850:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:19:22,242 [Thread-869:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:19:41,691 [Thread-889:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:27:21,695 [Thread-911:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:27:57,290 [Thread-933:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:28:19,678 [Thread-954:139904306628352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:30:18,117 [Thread-975:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:31:05,609 [Thread-994:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:33:04,810 [Thread-1014:139904315021056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:34:04,665 [Thread-1035:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:35:15,587 [Thread-1058:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:35:29,111 [Thread-1077:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:35:58,551 [Thread-1098:139904323413760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:36:14,057 [Thread-1117:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:36:24,581 [Thread-1137:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:37:35,547 [Thread-1158:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:37:56,911 [Thread-1180:139904331806464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:39:54,466 [Thread-1230:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:40:36,311 [Thread-1250:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:45:07,197 [Thread-1274:139904298235648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:48:15,994 [Thread-1294:139904450995968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:56:56,887 [Thread-16:140278296090368] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:57:21,950 [Thread-37:140278279304960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:58:23,928 [Thread-43:140278279304960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 19:58:24,104 [Thread-44:140278279304960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-20 20:01:47,359 [Thread-57:140278279304960] [django.request:143] [WARNING]- Not Found: /product/list/None
