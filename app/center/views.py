@@ -17,6 +17,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from base.const import ConventionValue
 from conf.sessionconf import *
+from conf.newuserconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
@@ -29,7 +30,10 @@ from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
 from common.developer_helper import create_developer
+from common.app_helper import create_app
+
 from util.sms.verify_code import verify_sms_code
+
 from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
 from common.account_helper import change_user_pwd
@@ -86,6 +90,10 @@ def home(request):
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
                 if re:
+                    for i in range(len(APP_NAME)):
+                        result = create_app(re, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                        result.app_logo = APP_LOGO[i]
+                        result.save()
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
                     return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))

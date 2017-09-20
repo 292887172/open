@@ -127,21 +127,11 @@
         </h1>
     <ul class="nav">
         {% block menu %}
-
-
-            {% if user.is_developer %}
+            {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
-                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-                <li><a href="/wiki/" class="nav-current">开发文档</a></li>
-            {% elif user.developer.developer_id %}
-                <li><a href="{% url 'product/list' %}">产品管理</a></li>
-                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-                <li><a href="/wiki/" class="nav-current">开发文档</a></li>
-
-            {% else %}
+            {% endif %}
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
                 <li><a href="/wiki/" class="nav-current" >开发文档</a></li>
-            {% endif %}
         {% endblock %}
     </ul>
 <div class="sign_out">
