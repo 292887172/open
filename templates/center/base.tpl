@@ -42,7 +42,7 @@ var _hmt = _hmt || [];
                                             title="53iq云智能云"></a>
         </h1>
         <ul class="nav">
-            <li><a href="{% url 'home' %}">首页</a></li>
+
 
             {% if user.is_developer %}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
