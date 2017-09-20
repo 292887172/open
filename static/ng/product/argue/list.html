@@ -25,8 +25,8 @@
             width: 972px;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
-            background-color: #ff6202;
-            border-color: #ff6202;
+            background-color: #337ab7;
+            border-color: #337ab7;
         }
        .ui-jqgrid .ui-jqgrid-hbox {
             padding-right: 0px;
@@ -55,7 +55,7 @@
             top: 40px;"
         }
      .help-button{
-         background-color: #333;
+         background-color: #337ab7;
      }
 
      .warnCont {
@@ -68,8 +68,12 @@
          background: none;
     }
     .btnBar{
+        position: relative;
         background: none;
     }
+     .ui-jqgrid .ui-jqgrid-bdiv{
+         z-index: 0;
+     }
     </style>
     <div class="main-container">
         <div style="background: #fff">
@@ -90,6 +94,7 @@
         <div id="ie-form"></div>
 
     </div>
+
     <div class="popBox" id="newHtmlBox" style="display: block;">
         <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
         <h3 style="text-align: center">温馨提示</h3>
@@ -118,9 +123,10 @@
             var streamID=[];
             function new_close() {
                 $("#newHtmlBox").css('display','none');
+                $(".markLayout").hide();
             }
 			jQuery(function($) {
-    
+                $(".markLayout").show();
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
 					postData:{"name": "list"},
@@ -166,7 +172,7 @@
 						},
 						{name:'operation', width:150,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#ff6202'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a href='#/argue' id='del-info"+rowObject.id+"' style='color:#ff6202' onclick='del(\""+rowObject.id+"\")'>删除</a> | <a href='#/argue' id='forbiden-info"+rowObject.id+"' style='color:#ff6202' onclick='ban(\""+rowObject.id+"\")'>禁用</a>";
+                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a href='#/argue' id='del-info"+rowObject.id+"' style='color:#337ab7' onclick='del(\""+rowObject.id+"\")'>删除</a> | <a href='#/argue' id='forbiden-info"+rowObject.id+"' style='color:#337ab7' onclick='ban(\""+rowObject.id+"\")'>禁用</a>";
 						}
 						}
 					],
