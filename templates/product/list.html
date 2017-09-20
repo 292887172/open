@@ -100,6 +100,23 @@
         margin-left: 10px;
 
     }
+    .goods-list dl dt{
+        width:auto;
+        height: auto;
+    }
+    .goods-list dl dt img{
+        width: 100px;
+        height: 106px;
+        margin-top: 4px;
+    }
+    .goods-list dl dd .goods-title{
+        margin: -42px 0 -16px -63px;
+    }
+    .self-button{
+        float: left;
+        margin-left: -43%;
+        margin-top: 20%;
+    }
     </style>
 {% endblock %}
 {% block menu %}
@@ -130,7 +147,7 @@
 
         {% endif %}
             {% for app in published_apps %}
-                <div class="goods-list" style="height: 215px;">
+                <div class="goods-list" style="height: 140px;">
                 <div class="status bg-success">已发布</div>
                 <dl>
                     <dt>
@@ -149,7 +166,7 @@
             {% endfor %}
 
             {% for app in publishing_apps %}
-                <div class="goods-list" style="height: 215px;">
+                <div class="goods-list" style="height: 140px;">
                     <div class="status suc">审核中</div>
                     <dl>
                         <dt>
@@ -166,7 +183,7 @@
                 </div>
             {% endfor %}
             {% for app in unpublished_apps %}
-                 <div class="goods-list" style="height: 215px;">
+                 <div class="goods-list" style="height: 140px;">
                 <div class="status unpublish">未发布</div>
                 <dl>
                     <dt>
@@ -177,14 +194,29 @@
                         <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
                         <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
                         </div>
-                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">电控调试</span></p>
-                        <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI调试</span></p>
+                        <div style="float: left;margin-top: 20%;margin-left: -65px;">
+                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
+                                <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">协议调试</span></p>
+                            </a>
+                            <a href="#">
+                                <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI编辑</span></p>
+                            </a>
+                        </div>
+                        <div style="float: left;margin-top: 20%;margin-left: 20px;">
+                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">功能定义</span></p>
+                        </a>
+                        <a href="#" onclick="export_protocol()">
+                                <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">导出协议</span></p>
+                            </a>
+
+                        </div>
                     </dd>
                 </dl>
                 </div>
             {% endfor %}
             {% for app in failed_apps %}
-                 <div class="goods-list" style="height: 215px;">
+                 <div class="goods-list" style="height: 145px;">
                     <div class="status fail">未通过</div>
                     <dl>
                         <dt>
@@ -193,8 +225,8 @@
                         </dt>
                         <dd>
                             <div class="goods-title"><a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a></div>
-                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">电控调试</span></p>
-                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI调试</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">协议调试</span></p>
+                            <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">UI编辑</span></p>
                         </dd>
                     </dl>
                 </div>
@@ -238,9 +270,42 @@
 
     </div>
     <hr style="border-top: 1px solid #dddddd;position: relative;top: 50px;width: 100%;"/>
+    <div id="ie-form"></div>
 {% endblock %}
 
 {% block script %}
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+    <script src="/static/js/product/bootbox.js"></script>
+    <script>
+    var app_id = $("#delProLink").attr("data-id");
 
+
+    function export_protocol() {
+{#        var rows = $("#grid-table").length;#}
+{#            if(rows==0){#}
+{#            alert("暂无参数信息！");#}
+{#            return '';#}
+{#        }#}
+        bootbox.confirm("确定导出基本参数的数据吗?", function (result) {
+            if (result) {
+                var form = document.createElement('form');
+                form.action = '#';
+                form.method = 'post';
+                form.style = "display: none";
+                var input = document.createElement("input");
+                input.name = "name";
+                input.type = "text";
+                input.value = "export";
+                var input1 = document.createElement("input");
+                input1.name = "app_id";
+                input1.type = "text";
+                input1.value = app_id;
+                form.appendChild(input);
+                form.appendChild(input1);
+                $("#ie-form").html(form);
+                form.submit();
+              }
+            })
+    }
+    </script>
 {% endblock %}

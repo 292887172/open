@@ -36,6 +36,7 @@ _convention = ConventionValue()
 
 
 @login_required
+@csrf_exempt
 def product_list(request):
     """
     应用列表
@@ -91,6 +92,10 @@ def product_list(request):
         )
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
+        export = request.POST.get("name", "")
+        if export == "export":
+            ret = date_deal(app_id)
+            return ret
         if app_id and action in ("del", "del"):
 
             if action == "del":
@@ -285,6 +290,7 @@ def product_main(request):
                     save_app(app, opera_data)
                     return HttpResponse('change_success')
         elif post_data == "export":
+            print(type(app_id),app_id)
             res = date_deal(app_id)
             return res
         elif post_data == "save_conf":
