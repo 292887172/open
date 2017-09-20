@@ -60,6 +60,10 @@ small,
   border: 1px solid rgba(255,255,255,0.35);
   padding: 2px 6px;
 }
+.bg-white:active{
+  background-color: #eee;
+  opacity: 0.85;
+}
 .badge-empty {
   background-color: transparent;
   border: 1px solid rgba(0,0,0,0.15);
