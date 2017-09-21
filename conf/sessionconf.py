@@ -33,3 +33,5 @@ SESSION_REGISTER_SUCCESS = "SESSION_REGISTER_SUCCESS"
 # 记住登录账户的cookie key
 COOKIE_USER_ACCOUNT = "COOKIE_USER_ACCOUNT"
 
+# 自动登录token的cookie key
+AUTO_LOGIN = "token"

@@ -240,3 +240,18 @@
       KEY `Index_1` (`ebf_doc_id`),
       CONSTRAINT `FK_Reference_7` FOREIGN KEY (`ebf_doc_id`) REFERENCES `ebt_doc` (`ebf_doc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
     ) ENGINE=ndbcluster AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='文档菜单表';
+
+    -- ----------------------------
+    -- Table structure for ebt_auto_login
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_auto_login`;
+    CREATE TABLE `ebt_auto_login` (
+      `ebf_al_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_al_account_id` varchar(64) NOT NULL COMMENT '用户账号',
+      `ebf_al_account_password` varchar(512) NOT NULL COMMENT '用户密码',
+      `ebf_al_token` varchar(64) NOT NULL COMMENT '自动登录的token',
+      `ebf_al_login_ip` varchar(32) NOT NULL COMMENT '自动登录的ip',
+      `ebf_al_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_al_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_al_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='自动登录表';
