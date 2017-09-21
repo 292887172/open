@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'achais'
-
+import datetime
 from model.center.account import Account
+from model.center.auto_login import AutoLogin
 from django.core.paginator import Paginator
 from base.const import ConventionValue
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.crypto import md5_en
-
+import base64
 import logging
 
 _convention = ConventionValue()
@@ -83,3 +84,35 @@ def change_user_pwd(user_id, new_pwd):
         user.save()
     except Exception as e:
         print(e)
+
+
+def update_user_login_data(user_id, pwd, token, ip, action):
+    """
+    更新用户的登录信息
+    :param user_id:
+    :param pwd:
+    :param token:
+    :param ip:
+    :param action
+    :return:
+    """
+
+    if action == 'save':
+        pwd = base64.b64encode(pwd)
+        try:
+            al = AutoLogin.objects.get(al_account_id=user_id)
+            al.al_account_pwd = pwd
+            al.al_token = token
+            al.al_login_ip = ip
+            al.al_update_date = datetime.datetime.utcnow()
+            al.save()
+        except Exception as e:
+            print(e)
+            al = AutoLogin(al_account_id=user_id, al_account_pwd=pwd, al_token=token, al_login_ip=ip,
+                           al_create_date=datetime.datetime.utcnow(), al_update_date=datetime.datetime.utcnow())
+            al.save()
+    elif action == 'delete':
+        try:
+            AutoLogin.objects.filter(al_account_id=user_id).delete()
+        except Exception as e:
+            print(e)

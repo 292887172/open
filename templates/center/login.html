@@ -206,8 +206,10 @@
                                 </div>
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input name="password" class="btn-block" type="password" id="inputPassword"
-                                               placeholder="密码">
+                                        <input name="show-password" class="btn-block" type="password" id="show-inputPassword"
+                                               placeholder="密码" onkeyup="encryption(this)">
+                                        <input name="password" class="btn-block hidden" type="password" id="inputPassword"
+                                               placeholder="密码" >
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -250,7 +252,13 @@
 {% endblock %}
 
 {% block end_script %}
+    <script src="{% static 'js/center/crypto.js' %}"></script>
     <script>
+    function encryption(item) {
+             var b = new Base64();
+             var str = b.encode($(item).val());
+             $("#inputPassword").val(str);
+        }
     $(function () {
          var username = '{{ username }}';
          if (username != '') {
@@ -260,6 +268,7 @@
 
 
         }
+
     })
     </script>
 {% endblock %}
