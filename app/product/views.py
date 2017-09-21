@@ -46,9 +46,9 @@ def product_list(request):
     """
     def get():
         # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
-        if not App.objects.filter(developer='1_15267183467').filter(check_status=_convention.APP_DEFAULT):
+        if not App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT):
             for i in range(len(APP_NAME)):
-                result = create_app("1_15267183467", APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                 result.app_logo = APP_LOGO[i]
                 result.save()
         if not request.user.is_developer:
@@ -65,7 +65,7 @@ def product_list(request):
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
-        default_apps = App.objects.filter(developer='1_15267183467').filter(check_status=_convention.APP_DEFAULT)
+        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:

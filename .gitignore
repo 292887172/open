@@ -12,5 +12,5 @@ gen
 # Django stuff:
 log/*
 *.pyc
-
+log
 tmp/
