@@ -6,7 +6,7 @@ import json
 import random
 import logging
 import base64
-
+import hashlib
 import datetime
 import django
 from django.contrib.auth import authenticate
@@ -25,6 +25,7 @@ from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL
 from util.auth import get_auth_user
 from util.sms.SendTemplateSMS import sendTemplateSMS
 from model.center.account import Account
+from model.center.auto_login import AutoLogin
 from common.smart_helper import check_user_password, check_factory_uuid, get_factory_info
 from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
@@ -36,7 +37,7 @@ from util.sms.verify_code import verify_sms_code
 
 from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
-from common.account_helper import change_user_pwd
+from common.account_helper import change_user_pwd, update_user_login_data
 
 _convention = ConventionValue()
 
@@ -113,13 +114,11 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>帐号不能为空</P></div>"
             return render(request, "center/login.html", locals())
         password = request.POST.get("password", "")
-        # password = security.md5(password)
-        # password = hashlib.md5(password.encode("utf-8")).hexdigest()
-        # print("==============================", password)
         if not password:
             msg = "<div class='ui-error-box' ><b></b><p>请输入密码</P></div>"
             return render(request, "center/login.html", locals())
         try:
+            password = base64.b64decode(password)
             user_obj = authenticate(username=account, password=password)
 
             if not user_obj:
@@ -135,8 +134,13 @@ def login(request):
             remember = request.POST.get("remember")
             # 将用户登录信息保存到cookie
             if remember:
-                dt = datetime.datetime.now() + datetime.timedelta(hours=168)
+                dt = datetime.datetime.now() + datetime.timedelta(days=30)
                 response.set_cookie(COOKIE_USER_ACCOUNT, account, expires=dt)
+                m = hashlib.md5()
+                m.update(('token_'+account).encode('utf-8'))
+                token = m.hexdigest()
+                update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+                response.set_cookie(AUTO_LOGIN, token, expires=dt)
             else:
                 response.delete_cookie(COOKIE_USER_ACCOUNT)
             django.contrib.auth.login(request, user_obj)
@@ -148,13 +152,26 @@ def login(request):
             return render(request, "center/login.html", locals())
     try:
         request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
-        if request.user.account_id:
+        if request.user.is_developer:
 
+            return HttpResponseRedirect("/product/list")
+        elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
         logging.getLogger('').info(str(e))
     if COOKIE_USER_ACCOUNT in request.COOKIES:
         username = request.COOKIES[COOKIE_USER_ACCOUNT]
+    if AUTO_LOGIN in request.COOKIES:
+        token = request.COOKIES[AUTO_LOGIN]
+        try:
+            al = AutoLogin.objects.get(al_token=token)
+            ac_id = al.al_account_id
+            ac_pwd = base64.b64decode(al.al_account_pwd)
+            user_obj = authenticate(username=ac_id, password=ac_pwd)
+            django.contrib.auth.login(request, user_obj)
+            return HttpResponseRedirect("/guide")
+        except Exception as e:
+            pass
     return render(request, "center/login.html", locals())
 
 
@@ -220,8 +237,12 @@ def logout(request):
     :param request:
     :return:
     """
+    account_id = request.user.account_id
     django.contrib.auth.logout(request)
-    return HttpResponseRedirect(reverse("home"))
+    response = HttpResponseRedirect(reverse("home"))
+    response.delete_cookie(AUTO_LOGIN)
+    update_user_login_data(account_id, '', '', '', 'delete')
+    return response
 
 
 @csrf_exempt
