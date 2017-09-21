@@ -10,7 +10,7 @@
 {#    <link rel="stylesheet" href="https://static1.tuyacn.com/static/developer/dist/css/main.fbcdd6d09150633daa0b267da7c38dcf.css"/>#}
     <link rel="stylesheet" href="{% static 'common/css/app.css' %}" xmlns="http://www.w3.org/1999/html"/>
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
+
     <style>
         .wrapper {
             padding: 0;
@@ -243,7 +243,7 @@
             <p>海量食谱美味多，易空间控制不做守箱奴，精准控温，美食更美</p>
             {% endif %}
             <div class="ui-demo">
-                <a style="color:#fff" href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">立即体验</a></div>
+                <a style="display:block;color:#fff" href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">立即体验</a></div>
         </div>
         {% endfor %}
     </div>
@@ -278,64 +278,6 @@
             </div>
         </div>
 
-        <div class="_2wZ_index_new-list" data-reactid="89" style="margin-left: 219px;">
-            <div class="_2Mr_category_category" data-reactid="90">
-               <div data-reactid="91">
-                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png');background-size: 147px;"></i>
-                <p class="_2tY_index_category-des" data-reactid="93">集成灶</p>
-               </div>
-               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
-                <div class="_3CN_category_mark-info" data-reactid="95">
-                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">集成灶</span>
-                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_product('2')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
-                  <!-- react-text: 99 -->创建
-                  <!-- /react-text -->
-                 </button>
-                </div>
-               </div>
-              </div>
-            <div class="_2Mr_category_category" data-reactid="90">
-               <div data-reactid="91">
-                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png');background-size: 147px;"></i>
-                <p class="_2tY_index_category-des" data-reactid="93">油烟机</p>
-               </div>
-               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
-                <div class="_3CN_category_mark-info" data-reactid="95">
-                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">油烟机</span>
-                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_product('1')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
-                  <!-- react-text: 99 -->创建
-                  <!-- /react-text -->
-                 </button>
-                </div>
-               </div>
-            </div>
-            <div class="_2Mr_category_category" data-reactid="90">
-               <div data-reactid="91">
-                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png');background-size: 147px;"></i>
-                <p class="_2tY_index_category-des" data-reactid="93">烤箱</p>
-               </div>
-               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
-                <div class="_3CN_category_mark-info" data-reactid="95">
-                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">烤箱</span>
-                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_product('11')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
-                  <!-- react-text: 99 -->创建
-                  <!-- /react-text -->
-                 </button>
-                </div>
-               </div>
-            </div>
-        </div>
-
-        <div class="btnBar">
-              <span>
-                <a href="javascript:;" onclick="go()" class="btn-blue">提交</a>
-              </span>
-        </div>
-    </div>
-    <div style="border-top: 2px solid #e0e0e0;;margin-top: 30px;"></div>
         <div class="goodsBox" style=" margin-top: 30px;">
             {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
                 <div style="text-align: center">
