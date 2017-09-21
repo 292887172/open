@@ -128,15 +128,17 @@
                                             <option value="无">请选择分类</option>
                                             {#                                        <option value="家电类">家电类</option>#}
                                             <option value="厨房类">厨房类</option>
-                                            <option value="卫浴类">卫浴类</option>
+{#                                            <option value="卫浴类">卫浴类</option>#}
                                             {#                                        <option value="环境类">环境类</option>#}
                                         </select>
+
+
                                         <select name="product_category_detail" id="product_category_detail"
                                                 class="sel2">
                                             <option value="无">请选择分类</option>
                                         </select>
-                                        <span class="tips-error hiden" id="productTypeTips"></span>
                                     </dd>
+
                                 </dl>
 
                                 <dl class="fmInfo">
@@ -179,7 +181,7 @@
 
                                             <p class="nav_nav lev03">设备</p>
 
-                                            <p class="txt">油烟机、热水器、净化器等</p>
+                                            <p class="txt">油烟机、集成灶、烤箱等</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -202,16 +204,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="box-leadIn hide">
-                    <h3 class="tit5">导入已有的产品</h3>
 
-                    <div class=" plr20">
-                        <div class="row">
-                            <div class="col-lg-8">导入 XXX 文件来创建新产品</div>
-                            <div class="col-lg-4"><a href="#" class="btn btn-s-sm btn-success">导 入</a></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -284,7 +277,7 @@
                 }
                 else if (value == '厨房类') {
                     html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
-                        '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="22">电磁灶</option>'
+                        '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="0">其他</option>'
                 }
                 else if (value == '卫浴类') {
                     html = '<option value="12">马桶</option><option value="19">饮水机</option>'
