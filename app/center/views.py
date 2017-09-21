@@ -17,7 +17,6 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from base.const import ConventionValue
 from conf.sessionconf import *
-from conf.newuserconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
@@ -91,10 +90,6 @@ def home(request):
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
                 if re:
-                    for i in range(len(APP_NAME)):
-                        result = create_app(re, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                        result.app_logo = APP_LOGO[i]
-                        result.save()
                     return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
                 else:
                     return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))

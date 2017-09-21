@@ -28,7 +28,7 @@ import time
 import json
 import logging
 import os
-
+from conf.newuserconf import *
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -45,6 +45,12 @@ def product_list(request):
     :return:
     """
     def get():
+        # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
+        if not App.objects.filter(developer='1_15267183467').filter(check_status=_convention.APP_DEFAULT):
+            for i in range(len(APP_NAME)):
+                result = create_app("1_15267183467", APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                result.app_logo = APP_LOGO[i]
+                result.save()
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
         else:
@@ -59,11 +65,7 @@ def product_list(request):
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
-        default_apps = []
-        user_apps_all = developer.developer_related_app.all()
-        for app in user_apps_all:
-            if app.check_status == _convention.APP_DEFAULT:
-                default_apps.append(app)
+        default_apps = App.objects.filter(developer='1_15267183467').filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -211,9 +213,10 @@ def product_main(request):
             developer = request.user.developer
         try:
             app_id = request.GET.get("ID", "")
-            user_apps = developer.developer_related_app.get(app_id=int(app_id))
+            user_apps = App.objects.get(app_id=int(app_id))
+            # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
-            del e
+            del(e)
             return HttpResponseRedirect(reverse("center"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
@@ -261,7 +264,7 @@ def product_main(request):
             return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_id = request.POST.get("id","")
+            edit_id = request.POST.get("id", "")
             streamId = []
             edit_data = {}
             for i in range(len(opera_data)):

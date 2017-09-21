@@ -27,30 +27,34 @@ var csrftoken = getCookie('csrftoken');
 
 jQuery(document).ready(function () {
     jQuery("body").on("click", "#delProLink", function () {
-        if (confirm('确认删除？')){
-            var app_id = jQuery(this).attr("data-id");
-            if (app_id != "") {
-                jQuery.ajax({
-                    url: location.href,
-                    type: "POST",
-                    data: {app_id: app_id, action: "del"},
-                    error: function (e) {
-                        console.log("error");
-                    },
-                    success: function (response) {
-                        response = jQuery.parseJSON(response);
-                        console.log(response);
-                        if (response.code == 10000) {
-                            location.href = "/product/list";
+        var app_id = jQuery(this).attr("data-id");
+        bootbox.confirm("确定删除吗?",function (result){
+            if (result)
+            {
+                if (app_id != "") {
+                    jQuery.ajax({
+                        url: location.href,
+                        type: "POST",
+                        data: {app_id: app_id, action: "del"},
+                        error: function (e) {
+                            console.log("error");
+                        },
+                        success: function (response) {
+                            response = jQuery.parseJSON(response);
+                            console.log(response);
+                            if (response.code == 10000) {
+                                location.href = "/product/list";
+                            }
+                        },
+                        beforeSend: function (xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
                         }
-                    },
-                    beforeSend: function (xhr, settings) {
-                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                        }
-                    }
-                })
+                    })
+                }
             }
-        }
+
+        })
     })
 });
