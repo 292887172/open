@@ -104,7 +104,7 @@
                 <p class="mt6">您的需求，您可以申请自定义参数，但需要审核通过后才能发布</p>
             </div>
         </div>
-        <p align="center"><input type="checkbox" id="check_continueShowTips">不再提示</p>
+        <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
         <div class="btnBar">
               <span>
                 <a href="javascript:;" onclick="new_close()" class="btn-blue">知道了</a>
@@ -117,13 +117,23 @@
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
     <script src="/static/js/product/bootbox.js"></script>
+   <script src="/static/js/product/jquery.cookie.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
             var streamID=[];
-            function new_close() {
+            var flag = $.cookie('cookie_prompt');
+            if(flag){
                 $("#newHtmlBox").css('display','none');
-                $(".markLayout").hide();
+            }
+            function new_close() {
+                var check_prompt = $("#check_continueShowTips").is(':checked');
+                // 关闭的情况下，选中不再提醒
+                if (check_prompt){
+                    $.cookie('cookie_prompt', check_prompt);
+                }
+                $("#newHtmlBox").css('display','none');
+                //$(".markLayout").hide();
             }
 			jQuery(function($) {
                 $(".markLayout").show();
@@ -260,7 +270,7 @@
                     alert("暂无参数信息！");
                     return;
                 }
-                bootbox.confirm("确定导出基本参数的数据吗?", function (result) {
+                bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
                         form.action = '#/argue';
