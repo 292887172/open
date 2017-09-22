@@ -17,7 +17,7 @@
 }
 ._1_k_index_category-img1 {
     display: inline-block;
-    width: 140px;
+    width: 175px;
     height: 210px;
     border-top: 2px solid #2086e0;
     box-shadow: 0 0 1px rgba(0,0,0,.4);
@@ -36,7 +36,7 @@
 }
 ._2wZ_index_new-list-title{
     border-top: 1px solid #ccc;
-    width: 368px;
+    width: 420px;
     margin: auto;
 }
 ._2wZ_index_new-list-title span{
@@ -45,7 +45,7 @@
     position: relative;
     top: -11px;
     width: 175px;
-    left: 98px;
+    left: 123px;
     font-size: 15px;
     color: #333;
 }
@@ -202,7 +202,7 @@
 
 }
 .ant-form-item {
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 33px;
     color: #666;
     vertical-align: top;
@@ -222,9 +222,9 @@
     display: inline-block;
     padding: 4px 7px;
     width: 80%;
-    height: 28px;
+    height: 35px;
     cursor: text;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 1.5;
     color: #666;
     background-color: #fff;
