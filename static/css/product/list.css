@@ -1,20 +1,12 @@
-._2wZ_index_new-list {
-    margin-top: 6px;
-}
-
-
-*, :after, :before {
-    background-repeat: no-repeat;
-    box-sizing: inherit;
-}
 ._22y_index_new {
     height: 284px;
-    background-color: #fff;
     font-weight: 400;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
     text-align: center;
     transition: all 10s ease;
+}
+._2wZ_index_new-list {
+    margin-top: 6px;
 }
 ._2Mr_category_category {
     display: inline-block;
@@ -29,9 +21,10 @@
     height: 210px;
     border-top: 2px solid #2086e0;
     box-shadow: 0 0 1px rgba(0,0,0,.4);
-    background-size: auto 127%;
     background-position: -4px;
+
 }
+
 ._2tY_index_category-des {
     position: absolute;
     width: 100%;
@@ -44,6 +37,13 @@
 ._2Mr_category_category .mark:hover {
     opacity: 1;
 }
+.lazyload-ok{
+    background-size: auto;
+    background-color: #FCFCFC;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
 ._2Mr_category_category .mark {
     position: absolute;
     display: inline-block;
@@ -54,7 +54,7 @@
     opacity: 0;
     filter: alpha(opacity=70);
     transition: all .4s cubic-bezier(.4,0,.2,1);
-    background: #2086e0;
+    background: #537EBB;
     text-align: center;
     color: #fff;
 }
@@ -98,10 +98,7 @@
     transform: translateY(100px);
     transition: all .4s cubic-bezier(.4,0,.2,1);
 }
-*, :after, :before {
-    background-repeat: no-repeat;
-    box-sizing: inherit;
-}
+
 ._2Mr_category_category .mark-children-top-txt {
     transform: translateY(0);
 }
@@ -177,51 +174,43 @@
 .mark-entered mark-children mark:hover{
     opacity: 1;
 }
-.ant-modal-content {
-    position: relative;
-    background-color: #fff;
-    border: 0;
-    border-radius: 0;
-    background-clip: padding-box;
-    box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.ant-modal-close {
-    cursor: pointer;
-    border: 0;
-    background: transparent;
-    position: absolute;
-    right: 18px;
-    top: 14px;
-    z-index: 10;
-    font-weight: 700;
-    line-height: 1;
-    text-decoration: none;
-    transition: color .3s ease;
-    color: #999;
-    outline: 0;
-}
-.ant-modal-close-x:before {
-    content: "\2715";
-    display: block;
-}
-.ant-modal-body {
-    padding: 16px;
-    font-size: 12px;
-    line-height: 1.5;
-    background: #f8f8f8;
+.popBox h3 {
+    height: 51px;
+    font-size: 30px;
 }
 .fd7_create_product-form {
     padding: 20px 40px 10px;
 
 }
-.fd7_create_product-form .ant-form-item-with-help .ant-form-item-label {
-    vertical-align: top;
-    margin-bottom: 18px;
-}
-.ant-form-item-label label {
+.ant-form-item {
+    font-size: 12px;
+    margin-bottom: 15px;
     color: #666;
-}
-.fd7_create_product-form .ant-form-item>div {
-    display: inline-block;
     vertical-align: top;
+}
+.fd7_create_product-form .ant-form-item .ant-input-wrapper {
+    display: inline-block;
+    width: 260px;
+}
+.ant-input-lg {
+    padding: 6px 7px;
+    height: 32px;
+    width: 201px;
+
+}
+.ant-input {
+    position: relative;
+    display: inline-block;
+    padding: 4px 7px;
+    width: 80%;
+    height: 28px;
+    cursor: text;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: border .2s cubic-bezier(.645,.045,.355,1),background .2s cubic-bezier(.645,.045,.355,1),box-shadow .2s cubic-bezier(.645,.045,.355,1);
 }

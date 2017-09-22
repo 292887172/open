@@ -121,25 +121,50 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-            var streamID=[];
-            var flag = $.cookie('cookie_prompt');
-            if(flag){
-                $("#newHtmlBox").css('display','none');
-                $(".markLayout").hide();
-            }
-            else{
-                $(".markLayout").show();
-            }
-            function new_close() {
-                var check_prompt = $("#check_continueShowTips").is(':checked');
-                // 关闭的情况下，选中不再提醒
-                if (check_prompt){
-                    $.cookie('cookie_prompt', check_prompt);
-                }
-                $("#newHtmlBox").css('display','none');
-                $(".markLayout").hide();
-            }
+
 			jQuery(function($) {
+                $(".markLayout").show();
+                var streamID=[];
+                var flag = getCookie('cookie_prompt');
+                if(flag){
+                    $("#newHtmlBox").css('display','none');
+
+                    $(".markLayout").hide();
+                }
+                function new_close() {
+                    var check_prompt = $("#check_continueShowTips").is(':checked');
+                    // 关闭的情况下，选中不再提醒
+                    if (check_prompt){
+                        setCookie('cookie_prompt', check_prompt);
+                    }
+                    $("#newHtmlBox").css('display','none');
+                    $(".markLayout").hide();
+                }
+                function setCookie(name, value) {
+                    var Days = 30;
+                    var exp = new Date();
+                    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+                    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()+";path=/";
+                }
+                //读取cookies
+                function getCookie(name) {
+                    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+                    if (arr = document.cookie.match(reg))
+
+                        return unescape(arr[2]);
+                    else
+                        return null;
+                }
+                //删除cookies
+                function delCookie(name) {
+                    var exp = new Date();
+                    exp.setTime(exp.getTime() - 1);
+                    var cval = getCookie(name);
+                    if (cval != null)
+                        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
+                }
+
 
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
