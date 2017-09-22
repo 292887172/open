@@ -81,6 +81,7 @@ def product_list(request):
         template = "product/list.html"
         content = dict(
             keyword=keyword,
+            developer=developer,
             published_apps=published_apps,
             publishing_apps=publishing_apps,
             unpublished_apps=unpublished_apps,
@@ -114,6 +115,7 @@ def product_list(request):
         return post()
 
 
+@csrf_exempt
 @login_required
 def product_add(request):
     """

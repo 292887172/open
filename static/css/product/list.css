@@ -1,21 +1,6 @@
 ._2wZ_index_new-list {
     margin-top: 6px;
 }
-
-
-*, :after, :before {
-    background-repeat: no-repeat;
-    box-sizing: inherit;
-}
-._22y_index_new {
-    height: 284px;
-    background-color: #fff;
-    font-weight: 400;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
-    border-bottom: 2px solid #e0e0e0;
-    text-align: center;
-    transition: all 10s ease;
-}
 ._2Mr_category_category {
     display: inline-block;
     vertical-align: top;
@@ -29,9 +14,10 @@
     height: 210px;
     border-top: 2px solid #2086e0;
     box-shadow: 0 0 1px rgba(0,0,0,.4);
-    background-size: auto 127%;
     background-position: -4px;
+
 }
+
 ._2tY_index_category-des {
     position: absolute;
     width: 100%;
@@ -98,10 +84,7 @@
     transform: translateY(100px);
     transition: all .4s cubic-bezier(.4,0,.2,1);
 }
-*, :after, :before {
-    background-repeat: no-repeat;
-    box-sizing: inherit;
-}
+
 ._2Mr_category_category .mark-children-top-txt {
     transform: translateY(0);
 }
@@ -177,51 +160,7 @@
 .mark-entered mark-children mark:hover{
     opacity: 1;
 }
-.ant-modal-content {
-    position: relative;
-    background-color: #fff;
-    border: 0;
-    border-radius: 0;
-    background-clip: padding-box;
-    box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.ant-modal-close {
-    cursor: pointer;
-    border: 0;
-    background: transparent;
-    position: absolute;
-    right: 18px;
-    top: 14px;
-    z-index: 10;
-    font-weight: 700;
-    line-height: 1;
-    text-decoration: none;
-    transition: color .3s ease;
-    color: #999;
-    outline: 0;
-}
-.ant-modal-close-x:before {
-    content: "\2715";
-    display: block;
-}
-.ant-modal-body {
-    padding: 16px;
-    font-size: 12px;
-    line-height: 1.5;
-    background: #f8f8f8;
-}
-.fd7_create_product-form {
-    padding: 20px 40px 10px;
-
-}
-.fd7_create_product-form .ant-form-item-with-help .ant-form-item-label {
-    vertical-align: top;
-    margin-bottom: 18px;
-}
-.ant-form-item-label label {
-    color: #666;
-}
-.fd7_create_product-form .ant-form-item>div {
-    display: inline-block;
-    vertical-align: top;
+.popBox h3 {
+    height: 51px;
+    font-size: 30px;
 }
