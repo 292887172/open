@@ -6,11 +6,9 @@
     产品管理
 {% endblock %}
 {% block style %}
-{#    <link rel="stylesheet" href="https://static1.tuyacn.com/static/developer/dist/css/base.b368ff952b8d9787f908afb0e85356e0.css"/>#}
-{#    <link rel="stylesheet" href="https://static1.tuyacn.com/static/developer/dist/css/main.fbcdd6d09150633daa0b267da7c38dcf.css"/>#}
     <link rel="stylesheet" href="{% static 'common/css/app.css' %}" xmlns="http://www.w3.org/1999/html"/>
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
-
+    <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <style>
         .wrapper {
             padding: 0;
@@ -36,7 +34,12 @@
         .footer {
             margin: 100px auto 0;
         }
-
+        .title-sub {
+                height: 0px;
+        }
+        .title-sub {
+            padding: 50px 0;
+        }
         .set-radius {
             background-color: #333;
             border: 1px solid #333;
@@ -269,15 +272,90 @@
 
     <div class="wrapper wrapper2 mt20">
         <!-- 已发布的产品 -->
-        <div class="title-sub"><span class="old">我的产品</span>
-            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
-                <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
-                    <i class="fa fa-plus"></i>
-                    <span class="text">添加产品</span>
-                </a>
+        <div class="_2wZ_index_new-list" data-reactid="89" style="margin-left: 219px;">
+            <div class="_2Mr_category_category" data-reactid="90">
+               <div data-reactid="91">
+                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png');background-size: 147px; background-repeat: no-repeat;"></i>
+                <p class="_2tY_index_category-des" data-reactid="93">集成灶</p>
+               </div>
+               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
+                <div class="_3CN_category_mark-info" data-reactid="95">
+                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">集成灶</span>
+                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
+                 <button type="button" onclick="new_show('2')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                  <!-- react-text: 99 -->创建
+                  <!-- /react-text -->
+                 </button>
+                </div>
+               </div>
+              </div>
+            <div class="_2Mr_category_category" data-reactid="90">
+               <div data-reactid="91">
+                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png');background-size: 147px;background-repeat: no-repeat;"></i>
+                <p class="_2tY_index_category-des" data-reactid="93">烤箱</p>
+               </div>
+               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
+                <div class="_3CN_category_mark-info" data-reactid="95">
+                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">烤箱</span>
+                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
+                 <button type="button" onclick="new_show('11')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                  <!-- react-text: 99 -->创建
+                  <!-- /react-text -->
+                 </button>
+                </div>
+               </div>
+            </div>
+            <div class="_2Mr_category_category" data-reactid="90">
+               <div data-reactid="91">
+                <i class="_1_k_index_category-img1 lazyload-ok" data-reactid="92" style="background-image: url('http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png');background-size: 147px;background-repeat: no-repeat;"></i>
+                <p class="_2tY_index_category-des" data-reactid="93">油烟机</p>
+               </div>
+               <div id="set-opacity" class="mark-entered mark-children mark" data-reactid="94">
+                <div class="_3CN_category_mark-info" data-reactid="95">
+                 <span class="mark-top-txt mark-children-top-txt" data-reactid="96">油烟机</span>
+                 <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
+                 <button type="button" onclick="new_show('1')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                  <!-- react-text: 99 -->创建
+                  <!-- /react-text -->
+                 </button>
+                </div>
+               </div>
             </div>
         </div>
+    <div class="popBox" id="newHtmlBox" style="display: none;">
+        <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
+        <h3 id="productType" style="text-align: center;"></h3>
+        <div class="cont mt20" style="margin-top: 20px;">
+            <div class="warnCont">
+                <form name="formProduct"  method="post" action="/product/add/">
 
+                    <input type="hidden" value="" id="product_category" name="product_category" class="">
+                    <label for="product_name" class="">产品名称:</label>
+                    <span class="ant-input-wrapper">
+                        <input type="text" value="" id="product_name" name="product_name" class="">
+                    </span>
+                    <input type="hidden" value="2" name="product_group">
+                    <input type="hidden" value="{{ developer.developer_id }}" name="developer_id">
+                    <input type="hidden" value="是" name="product_command">
+                    <input type="hidden" value="厨房类" name="product_category_detail">
+
+                </form>
+            </div>
+        </div>
+        <div class="btnBar" style="background: none;height: 85px;">
+              <span>
+                <a href="javascript:;" onclick="create_product()" id="productSubmit" class="btn-blue">提交</a>
+              </span>
+        </div>
+    </div>
+    <div class="title-sub"><span class="old">我的产品</span>
+        <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
+            <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
+                <i class="fa fa-plus"></i>
+                <span class="text">添加产品</span>
+            </a>
+        </div>
+    </div>
         <div class="goodsBox" style=" margin-top: 30px;">
             {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
                 <div style="text-align: center">
@@ -453,6 +531,7 @@
             {% endfor %}
         </div>
         <div id="ie-form"></div>
+
         <!-- 未发布的产品 -->
 
 {% endblock %}
@@ -485,21 +564,31 @@
                   }
                 });
         }
-        function create_product(type) {
-            var form = $("form[name=productAddForm]");
+        function create_product() {
+            var form = $("form[name=formProduct]");
+            $("#product_category").val($("#productType").html());
+            var product_name = $("#product_name").val();
+            if(product_name == ''){
+                alert("产品名称不能为空！");
+                return ;
+            }
+            form.submit();
+        }
+        function new_show(type) {
             if(type=='1'){
-
+                $("#productType").html("油烟机")
             }
             else if(type=='2'){
-
+                $("#productType").html("集成灶")
             }
             else if(type=='11'){
-
+                $("#productType").html("烤箱")
             }
-            form.submit()
+            $("#newHtmlBox").css('display','block');
         }
         function new_close() {
             $("#newHtmlBox").css('display','none');
+            $("#product_name").val('');
         }
     </script>
 {% endblock %}
