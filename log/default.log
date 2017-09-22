@@ -13982,3 +13982,609 @@ model.center.app.DoesNotExist: App matching query does not exist.
 2017-09-20 18:12:14,954 [Thread-3093:4492] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-20 18:12:23,719 [Thread-3113:9324] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-20 18:26:10,153 [Thread-3344:7252] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-21 09:05:14,891 [Thread-21:5488] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 09:26:46,531 [Thread-156:8744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 09:47:12,770 [Thread-12:5532] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 107, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 85, in get
+    return render(request, template, content)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 161, in render
+    values = list(values)
+TypeError: 'Developer' object is not iterable
+2017-09-21 09:47:16,642 [Thread-13:17460] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-21 09:58:41,057 [Thread-12:13324] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 110, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 88, in get
+    return render(request, template, content)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 161, in render
+    values = list(values)
+TypeError: 'Developer' object is not iterable
+2017-09-21 10:01:09,937 [Thread-1:10320] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 89, in get
+    return render(request, template, content)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 161, in render
+    values = list(values)
+TypeError: 'Developer' object is not iterable
+2017-09-21 10:02:07,521 [Thread-1:376] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 89, in get
+    return render(request, template, content)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 161, in render
+    values = list(values)
+TypeError: 'Developer' object is not iterable
+2017-09-21 10:05:49,319 [Thread-13:6312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:07:29,416 [Thread-18:11624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:07:30,643 [Thread-20:6832] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:08:34,852 [Thread-54:14256] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:09:04,156 [Thread-16:17672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:09:15,166 [Thread-38:6468] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:12:21,953 [Thread-1:3052] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 108, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 63, in get
+    default_apps = App.objects.filter(developer_id='1_15267183467').filter(app_check_status='2')
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 691, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 709, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1287, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1314, in _add_q
+    current_negated=current_negated, connector=connector)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1138, in build_filter
+    lookups, parts, reffed_aggregate = self.solve_lookup_type(arg)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1076, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1383, in names_to_path
+    self.raise_field_error(opts, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\sql\query.py", line 1389, in raise_field_error
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'app_check_status' into field. Choices are: app_action, app_appid, app_appsecret, app_brand, app_category, app_command, app_config_path, app_create_date, app_currversion, app_describe, app_device_type, app_factory_uid, app_group, app_id, app_is_forbid, app_level, app_logo, app_model, app_name, app_protocol_type, app_push_token, app_push_url, app_site, app_update_date, check_remarks, check_status, developer, developer_id, device_conf, package_name
+2017-09-21 10:17:03,415 [Thread-16:3872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:18:17,398 [Thread-16:13576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:19:12,684 [Thread-20:10280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:19:40,711 [Thread-14:8880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:22:56,039 [Thread-20:5544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:30:50,934 [Thread-44:14876] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:30:52,552 [Thread-46:9256] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:32:01,339 [Thread-124:15652] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:33:32,382 [Thread-178:12344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 10:33:33,970 [Thread-180:1352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:18:09,077 [Thread-1100:1172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:19:12,010 [Thread-1139:4660] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:20:07,973 [Thread-1161:11492] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:22:59,381 [Thread-1192:10280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:23:02,940 [Thread-1196:17228] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:23:09,381 [Thread-1201:180] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:25:45,497 [Thread-1219:6468] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:29:48,377 [Thread-1227:18384] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:30:11,230 [Thread-1238:17280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:30:23,496 [Thread-1245:15936] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:30:23,802 [Thread-1246:10824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:31:30,843 [Thread-1249:16216] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:32:46,664 [Thread-21:11384] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:33:26,008 [Thread-77:1980] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:33:59,738 [Thread-100:10896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:34:46,881 [Thread-116:9952] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:37:17,089 [Thread-136:14888] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:38:53,981 [Thread-156:10780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:39:42,374 [Thread-177:13260] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:39:43,089 [Thread-179:2624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:40:35,128 [Thread-20:7288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:41:00,240 [Thread-41:11176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:41:07,348 [Thread-60:16212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:41:52,048 [Thread-20:852] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:43:07,047 [Thread-37:11304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:43:43,123 [Thread-56:6484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:45:02,636 [Thread-79:14764] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:48:35,989 [Thread-158:15384] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:49:11,264 [Thread-192:6972] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:51:27,813 [Thread-220:6492] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:52:16,199 [Thread-239:4616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:54:32,457 [Thread-285:8200] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 11:56:03,287 [Thread-301:10296] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-21 11:56:11,577 [Thread-304:17428] [django.request:143] [WARNING]- Not Found: /static/image/53iq.ico
+2017-09-21 11:57:18,676 [Thread-331:2692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:00:41,303 [Thread-421:12532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:12:41,777 [Thread-45:17460] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:15:17,802 [Thread-16:12988] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:20:03,928 [Thread-17:10360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:24:29,906 [Thread-27:9060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:25:00,163 [Thread-61:5532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:30:02,064 [Thread-158:5328] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 12:30:16,155 [Thread-187:11128] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:02:59,982 [Thread-238:8512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:07:52,310 [Thread-256:8796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:08:58,234 [Thread-279:9408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:10:34,259 [Thread-353:15624] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-21 13:12:27,361 [Thread-402:1556] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-21 13:13:11,468 [Thread-431:15568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:15:37,450 [Thread-496:17976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:16:34,876 [Thread-515:11820] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:16:46,217 [Thread-540:6424] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:18:01,398 [Thread-558:8648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:18:43,223 [Thread-622:8796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:18:44,369 [Thread-623:11164] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:19:02,119 [Thread-646:292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:22:08,707 [Thread-715:14932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:23:29,889 [Thread-733:11496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:23:47,283 [Thread-756:12344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:26:29,194 [Thread-776:11312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:27:09,007 [Thread-800:2960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:27:28,871 [Thread-816:7996] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:27:51,143 [Thread-840:3872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 13:31:40,945 [Thread-896:4028] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 15:37:40,567 [Thread-22:12832] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 400, in product_main
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 219, in get
+    device_name = get_device_type(app.app_device_type)
+AttributeError: 'QuerySet' object has no attribute 'app_device_type'
+2017-09-21 15:37:42,140 [Thread-23:7212] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-21 15:37:59,982 [Thread-24:10268] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 400, in product_main
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 219, in get
+    device_name = get_device_type(app.app_device_type)
+AttributeError: 'QuerySet' object has no attribute 'app_device_type'
+2017-09-21 15:55:39,114 [Thread-1:10424] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 51, in get
+    result.app_logo = APP_LOGO[i]
+AttributeError: 'str' object has no attribute 'app_logo'
+2017-09-21 15:56:05,991 [Thread-3:2272] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 51, in get
+    result.app_logo = APP_LOGO[i]
+AttributeError: 'str' object has no attribute 'app_logo'
+2017-09-21 15:56:27,817 [Thread-4:7216] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 51, in get
+AttributeError: 'str' object has no attribute 'app_logo'
+2017-09-21 15:56:39,355 [Thread-1:13740] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 111, in product_list
+    return get()
+  File "E:\workspace\open\app\product\views.py", line 52, in get
+    result.save()
+AttributeError: 'str' object has no attribute 'save'
+2017-09-21 16:38:24,970 [Thread-184:15168] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:40:44,423 [Thread-250:12724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:43:20,042 [Thread-269:7724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:47:38,452 [Thread-290:5860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:48:54,777 [Thread-312:12448] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:51:26,048 [Thread-334:3732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:53:34,865 [Thread-354:16984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:57:54,962 [Thread-370:2108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 16:58:30,688 [Thread-395:14556] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:02:32,241 [Thread-418:11928] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:03:01,792 [Thread-437:10820] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:04:13,807 [Thread-461:18344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:06:35,442 [Thread-482:17644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:08:45,427 [Thread-508:14324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:09:38,069 [Thread-533:16312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:11:09,461 [Thread-557:13136] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:11:47,359 [Thread-579:16220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:14:34,456 [Thread-599:16244] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:14:35,519 [Thread-600:17108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:15:09,858 [Thread-624:8116] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:21:42,726 [Thread-644:13472] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:23:41,291 [Thread-666:8584] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:38:43,482 [Thread-704:6564] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:55:28,780 [Thread-722:15044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 17:57:04,800 [Thread-748:13328] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:02:01,189 [Thread-769:5964] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:02:26,584 [Thread-787:14148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:04:17,667 [Thread-811:17480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:05:29,529 [Thread-835:13748] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:08:14,546 [Thread-857:17468] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:11:28,279 [Thread-881:17748] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:11:28,731 [Thread-882:17496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:13:13,761 [Thread-906:10540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:14:34,118 [Thread-929:11960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:15:12,921 [Thread-952:7072] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:15:13,318 [Thread-953:13208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:19:01,906 [Thread-978:1912] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:20:04,650 [Thread-999:644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:20:41,303 [Thread-1021:9080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:21:11,509 [Thread-1046:13856] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:23:35,592 [Thread-1067:16348] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:24:39,004 [Thread-1090:10540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:26:28,845 [Thread-1114:6484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:27:58,757 [Thread-1136:13916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:29:32,107 [Thread-1171:18396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:34:24,891 [Thread-1273:17672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:34:37,474 [Thread-1296:12600] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:35:00,878 [Thread-1319:14660] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:35:01,795 [Thread-1320:7668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:36:13,268 [Thread-1356:11484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:37:33,710 [Thread-1379:15040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:38:01,977 [Thread-1401:10452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:49:54,181 [Thread-18:17480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:50:46,241 [Thread-43:14052] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:51:46,518 [Thread-63:3208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:52:03,525 [Thread-94:16984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 18:58:47,422 [Thread-125:6668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:01:12,173 [Thread-156:4428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:02:50,154 [Thread-180:18008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:04:35,587 [Thread-197:2144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:05:07,156 [Thread-224:15188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:05:17,494 [Thread-245:4196] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:05:28,463 [Thread-273:2740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:23:35,817 [Thread-296:6872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:24:11,957 [Thread-318:11048] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:26:54,554 [Thread-344:10016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:28:34,459 [Thread-366:624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:30:38,660 [Thread-392:13576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:32:22,547 [Thread-416:1148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:33:22,963 [Thread-440:15664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:37:36,210 [Thread-462:15568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:37:36,341 [Thread-463:14512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:38:45,538 [Thread-487:10144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:39:15,254 [Thread-513:12528] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:49:45,197 [Thread-536:8328] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:50:05,114 [Thread-559:6788] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:58:47,955 [Thread-582:14868] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:59:01,413 [Thread-616:8528] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:59:02,461 [Thread-617:17648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 19:59:37,238 [Thread-644:6624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:02:41,476 [Thread-669:14980] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:21:08,538 [Thread-692:16688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:21:12,576 [Thread-710:8660] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:22:48,107 [Thread-719:14860] [django.request:231] [ERROR]- Internal Server Error: /product/add
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\middleware\common.py", line 82, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8002/product/add/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2017-09-21 20:24:05,668 [Thread-720:11704] [django.request:231] [ERROR]- Internal Server Error: /product/add
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\middleware\common.py", line 82, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8002/product/add/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2017-09-21 20:30:09,126 [Thread-740:7200] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:32:48,610 [Thread-768:11908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:34:01,640 [Thread-790:16904] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:34:58,120 [Thread-813:17248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:53:21,258 [Thread-33:11756] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:53:47,017 [Thread-102:18036] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:55:40,629 [Thread-125:11960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:55:41,700 [Thread-126:18164] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:55:51,756 [Thread-149:3908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:57:36,251 [Thread-21:5864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 20:57:48,813 [Thread-26:5388] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\workspace\open\app\product\views.py", line 115, in product_list
+    return post()
+  File "E:\workspace\open\app\product\views.py", line 96, in post
+    print("+++++++++++",request.POST.get())
+TypeError: get() missing 1 required positional argument: 'key'
+2017-09-21 21:03:24,288 [Thread-24:12760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:03:42,168 [Thread-28:5984] [django.request:143] [WARNING]- Not Found: /product/list/product/add
+2017-09-21 21:04:06,623 [Thread-46:16280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:04:19,871 [Thread-53:1940] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /product/add/
+2017-09-21 21:05:01,482 [Thread-21:17012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:06:36,645 [Thread-33:2336] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:07:32,596 [Thread-52:10236] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:08:29,829 [Thread-24:9480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:10:12,445 [Thread-19:11684] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:16:08,165 [Thread-17:8136] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:16:34,574 [Thread-44:1812] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:20:34,997 [Thread-19:17728] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:20:37,792 [Thread-20:14612] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:21:10,981 [Thread-45:11112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:21:14,047 [Thread-46:8512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:22:38,200 [Thread-70:836] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:27:28,805 [Thread-19:7428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:28:32,604 [Thread-43:15920] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:28:32,865 [Thread-44:1772] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:29:39,265 [Thread-17:8444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:32:34,475 [Thread-19:17956] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:32:35,297 [Thread-20:5008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-21 21:35:26,108 [Thread-19:12608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:49:46,317 [Thread-14:14916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:54:08,218 [Thread-3:5396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:54:17,139 [Thread-6:15688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:54:27,831 [Thread-9:5828] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-22 08:54:49,683 [Thread-11:15436] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:55:37,492 [Thread-17:8344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 08:59:39,307 [Thread-22:12484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:04:59,185 [Thread-45:1932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:05:36,463 [Thread-65:11020] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:08:01,282 [Thread-96:13712] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:08:27,177 [Thread-118:10840] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:08:57,367 [Thread-140:11144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:09:15,607 [Thread-162:10412] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:09:27,839 [Thread-179:1932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:09:58,095 [Thread-207:3984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:18:37,096 [Thread-225:880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:19:48,611 [Thread-286:740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:30:04,060 [Thread-310:6808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:30:04,495 [Thread-311:14856] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:31:05,388 [Thread-337:4304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:35:18,741 [Thread-359:12392] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:39:47,691 [Thread-383:7808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:40:40,977 [Thread-443:15532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:47:33,334 [Thread-466:15160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:48:31,889 [Thread-536:1896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:48:54,456 [Thread-559:16244] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:53:05,456 [Thread-584:15804] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:53:17,590 [Thread-608:7716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:53:41,030 [Thread-631:1924] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:53:54,986 [Thread-674:5972] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:54:33,786 [Thread-733:15204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 09:55:02,205 [Thread-758:1916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:02:27,254 [Thread-785:15620] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:06:59,023 [Thread-919:12024] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:16:20,794 [Thread-18:13292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:16:35,753 [Thread-43:12056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:17:02,839 [Thread-65:12092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:17:34,531 [Thread-88:11360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:27:41,511 [Thread-110:5108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:31:17,839 [Thread-133:13192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:32:57,578 [Thread-154:9380] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:38:58,656 [Thread-176:2428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:46:55,627 [Thread-29:7340] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:48:58,629 [Thread-57:376] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:49:46,706 [Thread-82:16204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:50:36,625 [Thread-105:10216] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:54:46,855 [Thread-132:15976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:56:55,611 [Thread-153:10356] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 10:59:21,009 [Thread-178:5780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 11:04:34,768 [Thread-201:13980] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 11:05:33,823 [Thread-223:2632] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 11:06:19,072 [Thread-244:15504] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 11:19:04,149 [Thread-355:6012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 12:47:01,072 [Thread-706:18824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 12:55:51,398 [Thread-727:12020] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 12:57:21,395 [Thread-751:18932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 12:57:44,712 [Thread-775:19100] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:01:57,304 [Thread-797:9368] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:03:14,785 [Thread-821:10644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:03:34,388 [Thread-841:18240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:11:25,599 [Thread-867:18060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:20:46,406 [Thread-889:19020] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:23:09,438 [Thread-898:16608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:23:09,567 [Thread-899:16408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:30:35,004 [Thread-919:17188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:33:16,448 [Thread-963:18768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:34:19,321 [Thread-986:16864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:36:43,790 [Thread-1013:19312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:39:14,460 [Thread-1036:15852] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:41:15,746 [Thread-1055:19380] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:42:21,018 [Thread-1079:16616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:42:32,141 [Thread-1108:6376] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:42:35,720 [Thread-1126:5952] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:45:09,564 [Thread-1149:17896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:49:44,262 [Thread-1172:17160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:53:01,523 [Thread-1194:17636] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:54:24,150 [Thread-1217:2596] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:54:51,572 [Thread-1277:16488] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:56:28,617 [Thread-1299:1832] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:57:11,103 [Thread-1324:17616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:57:31,782 [Thread-1346:10080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 13:59:49,880 [Thread-1369:17400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:00:18,313 [Thread-1392:17224] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:03:51,488 [Thread-1415:18272] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:04:18,273 [Thread-1437:17292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:07:14,096 [Thread-1460:11140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:09:27,822 [Thread-1483:4748] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:10:13,289 [Thread-1506:10672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:11:06,062 [Thread-1526:10044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:11:06,319 [Thread-1527:8684] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:13:19,932 [Thread-1553:17376] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:19:54,021 [Thread-1576:15416] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:20:48,069 [Thread-1598:16528] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:21:16,072 [Thread-1617:17600] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:21:16,748 [Thread-1618:2588] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:21:46,663 [Thread-1644:18552] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:23:28,436 [Thread-1666:4128] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:26:59,422 [Thread-1685:1832] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:28:37,698 [Thread-1710:18608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:29:16,729 [Thread-1731:15768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:30:01,355 [Thread-1751:11816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:30:01,999 [Thread-1752:7520] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:30:34,272 [Thread-1775:16620] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:31:44,062 [Thread-1798:180] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:33:17,991 [Thread-1821:10396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:33:40,410 [Thread-1844:516] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:34:09,736 [Thread-1868:2096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:34:52,203 [Thread-1887:2940] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-22 14:36:15,387 [Thread-1979:16852] [django.request:143] [WARNING]- Not Found: /product/list/None

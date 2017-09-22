@@ -2201,3 +2201,74 @@ TimeoutError: [WinError 10060] ”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”
 2017-09-20 15:16:11,613 [Thread-673:792] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-20 16:07:09,848 [Thread-1064:12148] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-20 18:10:20,167 [Thread-2996:17460] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 09:04:56,448 [Thread-3:14848] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 09:46:43,025 [Thread-4:17788] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 09:58:28,175 [Thread-4:14052] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 10:08:18,983 [Thread-26:12212] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 10:23:23,445 [Thread-4:8868] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 10:30:13,312 [Thread-22:17532] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:18:41,263 [Thread-1123:18116] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:18:52,298 [Thread-1128:15040] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:18:59,845 [Thread-1131:5044] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:19:06,025 [Thread-1135:11368] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:20:04,746 [Thread-1159:11248] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:20:39,799 [Thread-1168:2960] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:21:36,747 [Thread-1173:3388] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:21:42,655 [Thread-1176:2492] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:23:01,051 [Thread-1194:17384] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:30:06,551 [Thread-1234:528] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:30:17,740 [Thread-1241:4028] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:48:08,686 [Thread-136:7156] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:48:56,275 [Thread-165:13976] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:50:12,705 [Thread-196:15324] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:52:25,008 [Thread-247:17916] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:53:24,551 [Thread-258:13376] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:55:30,361 [Thread-289:10360] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 11:56:02,705 [Thread-296:11652] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:56:09,140 [Thread-302:9952] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:56:12,478 [Thread-306:15344] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:56:18,822 [Thread-309:4512] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:57:52,182 [Thread-387:10092] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 11:58:00,529 [Thread-388:7236] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 12:00:20,219 [Thread-393:12764] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 12:11:55,341 [Thread-4:9192] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 12:12:18,422 [Thread-21:6624] [root:151] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 12:24:11,111 [Thread-3:14052] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 12:24:45,524 [Thread-35:9408] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 12:29:45,283 [Thread-133:16460] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 12:30:05,451 [Thread-162:16088] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 14:31:32,993 [Thread-1139:7352] [root:155] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 15:18:36,912 [Thread-1497:8188] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:20:19,437 [Thread-1527:644] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:20:45,549 [Thread-1557:9520] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:23:04,375 [Thread-1563:13344] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:29:55,608 [Thread-22:12572] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:37:09,194 [Thread-32:13136] [root:59] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-09-21 15:55:39,113 [Thread-1:10424] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 15:56:05,990 [Thread-3:2272] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 15:56:27,816 [Thread-4:7216] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 15:56:39,354 [Thread-1:13740] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 16:35:17,253 [Thread-144:9168] [root:150] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 18:35:27,778 [Thread-1328:11764] [root:150] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-09-21 18:55:25,809 [Thread-107:13480] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-21 20:53:09,079 [Thread-5:6404] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-21 21:22:47,935 [Thread-77:8588] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 21:22:47,937 [Thread-77:8588] [root:184] [ERROR]- 'str' object has no attribute 'app_id'
+2017-09-21 21:22:47,937 [Thread-77:8588] [root:185] [ERROR]- ¥¥Ω®”¶”√ ß∞‹
+2017-09-21 21:28:46,272 [Thread-52:13904] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 21:28:46,273 [Thread-52:13904] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
+2017-09-21 21:28:46,274 [Thread-52:13904] [root:186] [ERROR]- ¥¥Ω®”¶”√ ß∞‹
+2017-09-21 21:29:43,857 [Thread-26:11824] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-21 21:29:43,858 [Thread-26:11824] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
+2017-09-21 21:29:43,858 [Thread-26:11824] [root:186] [ERROR]- ¥¥Ω®”¶”√ ß∞‹
+2017-09-21 21:32:41,178 [Thread-28:2672] [root:82] [ERROR]- Developer matching query does not exist.
+2017-09-21 21:32:41,178 [Thread-28:2672] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
+2017-09-21 21:32:41,179 [Thread-28:2672] [root:186] [ERROR]- ¥¥Ω®”¶”√ ß∞‹
+2017-09-22 08:48:57,710 [Thread-3:15932] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-22 08:54:27,652 [Thread-8:15724] [root:79] [ERROR]- Developer matching query does not exist.
+2017-09-22 08:54:27,653 [Thread-8:15724] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
+2017-09-22 08:54:27,655 [Thread-8:15724] [root:186] [ERROR]- ¥¥Ω®”¶”√ ß∞‹
+2017-09-22 10:46:38,084 [Thread-3:7692] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-22 10:46:42,035 [Thread-13:1152] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-22 11:11:04,923 [Thread-261:15440] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-22 12:46:32,863 [Thread-673:19168] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
