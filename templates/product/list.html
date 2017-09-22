@@ -220,7 +220,6 @@
     }
     .btn-blue:hover{
         background: #59B784;
-        color:#000;
     }
     .progress{
         width: 225px;
@@ -402,14 +401,13 @@
     </div>
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
-        <h3 id="productType" style="text-align: center;"></h3>
-        <div class="cont mt20" style="margin-top: 20px;">
+        <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
+        <div class="cont mt20" style="margin-top: 0px;">
             <i class="">
-                <img id="show_logo"  src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+                <img id="show_logo"  style="width: 110px;height: 127px;margin:-6% 0 0 -3%;" src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
             </i>
             <div class="warnCont">
                 <form name="formProduct"  method="post" class="fd7_create_product-form" action="/product/add/">
-                    <input type="hidden" value="" id="product_category" name="product_category" class="">
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
                         <span class="ant-input-wrapper">
@@ -419,12 +417,12 @@
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品类型:</label>
                         <span class="ant-input-wrapper">
-                            <input type="text" value="厨房类" name="product_category_detail" class="ant-input ant-input-lg">
+                            <input type="text" value="厨房类"  readonly = "readonly" name="product_category" class="ant-input ant-input-lg">
                         </span>
                     </div>
-
-                    <input type="hidden" value="2" name="product_group">
+                    <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ developer.developer_id }}" name="developer_id">
+                    <input type="hidden" value="2" name="product_group">
                     <input type="hidden" value="是" name="product_command">
 
                 </form>
@@ -611,7 +609,7 @@
         }
         function submit_product() {
             var form = $("form[name=formProduct]");
-            $("#product_category").val($("#productType").html());
+
             var product_name = $("#product_name").val();
             if(product_name == ''){
                 alert("产品名称不能为空！");
@@ -622,14 +620,17 @@
         function create_procuct(type) {
             $(".markLayout").show();
             if(type=='1'){
+                $("#product_category_detail").val('1');
                 $("#productType").html("油烟机");
                 $("#show_logo").attr('src',"http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png");
             }
             else if(type=='2'){
+                $("#product_category_detail").val('2');
                 $("#productType").html("集成灶");
                 $("#show_logo").attr('src',"http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
             }
             else if(type=='11'){
+                $("#product_category_detail").val('11');
                 $("#productType").html("烤箱");
                 $("#show_logo").attr('src',"http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
             }
