@@ -174,17 +174,21 @@
 .mark-entered mark-children mark:hover{
     opacity: 1;
 }
+.popBox {
+    width: 533px;
+    height: 314px;
+}
 .popBox h3 {
     height: 51px;
-    font-size: 30px;
+    font-size: 26px;
 }
 .fd7_create_product-form {
-    padding: 20px 40px 10px;
+    padding: 20px 0 10px 20px;
 
 }
 .ant-form-item {
-    font-size: 12px;
-    margin-bottom: 15px;
+    font-size: 20px;
+    margin-bottom: 33px;
     color: #666;
     vertical-align: top;
 }
@@ -205,7 +209,7 @@
     width: 80%;
     height: 28px;
     cursor: text;
-    font-size: 12px;
+    font-size: 20px;
     line-height: 1.5;
     color: #666;
     background-color: #fff;
