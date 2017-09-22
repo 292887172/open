@@ -151,12 +151,12 @@
         height: auto;
     }
     .goods-list dl dd{
-        margin-left: 110px;
+        margin-left: 100px;
         padding-top: 6px;
     }
     .goods-list dl dt img{
-        width: 100px;
-        height: 106px;
+        width: 80px;
+        height: 85px;
         margin-top: 4px;
     }
     .goods-list dl dd .goods-title{
@@ -172,7 +172,7 @@
         width: 50%;
     }
     .goods-list dl dd.ui-control{
-        padding-top: 78px;
+        padding-top: 98px;
         margin-left: 0;
     }
     .ui-product-action{
@@ -222,6 +222,77 @@
         background: #59B784;
         color:#000;
     }
+    .progress{
+        width: 225px;
+        border-bottom: #D6DAE0 2px solid;
+        margin: auto;
+        height: 43px;
+        overflow: visible;
+        background-color: initial;
+        border-radius: 0;
+        position: relative;
+        left: -46px;
+    }
+    .progress li {
+    text-align: center;
+    font-size: 14px;
+    color: #B6B6B6;
+        float: left;
+        width: 75px;
+}
+     .progress li a{
+         color: #2980b9;
+     }
+    .progress li a:hover{
+         color: #333;
+        text-underline: solid;
+     }
+    .progress li.cur {
+    color: #626262;
+}
+    .progress li span {
+    display: block;
+    margin: auto;
+    padding-top: 12px;
+    margin-bottom: 10px;
+    width: 25px;
+    height: 25px;
+    background: #d6dae0;
+    border-radius: 50%;
+        margin-top: 10px;
+}
+    .progress li.cur span {
+    background: rgba(75, 141, 229, 0.3);
+}
+    .progress li span i {
+    display: block;
+    margin: auto;
+    width: 25px;
+    height: 25px;
+    color: white;
+        font-size: 15px;
+        line-height: 1px;
+    border-radius: 50%;
+}
+    .progress li.cur span i {
+    background: #4b8de5;
+}
+.progress li.prog_a {
+    position: relative;
+    left: -30px;
+    top: 0;
+}
+    .progress li.prog_c {
+    position: relative;
+    left: 30px;
+    top: 0;
+}
+    .progress li.prog_d {
+    position: relative;
+    left: 122px;
+        top: -65px;
+    float: right;
+}
     </style>
 {% endblock %}
 {% block menu %}
@@ -245,9 +316,9 @@
             {% if app.app_device_type == 1 %}
             <p>智能显示，多档控制，强劲风力，多屏互动体验</p>
             {% elif app.app_device_type == 2 %}
-            <p>WiFi/Android屏集成灶，高清显示远程监控，智能体验</p>
+            <p>WiFi/Android屏集成灶，远程监控灶状态，厨房风险指数模板快速接入</p>
             {% elif app.app_device_type == 11 %}
-            <p>海量食谱美味多，易空间控制不做守箱奴，精准控温，美食更美</p>
+            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
             {% endif %}
             <div class="ui-demo">
                 <a style="display:block;color:#fff" href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">立即体验</a></div>
@@ -386,7 +457,7 @@
             {% endif %}
             {% for app in published_apps %}
                 <div class="goods-list" >
-                <div class="status bg-success">已发布</div>
+
                 <dl>
                     <dt>
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -403,23 +474,12 @@
                         </div>
                     </dd>
                     <dd class="ui-control">
-                        <div class="ui-product-action">
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
-                            </a>
-                            <a href="#">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
-                            </a>
-                        </div>
-                        <div >
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">
-                            <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">功能定义</span></p>
-                        </a>
-                        <a href="#" onclick="export_protocol()">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议下载</span></p>
-                            </a>
-
-                        </div>
+                        <ul class="progress">
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a><span><i>1</i></span></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a><span><i>2</i></span></li>
+                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a><span><i>3</i></span></li>
+                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                        </ul>
                     </dd>
                 </dl>
                 </div>
@@ -427,7 +487,7 @@
 
             {% for app in publishing_apps %}
                 <div class="goods-list" >
-                    <div class="status suc">审核中</div>
+
                     <dl>
                         <dt>
                             <a href="/product/main?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -444,30 +504,19 @@
                         </div>
                     </dd>
                     <dd class="ui-control">
-                        <div class="ui-product-action">
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
-                            </a>
-                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
-                            </a>
-                        </div>
-                        <div >
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">
-                            <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">功能定义</span></p>
-                        </a>
-                        <a href="#" onclick="export_protocol()">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议下载</span></p>
-                            </a>
-
-                        </div>
+                        <ul class="progress">
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a><span><i>1</i></span></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a><span><i>2</i></span></li>
+                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a><span><i>3</i></span></li>
+                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                        </ul>
                     </dd>
                     </dl>
                 </div>
             {% endfor %}
             {% for app in unpublished_apps %}
                  <div class="goods-list">
-                <div class="status unpublish">未发布</div>
+
                 <dl>
                     <dt>
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -485,30 +534,19 @@
                         </div>
                     </dd>
                     <dd class="ui-control">
-                        <div class="ui-product-action">
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
-                            </a>
-                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
-                            </a>
-                        </div>
-                        <div >
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">
-                            <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">功能定义</span></p>
-                        </a>
-                        <a href="#" onclick="export_protocol()">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议下载</span></p>
-                            </a>
-
-                        </div>
+                        <ul class="progress">
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a><span><i>1</i></span></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a><span><i>2</i></span></li>
+                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a><span><i>3</i></span></li>
+                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                        </ul>
                     </dd>
                 </dl>
                 </div>
             {% endfor %}
             {% for app in failed_apps %}
                  <div class="goods-list" style="height: 145px;">
-                    <div class="status fail">未通过</div>
+
                     <dl>
                         <dt>
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -526,23 +564,12 @@
                         </div>
                     </dd>
                     <dd class="ui-control">
-                        <div class="ui-product-action">
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
-                            </a>
-                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
-                            </a>
-                        </div>
-                        <div >
-                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">
-                            <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">功能定义</span></p>
-                        </a>
-                        <a href="#" onclick="export_protocol()">
-                                <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议下载</span></p>
-                            </a>
-
-                        </div>
+                        <ul class="progress">
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a><span><i>1</i></span></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a><span><i>2</i></span></li>
+                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a><span><i>3</i></span></li>
+                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                        </ul>
                     </dd>
                     </dl>
                 </div>
