@@ -125,6 +125,10 @@
             var flag = $.cookie('cookie_prompt');
             if(flag){
                 $("#newHtmlBox").css('display','none');
+                $(".markLayout").hide();
+            }
+            else{
+                $(".markLayout").show();
             }
             function new_close() {
                 var check_prompt = $("#check_continueShowTips").is(':checked');
@@ -136,7 +140,7 @@
                 $(".markLayout").hide();
             }
 			jQuery(function($) {
-                $(".markLayout").show();
+
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
 					postData:{"name": "list"},
