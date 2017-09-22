@@ -1,5 +1,5 @@
 ._22y_index_new {
-    height: 284px;
+    height: 255px;
     font-weight: 400;
     border-bottom: 1px solid #e0e0e0;
     text-align: center;
@@ -33,6 +33,21 @@
     font-size: 16px;
     color: #333;
     font-weight: 400;
+}
+._2wZ_index_new-list-title{
+    border-top: 1px solid #ccc;
+    width: 368px;
+    margin: auto;
+}
+._2wZ_index_new-list-title span{
+   display: BLOCK;
+    background: #F1F4F9;
+    position: relative;
+    top: -11px;
+    width: 175px;
+    left: 98px;
+    font-size: 15px;
+    color: #333;
 }
 ._2Mr_category_category .mark:hover {
     opacity: 1;

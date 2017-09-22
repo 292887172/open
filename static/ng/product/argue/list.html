@@ -117,19 +117,17 @@
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
     <script src="/static/js/product/bootbox.js"></script>
-   <script src="/static/js/product/jquery.cookie.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-
-			jQuery(function($) {
-                $(".markLayout").show();
                 var streamID=[];
                 var flag = getCookie('cookie_prompt');
                 if(flag){
                     $("#newHtmlBox").css('display','none');
-
                     $(".markLayout").hide();
+                }
+                else{
+                    $(".markLayout").show();
                 }
                 function new_close() {
                     var check_prompt = $("#check_continueShowTips").is(':checked');
@@ -156,16 +154,7 @@
                     else
                         return null;
                 }
-                //删除cookies
-                function delCookie(name) {
-                    var exp = new Date();
-                    exp.setTime(exp.getTime() - 1);
-                    var cval = getCookie(name);
-                    if (cval != null)
-                        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+";path=/";
-                }
-
-
+            jQuery(function($) {
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
 					postData:{"name": "list"},
