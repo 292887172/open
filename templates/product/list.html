@@ -257,7 +257,7 @@
         <h3 style="font-size: 21px;color: #fff"><b>3步 实现智能厨电开发</b></h3><br>
         <div class="set-float">
             <img src="/static/image/product/20180904-2.png">
-            <p>定义新产品》</p>
+            <p>定义全新产品》</p>
             <div class="set-radius"><span>1</span></div>
         </div>
         <div class="set-float">
@@ -266,9 +266,9 @@
             <div class="set-radius" style="margin-left: 34px;"><span>2</span></div>
         </div>
         <div class="set-float">
-            <img src="/static/image/product/20180904-1.png">
-            <p>自定义AppUI界面</p>
-            <div class="set-radius"><span>3</span></div>
+            <img style="margin-left: 20px" src="/static/image/product/20180904-1.png">
+            <p>自定义UI界面</p>
+            <div style="margin-left: 34px" class="set-radius"><span>3</span></div>
         </div>
     </div>
 </div>
@@ -276,6 +276,7 @@
     <div class="wrapper wrapper2 mt20">
         <!-- 已发布的产品 -->
     <div class="_22y_index_new" data-reactid="86">
+    <p class="_2wZ_index_new-list-title"><span>现有模板，快速创建方案</span></p>
         <div class="_2wZ_index_new-list" data-reactid="89">
             <div class="_2Mr_category_category" data-reactid="90">
                <div data-reactid="91">
@@ -394,8 +395,8 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">类别：{{ app.app_device_type |cover_device_type }}</p>
-                            <p class="product-info-p">创建：{{ app.app_create_date | utc2local}}</p>
-                            <p class="product-info-p">产品Key：{{ app.app_appid| cover_str8 }}</p>
+                            <p class="product-info-p">状态：已发布</p>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
                             <p class="product-info-p">更新：{{ app.app_update_date| utc2local }}</p>
                         </div>
                     </dd>
@@ -435,8 +436,8 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">类别：{{ app.app_device_type |cover_device_type }}</p>
-                            <p class="product-info-p">创建：{{ app.app_create_date | utc2local}}</p>
-                            <p class="product-info-p">产品Key：{{ app.app_appid| cover_str8 }}</p>
+                            <p class="product-info-p">状态：审核中</p>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
                             <p class="product-info-p">更新：{{ app.app_update_date| utc2local }}</p>
                         </div>
                     </dd>
@@ -445,7 +446,7 @@
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
                             </a>
-                            <a href="#">
+                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
                             </a>
                         </div>
@@ -476,8 +477,8 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">类别：{{ app.app_device_type |cover_device_type }}</p>
-                            <p class="product-info-p">创建：{{ app.app_create_date | utc2local}}</p>
-                            <p class="product-info-p">产品Key：{{ app.app_appid| cover_str8 }}</p>
+                            <p class="product-info-p">状态：未发布</p>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
                             <p class="product-info-p">更新：{{ app.app_update_date| utc2local }}</p>
                         </div>
                     </dd>
@@ -486,7 +487,7 @@
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
                             </a>
-                            <a href="#">
+                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
                             </a>
                         </div>
@@ -517,8 +518,8 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">类别：{{ app.app_device_type |cover_device_type }}</p>
-                            <p class="product-info-p">创建：{{ app.app_create_date | utc2local}}</p>
-                            <p class="product-info-p">产品Key：{{ app.app_appid| cover_str8 }}</p>
+                            <p class="product-info-p">状态：未通过</p>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
                             <p class="product-info-p">更新：{{ app.app_update_date| utc2local }}</p>
                         </div>
                     </dd>
@@ -527,7 +528,7 @@
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">协议调试</span></p>
                             </a>
-                            <a href="#">
+                            <a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">
                                 <p style="margin-bottom: 10px;"><span class="label bg-white" style="height: 40px;">UI编辑</span></p>
                             </a>
                         </div>

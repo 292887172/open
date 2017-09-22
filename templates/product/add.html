@@ -92,6 +92,26 @@
                                 <input type="hidden" name="product_describe" value="hello world"/>
                                 <h4 class="infoTit">填写基本信息</h4>
                                 <dl class="fmInfo">
+                                    <dt>分类</dt>
+                                    <dd>
+                                        智能家居 /
+                                        <select name="product_category" id="product_category" class="sel1">
+                                            <option value="无">请选择分类</option>
+                                            {#                                        <option value="家电类">家电类</option>#}
+                                            <option value="厨房类">厨房类</option>
+{#                                            <option value="卫浴类">卫浴类</option>#}
+                                            {#                                        <option value="环境类">环境类</option>#}
+                                        </select>
+
+
+                                        <select name="product_category_detail" id="product_category_detail"
+                                                class="sel2">
+                                            <option value="无">请选择分类</option>
+                                        </select>
+                                    </dd>
+
+                                </dl>
+                                <dl class="fmInfo">
                                     <dt>产品名称</dt>
                                     <dd>
                                         <input type="text" name="product_name" id="productNameText" maxlength="18"
@@ -120,26 +140,7 @@
                                         <span class="tips-error hiden" id="productModelTips"></span>
                                     </dd>
                                 </dl>
-                                <dl class="fmInfo">
-                                    <dt>分类</dt>
-                                    <dd>
-                                        智能家居 /
-                                        <select name="product_category" id="product_category" class="sel1">
-                                            <option value="无">请选择分类</option>
-                                            {#                                        <option value="家电类">家电类</option>#}
-                                            <option value="厨房类">厨房类</option>
-{#                                            <option value="卫浴类">卫浴类</option>#}
-                                            {#                                        <option value="环境类">环境类</option>#}
-                                        </select>
 
-
-                                        <select name="product_category_detail" id="product_category_detail"
-                                                class="sel2">
-                                            <option value="无">请选择分类</option>
-                                        </select>
-                                    </dd>
-
-                                </dl>
 
                                 <dl class="fmInfo">
                                     <dt>产品类型</dt>
