@@ -28,7 +28,8 @@ var csrftoken = getCookie('csrftoken');
 jQuery(document).ready(function () {
     jQuery("body").on("click", "#delProLink", function () {
         var app_id = jQuery(this).attr("data-id");
-        bootbox.confirm("确定删除吗?",function (result){
+        var app_id = jQuery(this).attr("data-id");
+        bootbox.confirm("确定删除该产品吗?",function (result){
             if (result)
             {
                 if (app_id != "") {
