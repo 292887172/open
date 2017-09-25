@@ -13,13 +13,13 @@ class AutoLogin(models.Model):
     al_account_id = models.CharField(max_length=64, db_column='ebf_al_account_id')
     # 用户密码
     al_account_pwd = models.CharField(max_length=512, db_column='ebf_al_account_password')
-    # 用户密码
+    # 登录token
     al_token = models.CharField(max_length=63, db_column='ebf_al_token')
-    # 用户密码
+    # 登录ip
     al_login_ip = models.CharField(max_length=32, db_column='ebf_al_login_ip')
-    # 用户密码
+    # 创建时间
     al_create_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_al_create_date')
-    # 用户密码
+    # 更新时间
     al_update_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_al_update_date')
 
     class Meta:
