@@ -139,7 +139,7 @@
                     <dd>
                         <div class="goods-title">
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
-                            <span class="label bg-white" style="font-size: ;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
+                            <span class="label bg-white" style="font-size:100%;">{% if app.app_model %}{{ app.app_model }}{% endif %}</span>
                         </div>
                         <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_category %}{{ app.app_category }}{% else %}未分类{% endif %}</span></p>
                         <p style="height: 40px;"><span class="label bg-white" style="height: 30px;">{% if app.app_model %}{{ app.app_model }}{% else %}无型号{% endif %}</span></p>

@@ -56,6 +56,9 @@
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
 
+
+
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -124,7 +127,7 @@
                     <div class="menuBox">
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
-                                <a href="#/demo/{{ app.app_name }}">
+                                <a href="#/demo/{{ app.app_name}}">
                                     <i class="fa fa-inbox"></i>产品体验
                                 </a>
                             </li>
@@ -147,9 +150,15 @@
                 </div>
             </div>
             <!-- 主内容 -->
-            <div class="rightMain" id="proRightMain" ng-view>
 
-            </div>
+
+
+                     <div style="height: 700px; ">
+                        <div   class="rightMain"  id="proRightMain" ng-view style="height: 704px;"></div>
+                     </div>
+
+
+
         </div>
     </div>
 {% endblock %}
@@ -169,6 +178,23 @@
     <script src="{% static "ng/product/oven/controller.js" %}"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script>
 
@@ -330,4 +356,9 @@
                     };
                 }]);
     </script>
+
+
+
+
+
 {% endblock %}
