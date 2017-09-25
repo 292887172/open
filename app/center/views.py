@@ -146,7 +146,7 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/guide")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
         if request.user.is_developer:
 
             return HttpResponseRedirect("/product/list")

@@ -546,7 +546,7 @@
                 </div>
             {% endfor %}
             {% for app in failed_apps %}
-                 <div class="goods-list" style="height: 145px;">
+                 <div class="goods-list" style="">
 
                     <dl>
                         <dt>
@@ -588,6 +588,7 @@
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script>
         var app_id = $("#delProLink").attr("data-id");
+        var checkSubmitFlg = false;
         function export_protocol() {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                 if (result) {
@@ -618,7 +619,14 @@
                 alert("产品名称不能为空！");
                 return ;
             }
-            form.submit();
+            if(!checkSubmitFlg){
+                checkSubmitFlg=true;
+                console.log("b不能重复提交");
+                 form.submit();
+            }
+            else{
+                return;
+            }
         }
         function create_procuct(type) {
             $(".markLayout").show();

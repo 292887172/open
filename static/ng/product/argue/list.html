@@ -74,19 +74,13 @@
      .ui-jqgrid .ui-jqgrid-bdiv{
          z-index: 0;
      }
-     a.anchor{
-    display: block;
-    position: relative;
-
-    visibility: hidden;
-}
     </style>
     <div class="main-container">
-
         <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" >?</span> 产品功能填写规则</h1>
         <table id="grid-table">
         </table>
         <div style="background: #fff">
+
             <h1 class="headerH1">tips</h1>
             <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
             <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
@@ -277,9 +271,8 @@
                     async :false,
                     success: function (data) {
                        if(data=='change_success'){
-                           alert("修改成功");
+                           console.log("修改成功");
                        }
-                       location.reload();
                         }
                 });
             }
@@ -334,7 +327,8 @@
 			}
 			function del(id){
 			     post_data = {'name':'del', 'id':id};
-                 $.ajax({
+			     if(confirm("真的要删除该功能吗？")){
+			         $.ajax({
                         url:"#/argue",
                         type: "POST",
                         data: post_data,
@@ -350,5 +344,7 @@
                             alert("删除失败")
                         }
                     });
+                }
+
 			}
 		</script>

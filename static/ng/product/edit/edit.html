@@ -5,12 +5,15 @@
 			    padding: 0;
 			    margin: 0 8px;
 			    font-size: 18px;
-			    font-weight: lighter;
-                color: #ff6202;
+                color: #000;
 			}
+            .addButton{
+                color: #393939;;
+            }
 			.addButton:hover{
 		  	text-decoration:none;
 		  	cursor:pointer;
+                color: #337ab7;
 		  }
             .col-sm-1 {
                 width: 16.6%;
@@ -20,6 +23,16 @@
             }
             a{
                 color: #ff6202;
+            }
+
+            .help-button{
+                background-color: #9EBEE4;
+            }
+            .help-button:hover{
+                background-color: #337ab7;
+            }
+            .lbl bigger-120::before{
+                   color: #337ab7;
             }
 		</style>
 
@@ -183,7 +196,7 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right"> 启用状态 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right;padding-top: 16px;"> 启用状态 </label>
 										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
 												<input ng-disabled='{[{ disabled }]}' id="state" type="checkbox" class="ace ace-switch ace-switch-5" value="1" checked/><span class="lbl middle"></span>
 										</div>
