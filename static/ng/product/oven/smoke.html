@@ -10,13 +10,17 @@
     <link rel="stylesheet" href="/static/demo/css/control-alter-app.css">
     <link rel="stylesheet" href="/static/demo/css/stove-smoke.css">
     <style>
+
         [v-cloak] {
             display: none;
         }
 
+
+
+
     </style>
 </head>
-<body style="background: #252429;">
+
 <script src="/static/demo/js/vue.min.js"></script>
 <script src="/static/demo/js/vue-resource.js"></script>
 
@@ -25,32 +29,43 @@
 <script src="/static/demo/js/mui.min.js"> </script>
 
 
-<div class="mui-content" id="DeviceConf" v-cloak="">
-    <div class="mui-content-padded">
-        <h1 class="mui-headerH1">油烟机100056</h1>
-    </div>
 
-    <div class="mui-left">
 
-        <div class="mui-col-sm-9" >
-            <img id="smoke" src="/static/demo/img/lightclose.png" style="width: 162%;margin-top: 2px;">
-            <img src="/static/demo/img/small_wind_1.png" id="picture" style="width: 162%;margin-top: -67%;display: none">
-        </div>
+ <body style="background: #252429;">
 
-    </div>
-    <div class="mui-right">
-        <ul class="mui-table-view mui-grid-view mui-grid-9" >
-            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
-                <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
-                    <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
-                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
-                    <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
-                    <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
-                </div>
-            </li>
-        </ul>
-    </div>
+
+
+
+                      <div class="mui-content" id="DeviceConf" v-cloak="" style="border:1px solid magenta;">
+                                    <div class="mui-content-padded">
+                                        <h1 class="mui-headerH1">油烟机100056</h1>
+                                    </div>
+
+                                    <div class="mui-left">
+
+                                        <div class="mui-col-sm-9" >
+                                            <img id="smoke" src="/static/demo/img/lightclose.png" style="width: 162%;margin-top: 2px;">
+                                            <img src="/static/demo/img/small_wind_1.png" id="picture" style="width: 162%;margin-top: -67%;display: none">
+                                        </div>
+
+                                    </div>
+                                    <div class="mui-right">
+                                        <ul class="mui-table-view mui-grid-view mui-grid-9" >
+                                            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
+                                                <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
+                                                    <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
+                                                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
+                                                    <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
+                                                    <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
 </div>
+
+
+
+
 <script>
    mui.init({
         swipeBack: false //禁用右滑关闭功能

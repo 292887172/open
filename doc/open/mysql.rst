@@ -255,3 +255,19 @@
       `ebf_al_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       PRIMARY KEY (`ebf_al_id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='自动登录表';
+
+    -- ----------------------------
+    -- Table structure for ebt_message
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_message`;
+    CREATE TABLE `ebt_message` (
+      `ebf_message_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_message_content` varchar(512) NOT NULL COMMENT '消息内容',
+      `ebf_message_type` int(2) NOT NULL DEFAULT '1' COMMENT '消息类型（1：一般消息，2：系统消息）',
+      `ebf_message_sender` varchar(64) NOT NULL COMMENT '消息发送者id',
+      `ebf_message_target` varchar(64) NOT NULL COMMENT '消息目标接受者id',
+      `ebf_message_is_read` int(2) NOT NULL DEFAULT '0' COMMENT '是否阅读（1：已读，0：未读）',
+      `ebf_message_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_message_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_message_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息表';

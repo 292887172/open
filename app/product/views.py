@@ -204,6 +204,9 @@ def product_main(request):
     :param request:
     :return:
     """
+
+
+
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
@@ -222,6 +225,9 @@ def product_main(request):
             return HttpResponseRedirect(reverse("center"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
+
+        developer_account=request.user.developer.developer_account
+
 
         app = user_apps
         device_name = get_device_type(app.app_device_type)
@@ -411,6 +417,8 @@ def product_main(request):
         return post()
 
 
+
+
 @csrf_exempt
 def key_verify(request):
     # 验证key
@@ -429,6 +437,7 @@ def key_verify(request):
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
         return HttpResponse("hi!")
+
 
 
 @csrf_exempt
