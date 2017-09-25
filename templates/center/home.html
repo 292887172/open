@@ -489,8 +489,7 @@
 {#                                    console.log(response['msg']);#}
                                     if (response['status'] == 'ok') {
 
-                                        DevAppInfo.sAlert(response['msg']);
-                                        $("#urlId").text('center');
+                                        location.href="/product/list"
                                     }
                                     else{
                                         DevAppInfo.sAlert(response['msg'])

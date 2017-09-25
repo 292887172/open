@@ -264,6 +264,7 @@
             }
 			function state(id) {
 			    post_data = {'name':'state','id':id};
+
 			    $.ajax({
                    url:"#/argue",
                     type:"POST",
@@ -271,9 +272,13 @@
                     async :false,
                     success: function (data) {
                        if(data=='change_success'){
-                           console.log("修改成功");
+                           alert("修改成功");
                        }
-                        }
+
+                        },
+                    error:function (data) {
+                        alert("修改失败");
+                    }
                 });
             }
             function add(){
