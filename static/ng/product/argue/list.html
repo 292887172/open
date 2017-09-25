@@ -25,8 +25,8 @@
             width: 972px;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
-            background-color: #ff6202;
-            border-color: #ff6202;
+            background-color: #337ab7;
+            border-color: #337ab7;
         }
        .ui-jqgrid .ui-jqgrid-hbox {
             padding-right: 0px;
@@ -55,7 +55,24 @@
             top: 40px;"
         }
      .help-button{
-         background-color: #333;
+         background-color: #337ab7;
+     }
+
+     .warnCont {
+        text-align: left;
+    }
+        .mt6 {
+        margin-top: 27px;
+    }
+     .popBox h3 {
+         background: none;
+    }
+    .btnBar{
+        position: relative;
+        background: none;
+    }
+     .ui-jqgrid .ui-jqgrid-bdiv{
+         z-index: 0;
      }
     </style>
     <div class="main-container">
@@ -78,6 +95,23 @@
 
     </div>
 
+    <div class="popBox" id="newHtmlBox" style="display: block;">
+        <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
+        <h3 style="text-align: center">温馨提示</h3>
+        <div class="cont mt20" style="margin-top: 20px;">
+            <div class="warnCont">
+                <p class="mt6">我们已经根据您的产品品类，为您推荐了标准参数，如果标准参数不能满足</p>
+                <p class="mt6">您的需求，您可以申请自定义参数，但需要审核通过后才能发布</p>
+            </div>
+        </div>
+        <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
+        <div class="btnBar">
+              <span>
+                <a href="javascript:;" onclick="new_close()" class="btn-blue">知道了</a>
+              </span>
+        </div>
+    </div>
+
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -86,14 +120,47 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-            var streamID=[];
-			jQuery(function($) {
+                var streamID=[];
+                var flag = getCookie('cookie_prompt');
+                if(flag){
+                    $("#newHtmlBox").css('display','none');
+                    $(".markLayout").hide();
+                }
+                else{
+                    $(".markLayout").show();
+                }
+                function new_close() {
+                    var check_prompt = $("#check_continueShowTips").is(':checked');
+                    // 关闭的情况下，选中不再提醒
+                    if (check_prompt){
+                        setCookie('cookie_prompt', check_prompt);
+                    }
+                    $("#newHtmlBox").css('display','none');
+                    $(".markLayout").hide();
+                }
+                function setCookie(name, value) {
+                    var Days = 30;
+                    var exp = new Date();
+                    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+                    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()+";path=/";
+                }
+                //读取cookies
+                function getCookie(name) {
+                    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+                    if (arr = document.cookie.match(reg))
+
+                        return unescape(arr[2]);
+                    else
+                        return null;
+                }
+            jQuery(function($) {
 				jQuery("#grid-table").jqGrid({
 					url:"#/argue",
 					postData:{"name": "list"},
 					datatype: "json",
 					mtype:"POST",
-					colNames:['id','Stream_ID', '长度', '参数名称','参数个数','是否可控', '是否启用','操作'],
+					colNames:['id','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
 					colModel:[
 						{name:'id' , width:107,align:'center'},
 
@@ -133,7 +200,7 @@
 						},
 						{name:'operation', width:150,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#ff6202'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a href='#/argue' id='del-info"+rowObject.id+"' style='color:#ff6202' onclick='del(\""+rowObject.id+"\")'>删除</a> | <a href='#/argue' id='forbiden-info"+rowObject.id+"' style='color:#ff6202' onclick='ban(\""+rowObject.id+"\")'>禁用</a>";
+                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a href='#/argue' id='del-info"+rowObject.id+"' style='color:#337ab7' onclick='del(\""+rowObject.id+"\")'>删除</a> | <a href='#/argue' id='forbiden-info"+rowObject.id+"' style='color:#337ab7' onclick='ban(\""+rowObject.id+"\")'>禁用</a>";
 						}
 						}
 					],
@@ -217,7 +284,11 @@
 			}
 			function export_parameter(){
                 var rows = $("#grid-table").getRowData();
-                bootbox.confirm("确定导出基本参数的数据吗?", function (result) {
+                if(rows == ''){
+                    alert("暂无参数信息！");
+                    return;
+                }
+                bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
                         form.action = '#/argue';

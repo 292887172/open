@@ -7,6 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
+from base.util import gen_app_default_conf
 from common.app_helper import create_app
 from common.app_helper import del_app
 from common.app_helper import release_app
@@ -27,7 +28,7 @@ import time
 import json
 import logging
 import os
-
+from conf.newuserconf import *
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -36,6 +37,7 @@ _convention = ConventionValue()
 
 
 @login_required
+@csrf_exempt
 def product_list(request):
     """
     应用列表
@@ -43,6 +45,12 @@ def product_list(request):
     :return:
     """
     def get():
+        # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
+        if not App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT):
+            for i in range(len(APP_NAME)):
+                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                result.app_logo = APP_LOGO[i]
+                result.save()
         if not request.user.is_developer:
             return HttpResponseRedirect(reverse("center"))
         else:
@@ -57,11 +65,7 @@ def product_list(request):
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
-        default_apps = []
-        user_apps_all = developer.developer_related_app.all()
-        for app in user_apps_all:
-            if app.check_status == _convention.APP_DEFAULT:
-                default_apps.append(app)
+        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -77,6 +81,7 @@ def product_list(request):
         template = "product/list.html"
         content = dict(
             keyword=keyword,
+            developer=developer,
             published_apps=published_apps,
             publishing_apps=publishing_apps,
             unpublished_apps=unpublished_apps,
@@ -91,6 +96,10 @@ def product_list(request):
         )
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
+        export = request.POST.get("name", "")
+        if export == "export":
+            ret = date_deal(app_id)
+            return ret
         if app_id and action in ("del", "del"):
 
             if action == "del":
@@ -106,6 +115,7 @@ def product_list(request):
         return post()
 
 
+@csrf_exempt
 @login_required
 def product_add(request):
     """
@@ -146,7 +156,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-        device_conf = ""
+        device_conf = gen_app_default_conf(app_category_detail)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -163,7 +173,7 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
-                url = '/product/main/?ID=' + str(result.app_id) + '#/info'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
@@ -208,9 +218,10 @@ def product_main(request):
             developer = request.user.developer
         try:
             app_id = request.GET.get("ID", "")
-            user_apps = developer.developer_related_app.get(app_id=int(app_id))
+            user_apps = App.objects.get(app_id=int(app_id))
+            # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
-            del e
+            del(e)
             return HttpResponseRedirect(reverse("center"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
@@ -261,7 +272,7 @@ def product_main(request):
             return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_id = request.POST.get("id","")
+            edit_id = request.POST.get("id", "")
             streamId = []
             edit_data = {}
             for i in range(len(opera_data)):
@@ -291,6 +302,7 @@ def product_main(request):
                     save_app(app, opera_data)
                     return HttpResponse('change_success')
         elif post_data == "export":
+            print(type(app_id),app_id)
             res = date_deal(app_id)
             return res
         elif post_data == "save_conf":

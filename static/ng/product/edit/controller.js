@@ -45,8 +45,13 @@ angular.module('Product.edit', ['ngRoute'])
 					for(var i=0;i<paramDatas.length;i++){
 						var data=$.trim(paramDatas[i].value);
 						var desc=$.trim(paramDescs[i].value);
+						var role=/^[0-9]*$/;
 						if(desc=="" || data==""){
 							errorType=1;
+							break;
+						}
+						if(role.test(data)==false){
+							errorType=-2;
 							break;
 						}
 						if(flag == 'int'){
@@ -136,6 +141,10 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				if(errorType==2){
 					alert("传输数据必须在枚举值:"+enum_value+"中");
+					return;
+				}
+				if(errorType==-2){
+					alert("传输数据必须是数字");
 					return;
 				}
 				var indata={};

@@ -14,6 +14,9 @@
         float: left;
 
     }
+    .mt20{
+        overflow: hidden;
+    }
 </style>
 <div class="box2 relative">
      <div class="hl-help">
@@ -24,12 +27,12 @@
          <div class="gd-opt" style="   float: none; margin-left: 64%;margin-top: -44px">
             <div class="apply" ng-controller="ContentCtrl">
 
-                <a href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
+                <a ng-show="check_status!='体验产品'" href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
             </div>
          </div>
             <div class="boxInfo" style="width: 40%;">
                 <dl class="fmInfo">
-                    <dt>审核状态：</dt><dd>{[{check_status}]}</dd>
+                    <dt>审核状态：</dt><dd>{[{ check_status }]}</dd>
 
                 </dl>
                 <dl class="fmInfo">

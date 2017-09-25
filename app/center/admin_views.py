@@ -33,10 +33,9 @@ from base.convert import utctime2localtime
 from django.contrib.auth import authenticate
 from model.center.account import Account, MyUserManager
 from model.center.app import App
-from common.app_helper import create_app
 import logging
 from conf.sessionconf import *
-from conf.newuserconf import *
+
 
 import simplejson as json
 
@@ -67,17 +66,12 @@ def admin_home(request):
                 remark = request.POST.get("remark", "")
                 ret = denied_developer(developer_id, remark)
                 res["data"] = ret
-
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "pass_developer":
                 # 开发者审核通过
                 developer_id = request.POST.get("developer_id", "")
                 ret = pass_developer(developer_id)
                 res["data"] = ret
-                for i in range(len(APP_NAME)):
-                    result = create_app(developer_id, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                    result.app_logo = APP_LOGO[i]
-                    result.save()
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "toggle_forbid_developer":
                 # 切换开发者禁用状态

@@ -30,7 +30,7 @@
 					<div class="page-content" style="padding-top:15px">
 						<span class="help-button">?</span>
 						<a  class="addButton">了解如何填写参数</a>
-						<div style="float:right"><a class="addButton" href="#/argue">取消并返回</a></div>
+						<div style="float:right;margin-top: 10px"><a class="addButton" href="#/argue">取消并返回</a></div>
 						<div class="page-header" style="padding-bottom: 6px;"></div>
 						<h1 class="headerH1">参数信息</h1>
 						<div class="space-6"></div>
@@ -55,7 +55,7 @@
                                     <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
 											<br><br><div id="checkLength" style="color:red;display:none"></div>
 										</div>
 									</div>
@@ -194,7 +194,7 @@
 						</div><!-- /.row -->
 
 						<div class="page-header"></div>
-						<h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与53iq智能云通信的数据及说明，例：数据说明   传送数据关              0开              1" title="">?</span></h1>
+						<h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与53iq智能云通信的数据及说明，例：传送数据:0 数据说明:关、传送数据:1 数据说明:开" title="">?</span></h1>
 						<div class="space-6"></div>
 
 						<div class="row">
@@ -271,6 +271,7 @@
                     loadData(obj);
                 }
                 else{
+                    $('#mxsLength').val('8');
                     add();
                 }
 			});
@@ -336,7 +337,7 @@
 					group+='<div class="form-group">';
 					group+='	<div class="col-sm-2 col-xs-2"></div>';
 					group+='	<div class="col-sm-2 col-xs-3">';
-                    group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
+                    group+='		<input ng-disabled="{[{ disabled }]}"  type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2">';
                     group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
@@ -396,7 +397,7 @@
 				group+='<div class="form-group">';
 				group+='	<div class="col-sm-2 col-xs-2"></div>';
 				group+='	<div class="col-sm-2 col-xs-3">';
-				group+='		<input type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
+				group+='		<input type="text" id="checkData"  name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
 				group+='	</div>';
 				group+='	<div class="col-sm-1 col-xs-2">';
 				group+='		<input type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12"/>';

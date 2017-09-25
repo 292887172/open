@@ -5,6 +5,28 @@
 {% endblock %}
 {% block style %}
     <style>
+    body{
+
+        background: url("{% static 'image/center/login_bg.jpg' %}") center center / cover no-repeat fixed;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+
+    }
+    body:before{
+        background: rgba(0,0,0,0.5);
+    }
+    .header{
+        background-color: #F1F4F9;
+    }
+    .ui-mmask{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
         .sign_out{
             display: none;
         }
@@ -26,8 +48,8 @@
 
         .container-narrow {
             width: 95%;
-            max-width: 360px;
-            margin: 5% auto;
+            max-width: 430px;
+            margin: 10% auto;
         }
 
         .widget-header {
@@ -35,7 +57,7 @@
             -moz-border-radius: 3px 3px 0 0;
             -webkit-border-radius: 3px 3px 0 0;
             border-radius: 3px 3px 0 0;
-            min-height: 51px;
+            min-height:70px;
             border: 1px solid #DDDDDD;
         }
 
@@ -69,7 +91,7 @@
         }
 
         input[type="text"], input[type="password"] {
-            height: 40px;
+            height: 55px;
             border-radius: 1px;
             background-color: #fff;
             border: 1px solid #ccc;
@@ -81,9 +103,9 @@
             -o-transition: border linear .2s, box-shadow linear .2s;
             transition: border linear .2s, box-shadow linear .2s;
             display: inline-block;
-            padding: 4px 6px;
+            padding: 4px 15px;
             margin-bottom: 10px;
-            font-size: 14px;
+            font-size: 17px;
             line-height: 20px;
             color: #555;
             vertical-align: middle;
@@ -94,12 +116,12 @@
 
         .widget-header h5 {
             margin: 0;
-            padding: 15px 0 0;
-            font-size: 16px;
+            padding: 24px 0 0;
+            font-size: 22px;
             float: left;
             color: #62687e;
             font-weight: 200;
-            text-indent: 2em;
+            text-indent: 1em;
         }
 
         .btn {
@@ -136,7 +158,7 @@
 
         .pull-right {
             width: 100%;
-            height: 35px;
+            height: 45px;
             text-align: center;
         }
     .ui-error-box{
@@ -176,6 +198,23 @@
         margin-right: 5px;
         color: #333;
     }
+    .footer{
+        color: #fff;
+    }
+    .footer p a{
+        color: #fff;
+    }
+    .footer p a:hover{
+        color: #428bca;
+    }
+    .ui-bottom-no{
+        text-align: center;
+    background: #fff;
+    height: 35px;
+    line-height: 35px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    }
     </style>
 {% endblock %}
 {% block menu %}
@@ -184,7 +223,7 @@
     <li><a href="/wiki/">开发文档</a></li>
 {% endblock %}
 {% block content %}
-
+<div class="ui-mmask"></div>
     <div class="container">
         <div class="row-fluid">
             <div class="span12">
@@ -206,8 +245,10 @@
                                 </div>
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input name="password" class="btn-block" type="password" id="inputPassword"
-                                               placeholder="密码">
+                                        <input name="show-password" class="btn-block" type="password" id="show-inputPassword"
+                                               placeholder="密码" onkeyup="encryption(this)">
+                                        <input name="password" class="btn-block hidden" type="password" id="inputPassword"
+                                               placeholder="密码" >
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -235,7 +276,7 @@
                             </div>
                         </div>
 
-                        <div style="text-align:center">
+                        <div class="ui-bottom-no" style="text-align:center">
                             <p>没有账号? <a style="color: #428bca;" href="{% url 'register' %}">注册账号</a></p>
                         </div>
 
@@ -250,7 +291,13 @@
 {% endblock %}
 
 {% block end_script %}
+    <script src="{% static 'js/center/crypto.js' %}"></script>
     <script>
+    function encryption(item) {
+             var b = new Base64();
+             var str = b.encode($(item).val());
+             $("#inputPassword").val(str);
+        }
     $(function () {
          var username = '{{ username }}';
          if (username != '') {
@@ -260,6 +307,7 @@
 
 
         }
+
     })
     </script>
 {% endblock %}
