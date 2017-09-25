@@ -74,7 +74,11 @@
             right: 100px;
             position: absolute;
         }
-
+        .check_status li div span.apply {
+            color: red;
+            right: 100px;
+            position: absolute;
+        }
         .check_status li p {
             position: relative;
             padding: 24px 40px;
@@ -114,51 +118,61 @@
         <div class="wrap">
 
             <div class="right_side">
-                {% if user.developer.developer_check_status == 1 %}
+                {% if user.developer.developer_id %}
+                    {% if  user.developer.developer_check_status == 1 %}
 
-                    <div class="right_side_body">
-                    <ol class="check_status">
-                        <li>
-                            <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
-                                    class="status status_ok">厨房智能开发审核通过 </span></div>
-                        </li>
+                        <div class="right_side_body">
+                        <ol class="check_status">
+                            <li>
+                                <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
+                                        class="status status_ok">厨房智能开发审核通过 </span></div>
+                            </li>
 
 
-                        <!--
-                        <li><div><span class="account">3、 帐号：53iqSmart</span><span class="times">2014-07-11 提交</span><span class="status status_ok">审核通过</span></div></li>
-                        <li><div><span class="account">2、 帐号：53iqSmart</span><span class="times">2014-07-06 提交</span><span class="status">等待审核</span></div></li>
-                        <li>
-                            <div><span class="account">1、 帐号：53iqSmart</span><span class="times">2014-07-01 提交</span><span class="status status_error">审核未通过</span></div>
-                            <p><img src="/assets/images/dev/icon_arrow_u.png" width="30" height="15" class="arrow" />很抱歉，您的产品不符合我们的要求。<br />请修改信息后，重新提交，谢谢！</p>
-                        </li>
-                        -->
-                    </ol>
-                </div>
-                {% elif user.developer.developer_check_status == -1  %}
-                    <div class="right_side_body">
-                    <ol class="check_status">
-                        <li>
-                            <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
-                                    class="status status_error">审核未通过 </span></div>
-                            <p><img src="{% static 'image/icon_arrow_u.png' %}" width="30" height="15" class="arrow"/>很抱歉，您的产品不符合我们的要求。<br/>未通过原因：{% if user.developer.developer_check_remarks %}{{ user.developer.developer_check_remarks|safe }}{% else %}信息不完整{% endif %}。<br>请修改信息后，重新提交，谢谢！
-                            </p>
-                        </li>
+                            <!--
+                            <li><div><span class="account">3、 帐号：53iqSmart</span><span class="times">2014-07-11 提交</span><span class="status status_ok">审核通过</span></div></li>
+                            <li><div><span class="account">2、 帐号：53iqSmart</span><span class="times">2014-07-06 提交</span><span class="status">等待审核</span></div></li>
+                            <li>
+                                <div><span class="account">1、 帐号：53iqSmart</span><span class="times">2014-07-01 提交</span><span class="status status_error">审核未通过</span></div>
+                                <p><img src="/assets/images/dev/icon_arrow_u.png" width="30" height="15" class="arrow" />很抱歉，您的产品不符合我们的要求。<br />请修改信息后，重新提交，谢谢！</p>
+                            </li>
+                            -->
+                        </ol>
+                    </div>
+                    {% elif user.developer.developer_check_status == -1  %}
+                        <div class="right_side_body">
+                        <ol class="check_status">
+                            <li>
+                                <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
+                                        class="status status_error">审核未通过 </span></div>
+                                <p><img src="{% static 'image/icon_arrow_u.png' %}" width="30" height="15" class="arrow"/>很抱歉，您的产品不符合我们的要求。<br/>未通过原因：{% if user.developer.developer_check_remarks %}{{ user.developer.developer_check_remarks|safe }}{% else %}信息不完整{% endif %}。<br>请修改信息后，重新提交，谢谢！
+                                </p>
+                            </li>
 
-                    </ol>
-                </div>
-                {% else %}
-                    <div class="right_side_body">
-                    <ol class="check_status">
-                        <li>
-                            <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
-                                    class="status">等待审核 </span></div>
+                        </ol>
+                    </div>
+                    {% else %}
+                        <div class="right_side_body">
+                        <ol class="check_status">
+                            <li>
+                                <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
+                                        class="status">等待审核 </span></div>
 
-                        </li>
+                            </li>
 
-                    </ol>
-                </div>
+                        </ol>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                        <div class="right_side_body">
+                        <ol class="check_status">
+                            <li>
+                                <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times"><a href="/center" style="color: #ff6202;">加入开发者</a></span><span
+                                        class="status apply">您还未申请成为开发者，请完善开发者身份 </span></div>
+                            </li>
+
+                        </ol>
                 {% endif %}
-
             </div>
         </div>
 
