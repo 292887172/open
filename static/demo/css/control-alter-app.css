@@ -8,6 +8,7 @@ body{
 }
 .mui-content{
     background-color: initial;
+
 }
 .mui-grid-view.mui-grid-9{
     background-color: initial;
@@ -21,19 +22,22 @@ body{
     margin-bottom: 6%;
     margin-right: 2.5%;
     margin-left: 5.8%;
+
+
 }
 
 .mui-icon{
-    width: 65px;
-    height: 100px;
-    background-size: 100%;
+    width: 45px;
+    height: 40px;
+    background-size: 30%;
     background-position-y: 20px;
     background-repeat: no-repeat;
+
 }
 .mui-div-botton{
     border: 1px solid #343338;
-    height: 125px;
-    width: 132px;
+    height: 60px;
+    width: 70px;
     background-color:#343338;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1), 0px 6px 22px rgba(0, 0, 0, .7);
