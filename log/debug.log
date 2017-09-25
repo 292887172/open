@@ -1153,7 +1153,7 @@
 2017-09-05 20:46:41,261 [Thread-268:140712881919744] [root:141] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-06 13:34:13,905 [Thread-51:8420] [root:141] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-06 13:36:11,602 [Thread-186:16084] [root:172] [ERROR]- create_app() missing 1 required positional argument: 'check_status'
-2017-09-06 13:36:11,603 [Thread-186:16084] [root:173] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-06 13:36:11,603 [Thread-186:16084] [root:173] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-06 17:20:59,189 [Thread-6:11380] [root:141] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-07 08:34:38,958 [Thread-8:8920] [root:141] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-07 08:35:48,665 [Thread-45:7468] [root:53] [INFO]- 'SESSION_LOGIN_THIRD'
@@ -1235,7 +1235,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,019 [Thread-5:11112] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1246,7 +1246,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,019 [Thread-3:16644] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1257,7 +1257,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,022 [Thread-7:18592] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1268,7 +1268,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,023 [Thread-6:16800] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1279,7 +1279,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,024 [Thread-4:6720] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1290,7 +1290,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:21,228 [Thread-1:13724] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:13:21,231 [Thread-5:11112] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:13:21,234 [Thread-3:16644] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
@@ -1307,7 +1307,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,240 [Thread-7:18592] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1318,7 +1318,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,241 [Thread-1:13724] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1329,7 +1329,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,241 [Thread-3:16644] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1340,7 +1340,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,244 [Thread-6:16800] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1351,7 +1351,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,253 [Thread-4:6720] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1362,7 +1362,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:13:42,440 [Thread-5:11112] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:13:42,447 [Thread-7:18592] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:13:42,451 [Thread-1:13724] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
@@ -1379,7 +1379,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:03,457 [Thread-3:16644] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1390,7 +1390,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:03,457 [Thread-1:13724] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1401,7 +1401,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:03,460 [Thread-7:18592] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1412,7 +1412,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:03,461 [Thread-6:16800] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1423,7 +1423,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:03,470 [Thread-4:6720] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1434,7 +1434,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:14:04,221 [Thread-10:13932] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:14:04,228 [Thread-9:13808] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:14:04,265 [Thread-11:9908] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
@@ -1451,7 +1451,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:16:03,224 [Thread-1:5796] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:16:06,183 [Thread-3:16696] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1463,7 +1463,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:16:06,388 [Thread-3:16696] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:16:24,225 [Thread-1:5796] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1475,7 +1475,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:16:24,430 [Thread-1:5796] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:16:27,394 [Thread-3:16696] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1487,7 +1487,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:16:27,598 [Thread-3:16696] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:16:45,434 [Thread-1:5796] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1499,7 +1499,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:16:48,605 [Thread-3:16696] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1510,7 +1510,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:18:33,726 [Thread-4:5728] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:18:34,475 [Thread-5:12980] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:18:54,734 [Thread-4:5728] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
@@ -1523,7 +1523,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:18:54,940 [Thread-4:5728] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:18:55,479 [Thread-5:12980] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1535,7 +1535,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:18:55,683 [Thread-5:12980] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:13,880 [Thread-6:14844] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:15,945 [Thread-4:5728] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
@@ -1548,7 +1548,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:16,150 [Thread-4:5728] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:16,697 [Thread-5:12980] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1560,7 +1560,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:16,902 [Thread-5:12980] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:22,734 [Thread-7:2164] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:34,886 [Thread-6:14844] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
@@ -1573,7 +1573,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:35,091 [Thread-6:14844] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:37,154 [Thread-4:5728] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1585,7 +1585,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:37,910 [Thread-5:12980] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1596,7 +1596,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:40,123 [Thread-8:2528] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:43,739 [Thread-7:2164] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1608,7 +1608,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:43,944 [Thread-7:2164] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:19:56,097 [Thread-6:14844] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1620,7 +1620,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:19:56,316 [Thread-6:14844] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:13,920 [Thread-1:14160] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:16,899 [Thread-3:7732] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
@@ -1637,7 +1637,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:35,133 [Thread-1:14160] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:37,905 [Thread-3:7732] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1649,7 +1649,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:38,109 [Thread-3:7732] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:38,792 [Thread-4:18464] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1661,7 +1661,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:38,997 [Thread-4:18464] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:40,097 [Thread-5:10584] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1673,7 +1673,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:40,303 [Thread-5:10584] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:40,712 [Thread-6:18780] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1685,7 +1685,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:40,917 [Thread-6:18780] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:56,136 [Thread-1:14160] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1697,7 +1697,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:56,343 [Thread-1:14160] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:35:59,114 [Thread-3:7732] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1709,7 +1709,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:35:59,318 [Thread-3:7732] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:00,001 [Thread-4:18464] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1721,7 +1721,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:00,207 [Thread-4:18464] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:01,312 [Thread-5:10584] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1733,7 +1733,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:01,517 [Thread-5:10584] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:01,929 [Thread-6:18780] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1745,7 +1745,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:02,134 [Thread-6:18780] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:17,345 [Thread-1:14160] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1757,7 +1757,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:20,321 [Thread-3:7732] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1768,7 +1768,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:21,210 [Thread-4:18464] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1779,7 +1779,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:22,522 [Thread-5:10584] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1790,7 +1790,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:23,144 [Thread-6:18780] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\stomp\transport.py", line 656, in attempt_connection
@@ -1801,7 +1801,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:35,626 [Thread-7:6372] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:55,125 [Thread-8:8948] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:36:56,631 [Thread-7:6372] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
@@ -1814,7 +1814,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:36:56,835 [Thread-7:6372] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:37:16,132 [Thread-8:8948] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1826,7 +1826,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:37:16,337 [Thread-8:8948] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:37:17,841 [Thread-7:6372] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1838,7 +1838,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:37:18,045 [Thread-7:6372] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:37:37,349 [Thread-8:8948] [stomp.py:694] [WARNING]- Could not connect to host 192.168.10.71, port 61613
 Traceback (most recent call last):
@@ -1850,7 +1850,7 @@ Traceback (most recent call last):
     raise err
   File "C:\Python34\lib\socket.py", line 500, in create_connection
     sock.connect(sa)
-TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+TimeoutError: [WinError 10060] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½È·ï¿½ð¸´»ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 2017-09-18 10:37:37,555 [Thread-8:8948] [stomp.py:655] [INFO]- Attempting connection to host 192.168.10.71, port 61613
 2017-09-18 10:37:43,727 [Thread-18:7024] [root:147] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
 2017-09-18 10:50:12,130 [Thread-26:16988] [root:420] [INFO]- Account matching query does not exist.
@@ -2254,20 +2254,20 @@ TimeoutError: [WinError 10060] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»Ó
 2017-09-21 20:53:09,079 [Thread-5:6404] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-21 21:22:47,935 [Thread-77:8588] [root:79] [ERROR]- Developer matching query does not exist.
 2017-09-21 21:22:47,937 [Thread-77:8588] [root:184] [ERROR]- 'str' object has no attribute 'app_id'
-2017-09-21 21:22:47,937 [Thread-77:8588] [root:185] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-21 21:22:47,937 [Thread-77:8588] [root:185] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-21 21:28:46,272 [Thread-52:13904] [root:79] [ERROR]- Developer matching query does not exist.
 2017-09-21 21:28:46,273 [Thread-52:13904] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
-2017-09-21 21:28:46,274 [Thread-52:13904] [root:186] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-21 21:28:46,274 [Thread-52:13904] [root:186] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-21 21:29:43,857 [Thread-26:11824] [root:79] [ERROR]- Developer matching query does not exist.
 2017-09-21 21:29:43,858 [Thread-26:11824] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
-2017-09-21 21:29:43,858 [Thread-26:11824] [root:186] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-21 21:29:43,858 [Thread-26:11824] [root:186] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-21 21:32:41,178 [Thread-28:2672] [root:82] [ERROR]- Developer matching query does not exist.
 2017-09-21 21:32:41,178 [Thread-28:2672] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
-2017-09-21 21:32:41,179 [Thread-28:2672] [root:186] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-21 21:32:41,179 [Thread-28:2672] [root:186] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-22 08:48:57,710 [Thread-3:15932] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 08:54:27,652 [Thread-8:15724] [root:79] [ERROR]- Developer matching query does not exist.
 2017-09-22 08:54:27,653 [Thread-8:15724] [root:185] [ERROR]- 'str' object has no attribute 'app_id'
-2017-09-22 08:54:27,655 [Thread-8:15724] [root:186] [ERROR]- ´´½¨Ó¦ÓÃÊ§°Ü
+2017-09-22 08:54:27,655 [Thread-8:15724] [root:186] [ERROR]- ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
 2017-09-22 10:46:38,084 [Thread-3:7692] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 10:46:42,035 [Thread-13:1152] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 11:11:04,923 [Thread-261:15440] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'

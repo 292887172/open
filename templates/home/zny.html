@@ -37,7 +37,27 @@
             font-weight: bolder;
             padding-left: 5px;
         }
-
+        .check_status li div {
+            padding: 0 16px;
+            height: 64px;
+            width: 95%;
+            border-bottom: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+            line-height: 64px;
+        }
+        .check_status li div:hover{
+            background: #ffffcc;
+        }
+        .check_status li div span.apply {
+            color: red;
+            right: 100px;
+            position: absolute;
+        }
+        .check_status li div span.times {
+            position: relative;
+            left: 20%;
+        }
         .hbox {
             padding: 10px 10px;
             font-size: 15px;
@@ -62,6 +82,18 @@
 </head>
 <body>
 <div class="box2 relative">
+
+
+
+    <div class="hbox">
+        <ol class="check_status">
+            <li>
+                <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times"><a href="/center" style="color: #ff6202;">加入开发者</a></span><span
+                        class="status apply">您还未申请成为开发者，请完善开发者身份 </span></div>
+            </li>
+        </ol>
+    </div>
+
     <div class="hbox">
         53iq厨房智能平台致力厨房智能共享开放，帮助厨电品牌厂商、电控板厂商快速出品令消费者喜爱的厨电。<br><br>
         给厨电厂商提供专业可靠的厨电智能化方案，为电控自助对接智能提供快捷丰富的平台资源。平台提供Wi-Fi和彩屏智能方案接入厨电。
