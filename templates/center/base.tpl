@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                        {% else %}
-                            <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="#"
+                            <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                         {% endif %}
 

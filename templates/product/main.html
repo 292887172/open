@@ -72,6 +72,7 @@
         {% if app.check_remarks and app.check_status == -1 %}
             <div class="wrapper">
                 <div class="alert alert-danger">
+
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <i class="fa fa-bell-o"></i>&nbsp;&nbsp;[应用未通过原因]&nbsp;&nbsp;<span>{{ app.check_remarks }}</span>
                 </div>
@@ -143,11 +144,14 @@
                         </ul>
                     </div>
 
+
                     <!-- 左侧菜单 end -->
                 </div>
             </div>
             <!-- 主内容 -->
+
             <div class="rightMain" id="proRightMain" ng-view>
+
 
             </div>
         </div>
