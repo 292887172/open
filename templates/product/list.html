@@ -361,7 +361,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">集成灶</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('2')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('2')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -377,7 +377,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">烤箱</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('11')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('11')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -393,7 +393,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">油烟机</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('1')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('1')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -628,6 +628,7 @@
                 return;
             }
         }
+
         function create_procuct(type) {
             $(".markLayout").show();
             if(type=='1'){
@@ -646,6 +647,15 @@
                 $("#show_logo").attr('src',"http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
             }
             $("#newHtmlBox").css('display','block');
+            $(document).ready(function () {
+                $("*").click(function (event) {
+                    if (!$(this).hasClass("popBox") &&!$(this).hasClass("tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn")){
+                        $("#newHtmlBox").css('display','none');
+                        $(".markLayout").hide();
+                    }
+                    event.stopPropagation(); //阻止事件冒泡
+                });
+            });
         }
         function new_close() {
             $(".markLayout").hide();

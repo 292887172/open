@@ -90,7 +90,7 @@ def home(request):
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
                 if re:
-                    return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'center'}))
+                    return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'product/list'}))
                 else:
                     return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))
             else:
@@ -146,7 +146,7 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/guide")
         if request.user.is_developer:
 
             return HttpResponseRedirect("/product/list")
