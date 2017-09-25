@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import shutil 
-root = "/home/rdy/git-workspace/open"
+root = "/Users/zhanlingjie/Documents/mypython/Git/open"
 
 for dirpath, dirnames, filenames in os.walk(root):
     for filepath in filenames:
