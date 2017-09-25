@@ -399,14 +399,12 @@
 <script>
 
     window.onload = function () {
-      var a = getck('COOKIE_USER_ACCOUNT')
-        console.log(a)
-
-        a  = 'https://oven.53iq.com/static/html/stove_home.html?d=test'+a
+      var a = getck('COOKIE_USER_ACCOUNT');
+        a  = 'https://oven.53iq.com/static/html/stove_home.html?d=test123'
 
         jQuery('#qrcode').qrcode({ width:100 ,height:100,text: a });
         document.body.style.overflow="hidden";
-    }
+    };
 
     var acookie=document.cookie.split("; ");
                 function getck(sname)

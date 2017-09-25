@@ -22,6 +22,12 @@
        .header{
            margin-top: 0px;
        }
+       .menuBox h3{
+           padding-left: 15px;
+           margin-top: 5px;
+           font-size: 15px;
+       }
+
         .wrapper {
             width: 1200px;
             padding: 0;
@@ -83,7 +89,7 @@
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
                     <div class="menuBox">
-
+                        <h3><b>{{ app.app_device_type|cover_device_type }}产品管理</b></h3>
                         <ul>
                             <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
                                 <a href="#/content">
