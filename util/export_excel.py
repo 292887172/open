@@ -36,7 +36,7 @@ def write_zip(e_data, j_data, export_name):
         # 本地文件写入zip，重命名，然后删除本地临时文件
         z_file = zipfile.ZipFile(z_name, 'w')
         z_file.write(j_name, "TRD.json")
-        path = os.getcwd()+"\static\sdk\WIFI设备于53iq智能云通信协议V1.0.docx"
+        path = os.getcwd()+"/static/sdk/WIFI设备于53iq智能云通信协议V1.0.docx"
         z_file.write(path,'WIFI设备于53iq智能云通信协议V1.0.docx')
         z_file.write(e_name, "TRD.xls")
         os.remove(j_name)
