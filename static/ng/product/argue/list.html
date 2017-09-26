@@ -76,10 +76,11 @@
      }
     </style>
     <div class="main-container">
-        <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" >?</span> 产品功能填写规则</h1>
+        <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
         <table id="grid-table">
         </table>
-        <div style="background: #fff">
+        <div id="tips" style="background: #fff">
+
 
             <h1 class="headerH1">tips</h1>
             <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
@@ -220,17 +221,17 @@
 	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
 	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
 
-	        		$("#grid-table").jqGrid( 'setGridHeight', $("body").height()-300 );
+	        		$("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 	        		$(window).resize(function() {
 							$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
-                            $("#grid-table").jqGrid( 'setGridHeight', $("body").height() );
+                            $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 
 							});
 	        },
             loadComplete:function (rows) {
                 row = rows.rows;
                 if(row.length==0){
-                    $("#grid-table").jqGrid( 'setGridHeight', $("body").height()-500);
+                    $("#grid-table").jqGrid( 'setGridHeight', 'auto');
                     $("#show-no-data").text("该产品您还没有添加参数");
                 }
                 for ( var i=0;i<row.length ;i++){
