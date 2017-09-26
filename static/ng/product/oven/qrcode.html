@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta charset="UTF-8">
+    <title>二维码页面</title>
+<style>
+.main{display: flex;}
+.main_left{ width:30%; background-color: white;height: 800px;margin-top: 30px;}
+
+ .phone_background{background-image:url("saoma.jpg");}
+
+</style>
+</head>
+<body>
+    <div class="main">
+        <div class="main_left">
+               <div class="phone_background"></div>
+                <div id="qrcode" style="height: 150px;width: auto;margin-left:180px; margin-top: -190px;"></div>
+                <div class="main_left_text">
+                    <h>请使用“53iq智能厨房App”，扫码体验手机控制</h>
+                </div>
+            </div>
+        </div>
+<script>
+    window.onload = function () {
+      var a = getck('COOKIE_USER_ACCOUNT')
+        console.log(a)
+        a  = 'https://oven.53iq.com/static/html/stove_home.html?d=test'+a
+        send_data = 'test'+a+'-1'
+        jQuery('#qrcode').qrcode({ width:100 ,height:100,text: a });
+        document.body.style.overflow="hidden";
+        <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
+    }
+    var acookie=document.cookie.split("; ");
+                function getck(sname)
+                {//获取单个cookies
+                for(var i=0;i<acookie.length;i++){
+                var arr=acookie[i].split("=");
+                if(sname==arr[0]){
+                if(arr.length>1)
+                return unescape(arr[1]);
+                else
+                return "";}}
+                return "";
+                    <!-- js生成二维码方法-->
+}
+</script>
+</body>
+</html>

@@ -14,10 +14,13 @@
         [v-cloak] {
             display: none;
         }
-
-
-
-
+        .main{display: flex;}
+        .main_right{ width: 70%;background-color: white; margin-top: 40px;}
+        .zhong_background{background-image: url("border.png");
+        background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+        margin-top: 50px;
+        height: 450px;
+        overflow: hidden;}
     </style>
 </head>
 
@@ -27,16 +30,12 @@
 <script src="/static/demo/js/jquery.min.js"></script>
 <script src="/static/demo/js/smoking.js"></script>
 <script src="/static/demo/js/mui.min.js"> </script>
-
-
-
-
- <body style="background: #252429;">
-
-
-
-
-                      <div class="mui-content" id="DeviceConf" v-cloak="" style="border:1px solid magenta;">
+ <body style="background: white;">
+   <div class="main">
+            <div class="main_right">
+                <div class="zhong_background">
+                    <div style="height:350px;width:567px;margin-left:55px;margin-top:64px;background-color: #1f1d1d;">
+                      <div class="mui-content" id="DeviceConf" v-cloak="" style="margin-top: -20px;font-size: 16px;">
                                     <div class="mui-content-padded">
                                         <h1 class="mui-headerH1">油烟机100056</h1>
                                     </div>
@@ -54,14 +53,22 @@
                                             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
                                                 <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
                                                     <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
-                                                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']"></span>
+                                                    <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']" style="width: 40px;height: 40px;"></span>
                                                     <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
                                                     <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']">{{ f.title }}</div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
-</div>
+                                </div>
+                        </div>
+
+               </div>
+           </div >
+
+   </div>
+
+
 
 
 
@@ -244,6 +251,25 @@
         },
         computed: {}
     });
+</script>
+<script>
+    window.onload = function () {
+      var a = getck('COOKIE_USER_ACCOUNT')
+        console.log(a)
+        document.body.style.overflow="hidden";
+    }
+    var acookie=document.cookie.split("; ");
+                function getck(sname)
+                {//获取单个cookies
+                for(var i=0;i<acookie.length;i++){
+                var arr=acookie[i].split("=");
+                if(sname==arr[0]){
+                if(arr.length>1)
+                return unescape(arr[1]);
+                else
+                return "";}}
+                return "";
+}
 </script>
 </body>
 </html>
