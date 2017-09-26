@@ -2273,3 +2273,4 @@ TimeoutError: [WinError 10060] �������ӷ���һ��ʱ���
 2017-09-22 11:11:04,923 [Thread-261:15440] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 12:46:32,863 [Thread-673:19168] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 15:28:32,563 [Thread-3:140315642033920] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-26 14:33:38,095 [Thread-36:123145531711488] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
