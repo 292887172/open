@@ -27,9 +27,9 @@
 		return [].slice.call($.__create_dom_div__.childNodes);
 	};
 
-	var panelBuffer = '<div class="mui-poppicker" id="picture">\
-		<h5 style="padding-left: 20px;padding-top: 15px">设置烘烤温度：<span id="block-range-tem" style="font-size: 20px;color:#f35019">200℃\
-		</span></h5>\
+	var panelBuffer = '<div class="mui-poppicker" id="picture" style="width:58%;margin-left: 55px;">\
+		<h4 style="padding-left:15px;padding-top: 15px">设置烘烤温度：<span id="block-range-tem" style="font-size: 10px;color:#f35019">200℃\
+		</span></h4>\
 		<div class="mui-input-row mui-input-range">\
 		<div id="range-progressbar" class="mui-progressbar">\
                     <span style="translate3d(1%, 0px, 0px)"></span>\
