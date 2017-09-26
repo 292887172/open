@@ -232,7 +232,7 @@
                     }
 
                 }
-                send_data = {'did': 'test123', 'name': name, 'value': value};
+                send_data = {'did': userID, 'name': name, 'value': value};
                 this.$http.post('/product/control', JSON.stringify(send_data).toString()
                          ).then(function (res) {
                              res = JSON.parse(res.body);
@@ -307,7 +307,7 @@
                 };
                 stomp.onconnectedframe = function () {
                     console.log("Connected. Subcribing");
-                    stomp.subscribe('/' + 'test123');
+                    stomp.subscribe('/' + userID);
                     // first_get_status();
                 };
                 stomp.onmessageframe = function (frame) {
@@ -391,9 +391,8 @@
 
     window.onload = function () {
       var a = getck('COOKIE_USER_ACCOUNT');
-        a  = 'https://oven.53iq.com/static/html/stove_home.html?d=test123'
 
-        jQuery('#qrcode').qrcode({ width:100 ,height:100,text: a });
+
         document.body.style.overflow="hidden";
     };
 
