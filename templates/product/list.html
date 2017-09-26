@@ -648,10 +648,9 @@
             }
             $("#newHtmlBox").css('display','block');
             $(document).ready(function () {
-                $("*").click(function (event) {
+                $(".markLayout").click(function (event) {
                     if (!$(this).hasClass("popBox") &&!$(this).hasClass("tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn")){
-                        $("#newHtmlBox").css('display','none');
-                        $(".markLayout").hide();
+                        new_close();
                     }
                     event.stopPropagation(); //阻止事件冒泡
                 });
