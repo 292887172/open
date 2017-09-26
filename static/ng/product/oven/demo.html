@@ -1,7 +1,69 @@
-
-
-
-<iframe src="/static/ng/product/oven/oven.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能烤箱'"></iframe>
-<iframe src="/static/ng/product/oven/smoke.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能油烟机'"></iframe>
-<iframe src="/static/ng/product/oven/stove.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='集成灶'"></iframe>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>设备页面管理</title>
+    <style>
+        .main{display: flex;}
+        .main_header{width: 95%;height: 55px; border-bottom: 1px silver solid;margin-left: 25px;color:#ff6202;}
+        .main_left{ width:30%; background-color: white;height: 800px;margin-top: 30px;}
+        .main_right{width:70%;height: 600px; margin-top: 30px;}
+        .phone_background{background-image: url("/static/image/product/saoma.jpg");background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+         width: 220px;height: 270px; margin-top: 120px;margin-left: 20px;}
+    </style>
+</head>
+<body>
+<div class="main_header"> <div style="line-height: 55px;">设备管理页面</div></div>
+<div class="main">
+    <div class="main_left">
+            <div class="phone_background"></div>
+            <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
+            <div class="main_left_text">
+                <div style="margin-top: 100px;margin-left: 20px;"><h3>请使用“53iq智能厨房App”，扫码体验手机控制 </h3></div>
+            </div>
+    </div>
+    <div class="main_right">
+        <iframe id="iframes" name="oven" src="/static/ng/product/oven/oven.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能烤箱'"></iframe>
+        <iframe id="iframes" name="smoke" src="/static/ng/product/oven/smoke.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能油烟机'"></iframe>
+        <iframe id="iframes" name="stove" src="/static/ng/product/oven/stove.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='集成灶'"></iframe>
+    </div>
+</div>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script>
+    //获取cookie 生成二维码
+    window.onload = function () {
+        var a = getck('COOKIE_USER_ACCOUNT')
+        console.log(a)
+        var  b =''
+        var ir = document.getElementById('iframes')
+        if( ir.name == 'oven'){
+            b = 'https://oven.53iq.com/static/html/oven_home.html?d=test'
+        }
+        if (ir.name =='smoke'){
+            b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
+        }
+        if (ir.name =='stove'){
+            b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
+        }
+        content  = b + a;
+        console.log(content)
+        jQuery('#qrcode').qrcode({width:100,height:100,text:content});
+    }
+    var acookie=document.cookie.split("; ");
+                function getck(sname) {//获取单个cookies
+                    for (var i = 0; i < acookie.length; i++) {
+                        var arr = acookie[i].split("=");
+                        if (sname == arr[0]) {
+                            if (arr.length > 1)
+                                return unescape(arr[1]);
+                            else
+                                return "";
+                        }
+                    }
+                    return "";
+                }
+    </script>
+</body>
+</html>

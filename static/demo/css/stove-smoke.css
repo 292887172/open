@@ -83,11 +83,11 @@ h5.mui-content-padded:first-child {
 
 .mui-poppicker {
     background: #f7f7f7;
-    bottom: 0px;
+    bottom: 110px;
     opacity: 0;
 }
 .mui-poppicker.mui-active{
-    bottom: 0px;
+    bottom: 110px;
     opacity: 1;
 
 }
@@ -106,7 +106,7 @@ h5.mui-content-padded:first-child {
 }
 
 .mui-poppicker {
-    height: 330px;
+    height: 250px;
 }
 
 .mui-poppicker-header {
@@ -159,6 +159,7 @@ h5.mui-content-padded:first-child {
 
 .mui-table-view {
     background-color: initial;
+    border-left: solid 1px ghostwhite;
 }
 
 .mui-table-view:before {
