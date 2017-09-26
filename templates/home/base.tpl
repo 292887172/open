@@ -49,7 +49,7 @@
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                        {% else %}
-                            <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="#"
+                            <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                         {% endif %}
 
@@ -70,6 +70,16 @@
 </div>
 {% block content %}
     <div class="wrapper mt20 fn-clear">
+    {% if user.account_id and  not user.developer.developer_id %}
+        <div class="wrapper">
+            <div class="alert alert-danger">
+
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <i class="fa fa-bell-o"></i>&nbsp;&nbsp;帐号：[{{ user.account_id }}]&nbsp;&nbsp;<span>&nbsp;&nbsp;&nbsp;您还未申请成为开发者!<a href="/center" style="color: #ff6202;  margin-left: 20%;">加入开发者</a> </span>
+            </div>
+        </div>
+    {% endif %}
+
         <div class="leftSide">
             <div class="box1">
                 <!-- 左侧菜单 begin -->

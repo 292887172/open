@@ -20,7 +20,7 @@
         }
 
         .mt20 {
-            margin-top: 20px;
+            margin-top: 35px;
         }
         .goods span {
             height: 30px;
@@ -247,7 +247,7 @@
      }
     .progress li a:hover{
          color: #333;
-        text-underline: solid;
+        text-underline: underline;
      }
     .progress li.cur {
     color: #626262;
@@ -350,7 +350,7 @@
     <div class="wrapper wrapper2 mt20">
         <!-- 已发布的产品 -->
     <div class="_22y_index_new" data-reactid="86">
-    <p class="_2wZ_index_new-list-title"><span>现有模板，快速创建方案</span></p>
+    <p class="_2wZ_index_new-list-title"><span>常用模板，快速创建方案</span></p>
         <div class="_2wZ_index_new-list" data-reactid="89">
             <div class="_2Mr_category_category" data-reactid="90">
                <div data-reactid="91">
@@ -361,7 +361,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">集成灶</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('2')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('2')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -377,7 +377,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">烤箱</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('11')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('11')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -393,7 +393,7 @@
                 <div class="_3CN_category_mark-info" data-reactid="95">
                  <span class="mark-top-txt mark-children-top-txt" data-reactid="96">油烟机</span>
                  <span class="mark-middle-txt mark-children-middle-txt" data-reactid="97">支持远程开关、倒计时、定时功能。</span>
-                 <button type="button" onclick="create_procuct('1')" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
+                 <button type="button" onclick="create_procuct('1')" id="create" class="tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn" data-reactid="98">
                   <!-- react-text: 99 -->创建
                   <!-- /react-text -->
                  </button>
@@ -407,7 +407,7 @@
         <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
         <div class="cont mt20" style="margin-top: 0px;">
             <i class="">
-                <img id="show_logo"  style="width: 110px;height: 127px;margin:-6% 0 0 -3%;" src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+                <img id="show_logo"  style="width: 110px;height: 120px;margin:-4% 0 0 -3%;" src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
             </i>
             <div class="warnCont">
                 <form name="formProduct"  method="post" class="fd7_create_product-form" action="/product/add/">
@@ -419,8 +419,8 @@
                     </div>
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品类型:</label>
-                        <span class="ant-input-wrapper">
-                            <input type="text" value="厨房类"  readonly = "readonly" name="product_category" class="ant-input ant-input-lg">
+                        <span class="ant-input-wrapper">厨房类
+                            <input type="hidden" value="厨房类"  readonly = "readonly" name="product_category" class="ant-input ant-input-lg">
                         </span>
                     </div>
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
@@ -546,7 +546,7 @@
                 </div>
             {% endfor %}
             {% for app in failed_apps %}
-                 <div class="goods-list" style="height: 145px;">
+                 <div class="goods-list" style="">
 
                     <dl>
                         <dt>
@@ -588,6 +588,7 @@
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script>
         var app_id = $("#delProLink").attr("data-id");
+        var checkSubmitFlg = false;
         function export_protocol() {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                 if (result) {
@@ -618,8 +619,16 @@
                 alert("产品名称不能为空！");
                 return ;
             }
-            form.submit();
+            if(!checkSubmitFlg){
+                checkSubmitFlg=true;
+                console.log("b不能重复提交");
+                 form.submit();
+            }
+            else{
+                return;
+            }
         }
+
         function create_procuct(type) {
             $(".markLayout").show();
             if(type=='1'){
@@ -638,6 +647,14 @@
                 $("#show_logo").attr('src',"http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
             }
             $("#newHtmlBox").css('display','block');
+            $(document).ready(function () {
+                $(".markLayout").click(function (event) {
+                    if (!$(this).hasClass("popBox") &&!$(this).hasClass("tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn")){
+                        new_close();
+                    }
+                    event.stopPropagation(); //阻止事件冒泡
+                });
+            });
         }
         function new_close() {
             $(".markLayout").hide();

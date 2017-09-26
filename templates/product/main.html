@@ -22,6 +22,12 @@
        .header{
            margin-top: 0px;
        }
+       .menuBox h3{
+           padding-left: 15px;
+           margin-top: 5px;
+           font-size: 15px;
+       }
+
         .wrapper {
             width: 1200px;
             padding: 0;
@@ -72,6 +78,7 @@
         {% if app.check_remarks and app.check_status == -1 %}
             <div class="wrapper">
                 <div class="alert alert-danger">
+
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <i class="fa fa-bell-o"></i>&nbsp;&nbsp;[应用未通过原因]&nbsp;&nbsp;<span>{{ app.check_remarks }}</span>
                 </div>
@@ -82,7 +89,7 @@
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
                     <div class="menuBox">
-
+                        <h3><b>{{ app.app_device_type|cover_device_type }}产品管理</b></h3>
                         <ul>
                             <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
                                 <a href="#/content">
@@ -147,15 +154,9 @@
                 </div>
             </div>
             <!-- 主内容 -->
-
-
-
-                     <div style="height: 700px; ">
-                        <div   class="rightMain"  id="proRightMain" ng-view style="height: 704px;"></div>
-                     </div>
-
-
-
+             <div>
+                <div   class="rightMain"  id="proRightMain" ng-view></div>
+             </div>
         </div>
     </div>
 <div class="markLayout"></div>

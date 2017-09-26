@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" class="mui-control">
 <head>
@@ -62,6 +63,7 @@
                         <div class="mui-content-padded">
                             <h1 class="jcz_header">集成灶100056</h1>
                         </div>
+
                         <div class="mui-left">
                             <div class="mui-row">
                                 <div class="mui-col-sm-9">
@@ -70,6 +72,7 @@
                                         <p id="timer" style="font-size: 4rem;color: #ff6202;left: -5%;margin-top: 30px;margin-left: 40px;">{{ danger }}<br> </p>
                                         <p style="  font-size: 12px;top: 37px;width: 70px;color: white;margin-top: 25px;margin-left: 45px;">炉灶风险值</p>
                                     </div>
+
                                 </div>
                                 <div class="mui-col-sm-9">
                                     <div>
@@ -160,6 +163,7 @@
                             return true
                         }
                         else return false
+
                     }
                 }
             },
@@ -228,7 +232,7 @@
                     }
 
                 }
-                send_data = {'did': userID, 'name': name, 'value': value};
+                send_data = {'did': 'test123', 'name': name, 'value': value};
                 this.$http.post('/product/control', JSON.stringify(send_data).toString()
                          ).then(function (res) {
                              res = JSON.parse(res.body);
@@ -376,7 +380,46 @@
             }
         }
 </script>
+
+
+
 <script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+<script>
+
+    window.onload = function () {
+      var a = getck('COOKIE_USER_ACCOUNT');
+        a  = 'https://oven.53iq.com/static/html/stove_home.html?d=test123'
+
+        jQuery('#qrcode').qrcode({ width:100 ,height:100,text: a });
+        document.body.style.overflow="hidden";
+    };
+
+    var acookie=document.cookie.split("; ");
+                function getck(sname)
+                {//获取单个cookies
+                for(var i=0;i<acookie.length;i++){
+                var arr=acookie[i].split("=");
+                if(sname==arr[0]){
+                if(arr.length>1)
+                return unescape(arr[1]);
+                else
+                return "";}}
+                return "";
+
+
+
+
+}
+</script>
+
+
+
+
+
+
+
 </body>
 </html>
