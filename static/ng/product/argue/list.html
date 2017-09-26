@@ -39,9 +39,9 @@
         .headerH1 {
 
             margin: 8px 8px;
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.5;
-            color: #333;
+            color: #337AB7;
 
         }
         .main-container:before {
@@ -114,12 +114,13 @@
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
+    <script src="/static/assets/js/bootstrap.min.js"></script>
     <script src="/static/js/ejs.js"></script>
     <script src="/static/js/product/bootbox.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-                var streamID=[];
+                var streamID={};
                 var flag = getCookie('cookie_prompt');
                 if(flag){
                     $("#newHtmlBox").css('display','none');
@@ -159,7 +160,7 @@
 					postData:{"name": "list"},
 					datatype: "json",
 					mtype:"POST",
-					colNames:['id','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
+					colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
 					colModel:[
 						{name:'id' , width:107,align:'center'},
 
@@ -236,7 +237,8 @@
                 }
                 for ( var i=0;i<row.length ;i++){
                     id = row[i].id;
-                    streamID.push(row[i].Stream_ID);
+                    streamID[id]=row[i].Stream_ID;
+
                     temp=document.getElementById("canshu"+id);
                     $(temp).parents('td').removeAttr('title');
                     if (rows.check_state >= 1) {

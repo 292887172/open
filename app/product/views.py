@@ -251,7 +251,9 @@ def product_main(request):
     def save_app(app, opera_data):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
+        update_app_protocol(app)
         app.save()
+
 
     def post():
         # 根据ID获取到数据库中的设备配置信息
@@ -389,6 +391,8 @@ def product_main(request):
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
                                       app_command, app_device_value, app_group, app_factory_uid)
+                if ret:
+                    update_app_protocol(app)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
