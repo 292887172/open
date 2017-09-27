@@ -83,11 +83,11 @@ h5.mui-content-padded:first-child {
 
 .mui-poppicker {
     background: #f7f7f7;
-    bottom: 110px;
+    bottom: 100px;
     opacity: 0;
 }
 .mui-poppicker.mui-active{
-    bottom: 110px;
+    bottom: 300px;
     opacity: 1;
 
 }

@@ -8,7 +8,7 @@
 .mui-btn {
     font-size: 16px;
     padding: 8px;
-    margin: 3px;
+    margin: 60px;
 }
 .mui-android-5-1 .mui-poppicker{
     bottom:-340px
@@ -53,11 +53,11 @@ h5.mui-content-padded:first-child {
 
 .mui-poppicker {
     background: #f7f7f7;
-    bottom: 0px;
+    bottom:40px;
     opacity: 0;
 }
 .mui-poppicker.mui-active{
-    bottom: 0px;
+    bottom: 40px;
     opacity: 1;
 
 }
@@ -76,14 +76,14 @@ h5.mui-content-padded:first-child {
 }
 
 .mui-poppicker {
-    height: 280px;
+    height: 260px;
 
 }
 
 .mui-poppicker-header {
     position: relative;
     top: -3px;
-    border-top: 1px solid #ddd;
+
 }
 
 .mui-poppicker-btn-ok {
@@ -97,10 +97,10 @@ h5.mui-content-padded:first-child {
 }
 
 .mui-poppicker-header .mui-btn {
-    width: 40%;
-    height: 40px;
+    width: 20%;
+    height: 30px;
     border-radius: 20px;
-    margin-top: -20px;
+    margin-top: -60px;
     font-size: 15px;
     border: 0px;
 }
