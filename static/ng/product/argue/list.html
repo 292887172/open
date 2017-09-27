@@ -356,7 +356,8 @@
                     title : '<span class="text-info">是否删除该功能</span> <button type="button" onclick="fun_close()">&times;</button>',
                     content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #4d9ee6;border-color: #45a2fe;margin-left: 20px;color: #fff;">确认</button>'
                   });
-                $("#del-info"+id).popover('show');
+			    $(".del-info").popover('hide');
+                $("#del-info"+id).popover('toggle');
 			}
 			function delete_fun(id) {
 			    post_data = {'name':'del', 'id':id};
