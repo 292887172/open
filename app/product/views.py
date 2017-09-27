@@ -204,9 +204,6 @@ def product_main(request):
     :param request:
     :return:
     """
-
-
-
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
@@ -226,9 +223,7 @@ def product_main(request):
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
-        developer_account=request.user.developer.developer_account
-
-
+        developer_account = request.user.developer.developer_account
         app = user_apps
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
@@ -253,7 +248,6 @@ def product_main(request):
         app.device_conf = json.dumps(opera_data)
         update_app_protocol(app)
         app.save()
-
 
     def post():
         # 根据ID获取到数据库中的设备配置信息
