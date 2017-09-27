@@ -18,7 +18,7 @@ class Message(models.Model):
     # 消息接收者
     message_target = models.CharField(max_length=64, db_column='ebf_message_target')
     # 是否阅读
-    is_read = models.IntegerField(max_length=2, default=0, db_column='ebf_is_read')
+    is_read = models.IntegerField(max_length=2, default=0, db_column='ebf_message_is_read')
     # 创建时间
     create_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_message_create_date')
     # 更新时间

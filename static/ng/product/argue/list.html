@@ -250,9 +250,8 @@
                     if (rows.check_state >= 1) {
                     document.getElementById("state-temp"+id).setAttribute('disabled','true');
                     document.getElementById("edit-info"+id).removeAttribute('href');
-                    document.getElementById("forbiden-info"+id).innerHTML="恢复";
-                    document.getElementById("forbiden-info"+id).removeAttribute('onclick');
-                    document.getElementById("forbiden-info"+id).removeAttribute('href');
+
+
                     document.getElementById("del-info"+id).removeAttribute('onclick');
                     document.getElementById("del-info"+id).removeAttribute('href');
                 }
@@ -273,7 +272,6 @@
             }
 			function state(id) {
 			    post_data = {'name':'state','id':id};
-
 			    $.ajax({
                    url:"#/argue",
                     type:"POST",
@@ -283,7 +281,6 @@
                        if(data=='change_success'){
                            alert("修改成功");
                        }
-
                         },
                     error:function (data) {
                         alert("修改失败");
@@ -302,7 +299,7 @@
                 bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
-                        form.ation = '#/argue';
+                        form.action = '#/argue';
                         form.method = 'post';
                         form.style = "display: none";
                         var input = document.createElement("input");
