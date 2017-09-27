@@ -51,7 +51,7 @@ def product_list(request):
                 result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                 result.app_logo = APP_LOGO[i]
                 result.save()
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -128,7 +128,7 @@ def product_add(request):
     )
 
     def get():
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -212,7 +212,7 @@ def product_main(request):
         res = request.GET.get("res", "")
         if res:
             return HttpResponse(res)
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
