@@ -51,7 +51,7 @@ def product_list(request):
                 result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                 result.app_logo = APP_LOGO[i]
                 result.save()
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -128,7 +128,7 @@ def product_add(request):
     )
 
     def get():
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -204,15 +204,12 @@ def product_main(request):
     :param request:
     :return:
     """
-
-
-
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
         if res:
             return HttpResponse(res)
-        if not request.user.is_developer:
+        if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -226,9 +223,7 @@ def product_main(request):
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
-        developer_account=request.user.developer.developer_account
-
-
+        developer_account = request.user.developer.developer_account
         app = user_apps
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
@@ -251,6 +246,7 @@ def product_main(request):
     def save_app(app, opera_data):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
+        update_app_protocol(app)
         app.save()
 
     def post():
@@ -389,6 +385,8 @@ def product_main(request):
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
                                       app_command, app_device_value, app_group, app_factory_uid)
+                if ret:
+                    update_app_protocol(app)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":

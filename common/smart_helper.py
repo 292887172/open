@@ -1,3 +1,5 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
 import logging
 
 import pymysql
@@ -5,6 +7,7 @@ import json
 from base.connection import SysMysqlHandler
 from base.crypto import md5_en
 from util.export_excel import deal_json
+
 
 def check_user_password(user, password):
     """
@@ -63,13 +66,13 @@ def update_app_protocol(app):
                   "ebf_pc_conf," \
                   "ebf_pc_create_date," \
                   "ebf_pc_secret) "
-            sql += "VALUES('%s','%s','%s','%s','%s','%s','%s')"%(app.app_factory_uid, app.app_device_type,
-                                                                 app.app_model, key_value, device_conf, app.app_create_date,
-                                                                 app.app_appsecret)
+            sql += "VALUES(%s,%s,%s,%s,%s,%s,%s)"
+            args = [app.app_factory_uid, app.app_device_type, app.app_model, key_value, device_conf, app.app_create_date, app.app_appsecret]
         else:
-            sql = "UPDATE ebt_protocol_conf SET ebf_pc_factory_uid='%s', ebf_pc_device_type='%s', ebf_pc_device_model='%s', ebf_pc_conf='%s', ebf_pc_create_date='%s', ebf_pc_secret='%s' WHERE ebf_pc_device_key='%s'"%\
-                  (app.app_factory_uid, app.app_device_type,app.app_model, device_conf, app.app_create_date,app.app_appsecret, key_value)
-        cursor.execute(sql)
+            sql = "UPDATE ebt_protocol_conf SET ebf_pc_factory_uid=%s, ebf_pc_device_type=%s, ebf_pc_device_model=%s, ebf_pc_conf=%s, ebf_pc_create_date=%s, ebf_pc_secret=%s WHERE ebf_pc_device_key=%s"
+            args = [app.app_factory_uid, app.app_device_type, app.app_model, device_conf,
+                    app.app_create_date, app.app_appsecret, key_value]
+        cursor.execute(sql, args)
         conn.commit()
         res = True
     except Exception as e:
@@ -79,6 +82,7 @@ def update_app_protocol(app):
     finally:
         conn.close()
     return res
+
 
 def get_device_type(device_type):
     """
@@ -245,7 +249,3 @@ def check_factory_uuid(factory_name, factory_uuid):
         conn.close()
     return status
 
-
-if __name__ == '__main__':
-    r = get_factory_list()
-    print(r)

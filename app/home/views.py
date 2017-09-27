@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import codecs
 import json
-
+from base.const import ConventionValue
 from django.shortcuts import render, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 import markdown
 from model.center.doc_menu import DocMenu
-
-from open import settings
+_convention = ConventionValue()
 
 
 def home(request):
@@ -15,7 +15,8 @@ def home(request):
 
 
 def guide(request):
-
+    if request.user.account_type == _convention.USER_IS_ADMIN:
+        return HttpResponseRedirect(reverse("admin_center"))
     return render(request, "home/guide.html", locals())
 
 
