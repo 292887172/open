@@ -116,7 +116,7 @@
                 var t = setInterval(function () {
                     if (count <= 0) {
                         clearInterval(t);
-                        window.location.href = '/'
+                        window.location.href = '/guide'
                     } else {
                         count -= 1;
                         $('#ui-time-text').text(count);
@@ -127,7 +127,7 @@
             set_time(5);
             {% endif %}
             $("#btnBack").click(function(){
-                window.location.href = '/'
+                window.location.href = '/guide'
             });
             $("#btnComplete").click(function(){
                 window.location.href = '/center'

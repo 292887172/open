@@ -254,7 +254,7 @@ def register(request):
         code = request.POST.get('code', None)
         rg = request.POST.get('rg', '')
         dproducts = request.POST.get('dproducts', "")
-        team_persons = request.POST.get('persons', 1)
+        team_persons = request.POST.get('persons', "")
         expertise = request.POST.get('expertise', "")
         sproducts = request.POST.get('sproducts', "")
         intent = request.POST.get('intent', "")
