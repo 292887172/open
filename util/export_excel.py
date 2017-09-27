@@ -99,6 +99,10 @@ def deal_json(app):
         i['unit'] = data['corpMark']
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
+        if data['paramType'] == 1:
+            i['type'] = 'int'
+        else:
+            i['type'] = 'enum'
         if str(data["isControl"]) == '1':
             i['permission'] = '777'
             j['permission'] = "读写"
