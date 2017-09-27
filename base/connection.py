@@ -59,7 +59,7 @@ class MysqlHandler(object):
                                     user=MYSQL_USER,
                                     passwd=MYSQL_PWD,
                                     db=MYSQL_DB,
-                                    charset='UTF8',
+                                    charset='utf8',
                                     cursorclass=pymysql.cursors.DictCursor)
 
 
@@ -76,7 +76,7 @@ class SysMysqlHandler(object):
                                     user=MYSQL_USER_SYS,
                                     passwd=MYSQL_PWD_SYS,
                                     db=MYSQL_DB_SYS,
-                                    charset='UTF8',
+                                    charset='utf8',
                                     cursorclass=pymysql.cursors.DictCursor)
 
 
