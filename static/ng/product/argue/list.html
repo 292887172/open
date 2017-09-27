@@ -74,6 +74,9 @@
      .ui-jqgrid .ui-jqgrid-bdiv{
          z-index: 0;
      }
+     .modal{
+             top: 200px;
+     }
     </style>
     <div class="main-container">
         <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
@@ -85,8 +88,8 @@
             <h1 class="headerH1">tips</h1>
             <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
             <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
-            <h1 class="headerH1">3.若是单指令帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
-            <h1 class="headerH1">4.全指令帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
+            <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
+            <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
             <img src="/static/image/product/Prompt.jpg">
          </div>
         <div id="show-no-data"></div>
@@ -200,7 +203,7 @@
 						},
 						{name:'operation', width:150,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a href='#/argue' id='del-info"+rowObject.id+"' style='color:#337ab7' onclick='del(\""+rowObject.id+"\")'>删除</a> | <a href='#/argue' id='forbiden-info"+rowObject.id+"' style='color:#337ab7' onclick='ban(\""+rowObject.id+"\")'>禁用</a>";
+                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a role='button' rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
 						}
 						}
 					],
@@ -230,11 +233,14 @@
 							});
 	        },
             loadComplete:function (rows) {
+                $("[data-toggle='popover']").popover();
                 row = rows.rows;
                 if(row.length==0){
                     $("#grid-table").jqGrid( 'setGridHeight', 'auto');
                     $("#show-no-data").text("该产品您还没有添加参数");
                 }
+
+
                 for ( var i=0;i<row.length ;i++){
                     id = row[i].id;
                     streamID[id]=row[i].Stream_ID;
@@ -296,7 +302,7 @@
                 bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
-                        form.action = '#/argue';
+                        form.ation = '#/argue';
                         form.method = 'post';
                         form.style = "display: none";
                         var input = document.createElement("input");
@@ -329,14 +335,33 @@
                     document.getElementById("del-info"+id).removeAttribute('href');
                     document.getElementById("del-info"+id).removeAttribute('onclick');
                     document.getElementById("state-temp" + id).setAttribute('disabled','true');
-
-
                 }
 			}
+            $('body').click(function (event) {
+                var target = $(event.target);
+                if (!target.hasClass('popover')
+                        && !target.hasClass('popover-content')
+                        && !target.hasClass('popover-title')
+                        && !target.hasClass('arrow')
+                        && !target.hasClass('del-info')
+                        &&!target.hasClass('text-info')) {
+                    $('.del-info').popover('hide');
+                }
+            });
 			function del(id){
-			     post_data = {'name':'del', 'id':id};
-			     if(confirm("真的要删除该功能吗？")){
-			         $.ajax({
+			    $(".del-info").popover({
+                    trigger:'manual',
+                    placement: 'left',
+                    html: 'true',
+                    title : '<span class="text-info">是否删除该功能</span> <button type="button" onclick="fun_close()">&times;</button>',
+                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #4d9ee6;border-color: #45a2fe;margin-left: 20px;color: #fff;">确认</button>'
+                  });
+			    $(".del-info").popover('hide');
+                $("#del-info"+id).popover('toggle');
+			}
+			function delete_fun(id) {
+			    post_data = {'name':'del', 'id':id};
+                    $.ajax({
                         url:"#/argue",
                         type: "POST",
                         data: post_data,
@@ -353,6 +378,7 @@
                         }
                     });
                 }
-
-			}
+                function fun_close() {
+                    $('.del-info').popover('hide');
+                }
 		</script>
