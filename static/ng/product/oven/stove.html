@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class="mui-control">
+<html lang="en" class="mui-control" style="width: 690px;height: 430px;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,29 +12,24 @@
         [v-cloak] {
             display: none;
         }
-        .main_right{ background-color: white; margin-top: 30px;}
-        .zhong_background{background-image: url("border.png");
-        background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
-        margin-top: 50px;
-        height: 450px;width: 98%;}
-        .jcz_header{font-size: 17px; color: white;background-color: #1f1d1d;  margin-left:-15px;margin-top: 20px; font-weight: inherit;}
-        .left-navl{height: 30px;width: 40px; background-color: #1f1d1d;}
+        .zhong_background{ background-image: url("border.png");
+           background-repeat:no-repeat;background-size:100% 100%;-moz-background-size:100% 100%;height:450px;width:670px;position: absolute;}
     </style>
 </head>
-<body style="background: white;width: 700px;height:450px;" >
+<body style="background-color: white;">
 <script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 </body>
 <script>
-    var userID = '' // 用户id
-    window.onload = function () {
+      var userID = '' // 用户id
+      window.onload = function MyAutoRun() {
       var a = getck('COOKIE_USER_ACCOUNT')
-        console.log(a)
-        userID = 'test'+a
-        document.body.style.overflow="hidden";
+          console.log(a)
+          userID = 'test'+a
+          document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
     }
-    var acookie=document.cookie.split("; ");// 获取cookie
+      var acookie=document.cookie.split("; ");// 获取cookie
                 function getck(sname)
                 {//获取单个cookies
                 for(var i=0;i<acookie.length;i++){
@@ -47,7 +40,6 @@
                 else
                 return "";}}
                 return "";
-                    <!-- js生成二维码方法-->
 }
 </script>
 <script src="/static/demo/js/vue.min.js"></script>
@@ -56,51 +48,45 @@
 <script src="/static/demo/js/jquery.min.js"></script>
 <script src="/static/demo/js/collect.js"></script>
 <script src="/static/demo/js/mui.min.js"> </script>
-        <div class="main_right">
-            <div class="zhong_background">
-                <div style=" float:left;margin-top:42px;width: 86%;margin-left: 46px; height: 352px;background-color: #1f1d1d;">
-                    <div class="mui-content" id="DeviceConf" v-cloak="">
-                        <div class="mui-content-padded">
-                            <h1 class="jcz_header">集成灶100056</h1>
-                        </div>
-
-                        <div class="mui-left">
-                            <div class="mui-row">
-                                <div class="mui-col-sm-9">
-                                    <div class="left-navl">
-                                        <img  width="50" height="50" style="margin-top: 0px;margin-left: 80px;" src="/static/demo/img/icon_stove_num_low.png">
-                                        <p id="timer" style="font-size: 4rem;color: #ff6202;left: -5%;margin-top: 30px;margin-left: 40px;">{{ danger }}<br> </p>
-                                        <p style="  font-size: 12px;top: 37px;width: 70px;color: white;margin-top: 25px;margin-left: 45px;">炉灶风险值</p>
-                                    </div>
-
-                                </div>
-                                <div class="mui-col-sm-9">
-                                    <div>
-                                        <h1 id="setTime" style="color:whitesmoke;font-size: 2rem; font-weight: 100;margin-top:120px;margin-bottom: 20px; margin-left: 40px;">{{ minute }}:{{ second }}</h1>
-                                        <p style="margin-left: 40px;color:white;font-size: 13px;width: 80px; margin-top: -10px;">持续工作时间</p>
-                                    </div>
+         <div class="zhong_background">
+            <div style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute;">
+                <div class="mui-content" id="DeviceConf" v-cloak="">
+                    <div class="mui-content-padded">
+                        <h1 class="jcz_header">集成灶100056</h1>
+                    </div>
+                    <div class="mui-left">
+                        <div class="mui-row">
+                            <div class="mui-col-sm-9">
+                                <div class="left-navl">
+                                    <img  width="50" height="50" style="margin-top: 0px;margin-left: 80px;" src="/static/demo/img/icon_stove_num_low.png">
+                                    <p id="timer" style="font-size: 4rem;color: #ff6202;left: -5%;margin-top: 30px;margin-left: 40px;">{{ danger }}<br> </p>
+                                    <p style="  font-size: 12px;top: 37px;width: 70px;color: white;margin-top: 25px;margin-left: 45px;">炉灶风险值</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mui-right">
-                            <ul class="mui-table-view mui-grid-view mui-grid-9" style="border-left: 1px solid hsla(0,0%,100%,.2)" >
-                                <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList" style="margin-top: 20px;">
-                                    <div @click="sendCommand(f.name,f.value)" class="mui-div-botton" style="height: 72px;width:72px;">
-                                        <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
-                                        <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']" style="width: 40px;height: 40px;"></span>
-                                        <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body" >{{ f.title }}</div>
-                                        <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']" style="font-size: 14px;margin-top: 5px;">{{ f.title }}</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <div class="mui-col-sm-9">
+                    <div>
+                        <h1 id="setTime" style="color:whitesmoke;font-size: 2rem; font-weight: 100; margin-bottom: 20px; margin-left: 40px;">{{ minute }}:{{ second }}</h1>
+                        <p style="margin-left: 40px;color:white;font-size: 13px;width: 80px; margin-top: -10px;">持续工作时间</p>
                     </div>
                 </div>
             </div>
-       </div>
-    </div>
-</div>
-
+        </div>
+            <div class="mui-right">
+                <ul class="mui-table-view mui-grid-view mui-grid-9" style="border-left: 1px solid hsla(0,0%,100%,.2)" >
+                    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList" style="margin-top: 20px;">
+                        <div @click="sendCommand(f.name,f.value)" class="mui-div-botton" style="height: 72px;width:72px;">
+                            <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
+                            <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']" style="width: 40px;height: 40px;margin-top: 3px;"></span>
+                            <div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body" >{{ f.title }}</div>
+                                <div v-else="reversedWidget(f.widget, 'other')" class="mui-media-body" :class="[f.value?'mui-media-body-c':'']" style="font-size: 14px;margin-top: 0px;">{{ f.title }}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            </div>
+         </div>
+     </div>
 <script src="/static/js/orbited/Orbited.js"></script>
 <script src="/static/js/orbited/stomp.js"></script>
 <script>
@@ -380,45 +366,11 @@
             }
         }
 </script>
-
-
-
 <script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-
-
 <script>
 
-    window.onload = function () {
-      var a = getck('COOKIE_USER_ACCOUNT');
 
-
-        document.body.style.overflow="hidden";
-    };
-
-    var acookie=document.cookie.split("; ");
-                function getck(sname)
-                {//获取单个cookies
-                for(var i=0;i<acookie.length;i++){
-                var arr=acookie[i].split("=");
-                if(sname==arr[0]){
-                if(arr.length>1)
-                return unescape(arr[1]);
-                else
-                return "";}}
-                return "";
-
-
-
-
-}
 </script>
-
-
-
-
-
-
-
 </body>
 </html>
