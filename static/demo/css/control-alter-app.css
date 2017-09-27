@@ -37,7 +37,7 @@ body{
 .mui-div-botton{
     border: 1px solid #343338;
     height: 60px;
-    width: 70px;
+    width: 60px;
     background-color:#343338;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1), 0px 6px 22px rgba(0, 0, 0, .7);
@@ -47,7 +47,7 @@ body{
 }
 .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
     color: #bbb;
-    font-size: 18px;
+    font-size: 15px;
     height: 20px;
     overflow:inherit;
     margin-top: -10%;
@@ -117,17 +117,17 @@ body{
 }
 
 .mui-toast-container{
-    bottom: 160px;
-    left: 37%;
+    bottom: 80px;
+    left: 50%;
 }
 .mui-popup-backdrop{
-    width: 645px;
+    width: 630px;
     height: 425px;
-    top: 54px;
+    top: 5px;
     left: 20px;
     border-radius: 45px;
 }
 .mui-popup{
-    top: 46%;
-    left: 37%;
+    top: 50%;
+    left: 50%;
 }

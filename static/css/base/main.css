@@ -131,9 +131,9 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .contbox{ border:1px solid #dddddd; background:#FFF;}
 .pd30{ padding:30px;}
 .leftSide{ float:left; width:204px;border:1px solid #dddddd; background:#FFF;margin-bottom: -9999px;padding-bottom: 9999px}
-.rightMain{ float:right; width:972px;background-color: #fff}
+.rightMain{ float:right; width:972px;background-color: #fff;height:704px;border:1px solid #dddddd}
 .box1{min-height:704px;}
-.box2{ border:1px solid #dddddd; background:#FFF; min-height:710px; padding:20px;}
+.box2{  background:#FFF; min-height:710px; padding:20px;}
 
 /*è®¾å¤‡äº’è”*/
 .notEnabled1,.notEnabled2{ position:absolute; top:0; display:inline-block; *display:inline; zoom:1; padding:0 12px; line-height:30px; height:30px; color:#FFF; border-radius:0 0 5px 5px; }
