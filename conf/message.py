@@ -51,7 +51,8 @@ CREATE_FUN = "功能创建"
 UPDATE_FUN = "功能编辑"
 
 # 修改功能状态
-UPDATE_FUN_STATE = "功能启用"
+UPDATE_FUN_OPEN = "功能启用"
+UPDATE_FUN_CLOSE = "功能关闭"
 
 # 删除产品功能
 DEL_FUN = "功能删除"

@@ -36,7 +36,8 @@ def write_zip(e_data, j_data, export_name):
         j_name = write_json(j_data, export_name[1])
         e_name = write_excel(e_data, export_name[1])
         # 本地文件写入zip，重命名，然后删除本地临时文件
-        z_file = zipfile.ZipFile(z_name, 'w')
+        zipFileFullDir = os.getcwd() + '/static/sdk/' + z_name
+        z_file = zipfile.ZipFile(zipFileFullDir, 'w')
         z_file.write(j_name, "TRD.json")
         path = os.getcwd()+"/static/sdk/WIFI设备于53iq智能云通信协议V1.0.docx"
         z_file.write(path, 'WIFI设备于53iq智能云通信协议V1.0.docx')
@@ -45,10 +46,10 @@ def write_zip(e_data, j_data, export_name):
         os.remove(e_name)
         z_file.close()
         # 再次读取zip文件，将文件流返回
-        z_file = open(z_name, 'rb')
+        z_file = open(zipFileFullDir, 'rb')
         data = z_file.read()
         z_file.close()
-        os.remove(z_file.name)
+
         response = HttpResponse(data, content_type='application/zip')
         from urllib import parse
         response['Content-Disposition'] = 'attachment;filename=' + parse.quote(z_name)
@@ -101,7 +102,9 @@ def deal_json(app):
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
             i['type'] = 'int'
-        else:
+        elif data['paramType'] == 3:
+            i['type'] = 'error'
+        elif data['paramType'] == 4:
             i['type'] = 'enum'
         if str(data["isControl"]) == '1':
             i['permission'] = '777'
