@@ -6,6 +6,10 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import markdown
 from model.center.doc_menu import DocMenu
+from common.message_helper import *
+from conf.message import *
+
+from open import settings
 _convention = ConventionValue()
 
 
@@ -83,6 +87,12 @@ def dynamic(request):
     :param request:
     :return:
     """
+    developer_id = request.user.developer.developer_id
+    message = read_user_message(developer_id, USER_TYPE)
+    m = get_sys_message(SYS_SENDER)
+    if not m:
+        save_user_message('', SYS_CONTENT, SYS_TYPE, SYS_SENDER)
+    sys = read_user_message(SYS_SENDER, SYS_TYPE)
     return render(request, 'home/dynamic.html', locals())
 
 

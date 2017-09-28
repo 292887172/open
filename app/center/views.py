@@ -147,7 +147,7 @@ def login(request):
             return render(request, "center/login.html", locals())
     try:
         request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/guide")
-        if request.user.is_developer:
+        if request.user.developer.developer_id:
 
             return HttpResponseRedirect("/product/list")
         elif request.user.account_id:

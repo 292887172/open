@@ -203,7 +203,7 @@
 						},
 						{name:'operation', width:150,align:'center',
 							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a role='button' rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
+                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
 						}
 						}
 					],
@@ -270,7 +270,6 @@
             }
 			function state(id) {
 			    post_data = {'name':'state','id':id};
-
 			    $.ajax({
                    url:"#/argue",
                     type:"POST",
@@ -280,7 +279,6 @@
                        if(data=='change_success'){
                            alert("修改成功");
                        }
-
                         },
                     error:function (data) {
                         alert("修改失败");
@@ -299,7 +297,7 @@
                 bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                     if (result) {
                         var form = document.createElement('form');
-                        form.ation = '#/argue';
+                        form.action = '#/argue';
                         form.method = 'post';
                         form.style = "display: none";
                         var input = document.createElement("input");
