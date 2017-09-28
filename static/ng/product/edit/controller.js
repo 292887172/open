@@ -60,12 +60,8 @@ angular.module('Product.edit', ['ngRoute'])
 								break;
 							}
 						}
-						else if(flag == 'float')
-						{
-							if(parseFloat(data) < min || parseFloat(data) > max){
-								errorType=0;
-								break;
-							}
+						else if (flag == 'error'){
+
 						}
 						else {
 							var temp = 0;
@@ -97,31 +93,19 @@ angular.module('Product.edit', ['ngRoute'])
 					save_mxs(min,max,"int");
 				}
 				else if(types[1].checked){
-					var msg=checkFloat();
-					if(msg.length>0){
-						alert(msg);
-						return;
-					}
-					min=parseFloat($.trim($('#minFloat').val()));
-					max=parseFloat($.trim($('#maxFloat').val()));
-					save_mxs(min,max,"float");
+					var error_value = $.trim($('#errorValue').val());
+					min = '';
+					max = error_value;
+					save_mxs(1,1,'error');
 				}
 				else if(types[2].checked){
-					for(var i=0;i<paramDatas.length;i++) {
-                        var data = $.trim(paramDatas[i].value);
-                        var desc = $.trim(paramDescs[i].value);
-                        mxs.push({data:data,desc:desc});
-                    }
-                    mxsNum=mxs.length+"";
-				}
-				else if(types[3].checked){
 					var enum_value=$.trim($('#maxEnum').val());
 					min ='';
 					max = enum_value;
 					enum_value = enum_value.split(' ');
 					save_mxs(1,1,enum_value);
 				}
-				else if (types[4].checked) {
+				else if (types[3].checked) {
                 	var msg=checkTimer();
 					if(msg.length>0){
 						alert(msg);
@@ -153,13 +137,11 @@ angular.module('Product.edit', ['ngRoute'])
 				if(types[0].checked){
 					indata.paramType=1;//整数
 				}else if(types[1].checked){
-					indata.paramType=2;//浮点数
+					indata.paramType=3;//故障类型
 				}else if(types[2].checked){
-					indata.paramType=3;//字符串
-				}else if(types[3].checked){
 					indata.paramType=4;//枚举
 				}
-				else {
+				else if(types[3].checked){
 					indata.paramType=5;//定时型
 				}
 				indata.mxs=mxs;
