@@ -14657,3 +14657,483 @@ TypeError: get() missing 1 required positional argument: 'key'
 2017-09-22 16:25:49,207 [Thread-459:140315306489600] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-22 16:26:00,935 [Thread-481:140315298096896] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-22 16:27:45,737 [Thread-503:140315633641216] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 13:28:44,046 [Thread-68:10120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 13:33:43,362 [Thread-142:16708] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 13:34:45,808 [Thread-162:7144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 13:36:40,017 [Thread-178:18328] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:42:18,855 [Thread-179:2696] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:42:26,086 [Thread-180:18896] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:42:32,903 [Thread-181:4880] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:42:39,917 [Thread-182:12548] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:42:51,181 [Thread-183:18480] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:43:13,435 [Thread-193:2520] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:46:44,272 [Thread-203:8088] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:47:30,320 [Thread-204:1076] [django.request:231] [ERROR]- Internal Server Error: /center/login
+Traceback (most recent call last):
+  File "E:\open\common\account_helper.py", line 103, in update_user_login_data
+    al = AutoLogin.objects.get(al_account_id=user_id)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\db\models\query.py", line 357, in get
+    self.model._meta.object_name)
+model.center.auto_login.DoesNotExist: AutoLogin matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\open\app\center\views.py", line 137, in login
+    update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
+  File "E:\open\common\account_helper.py", line 110, in update_user_login_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 144, in login
+    print(e)
+OSError: [Errno 22] Invalid argument
+2017-09-25 13:47:58,105 [Thread-29:7564] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:38:49,096 [Thread-1003:8112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:39:09,063 [Thread-1054:9672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:42:06,157 [Thread-1203:17136] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-25 14:42:09,738 [Thread-1209:18764] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-25 14:46:45,809 [Thread-1272:10028] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:47:01,775 [Thread-1311:14328] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 14:54:37,739 [Thread-1387:10184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:57:39,965 [Thread-1453:7676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 14:59:29,387 [Thread-1535:19288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:02:32,140 [Thread-1557:3544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:09:31,774 [Thread-1574:12108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:12:31,912 [Thread-1601:18540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:16:28,024 [Thread-1619:2360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:17:20,837 [Thread-1695:17068] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:17:21,115 [Thread-1696:11028] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:19:36,292 [Thread-1768:17592] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:22:59,548 [Thread-1793:18540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:23:12,248 [Thread-1818:10420] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:30:21,833 [Thread-1919:16708] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 15:31:13,059 [Thread-1958:2616] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:36:00,151 [Thread-1990:3912] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:36:50,683 [Thread-2019:13052] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:39:57,491 [Thread-2052:14300] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:40:27,736 [Thread-2083:15524] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:41:07,640 [Thread-2114:10856] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:41:24,854 [Thread-2145:4572] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:41:48,731 [Thread-2174:16444] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:45:19,733 [Thread-2205:6544] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:46:25,787 [Thread-2236:3540] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:48:16,191 [Thread-2267:15172] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:48:39,534 [Thread-2298:17724] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:50:29,952 [Thread-2331:7940] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:51:34,711 [Thread-2360:18616] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:52:07,608 [Thread-2393:12700] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:52:40,631 [Thread-2422:14056] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:54:02,012 [Thread-2455:17916] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:56:32,701 [Thread-2486:3280] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:57:37,880 [Thread-2517:3728] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:58:19,849 [Thread-2546:8252] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 15:59:54,772 [Thread-2577:10584] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 16:01:18,397 [Thread-2608:7564] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 16:02:48,983 [Thread-2639:15972] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 16:05:04,014 [Thread-2670:4556] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 16:05:49,303 [Thread-2703:16076] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 16:07:04,671 [Thread-2734:18512] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 17:55:30,499 [Thread-2766:14860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 17:57:09,803 [Thread-2811:5056] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:02:35,907 [Thread-30:13276] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:02:58,028 [Thread-47:1172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:03:34,281 [Thread-96:2224] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:06:31,406 [Thread-127:17748] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:07:08,245 [Thread-158:17560] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:09:48,584 [Thread-189:15464] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:12:42,316 [Thread-222:15920] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-25 18:25:38,027 [Thread-315:15812] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:30:06,639 [Thread-317:14388] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:30:50,394 [Thread-332:14860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:33:36,030 [Thread-334:3700] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:33:53,692 [Thread-353:16196] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:35:14,859 [Thread-375:7452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:35:15,064 [Thread-376:12540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:36:12,993 [Thread-399:13716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:39:02,828 [Thread-423:14704] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:39:14,434 [Thread-449:12096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:39:21,838 [Thread-471:7488] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:47:27,583 [Thread-667:3912] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:48:30,310 [Thread-697:15824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:48:58,573 [Thread-756:2592] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:49:49,031 [Thread-774:11360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:50:19,035 [Thread-839:9896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:50:32,755 [Thread-864:18388] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:50:41,842 [Thread-889:208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:51:42,904 [Thread-945:13356] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:52:06,968 [Thread-1000:6324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:53:10,526 [Thread-1037:15092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 18:54:55,743 [Thread-1055:17760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:17:48,818 [Thread-1080:2876] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:21:58,053 [Thread-1102:12988] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:22:40,890 [Thread-1126:12460] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:37:45,060 [Thread-1146:14496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:41:09,303 [Thread-1167:7412] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:43:54,575 [Thread-1198:16732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:53:38,009 [Thread-1222:18236] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:54:41,848 [Thread-1244:15796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:55:05,765 [Thread-1266:18492] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:56:22,888 [Thread-1309:17608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:57:05,808 [Thread-1328:7120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:57:40,585 [Thread-1349:10856] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:57:49,108 [Thread-1373:14484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-25 19:58:15,775 [Thread-1396:10908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 08:42:29,241 [Thread-65:2580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 08:43:37,417 [Thread-68:15848] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 08:44:27,932 [Thread-82:14732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 08:44:43,515 [Thread-86:2952] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 09:11:18,123 [Thread-19:11040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 09:12:20,122 [Thread-66:13984] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 09:13:04,841 [Thread-84:16248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 09:13:31,507 [Thread-137:13888] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 10:10:21,194 [Thread-489:11244] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 10:13:41,032 [Thread-521:5556] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 10:14:26,204 [Thread-550:11980] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 10:15:20,209 [Thread-581:7512] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 10:22:14,377 [Thread-629:6104] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 10:47:00,656 [Thread-940:11288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 11:04:29,835 [Thread-1120:11528] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 11:25:42,923 [Thread-1331:14916] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 11:26:42,201 [Thread-1366:14104] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 11:30:07,860 [Thread-1400:9192] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 11:31:12,601 [Thread-1434:664] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 11:31:39,663 [Thread-1467:9628] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 13:15:46,613 [Thread-1776:16452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 15:19:07,961 [Thread-42:700] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 15:19:08,593 [Thread-44:1464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 15:24:15,329 [Thread-135:12280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 15:38:05,518 [Thread-14:11724] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 15:42:49,788 [Thread-66:16916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 15:48:35,031 [Thread-142:10884] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 16:01:27,091 [Thread-328:3272] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 17:33:19,134 [Thread-1075:14248] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 17:47:37,094 [Thread-1185:10904] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-26 19:00:54,422 [Thread-1786:11712] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-26 19:48:13,722 [Thread-2247:12096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 08:37:25,321 [Thread-26:1488] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 08:38:55,556 [Thread-64:11692] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 10:54:07,281 [Thread-2954:9636] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 11:10:34,182 [Thread-3085:11712] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 11:10:57,449 [Thread-3142:7176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 11:17:01,129 [Thread-3260:15736] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 11:17:01,876 [Thread-3261:9212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 13:20:58,177 [Thread-108:5032] [django.request:231] [ERROR]- Internal Server Error: /center/logout
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\center\views.py", line 235, in logout
+    account_id = request.user.account_id
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
+    return func(self._wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'account_id'
+2017-09-27 13:20:59,437 [Thread-109:11868] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-27 13:58:47,257 [Thread-33:16408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:00:07,053 [Thread-125:16668] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 14:01:34,260 [Thread-158:15664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:02:28,459 [Thread-214:9936] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-27 14:02:42,582 [Thread-235:10432] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-27 14:02:58,186 [Thread-253:10596] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:03:07,534 [Thread-263:3108] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-27 14:03:23,684 [Thread-279:14976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:04:04,257 [Thread-333:14740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:06:18,312 [Thread-369:17260] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:12:37,558 [Thread-406:4680] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:35:53,183 [Thread-428:17096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:36:01,107 [Thread-451:1088] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:36:26,089 [Thread-474:17192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:38:14,590 [Thread-497:12976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:41:37,948 [Thread-516:15572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:42:22,683 [Thread-538:11888] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:49:58,280 [Thread-565:5576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:50:36,138 [Thread-584:16116] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:52:10,487 [Thread-610:6360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:52:45,017 [Thread-635:9268] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:54:01,475 [Thread-657:6700] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:54:25,664 [Thread-681:17176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:54:38,733 [Thread-705:7652] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:55:22,623 [Thread-727:10044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:56:55,452 [Thread-782:16204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 14:56:55,902 [Thread-783:13800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:00:09,496 [Thread-806:11252] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:00:35,432 [Thread-828:14672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:02:23,774 [Thread-850:6832] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:03:26,147 [Thread-874:15264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:04:25,918 [Thread-897:11616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:04:53,993 [Thread-922:15768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:05:34,750 [Thread-942:14168] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:08:41,972 [Thread-968:14080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:08:56,023 [Thread-988:1136] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:10:55,587 [Thread-1050:11644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:15:34,204 [Thread-1087:15508] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 15:24:25,598 [Thread-1125:4964] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-27 15:24:26,279 [Thread-1126:1172] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-27 15:24:30,771 [Thread-1128:6848] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-27 15:26:43,207 [Thread-1205:15648] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-27 15:44:54,402 [Thread-1308:3944] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 16:12:42,250 [Thread-1731:8984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:38:08,168 [Thread-64:12716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:39:19,391 [Thread-125:12824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:41:31,240 [Thread-186:9924] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:41:47,920 [Thread-235:16160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:42:13,861 [Thread-300:280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 17:43:19,268 [Thread-341:12164] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 17:43:35,255 [Thread-352:2844] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 17:43:50,886 [Thread-363:9660] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-27 17:49:41,924 [Thread-463:9936] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 18:12:33,078 [Thread-21:2844] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 18:17:27,119 [Thread-23:15064] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 18:19:23,065 [Thread-21:7848] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 18:21:04,698 [Thread-23:2892] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 19:09:30,800 [Thread-31:12624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-27 19:09:42,686 [Thread-57:6148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 08:49:58,071 [Thread-14:2860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 08:50:07,626 [Thread-24:11856] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 08:55:33,286 [Thread-3:8284] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 08:59:40,888 [Thread-47:9076] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-09-28 08:59:40,991 [Thread-48:10312] [django.request:143] [WARNING]- Not Found: /static/image/53iq.ico
+2017-09-28 09:05:15,635 [Thread-113:2060] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:06:53,357 [Thread-127:6208] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:07:15,162 [Thread-133:9040] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:07:17,556 [Thread-136:8108] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:09:20,380 [Thread-147:12196] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 09:11:35,000 [Thread-162:6564] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:17:43,998 [Thread-174:1940] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 09:46:33,995 [Thread-23:15444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:02,431 [Thread-3:9728] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:06,738 [Thread-7:11404] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:24,038 [Thread-10:14388] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:31,716 [Thread-13:12272] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:36,202 [Thread-16:11780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:08:51,460 [Thread-29:1752] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:13:06,589 [Thread-6:15224] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:19:01,893 [Thread-30:14716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:20:35,688 [Thread-38:15300] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:20:46,779 [Thread-42:5372] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:20:56,707 [Thread-44:7912] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-09-28 10:22:19,625 [Thread-49:15636] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:24:06,326 [Thread-119:7204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:24:23,479 [Thread-154:13680] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:25:04,037 [Thread-194:11312] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-28 10:25:31,530 [Thread-230:8672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:26:02,617 [Thread-288:11612] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:28:57,434 [Thread-35:6996] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:40:05,293 [Thread-22:15432] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:50:01,073 [Thread-35:12456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:57:42,019 [Thread-35:15800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 10:59:47,249 [Thread-77:14176] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
