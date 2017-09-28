@@ -22,7 +22,8 @@
         }
         .ui-jqgrid-view>.ui-jqgrid-titlebar {
             background: #9EBEE4;
-            width: 972px;
+            width: 937px;
+            margin-top: 20px;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
             background-color: #337ab7;
@@ -78,10 +79,19 @@
              top: 200px;
      }
     </style>
-    <div class="main-container">
-        <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
-        <table id="grid-table">
+    <div class="main-container box2">
+
+        <div class="hl-help">
+
+        <ol class="breadcrumb">
+        <li><a href="/product/list/">产品管理</a></li>
+        <li class="active">定义产品功能</li>
+        </ol>
+    </div>
+        <div class="mt20"></div>
+        <table id="grid-table" >
         </table>
+        <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
         <div id="tips" style="background: #fff">
 
 
@@ -223,11 +233,11 @@
 	        	 	$('.ui-jqgrid-sortable').eq(6).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
-	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
+	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
 
 	        		$("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 	        		$(window).resize(function() {
-							$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width() );
+							$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
                             $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 
 							});
@@ -254,9 +264,9 @@
                     document.getElementById("del-info"+id).removeAttribute('href');
                 }
                 }
-                document.getElementById('grid-table').style.width='972px';
+                document.getElementById('grid-table').style.width='938px';
                 tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
-                tt.style = 'border-left:1px solid #e1e1e1;width:973px';
+                tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
             }
 				});
 			});
