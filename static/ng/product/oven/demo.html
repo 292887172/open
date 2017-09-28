@@ -19,8 +19,14 @@
 </head>
 <body>
 
-<div class="main_header"> <div style="line-height: 55px;margin-left: -5px;">设备管理页面</div></div>
-<div class="main">
+<div class="box2">
+<div class="hl-help">
+         <ol class="breadcrumb">
+            <li><a href="/product/list/">产品管理</a></li>
+            <li class="active">产品体验</li>
+        </ol>
+    </div>
+    <div class="main mt20">
     <div class="main_left">
             <div class="phone_background"></div>
                 <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
@@ -34,6 +40,8 @@
         <iframe id="iframes" name="stove" src="/static/ng/product/oven/stove.html" frameborder="0" width="680px" height="450px" ng-if="params.type=='集成灶'"></iframe>
     </div>
 </div>
+</div>
+
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
 
@@ -71,7 +79,7 @@
 
 setTimeout(function () {
     getQrcode()
-},300)
+},1000)
 
 </script>
 </body>

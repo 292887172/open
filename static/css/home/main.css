@@ -103,7 +103,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .title-sub{ padding:20px 0;height: 80px}
 .title-sub span.none{ border-left:3px solid #808080; color:#808080;}
 .goodsBox{ width:1300px; overflow:hidden;}
-.goods-list{ position:relative; float:left; width:410px; height:238px; padding:10px; margin-right:20px; margin-bottom:20px; background:#FFF;}
+.goods-list{ position:relative; float:left; width:410px; height:200px; padding:10px; margin-right:20px; margin-bottom:20px; background:#FFF;}
 .goods-list:hover{ background:#fcfcfc;}
 .goods-list dl{ height:238px; overflow:hidden;}
 .goods-list dl dt{ position:relative; float:left; width:195px; height:195px; overflow:hidden;}
@@ -120,9 +120,9 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .goods-list dl dd p span{display:inline-block; *display:inline; zoom:1; padding:12px 10px; height:14px; line-height:14px; border:1px solid #808080; border-radius:6px; color:#808080; font-size:12px;}
 .goods-list dl dd p span.highlight{ color:#FFF; background:#dddddd; border:1px solid #dddddd;}
 .goods-list .status{ position:absolute; top:1px; right:0px; line-height:30px; height:30px; padding:0 20px; border-radius: 0 0 3px 3px; color:#FFF;  }
-.goods-list .status.suc{ background:#f39800;}
-.goods-list .status.fail{ background:#c91423;}
-.goods-list .status.unpublish{ background:#c3c8d1;}
+.goods-list .status.suc{ background:initial;color: #f39800}
+.goods-list .status.fail{ background:initial;color:#c91423}
+.goods-list .status.unpublish{ background:initial;}
 
 /*footer*/
 .footer{ width:1200px; margin:50px auto 0; border-top:1px solid #dddddd; text-align:center; padding:20px 0; font-size:12px; color:#666;}
@@ -827,7 +827,7 @@ ol.decimal li p{ line-height:25px; padding:6px 0;}
 .review .dropBox s{ display:inline-block; *display:inline; zoom:1; position:absolute; top:-9px; left:50%; margin-left:-9px; width:18px; height:9px; background:url(../images/icon-all.png) no-repeat; background-position:-160px 0; overflow:hidden; }
 .pd15{ padding:15px;}
 .review .dropBox{ font-size:12px; line-height:25px; color:#666;}
-.goods-list .status{ position:absolute; top:0; right:0px; line-height:30px; height:30px; width:82px; text-align:center; padding:0; border-radius: 0 0 3px 3px; color:#FFF;  }
+.goods-list .status{ position:absolute; font-size:17px;top:10px; right:0px; line-height:30px; height:30px; width:82px; text-align:center; padding:0; border-radius: 0 0 3px 3px; color:#333;  }
 .goods-list .status.pass{ background:#67b537;}
 /*ç½‘å…³é…ç½®Date:2014-04-28*/
 .menuBox ul li a i.icon28{ background-position:-0px -240px;}
