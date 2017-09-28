@@ -20,6 +20,7 @@ from common.app_api_helper import ApiHandler
 from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
+from common.message_helper import save_user_message
 
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
@@ -29,6 +30,7 @@ import json
 import logging
 import os
 from conf.newuserconf import *
+from conf.message import *
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -254,12 +256,12 @@ def product_main(request):
         update_app_protocol(app)
         app.save()
 
-
     def post():
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id=app_id)
         opera_data = []
+        fun_name = ''
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
@@ -288,20 +290,26 @@ def product_main(request):
             del_id = request.POST.get("id")
             for i in range(len(opera_data)):
                 if str(opera_data[i].get("id")) == del_id:
+                    fun_name = opera_data[i]["name"]
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
+            message_content = app.app_name + fun_name + DEL_FUN
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
             for i in opera_data:
                 if str(i['id']) == state_id:
+                    fun_name = i['name']
                     if str(i['state']) == '0':
                         i['state'] = '1'
                     elif str(i['state']) == '1':
                         i['state'] = '0'
                     save_app(app, opera_data)
+                    message_content = app.app_name + fun_name + UPDATE_FUN_STATE
+                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                     return HttpResponse('change_success')
         elif post_data == "export":
             print(type(app_id),app_id)
@@ -324,12 +332,14 @@ def product_main(request):
             indata = json.loads(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
+            fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
                 for i in opera_data:
                     if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
+                message_content = app.app_name + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
@@ -338,8 +348,10 @@ def product_main(request):
                 else:
                     indata['id'] = '1'
                 opera_data.append(indata)
+                message_content = app.app_name + fun_name + CREATE_FUN
                 tt = "add_success"
             save_app(app, opera_data)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse(tt)
 
         # 获取设备列表

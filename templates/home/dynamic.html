@@ -96,8 +96,8 @@
 <div class="box2 relative">
     <div class="hbox">
         <div class="col-lg-12 col-md-12 col-sm-12"><img class="ui-notify-img" src="{% static 'image/center/notify.png' %}">
-            <div class="ui-notify-div"><p style="width: 70%;padding-left: 1%">厨电自助开发平台V1.0发布</p>
-                <p style="width: 19%">2017-090-06</p><span class="ui-span-line"></span>
+            <div class="ui-notify-div"><p style="width: 70%;padding-left: 1%">{{sys.message_content}}</p>
+                <p style="width: 19%">{{ sys.update_date }}</p><span class="ui-span-line"></span>
                 <p style="width: 6%;text-align: center">详细</p></div>
         </div>
 
@@ -108,9 +108,9 @@
     </div>
     <div class="hbox">
         <ul>
-            <li> <p class="hbox-p1">集成灶提交审核<span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">2017-09-06</p> </li>
-            <li> <p class="hbox-p1">森田集成灶最新编辑 <span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">2017-08-16</p> </li>
-            <li> <p class="hbox-p1">开发者资料审核通过</p><p class="hbox-p2">2017-06-27</p> </li>
+            {% for m in message %}
+                <li> <p class="hbox-p1">{{ m.message_content }}<span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">{{ m.update_date }}</p> </li>
+            {% endfor %}
         </ul>
     </div>
 
