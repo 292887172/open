@@ -8,33 +8,38 @@
     <style>
         .main{display: flex;}
         .main_header{width: 95%;height: 55px; border-bottom: 1px silver solid;margin-left: 25px;color:#ff6202;}
-        .main_left{ width:30%; background-color: white;height: 800px;margin-top: 30px;}
-        .main_right{width:70%;height: 600px; margin-top: 30px;}
+        .main_left{ width:30%; background-color: white;height: 604px;margin-top: 30px;}
+        .main_right{margin-top: 70px;}
         .phone_background{background-image: url("/static/image/product/saoma.jpg");background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
-         width: 220px;height: 270px; margin-top: 120px;margin-left: 20px;}
+         width: 230px;height: 270px; margin-top: 120px;margin-left: 20px;}
+        .rightMain{
+            height: 704px;
+        }
     </style>
 </head>
 <body>
-<div class="main_header"> <div style="line-height: 55px;">设备管理页面</div></div>
+
+<div class="main_header"> <div style="line-height: 55px;margin-left: -5px;">设备管理页面</div></div>
 <div class="main">
     <div class="main_left">
             <div class="phone_background"></div>
-            <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
-            <div class="main_left_text">
-                <div style="margin-top: 100px;margin-left: 20px;"><h3>请使用“53iq智能厨房App”，扫码体验手机控制 </h3></div>
-            </div>
+                <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
     </div>
+                <div style="margin-top: 450px;margin-left: 20px;position: absolute;width: 250px;"><h4>请使用“53iq智能厨房App”</h4><h4>扫码体验手机控制 </h4></div>
+
+
     <div class="main_right">
-        <iframe id="iframes" name="oven" src="/static/ng/product/oven/oven.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能烤箱'"></iframe>
-        <iframe id="iframes" name="smoke" src="/static/ng/product/oven/smoke.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='智能油烟机'"></iframe>
-        <iframe id="iframes" name="stove" src="/static/ng/product/oven/stove.html" frameborder="0" width="970px" height="600px" ng-if="params.type=='集成灶'"></iframe>
+        <iframe id="iframes" name="oven" src="/static/ng/product/oven/oven.html" frameborder="0" width="650px" height="430px" ng-if="params.type=='智能烤箱'"></iframe>
+        <iframe id="iframes" name="smoke" src="/static/ng/product/oven/smoke.html" frameborder="0" width="660px" height="440px" ng-if="params.type=='智能油烟机'"></iframe>
+        <iframe id="iframes" name="stove" src="/static/ng/product/oven/stove.html" frameborder="0" width="680px" height="450px" ng-if="params.type=='集成灶'"></iframe>
     </div>
 </div>
 <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
-    //获取cookie 生成二维码
-    window.onload = function () {
-        var a = getck('COOKIE_USER_ACCOUNT')
+
+     //获取cookie 生成二维码
+    function getQrcode() {
+        var a = getCookie('COOKIE_USER_ACCOUNT')
         console.log(a)
         var  b =''
         var ir = document.getElementById('iframes')
@@ -48,22 +53,25 @@
             b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
         }
         content  = b + a;
-        console.log(content)
+        console.log(content);
         jQuery('#qrcode').qrcode({width:100,height:100,text:content});
+
+    };
+
+
+        function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+        if (arr = document.cookie.match(reg))
+
+            return unescape(arr[2]);
+        else
+            return null;
     }
-    var acookie=document.cookie.split("; ");
-                function getck(sname) {//获取单个cookies
-                    for (var i = 0; i < acookie.length; i++) {
-                        var arr = acookie[i].split("=");
-                        if (sname == arr[0]) {
-                            if (arr.length > 1)
-                                return unescape(arr[1]);
-                            else
-                                return "";
-                        }
-                    }
-                    return "";
-                }
-    </script>
+
+setTimeout(function () {
+    getQrcode()
+},1000)
+</script>
 </body>
 </html>
