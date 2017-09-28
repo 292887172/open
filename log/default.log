@@ -17857,33 +17857,9 @@ BrokenPipeError: [Errno 32] Broken pipe
 2017-09-27 19:02:35,746 [Thread-1781:123145484578816] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-27 19:02:49,214 [Thread-1801:123145484578816] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-09-27 19:08:40,411 [Thread-1970:123145484578816] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-27 19:43:18,350 [Thread-3:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-27 19:59:57,131 [Thread-44:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:06:27,413 [Thread-92:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:09:25,877 [Thread-196:123145465286656] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:11:59,553 [Thread-311:123145465286656] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:13:31,707 [Thread-386:123145449521152] [django.request:231] [ERROR]- Internal Server Error: /guide
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/home/views.py", line 18, in guide
-    if request.user.account_type == _convention.USER_IS_ADMIN:
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/utils/functional.py", line 225, in inner
-    return func(self._wrapped, *args)
-AttributeError: 'AnonymousUser' object has no attribute 'account_type'
-2017-09-28 09:13:31,950 [Thread-387:123145454776320] [django.request:143] [WARNING]- Not Found: /favicon.ico
-2017-09-28 09:13:34,953 [Thread-413:123145465286656] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:13:54,945 [Thread-479:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:14:30,977 [Thread-496:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:14:38,633 [Thread-506:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:15:27,890 [Thread-547:123145465286656] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:21:43,354 [Thread-703:123145465286656] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:25:30,457 [Thread-840:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:25:37,482 [Thread-860:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:29:01,345 [Thread-880:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:30:08,316 [Thread-890:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:32:45,253 [Thread-958:123145449521152] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:36:26,331 [Thread-977:123145460031488] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:36:53,186 [Thread-989:123145460031488] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:37:29,464 [Thread-1006:123145460031488] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-09-28 09:45:58,659 [Thread-13:123145360875520] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 11:21:52,588 [Thread-22:7932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 11:27:00,596 [Thread-25:16336] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-09-28 11:27:21,843 [Thread-38:16868] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-28 11:32:09,423 [Thread-68:12740] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-28 11:38:07,993 [Thread-81:12276] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-09-28 11:38:57,143 [Thread-112:12728] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
