@@ -32,15 +32,22 @@
             }
 		</style>
 
-		<div class="main-container ace-save-state" id="main-container">
+		<div class="main-container ace-save-state box2" id="main-container">
+            <div class="hl-help">
+
+                <ol class="breadcrumb">
+                <li><a href="/product/list/">产品管理</a></li>
+                <li><a href="#/argue">定义产品功能</a></li>
+                <li class="active">添加新功能</li>
+                </ol>
+            </div>
+        <div class="mt20"></div>
 			<div class="main-content">
 				<div class="main-content-inner">
 
-					<div class="page-content" style="padding-top:15px">
-						<span class="help-button">?</span>
-						<a  class="addButton">了解如何填写参数</a>
-						<div style="float:right;margin-top: 10px"><a class="addButton" href="#/argue">取消并返回</a></div>
-						<div class="page-header" style="padding-bottom: 6px;"></div>
+					<div class="page-content" style="padding-top:20px">
+
+
 						<h1 class="headerH1">参数信息</h1>
 						<div class="space-6"></div>
 						<div class="row">
@@ -51,21 +58,21 @@
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
-											<br><br><div id="checkName" style="color:red;display:none"></div>
+											<br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
 										</div>
 									</div>
                                     <div class="form-group">
                                         <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="由大写字母、或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
-											<br><br><div id="checkID" style="color:red;display:none;"></div>
+											<br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
 										</div>
 									</div>
                                     <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位8bits) </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
-											<br><br><div id="checkLength" style="color:red;display:none"></div>
+											<br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
 										</div>
 									</div>
                                         <div class="form-group">
@@ -225,7 +232,7 @@
 									<div class="clearfix form-actions" style="margin-bottom:-15px;background-color: initial">
 										<div class="col-sm-2 col-xs-2"></div>
 
-										<div class="col-sm-3 col-xs-6">
+										<div class="col-sm-5 col-xs-6">
 											<button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
 												<i  class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>&nbsp
 
