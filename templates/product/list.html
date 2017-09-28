@@ -151,12 +151,12 @@
         height: auto;
     }
     .goods-list dl dd{
-        margin-left: 100px;
+        margin-left: 85px;
         padding-top: 6px;
     }
     .goods-list dl dt img{
-        width: 80px;
-        height: 85px;
+        width: 70px;
+        height: 75px;
         margin-top: 4px;
     }
     .goods-list dl dd .goods-title{
@@ -169,7 +169,7 @@
     }
     .product-info-p{
         float: left;
-        width: 50%;
+        width: 81%;
     }
     .goods-list dl dd.ui-control{
         padding-top: 85px;
@@ -181,7 +181,7 @@
     text-align: center;
     }
     .product-info-div{
-        margin-top: 15px;
+        margin-top: 5px;
     }
     .left div.ui-demo{
         cursor:pointer;border: 1px solid #fff;color:#fff;height: 30px;width: 100px;margin-top: 22px;margin-left: 55px;float: left;text-align:center;line-height: 22px
@@ -225,7 +225,7 @@
         background: #59B784;
     }
     .progress{
-        width: 260px;
+        width: 350px;
 
         margin: auto;
         height: 43px;
@@ -233,14 +233,14 @@
         background-color: initial;
         border-radius: 0;
         position: relative;
-        left: -55px;
+
     }
     .progress li {
     text-align: center;
     font-size: 14px;
     color: #B6B6B6;
         float: left;
-        width: 85px;
+        width: 75px;
 }
      .progress li a{
          color: #2980b9;
@@ -263,7 +263,7 @@
     border-radius: 50%;
 
         margin-top: -23px;
-    margin-left: -20px;
+    margin-left: -3px;
 }
     .progress li.cur span {
     background: rgba(75, 141, 229, 0.3);
@@ -291,10 +291,13 @@
     left: -10px;
     top: 0;
 }
+    .progress li.prog_c a{
+    color: #333;
+}
     .progress li.prog_d {
     position: relative;
-    left: 115px;
-        top: -20px;
+    left: -45px;
+        top: 0px;
     float: right;
 }
     </style>
@@ -349,7 +352,7 @@
     </div>
 </div>
 
-    <div class="wrapper wrapper2 mt20">
+    <div class="wrapper mt20">
         <!-- 已发布的产品 -->
     <div class="_22y_index_new" data-reactid="86">
     <p class="_2wZ_index_new-list-title"><span>常用模板，快速创建方案</span></p>
@@ -461,7 +464,7 @@
             {% endif %}
             {% for app in published_apps %}
                 <div class="goods-list" >
-                <div class="status bg-success">已发布</div>
+
                 <dl>
                     <dt>
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -472,15 +475,16 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}</p>
+                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label style="float: right;color: #1ab667">已发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
                         <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a>&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a>&nbsp;&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
-                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a></li>
+                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
+
                         </ul>
                     </dd>
                 </dl>
@@ -489,7 +493,6 @@
 
             {% for app in publishing_apps %}
                 <div class="goods-list" >
-                    <div class="status suc">审核中</div>
                     <dl>
                         <dt>
                             <a href="/product/main?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -500,15 +503,16 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}</p>
+                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label style="float: right;color: #f39800">审核中</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
                         <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a>&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a>&nbsp;&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
-                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a></li>
+                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
+
                         </ul>
                     </dd>
                     </dl>
@@ -516,7 +520,6 @@
             {% endfor %}
             {% for app in unpublished_apps %}
                  <div class="goods-list">
-                <div class="status unpublish">未发布</div>
                 <dl>
                     <dt>
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -528,15 +531,16 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}</p>
+                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label style="float: right;color: #333">未发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
                         <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a>&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a>&nbsp;&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label></li>
-                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
-                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a></li>
+                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
+
                         </ul>
                     </dd>
                 </dl>
@@ -544,7 +548,7 @@
             {% endfor %}
             {% for app in failed_apps %}
                  <div class="goods-list" style="">
-                    <div class="status fail">未通过</div>
+
                     <dl>
                         <dt>
                             <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标"></a>
@@ -556,15 +560,16 @@
                         </div>
                         <div class="product-info-div">
                             <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label></p>
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}</p>
+                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label style="float: right;color: #c91423">未通过</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
                         <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能定义</a>&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label>&nbsp;</li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议调试</a>&nbsp;&nbsp;&nbsp;<label class="fa fa-long-arrow-right"></label></li>
-                            <li class="prog_c "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
-                            <li class="prog_d"><a onclick="export_protocol()" href="#">协议下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a></li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a></li>
+                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i class="fa fa-download"></i></span></li>
+                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html" target="_blank">UI编辑</a></li>
+
                         </ul>
                     </dd>
                     </dl>

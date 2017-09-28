@@ -452,7 +452,6 @@ def key_verify(request):
         return HttpResponse("hi!")
 
 
-
 @csrf_exempt
 def control(request):
     if request.method == 'POST':

@@ -103,7 +103,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .title-sub{ padding:20px 0;height: 80px}
 .title-sub span.none{ border-left:3px solid #808080; color:#808080;}
 .goodsBox{ width:1300px; overflow:hidden;}
-.goods-list{ position:relative; float:left; width:410px; height:200px; padding:10px; margin-right:20px; margin-bottom:20px; background:#FFF;}
+.goods-list{ position:relative; float:left; width:340px; height:180px; padding:10px; margin-right:20px; margin-bottom:20px; background:#FFF;}
 .goods-list:hover{ background:#fcfcfc;}
 .goods-list dl{ height:238px; overflow:hidden;}
 .goods-list dl dt{ position:relative; float:left; width:195px; height:195px; overflow:hidden;}
@@ -116,7 +116,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .goods-list dl dd .goods-title{ font-size:18px; height:20px; color:#2980b9; line-height:18px; margin-bottom:14px; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;}
 .goods-title a{ color:#2980b9;}
 .goods-title a:hover{ color:#2980b9; text-decoration:underline;}
-.goods-list dl dd p{ height:40px; padding:5px 0;}
+.goods-list dl dd p{ height:27px; padding:5px 0;}
 .goods-list dl dd p span{display:inline-block; *display:inline; zoom:1; padding:12px 10px; height:14px; line-height:14px; border:1px solid #808080; border-radius:6px; color:#808080; font-size:12px;}
 .goods-list dl dd p span.highlight{ color:#FFF; background:#dddddd; border:1px solid #dddddd;}
 .goods-list .status{ position:absolute; top:1px; right:0px; line-height:30px; height:30px; padding:0 20px; border-radius: 0 0 3px 3px; color:#FFF;  }
