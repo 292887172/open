@@ -257,6 +257,7 @@ def product_main(request):
         app = App.objects.get(app_id=app_id)
         opera_data = []
         fun_name = ''
+        message_content = ''
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
@@ -289,7 +290,7 @@ def product_main(request):
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
-            message_content = app.app_name + fun_name + DEL_FUN
+            message_content = '"'+ app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
         elif post_data == 'state':
@@ -300,10 +301,11 @@ def product_main(request):
                     fun_name = i['name']
                     if str(i['state']) == '0':
                         i['state'] = '1'
+                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
                     elif str(i['state']) == '1':
                         i['state'] = '0'
+                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
                     save_app(app, opera_data)
-                    message_content = app.app_name + fun_name + UPDATE_FUN_STATE
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                     return HttpResponse('change_success')
         elif post_data == "export":
@@ -334,7 +336,7 @@ def product_main(request):
                     if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
-                message_content = app.app_name + fun_name + UPDATE_FUN
+                message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
@@ -343,7 +345,7 @@ def product_main(request):
                 else:
                     indata['id'] = '1'
                 opera_data.append(indata)
-                message_content = app.app_name + fun_name + CREATE_FUN
+                message_content = '"'+ app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
             save_app(app, opera_data)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
