@@ -27,7 +27,7 @@
 		return [].slice.call($.__create_dom_div__.childNodes);
 	};
 
-	var panelBuffer = '<div class="mui-poppicker" id="picture" style="width:82%;margin-left: 55px;border-radius: 25px;">\
+	var panelBuffer = '<div class="mui-poppicker" id="picture" style="width:87%;margin-left: 55px;border-radius: 25px;">\
 		<h4 style="padding-left:15px;padding-top: 15px;font-size: 16px;">设置烘烤温度：<span id="block-range-tem" style="font-size: 17px;color:#f35019">200℃\
 		</span></h4>\
 		<div class="mui-input-row mui-input-range">\

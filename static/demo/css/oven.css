@@ -53,11 +53,11 @@ h5.mui-content-padded:first-child {
 
 .mui-poppicker {
     background: #f7f7f7;
-    bottom:40px;
+    bottom:34px;
     opacity: 0;
 }
 .mui-poppicker.mui-active{
-    bottom: 40px;
+    bottom: 34px;
     opacity: 1;
 
 }
@@ -100,7 +100,7 @@ h5.mui-content-padded:first-child {
     width: 20%;
     height: 30px;
     border-radius: 20px;
-    margin-top: -60px;
+    margin-top: -70px;
     font-size: 15px;
     border: 0px;
 }

@@ -16,6 +16,8 @@ from common.api_helper import create_release_api_app
 from common.api_helper import delete_release_api_app
 from common.api_helper import delete_api_app
 from common.api_helper import reset_api_app_secret
+from common.message_helper import save_user_message
+from conf.message import *
 import time
 import logging
 import datetime
@@ -69,6 +71,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           check_status=check_status,
                           )
                 app.save()
+                message_content = app_name + CREATE_APP
+                save_user_message(developer_id, message_content, USER_TYPE, developer_id)
                 break
             except Exception as e:
                 del e
@@ -112,6 +116,8 @@ def del_app(app_id):
                                      app_update_date=app.app_update_date)
         new_app_history.save()
         app.delete()
+        message_content = app.app_name + DEL_APP
+        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
         # 删除应用, 同步到 RESTFul API
         delete_api_app(app.app_appid)
         return True
@@ -130,6 +136,9 @@ def release_app(app_id):
         update_line = App.objects.filter(app_id=int(app_id)).update(check_status=_convention.APP_CHECKING,
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
+            app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + RELEASE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return True
         else:
             return False
@@ -150,6 +159,8 @@ def cancel_release_app(app_id):
         if update_line > 0:
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + CANCEL_RELEASE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -171,6 +182,8 @@ def off_app(app_id):
         if update_line > 0:
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + OFF_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -192,6 +205,8 @@ def pass_app(app_id):
         if update_line > 0:
             # APP审核通过, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + PASS_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             create_release_api_app(app.app_appid)
             return True
         else:
@@ -215,6 +230,9 @@ def denied_app(app_id, remark):
                                                                     check_remarks=remark,
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
+            app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + DENIED_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return True
         else:
             return False
@@ -273,6 +291,9 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             params["app_logo"] = app_logo
         update_line = App.objects.filter(app_id=int(app_id)).update(**params)
         if update_line > 0:
+            app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + UPDATE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return True
         else:
             return False
@@ -294,6 +315,9 @@ def update_app_config(app_id, app_push_url, app_push_token):
                                                                     app_push_token=app_push_token,
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
+            app = App.objects.get(app_id=int(app_id))
+            message_content = app.app_name + UPDATE_APP_CONFIG
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return True
         else:
             return False
@@ -315,6 +339,8 @@ def reset_app_secret(app_id):
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
             # 同步到 RESTFul API
+            message_content = app.app_name+RESET_APP_SECRET
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             reset_api_app_secret(app.app_appid, new_app_secret)
             return new_app_secret
         else:

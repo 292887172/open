@@ -416,8 +416,9 @@
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
                         <span class="ant-input-wrapper">
-                            <input type="text" value="" id="product_name" name="product_name" class="ant-input ant-input-lg">
+                            <input type="text" value="" id="product_name" onblur="check_name()" name="product_name" class="ant-input ant-input-lg">
                         </span>
+                        <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
                     </div>
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品类型:</label>
@@ -615,14 +616,24 @@
             }
             if(!checkSubmitFlg){
                 checkSubmitFlg=true;
-                console.log("b不能重复提交");
+                console.log("不能重复提交");
                  form.submit();
             }
             else{
                 return;
             }
         }
+        function check_name() {
+            if($("#product_name").val()==''){
+                $('#productName').html("产品名称不能为空");
+                $('#productName').css("display", "block");
+                return '';
+            }
+            else{
+                $('#productName').css("display", "none");
 
+            }
+        }
         function create_procuct(type) {
             $(".markLayout").show();
             if(type=='1'){
@@ -655,6 +666,7 @@
             $("#newHtmlBox").css('display','none');
             $("#product_name").val('');
             $("#show_logo").attr('src',"");
+            $('#productName').css("display", "none");
         }
     </script>
 {% endblock %}

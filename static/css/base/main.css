@@ -1006,8 +1006,8 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
     margin: 0 0 0 10px;
     background: url(/static/image/sanjiao.png) center center no-repeat;
     vertical-align: middle;
-            position: absolute;
-            background-size: 13px;
+    position: absolute;
+    background-size: 13px;
     top: 37px;
     left: 125px;
 }
