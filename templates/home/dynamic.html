@@ -92,6 +92,7 @@
 
 
 </head>
+
 <body>
 <div class="box2 relative">
     <div class="hbox">
@@ -108,9 +109,14 @@
     </div>
     <div class="hbox">
         <ul>
-            {% for m in message %}
-                <li> <p class="hbox-p1">{{ m.message_content }}<span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">{{ m.update_date }}</p> </li>
-            {% endfor %}
+            {% if message %}
+                {% for m in message %}
+                    <li> <p class="hbox-p1">{{ m.message_content }}<span class="ui-tips-hot">NEW</span></p><p class="hbox-p2">{{ m.update_date }}</p> </li>
+                {% endfor %}
+            {% else %}
+                <li> <p class="hbox-p1" style="color: #ff6202" >暂无动态！</p> </li>
+            {% endif %}
+
         </ul>
     </div>
 
