@@ -63,9 +63,9 @@
             type: "POST",
             data: {'name': 'save_conf'},
             success: function (data) {
-                dialog.modal('hide');
+                // dialog.modal('hide');
                 if(data['code']== 0){
-                    window.location.href = 'https://oven.53iq.com/static/html/control.html?d='+mac
+                    window.location.href = 'https://oven.53iq.com/static/html/controlinternet.html?d='+mac
                 }
                 else{
                     bootbox.alert(data['msg'])
