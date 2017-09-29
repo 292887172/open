@@ -52,11 +52,7 @@
 		<div class="main-container ace-save-state box2" id="main-container">
             <div class="hl-help">
 
-                <ol class="breadcrumb">
-                <li><a href="/product/list/">产品管理</a></li>
-                <li><a href="#/argue">定义产品功能</a></li>
-                <li class="active">添加新功能</li>
-                </ol>
+            <span class="linkBlue">添加新功能</span>
             </div>
         <div class="mt20"></div>
 			<div class="main-content">
@@ -86,7 +82,7 @@
 										</div>
 									</div>
                                     <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位8bits) </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
 											<br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>

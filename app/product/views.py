@@ -216,17 +216,19 @@ def product_main(request):
         else:
             developer = request.user.developer
         try:
+            user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
             user_apps = App.objects.get(app_id=int(app_id))
             # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
-            del(e)
-            return HttpResponseRedirect(reverse("center"))
+            print(e)
+            return HttpResponseRedirect(reverse("home/guide"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
         developer_account = request.user.developer.developer_account
         app = user_apps
+        all_app = user_related_app
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
@@ -237,6 +239,7 @@ def product_main(request):
         key = app_key[len_key:]
         template = "product/main.html"
         content = dict(
+            all_app=all_app,
             app=app,
             api_list=api_list,
             key=key,
@@ -450,7 +453,6 @@ def key_verify(request):
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
         return HttpResponse("hi!")
-
 
 
 @csrf_exempt
