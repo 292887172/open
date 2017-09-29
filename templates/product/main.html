@@ -21,6 +21,35 @@
        }
        .header{
            margin-top: 0px;
+           margin-bottom: 0px;
+       }
+       .breadcrumb{
+           font-size: 16px;
+           line-height: 0px;
+       }
+       .dropdown{
+           margin-left: 15px;
+           cursor: pointer;
+       }
+       .dropdown-menu{
+           margin-top: 10px;
+       }
+        .dropdown-menu>li{
+          height: 35px;
+            line-height: 35px;
+       }
+       .dropdown-menu>li:hover{
+           background: #ff6202;
+       }
+       .dropdown-menu>li>a{
+           padding-bottom: 0;
+           line-height: 30px;
+           border: 0;
+           font-size: 16px;
+       }
+       .dropdown-menu>li>a:hover{
+           background: initial;
+           border: 0;
        }
        .menuBox h3{
            padding-left: 15px;
@@ -70,6 +99,7 @@
         cursor: text;
     }
 
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -83,6 +113,38 @@
 {% block content %}
 
     <div ng-controller="ProductBaseCtrl">
+     <div class="title">
+
+            <div class="wrapper">
+            <ol class="breadcrumb">
+            <li><a href="/product/list/">产品管理</a></li>
+            <li class="active">
+                <div class="dropdown">
+                    <p id="dropdownMenu1"
+                            data-toggle="dropdown">
+                        {{ app.app_name}}
+                        <span class="caret"></span>
+                    </p>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        {% for a in all_app %}
+                            {% if a.app_id == app.app_id %}
+
+                            {% else %}
+
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="?ID={{ a.app_id }}">{{ a.app_name }}</a>
+                                </li>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </li>
+            </ol>
+            </div>
+        </div>
         {% if app.check_remarks and app.check_status == -1 %}
             <div class="wrapper">
                 <div class="alert alert-danger">
