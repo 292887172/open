@@ -4,14 +4,10 @@ from base.connection import MysqlHandler
 import json
 
 from base.util import gen_app_default_conf
-
+import requests
 __author__ = 'rdy'
-conn = MysqlHandler().conn
-cur = conn.cursor()
-sql = 'SELECT * FROM ebt_app WHERE ebf_app_id=%s LIMIT 1'
-cur.execute(sql, 78)
-result = cur.fetchone()
-c = result['ebf_device_conf']
-print(json.loads(c))
-a = gen_app_default_conf('2')
-print(type(a), a)
+url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}'.format('2DSQlZFAy9prnRjSGiC6OpQxcga10VSjQxM_nBmO-WL9GAECHX0nIn7u64tdUFoun4-AcKeljkiLlK7JLABgdA', 'oVJQIxEBwnRxsYB0zvEcGZvYnKXE')
+ret2 = requests.get(url2)
+ret2.encoding = 'utf8'
+ret2 = ret2.json()
+print(ret2)

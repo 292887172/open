@@ -197,6 +197,7 @@
         float: left;
         margin-right: 5px;
         color: #333;
+        margin-top: 10px;
     }
     .footer{
         color: #fff;
@@ -215,6 +216,13 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     }
+    .sys-login,.wx-login{
+        width: 24px;
+        height: 24px;
+        margin-top: -3px;
+        margin-right: 5px;
+    }
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -265,13 +273,13 @@
                             </form>
                             <div class="ui-partner">合作账号登录:<br>
                                 <ul>
-                                    <li><a href="login_sys">厂商账号</a></li>
+                                    <li class="ui-login"><a href="login_sys"><img class="sys-login"  src="{% static 'image/center/factory.png' %}">厂商账号</a></li>
 {#                                    <li>|</li>#}
 {#                                    <li><a href="#">QQ</a></li>#}
 {#                                    <li>|</li>#}
 {#                                    <li><a href="#">新浪微博</a></li>#}
-{#                                    <li>|</li>#}
-{#                                    <li><a href="#">微信</a></li>#}
+                                    <li>|</li>
+                                    <li class="ui-login"><a class="" href="https://open.weixin.qq.com/connect/qrconnect?appid=wx911a65562335bbcd&redirect_uri=https%3a%2f%2fopen.53iq.com%2fcenter%2flogin&response_type=code&scope=snsapi_login&state=opensite#wechat_redirect"><img class="wx-login"  src="{% static 'image/center/weixin.png' %}">微信</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -307,6 +315,20 @@
 
 
         }
+        $(".ui-login").mouseover(function () {
+            var img_src = $(this).children().children('img').attr('src');
+            if(img_src.indexOf('-c') < 0){
+                img_src = img_src.replace('.png', '-c.png');
+            }
+            $(this).children().children('img').attr('src', img_src)
+        });
+        $(".ui-login").mouseout(function () {
+            var img_src = $(this).children().children('img').attr('src');
+            if(img_src.indexOf('-c') > 0){
+                img_src = img_src.replace('-c.png', '.png');
+            }
+            $(this).children().children('img').attr('src', img_src)
+        })
 
     })
     </script>

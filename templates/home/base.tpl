@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load filter %}
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +44,7 @@
         {% if user.account_id %}
                 <!-- 登录 -->
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
+                       style="text-decoration: none;">{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
