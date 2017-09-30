@@ -21,6 +21,28 @@
          }
     </style>
 </head>
+<script>
+      var userID = '' // 用户id
+      window.onload = function MyAutoRun() {
+      var a = getck('COOKIE_USER_ACCOUNT')
+          console.log(a)
+          userID = 'test'+a+'-smoke'
+          document.body.style.overflow="hidden";
+        <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
+    }
+      var acookie=document.cookie.split("; ");// 获取cookie
+                function getck(sname)
+                {//获取单个cookies
+                for(var i=0;i<acookie.length;i++){
+                var arr=acookie[i].split("=");
+                if(sname==arr[0]){
+                if(arr.length>1)
+                return unescape(arr[1]);
+                else
+                return "";}}
+                return "";
+}
+</script>
 <script src="/static/demo/js/vue.min.js"></script>
 <script src="/static/demo/js/vue-resource.js"></script>
 <script src="/static/demo/js/jquery.min.js"></script>
@@ -162,7 +184,7 @@
                         clearInterval(timer2);
                         clearInterval(timer3);
                         $("#picture")[0].src = "";
-                        $("#picture").css('display', 'none');
+                        $("#picture").css('display','none');
                         $("#smoke")[0].src = "/static/demo/img/lightclose.png";
                 }
             },
@@ -175,12 +197,14 @@
                 }
             },
             sendCommand: function (name, value) {
+                value = !value
                 small = this.get_func("SMALL_WIND");
                 mid = this.get_func("MIDDLE_WIND");
                 big = this.get_func("BIG_WIND");
 
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
+
                     if (tmp.name == name){
                         if(name!="POWER"){
                             if(!this.checkPower()){
@@ -228,10 +252,130 @@
                         }
                         }
                 }
+
+                send_data = {'did': userID, 'name': name, 'value':value};
+
+                console.log(name)
+                console.log(value)
+
+                this.$http.post('/product/control', JSON.stringify(send_data).toString()
+                         ).then(function (res) {
+                             res = JSON.parse(res.body);
+                             console.log(res);
+                             if(res['code']==-1){
+
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+
+                                 mui.toast('指令发送成功')
+                             }
+                         });
             }
+
+
+
+
         },
         computed: {}
     });
+     Orbited.settings.hostname = location.host;
+        try {
+            longpull()
+        } catch (e) {
+            console.log(e);
+        }
+
+        // 轮询
+        function longpull() {
+            if(!is_connected){
+                var stomp = new STOMPClient();
+                stomp.onopen = function () {
+                    console.log("Open Client");
+                };
+                stomp.onclose = function (c) {
+                    //alert("Lost connection, Code:" + c);
+                     is_connected = false;
+                    five_sec = setInterval(function () {
+                        longpull()
+                    }, 5000);
+                };
+                stomp.onerror = function (error) {
+                    //alert("Error : " + error);
+                };
+                stomp.onerrorframe = function (frame) {
+                    //alert("Error : " + frame.body);
+                };
+                stomp.onconnectedframe = function () {
+                    console.log("Connected. Subcribing");
+                    stomp.subscribe('/' + userID);
+                    // first_get_status();
+                };
+                stomp.onmessageframe = function (frame) {
+                    var data = JSON.parse(frame.body);
+                    var msg = data['msg'];
+
+                    var value = msg.value;
+                    var type = msg.type;
+                    console.log(type, value);
+
+                    // type==1时为遥控器状态控制,
+                    // 2500时为socket状态，其它的为音乐电台之类的
+                    if (type == 2500) {
+                        // socket状态
+                        ChangeStatus(value);
+                    }
+                    else if (type == 2501) {
+                        // 设备离线
+                    }
+                };
+                stomp.connect("localhost", 61613);
+                is_connected = true;
+                clearInterval(five_sec)
+                }
+
+        }
+        function  ChangeStatus( val) {
+            // ” 0 |  0 |  0|   0|  0|   0|   0|  0|  0| 0 (| 0      |0)”,
+            // ”电源|照明|大风|小风|消毒|烘干|延时|中风|故障|火(| 运行时间|风险指数)”
+            // "  0   1   2    3   4    5   6    7    8   9      10      11"
+
+            var arr = val.split('|');
+
+            if (arr[2]=='1'){
+                var big_fan=1
+            }
+            else if(arr[3]=='1'){
+               var small_fan=1
+            }
+            else if(arr[7]=='1'){
+               var middle_fan=1
+            }
+            else{
+                fan=0
+            }
+            tmp_status = [{'name':'POWER', 'value': arr[0]}, {'name':'LIGHT', 'value': arr[1]}, {'name':'BIG_WIND', 'value':big_fan},{'name':'SMALL_WIND', 'value':small_fan},{'name':'MIDDLE_WIND', 'value':middle_fan}
+            ];
+            for(var i=0;i<devices.funcList.length;i++){
+                 var n = devices.funcList[i].name;
+                 for (var j=0; j< tmp_status.length;j++){
+                     if(tmp_status[j].name=='POWER' && parseInt(tmp_status[j].value)==0){
+                        devices.funcList[i].value = 0;
+
+                    }
+                    else{
+                        if(tmp_status[j].name == n){
+                            devices.funcList[i].value=parseInt(tmp_status[j].value);
+                            if (name=='WIND'){
+                                // tmp.title = tmp.value_des[value];
+                                devices.funcList[i].title = devices.funcList[i].value_des[parseInt(tmp_status[j].value)]
+                            }
+                        }
+
+                     }
+                 }
+            }
+        }
 </script>
  <script>document.body.style.overflow="hidden";</script>
 </body>
