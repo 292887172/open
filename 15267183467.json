@@ -1,0 +1,1 @@
+{"model": "BB1", "name": "我的冰箱", "functions": [{"permission": "777", "name": "POWER", "length": "8", "value_des": [{"desc": "关", "data": "1"}], "value": 0, "values": [0, 1], "unit": "", "no": "1", "title": "电源", "id": "1"}], "secret": "AirDDOTSIt9fsIzH5OCpfPAvPyaQ0uMf", "key": "LKSJwzM9"}
