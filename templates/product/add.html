@@ -66,6 +66,20 @@
             border-bottom: 3px solid #ff6202;
             height: 35px;
         }
+    .scheme dl {
+        float: left;
+        width: 228px;
+        border: #D8D8D8 1px solid;
+        position: relative;
+        margin: 8px;
+        text-align: center;
+        padding: 40px 0 15px;
+        box-sizing: border-box;
+    }
+    .scheme dl.cur {
+        border: #4B8DE5 2px solid;
+        margin: 7px 8px;
+    }
     </style>
 {% endblock %}
 
@@ -141,21 +155,11 @@
                                     </dd>
                                 </dl>
 
-
-                                <dl class="fmInfo">
-                                    <dt>产品类型</dt>
-                                    <dd>
-                                        <select name="product_group" onclick="HideCommand()" id="product_group"
-                                                ng-disabled="{[{ disabled }]}" class="sel2" style="width:96px;">
-                                            <option value="1">普通App</option>
-                                            <option value="2" selected="selected">普通电控</option>
-                                        </select>
-                                    </dd>
-                                </dl>
-
                                 <dl class="fmInfo" id="command-type">
                                     <dt>指令类型</dt>
                                     <dd>
+                                        <input type="text" name="product_group" id="product_group" maxlength="48"
+                                               class="w280 form-control hidden" placeholder="产品类型" value="2">
                                         <select name="product_command" onclick="showHide()" id="product_command"
                                                 ng-disabled="{[{ disabled }]}" class="sel2" style="width:96px;">
                                             <option value="是" selected="selected">全指令</option>
@@ -171,21 +175,17 @@
                                 <h4 class="infoTit02">
                                     选择技术方案 <span class="f12">（方案确定后不能更改）</span>
                                 </h4>
-                                <ul class="choose_plan_list">
-                                    <li class="choose_plan_item choose_plan_item02">
-                                        <p class="plan_title">屏幕式智能套件方案</p>
+                                <div class="scheme">
+                                    <dl class="cur plan" onclick="selectScheme(this, 2)" id="f1">
+                                        <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>Wi-Fi/蜂窝方案<span>适合烤箱、油烟机等…</span></dd>
+                                    </dl>
 
-                                        <div class="plan_box plan_box_choose">
-                                            <p class="nav_nav lev01">云</p>
-
-                                            <p class="s01 lev02">WiFi/Android屏等</p>
-
-                                            <p class="nav_nav lev03">设备</p>
-
-                                            <p class="txt">油烟机、集成灶、烤箱等</p>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    <dl onclick="selectScheme(this, 1)" id="f3" class="plan">
+                                        <dt><img src="{% static 'image/product/android.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>Android屏方案<span>适合集成灶、烤箱等…</span></dd>
+                                    </dl>
+                                </div>
                                 <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
 
                                 <div class="tac  mt20 hide">
@@ -261,6 +261,12 @@
             else {
                 $('#command-type').css("display", "block");
             }
+        }
+        function selectScheme(item, val) {
+            $(".plan").removeClass('cur');
+            $(item).addClass('cur');
+            $("#product_group").val(val);
+
         }
         $(document).ready(function () {
             $('#go').on('click', function (e) {

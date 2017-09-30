@@ -25,15 +25,17 @@
         color: #999;
         cursor: pointer;
     }
-
+    .btn-blue:hover{
+        background: #ff6202;
+    }
+    .btn-blue{
+        background: #FF6F37;
+    }
 </style>
 <div class="box2 relative">
     <div class="hl-help">
+        <span class="linkBlue">产品基本信息</span>
 
-        <ol class="breadcrumb">
-        <li><a href="/product/list/">产品管理</a></li>
-        <li class="active">产品基本信息</li>
-        </ol>
     </div>
     <div class="mt20">
 
@@ -80,15 +82,7 @@
                         </select>
                     </dd>
                 </dl>
-                <dl class="fmInfo" >
-                    <dt>产品类型</dt>
 
-                    <dd style="padding-top: 5px;">
-                        <select name="product_type"  ng-click="HideCommand()" id="product_type" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_group" class="sel2"  style="width:96px;"
-                           ng-options="t.value as t.name for t in product_type">
-                        </select>
-                    </dd>
-                </dl>
                 <dl class="fmInfo" id="command-type" >
                     <dt>指令类型</dt>
                     <dd>

@@ -1,10 +1,10 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__author__ = 'achais'
 import datetime
 from model.center.message import Message
 import logging
+__author__ = 'achais'
 
 
 def save_user_message(target, content, type, sender):
@@ -31,12 +31,11 @@ def save_user_message(target, content, type, sender):
         print(e)
 
 
-def read_user_message(target,type):
+def read_user_message(target, type):
     """
     读取用户消息
     :param target:
     :param type:
-    :param sender:
     :return:
     """
     try:
@@ -53,9 +52,8 @@ def read_user_message(target,type):
         print(e)
 
 
-
 def get_sys_message(sender):
-    try :
+    try:
         m = Message.objects.get(message_sender=sender)
         if m:
             return m

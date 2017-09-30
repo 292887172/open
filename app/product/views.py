@@ -216,17 +216,19 @@ def product_main(request):
         else:
             developer = request.user.developer
         try:
+            user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
             user_apps = App.objects.get(app_id=int(app_id))
             # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
-            del(e)
-            return HttpResponseRedirect(reverse("center"))
+            print(e)
+            return HttpResponseRedirect(reverse("home/guide"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
         developer_account = request.user.developer.developer_account
         app = user_apps
+        all_app = user_related_app
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
@@ -237,6 +239,7 @@ def product_main(request):
         key = app_key[len_key:]
         template = "product/main.html"
         content = dict(
+            all_app=all_app,
             app=app,
             api_list=api_list,
             key=key,
@@ -257,6 +260,7 @@ def product_main(request):
         app = App.objects.get(app_id=app_id)
         opera_data = []
         fun_name = ''
+        message_content = ''
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
@@ -289,7 +293,7 @@ def product_main(request):
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
-            message_content = app.app_name + fun_name + DEL_FUN
+            message_content = '"'+ app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
         elif post_data == 'state':
@@ -300,10 +304,11 @@ def product_main(request):
                     fun_name = i['name']
                     if str(i['state']) == '0':
                         i['state'] = '1'
+                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
                     elif str(i['state']) == '1':
                         i['state'] = '0'
+                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
                     save_app(app, opera_data)
-                    message_content = app.app_name + fun_name + UPDATE_FUN_STATE
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                     return HttpResponse('change_success')
         elif post_data == "export":
@@ -334,7 +339,7 @@ def product_main(request):
                     if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
-                message_content = app.app_name + fun_name + UPDATE_FUN
+                message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
@@ -343,7 +348,7 @@ def product_main(request):
                 else:
                     indata['id'] = '1'
                 opera_data.append(indata)
-                message_content = app.app_name + fun_name + CREATE_FUN
+                message_content = '"'+ app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
             save_app(app, opera_data)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -448,7 +453,6 @@ def key_verify(request):
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
         return HttpResponse("hi!")
-
 
 
 @csrf_exempt

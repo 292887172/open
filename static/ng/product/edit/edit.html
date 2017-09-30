@@ -30,16 +30,29 @@
             .lbl bigger-120::before{
                    color: #337ab7;
             }
+            .btn{
+                    border-radius: 4px;
+            }
+            .btn:hover{
+                background-color: #8B9AA3!important;
+                border-color: #8B9AA3;
+
+            }
+            .btn.btn-info:hover{
+                background-color: #337ab7!important;
+                border-color: #337ab7;
+
+            }
+            .btn.btn-info{
+                background-color: #9EBEE4!important;
+                border-color: #9EBEE4;
+            }
 		</style>
 
 		<div class="main-container ace-save-state box2" id="main-container">
             <div class="hl-help">
 
-                <ol class="breadcrumb">
-                <li><a href="/product/list/">产品管理</a></li>
-                <li><a href="#/argue">定义产品功能</a></li>
-                <li class="active">添加新功能</li>
-                </ol>
+            <span class="linkBlue">添加新功能</span>
             </div>
         <div class="mt20"></div>
 			<div class="main-content">
@@ -69,7 +82,7 @@
 										</div>
 									</div>
                                     <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位8bits) </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) </label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
 											<br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
@@ -90,7 +103,7 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型!数值型(int/float)：可线性调节数值型的功能，如温度调节20~40°C；定时类型:可选择型调节时间范围，如工作时间；枚举型：自定义的有限集合值，如档位的高、中、低；字符串型：以字符串形式传输功能点。" title="">?</span> </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="请正确填写您的Stream_ID的类型!数值型(int)：可线性调节数值型的功能，如温度调节20~40°C；定时类型:可选择型调节时间范围，如工作时间；枚举型：自定义的有限集合值，如档位的高、中、低；字符串型：以字符串形式传输功能点。" title="">?</span> </label>
 										<div class="col-sm-9 col-xs-9" id="param-type">
 												<div class="radio">
 														<label>
@@ -98,12 +111,8 @@
 															<span class="lbl bigger-120"> int</span>
 														</label>
 														<label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectFloat(this)" value="2"/>
-															<span class="lbl bigger-120"> float</span>
-														</label>
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectString(this)" value="3"/>
-															<span class="lbl bigger-120"> string</span>
+															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectError(this)" value="3"/>
+															<span class="lbl bigger-120"> 故障型</span>
 														</label>
 
                                                         <label>
@@ -132,22 +141,10 @@
 													</table>
 													<div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
 												</div>
-												<div id="selectFloat" style="background-color:#fff;display:none;margin-left:72px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
-													<table border=0>
-														<tr>
-															<td height=30px align="center">最小值</td>
-															<td align="center">最大值</td>
-														</tr>
-														<tr style="border-top:1px solid #ccc">
-															<td width=80px>
-																<input ng-disabled='{[{ disabled }]}' id="minFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
-															</td>
-															<td width=80px align="right">
-																<input ng-disabled='{[{ disabled }]}' id="maxFloat" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkFloat()">
-															</td>
-														</tr>
-													</table>
-													<div id="checkFloat" style="margin-left:-10px;color:red;display:none;left: 286px;top: 77px;position:absolute"></div>
+                                                <div id="selectError" style="background-color:#fff;display:none;margin-left:95px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                                    <span style="position:relative;top: 10px;left: -70px;">故障值：</span>
+                                                    <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
+													<div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
 												</div>
                                                 <div id="selectEnum" style="background-color:#fff;display:none;margin-left:200px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
 													<table border=0>
@@ -313,40 +310,33 @@
 					$('#minInt').val(d.min);
 					$('#maxInt').val(d.max);
 					$('#selectInt').css("display","block");
-					$('#selectFloat').css("display","none");
 					$('#selectEnum').css("display","none");
 					$('#selectTimer').css("display","none");
-				}else if(d.paramType==2){
-					document.getElementsByName('paramType')[1].checked=true;
-					$('#minFloat').val(d.min);
-					$('#maxFloat').val(d.max);
-					$('#selectInt').css("display","none");
-					$('#selectEnum').css("display","none");
-					$('#selectTimer').css("display","none");
-					$('#selectFloat').css("display","block");
+					$('#selectError').css("display","none");
 				}else if(d.paramType==3){
-					document.getElementsByName('paramType')[2].checked=true;
+					document.getElementsByName('paramType')[1].checked=true;
+					$('#errorValue').val(d.max);
 					$('#selectInt').css("display","none");
-					$('#selectFloat').css("display","none");
 					$('#selectEnum').css("display","none");
 					$('#selectTimer').css("display","none");
+					$('#selectError').css("display","block");
 				}
 				else if(d.paramType==4){
 				    $('#maxEnum').val(d.max);
-                    document.getElementsByName('paramType')[3].checked=true;
+                    document.getElementsByName('paramType')[2].checked=true;
 					$('#selectInt').css("display","none");
-					$('#selectFloat').css("display","none");
 					$('#selectEnum').css("display","block");
 					$('#selectTimer').css("display","none");
+					$('#selectError').css("display","none");
                 }
-                else{
-                    document.getElementsByName('paramType')[4].checked=true;
+                else if(d.paramType==5){
+                    document.getElementsByName('paramType')[3].checked=true;
 					$('#minTimer').val(d.min);
 					$('#maxTimer').val(d.max);
 					$('#selectTimer').css("display","block");
-					$('#selectFloat').css("display","none");
 					$('#selectInt').css("display","none");
 					$('#selectEnum').css("display","none");
+					$('#selectError').css("display","none");
                 }
 				for(var i=0;i<d.mxs.length;i++){
 					var group='';
@@ -366,33 +356,27 @@
 				}
 			}
 			function selectInt(ele){
-				document.getElementById('selectFloat').style.display="none";
 				document.getElementById('selectEnum').style.display="none";
 				document.getElementById('selectTimer').style.display="none";
+				document.getElementById('selectError').style.display="none";
 				document.getElementById('selectInt').style.display="block";
 			}
-			function selectFloat(ele){
+			function selectError(ele){
 				document.getElementById('selectInt').style.display="none";
 				document.getElementById('selectEnum').style.display="none";
 				document.getElementById('selectTimer').style.display="none";
-				document.getElementById('selectFloat').style.display="block";
-			}
-			function selectString(ele){
-				document.getElementById('selectInt').style.display="none";
-				document.getElementById('selectEnum').style.display="none";
-				document.getElementById('selectTimer').style.display="none";
-				document.getElementById('selectFloat').style.display="none";
+				document.getElementById('selectError').style.display="block";
 			}
 			function selectEnum(ele){
 				document.getElementById('selectInt').style.display="none";
-				document.getElementById('selectFloat').style.display="none";
 				document.getElementById('selectTimer').style.display="none";
+				document.getElementById('selectError').style.display="none";
 				document.getElementById('selectEnum').style.display="block";
 			}
 			function selectTimer(ele){
 				document.getElementById('selectInt').style.display="none";
-				document.getElementById('selectFloat').style.display="none";
 				document.getElementById('selectEnum').style.display="none";
+				document.getElementById('selectError').style.display="none";
 				document.getElementById('selectTimer').style.display="block";
 			}
 			//获取元素的纵坐标
@@ -483,26 +467,6 @@
 					return "最大值必须大于最小值!!";
 				}else{
 					$('#checkInt').css("display","none");
-					return "";
-				}
-			}
-			function checkFloat(){
-				var min=$.trim($('#minFloat').val());
-				var max=$.trim($('#maxFloat').val());
-				//正浮点数+0
-				var role1=/^\d+(\.\d+)?$/;
-				//负浮点数+0
-				var role2=/^((-\d+(\.\d+)?)|(0+(\.0+)?))$/;
-				if((role1.test(min)==false && role2.test(min)==false) || (role1.test(max)==false && role2.test(max)==false)){
-					$('#checkFloat').html("请填写浮点数!!");
-					$('#checkFloat').css("display","block");
-					return "请填写浮点数!!";
-				}else if(parseInt(min) >= parseInt(max)){
-					$('#checkFloat').html("最大值必须大于最小值!!");
-					$('#checkFloat').css("display","block");
-					return "最大值必须大于最小值!!";
-				}else{
-					$('#checkFloat').css("display","none");
 					return "";
 				}
 			}
