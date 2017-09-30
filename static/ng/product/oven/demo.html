@@ -15,14 +15,25 @@
         .rightMain{
             height: 720px;
         }
+        .dropdown { position: relative;display: inline-block;}
+        .dropdown-content { border:1px solid silver; display: none; margin-left: 60px; position: absolute;  margin-top:0px;background-color: #f9f9f9;  width:90px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    }
+        .dropdown:hover .dropdown-content {  display: block; }
+        .dropdown-content p{color: black;margin-top: 0px;width: 100%;text-align: center;margin-top: 5px;}
+        .dropdown-content p:hover{color:white;background-color:#ff6202; }
     </style>
 </head>
 <body>
 
 <div class="box2">
 <div class="hl-help">
-    <span class="linkBlue">产品体验</span>
-
+     <div class="dropdown" id="dropdown">
+        <span style="color: black;margin-left: -10px;">产品体验</span><span style="color: silver;"> ></span> <span>体验设备管理</span><img height="7px;" width="7px;" style="margin-left: 4px;" src="/static/image/product/drapdown.png">
+         <div class="dropdown-content">
+            <p id="jcz">集成灶</p>
+            <p id= "smoke">油烟机</p>
+             <p id="oven">智能烤箱</p>
+         </div>
+     </div>
     </div>
     <div class="main mt20">
     <div class="main_left">
@@ -30,8 +41,6 @@
                 <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
     </div>
                 <div style="margin-top: 450px;margin-left: 20px;position: absolute;width: 250px;"><h4>请使用“53iq智能厨房App”</h4><h4>扫码体验手机控制 </h4></div>
-
-
     <div class="main_right">
         <iframe id="iframes" name="oven" src="/static/ng/product/oven/oven.html" frameborder="0" width="650px" height="430px" ng-if="params.type=='智能烤箱'"></iframe>
         <iframe id="iframes" name="smoke" src="/static/ng/product/oven/smoke.html" frameborder="0" width="660px" height="440px" ng-if="params.type=='智能油烟机'"></iframe>
@@ -78,6 +87,24 @@ setTimeout(function () {
     getQrcode()
 },1000)
 
+</script>
+<script>
+    $(function () {
+
+        $("#jcz").click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/stove.html'
+        })
+        $('#smoke').click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/smoke.html'
+        })
+        $('#oven').click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/oven.html'
+        })
+
+    })
 </script>
 </body>
 </html>
