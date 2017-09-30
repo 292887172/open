@@ -53,59 +53,131 @@ def send_test_device_status(did, status):
     # 电源|照明|大风|小风|消毒|烘干|延时|中风|故障|火(| 运行时间|风险指数)”
     # default = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]    # '0|0|0|0|0|0|0|0|0|0|0|0'
     default = deal_test_device_status(did, '', 'get')
-    if status:
-        name = status.get('name')
-        value = status.get('value')
-        if name == 'POWER':
-            default[0] = value
-            default[-1] = 10
-            if value == 0:
-                default = [str(0) for e in default]
+    userID = did
+    print('用户:',userID)
+    if did =='test15267183467-stove':
+        if status:
+            name = status.get('name')
+            value = status.get('value')
+            if name == 'POWER':
+                default[0] = value
+                default[-1] = 10
+                if value == 0:
+                    default = [str(0) for e in default]
+            elif name == 'LIGHT':
+                default[1] = value
+            elif name == 'WIND':
+                if value == 1:
+                    default[2] = 0
+                    default[3] = 1
+                    default[7] = 0
+                elif value == 2:
+                    default[2] = 0
+                    default[3] = 0
+                    default[7] = 1
+                elif value == 3:
+                    default[2] = 1
+                    default[3] = 0
+                    default[7] = 0
+                else:
+                    default[2] = 0
+                    default[3] = 0
+                    default[7] = 0
+            elif name == 'DISINFECT':
+                default[4] = value
+            elif name == 'DRY':
+                default[5] = value
+        deal_test_device_status(did, default, 'set')
+        default = [str(e) for e in default]
+        default = "|".join(default)
+        try:
+            conn = stomp.Connection10(host_and_ports=[(STOMP_ADDR, STOMP_PORT)])
+            conn.start()
+            conn.connect()
+            conn2 = stomp.Connection10(host_and_ports=[(STOMP_ADDR2, STOMP_PORT)])
+            conn2.start()
+            conn2.connect()
+            obj = {"id": did, "type": int(2500), "value": default}
+            print('发送内容', obj)
+            # 往支持stomp协议的消息队列中添加数据
+            conn.send(body=json.dumps({"msg": obj}), destination="/" + did)
+            conn.disconnect()
+            conn2.send(body=json.dumps({"msg": obj}), destination="/" + did)
+            conn2.disconnect()
+            obj_res = "OK"
+        except Exception as e:
+            print('往消息队列中发送消息出错:' + str(e))
+            # 请求格式错误
+            obj_res = "ERR"
+            pass
+        return obj_res
+    if did =='test15267183467-smoke':
+        if status:
+            name = status.get('name')
+            value =status.get('value')
 
-        elif name == 'LIGHT':
-            default[1] = value
-        elif name == 'WIND':
-            if value == 1:
-                default[2] = 0
-                default[3] = 1
-                default[7] = 0
-            elif value == 2:
-                default[2] = 0
-                default[3] = 0
-                default[7] = 1
-            elif value == 3:
-                default[2] = 1
-                default[3] = 0
-                default[7] = 0
-            else:
-                default[2] = 0
-                default[3] = 0
-                default[7] = 0
-        elif name == 'DISINFECT':
-            default[4] = value
-        elif name == 'DRY':
-            default[5] = value
-    deal_test_device_status(did, default, 'set')
-    default = [str(e) for e in default]
-    default = "|".join(default)
-    try:
-        conn = stomp.Connection10(host_and_ports=[(STOMP_ADDR, STOMP_PORT)])
-        conn.start()
-        conn.connect()
-        conn2 = stomp.Connection10(host_and_ports=[(STOMP_ADDR2, STOMP_PORT)])
-        conn2.start()
-        conn2.connect()
-        obj = {"id": did, "type": int(2500), "value": default}
-        print('发送内容', obj)
-        # 往支持stomp协议的消息队列中添加数据
-        conn.send(body=json.dumps({"msg": obj}), destination="/" + did)
-        conn.disconnect()
-        conn2.send(body=json.dumps({"msg": obj}), destination="/" + did)
-        conn2.disconnect()
-        obj_res = "OK"
-    except Exception as e:
-        print('往消息队列中发送消息出错:' + str(e))
-        # 请求格式错误
-        obj_res = "ERR"
-        pass
-    return obj_res
+            if name =='POWER':
+                if value:
+                    default[0]=1
+                    default[1]=1
+                else :
+                    default[0]=0
+                    default[1]=0
+                    default[2]=0
+                    default[3]=0
+                if value == 0:
+                    default = [str(0) for e in default]
+            elif name =='LIGHT':
+                if value:
+                    default[1] =1
+                else:
+                    default[1]=0
+            elif name == 'BIG_WIND':
+                if value:
+                    default[2] =1
+                    default[3] =0
+                    default[7]=0
+                else:
+                    default[2] =0
+            elif name =='SMALL_WIND':
+                if value:
+                    default[3] =1
+                    default[2]=0
+                    default[7]=0
+                else:
+                    default[3]=0
+            elif name == 'MIDDLE_WIND':
+                if value:
+                    default[7] =1
+                    default[2]=0
+                    default[3]=0
+                else :
+                    default[7] =0
+        deal_test_device_status(did, default, 'set')
+        default = [str(e) for e in default]
+        default = "|".join(default)
+        try:
+            conn = stomp.Connection10(host_and_ports=[(STOMP_ADDR, STOMP_PORT)])
+            conn.start()
+            conn.connect()
+            conn2 = stomp.Connection10(host_and_ports=[(STOMP_ADDR2, STOMP_PORT)])
+            conn2.start()
+            conn2.connect()
+            obj = {"id": did, "type": int(2500), "value": default}
+            print('发送内容', obj)
+            # 往支持stomp协议的消息队列中添加数据
+            conn.send(body=json.dumps({"msg": obj}), destination="/" + did)
+            conn.disconnect()
+            conn2.send(body=json.dumps({"msg": obj}), destination="/" + did)
+            conn2.disconnect()
+            obj_res = "OK"
+        except Exception as e:
+            print('往消息队列中发送消息出错:' + str(e))
+            # 请求格式错误
+            obj_res = "ERR"
+            pass
+        return obj_res
+
+
+
+
