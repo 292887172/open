@@ -62,7 +62,7 @@
         }
         content  = b + a;
         console.log(content);
-        jQuery('#qrcode').qrcode({width:100,height:100,text:content});
+        jQuery('#qrcode').qrcode({width:90,height:90,text:content});
 
     };
 
@@ -71,7 +71,6 @@
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 
         if (arr = document.cookie.match(reg))
-
             return unescape(arr[2]);
         else
             return null;

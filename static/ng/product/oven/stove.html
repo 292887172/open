@@ -25,7 +25,7 @@
       window.onload = function MyAutoRun() {
       var a = getck('COOKIE_USER_ACCOUNT')
           console.log(a)
-          userID = 'test'+a
+          userID = 'test'+a+'-stove'
           document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
     }
@@ -177,7 +177,7 @@
                     }
                 }
             },
-            sendCommand: function (name, value) {
+            sendCommand: function (name,value) {
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
@@ -320,11 +320,12 @@
                 }
 
         }
-        function ChangeStatus(val) {
+        function  ChangeStatus(val) {
             // ” 0 |  0 |  0|   0|  0|   0|   0|  0|  0| 0 (| 0      |0)”,
             // ”电源|照明|大风|小风|消毒|烘干|延时|中风|故障|火(| 运行时间|风险指数)”
             // "  0   1   2    3   4    5   6    7    8   9      10      11"
             var arr = val.split('|');
+
             if (arr[2]=='1'){
                 var fan=3
             }
@@ -347,7 +348,7 @@
                         devices.funcList[i].value = 0;
                          devices.danger='00';
                          devices.minute='00';
-                         devices.second='00'
+                         devices.second='00';
                     }
                     else{
                         if(tmp_status[j].name == n){
