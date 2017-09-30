@@ -340,7 +340,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .log_in .sub li a:hover{text-decoration: none;}
 .log_in .sub li a i.icon{width:12px;height:12px;margin-right:5px;background: url(../images/sp.png) no-repeat -50px -200px;}
 .sign_out{text-align:center;padding:25px 0;}
-.sign_out a{width:140px;height:32px;line-height:32px;text-align: center;display:inline-block;color: #333}
+.sign_out a{width:100%;height:32px;line-height:32px;text-align: center;display:inline-block;color: #333}
 .sign_out a:hover{text-decoration: none;color: #333}
 .sign_out a.user-login{
     background:#ff6202;
@@ -992,9 +992,10 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
     margin: 0 0 10px 0px;;
 }
 .sign_out{
-            width: 140px;
+            width: auto;
             float: right;
     position: relative;
+    margin-right: 5%;
         }
         .login_out{
             height: 38px;
@@ -1013,7 +1014,7 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
     position: absolute;
     background-size: 13px;
     top: 37px;
-    left: 125px;
+
 }
         .ui-mask{
             position: fixed;

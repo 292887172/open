@@ -40,6 +40,7 @@ urlpatterns = patterns(
     'app.center.views',
     url(r'^$', "home", name="center"),
     url(r'^login$', "login", name='login'),
+    url(r'^callback$', "callback", name='callback'),
     url(r'^login_sys$', "login_sys", name='login_sys'),
     url(r'^logout$', "logout", name='logout'),
     url(r'^register$', "register", name='register'),

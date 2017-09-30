@@ -37,7 +37,8 @@ from util.sms.verify_code import verify_sms_code
 from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
 from common.account_helper import change_user_pwd, update_user_login_data
-
+from conf.wxconf import APPID, APP_SECRET
+import requests
 _convention = ConventionValue()
 
 
@@ -653,7 +654,6 @@ def modify_pwd(request):
         new_pwd2 = request.POST.get('new_pwd2', '')
         user_id = request.POST.get('user_id', '')
         code = request.POST.get('code', '')
-        print(account_id, user_id)
         if account_id == user_id:
             r = authenticate(username=account_id, password=old_pwd)
             if r:
@@ -679,3 +679,58 @@ def modify_pwd(request):
         except Exception as e:
             logging.getLogger('').info(str(e))
     return render(request, 'center/modify-pwd.html', locals())
+
+
+def callback(request):
+    if request.method == 'GET':
+        code = request.GET.get('code', None)
+        state = request.GET.get('state', None)
+        if code is None:
+            return HttpResponse('微信验证失败')
+        else:
+            url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code'.format(APPID, APP_SECRET, code)
+
+            r = requests.get(url)
+            ret = r.json()
+            openid = ret.get('openid')
+            unionid = ret.get('unionid')
+            access_token = ret.get('access_token', None)
+            if access_token is None:
+                return HttpResponse('code值无效')
+            url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}'.format(access_token, openid)
+            ret2 = requests.get(url2)
+            ret2.encoding = 'utf8'
+            ret2 = ret2.json()
+            nickname = ret2.get('nickname', '')
+            dt = datetime.datetime.now() + datetime.timedelta(days=30)
+            m = hashlib.md5()
+            m.update(('token_' + unionid).encode('utf-8'))
+            token = m.hexdigest()
+            update_user_login_data(unionid, '123'.encode('utf8'), token, request.META.get('REMOTE_ADDR'), 'save')
+
+            try:
+                ac = Account.objects.get(account_id=unionid)
+                ac.account_nickname = nickname
+                ac.save()
+                user_obj = authenticate(username=unionid, password='123')
+                django.contrib.auth.login(request, user_obj)
+                if ac.is_developer:
+                    response = HttpResponseRedirect('/guide')
+                else:
+                    response = HttpResponseRedirect('/center')
+                response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
+                response.set_cookie(AUTO_LOGIN, token, expires=dt)
+                return response
+            except Exception as e:
+                pass
+            try:
+                Account.objects.create_wx_user(unionid, '123', openid, nickname)
+            except Exception as e:
+                logging.getLogger('').info('创建微信账号出错'+str(e))
+                return HttpResponse('登录失败，请尝试其他方式登录')
+            user_obj = authenticate(username=unionid, password='123')
+            django.contrib.auth.login(request, user_obj)
+            response = HttpResponseRedirect('/center')
+            response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
+            response.set_cookie(AUTO_LOGIN, token, expires=dt)
+            return response

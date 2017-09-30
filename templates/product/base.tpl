@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load filter %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" ng-app="Product" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="Product" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -47,7 +48,7 @@ var _hmt = _hmt || [];
          {% if user.account_id %}
                 <!-- 登录 -->
                 <a onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
+                       style="text-decoration: none;">{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
 
                        {% if user.developer.developer_id %}
@@ -91,7 +92,7 @@ var _hmt = _hmt || [];
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% block end_fixed_script %}{% endblock %}
 {% block end_script %}{% endblock %}
 </body>

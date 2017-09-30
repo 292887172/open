@@ -140,3 +140,22 @@ def cover_str8(obj):
 
 
 register.filter(cover_str8)
+
+
+def cover_user_name(user_id, nickname):
+    """
+    转换微信昵称
+    :param user_id:
+    :param nickname
+    :return:
+    """
+    try:
+        if nickname:
+            return nickname
+        else:
+            return user_id
+    except:
+        return ""
+
+
+register.filter(cover_user_name)

@@ -19,8 +19,11 @@ def home(request):
 
 
 def guide(request):
-    if request.user.account_type == _convention.USER_IS_ADMIN:
-        return HttpResponseRedirect(reverse("admin_center"))
+    try:
+        if request.user.account_type == _convention.USER_IS_ADMIN:
+            return HttpResponseRedirect(reverse("admin_center"))
+    except AttributeError:
+        pass
     return render(request, "home/guide.html", locals())
 
 
