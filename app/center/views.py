@@ -688,22 +688,20 @@ def callback(request):
         if code is None:
             return HttpResponse('微信验证失败')
         else:
-            # url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code'.format(APPID, APP_SECRET, code)
-            #
-            # r = requests.get(url)
-            # ret = r.json()
-            # openid = ret.get('openid')
-            # unionid = ret.get('unionid')
-            # access_token = ret.get('access_token', None)
-            # if access_token is None:
-            #     return HttpResponse('code值无效')
-            # url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}'.format(access_token, openid)
-            # ret2 = requests.get(url2)
-            # ret2.encoding = 'utf8'
-            # ret2 = ret2.json()
-            # nickname = ret2.get('nickname', '')
-            unionid = 'oixkIuJaT3J3AgwVmJx2Y4D81CdM'
-            nickname = '柠檬じ'
+            url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code'.format(APPID, APP_SECRET, code)
+
+            r = requests.get(url)
+            ret = r.json()
+            openid = ret.get('openid')
+            unionid = ret.get('unionid')
+            access_token = ret.get('access_token', None)
+            if access_token is None:
+                return HttpResponse('code值无效')
+            url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}'.format(access_token, openid)
+            ret2 = requests.get(url2)
+            ret2.encoding = 'utf8'
+            ret2 = ret2.json()
+            nickname = ret2.get('nickname', '')
             dt = datetime.datetime.now() + datetime.timedelta(days=30)
             m = hashlib.md5()
             m.update(('token_' + unionid).encode('utf-8'))
@@ -716,7 +714,6 @@ def callback(request):
                 ac.save()
                 user_obj = authenticate(username=unionid, password='123')
                 django.contrib.auth.login(request, user_obj)
-                print(ac.is_developer, '_________')
                 if ac.is_developer:
                     response = HttpResponseRedirect('/guide')
                 else:
