@@ -49,14 +49,14 @@
 <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
 
-     b = 'https://oven.53iq.com/static/html/smoke_home.html?-smoke_d=test'
+     b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
     $(function () {
         $("#jcz").click(function () {
              var bx = document.getElementById('iframes')
              bx.src = '/static/ng/product/oven/stove.html';
 
              document.getElementById("device_manage").innerText = "集成灶";
-             b = 'https://oven.53iq.com/static/html/stove_home.html?-stove_d=test'
+             b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
              $('#qrcode').html("");
              setTimeout(function () {
                 getQrcode()
@@ -88,8 +88,16 @@
     function getQrcode() {
         var a = getCookie('COOKIE_USER_ACCOUNT')
         console.log(a)
+        if(b=='https://oven.53iq.com/static/html/stove_home.html?d=test'){
+            content  = b + a +'-stove' ;
+        }
+        if(b=='https://oven.53iq.com/static/html/oven_home.html?d=test'){
+            content  = b + a +'-oven';
+        }
+        if(b=='https://oven.53iq.com/static/html/smoke_home.html?d=test'){
+            content  = b + a +'-smoke' ;
+        }
 
-        content  = b + a ;
         console.log(content);
         jQuery('#qrcode').qrcode({width:90,height:90,text:content});
 
