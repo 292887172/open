@@ -126,18 +126,24 @@
                         <span class="caret"></span>
                     </p>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        {% for a in all_app %}
-                            {% if a.app_id == app.app_id %}
+                        {% if all_app %}
+                            {% for a in all_app %}
+                                {% if a.app_id == app.app_id %}
 
-                            {% else %}
+                                {% else %}
 
-                                <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="?ID={{ a.app_id }}">{{ a.app_name }}</a>
-                                </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="?ID={{ a.app_id }}">{{ a.app_name }}</a>
+                                    </li>
 
-                            {% endif %}
+                                {% endif %}
 
-                        {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                            <li role="presentation">
+                                        <a role="menuitem" tabindex="-1">暂无更多产品</a>
+                            </li>
+                        {% endif %}
 
                     </ul>
                 </div>
@@ -159,7 +165,7 @@
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
                     <div class="menuBox">
-                        <h3><b>{{ app.app_device_type|cover_device_type }}产品管理</b></h3>
+
                         <ul>
                             <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
                                 <a href="#/content">
@@ -234,8 +240,8 @@
 
 {% block end_fixed_script %}
 
-    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="//apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="//apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="{% static "ng/product/app.js" %}"></script>
     <script src="{% static "ng/product/controller.js" %}"></script>
     <script src="{% static "ng/product/info/controller.js" %}"></script>

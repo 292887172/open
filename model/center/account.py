@@ -18,6 +18,21 @@ def md5(x):
 
 
 class MyUserManager(BaseUserManager):
+    def create_wx_user(self, account, password, stat, nickname):
+        user = self.model(
+            account_id=MyUserManager.normalize_email(account),
+            account_from_id=stat,
+            account_type=3,
+            account_nickname=nickname,
+            last_login=datetime.datetime.now(),
+            account_create_date=datetime.datetime.now()
+        )
+
+        user.set_password(password)
+
+        user.save()
+        return user
+
     def create_user(self, account, password, stat, dproducts='', team_persons=1, expertise="", sproducts="", intent="",
                     tel='no'):
         # 最后一个参数为了区分设备管理系统厂商注册过来的电话号码，其他注册没有这个参数
@@ -101,10 +116,12 @@ class Account(AbstractBaseUser):
     account_from_id = models.CharField(max_length=64, null=True, db_column='ebf_account_from_id')
     # 帐号密码
     # account_pwd = models.CharField(max_length=512, db_column='ebf_account_password')
-    # 帐号类型（0：普通账号 ，1：运营账号，2：厂商帐号）
+    # 帐号类型（0：普通账号 ，1：运营账号，2：厂商帐号, 3:微信账号）
     account_type = models.IntegerField(max_length=3, default=0, db_column='ebf_account_type')
     # 帐号邮箱
     account_email = models.CharField(max_length=64, null=True, db_column='ebf_account_email')
+    # 账号昵称
+    account_nickname = models.CharField(max_length=128, null=True, db_column='ebf_account_nickname')
     # 手机号
     account_phone = models.CharField(max_length=32, null=True, db_column='ebf_account_phone')
     # 帐号是否禁用 （0：启用，1：禁用）
@@ -140,6 +157,7 @@ class Account(AbstractBaseUser):
     @property
     def is_developer(self):
         try:
+
             return self.developer.developer_check_status == 1 and self.developer.developer_is_forbid == 0
         except Exception as e:
             print(e)
@@ -162,7 +180,7 @@ class Account(AbstractBaseUser):
             developer = Developer.objects.get(developer_account=account_id)
         except Exception as e:
             print(e)
-            developer = Developer()
+            developer = None
         return developer
 
     class Meta:
