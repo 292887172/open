@@ -7,16 +7,12 @@
     <title>设备页面管理</title>
     <style>
         .main{display: flex;}
-        .main_header{width: 95%;height: 55px; border-bottom: 1px silver solid;margin-left: 25px;color:#ff6202;}
         .main_left{ width:30%; background-color: white;height: 604px;margin-top: 30px;}
         .main_right{margin-top: 70px;}
         .phone_background{background-image: url("/static/image/product/saoma.jpg");background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
          width: 230px;height: 270px; margin-top: 120px;margin-left: 20px;}
-        .rightMain{
-            height: 720px;
-        }
         .dropdown { position: relative;display: inline-block;}
-        .dropdown-content { border:1px solid silver; display: none; margin-left: 60px; position: absolute;  margin-top:0px;background-color: #f9f9f9;  width:90px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    }
+        .dropdown-content { border:1px solid silver; display: none; margin-left: 60px; position: absolute;  margin-top:0px;background-color: #f9f9f9;  width:70px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    }
         .dropdown:hover .dropdown-content {  display: block; }
         .dropdown-content p{color: black;margin-top: 0px;width: 100%;text-align: center;margin-top: 5px;}
         .dropdown-content p:hover{color:white;background-color:#ff6202; }
@@ -27,7 +23,7 @@
 <div class="box2">
 <div class="hl-help">
      <div class="dropdown" id="dropdown">
-        <span style="color: black;margin-left: -10px;">产品体验</span><span style="color: silver;"> ></span> <span>体验设备管理</span><img height="7px;" width="7px;" style="margin-left: 4px;" src="/static/image/product/drapdown.png">
+        <span style="color: black;margin-left: -10px;">产品体验</span><span style="color: silver;"> ></span> <span id="device_manage">油烟机</span><img height="7px;" width="7px;" style="margin-left: 4px;" src="/static/image/product/drapdown.png">
          <div class="dropdown-content">
             <p id="jcz">集成灶</p>
             <p id= "smoke">油烟机</p>
@@ -38,7 +34,8 @@
     <div class="main mt20">
     <div class="main_left">
             <div class="phone_background"></div>
-                <div id="qrcode" style="margin-left:190px;margin-top:-150px;"></div>
+                <div id="qrcode" style="margin-left:190px;margin-top:-150px;position: absolute;"></div>
+
     </div>
                 <div style="margin-top: 450px;margin-left: 20px;position: absolute;width: 250px;"><h4>请使用“53iq智能厨房App”</h4><h4>扫码体验手机控制 </h4></div>
     <div class="main_right">
@@ -52,59 +49,63 @@
 <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
 
-     //获取cookie 生成二维码
+     b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
+    $(function () {
+        $("#jcz").click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/stove.html';
+
+             document.getElementById("device_manage").innerText = "集成灶";
+             b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
+             $('#qrcode').html("");
+             setTimeout(function () {
+                getQrcode()
+             },1000)
+        })
+        $('#smoke').click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/smoke.html';
+
+             document.getElementById("device_manage").innerText = "油烟机";
+             b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
+             $('#qrcode').html("");
+             setTimeout(function () {
+                getQrcode()
+             },1000)
+        })
+        $('#oven').click(function () {
+             var bx = document.getElementById('iframes')
+             bx.src = '/static/ng/product/oven/oven.html'
+
+             document.getElementById("device_manage").innerText = "智能烤箱";
+             b = 'https://oven.53iq.com/static/html/oven_home.html?d=test'
+             $('#qrcode').html("");
+             setTimeout(function () {
+                getQrcode()
+             },1000)
+        })
+         //获取cookie 生成二维码
     function getQrcode() {
         var a = getCookie('COOKIE_USER_ACCOUNT')
         console.log(a)
-        var  b =''
-        var ir = document.getElementById('iframes')
-        if( ir.name == 'oven'){
-            b = 'https://oven.53iq.com/static/html/oven_home.html?d=test'
-        }
-        if (ir.name =='smoke'){
-            b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
-        }
-        if (ir.name =='stove'){
-            b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
-        }
+
         content  = b + a;
         console.log(content);
         jQuery('#qrcode').qrcode({width:90,height:90,text:content});
 
     };
-
-
         function getCookie(name) {
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
         if (arr = document.cookie.match(reg))
             return unescape(arr[2]);
         else
             return null;
     }
-
-setTimeout(function () {
-    getQrcode()
-},1000)
-
-</script>
-<script>
-    $(function () {
-
-        $("#jcz").click(function () {
-             var bx = document.getElementById('iframes')
-             bx.src = '/static/ng/product/oven/stove.html'
-        })
-        $('#smoke').click(function () {
-             var bx = document.getElementById('iframes')
-             bx.src = '/static/ng/product/oven/smoke.html'
-        })
-        $('#oven').click(function () {
-             var bx = document.getElementById('iframes')
-             bx.src = '/static/ng/product/oven/oven.html'
-        })
-
+    setTimeout(function () {
+                getQrcode()
+             },1500)
     })
 </script>
+
 </body>
 </html>
