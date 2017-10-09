@@ -75,9 +75,66 @@
      .ui-jqgrid .ui-jqgrid-bdiv{
          z-index: 0;
      }
-     .modal{
-             top: 200px;
-     }
+    .modal-content {
+        border-radius: 6px;
+    }
+    .modal-footer {
+        padding: 19px 20px 20px;
+        margin-top: 15px;
+        text-align: right;
+        border-top: 1px solid #e5e5e5;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+    }
+    .modal-body {
+        padding: 20px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 6px;
+    }
+    .btn-default, .btn-default.focus, .btn-default:focus{
+        color: #788188 !important;
+        background-color: #fff !important;
+        border-color: #dbe2e7;
+        border-bottom-color: #d5dde3;
+        -webkit-box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+        box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+    }
+    .btn-default:hover{
+        color: #788188 !important;
+        background-color: #f2f2f2 !important;
+        border-color: #c2ced6;
+    }
+    .btn-primary, .btn-primary.focus, .btn-primary:focus {
+        color: #fff !important;
+        background-color: #545ca6 !important;
+        border-color: #545ca6!important;
+    }
+    .btn.btn-primary:hover{
+        color: #fff !important;
+        background-color: #464d8b!important;
+        border-color: #464d8b!important;
+    }
+    .bootbox-body{
+        color: #788188;
+        line-height: 1.4;
+    }
     </style>
     <div class="main-container box2">
 
@@ -96,7 +153,7 @@
             <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
             <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
             <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
-            <img src="/static/image/product/Prompt.jpg">
+            <img style="width: 950px;" src="/static/image/product/Prompt.jpg">
          </div>
         <div id="show-no-data"></div>
         <div id="grid-pager"></div>
@@ -314,7 +371,7 @@
                         $("#ie-form").html(form);
                         form.submit();
                     }
-                })
+                });
 			}
 			function edit(id){
                 //把id传给前台
@@ -355,7 +412,7 @@
                     placement: 'left',
                     html: 'true',
                     title : '<span class="text-info">是否删除该功能</span> <button type="button" onclick="fun_close()">&times;</button>',
-                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #4d9ee6;border-color: #45a2fe;margin-left: 20px;color: #fff;">确认</button>'
+                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
                   });
 			    $(".del-info").popover('hide');
                 $("#del-info"+id).popover('toggle');

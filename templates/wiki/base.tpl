@@ -69,7 +69,7 @@
             padding-left: 15px;
             padding-bottom: 8px;
             cursor: pointer;
-            font-weight: bolder;
+
         }
 
         h5 p {
