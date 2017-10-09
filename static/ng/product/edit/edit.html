@@ -31,11 +31,16 @@
                    color: #337ab7;
             }
             .btn{
-                    border-radius: 4px;
+                border-radius: 4px;
+                width: 118px;
+                height: 40px;
+                background-color: #dddddd!important;
+                background: #dddddd;
+                border-color: #dddddd;
             }
             .btn:hover{
-                background-color: #8B9AA3!important;
-                border-color: #8B9AA3;
+                background-color: #c6c6c6!important;
+                border-color: #c6c6c6;
 
             }
             .btn.btn-info:hover{
@@ -230,11 +235,15 @@
 										<div class="col-sm-2 col-xs-2"></div>
 
 										<div class="col-sm-5 col-xs-6">
-											<button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
-												<i  class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>&nbsp
-
-											<button ng-hide='{[{ visible }]}' class="btn" onclick="javascript:window.location.reload()" >
+                                            <span class="pr20">
+                                                <button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
+												<i  class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>
+                                            </span>
+                                            <span>
+                                                <button ng-hide='{[{ visible }]}' class="btn" onclick="javascript:window.location.reload()" >
 												<i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                                            </span>
+
 										</div>
 									</div>
 
