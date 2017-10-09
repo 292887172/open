@@ -17,15 +17,15 @@
     </style>
 </head>
 <body style="background-color: white;">
-<script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
-<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script type='text/javascript' src='//cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
+<script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 </body>
 <script>
       var userID = '' // 用户id
       window.onload = function MyAutoRun() {
       var a = getck('COOKIE_USER_ACCOUNT')
           console.log(a)
-          userID = 'test'+a+'-stove'
+          userID = 'test'+'-stove'+a
           document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
     }
