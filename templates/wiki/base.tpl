@@ -41,7 +41,7 @@
         }
 
         .menuBox ul {
-            padding-left: 33px;
+            padding-left: 23px;
         }
 
         .menuBox ul li {
@@ -50,26 +50,28 @@
         }
 
         .icon-caret-right {
-            background: url("{% static 'image/wiki/arrow_right.png' %}") no-repeat center;
-            background-size: 80%;
-            width: 15px;
-            height: 15px;
-            position: absolute;
-        }
-
-        .icon-caret-down {
             background: url("{% static 'image/wiki/arrow_down.png' %}") no-repeat center;
             background-size: 80%;
             width: 15px;
             height: 15px;
             position: absolute;
+            margin-left: 82%;
+        }
+
+        .icon-caret-down {
+            background: url("{% static 'image/wiki/arrow_up.png' %}") no-repeat center;
+            background-size: 80%;
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            margin-left: 82%;
         }
 
         h5 {
             padding-left: 15px;
             padding-bottom: 8px;
             cursor: pointer;
-
+            position: relative;
         }
 
         h5 p {

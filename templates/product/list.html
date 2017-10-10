@@ -591,9 +591,9 @@
             <div class="goods-list">
                 <dl>
                     <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}"
-                                                                                    onerror="this.src='{% static "image/global/default.png" %}'"
-                                                                                    title="产品图标"></a>
+                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}">
+                            <img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                        </a>
                         <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
