@@ -75,6 +75,9 @@
      .ui-jqgrid .ui-jqgrid-bdiv{
          z-index: 0;
      }
+     .prompt-class{
+         padding-top: 31px;
+     }
     .modal-content {
         border-radius: 6px;
     }
@@ -153,8 +156,22 @@
             <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
             <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
             <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
-            <img style="width: 950px;" src="/static/image/product/Prompt.jpg">
          </div>
+        <div>
+            <div class="prompt-class">
+                <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">单指令：</span>单指令数据部分添加功能序号和对应状态，每次只能传递一个功能状态</p>
+                <img src="/static/image/product/prompt1.jpg.">
+            </div>
+            <div class="prompt-class">
+                <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">多指令：</span>多指令增加功能序号和对应状态，可以交替传递多个，可交替，可多，可少</p>
+                <img src="/static/image/product/prompt2.jpg">
+            </div>
+            <div class="prompt-class">
+                <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">全指令：</span>全指令数据部分传输的功能状态必须和功能列表顺序保持一致，不可交叉，不接漏传</p>
+                <img src="/static/image/product/prompt3.jpg">
+                <img style="    position: relative;margin-left: 75%;" src="/static/image/product/tishi.png">
+            </div>
+        </div>
         <div id="show-no-data"></div>
         <div id="grid-pager"></div>
         <div id="ie-form"></div>

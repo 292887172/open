@@ -86,10 +86,15 @@
                 <!-- 左侧菜单 begin -->
 
                 <div class="menuBox">
-                    <h3><b>调试工具</b></h3>
+
                     <ul>
                         <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i
                                 class="icon-wrench"></i>调试接口</a></li>
+                    </ul>
+                </div>
+                 <div class="menuBox">
+
+                    <ul>
                         <li class="menu-li"><a href="/debug/debug_device" target="_blank"><i
                                 class="icon-compass"></i>调试设备</a></li>
                     </ul>

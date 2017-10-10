@@ -36,7 +36,7 @@ def write_zip(e_data, j_data, export_name):
         j_name = write_json(j_data, export_name[1])
         e_name = write_excel(e_data, export_name[1])
         # 本地文件写入zip，重命名，然后删除本地临时文件
-        zipFileFullDir = os.getcwd() + '/static/sdk/' + z_name
+        zipFileFullDir = os.getcwd() + "/static/sdk/" + z_name
         z_file = zipfile.ZipFile(zipFileFullDir, 'w')
         z_file.write(j_name, "TRD.json")
         path = os.getcwd()+"/static/sdk/WIFI设备于53iq智能云通信协议V1.0.docx"
@@ -117,7 +117,7 @@ def deal_json(app):
             temp2_data.append(j)
     e_data['functions'] = temp2_data
     j_data['functions'] = temp1_data
-    return {'e_data':e_data,'j_data':j_data}
+    return {'e_data':e_data, 'j_data':j_data}
 
 
 def date_deal(app_id):
