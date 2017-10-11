@@ -36,12 +36,14 @@
         }
 
         .menuBox {
-            padding: 27px 10px 0px 13px;
-            border-bottom: 1px solid #eee;
+            padding: 20px 10px 0 13px;
+
         }
 
         .menuBox ul {
             padding-left: 23px;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 7px;
         }
 
         .menuBox ul li {
@@ -69,7 +71,7 @@
 
         h5 {
             padding-left: 15px;
-            padding-bottom: 18px;
+            padding-bottom: 20px;
             cursor: pointer;
             position: relative;
         }
@@ -158,7 +160,7 @@
             {% else %}
                 <!-- 登录 -->
 
-                    <a class="user-login" href="{% url 'login' %}">登录</a>
+                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
     </div>
