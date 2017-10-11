@@ -36,7 +36,7 @@
         }
 
         .menuBox {
-            padding: 10px 10px 0px 13px;
+            padding: 27px 10px 0px 13px;
             border-bottom: 1px solid #eee;
         }
 
@@ -69,7 +69,7 @@
 
         h5 {
             padding-left: 15px;
-            padding-bottom: 8px;
+            padding-bottom: 18px;
             cursor: pointer;
             position: relative;
         }

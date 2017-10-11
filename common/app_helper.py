@@ -69,6 +69,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
                           check_status=check_status,
+                          app_create_date=datetime.datetime.utcnow(),
+                          app_update_date=datetime.datetime.utcnow()
                           )
                 app.save()
                 message_content = '"'+ app_name + '"' + CREATE_APP
