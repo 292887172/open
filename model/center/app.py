@@ -63,9 +63,9 @@ class App(models.Model):
     # 协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）
     app_protocol_type = models.IntegerField(max_length=2, default=1, db_column='ebf_app_protocol_type')
     # 应用创建时间，auto_now_add,为添加时的时间，更新对象时不会有变动,auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间
-    app_create_date = models.DateTimeField(auto_now_add=True, db_column='ebf_app_create_date')
+    app_create_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_app_create_date')
     # 应用更新时间
-    app_update_date = models.DateTimeField(auto_now=True, db_column='ebf_app_update_date')
+    app_update_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_app_update_date')
     # 全指令
     app_command = models.CharField(max_length=8, null=True, db_column='ebf_app_command')
     # 厂家/品牌uid

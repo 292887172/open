@@ -33,7 +33,7 @@ def utc2local2(obj):
     """
     try:
         date4 = obj + datetime.timedelta(hours=8)
-        dtstr = date4.strftime("%Y-%m-%d")
+        dtstr = date4.strftime("%Y-%m-%d %H:%I:%S")
         return dtstr
     except:
         return ""
