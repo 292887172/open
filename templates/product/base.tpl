@@ -74,7 +74,7 @@ var _hmt = _hmt || [];
                 <!-- 登录 -->
 
 
-                    <a class="user-login" href="{% url 'login' %}">登录</a>
+                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
     </div>
