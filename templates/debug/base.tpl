@@ -30,7 +30,17 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a></h1>
+        <h1 class="logo">
+            <a href="{% url 'home' %}">
+                {% if user.developer.developer_id %}
+                    <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% else %}
+                    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% endif %}
+            </a>
+        </h1>
          <ul class="nav">
             {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
