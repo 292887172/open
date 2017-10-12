@@ -37,7 +37,17 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"></a></h1>
+        <h1 class="logo">
+            <a href="{% url 'home' %}">
+                {% if user.developer.developer_id %}
+                    <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% else %}
+                    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% endif %}
+            </a>
+        </h1>
         <ul class="nav">
             {% block menu %}
 
@@ -91,7 +101,7 @@ var _hmt = _hmt || [];
 
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>
 </div>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% block end_fixed_script %}{% endblock %}
 {% block end_script %}{% endblock %}

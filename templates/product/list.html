@@ -538,8 +538,8 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
-                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html"
-                                                   target="_blank">UI编辑</a></li>
+                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -579,8 +579,8 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
-                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html"
-                                                   target="_blank">UI编辑</a></li>
+                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -620,8 +620,8 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
-                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html"
-                                                   target="_blank">UI编辑</a></li>
+                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -662,8 +662,8 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
-                            <li class="prog_d "><a href="http://oven.53iq.com/static/html/move.html?id=control2.html"
-                                                   target="_blank">UI编辑</a></li>
+                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -684,6 +684,27 @@
     <script>
         var app_id = $("#delProLink").attr("data-id");
         var checkSubmitFlg = false;
+        function block_mac(obj) {
+            app_id = $(obj).attr('data-id');
+            $.ajax({
+                    url:"#",
+                    type: "POST",
+                    data: {"ui":"getmac","app_id":app_id},
+                    async :false,
+                    success: function (data) {
+                        mac = data['data'];
+                        if(mac){
+                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id=control2.html&mac=" + mac);
+                        }
+                        else{
+                            $(obj).removeAttr('target');
+                            bootbox.alert("暂无绑定设备！")
+                        }
+
+                    }
+                });
+
+        }
         function export_protocol() {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                 if (result) {
