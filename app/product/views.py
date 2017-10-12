@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
+from django.http.request import HttpRequest
+import requests
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
@@ -21,6 +23,7 @@ from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
+from open.settings import BASE_DIR
 
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
@@ -69,6 +72,16 @@ def product_list(request):
         failed_apps = []
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
+            # 将产品key值推送到接口
+            try:
+                url = "http://192.168.1.92:8000/api/produce/base_html"
+                app_key = app.app_appid
+                len_key = len(app_key) - 8
+                key = app_key[len_key:]
+                req = requests.get(url, params={'key':key})
+            except Exception as e:
+                print(e)
+                pass
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
                 published_apps.append(app)
@@ -99,9 +112,16 @@ def product_list(request):
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
         export = request.POST.get("name", "")
+        ui = request.POST.get("ui", "")
         if export == "export":
             ret = date_deal(app_id)
             return ret
+
+        if ui == 'getmac':
+            app = App.objects.get(app_id=app_id)
+            mac = block_mac(app)
+            return JsonResponse({'data': mac})
+
         if app_id and action in ("del", "del"):
 
             if action == "del":
@@ -111,6 +131,15 @@ def product_list(request):
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
+
+    def block_mac(app):
+        # 绑定mac
+        device_mac = ''
+        # 获取设备的mac
+        device_list = get_device_list(app.app_appid)
+        if device_list:
+            device_mac = device_list[0]['ebf_device_mac']
+        return device_mac
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -382,6 +411,20 @@ def product_main(request):
         app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
         app_factory_uid = request.POST.get("app_factory_uid", "")
+        # if len(request.FILES.dict()) >= 1:
+        #     f = request.FILES["file"]
+        #     TMP_FILE = os.path.join(BASE_DIR, "cache/")
+        #     file_name = os.path.join(TMP_FILE, f.name)
+        #     print(file_name)
+        #     d = open(file_name, 'wb+')
+        #     d.write(f.read())
+        #     d.close()
+        #     f.close()
+        #     CLOUD_TOKEN = "562f584e6f43f646adb17dfa"
+        #     from ebcloudstore.client import EbStore
+        #     store = EbStore(CLOUD_TOKEN)
+        #     r = store.upload(file_name)
+        #     print("返回路径：", r)
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -431,8 +474,6 @@ def product_main(request):
 
     elif request.method == "POST":
         return post()
-
-
 
 
 @csrf_exempt

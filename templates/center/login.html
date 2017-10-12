@@ -67,7 +67,7 @@
             min-height:70px;
             border: 1px solid #DDDDDD;
             border-color: rgba(204,204,204,0.43);
-            background-color: rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.5);
         }
 
         .widget-body {
@@ -75,7 +75,7 @@
             border-style: solid;
             border-width: 0 1px 1px;
             border-color: rgba(204,204,204,0.43);
-            background-color: rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.5);
             min-height: 160px;
         }
 
@@ -210,6 +210,7 @@
     }
     .footer{
         color: #fff;
+        border-top:none;
     }
     .footer p a{
         color: #fff;
@@ -224,7 +225,7 @@
     line-height: 35px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    border-color: rgba(204,204,204,0.43);  background-color: rgba(255,255,255,0.3);
+    border-color: rgba(204,204,204,0.43);  background-color: rgba(255,255,255,0.5);
     }
     .sys-login,.wx-login{
         width: 24px;
@@ -311,6 +312,10 @@
 {% block end_script %}
     <script src="{% static 'js/center/crypto.js' %}"></script>
     <script>
+    var num = Math.round(Math.random()*2+1);
+    var image1 = "/static/image/center/login_bg"+num+'.jpg';
+    $("body").css("background","url("+image1+")center center / cover no-repeat fixed");
+    console.log(image1);
     function encryption(item) {
              var b = new Base64();
              var str = b.encode($(item).val());
@@ -322,8 +327,6 @@
              if(!$("input[type='checkbox']").is(':checked')){
                  $(".ui-remember-account").click()
              }
-
-
         }
         $(".ui-login").mouseover(function () {
             var img_src = $(this).children().children('img').attr('src');

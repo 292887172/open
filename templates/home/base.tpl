@@ -33,7 +33,16 @@
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a>
+        <h1 class="logo">
+            <a href="{% url 'home' %}">
+                {% if user.developer.developer_id %}
+                    <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% else %}
+                    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
+                                            title="53iq云智能云">
+                {% endif %}
+            </a>
         </h1>
         {% block menu %}
 
@@ -61,8 +70,6 @@
                     </div>
             {% else %}
                 <!-- 登录 -->
-
-
                     <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
