@@ -71,7 +71,7 @@
 {% endblock %}
 
 {% block menu %}
-        {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
+        {% if user.developer.developer_id %}
             <li><a href="{% url 'product/list' %}">产品管理</a></li>
         {% endif %}
         <li><a href="{% url 'home/guide' %}">开发指南</a></li>
@@ -196,6 +196,106 @@
                             &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
                         </p>
                     </form>
+                        <!-- 微信账号，默认为空-->
+                        {% elif user.developer.developer_check_status == 2%}
+                            <form id="form1" method="post">
+
+                            <dl>
+                                <dt>开发者账号：</dt>
+                                <dd><strong class="user">{{ user.account_id|is_none }}</strong><br>
+                                    <input type="hidden" id="user_from" value="{{ user.account_from_id|is_none }}">
+
+                                    <p>建议使用53iq企业账户，便于您的管理。</p></dd>
+                            </dl>
+                            <h3>公司/团队信息</h3>
+                            <dl>
+                                <dt><span>*</span>公司/团队名称：</dt>
+                                <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
+                                                                       value=""
+                                                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
+                                                                       maxlength="64">
+                                    <span id="coNameErrorId" class="error"></span></dd>
+                                <dt>公司/团队网址：</dt>
+                                <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
+                                           maxlength="255">
+                                    <span id="coNetUrlErrorId" class=""></span></dd>
+                                <dt>公司/团队所在地：</dt>
+                                <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
+                                           maxlength="255">
+                                    <span id="coAddressErrorId" class=""></span></dd>
+                                <dt><span>*</span>开发团队人数：</dt>
+                                <!-- 开发团队人数未输入，默认为空-->
+                                {% if user.account_team_persons == None %}
+                                <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="" class="txt"
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
+                                           maxlength="64">
+                                    <span id="coDevScaleErrorId" class="error"></span></dd>
+                                 <!--开发团队人数已输入，默认填充-->
+                                 {% else %}
+                                    <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="{{ user.account_team_persons }}" class="txt"
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
+                                           maxlength="64">
+                                    <span id="coDevScaleErrorId" class="error"></span></dd>
+                                 {% endif %}
+                            </dl>
+                            <h3>联系人信息</h3>
+                            <dl>
+                                <dt><span>*</span>联系人姓名：</dt>
+                                <dd><label for="inContactName"></label><input type="text" name="coContactName" id="inContactName" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
+                                           maxlength="64">
+                                    <span id="coContactNameErrorId" class="error"></span></dd>
+                                <dt><span>*</span>联系人职务：</dt>
+                                <dd><label for="inContactRole"></label><input type="text" name="coContactRole" id="inContactRole" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人职务'))"
+                                           maxlength="64">
+                                    <span id="coContactRoleErrorId" class="error"></span></dd>
+                                <dt><span>*</span>手机：</dt>
+                                <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
+                                           maxlength="11">
+                                    <span id="coContactMobileErrorId" class="error"></span></dd>
+                                <dt>固定电话：</dt>
+                                <dd><label for="inContactPhone"></label><input type="text" name="coContactPhone" id="inContactPhone" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyPhone(this,false,64))"
+                                           maxlength="64">
+                                    <span id="coContactPhoneErrorId" class=""></span></dd>
+                                <dt>QQ：</dt>
+                                <dd><label for="inContactQq"></label><input type="text" name="coContactQq" id="inContactQq" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNum(this,false,20))"
+                                           maxlength="20">
+                                    <span id="coContactQqErrorId" class=""></span></dd>
+                                <dt><span>*</span>邮箱：</dt>
+                                <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value=""
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
+                                           maxlength="64">
+                                    <span id="devEmailErrorId" class="error"></span></dd>
+                                <dt><span>*</span>邮箱验证码：</dt>
+                                <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
+                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
+                                    <a id="getDevCodeId">获取邮箱验证码</a><span
+                                            id="devCodeMsgId"></span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
+                                </dd>
+
+                            </dl>
+                            <dl >
+
+                                <dd><label><input type="checkbox" name="agree" id="agree" checked=""
+                                                  onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
+                                                                                                     target="_blank">《53iq智能云开发者协议》</a></label>
+                                    &nbsp;&nbsp; <span id="agreeErrorId" class="" style="visibility:hidden;">请接受服务条款</span>
+                                </dd>
+
+                            </dl>
+
+                            <p class="ui-sub-p">
+                                <button type="button" id="submitBtn" class="ui-submit-btn btn disable" disabled>提交</button>
+                                &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
+                            </p>
+                        </form>
                         {% else %}
                     <dl>
                         <dt>开发者账号：</dt>

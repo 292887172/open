@@ -16,7 +16,7 @@ class Developer(models.Model):
     developer_factory = models.CharField(max_length=128, null=True, db_column='ebf_developer_factory')
     # 厂商标识（一定不能为空）
     developer_symbol = models.CharField(max_length=1024, db_column='ebf_developer_symbol')
-    # 开发者来源 （1：平台用户，2：设备管理系统厂商，3：qq）
+    # 开发者来源 （1：平台用户，2：设备管理系统厂商，3：微信）
     developer_from = models.IntegerField(max_length=2, default=1, db_column='ebf_developer_from')
     # 开发者公司/团队名称
     developer_inc = models.CharField(max_length=64, db_column='ebf_developer_inc')
@@ -43,9 +43,9 @@ class Developer(models.Model):
     # 是否禁用（0：启用，1：禁用）
     developer_is_forbid = models.IntegerField(max_length=2, default=0, db_column='ebf_developer_is_forbid')
     # 更新时间，auto_now_add,为添加时的时间，更新对象时不会有变动,auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间
-    developer_update_date = models.DateTimeField(auto_now=True, db_column='ebf_developer_update_date')
+    developer_update_date = models.DateTimeField(auto_now=True, default=datetime.datetime.utcnow(), db_column='ebf_developer_update_date')
     # 创建时间
-    developer_create_date = models.DateTimeField(auto_now_add=True, db_column='ebf_developer_create_date')
+    developer_create_date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.utcnow(), db_column='ebf_developer_create_date')
 
     class Meta:
         app_label = 'center'

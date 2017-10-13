@@ -16,6 +16,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from base.const import ConventionValue
+from conf.apiconf import wx_oauth, wx_userinfo
 from conf.sessionconf import *
 from base.connection import RedisBaseHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
@@ -688,7 +689,7 @@ def callback(request):
         if code is None:
             return HttpResponse('微信验证失败')
         else:
-            url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code'.format(APPID, APP_SECRET, code)
+            url = wx_oauth.format(APPID, APP_SECRET, code)
 
             r = requests.get(url)
             ret = r.json()
@@ -697,7 +698,7 @@ def callback(request):
             access_token = ret.get('access_token', None)
             if access_token is None:
                 return HttpResponse('code值无效')
-            url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}'.format(access_token, openid)
+            url2 = wx_userinfo.format(access_token, openid)
             ret2 = requests.get(url2)
             ret2.encoding = 'utf8'
             ret2 = ret2.json()
@@ -715,9 +716,10 @@ def callback(request):
                 user_obj = authenticate(username=unionid, password='123')
                 django.contrib.auth.login(request, user_obj)
                 if ac.is_developer:
-                    response = HttpResponseRedirect('/guide')
+                    response = HttpResponseRedirect('/product/list')
                 else:
-                    response = HttpResponseRedirect('/center')
+                    create_developer('', '', '', 0, '', '', '', '', '', '', '', '', unionid, unionid, 2)
+                    response = HttpResponseRedirect('/guide')
                 response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
@@ -725,12 +727,13 @@ def callback(request):
                 pass
             try:
                 Account.objects.create_wx_user(unionid, '123', openid, nickname)
+                create_developer('', '', '', 0, '', '', '', '', '', '', '', '', unionid, unionid, 2)
             except Exception as e:
                 logging.getLogger('').info('创建微信账号出错'+str(e))
                 return HttpResponse('登录失败，请尝试其他方式登录')
             user_obj = authenticate(username=unionid, password='123')
             django.contrib.auth.login(request, user_obj)
-            response = HttpResponseRedirect('/center')
+            response = HttpResponseRedirect('/product/list')
             response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
             response.set_cookie(AUTO_LOGIN, token, expires=dt)
             return response
