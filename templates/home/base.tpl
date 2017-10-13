@@ -33,11 +33,7 @@
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo">
-            <a href="{% url 'home' %}">
-                    <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
-                                            title="53iq云智能云">
-            </a>
+        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
         {% block menu %}
 

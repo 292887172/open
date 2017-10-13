@@ -10,7 +10,7 @@ import requests
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
-from common.app_helper import create_app
+from common.app_helper import create_app,update_app_fun_widget
 from common.app_helper import del_app
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -360,6 +360,7 @@ def product_main(request):
             indata = json.loads(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
+            indata["widget"] = update_app_fun_widget(indata)
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息

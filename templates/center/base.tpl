@@ -37,13 +37,9 @@ var _hmt = _hmt || [];
 <body>
 <div id="header">
     <div class="cnt">
-        <h1 class="logo">
-
-            <a href="{% url 'home' %}">
-
-                    <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
-                                            title="53iq云智能云">
-            </a>
+        <h1>
+            <a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+                                            title="53iq云智能云"></a>
         </h1>
         <ul class="nav">
 

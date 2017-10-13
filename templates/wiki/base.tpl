@@ -127,12 +127,8 @@
 <body>
 <div id="header">
 <div class="wrapper">
-    <h1 class="logo">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
-                                            title="53iq云智能云">
-            </a>
-    </h1>
+<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
+        </h1>
     <ul class="nav">
         {% block menu %}
             {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
