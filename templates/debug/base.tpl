@@ -32,13 +32,9 @@ var _hmt = _hmt || [];
     <div class="wrapper">
         <h1 class="logo">
             <a href="{% url 'home' %}">
-                {% if user.developer.developer_id %}
+
                     <img src="{% static 'image/home/logo-dev1.png' %}" height="40"
                                             title="53iq云智能云">
-                {% else %}
-                    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
-                                            title="53iq云智能云">
-                {% endif %}
             </a>
         </h1>
          <ul class="nav">
@@ -68,7 +64,7 @@ var _hmt = _hmt || [];
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
                 {% else %}
-                        <a class="user-login" href="{% url 'login' %}">登录</a>
+                     <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
                 {% endif %}
 
             </div>

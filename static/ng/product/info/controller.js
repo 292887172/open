@@ -104,9 +104,9 @@ angular.module('Product.info', ['ngRoute'])
                 alert("产品名称不能为空");
             }
             else {
-                if (!startWith(productImg.attr("src"), "http://dldir.56iq.net")) {
+                if (!startWith(productImg.attr("src"), "http://storage.56iq.net")) {
                     $.ajaxFileUpload({
-                        url: "http://dldir.56iq.net/api/upload/?type=callback&t=" + new Date().getTime(),
+                        url: "/product/upload_file/?type=callback&t=" + new Date().getTime(),
                         fileElementId: "productImgFile",
                         dataType: 'json',
                         success: function (data) {
