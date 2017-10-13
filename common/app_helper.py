@@ -86,6 +86,18 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
         return ""
 
 
+def update_app_fun_widget(data):
+    """
+
+    :param data: 修改该功能点的widget值
+    :return:
+    """
+    if data["corpMark"] and not data["isControl"]:
+        return "input"
+    else:
+        return "button"
+
+
 def del_app(app_id):
     """
     删除应用(移除到历史应用表)
