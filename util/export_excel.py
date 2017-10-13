@@ -5,6 +5,8 @@ import json
 import logging
 import zipfile
 from django.http import HttpResponse
+from common.app_helper import update_app_fun_widget
+
 
 from util.excelutil import write_data
 from model.center.app import App
@@ -12,9 +14,9 @@ from model.center.app import App
 
 def write_excel(items, filename):
     headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
-               'mxsLength': '长度(bit)', 'command': '全指令', 'permission': '权限'}
+               'mxsLength': '长度(bit)', 'widget': '装置', 'command': '全指令', 'permission': '权限'}
     items['functions'].insert(0, headers)
-    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'command', 'permission']
+    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'widget', 'command', 'permission']
     excel_name = write_data(items, header, filename)
     return excel_name
 
@@ -88,6 +90,7 @@ def deal_json(app):
         j["mxsLength"] = data["mxsLength"]
         j["command"] = app.app_command
         j["values"] = json.dumps([data["min"], data["max"]])
+        j['widget'] = update_app_fun_widget(data)
 
         # 写入json的数据
         i = {}
@@ -98,6 +101,7 @@ def deal_json(app):
         i["title"] = data["name"]
         i["length"] = data["mxsLength"]
         i['unit'] = data['corpMark']
+        i['widget'] = update_app_fun_widget(data)
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
