@@ -72,16 +72,6 @@ def product_list(request):
         failed_apps = []
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            # 将产品key值推送到接口
-            try:
-                url = "http://192.168.1.92:8000/api/produce/base_html"
-                app_key = app.app_appid
-                len_key = len(app_key) - 8
-                key = app_key[len_key:]
-                req = requests.get(url, params={'key':key})
-            except Exception as e:
-                print(e)
-                pass
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
                 published_apps.append(app)
@@ -204,6 +194,15 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
+                # 将产品key值推送到接口
+                try:
+                    url = KEY_URL
+                    app_key = result.app_appid
+                    key = app_key[-8:]
+                    req = requests.get(url, params={'key':key}, timeout=1)
+                except Exception as e:
+                    print(e)
+                    pass
                 url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
@@ -411,20 +410,6 @@ def product_main(request):
         app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
         app_factory_uid = request.POST.get("app_factory_uid", "")
-        # if len(request.FILES.dict()) >= 1:
-        #     f = request.FILES["file"]
-        #     TMP_FILE = os.path.join(BASE_DIR, "cache/")
-        #     file_name = os.path.join(TMP_FILE, f.name)
-        #     print(file_name)
-        #     d = open(file_name, 'wb+')
-        #     d.write(f.read())
-        #     d.close()
-        #     f.close()
-        #     CLOUD_TOKEN = "562f584e6f43f646adb17dfa"
-        #     from ebcloudstore.client import EbStore
-        #     store = EbStore(CLOUD_TOKEN)
-        #     r = store.upload(file_name)
-        #     print("返回路径：", r)
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -503,3 +488,21 @@ def control(request):
         data = json.loads(data.decode('utf-8'))
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
+
+
+@csrf_exempt
+def upload_file(request):
+    if len(request.FILES.dict()) >= 1:
+        f = request.FILES["file"]
+        TMP_FILE = os.path.join(BASE_DIR, "cache/")
+        file_name = os.path.join(TMP_FILE, f.name)
+        print(file_name)
+        d = open(file_name, 'wb+')
+        d.write(f.read())
+        d.close()
+        f.close()
+        CLOUD_TOKEN = "562f584e6f43f646adb17dfa"
+        from ebcloudstore.client import EbStore
+        store = EbStore(CLOUD_TOKEN)
+        r = store.upload(file_name)
+        print("返回路径：", r)

@@ -10,4 +10,5 @@ urlpatterns = patterns(
     url(r"^main/$", "product_main", name="product/main"),
     url(r"^verify$", "key_verify", name="product/key_verify"),
     url(r"^control$", "control", name="control"),
+    url(r"^upload_file", "upload_file", name="upload_file"),
 )

@@ -57,3 +57,5 @@ UPDATE_FUN_CLOSE = "功能关闭"
 # 删除产品功能
 DEL_FUN = "功能删除"
 
+KEY_URL = "https://oven.53iq.com/api/produce/base_html"
+
