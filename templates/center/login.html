@@ -133,7 +133,7 @@
             text-align: center;
         }
         .btn:hover, .btn:focus{
-            color: #fff;
+            color: #ff6202;
             border-color: rgba(204,204,204,0.43);
             background-color: rgba(255,255,255,0.3);
         }
@@ -166,7 +166,7 @@
             width: 100%;
             height: 45px;
             text-align: center;
-            color: #fff;
+            color: #ff6202;
             border-color: rgba(204,204,204,0.43);
             background-color: rgba(255,255,255,0.3);
         }
@@ -233,9 +233,17 @@
         margin-top: -3px;
         margin-right: 5px;
     }
+    input::-webkit-input-placeholder{
+    color: #797979;opacity:1;
+}
 
     </style>
 {% endblock %}
+{% block img %}
+    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
+                            title="53iq云智能云">
+{% endblock %}
+
 {% block menu %}
 
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>

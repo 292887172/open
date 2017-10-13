@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
-from django.http.request import HttpRequest
 import requests
+
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
@@ -23,8 +23,8 @@ from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
-from open.settings import BASE_DIR
-
+from conf.commonconf import CLOUD_TOKEN,KEY_URL
+from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
 
@@ -53,7 +53,8 @@ def product_list(request):
         # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
         if not App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT):
             for i in range(len(APP_NAME)):
-                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
+                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                 result.app_logo = APP_LOGO[i]
                 result.save()
         if not request.user.developer.developer_id:
@@ -72,16 +73,6 @@ def product_list(request):
         failed_apps = []
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            # 将产品key值推送到接口
-            try:
-                url = "http://192.168.1.92:8000/api/produce/base_html"
-                app_key = app.app_appid
-                len_key = len(app_key) - 8
-                key = app_key[len_key:]
-                req = requests.get(url, params={'key':key})
-            except Exception as e:
-                print(e)
-                pass
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
                 published_apps.append(app)
@@ -204,6 +195,15 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
+                # 将产品key值推送到接口
+                try:
+                    url = KEY_URL
+                    app_key = result.app_appid
+                    key = app_key[-8:]
+                    requests.get(url, params={'key': key}, timeout=1)
+                except Exception as e:
+                    print(e)
+                    pass
                 url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
@@ -322,7 +322,7 @@ def product_main(request):
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
-            message_content = '"'+ app.app_name + '"' + fun_name + DEL_FUN
+            message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
         elif post_data == 'state':
@@ -333,15 +333,14 @@ def product_main(request):
                     fun_name = i['name']
                     if str(i['state']) == '0':
                         i['state'] = '1'
-                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
                     elif str(i['state']) == '1':
                         i['state'] = '0'
-                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
                     save_app(app, opera_data)
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                     return HttpResponse('change_success')
         elif post_data == "export":
-            print(type(app_id),app_id)
             res = date_deal(app_id)
             return res
         elif post_data == "save_conf":
@@ -368,7 +367,7 @@ def product_main(request):
                     if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
-                message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
@@ -377,7 +376,7 @@ def product_main(request):
                 else:
                     indata['id'] = '1'
                 opera_data.append(indata)
-                message_content = '"'+ app.app_name + '"' + fun_name + CREATE_FUN
+                message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
             save_app(app, opera_data)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -411,20 +410,6 @@ def product_main(request):
         app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
         app_factory_uid = request.POST.get("app_factory_uid", "")
-        # if len(request.FILES.dict()) >= 1:
-        #     f = request.FILES["file"]
-        #     TMP_FILE = os.path.join(BASE_DIR, "cache/")
-        #     file_name = os.path.join(TMP_FILE, f.name)
-        #     print(file_name)
-        #     d = open(file_name, 'wb+')
-        #     d.write(f.read())
-        #     d.close()
-        #     f.close()
-        #     CLOUD_TOKEN = "562f584e6f43f646adb17dfa"
-        #     from ebcloudstore.client import EbStore
-        #     store = EbStore(CLOUD_TOKEN)
-        #     r = store.upload(file_name)
-        #     print("返回路径：", r)
         if action in ("cancel_release_product", "off_product", "release_product",
                       "update_info", "update_config", "reset_app_secret"):
             if action == "release_product":
@@ -503,3 +488,19 @@ def control(request):
         data = json.loads(data.decode('utf-8'))
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
+
+
+@csrf_exempt
+def upload_file(request):
+    if len(request.FILES.dict()) >= 1:
+        f = request.FILES["productImgFile"]
+        store = EbStore(CLOUD_TOKEN)
+        r = store.upload(f.read(), f.name, f.content_type)
+        ret = json.loads(r)
+        if ret["code"] == 0:
+            print("上传成功")
+        else:
+            print(ret["msg"])
+            logging.getLogger("").info(r["msg"])
+        data = ret["data"]
+        return HttpResponse(data)

@@ -201,7 +201,11 @@
                 data: "",
                 beforeSend:function(){
                     $(".menu-li").children('a').css('color','#000000');
+                    $(".menu-li").css('border-left','none');
+                    $(".menu-li").css('background','#ffffff');
                     $(aobj).css('color','#ff6202');
+                    $(aobj).parent('li').css('background','#e6e6e6');
+                    $(aobj).parent('li').css('border-left','3px solid #ff6202');
                 },
                 success: function (msg) {
 
