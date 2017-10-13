@@ -1,7 +1,9 @@
 import datetime
 
-__author__ = 'rdy'
+
 from django.db import models
+
+__author__ = 'rdy'
 
 
 class Developer(models.Model):
