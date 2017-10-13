@@ -36,19 +36,19 @@
         }
 
         .menuBox {
-            padding: 20px 10px 0 13px;
+            padding: 20px 0px 0 0px;
 
         }
 
         .menuBox ul {
-            padding-left: 23px;
+            padding-left: 0px;
             border-top: 1px solid #f5f5f5;
             padding-top: 7px;
         }
 
-        .menuBox ul li {
-            padding-top: 5px;
+        .menuBox ul li{
             padding-bottom: 5px;
+            padding-left: 23px;
         }
 
         .icon-caret-right {
