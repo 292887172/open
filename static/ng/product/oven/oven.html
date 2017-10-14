@@ -2,14 +2,18 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>烤箱</title>
     <link href="/static/demo/css/mui.min.css" rel="stylesheet"/>
      <link href="/static/demo/css/mui.picker.css" rel="stylesheet"/>
     <link href="/static/demo/css/mui.poppicker.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/demo/css/oven.css">
     <link rel="stylesheet" href="/static/demo/css/control-app.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/product/jquery.step.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/product/oven_detail.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="/static/js/product/jquery.step.min.js"></script>
+    <script src=" https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
     <style>
         [v-cloak] {
             display: none;
@@ -19,10 +23,22 @@
             height:450px;width: 670px;
             position: absolute;
          }
+        .main{height:350px;width: 560px;border: 1px solid black;margin-left: 400px;margin-top: 100px;background-color:#1f1d1d;}
+        .windstyle{margin-top: 15px;margin-left: 40px;position: absolute;}
+        .lightstyle{margin-left: 450px;position: absolute;margin-top: 25px;}
+        .app{background-color: white;position: absolute;width: 50px;height: 30px;color:#EE7942;font-weight:bold;margin-top: -160px;margin-left: 175px;}
+        .time_conter{position: absolute;margin-left: 125px;margin-top: -120px;font-size: 30px;display: flex;}
+        .tmp{margin-left: 160px;position: absolute;margin-top: -55px;}
+        .status{height:20px;width:70px; position: absolute;font-size: 16px;}
+        .working_page{display:block;margin-left: -346px;margin-top: -57px;display: none;}
+        .ui-step-wrap .ui-step .ui-step-item{
+            width: 25%!important;
+        }
+        .mui-grid-view.mui-grid-9{height:200px;overflow: hidden;}
     </style>
 <body style="background-color: white;">
     <div class="zhong_background">
-        <div style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute; overflow: hidden;">
+        <div id="operation" style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute; overflow: hidden;display:block;">
             <div style="  margin-top:44px;height:358px;width:84%;margin-left:53px;background-color:#1f1d1d;overflow:hidden;">
                 <div class="mui-content" id="DeviceConf" v-cloak="" style="height:355px; overflow:hidden; ">
                     <div style="color:white;height: 100px;text-align: center;"><h3>烤箱Test10000023</h3></div>
@@ -38,11 +54,33 @@
                 </div>
             </div>
         </div>
+    <div class="working_page" id="working" >
+      <div class="main">
+        <div onclick="Checkwind()">  <img    id="wind"  class="windstyle"  src="/static/image/product/windclose.png"/></div>
+        <div onclick="Checklight()"> <img   id='light'  class="lightstyle" src="/static/image/product/lightclose.png"/></div>
+        <div style="margin-left: 80px;">
+            <canvas id="canvas" width="200px" height="200px" style="border-radius:100px;background:white;margin-left: 100px;margin-top:40px;"></canvas>
+            <div id="a">
+                <div id="app" class="app"></div>
+                <div id="status" class="status"></div>
+                <div  id="timeCounter" onload="setTimeLeft()" class="time_conter"><div id="h">00</div><div style="font-size: 8px;margin-top:7px;">h</div><div>:</div><div id="m" >00</div><div style="font-size:5px;margin-top: 7px;">m</div><div>:</div><div id="s">00</div><div style="font-size:5px;margin-top: 7px;margin-left: 2px;">s</div></div>
+                <div class="tmp" id="tmp">温度:200℃</div>
+            </div>
+        </div>
+        <div>
+            <button id='pause' onclick="pause()" style="margin-left: 130px;margin-top: -30px;">暂停</button>
+            <button onclick="stop()" style="margin-left: 200px;margin-top: -30px;">停止</button>
+        </div>
+        <div style=" width: 460px;  margin: 100px auto; height:100px; ">
+            <div id="step" style=" margin-top:-100px;font-size: 16px;"></div>
+        </div>
+      </div>
+  </div>
     </div>
 <script src="/static/demo/js/mui.min.js"></script>
 <script src="/static/demo/js/mui.picker.js"></script>
 <script src="/static/demo/js/my_poppicker.js"></script>
-     <script>
+    <script>
      mui.init({
         swipeBack: false //禁用右滑关闭功能
     });
@@ -50,16 +88,39 @@
     var DatePicker = new mui.PopPicker({
         layer: 2
     });
-    var set_temp = 200;
     var set_hour = 1;
     var set_minute = 0;
 </script>
 <script src="/static/demo/js/vue.min.js"></script>
 <script src="/static/demo/js/time.data.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/demo/js/vue-resource.js"></script>
-<script src="/static/demo/js/jquery.min.js"></script>
 <script src="/static/demo/js/oven.js"></script>
+    <script>
+        var a = getCookie('COOKIE_USER_ACCOUNT');
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            if (arr = document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+       var userID ='test'+a+'-oven'  //订阅id
+    </script>
 <script>
+      var status='预热中';
+      var time_stop = true;
+      var goTime = true;
+      var wind = '';
+      var light= '';
+      var Oven_time= 99;
+      var Oven_temp= 200;
+      var operation='';
+      var tempplus= 20;
+
+      var blockHour = document.getElementById('block-range-hour').innerHTML;
+      var blockMin  =  document.getElementById('block-range-min').innerHTML;
+      var  nowtime = document.getElementById('h') * 60 + document.getElementById('m')
+      Oven_time = parseInt(blockHour)*60 +parseInt(blockMin)
     function DyPoppicker(name) {
         //级联示例
         DatePicker.setData(timeData);
@@ -73,7 +134,7 @@
         DatePicker.show(function (items) {
         console.log(items[0].text + " " + items[1].text);
         //返回 false 可以阻止选择框的关闭
-        // return false;
+         return false;
         });
     }
     Vue.filter('widget1', function (value) {
@@ -85,16 +146,17 @@
         data: {
             funcList: [],
             show: false,
-            title: '设备功能列表'
+            title: '设备功能列表',
+            oven_type:'',
+            oven_value:"",
         },
-        created: function ()  {
+        created: function (){
              console.log('created is triggered.');
              console.log(pc_conf.functions);
             this.funcList = pc_conf.functions;
             this.title = pc_conf.name;
             mui('.mui-progressbar').progressbar({progress: 89}).show();
         },
-
         methods: {
             reversedWidget: function (value, type) {
                 if(value==type){
@@ -104,8 +166,12 @@
                     return true
             },
             sendCommand: function (name, value) {
-                console.log(name);
+                 console.log(name);
                  DyPoppicker(name);
+                 for(i=0;i<this.funcList.length;i++){
+                 }
+                 this.oven_type =name;
+
             }
         },
         computed: {}
@@ -114,11 +180,6 @@
         $("div.mui-picker-rule-left").last().text('分钟');
         $("div.mui-picker-inner").last().css('margin-left', '0');
     }, 500);
-    function confirm(){
-        DatePicker.hide();
-        mui.alert('虚拟设备暂不支持该功能')
-     //监听input事件，获取range的value值，也可以直接element.value获取该range的值
-    }
     var rangeList = document.querySelectorAll('input[type="range"]');
     for (var i = 0, len = rangeList.length; i < len; i++) {
         rangeList[i].addEventListener('input', function () {
@@ -131,7 +192,294 @@
                 mui('.mui-progressbar').progressbar({progress: 0}).show();
             }
             document.getElementById('block-range-tem').innerHTML = this.value + "℃";
+            Oven_temp = this.value;
         });
+    }
+    function confirm(){
+            DatePicker.hide();
+            time_stop=true;
+            goTime=true;
+            console.log(Oven_temp)
+            console.log(Oven_time)
+            console.log(userID)
+            document.getElementById('operation').style.display="none";
+            document.getElementById('working').style.display="block";
+            send_data = {'did': userID, 'model': devices.oven_type,'temp':Oven_temp,'time':Oven_time,'status':status};
+           $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
+                             res = JSON.parse(res);
+                             console.log(res);
+                             if(res['code']==-1){
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+                                 mui.toast('指令发送成功')
+                             }
+                         });
+     //监听input事件，获取range的value值，也可以直接element.value获取该range的值
+    }
+    <!-- 烤箱加热时间倒计时-->
+     var m=document.getElementById('m');
+     var s=document.getElementById('s');
+     var h=document.getElementById('h')
+     var minu = 56;
+     var hour = blockHour;
+     var s1 = 9;
+     var s2 = 5;
+         setInterval('setTimeLeft()',1000); //设定计时器的时间
+         setInterval('temp_grow()',400); //设定温度定时的时间
+         setInterval('timing_senddata()',5000); //设定发送指令的时间
+      <!-- 定时器的实现-->
+         function setTimeLeft()
+         {
+             if(goTime){
+                  s1=s1-1;
+                  s.innerHTML=s2+""+s1;
+                  h.innerHTML =0+hour
+                 if(blockHour==0){
+                      h.innerHTML="00"
+                 }
+                 if(s1==0){
+                       if(s2!=0){
+                           s2=s2-1
+                           s1=10
+                       }
+                       else {
+                           if(minu!=0){
+                                minu=minu-1;
+                                s2=5;
+                                s1=9;
+                           }
+                           else{
+                               hour-=1;
+                               minu=59;
+                               s2=5;
+                               s1=10;
+                           }
+                       }
+                 }
+             }
+             if(minu>40&&minu<60){
+                 status='预热中';
+
+             }
+             if(minu>38&&minu<=40){
+                status='预热完成'
+             }
+             if(minu>2&&minu<=38){
+                status='工作中'
+            }
+            if(hour==0&& minu==0 ){
+                status='工作完成'
+                    goTime=false;
+                    time_stop=false;
+            }
+             document.getElementById('status').innerHTML= status ;
+         }
+         <!--温度增长-->
+         function temp_grow() {
+             if( tempplus<= Oven_temp ){
+                tempplus+=1;
+                document.getElementById('tmp').innerHTML = '温度:'+tempplus+"℃";
+
+             }
+
+         }
+         <!-- 发送指令-->
+         function timing_senddata() {
+             send_data = {'did': userID, 'model': devices.oven_type, 'value': devices.oven_value,'temp':tempplus,'time':nowtime,'status':status,'wind':wind,'light':light};
+             $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
+                             res = JSON.parse(res);
+                             console.log(res);
+                             if(res['code']==-1){
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+                                 console.log('定时器发送指令成功')
+                             }
+                         });
+             console.log(send_data)
+         }
+         setTimeLeft();
+     function pause() {
+          if(time_stop){
+              var pause = document.getElementById('pause')
+              if(pause.innerHTML=='暂停'){
+                  goTime=false
+                  pause.innerHTML='继续'
+              }
+              else {
+                  pause.innerHTML='暂停'
+                  goTime=true;
+              }
+          }
+     }
+     function stop() {
+         time_stop=false;
+         goTime=false;
+         nowtime=20;
+         document.getElementById('working').style.display="none";
+         document.getElementById('operation').style.display="block";
+         document.getElementById('m').innerHTML ='00'
+         document.getElementById('s').innerHTML='00'
+         console.log(document.getElementById('m').innerHTML)
+     }
+</script>
+<script type="text/javascript">
+    <!-- 循环灯光和风扇图片-->
+    var wind =  document.getElementById('wind')
+    var flag = true;
+    var bool = true;
+    function Checkwind()
+    {
+        if(flag)
+        {
+             $('#wind')[0].src = "/static/image/product/windopen.png";
+            flag =  false;
+             wind = 'open';
+        }else {
+             $('#wind')[0].src ="/static/image/product/windclose.png";
+            flag =  true;
+            wind= 'close';
+        }
+           send_data = {'did': userID, 'model': devices.oven_type, 'value': devices.oven_value,'temp':nowtime,'time':Oven_time,'status':status,'wind':wind,'light':light};
+           $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
+                             res = JSON.parse(res);
+                             console.log(res);
+                             if(res['code']==-1){
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+                                 mui.toast('指令发送成功')
+                             }
+                         });
+    }
+    function Checklight()
+    {
+        if(bool)
+        {
+            $("#light")[0].src= "/static/image/product/lightopen.png";
+            bool=false;
+            light='open'
+        }else {
+            $("#light")[0].src ="/static/image/product/lightclose.png";
+            bool=true;
+            light='close'
+        }
+        send_data_working = {'did': userID, 'model': devices.oven_type, 'value': devices.oven_value,'temp':Oven_temp,'time':Oven_time,'status':status,'wind':wind,'light':light};
+        console.log(send_data)
+           $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
+                             res = JSON.parse(res);
+                             console.log(res);
+                             if(res['code']==-1){
+                                 mui.alert('设备离线')
+                             }
+                             else if(res['code']==0){
+                                 mui.toast('指令发送成功')
+                             }
+                         });
+    }
+</script>
+<script type="text/javascript">
+    var time_stop = true;
+    window.onload = function(){
+        var canvas = document.getElementById('canvas'),  //获取canvas元素
+            context = canvas.getContext('2d'),  //获取画图环境，指明为2d
+            centerX = canvas.width/2,   //Canvas中心点x轴坐标
+            centerY = canvas.height/2,  //Canvas中心点y轴坐标
+            rad = Math.PI*2/100, //将360度分成100份，那么每一份就是rad度
+            speed = 0.1; //加载的快慢就靠它了
+        //绘制外圈
+        function blueCircle(n){
+            context.save();
+            context.strokeStyle = "#ff6202"; //设置描边样式
+            context.lineWidth = 5; //设置线宽
+            context.beginPath(); //路径开始
+            context.arc(centerX, centerY, 100 , -Math.PI/2, -Math.PI/2 +n*rad, false); //用于绘制圆弧context.arc(x坐标，y坐标，半径，起始角度，终止角度，顺时针/逆时针)
+            context.stroke(); //绘制
+            context.closePath(); //路径结束
+            context.restore();
+        }
+        //绘制白色外圈
+        function whiteCircle(){
+            context.save();
+            context.beginPath();
+            context.strokeStyle = "white";
+            context.arc(centerX, centerY, 90 , 0, Math.PI*2, false);
+            context.stroke();
+            context.closePath();
+            context.restore();
+        }
+        //百分比文字绘制
+        function text(n){
+            context.save(); //save和restore可以保证样式属性只运用于该段canvas元素
+            context.strokeStyle = "red"; //设置描边样式
+            context.font = "20px Arial"; //设置字体大小和字体
+            context.stroke(); //执行绘制
+            context.restore();
+        }
+        //动画循环
+        (function drawFrame(){
+                     window.requestAnimationFrame(drawFrame, canvas);
+                     context.clearRect(0, 0, canvas.width, canvas.height);
+                     whiteCircle();
+                     text(speed);
+                     blueCircle(speed);
+                     if(speed > 100) speed = 0;
+                     speed += 0.035;
+        }());
+    }
+</script>
+ <script>
+
+ </script>
+ <script type="text/javascript">
+     var $step = $("#step");
+     var $index = $("#index");
+     $step.step({
+         index: 0,
+         time: 400,
+         title: ["预热中", "预热完成", "工作中", "工作完成" ]
+     });
+     $("#prevBtn").on("click", function() {
+         $step.prevStep();
+         $index.text($step.getIndex());
+     });
+
+     $("#nextBtn").on("click", function() {
+         $step.nextStep();
+         $index.text($step.getIndex());
+     });
+     $("#btn1").on("click", function() {
+         $step.toStep(1);
+         $index.text($step.getIndex());
+     });
+     $("#btn2").on("click", function() {
+         $step.toStep(2);
+         $index.text($step.getIndex());
+     });
+ </script>
+
+<script>
+
+</script>
+<script>
+    function GetRequest() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    Request = GetRequest();
+    var mac = Request['d'];
+    console.log(mac);
+    if(mac==undefined){
+        mac = 'AABBCCDDEEFF';
     }
 </script>
 <script>document.body.style.overflow="hidden";</script>

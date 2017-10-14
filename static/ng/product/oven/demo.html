@@ -54,7 +54,6 @@
         $("#jcz").click(function () {
              var bx = document.getElementById('iframes')
              bx.src = '/static/ng/product/oven/stove.html';
-
              document.getElementById("device_manage").innerText = "集成灶";
              b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
              $('#qrcode').html("");
@@ -63,38 +62,37 @@
              },1000)
         })
         $('#smoke').click(function () {
-             var bx = document.getElementById('iframes')
+             var bx = document.getElementById('iframes');
              bx.src = '/static/ng/product/oven/smoke.html';
-
              document.getElementById("device_manage").innerText = "油烟机";
-             b = 'https://oven.53iq.com/static/html/smoke_home.html?-smoke_d=test'
+             b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test';
              $('#qrcode').html("");
              setTimeout(function () {
                 getQrcode()
              },1000)
         })
         $('#oven').click(function () {
-             var bx = document.getElementById('iframes')
-             bx.src = '/static/ng/product/oven/oven.html'
+             var bx = document.getElementById('iframes');
+             bx.src = '/static/ng/product/oven/oven.html';
 
              document.getElementById("device_manage").innerText = "智能烤箱";
-             b = 'https://oven.53iq.com/static/html/oven_home.html?-oven_d=test'
+             b = 'https://oven.53iq.com/static/html/oven_home.html?d=test';
              $('#qrcode').html("");
              setTimeout(function () {
                 getQrcode()
-             },1000)
+             },3000)
         })
          //获取cookie 生成二维码
     function getQrcode() {
-        var a = getCookie('COOKIE_USER_ACCOUNT')
+        var a = getCookie('COOKIE_USER_ACCOUNT');
         console.log(a)
         if(b=='https://oven.53iq.com/static/html/stove_home.html?d=test'){
             content  = b + a +'-stove' ;
         }
-        if(b=='https://oven.53iq.com/static/html/oven_home.html?d=test'){
+        else if(b=='https://oven.53iq.com/static/html/oven_home.html?d=test'){
             content  = b + a +'-oven';
         }
-        if(b=='https://oven.53iq.com/static/html/smoke_home.html?d=test'){
+        else if(b=='https://oven.53iq.com/static/html/smoke_home.html?d=test'){
             content  = b + a +'-smoke' ;
         }
 

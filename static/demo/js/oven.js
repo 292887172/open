@@ -221,6 +221,143 @@ pc_conf = {
             'permission': "777",
             'triggers': [
             ]
+        },{
+            'id':13,
+            'no':13,
+            'name':"WIND",
+            'title': "风扇",
+            'length': 8,
+            'values': [
+                0,
+                1
+
+            ],
+            'value_des': {
+                 0: "关",
+                 1: "开"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "bool",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
+
+        },{
+            'id':14,
+            'no':14,
+            'name':"LIGHT",
+            'title':'电灯',
+            'length': 8,
+            'values': [
+                0,
+                1
+
+            ],
+            'value_des': {
+                 0: "关",
+                 1: "开"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "bool",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
+        },
+        {
+            'id':15,
+            'no':15,
+            'name':"OVEN_TIME",
+            'title':'时间',
+            'length': 8,
+            'values': [
+
+
+            ],
+            'value_des': {
+                  'time':"时间"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "str",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
+        },
+         {
+            'id':16,
+            'no':16,
+            'name':"OVEN_TEMP",
+            'title':'温度',
+            'length': 8,
+            'values': [
+
+            ],
+            'value_des': {
+                 0: "关",
+                 1: "开"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "int",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
+        },
+        {
+            'id':17,
+            'no':17,
+            'name':"OVEN_STATUS",
+            'title':'状态',
+            'length': 8,
+            'values': [
+                'yure',
+                 'yureok',
+                 'working',
+                  'workok'
+            ],
+            'value_des': {
+                'yure':"预热",
+                 'yureok':"预热完成",
+                 'working':"工作中",
+                  'workok':"工作完成"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "str",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
+        },
+        {
+            'id':18,
+            'no':18,
+            'name':"OPERATION",
+            'title':'操作',
+            'length': 8,
+            'values': [
+                 'stop',
+                 'go_on',
+                 'suspend'
+            ],
+            'value_des': {
+                 'stop':"停止",
+                 'go_on':"继续",
+                 'suspend':"暂停"
+            },
+            'value': 0,
+            'unit': "",
+            'type': "str",
+            'widget': "button",
+            'permission': "777",
+            'triggers': [
+            ]
         }
     ],
     'faults': [

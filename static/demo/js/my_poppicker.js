@@ -12,7 +12,7 @@
 (function($, document) {
 
 	//创建 DOM
-	$.dom = function(str) {
+	$.dom = function(str) {3
 		if (typeof(str) !== 'string') {
 			if ((str instanceof Array) || (str[0] && str.length)) {
 				return [].slice.call(str);
@@ -31,8 +31,8 @@
 		<h4 style="padding-left:15px;padding-top: 15px;font-size: 16px;">设置烘烤温度：<span id="block-range-tem" style="font-size: 17px;color:#f35019">200℃\
 		</span></h4>\
 		<div class="mui-input-row mui-input-range">\
-		<div id="range-progressbar" class="mui-progressbar">\
-                    <span style="translate3d(1%, 0px, 0px)"></span>\
+		<div id="range-progressbart" class="mui-progressbar">\
+                    <span style="ranslate3d(1%, 0px, 0px)"></span>\
                 </div>\
 	        <input type="range" value="200" min="30" max="220" id="block-range" style="background: rgba(0,0,0,0);z-index: 2;top:20px">\
         </div>\
@@ -120,6 +120,7 @@
 				var picker = self.pickers[i];
 				items.push(picker.getSelectedItem() || {});
 			}
+
 			return items;
 		},
 		//显示
@@ -162,10 +163,15 @@
 		setchooseData:function (items) {
 			var blockHour = document.getElementById('block-range-hour');
 			var blockMin = document.getElementById('block-range-min');
+
 			if (parseInt(items[0].text) < 10) {
 				blockHour.innerText = items[0].text;
 				blockMin.innerText = items[1].text;
+
+
 			}
+
+
         }
 	});
 
