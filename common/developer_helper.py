@@ -16,7 +16,7 @@ _convention = ConventionValue()
 
 
 def create_developer(company, company_url, company_address, company_scale, contact_name, contact_role, contact_mobile,
-                     contact_phone, contact_qq, contact_email, factory_name, factory_uuid, user, user_from):
+                     contact_phone, contact_qq, contact_email, factory_name, factory_uuid, user, user_from, check_status=1):
     """
     注册开发者帐号
     :param company:
@@ -31,15 +31,22 @@ def create_developer(company, company_url, company_address, company_scale, conta
     :param contact_email:
     :param factory_name:
     :param factory_uuid:
+    :param user:
+    :param user_from:
+    :param check_status:
     :return:
     """
 
     try:
         # 开发者帐号：  由开发者来源+下划线+账号拼接起来
-        # 开发者来源： （1：平台用户，2：设备管理系统厂商，3：qq）
+        # 开发者来源： （1：平台用户，2：设备管理系统厂商，3：微信）
         if user_from == '53iq':
             dev_from = 1
             dev_id = '1_' + user
+        elif len(user_from) > 10:
+            # 微信注册
+            dev_from = 3
+            dev_id = '3_' + user
         else:
             dev_from = 2
             dev_id = '2_' + user
@@ -56,6 +63,7 @@ def create_developer(company, company_url, company_address, company_scale, conta
             developer_realname=contact_name,
             developer_job=contact_role,
             developer_email=contact_email,
+            developer_check_status=check_status,
             developer_mobile=contact_mobile)
         dev.save()
         return dev_id
