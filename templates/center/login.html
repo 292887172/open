@@ -239,9 +239,8 @@
 
     </style>
 {% endblock %}
-{% block img %}
-    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
-                            title="53iq云智能云">
+{% block image %}
+    <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"></a></h1>
 {% endblock %}
 
 {% block menu %}
