@@ -3,6 +3,10 @@
 
 {% block style %}
     <style>
+        .menuBox {
+            border-top: 1px solid #f5f5f5;
+            padding: 10px 0;
+        }
         .menuBox h3{
             border-bottom: 1px solid #f5f5f5;
             padding-left: 0;
@@ -12,15 +16,17 @@
             color: #bfbfbf;
             line-height: 34px;
         }
+
         .menuBox ul li a{
             padding-left: 0;
         }
         .activate{
-            background:#ff6202;
+            background: #e6e6e6;
+            border-left: 3px solid #ff6202;
         }
 
         .activate a{
-            color:#FFF !important;
+            color:#ff6202 !important;
             text-decoration:none;
         }
 
@@ -116,12 +122,17 @@
         <div class="leftSide">
             <div class="box1">
                 <!-- 左侧菜单 begin -->
+                {% for a in api %}
                 <div class="menuBox">
-                    <h3>调试接口功能</h3>
+
                     <ul>
-                        {% for a in api %}
-                            <li><a href="javascript:void(0)"><i class="icon11"></i>{{ a.api_name }}</a></li>
-                        {% endfor %}
+                        <li><a href="javascript:void(0)"><i class="icon11"></i>{{ a.api_name }}</a></li>
+
+                    </ul>
+                </div>
+                {% endfor %}
+                <div class="menuBox">
+                    <ul>
                         <li><a href="javascript:void(0)"><i class="icon11"></i>自定义组合</a></li>
                     </ul>
                 </div>
@@ -305,7 +316,9 @@
 
             // 左侧导航选择背景色变化以及右侧的内容随之变化
             li.click(function () {
-                $(this).addClass("activate").siblings().removeClass("activate");
+                li.removeClass("activate");
+                $(this).addClass("activate");
+
                 $(".my-title").text($(this).text());
                 $(".my-result").empty();
                 var index = $(this).index();
@@ -315,7 +328,6 @@
                     setRequest(api[index]);
                 }
             });
-
             /**
              * 用户自由设置
              */

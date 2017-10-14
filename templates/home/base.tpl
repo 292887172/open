@@ -33,7 +33,7 @@
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a>
+        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
         {% block menu %}
 
@@ -61,35 +61,41 @@
                     </div>
             {% else %}
                 <!-- 登录 -->
-
-
-                    <a class="user-login" href="{% url 'login' %}">登录</a>
+                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
     </div>
     </div>
 </div>
+{% if user.account_id %}
+        {% if not user.developer.developer_id or user.developer.developer_check_status == 2 %}
+            <div class="wrapper">
+                <div class="alert alert-danger">
+
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <i class="fa fa-bell-o"></i>&nbsp;&nbsp;帐号：[{{ user.account_id }}]&nbsp;&nbsp;<span>&nbsp;&nbsp;&nbsp;您还未申请成为开发者!<a href="/center" style="color: #ff6202;  margin-left: 20%;">加入开发者</a> </span>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 {% block content %}
     <div class="wrapper mt20 fn-clear">
-    {% if user.account_id and  not user.developer.developer_id %}
-        <div class="wrapper">
-            <div class="alert alert-danger">
 
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <i class="fa fa-bell-o"></i>&nbsp;&nbsp;帐号：[{{ user.account_id }}]&nbsp;&nbsp;<span>&nbsp;&nbsp;&nbsp;您还未申请成为开发者!<a href="/center" style="color: #ff6202;  margin-left: 20%;">加入开发者</a> </span>
-            </div>
-        </div>
-    {% endif %}
 
         <div class="leftSide">
             <div class="box1">
                 <!-- 左侧菜单 begin -->
 
                 <div class="menuBox">
-                    <h3><b>调试工具</b></h3>
+
                     <ul>
                         <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i
                                 class="icon-wrench"></i>调试接口</a></li>
+                    </ul>
+                </div>
+                 <div class="menuBox">
+
+                    <ul>
                         <li class="menu-li"><a href="/debug/debug_device" target="_blank"><i
                                 class="icon-compass"></i>调试设备</a></li>
                     </ul>

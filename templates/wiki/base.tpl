@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load filter %}
 <!DOCTYPE html>
 <html ng-app>
 
@@ -36,40 +37,44 @@
         }
 
         .menuBox {
-            padding: 10px 10px 0px 13px;
-            border-bottom: 1px solid #eee;
+            padding: 20px 0px 0 0px;
+
         }
 
         .menuBox ul {
-            padding-left: 33px;
+            padding-left: 0px;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 7px;
         }
 
-        .menuBox ul li {
-            padding-top: 5px;
+        .menuBox ul li{
             padding-bottom: 5px;
+            padding-left: 23px;
         }
 
         .icon-caret-right {
-            background: url("{% static 'image/wiki/arrow_right.png' %}") no-repeat center;
-            background-size: 80%;
-            width: 15px;
-            height: 15px;
-            position: absolute;
-        }
-
-        .icon-caret-down {
             background: url("{% static 'image/wiki/arrow_down.png' %}") no-repeat center;
             background-size: 80%;
             width: 15px;
             height: 15px;
             position: absolute;
+            margin-left: 82%;
+        }
+
+        .icon-caret-down {
+            background: url("{% static 'image/wiki/arrow_up.png' %}") no-repeat center;
+            background-size: 80%;
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            margin-left: 82%;
         }
 
         h5 {
             padding-left: 15px;
-            padding-bottom: 8px;
+            padding-bottom: 20px;
             cursor: pointer;
-
+            position: relative;
         }
 
         h5 p {
@@ -123,7 +128,7 @@
 <body>
 <div id="header">
 <div class="wrapper">
-<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a>
+<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
     <ul class="nav">
         {% block menu %}
@@ -138,7 +143,7 @@
         {% if user.account_id %}
                 <!-- 登录 -->
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
+                       style="text-decoration: none;">{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
@@ -156,7 +161,7 @@
             {% else %}
                 <!-- 登录 -->
 
-                    <a class="user-login" href="{% url 'login' %}">登录</a>
+                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
     </div>

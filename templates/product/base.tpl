@@ -37,7 +37,7 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"></a></h1>
+        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
         <ul class="nav">
             {% block menu %}
 
@@ -74,7 +74,7 @@ var _hmt = _hmt || [];
                 <!-- 登录 -->
 
 
-                    <a class="user-login" href="{% url 'login' %}">登录</a>
+                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
 
             {% endif %}
     </div>

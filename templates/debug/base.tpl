@@ -30,7 +30,7 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"/></a></h1>
+        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a></h1>
          <ul class="nav">
             {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
                 {% else %}
-                        <a class="user-login" href="{% url 'login' %}">登录</a>
+                     <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
                 {% endif %}
 
             </div>

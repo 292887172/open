@@ -5,10 +5,12 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
+import requests
+
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
-from common.app_helper import create_app
+from common.app_helper import create_app,update_app_fun_widget
 from common.app_helper import del_app
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -21,7 +23,8 @@ from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
-
+from conf.commonconf import CLOUD_TOKEN,KEY_URL
+from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
 
@@ -50,7 +53,8 @@ def product_list(request):
         # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
         if not App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT):
             for i in range(len(APP_NAME)):
-                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i], APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
+                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                 result.app_logo = APP_LOGO[i]
                 result.save()
         if not request.user.developer.developer_id:
@@ -99,9 +103,16 @@ def product_list(request):
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
         export = request.POST.get("name", "")
+        ui = request.POST.get("ui", "")
         if export == "export":
             ret = date_deal(app_id)
             return ret
+
+        if ui == 'getmac':
+            app = App.objects.get(app_id=app_id)
+            mac = block_mac(app)
+            return JsonResponse({'data': mac})
+
         if app_id and action in ("del", "del"):
 
             if action == "del":
@@ -111,6 +122,15 @@ def product_list(request):
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
+
+    def block_mac(app):
+        # 绑定mac
+        device_mac = ''
+        # 获取设备的mac
+        device_list = get_device_list(app.app_appid)
+        if device_list:
+            device_mac = device_list[0]['ebf_device_mac']
+        return device_mac
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -175,6 +195,15 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
+                # 将产品key值推送到接口
+                try:
+                    url = KEY_URL
+                    app_key = result.app_appid
+                    key = app_key[-8:]
+                    requests.get(url, params={'key': key}, timeout=1)
+                except Exception as e:
+                    print(e)
+                    pass
                 url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
@@ -293,7 +322,7 @@ def product_main(request):
                     opera_data.pop(i)
                     break
             save_app(app, opera_data)
-            message_content = '"'+ app.app_name + '"' + fun_name + DEL_FUN
+            message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
         elif post_data == 'state':
@@ -304,15 +333,14 @@ def product_main(request):
                     fun_name = i['name']
                     if str(i['state']) == '0':
                         i['state'] = '1'
-                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
                     elif str(i['state']) == '1':
                         i['state'] = '0'
-                        message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
                     save_app(app, opera_data)
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                     return HttpResponse('change_success')
         elif post_data == "export":
-            print(type(app_id),app_id)
             res = date_deal(app_id)
             return res
         elif post_data == "save_conf":
@@ -332,6 +360,7 @@ def product_main(request):
             indata = json.loads(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
+            indata["widget"] = update_app_fun_widget(indata)
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
@@ -339,7 +368,7 @@ def product_main(request):
                     if str(i['id']) == indata['id']:
                         i.update(indata)
                         break
-                message_content = '"'+ app.app_name + '"' + fun_name + UPDATE_FUN
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:
                 # 添加一条参数信息首先获取当前最大id
@@ -348,7 +377,7 @@ def product_main(request):
                 else:
                     indata['id'] = '1'
                 opera_data.append(indata)
-                message_content = '"'+ app.app_name + '"' + fun_name + CREATE_FUN
+                message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
             save_app(app, opera_data)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -433,8 +462,6 @@ def product_main(request):
         return post()
 
 
-
-
 @csrf_exempt
 def key_verify(request):
     # 验证key
@@ -462,3 +489,19 @@ def control(request):
         data = json.loads(data.decode('utf-8'))
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
+
+
+@csrf_exempt
+def upload_file(request):
+    if len(request.FILES.dict()) >= 1:
+        f = request.FILES["productImgFile"]
+        store = EbStore(CLOUD_TOKEN)
+        r = store.upload(f.read(), f.name, f.content_type)
+        ret = json.loads(r)
+        if ret["code"] == 0:
+            print("上传成功")
+        else:
+            print(ret["msg"])
+            logging.getLogger("").info(r["msg"])
+        data = ret["data"]
+        return HttpResponse(data)

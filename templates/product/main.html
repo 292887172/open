@@ -99,7 +99,6 @@
         cursor: text;
     }
 
-
     </style>
 {% endblock %}
 {% block menu %}
@@ -118,6 +117,33 @@
             <div class="wrapper">
             <ol class="breadcrumb">
             <li><a href="/product/list/">产品管理</a></li>
+
+            {% if app.check_status == 3 %}
+                <li><a role="button">产品体验</a></li>
+                <li>
+                     <div class="dropdown" id="dropdown" >
+                         <p id="dropdownMenu1" data-toggle="dropdown"><span id="device_manage" >油烟机</span>
+                            <span class="caret"></span>
+                         </p>
+
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                             <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="jcz">集成灶</a>
+                             </li>
+                             <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id= "smoke" >油烟机</a>
+                             </li>
+                             <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="oven">智能烤箱</a>
+                             </li>
+                         </ul>
+                     </div>
+
+                </li>
+
+            {% else %}
+
+
             <li class="active">
                 <div class="dropdown">
                     <p id="dropdownMenu1"
@@ -148,6 +174,7 @@
                     </ul>
                 </div>
             </li>
+            {% endif %}
             </ol>
             </div>
         </div>

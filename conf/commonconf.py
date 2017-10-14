@@ -16,3 +16,6 @@ CLOUD_TOKEN = "5630841e6f43f668994af13c"
 
 # 消息验证服务器接口地址
 VALIDATE_URL = "http://localhost:8080/messages/verify_message"
+
+# 产品key值验证服务器接口
+KEY_URL = "https://oven.53iq.com/api/produce/base_html"

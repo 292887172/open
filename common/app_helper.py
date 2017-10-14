@@ -69,6 +69,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
                           check_status=check_status,
+                          app_create_date=datetime.datetime.utcnow(),
+                          app_update_date=datetime.datetime.utcnow()
                           )
                 app.save()
                 message_content = '"'+ app_name + '"' + CREATE_APP
@@ -82,6 +84,18 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
+
+
+def update_app_fun_widget(data):
+    """
+
+    :param data: 修改该功能点的widget值
+    :return:
+    """
+    if data["corpMark"] and not data["isControl"]:
+        return "input"
+    else:
+        return "button"
 
 
 def del_app(app_id):

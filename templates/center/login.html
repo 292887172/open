@@ -17,8 +17,15 @@
         background: rgba(0,0,0,0.5);
     }
     .header{
-        background-color: #F1F4F9;
+        border-bottom:none;
     }
+    .nav li a:hover {
+        color: #fff;
+    }
+    .nav li a{
+        color: #fff;
+    }
+
     .ui-mmask{
         position: fixed;
         width: 100%;
@@ -59,14 +66,16 @@
             border-radius: 3px 3px 0 0;
             min-height:70px;
             border: 1px solid #DDDDDD;
+            border-color: rgba(204,204,204,0.43);
+            background-color: rgba(255,255,255,0.5);
         }
 
         .widget-body {
             padding: 0;
             border-style: solid;
             border-width: 0 1px 1px;
-            border-color: #ccc;
-            background-color: #fff;
+            border-color: rgba(204,204,204,0.43);
+            background-color: rgba(255,255,255,0.5);
             min-height: 160px;
         }
 
@@ -93,7 +102,6 @@
         input[type="text"], input[type="password"] {
             height: 55px;
             border-radius: 1px;
-            background-color: #fff;
             border: 1px solid #ccc;
             -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -112,18 +120,23 @@
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
             border-radius: 4px;
+            border-color: rgba(204,204,204,0.43);
+            background-color: rgba(255,255,255,0.3);
         }
 
         .widget-header h5 {
             margin: 0;
             padding: 24px 0 0;
             font-size: 22px;
-            float: left;
-            color: #62687e;
+            color: #fff;
             font-weight: 200;
-            text-indent: 1em;
+            text-align: center;
         }
-
+        .btn:hover, .btn:focus{
+            color: #fff;
+            border-color: rgba(204,204,204,0.43);
+            background-color: rgba(255, 98, 2,1);
+        }
         .btn {
             display: inline-block;
             padding: 4px 12px;
@@ -132,19 +145,12 @@
             line-height: 20px;
             color: #333;
             text-align: center;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
             vertical-align: middle;
             cursor: pointer;
-            background-color: #f5f5f5;
-            background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
-            background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
-            background-image: -o-linear-gradient(top, #fff, #e6e6e6);
-            background-image: linear-gradient(to bottom, #fff, #e6e6e6);
-            background-repeat: repeat-x;
+
             border: 1px solid #bbb;
-            border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+
+
             border-bottom-color: #a2a2a2;
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
@@ -160,6 +166,9 @@
             width: 100%;
             height: 45px;
             text-align: center;
+            color: #fff;
+            border-color: rgba(204,204,204,0.43);
+            background-color: rgba(255, 98, 2,1);
         }
     .ui-error-box{
         position: relative;
@@ -187,11 +196,11 @@
         left: 35px;
     }
     a{
-        color: #555;
+        color: #333;
     }
     .ui-partner{
         margin-top: 105px;
-        color: #999;
+        color: #333;
     }
     .ui-partner ul li{
         float: left;
@@ -201,6 +210,7 @@
     }
     .footer{
         color: #fff;
+        border-top:none;
     }
     .footer p a{
         color: #fff;
@@ -215,6 +225,7 @@
     line-height: 35px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-color: rgba(204,204,204,0.43);  background-color: rgba(255,255,255,0.5);
     }
     .sys-login,.wx-login{
         width: 24px;
@@ -222,9 +233,17 @@
         margin-top: -3px;
         margin-right: 5px;
     }
+    input::-webkit-input-placeholder{
+    color: #797979;opacity:1;
+}
 
     </style>
 {% endblock %}
+{% block img %}
+    <img src="{% static 'image/home/logo-dev.png' %}" height="40"
+                            title="53iq云智能云">
+{% endblock %}
+
 {% block menu %}
 
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
@@ -239,7 +258,7 @@
                     <div class="widget container-narrow">
                         <div class="widget-header">
                             <i class="icon-user"></i>
-                            <h5>登录53iq厨房智能平台</h5>
+                            <h5>登录</h5>
                         </div>
                         <div class="widget-body clearfix" style="padding:25px;">
                             <form method="post" name="loginform" action="#">
@@ -266,7 +285,7 @@
                                         </label>
                                         <!--<a style="padding: 5px 0px 0px 5px;" href="#" class="pull-right">忘记密码?</a>-->
                                     </div>
-                                    <div style="float: right;margin-top: 9px"><a href="forget_pwd">忘记密码？</a></div>
+                                    <div style="float: right;margin-top: 9px;"><a href="forget_pwd">忘记密码？</a></div>
                                 </div>
                                 <button type="submit" class="btn pull-right">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
 
@@ -285,7 +304,7 @@
                         </div>
 
                         <div class="ui-bottom-no" style="text-align:center">
-                            <p>没有账号? <a style="color: #428bca;" href="{% url 'register' %}">注册账号</a></p>
+                            <p>没有账号? <a style="color: #ff6202;" href="{% url 'register' %}">注册账号</a></p>
                         </div>
 
                     </div>
@@ -301,6 +320,10 @@
 {% block end_script %}
     <script src="{% static 'js/center/crypto.js' %}"></script>
     <script>
+    var num = Math.round(Math.random()*2+1);
+    var image1 = "/static/image/center/login_bg"+num+'.jpg';
+    $("body").css("background","url("+image1+")center center / cover no-repeat fixed");
+    console.log(image1);
     function encryption(item) {
              var b = new Base64();
              var str = b.encode($(item).val());
@@ -312,8 +335,6 @@
              if(!$("input[type='checkbox']").is(':checked')){
                  $(".ui-remember-account").click()
              }
-
-
         }
         $(".ui-login").mouseover(function () {
             var img_src = $(this).children().children('img').attr('src');
