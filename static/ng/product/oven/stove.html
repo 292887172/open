@@ -28,7 +28,7 @@
           userID = 'test'+a +'-stove'
           document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
-    }
+       }
       var acookie=document.cookie.split("; ");// 获取cookie
                 function getck(sname)
                 {//获取单个cookies
@@ -40,7 +40,7 @@
                 else
                 return "";}}
                 return "";
-}
+                }
 </script>
 <script src="/static/demo/js/vue.min.js"></script>
 <script src="/static/demo/js/vue-resource.js"></script>
@@ -177,7 +177,7 @@
                     }
                 }
             },
-            sendCommand: function (name,value) {
+            sendCommand: function ( name,value) {
                 for (var j = 0; j < this.funcList.length; j++) {
                     var tmp = this.funcList[j];
                     if (tmp.name == name){
@@ -232,7 +232,6 @@
                                  mui.toast('指令发送成功')
                              }
                          });
-
             }
         },
         computed: {}
@@ -366,6 +365,7 @@
                  }
             }
         }
+
 </script>
 <script type='text/javascript' src='//cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
 <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
