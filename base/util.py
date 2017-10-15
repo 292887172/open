@@ -86,10 +86,10 @@ def gen_app_access_token():
 
 def gen_app_default_conf(val):
     smoke = [
-        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'widget': 'button', 'min': 0, 'max': 1,
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER'},
-        {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'widget': 'button', 'min': 0, 'max': 4,
+        {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 4,
          'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '1档', 'data': '1'}, {'desc': '2档', 'data': '2'},
                                 {'desc': '3档', 'data': '3'}, {'desc': '4档', 'data': '4'}], 'corpName': '',
          'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAN'},
@@ -114,7 +114,7 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:10', 'name': '清洗', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '8', 'id': '4', 'Stream_ID': 'WASH'},
-        {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:56', 'name': '清洗时间', 'corpMark': 's', 'widget': 'input', 'widget': 'input', 'min': 0,
+        {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:56', 'name': '清洗时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16', 'id': '5',
          'Stream_ID': 'DISINFECT_DURATION'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '烘干', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
