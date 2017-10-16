@@ -122,20 +122,19 @@
                 <li><a role="button">产品体验</a></li>
                 <li>
                      <div class="dropdown" id="dropdown" >
-                         <p id="dropdownMenu1" data-toggle="dropdown"><span id="device_manage" >油烟机</span>
+                        <p id="dropdownMenu1"
+                            data-toggle="dropdown">
+                            {{ app.app_name }}
                             <span class="caret"></span>
-                         </p>
+                        </p>
 
                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                             <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" id="jcz">集成灶</a>
-                             </li>
-                             <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" id= "smoke" >油烟机</a>
-                             </li>
-                             <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" id="oven">智能烤箱</a>
-                             </li>
+                             {% for a in default_app %}
+                                 <li role="presentation">
+                                     <a role="menuitem" tabindex="-1" onclick="update_href(this)" href="?ID={{ a.app_id }}#"  data-name={{ a.app_name }} data-appid={{ a.app_id }}>{{ a.app_name }}</a>
+                                 </li>
+                             {% endfor %}
+
                          </ul>
                      </div>
 
@@ -159,7 +158,7 @@
                                 {% else %}
 
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="?ID={{ a.app_id }}">{{ a.app_name }}</a>
+                                        <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
                                     </li>
 
                                 {% endif %}
@@ -258,7 +257,11 @@
             </div>
             <!-- 主内容 -->
              <div>
-                <div   class="rightMain"  id="proRightMain" ng-view></div>
+                <div   class="rightMain"  id="proRightMain" ng-view>
+
+                </div>
+                 <div id="loadingDiv" style="position:absolute;left:51%;width:100%;top:33%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
+
              </div>
         </div>
     </div>
@@ -282,7 +285,21 @@
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
 
     <script>
+    function update_href(obj){
+            var id = $(obj).attr("data-appid");
+            var name = $(obj).attr("data-name");
+            id = "ID=" + id;
+            var href1= location.href;
+            test = href1.split("demo");
+            href1 = href1.replace(/ID=\d+/,id);
+            if (test.length > 1){
+                name = 'demo/'+name;
+                href1 = href1.replace(/demo.*/,name);
+            }
+            $(obj).attr('href',href1);
 
+
+    }
         angular.module('Product.base', ['ngRoute'])
                 .controller('ProductBaseCtrl', ['$scope', function ($scope) {
                     // 应用信息

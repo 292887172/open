@@ -11,6 +11,7 @@ angular.module('Product.content', ['ngRoute'])
 
     .controller('ContentCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("contentMenu");
+        $("#loadingDiv").hide();
         $scope.click = function(ele){
           if (ele == 0 || ele ==-1){
               $scope.ReleaseProduct();
