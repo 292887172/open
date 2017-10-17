@@ -277,7 +277,7 @@ def product_main(request):
             key=key,
             device_name=device_name,
             band_name=band_name,
-            default_apps=default_apps,
+
 
         )
         return render(request, template, locals())
