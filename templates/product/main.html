@@ -129,9 +129,9 @@
                         </p>
 
                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                             {% for a in default_app %}
+                             {% for default_app in default_apps %}
                                  <li role="presentation">
-                                     <a role="menuitem" tabindex="-1" onclick="update_href(this)" href="?ID={{ a.app_id }}#"  data-name={{ a.app_name }} data-appid={{ a.app_id }}>{{ a.app_name }}</a>
+                                     <a role="menuitem" tabindex="-1" onclick="update_href(this)" href="?ID={{ default_app.app_id }}#"  data-name={{ default_app.app_name }} data-appid={{ default_app.app_id }}>{{ default_app.app_name }}</a>
                                  </li>
                              {% endfor %}
 
@@ -139,10 +139,7 @@
                      </div>
 
                 </li>
-
             {% else %}
-
-
             <li class="active">
                 <div class="dropdown">
                     <p id="dropdownMenu1"
@@ -260,7 +257,7 @@
                 <div   class="rightMain"  id="proRightMain" ng-view>
 
                 </div>
-                 <div id="loadingDiv" style="position:absolute;left:51%;width:100%;top:33%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
+                 <div id="loadingDiv" style="display: none;position:absolute;left:51%;width:100%;top:33%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
 
              </div>
         </div>

@@ -494,7 +494,7 @@
             </a>
         </div>
     </div>
-    <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
+    <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
 
     <div class="goodsBox" style=" margin-top: 30px;">
         {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
@@ -684,7 +684,7 @@
     <script>
         var app_id = $("#delProLink").attr("data-id");
         var checkSubmitFlg = false;
-        $("#loadingDiv").hide();
+        //$("#loadingDiv").hide();
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
             app_appid = $(obj).attr('data-appid');
@@ -696,7 +696,7 @@
                     success: function (data) {
                         mac = data['data'];
                         if(mac){
-                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+"&mac=" + mac);
+                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html&mac=" + mac);
                         }
                         else{
                             $(obj).removeAttr('target');
@@ -741,7 +741,7 @@
                 checkSubmitFlg = true;
                 console.log("不能重复提交");
                 form.submit();
-                $("#loadingDiv").show();
+                //$("#loadingDiv").show();
             }
             else {
                 return;
