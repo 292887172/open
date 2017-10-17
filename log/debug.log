@@ -3029,3 +3029,8 @@ OSError: [Errno 51] Network is unreachable
 2017-10-17 10:34:33,512 [Thread-48:3188] [root:85] [ERROR]- Developer matching query does not exist.
 2017-10-17 10:34:33,520 [Thread-48:3188] [root:85] [ERROR]- Developer matching query does not exist.
 2017-10-17 10:40:47,443 [Thread-159:15680] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 16:05:48,252 [Thread-16:123145386856448] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 18:08:08,498 [Thread-1469:123145558237184] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 18:08:56,205 [Thread-1503:123145558237184] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 18:42:26,581 [Thread-1820:123145558237184] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 18:47:39,814 [Thread-1981:123145558237184] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
