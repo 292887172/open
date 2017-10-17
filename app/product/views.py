@@ -387,9 +387,10 @@ def product_main(request):
 
         # 获取设备列表
         device_table = request.POST.get("device", "")
+        key = app.app_appid
         if device_table == 'device_table':
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data': device_list})
+            return JsonResponse({'data': device_list,'key':key[-8:]})
         # 获取工厂列表
         data = request.POST.get("data", "")
         if data == "factory_list":
