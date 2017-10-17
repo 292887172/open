@@ -153,10 +153,10 @@
             data:{'data':"factory_list"},
             async :false,
             beforeSend:function (data) {
-                $("#loadingDiv").show();
+                //$("#loadingDiv").show();
             },
             success: function (data) {
-               $("#loadingDiv").hide();
+               //$("#loadingDiv").hide();
                 brandListData = data['data'];
             }
     });
