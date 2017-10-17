@@ -383,6 +383,7 @@
     <div class="left">
 
     {% for app in default_apps %}
+
         {% if  forloop.counter == 1 %}
             <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
                 <img style="width: 45px" src="{% static 'image/product/demo.png' %}">

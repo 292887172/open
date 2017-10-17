@@ -2273,3 +2273,389 @@ TimeoutError: [WinError 10060] �������ӷ���һ��ʱ���
 2017-09-22 11:11:04,923 [Thread-261:15440] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 12:46:32,863 [Thread-673:19168] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
 2017-09-22 15:28:32,563 [Thread-3:140315642033920] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'is_developer'
+2017-09-30 14:18:44,860 [Thread-71:123145526132736] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-09-30 14:18:54,649 [Thread-82:123145526132736] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-09-30 14:37:17,833 [Thread-276:123145531387904] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-09-30 15:10:36,973 [Thread-486:123145536643072] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 08:49:20,073 [Thread-3:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 11:30:53,201 [Thread-170:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 13:32:40,748 [Thread-455:123145485467648] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 14:12:28,054 [Thread-809:123145485467648] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 14:50:22,345 [Thread-984:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 15:07:55,935 [Thread-1147:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 15:25:44,352 [Thread-1372:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 15:28:12,119 [Thread-1433:123145490722816] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 18:24:22,652 [Thread-1588:123145485467648] [root:156] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-09 19:13:16,614 [Thread-1:123145542565888] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:13:16,982 [Thread-3:123145547821056] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:14:31,796 [Thread-1:123145542565888] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:14:32,001 [Thread-1:123145542565888] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:14:32,152 [Thread-3:123145547821056] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:14:32,352 [Thread-3:123145547821056] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:35,578 [Thread-6:123145553076224] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:37,002 [Thread-7:123145558331392] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:37,738 [Thread-9:123145563586560] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:47,223 [Thread-1:123145542565888] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:15:47,429 [Thread-1:123145542565888] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:47,429 [Thread-1:123145542565888] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 64] Host is down
+2017-10-09 19:15:47,574 [Thread-3:123145547821056] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:15:47,779 [Thread-3:123145547821056] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:15:47,779 [Thread-3:123145547821056] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 64] Host is down
+2017-10-09 19:16:50,809 [Thread-6:123145553076224] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:16:51,010 [Thread-6:123145553076224] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:16:52,222 [Thread-7:123145558331392] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:16:52,422 [Thread-7:123145558331392] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:16:52,947 [Thread-9:123145563586560] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:16:53,149 [Thread-9:123145563586560] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:16:53,149 [Thread-9:123145563586560] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 64] Host is down
+2017-10-09 19:16:53,355 [Thread-9:123145563586560] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:16:53,356 [Thread-9:123145563586560] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 64] Host is down
+2017-10-09 19:18:06,160 [Thread-6:123145553076224] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:18:06,362 [Thread-6:123145553076224] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:18:07,572 [Thread-7:123145558331392] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 19:18:07,772 [Thread-7:123145558331392] [stomp.py:637] [INFO]- Attempting connection to host 192.168.10.71, port 61613
+2017-10-09 19:18:07,773 [Thread-7:123145558331392] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 64] Host is down
+2017-10-09 19:19:21,584 [Thread-6:123145553076224] [stomp.py:675] [WARNING]- Could not connect to host 192.168.10.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+TimeoutError: [Errno 60] Operation timed out
+2017-10-09 20:26:52,552 [Thread-1:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-09 20:26:52,588 [Thread-1:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-09 20:26:52,589 [Thread-3:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-09 20:26:52,589 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-09 20:26:52,590 [Thread-1:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-09 20:26:52,619 [Thread-1:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-09 20:26:52,620 [Thread-3:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '58904042'}, body=''
+2017-10-09 20:26:52,620 [Thread-4:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-09 20:26:52,620 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-09 20:26:52,621 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-09 20:26:52,621 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-09 20:26:52,638 [Thread-4:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '927'}, body=''
+2017-10-09 20:26:52,714 [Thread-3:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-09 20:26:52,714 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-09 20:26:52,714 [Thread-1:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-09 20:26:52,802 [Thread-4:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-09 20:27:00,420 [Thread-5:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-09 20:27:00,435 [Thread-5:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-09 20:27:00,435 [Thread-6:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-09 20:27:00,436 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-09 20:27:00,436 [Thread-5:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-09 20:27:00,462 [Thread-5:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-09 20:27:00,463 [Thread-6:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '58904088'}, body=''
+2017-10-09 20:27:00,463 [Thread-7:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-09 20:27:00,464 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-09 20:27:00,464 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-09 20:27:00,464 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-09 20:27:00,491 [Thread-7:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '928'}, body=''
+2017-10-09 20:27:00,566 [Thread-6:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-09 20:27:00,566 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-09 20:27:00,567 [Thread-5:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-09 20:27:00,667 [Thread-7:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:20:56,595 [Thread-8:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:20:56,609 [Thread-8:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:20:56,610 [Thread-9:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:20:56,611 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:20:56,611 [Thread-8:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:20:56,633 [Thread-8:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:20:56,634 [Thread-9:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008546'}, body=''
+2017-10-10 08:20:56,635 [Thread-10:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:20:56,637 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:20:56,638 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:20:56,638 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:20:56,650 [Thread-10:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '955'}, body=''
+2017-10-10 08:20:56,726 [Thread-9:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:20:56,726 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:20:56,729 [Thread-8:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:20:56,813 [Thread-10:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:05,186 [Thread-11:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:05,217 [Thread-11:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:05,218 [Thread-13:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:05,218 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:05,219 [Thread-11:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:05,246 [Thread-13:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008561'}, body=''
+2017-10-10 08:21:05,246 [Thread-11:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:05,247 [Thread-14:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:05,247 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:05,247 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|1|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:05,248 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:05,308 [Thread-14:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '956'}, body=''
+2017-10-10 08:21:05,353 [Thread-13:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:05,354 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|1|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:05,354 [Thread-11:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:05,456 [Thread-14:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:08,896 [Thread-15:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:09,042 [Thread-15:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:09,042 [Thread-16:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:09,043 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:09,043 [Thread-15:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:09,076 [Thread-15:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:09,077 [Thread-16:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008581'}, body=''
+2017-10-10 08:21:09,077 [Thread-17:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:09,077 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:09,078 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|1|1|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:09,078 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:09,094 [Thread-17:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '957'}, body=''
+2017-10-10 08:21:09,175 [Thread-16:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:09,175 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|1|1|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:09,175 [Thread-15:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:09,268 [Thread-17:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:12,396 [Thread-18:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:12,415 [Thread-18:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:12,415 [Thread-19:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:12,416 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:12,416 [Thread-18:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:12,458 [Thread-19:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008599'}, body=''
+2017-10-10 08:21:12,458 [Thread-18:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:12,458 [Thread-20:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:12,459 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:12,459 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|1|0|0|1|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:12,459 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:12,498 [Thread-20:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '958'}, body=''
+2017-10-10 08:21:12,589 [Thread-19:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:12,590 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|1|0|0|1|0|0|1|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:12,591 [Thread-18:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:12,683 [Thread-20:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:21,699 [Thread-21:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:21,733 [Thread-21:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:21,734 [Thread-22:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:21,734 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:21,735 [Thread-21:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:21,760 [Thread-21:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:21,760 [Thread-22:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008639'}, body=''
+2017-10-10 08:21:21,761 [Thread-23:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:21,761 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:21,761 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:21,761 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:21,798 [Thread-23:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '960'}, body=''
+2017-10-10 08:21:21,881 [Thread-22:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:21,882 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:21,882 [Thread-21:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:21,968 [Thread-23:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:24,367 [Thread-24:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:24,383 [Thread-24:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:24,384 [Thread-25:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:24,385 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:24,385 [Thread-24:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:24,409 [Thread-24:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:24,410 [Thread-25:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008646'}, body=''
+2017-10-10 08:21:24,411 [Thread-26:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:24,411 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:24,412 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:24,412 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:24,431 [Thread-26:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '961'}, body=''
+2017-10-10 08:21:24,505 [Thread-25:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:24,505 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:24,506 [Thread-24:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:24,593 [Thread-26:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:27,998 [Thread-27:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:28,018 [Thread-27:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:28,019 [Thread-28:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:28,019 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:28,020 [Thread-27:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:28,045 [Thread-28:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008659'}, body=''
+2017-10-10 08:21:28,046 [Thread-27:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:28,046 [Thread-29:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:28,046 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:28,047 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|1|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:28,047 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:28,077 [Thread-29:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '962'}, body=''
+2017-10-10 08:21:28,145 [Thread-28:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:28,146 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|1|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:28,146 [Thread-27:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:28,246 [Thread-29:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:31,110 [Thread-30:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:31,133 [Thread-30:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:31,134 [Thread-31:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:31,135 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:31,135 [Thread-30:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:31,157 [Thread-31:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008662'}, body=''
+2017-10-10 08:21:31,158 [Thread-30:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:31,158 [Thread-32:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:31,158 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:31,159 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:31,159 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:31,170 [Thread-32:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '963'}, body=''
+2017-10-10 08:21:31,241 [Thread-31:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:31,242 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "0|0|0|0|0|0|0|0|0|0|0|0", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:31,242 [Thread-30:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:31,329 [Thread-32:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:34,414 [Thread-33:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:34,429 [Thread-33:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:34,430 [Thread-34:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:34,430 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:34,431 [Thread-33:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:34,454 [Thread-34:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008669'}, body=''
+2017-10-10 08:21:34,454 [Thread-33:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:34,455 [Thread-35:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:34,455 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:34,455 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:34,455 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:34,494 [Thread-35:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '964'}, body=''
+2017-10-10 08:21:34,537 [Thread-34:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:34,538 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|0|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:34,538 [Thread-33:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:34,630 [Thread-35:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:37,286 [Thread-36:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:37,317 [Thread-36:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-10-10 08:21:37,318 [Thread-37:123145550143488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:37,318 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:37,319 [Thread-36:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:37,342 [Thread-36:123145544888320] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-10-10 08:21:37,342 [Thread-37:123145550143488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '59008680'}, body=''
+2017-10-10 08:21:37,343 [Thread-38:123145555398656] [stomp.py:479] [INFO]- Starting receiver loop
+2017-10-10 08:21:37,343 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-10-10 08:21:37,343 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|1|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:37,345 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:37,355 [Thread-38:123145555398656] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '965'}, body=''
+2017-10-10 08:21:37,438 [Thread-37:123145550143488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 08:21:37,439 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-stove\n', '\n', b'{"msg": {"value": "1|0|0|1|0|0|0|0|0|0|0|10", "type": 2500, "id": "test15267183467-stove"}}', b'\x00']
+2017-10-10 08:21:37,439 [Thread-36:123145544888320] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:82a36fe5-acbb-4300-b843-a5b5fbed2843\n', '\n', b'\x00']
+2017-10-10 08:21:37,529 [Thread-38:123145555398656] [stomp.py:513] [INFO]- Receiver loop ended
+2017-10-10 11:07:03,250 [Thread-39:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:03,254 [Thread-39:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:07:03,460 [Thread-39:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:03,460 [Thread-39:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:07:03,665 [Thread-39:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:03,665 [Thread-39:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:07:04,346 [Thread-40:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:04,346 [Thread-40:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:07:04,551 [Thread-40:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:04,552 [Thread-40:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:07:04,757 [Thread-40:123145544888320] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-10-10 11:07:04,757 [Thread-40:123145544888320] [stomp.py:675] [WARNING]- Could not connect to host 122.144.167.71, port 61613
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/stomp/transport.py", line 658, in attempt_connection
+    self.socket.connect(host_and_port)
+OSError: [Errno 51] Network is unreachable
+2017-10-10 11:08:15,413 [Thread-50:123145544888320] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-11 17:39:55,982 [Thread-3:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-11 19:40:31,695 [Thread-348:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 08:53:37,047 [Thread-758:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 08:55:10,463 [Thread-816:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 09:05:23,486 [Thread-898:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 11:05:54,390 [Thread-1159:123145386360832] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 13:08:14,664 [Thread-1360:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 13:54:26,764 [Thread-1454:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 16:04:39,947 [Thread-1906:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 16:07:34,867 [Thread-1978:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 16:26:52,962 [Thread-2160:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 16:46:17,668 [Thread-2340:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 18:46:43,151 [Thread-2595:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-12 19:33:04,585 [Thread-2755:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 09:48:36,662 [Thread-2891:123145381105664] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 12:39:45,196 [Thread-313:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 13:08:09,077 [Thread-502:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 13:49:59,484 [Thread-794:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 13:54:33,236 [Thread-933:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 15:51:13,771 [Thread-1319:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 17:10:46,631 [Thread-1490:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 20:57:36,472 [Thread-1761:123145457496064] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 20:57:39,823 [Thread-1763:123145462751232] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 20:57:41,864 [Thread-1765:123145468006400] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 20:57:44,517 [Thread-1767:123145473261568] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-13 23:38:09,902 [Thread-1768:123145446985728] [root:146] [INFO]- (2003, "Can't connect to MySQL server on '192.168.0.62' ([Errno 60] Operation timed out)")
+2017-10-13 23:38:11,377 [Thread-1769:123145452240896] [root:146] [INFO]- (2003, "Can't connect to MySQL server on '192.168.0.62' ([Errno 60] Operation timed out)")
+2017-10-14 14:22:07,978 [Thread-1772:123145452240896] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-14 14:41:45,429 [Thread-1829:123145446985728] [root:157] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-14 15:56:39,611 [Thread-123:123145527250944] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 08:46:42,525 [Thread-3:123145351290880] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 08:51:06,741 [Thread-171:123145351290880] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 09:40:21,518 [Thread-956:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 09:54:17,239 [Thread-1189:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:02:15,622 [Thread-1399:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:02:23,030 [Thread-1410:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:02:24,953 [Thread-1413:123145346035712] [root:227] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2017-10-16 10:02:34,396 [Thread-1418:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:03:14,042 [Thread-1426:123145346035712] [root:446] [INFO]- Account matching query does not exist.
+2017-10-16 10:03:18,350 [Thread-1428:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:03:56,878 [Thread-1452:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:35:11,993 [Thread-1864:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:35:13,720 [Thread-1873:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 10:45:06,210 [Thread-2133:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 11:01:22,880 [Thread-2460:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 13:27:17,115 [Thread-4353:123145351290880] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 15:27:36,514 [Thread-6071:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 19:34:04,359 [Thread-7524:123145346035712] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-16 20:29:22,263 [Thread-402:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 08:59:01,547 [Thread-731:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 09:13:29,621 [Thread-1074:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 09:43:51,618 [Thread-1799:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 09:47:38,338 [Thread-1983:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 10:42:00,615 [Thread-2612:123145573605376] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
