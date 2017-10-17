@@ -268,7 +268,6 @@ def product_main(request):
         len_key = len(app_key) - 8
         key = app_key[len_key:]
         template = "product/main.html"
-        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         content = dict(
             all_app=all_app,
             app=app,
@@ -277,8 +276,6 @@ def product_main(request):
             key=key,
             device_name=device_name,
             band_name=band_name,
-            default_apps=default_apps,
-
         )
         return render(request, template, locals())
 
