@@ -487,7 +487,6 @@
               </span>
         </div>
     </div>
-
     <div class="title-sub"><span class="old">我的产品</span>
         <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
             <a href="{% url "product/add" %}" class="btn btn-s-lg btn-success">
@@ -496,6 +495,8 @@
             </a>
         </div>
     </div>
+    <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
+
     <div class="goodsBox" style=" margin-top: 30px;">
         {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
             <div style="text-align: center">
@@ -522,7 +523,7 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <p class="product-info-p">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
@@ -540,7 +541,7 @@
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
+                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -581,7 +582,7 @@
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
+                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -622,7 +623,7 @@
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
+                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -664,8 +665,7 @@
                             <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}">UI编辑</a></li>
-
+                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
                         </ul>
                     </dd>
                 </dl>
@@ -685,8 +685,10 @@
     <script>
         var app_id = $("#delProLink").attr("data-id");
         var checkSubmitFlg = false;
+        $("#loadingDiv").hide();
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
+            app_appid = $(obj).attr('data-appid');
             $.ajax({
                     url:"#",
                     type: "POST",
@@ -695,7 +697,7 @@
                     success: function (data) {
                         mac = data['data'];
                         if(mac){
-                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id=control2.html&mac=" + mac);
+                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+"&mac=" + mac);
                         }
                         else{
                             $(obj).removeAttr('target');
@@ -733,17 +735,19 @@
 
             var product_name = $("#product_name").val();
             if (product_name == '') {
-                alert("产品名称不能为空！");
+                bootbox.alert("产品名称不能为空！");
                 return;
             }
             if (!checkSubmitFlg) {
                 checkSubmitFlg = true;
                 console.log("不能重复提交");
                 form.submit();
+                $("#loadingDiv").show();
             }
             else {
                 return;
             }
+
         }
         function check_name() {
             if ($("#product_name").val() == '') {

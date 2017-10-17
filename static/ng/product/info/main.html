@@ -31,6 +31,9 @@
     .btn-blue{
         background: #FF6F37;
     }
+    #loadingDiv{
+            top: 24%;
+    }
 </style>
 <div class="box2 relative">
     <div class="hl-help">
@@ -149,8 +152,12 @@
             type:"POST",
             data:{'data':"factory_list"},
             async :false,
+            beforeSend:function (data) {
+                $("#loadingDiv").show();
+            },
             success: function (data) {
-                brandListData = data['data']
+               $("#loadingDiv").hide();
+                brandListData = data['data'];
             }
     });
     function checkProductName() {

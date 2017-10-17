@@ -37,7 +37,10 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
+        {% block image %}
+            <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
+        {% endblock %}
+
         <ul class="nav">
             {% block menu %}
 

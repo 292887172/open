@@ -140,7 +140,6 @@
     }
     </style>
     <div class="main-container box2">
-
         <div class="hl-help">
             <span class="linkBlue">定义产品功能</span>
     </div>
@@ -313,6 +312,8 @@
 							});
 	        },
             loadComplete:function (rows) {
+
+
                 $("[data-toggle='popover']").popover();
                 row = rows.rows;
                 if(row.length==0){
@@ -339,6 +340,7 @@
                 tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
             }
 				});
+				$("#loadingDiv").hide();
 			});
             function show_table(item) {
                 $(item).nextAll('div').show();

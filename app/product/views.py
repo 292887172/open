@@ -258,6 +258,7 @@ def product_main(request):
         developer_account = request.user.developer.developer_account
         app = user_apps
         all_app = user_related_app
+        default_app = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
@@ -272,6 +273,7 @@ def product_main(request):
             all_app=all_app,
             app=app,
             api_list=api_list,
+            default_app=default_app,
             key=key,
             device_name=device_name,
             band_name=band_name,
