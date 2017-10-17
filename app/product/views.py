@@ -268,7 +268,6 @@ def product_main(request):
         len_key = len(app_key) - 8
         key = app_key[len_key:]
         template = "product/main.html"
-        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         content = dict(
             all_app=all_app,
             app=app,
@@ -277,8 +276,6 @@ def product_main(request):
             key=key,
             device_name=device_name,
             band_name=band_name,
-            default_apps=default_apps,
-
         )
         return render(request, template, locals())
 
@@ -390,9 +387,10 @@ def product_main(request):
 
         # 获取设备列表
         device_table = request.POST.get("device", "")
+        key = app.app_appid
         if device_table == 'device_table':
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data': device_list})
+            return JsonResponse({'data': device_list,'key':key[-8:]})
         # 获取工厂列表
         data = request.POST.get("data", "")
         if data == "factory_list":

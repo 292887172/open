@@ -538,7 +538,7 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
@@ -579,7 +579,7 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
@@ -620,7 +620,7 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
@@ -662,7 +662,7 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol()" href="#">下载</a><span><i
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
@@ -708,7 +708,7 @@
                 });
 
         }
-        function export_protocol() {
+        function export_protocol(id) {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                 if (result) {
                     var form = document.createElement('form');
@@ -722,7 +722,7 @@
                     var input1 = document.createElement("input");
                     input1.name = "app_id";
                     input1.type = "text";
-                    input1.value = app_id;
+                    input1.value = id;
                     form.appendChild(input);
                     form.appendChild(input1);
                     $("#ie-form").html(form);
