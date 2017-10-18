@@ -206,7 +206,7 @@ def product_add(request):
                     url = KEY_URL
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    requests.get(url, params={'key': key}, timeout=1)
+                    r = requests.get(url, params={'key': key}, timeout=5)
                 except Exception as e:
                     print(e)
                     pass
