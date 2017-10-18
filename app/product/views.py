@@ -258,6 +258,7 @@ def product_main(request):
         developer_account = request.user.developer.developer_account
         app = user_apps
         all_app = user_related_app
+        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
@@ -271,6 +272,7 @@ def product_main(request):
             all_app=all_app,
             app=app,
             api_list=api_list,
+            default_apps=default_apps,
             key=key,
             device_name=device_name,
             band_name=band_name,
@@ -385,9 +387,10 @@ def product_main(request):
 
         # 获取设备列表
         device_table = request.POST.get("device", "")
+        key = app.app_appid
         if device_table == 'device_table':
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data': device_list})
+            return JsonResponse({'data': device_list,'key':key[-8:]})
         # 获取工厂列表
         data = request.POST.get("data", "")
         if data == "factory_list":

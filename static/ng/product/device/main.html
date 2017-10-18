@@ -20,6 +20,7 @@
 <script src="/static/js/product/bootbox.js"></script>
 <script src="/static/js/ejs.js"></script>
 <script type="text/javascript">
+    var key='';
     jQuery(function($) {
         var device_list={};
         $.ajax({
@@ -29,6 +30,7 @@
             success: function (data) {
 
                 device_list= data['data'];
+                key = data['key'];
                 if(! device_list){
                     $("#device-info").css("display","none");
                     $("#barcon").css("display","none");
@@ -65,7 +67,7 @@
             success: function (data) {
                 // dialog.modal('hide');
                 if(data['code']== 0){
-                    window.location.href = 'https://oven.53iq.com/static/html/controlinternet.html?d='+mac
+                    window.location.href = 'http://oven.53iq.com/static/html/created_html/'+key+'.html?mac='+mac
                 }
                 else{
                     bootbox.alert(data['msg'])
