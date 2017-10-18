@@ -24493,3 +24493,59 @@ Traceback (most recent call last):
 SyntaxError: keyword argument repeated
 2017-10-17 11:33:12,461 [Thread-3:5380] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2017-10-17 11:34:05,305 [Thread-44:18692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 11:36:41,779 [Thread-256:6400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 11:38:33,243 [Thread-280:292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 12:37:36,733 [Thread-330:10412] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:32:04,165 [Thread-396:16316] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:35:13,739 [Thread-466:19096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:39:46,007 [Thread-485:17572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:40:33,548 [Thread-541:18580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:57:59,326 [Thread-145:9032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 14:02:31,666 [Thread-177:12112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 15:57:41,976 [Thread-255:9312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 15:57:42,640 [Thread-256:17620] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:29:09,587 [Thread-305:15524] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:32:08,470 [Thread-461:2688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:32:49,916 [Thread-513:3016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:33:12,547 [Thread-576:15760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:35:48,592 [Thread-658:13908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:35:48,986 [Thread-659:18184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:36:52,692 [Thread-756:17932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:37:41,538 [Thread-845:11896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:50:57,928 [Thread-967:9228] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:05:37,873 [Thread-30:15240] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 465, in product_main
+    return post()
+  File "E:\open\app\product\views.py", line 393, in post
+    return JsonResponse({'data': device_list},{'key':key[-8:]})
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\http\response.py", line 479, in __init__
+    data = json.dumps(data, cls=encoder)
+  File "C:\Python34\lib\json\__init__.py", line 237, in dumps
+    **kw).encode(obj)
+TypeError: 'dict' object is not callable
+2017-10-17 18:07:48,774 [Thread-81:8124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:44:39,774 [Thread-19:17616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:00,520 [Thread-44:17304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:11,640 [Thread-53:17744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:52,648 [Thread-56:12044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:52:54,162 [Thread-80:780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:55:52,816 [Thread-4:14420] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:56:17,666 [Thread-7:2732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:56:46,889 [Thread-3:12220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:24,361 [Thread-3:14044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:41,330 [Thread-9:10788] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:48,047 [Thread-12:2720] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:54,786 [Thread-15:1752] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:16:27,894 [Thread-3:8180] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:17:15,500 [Thread-9:17532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:17:49,384 [Thread-3:14368] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:22:34,255 [Thread-3:8716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:23:30,343 [Thread-27:16880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:31:34,221 [Thread-68:12580] [django.request:143] [WARNING]- Not Found: /product/list/None

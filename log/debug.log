@@ -3029,3 +3029,15 @@ OSError: [Errno 51] Network is unreachable
 2017-10-17 10:34:33,512 [Thread-48:3188] [root:85] [ERROR]- Developer matching query does not exist.
 2017-10-17 10:34:33,520 [Thread-48:3188] [root:85] [ERROR]- Developer matching query does not exist.
 2017-10-17 10:40:47,443 [Thread-159:15680] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 12:34:26,132 [Thread-290:16628] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 13:26:35,307 [Thread-341:15336] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 13:26:59,568 [Thread-354:3724] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 14:02:15,840 [Thread-151:3724] [root:61] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-10-17 15:57:19,701 [Thread-224:11076] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 17:27:59,053 [Thread-265:5220] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 17:36:03,639 [Thread-689:12280] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 17:36:12,353 [Thread-707:17948] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-17 17:50:18,105 [Thread-926:12408] [root:61] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-10-17 18:22:19,602 [Thread-350:16604] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-18 08:44:24,444 [Thread-3:8644] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-18 08:44:31,434 [Thread-9:13196] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
