@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/demo/css/control-app.css">
     <link rel="stylesheet" type="text/css" href="/static/css/product/jquery.step.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/product/oven_detail.css"/>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
     <script src="/static/js/product/jquery.step.min.js"></script>
     <script src=" https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
 
@@ -111,7 +111,7 @@
 <script type="text/javascript">
       var status='预热中'; //显示工作状态
       var time_stop = true; //
-      var goTime = true; // 设置暂停或者继续
+      var goTime = false; // 设置暂停或者继续
       var wind = 'close';// 设置风的打开
       var light= 'close'; // 灯
       var Oven_time= 99; // 加热时间
@@ -119,21 +119,20 @@
       var operation=''; //  后期的操作
       var tempplus= 20; // 初始温度
       var nowtime =0;
-      var SysSecond =7200; // 计时器初始时间
+      var SysSecond =3600; // 计时器初始时间
       var InterValObj;
-      var send_bool = true;//用于是否发送数据
+      var send_bool = false;//用于是否发送数据
       var blockHour = document.getElementById('block-range-hour');
       var blockMin = document.getElementById('block-range-min');
         $(document).ready(function() {
-             SysSecond = 7200; //这里获取倒计时的起始时间
-            if(goTime) {
+             SysSecond = 3600; //这里获取倒计时的起始时间
+
                 InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行
                 if_time = SysSecond;
-            }
+
         });
         //将时间减去1秒，计算天、时、分、秒
         function SetRemainTime() {
-            if(goTime) {
                 if (SysSecond > 0) {
                     secondtime = if_time / 10;
                     if (SysSecond >= secondtime * 9) {
@@ -149,12 +148,9 @@
                     window.clearInterval(InterValObj);
                     //这里可以添加倒计时时间为0后需要执行的事件
                 }
-            }
-
         }
     </script>
 <script>
-
       Oven_time = parseInt(blockHour)*60 +parseInt(blockMin)
       console.log(Oven_time)
     function DyPoppicker(name) {
@@ -239,8 +235,7 @@
             document.getElementById('working').style.display="block";
             var blockHour = document.getElementById('block-range-hour');
             var blockMin = document.getElementById('block-range-min');
-            SysSecond = parseInt((blockHour *60 +blockMin)*60)
-            console.log(SysSecond)
+           nowtime =Math.round(nowtime)
             <!-- 发送数据 ID | 模式 | 温度 | 时间 | 工作状态 | 操作 | 风扇 | 电灯 |-->
             send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
@@ -306,6 +301,7 @@
 
                   operation ='pause'
                   pause.innerHTML='继续'
+                  nowtime =Math.round(nowtime)
                   send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
@@ -322,6 +318,7 @@
                   pause.innerHTML='暂停'
                   goTime=true;
                   operation = 'go_on'
+                  nowtime =Math.round(nowtime)
                   send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
@@ -363,6 +360,7 @@
             flag =  true;
             wind= 'close';
         }
+        nowtime =Math.round(nowtime)
            send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
@@ -387,6 +385,7 @@
             bool=true;
             light='close'
         }
+        nowtime =Math.round(nowtime)
         send_data= {'did': userID, 'model': devices.oven_type, 'value': devices.oven_value,'temp':Oven_temp,'time':nowtime,'status':status,'wind':wind,'light':light};
         console.log(send_data)
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
