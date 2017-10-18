@@ -133,7 +133,8 @@
         });
         //将时间减去1秒，计算天、时、分、秒
         function SetRemainTime() {
-                if (SysSecond > 0) {
+                 if(goTime){
+                     if (SysSecond > 0) {
                     secondtime = if_time / 10;
                     if (SysSecond >= secondtime * 9) {
                         status = '预热中';
@@ -148,6 +149,7 @@
                     window.clearInterval(InterValObj);
                     //这里可以添加倒计时时间为0后需要执行的事件
                 }
+                 }
         }
     </script>
 <script>
@@ -386,7 +388,7 @@
             light='close'
         }
         nowtime =Math.round(nowtime)
-        send_data= {'did': userID, 'model': devices.oven_type, 'value': devices.oven_value,'temp':Oven_temp,'time':nowtime,'status':status,'wind':wind,'light':light};
+        send_data= {'did': userID, 'model': devices.oven_type, 'temp':Oven_temp,'time':nowtime,'status':status,'wind':wind,'light':light};
         console.log(send_data)
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
