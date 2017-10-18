@@ -27,7 +27,7 @@ def write_data(data, header, filename):
     """
     excel_name = filename + ".xls"
     file = xlwt.Workbook(encoding="utf-8")
-    table = file.add_sheet(excel_name, cell_overwrite_ok=True)
+    table = file.add_sheet('Sheet1', cell_overwrite_ok=True)
 
     if data is None:
         return file
