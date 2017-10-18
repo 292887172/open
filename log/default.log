@@ -24493,3 +24493,378 @@ Traceback (most recent call last):
 SyntaxError: keyword argument repeated
 2017-10-17 11:33:12,461 [Thread-3:5380] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2017-10-17 11:34:05,305 [Thread-44:18692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 16:04:20,638 [Thread-1:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/control
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/middleware/common.py", line 72, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:04:21,518 [Thread-3:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:04:21,730 [Thread-4:123145392111616] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-10-17 16:04:22,857 [Thread-5:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:04:57,900 [Thread-7:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:04:58,901 [Thread-8:123145392111616] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:05:12,169 [Thread-12:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/list
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/middleware/common.py", line 73, in process_request
+    urlresolvers.is_valid_path("%s/" % request.path_info, urlconf)):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:05:40,256 [Thread-13:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/list
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/middleware/common.py", line 73, in process_request
+    urlresolvers.is_valid_path("%s/" % request.path_info, urlconf)):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:05:43,319 [Thread-14:123145392111616] [django.request:231] [ERROR]- Internal Server Error: /product/list
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/middleware/common.py", line 73, in process_request
+    urlresolvers.is_valid_path("%s/" % request.path_info, urlconf)):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:05:48,310 [Thread-17:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /guide
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/home/views.py", line 27, in guide
+    return render(request, "home/guide.html", locals())
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 148, in render
+    return self._render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/template/defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:07:15,683 [Thread-4:123145544577024] [django.request:231] [ERROR]- Internal Server Error: /product/list
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/middleware/common.py", line 73, in process_request
+    urlresolvers.is_valid_path("%s/" % request.path_info, urlconf)):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/functools.py", line 448, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/importlib/__init__.py", line 109, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2254, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2237, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2226, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1467, in exec_module
+  File "<frozen importlib._bootstrap>", line 1572, in get_code
+  File "<frozen importlib._bootstrap>", line 1532, in source_to_code
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 280
+    default_apps=default_apps,
+               ^
+SyntaxError: keyword argument repeated
+2017-10-17 16:07:15,991 [Thread-5:123145544577024] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-10-17 16:08:04,545 [Thread-70:123145544577024] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:08:10,365 [Thread-1477:123145558237184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:08:58,121 [Thread-1528:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:42:28,038 [Thread-1845:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:47:41,741 [Thread-2006:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None

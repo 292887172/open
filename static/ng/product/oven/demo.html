@@ -38,57 +38,32 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
 <script>
+    setTimeout(function () {
+                getQrcode()
+             },1500)
 
-     b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test'
-    $(function () {
-        $("#jcz").click(function () {
-             var bx = document.getElementById('iframes')
-             bx.src = '/static/ng/product/oven/stove.html';
-             document.getElementById("device_manage").innerText = "集成灶";
-             b = 'https://oven.53iq.com/static/html/stove_home.html?d=test'
-             $('#qrcode').html("");
-             setTimeout(function () {
-                getQrcode()
-             },1000)
-        })
-        $('#smoke').click(function () {
-             var bx = document.getElementById('iframes');
-             bx.src = '/static/ng/product/oven/smoke.html';
-             document.getElementById("device_manage").innerText = "油烟机";
-             b = 'https://oven.53iq.com/static/html/smoke_home.html?d=test';
-             $('#qrcode').html("");
-             setTimeout(function () {
-                getQrcode()
-             },1000)
-        })
-        $('#oven').click(function () {
-             var bx = document.getElementById('iframes');
-             bx.src = '/static/ng/product/oven/oven.html';
-
-             document.getElementById("device_manage").innerText = "智能烤箱";
-             b = 'https://oven.53iq.com/static/html/oven_home.html?d=test';
-             $('#qrcode').html("");
-             setTimeout(function () {
-                getQrcode()
-             },3000)
-        })
-         //获取cookie 生成二维码
     function getQrcode() {
+        var b = '';
+        var content ='';
         var a = getCookie('COOKIE_USER_ACCOUNT');
-        console.log(a)
-        if(b=='https://oven.53iq.com/static/html/stove_home.html?d=test'){
+        console.log(a);
+        var bx = document.getElementById('iframes');
+        if(bx.name =='stove'){
+            b='https://oven.53iq.com/static/html/stove_home.html?d=test'
             content  = b + a +'-stove' ;
         }
-        else if(b=='https://oven.53iq.com/static/html/oven_home.html?d=test'){
+        if( bx.name=='oven'){
+            b='https://oven.53iq.com/static/html/oven_home.html?d=test'
             content  = b + a +'-oven';
         }
-        else if(b=='https://oven.53iq.com/static/html/smoke_home.html?d=test'){
+        if( bx.name=='smoke'){
+            b='https://oven.53iq.com/static/html/smoke_home.html?d=test'
             content  = b + a +'-smoke' ;
         }
 
-        console.log(content);
         jQuery('#qrcode').qrcode({width:90,height:90,text:content});
         //$("#loadingDiv").hide();
 
@@ -99,10 +74,10 @@
             return unescape(arr[2]);
         else
             return null;
-    }
-    setTimeout(function () {
-                getQrcode()
-             },1500)
-    })
-</script>
+         };
 
+
+
+</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>

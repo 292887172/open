@@ -66,7 +66,6 @@
                 <div id="app" class="app"></div>
                 <div id="status" class="status">预热中</div>
                  <div id="remainTime" class="djs"></div>
-
                  <div class="tmp" id="tmp">温度:200℃</div>
             </div>
         </div>
@@ -120,10 +119,10 @@
       var operation=''; //  后期的操作
       var tempplus= 20; // 初始温度
       var nowtime =0;
-      var SysSecond;
+      var SysSecond =7200; // 计时器初始时间
       var InterValObj;
-
-     var blockHour = document.getElementById('block-range-hour');
+      var send_bool = true;//用于是否发送数据
+      var blockHour = document.getElementById('block-range-hour');
       var blockMin = document.getElementById('block-range-min');
         $(document).ready(function() {
              SysSecond = 7200; //这里获取倒计时的起始时间
@@ -134,8 +133,6 @@
         });
         //将时间减去1秒，计算天、时、分、秒
         function SetRemainTime() {
-                 console.log('这是在计时');
-                  console.log(goTime);
             if(goTime) {
                 if (SysSecond > 0) {
                     secondtime = if_time / 10;
@@ -237,8 +234,13 @@
             DatePicker.hide();
             time_stop=true;
             goTime=true;
+            send_bool= true;
             document.getElementById('operation').style.display="none";
             document.getElementById('working').style.display="block";
+            var blockHour = document.getElementById('block-range-hour');
+            var blockMin = document.getElementById('block-range-min');
+            SysSecond = parseInt((blockHour *60 +blockMin)*60)
+            console.log(SysSecond)
             <!-- 发送数据 ID | 模式 | 温度 | 时间 | 工作状态 | 操作 | 风扇 | 电灯 |-->
             send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
@@ -281,7 +283,8 @@
          }
          <!-- 监听5秒发送指令-->
          function timing_senddata() {
-                  send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
+             if(send_bool){
+                 send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
                     $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
                              console.log(res);
@@ -293,15 +296,14 @@
                              }
                          });
                             console.log(send_data)
-
+             }
          }
-         setTimeLeft();
      function pause() {
           if(time_stop){
               var pause = document.getElementById('pause')
               if(pause.innerHTML=='暂停'){
                   goTime=false
-                  console.log(goTime)
+
                   operation ='pause'
                   pause.innerHTML='继续'
                   send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
@@ -338,6 +340,7 @@
          goTime=false;
          operation='stop'
          tempplus= 20;
+         send_bool= false;
          document.getElementById('working').style.display="none";
          document.getElementById('operation').style.display="block";
          document.getElementById('remainTime').innerHTML ='00:00:00';
