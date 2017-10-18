@@ -719,7 +719,7 @@ def callback(request):
                     response = HttpResponseRedirect('/product/list')
                 else:
                     create_developer('', '', '', 0, '', '', '', '', '', '', '', '', unionid, unionid, 2)
-                    response = HttpResponseRedirect('/guide')
+                    response = HttpResponseRedirect('/product/list')
                 response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
