@@ -50,13 +50,19 @@ def product_list(request):
     :return:
     """
     def get():
-        # 在一个人固定账号下没用默认产品，则创建三个默认产品，有跳过
-        if not App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT):
+        # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
+        tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        app_names = []
+        for tmp_app in tmp_apps:
+            app_names.append(tmp_app.app_name)
+        if len(app_names)<3:
             for i in range(len(APP_NAME)):
-                result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
+                if APP_NAME[i] not in app_names:
+                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
                                     APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                result.app_logo = APP_LOGO[i]
-                result.save()
+                    if result:
+                        result.app_logo = APP_LOGO[i]
+                        result.save()
         if not request.user.developer.developer_id:
             return HttpResponseRedirect(reverse("center"))
         else:
