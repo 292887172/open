@@ -697,16 +697,14 @@
                     success: function (data) {
                         mac = data['data'];
                         if(mac){
-                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html&mac=" + mac);
+                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html");
                         }
                         else{
                             $(obj).removeAttr('target');
                             bootbox.alert("当前还未绑定任何设备，只需将产品Key写入协议通过握手帧上报，即可查看绑定设备!")
                         }
-
                     }
                 });
-
         }
         function export_protocol(id) {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
