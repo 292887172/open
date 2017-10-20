@@ -132,7 +132,7 @@
         </h1>
     <ul class="nav">
         {% block menu %}
-            {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
+            {% if user.developer.developer_id and user.developer.developer_check_status >= 1%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% endif %}
                 <li><a href="{% url 'home/guide' %}">开发指南</a></li>
