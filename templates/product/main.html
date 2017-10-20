@@ -119,60 +119,75 @@
      <div class="title">
 
             <div class="wrapper">
+            {% for default_app in default_apps %}
+                <input type="hidden" class="default-app" data-appid={{ default_app.app_id }}>
+            {% endfor %}
+            {% for a in all_app %}
+                {% if a.check_status != 3%}
+                    <input type="hidden" class="owner-app" data-appid={{ a.app_id }}>
+                {% endif %}
+            {% endfor %}
             <ol class="breadcrumb">
             <li><a href="/product/list/">产品管理</a></li>
-
-            {% if app.check_status == 3 %}
-                <li><span>产品体验</span></li>
-                <li>
-                     <div class="dropdown" id="dropdown" >
-                        <p id="dropdownMenu1"
-                            data-toggle="dropdown">
-                            {{ app.app_name }}
-                            <span class="caret"></span>
-                        </p>
-
+            <li>
+                 <div class="dropdown" id="dropdown" >
+                     {% if app.check_status == 3 %}
+                         <p id="dropdownMenu2" data-toggle="dropdown">产品体验<span class="caret"></span></p>
                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                             {% for default_app in default_apps %}
-                                 <li role="presentation">
-                                     <a role="menuitem" tabindex="-1" onclick="update_href(this)" href="?ID={{ default_app.app_id }}#"  data-name={{ default_app.app_name }} data-appid={{ default_app.app_id }}>{{ default_app.app_name }}</a>
-                                 </li>
-                             {% endfor %}
-
-                         </ul>
-                     </div>
-
-                </li>
-            {% else %}
-            <li class="active">
-                <div class="dropdown">
+                             <li role="presentation"><a role="menuitem" tabindex="-1" onclick="default_href(this)" href="#" >我的产品</a></li>
+                        </ul>
+                     {% else %}
+                         <p id="dropdownMenu2" data-toggle="dropdown">我的产品<span class="caret"></span></p>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                             <li role="presentation"><a role="menuitem" tabindex="-1" onclick="default_href(this)" href="#" >产品体验</a></li>
+                        </ul>
+                     {% endif %}
+                 </div>
+            </li>
+            {% if app.check_status == 3 %}
+            <li id="default-app-id">
+                 <div class="dropdown" id="dropdown">
                     <p id="dropdownMenu1"
-                            data-toggle="dropdown">
-                        {{ app.app_name}}
+                        data-toggle="dropdown">
+                        {{ app.app_name }}
                         <span class="caret"></span>
                     </p>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        {% if all_app %}
-                            {% for a in all_app %}
-                                {% if a.app_id == app.app_id %}
+                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 
-                                {% else %}
+                         {% for default_app in default_apps %}
+                             {% if default_app.app_id != app.app_id %}
+                             <li role="presentation">
+                                 <a role="menuitem" tabindex="-1" onclick="update_href(this)" href="?ID={{ default_app.app_id }}#"  data-name={{ default_app.app_name }} data-appid={{ default_app.app_id }}>{{ default_app.app_name }}</a>
+                             </li>
+                             {% endif %}
+                         {% endfor %}
+                     </ul>
+                 </div>
+
+            </li>
+            {% else %}
+            <li id="owner-app-id" >
+                <div class="dropdown" id="dropdown">
+                    <p id="dropdownMenu1"
+                        data-toggle="dropdown">
+                        {{ app.app_name }}
+                        <span class="caret"></span>
+                    </p>
+
+                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+                         {% for a in all_app %}
+                                {% if a.app_id != app.app_id and a.check_status != 3 %}
 
                                     <li role="presentation">
                                         <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
                                     </li>
-
                                 {% endif %}
 
-                            {% endfor %}
-                        {% else %}
-                            <li role="presentation">
-                                        <a role="menuitem" tabindex="-1">暂无更多产品</a>
-                            </li>
-                        {% endif %}
+                         {% endfor %}
 
-                    </ul>
-                </div>
+                     </ul>
+                 </div>
             </li>
             {% endif %}
             </ol>
@@ -298,8 +313,24 @@
                 href1 = href1.replace(/demo.*/,name);
             }
             $(obj).attr('href',href1);
+    }
+    function default_href(obj) {
+        text = $(obj).html();
+        var href= location.href;
+        var id = "ID=";
 
-
+        if(text == "产品体验"){
+            id += $(".default-app").attr("data-appid");
+        }
+        else if(text == "我的产品"){
+            id += $(".owner-app").attr("data-appid");
+        }
+        href = href.replace(/ID=\d+/,id);
+        test = href.split("demo");
+        if (test.length > 1){
+            href = test[0];
+        }
+        $(obj).attr('href',href);
     }
         angular.module('Product.base', ['ngRoute'])
                 .controller('ProductBaseCtrl', ['$scope', function ($scope) {
@@ -322,13 +353,12 @@
                     $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
                     $scope.app_command = "{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
-                    $scope.app_device_value = "{{ app.app_device_type|safe|linebreaksbr }}";
                     $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
                     $scope.band_name = "{{ band_name }}";
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
                     $scope.key = "{{ key }}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
-                    $scope.create_time = "{{ app.app_create_date  }}";
+                    $scope.create_time = "{{ app.app_create_date|utc2local2  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 申请发布 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
                     $scope.secondProType = [
@@ -379,14 +409,11 @@
                         "csrfmiddlewaretoken": $scope.csrf_token,
                         "app_id": $scope.app_id,
                         "app_name": $scope.app_name,
-                        "app_category": $scope.app_category,
                         "app_model": $scope.app_model,
                         "app_describe": $scope.app_describe,
                         "app_site": $scope.app_site,
                         "app_logo": $scope.app_logo,
                         "app_command": $scope.app_command,
-                        "app_device_name": $scope.app_device_name,
-                        "app_device_value": $scope.app_device_value,
                         "app_group": $scope.app_group,
                         "band_name": $scope.band_name,
                         "app_factory_uid": $scope.app_factory_uid
@@ -459,5 +486,4 @@
                     };
                 }]);
     </script>
-
 {% endblock %}

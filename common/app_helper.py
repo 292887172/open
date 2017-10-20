@@ -272,7 +272,7 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo, app_command, app_device_type, app_group, app_factory_uid):
+def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo, app_command, app_group, app_factory_uid):
     """
     更新应用基础信息
     :param app_id:
@@ -293,11 +293,9 @@ def update_app_info(app_id, app_name, app_category, app_model, app_describe, app
             app_name=app_name,
             app_describe=app_describe,
             app_site=app_site,
-            app_category=app_category,
             app_model=app_model,
             app_command=app_command,
             app_update_date=datetime.datetime.utcnow(),
-            app_device_type=app_device_type,
             app_group=app_group,
             app_factory_uid=app_factory_uid,
         )

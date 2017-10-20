@@ -8,6 +8,7 @@
       }
       .addButton{
         color:#fff;
+        font-weight: 700;
         text-decoration:none;
         cursor:pointer;
       }
@@ -74,6 +75,7 @@
     }
      .ui-jqgrid .ui-jqgrid-bdiv{
          z-index: 0;
+         overflow: visible;
      }
      .prompt-class{
          padding-top: 31px;
@@ -138,6 +140,9 @@
         color: #788188;
         line-height: 1.4;
     }
+     .popover-title{
+         border-radius: 5px 5px 0 0;
+     }
     </style>
     <div class="main-container box2">
         <div class="hl-help">
@@ -293,6 +298,7 @@
             caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()'  class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
 
             gridComplete:function(){
+					    $("[data-toggle='popover']").popover();
                     $('.ui-jqgrid-sortable').eq(0).attr("align","center");
                     //$('.ui-jqgrid-sortable').eq(2).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
@@ -429,7 +435,7 @@
                     trigger:'manual',
                     placement: 'left',
                     html: 'true',
-                    title : '<span class="text-info">是否删除该功能</span> <button type="button" onclick="fun_close()">&times;</button>',
+                    title : '<span class="text-info">确定删除该功能？</span>',
                     content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
                   });
 			    $(".del-info").popover('hide');

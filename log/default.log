@@ -24493,6 +24493,62 @@ Traceback (most recent call last):
 SyntaxError: keyword argument repeated
 2017-10-17 11:33:12,461 [Thread-3:5380] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2017-10-17 11:34:05,305 [Thread-44:18692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 11:36:41,779 [Thread-256:6400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 11:38:33,243 [Thread-280:292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 12:37:36,733 [Thread-330:10412] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:32:04,165 [Thread-396:16316] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:35:13,739 [Thread-466:19096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:39:46,007 [Thread-485:17572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:40:33,548 [Thread-541:18580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 13:57:59,326 [Thread-145:9032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 14:02:31,666 [Thread-177:12112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 15:57:41,976 [Thread-255:9312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 15:57:42,640 [Thread-256:17620] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:29:09,587 [Thread-305:15524] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:32:08,470 [Thread-461:2688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:32:49,916 [Thread-513:3016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:33:12,547 [Thread-576:15760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:35:48,592 [Thread-658:13908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:35:48,986 [Thread-659:18184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:36:52,692 [Thread-756:17932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:37:41,538 [Thread-845:11896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 17:50:57,928 [Thread-967:9228] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-17 18:05:37,873 [Thread-30:15240] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 465, in product_main
+    return post()
+  File "E:\open\app\product\views.py", line 393, in post
+    return JsonResponse({'data': device_list},{'key':key[-8:]})
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\http\response.py", line 479, in __init__
+    data = json.dumps(data, cls=encoder)
+  File "C:\Python34\lib\json\__init__.py", line 237, in dumps
+    **kw).encode(obj)
+TypeError: 'dict' object is not callable
+2017-10-17 18:07:48,774 [Thread-81:8124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:44:39,774 [Thread-19:17616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:00,520 [Thread-44:17304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:11,640 [Thread-53:17744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:46:52,648 [Thread-56:12044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:52:54,162 [Thread-80:780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:55:52,816 [Thread-4:14420] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:56:17,666 [Thread-7:2732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 08:56:46,889 [Thread-3:12220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:24,361 [Thread-3:14044] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:41,330 [Thread-9:10788] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:48,047 [Thread-12:2720] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:15:54,786 [Thread-15:1752] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:16:27,894 [Thread-3:8180] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:17:15,500 [Thread-9:17532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:17:49,384 [Thread-3:14368] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:22:34,255 [Thread-3:8716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:23:30,343 [Thread-27:16880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:31:34,221 [Thread-68:12580] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-17 16:04:20,638 [Thread-1:123145386856448] [django.request:231] [ERROR]- Internal Server Error: /product/control
 Traceback (most recent call last):
   File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 87, in get_response
@@ -24868,3 +24924,130 @@ SyntaxError: keyword argument repeated
 2017-10-17 18:08:58,121 [Thread-1528:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-17 18:42:28,038 [Thread-1845:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-17 18:47:41,741 [Thread-2006:123145574002688] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:39:44,326 [Thread-3:12664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 09:39:46,515 [Thread-6:17052] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 10:40:33,308 [Thread-2704:9720] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 10:53:18,929 [Thread-2790:7416] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 11:48:40,420 [Thread-3061:3304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 12:41:01,022 [Thread-3140:9428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 12:41:01,396 [Thread-3141:5188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:22:19,650 [Thread-3278:9344] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-10-18 17:30:52,110 [Thread-3341:13000] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:30:53,116 [Thread-3342:12040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:38:30,258 [Thread-3602:12056] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:49:59,128 [Thread-32:5936] [django.request:231] [ERROR]- Internal Server Error: /product/upload_file/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.upload_file didn't return an HttpResponse object. It returned None instead.
+2017-10-18 17:50:21,789 [Thread-64:14032] [django.request:231] [ERROR]- Internal Server Error: /product/upload_file/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.upload_file didn't return an HttpResponse object. It returned None instead.
+2017-10-18 17:54:09,246 [Thread-133:9680] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:56:13,987 [Thread-184:5364] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:57:09,933 [Thread-211:5580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 17:58:56,420 [Thread-360:8972] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:01:11,809 [Thread-457:16496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:18:47,713 [Thread-45:15012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:19:13,671 [Thread-83:12464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:19:14,028 [Thread-85:16776] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:20:48,956 [Thread-20:5220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:21:52,326 [Thread-47:16680] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:23:19,497 [Thread-97:15172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:26:29,112 [Thread-124:9432] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:28:55,622 [Thread-149:13444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:29:25,262 [Thread-156:16408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-18 18:37:48,914 [Thread-318:13012] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-10-18 18:48:40,414 [Thread-412:2608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 08:46:07,810 [Thread-8:1092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 08:51:41,390 [Thread-34:10248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:37:31,641 [Thread-47:11612] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:37:35,749 [Thread-49:8376] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:38:35,754 [Thread-100:5112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:38:36,458 [Thread-102:2012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:42:16,245 [Thread-208:4900] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:43:11,579 [Thread-279:15608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:43:12,825 [Thread-280:15000] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:43:38,270 [Thread-304:17488] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:46:45,559 [Thread-440:400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 09:53:36,638 [Thread-118:16780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:08:38,342 [Thread-246:18628] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:19:09,111 [Thread-272:18444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:53:18,961 [Thread-558:18648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:56:32,041 [Thread-713:10824] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:56:54,426 [Thread-766:11328] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 10:56:54,697 [Thread-767:12724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 11:18:02,103 [Thread-964:15432] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:39:58,061 [Thread-106:16500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:39:59,091 [Thread-107:15448] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:42:05,215 [Thread-132:7304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:43:27,316 [Thread-198:15600] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:47:18,329 [Thread-249:15272] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 12:52:19,098 [Thread-283:16860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 13:14:20,684 [Thread-766:17100] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 13:15:31,817 [Thread-803:16956] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 470, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 289, in get
+    return render(request, template, locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 266, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 372, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 588, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.base.TemplateSyntaxError: Could not parse the remainder: '[0].app_id' from 'default_apps[0].app_id'
+2017-10-19 13:15:38,646 [Thread-804:1760] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-10-19 13:22:36,138 [Thread-868:10724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 13:39:25,333 [Thread-18:6436] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:02:37,160 [Thread-514:16968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:03:21,726 [Thread-582:2780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:12:16,440 [Thread-786:15500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:13:20,175 [Thread-875:16840] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:14:19,423 [Thread-968:8916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:39:19,818 [Thread-1681:4660] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 14:39:59,082 [Thread-1770:9440] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:00:57,414 [Thread-2129:16536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:26:01,947 [Thread-2846:7828] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:29:44,748 [Thread-3050:16324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:30:54,383 [Thread-3131:15972] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:33:22,036 [Thread-3215:5720] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:36:04,267 [Thread-3379:16780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:42:52,021 [Thread-3610:15796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:44:25,504 [Thread-3636:13728] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-10-19 15:59:22,392 [Thread-4335:6072] [django.request:143] [WARNING]- Not Found: /product/list/None

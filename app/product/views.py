@@ -63,7 +63,7 @@ def product_list(request):
                     if result:
                         result.app_logo = APP_LOGO[i]
                         result.save()
-        if not request.user.developer.developer_id:
+        if not request.user.developer:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -109,16 +109,10 @@ def product_list(request):
         app_id = request.POST.get("app_id", "")
         action = request.POST.get("action", "")
         export = request.POST.get("name", "")
-        ui = request.POST.get("ui", "")
+        # ui = request.POST.get("ui", "")
         if export == "export":
             ret = date_deal(app_id)
             return ret
-
-        if ui == 'getmac':
-            app = App.objects.get(app_id=app_id)
-            mac = block_mac(app)
-            return JsonResponse({'data': mac})
-
         if app_id and action in ("del", "del"):
 
             if action == "del":
@@ -128,15 +122,6 @@ def product_list(request):
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
-
-    def block_mac(app):
-        # 绑定mac
-        device_mac = ''
-        # 获取设备的mac
-        device_list = get_device_list(app.app_appid)
-        if device_list:
-            device_mac = device_list[0]['ebf_device_mac']
-        return device_mac
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -203,10 +188,9 @@ def product_add(request):
             if result.app_id:
                 # 将产品key值推送到接口
                 try:
-                    url = KEY_URL
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    r = requests.get(url, params={'key': key}, timeout=5)
+                    requests.get(KEY_URL, params={'key': key}, timeout=5)
                 except Exception as e:
                     print(e)
                     pass
@@ -266,6 +250,7 @@ def product_main(request):
         all_app = user_related_app
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
+
         # 获取这个app的API接口列表
         api_handler = ApiHandler(app.app_level, app.app_group)
         api_list = api_handler.api_list
@@ -283,8 +268,6 @@ def product_main(request):
             key=key,
             device_name=device_name,
             band_name=band_name,
-
-
         )
         return render(request, template, locals())
 
@@ -317,7 +300,6 @@ def product_main(request):
             # 返回编辑页面信息
             edit_id = request.POST.get("id", "")
             streamId = []
-            edit_data = {}
             for i in range(len(opera_data)):
                 streamId.append(opera_data[i]['Stream_ID'])
                 if str(opera_data[i]['id']) == edit_id:
@@ -411,7 +393,6 @@ def product_main(request):
         action = request.POST.get("action", "")
         app_id = request.POST.get("app_id", "")
         app_name = request.POST.get("app_name", "")
-        app_category = request.POST.get("app_category", "")
         app_model = request.POST.get("app_model", "")
         app_describe = request.POST.get("app_describe", "")
         app_site = request.POST.get("app_site", "")
@@ -419,7 +400,6 @@ def product_main(request):
         app_push_url = request.POST.get("app_config_push_url", "")
         app_push_token = request.POST.get("app_config_push_token", "")
         app_command = request.POST.get("app_command", "")
-        app_device_value = request.POST.get("app_device_value", "")
         app_group = request.POST.get("app_group", "")
         app_factory_uid = request.POST.get("app_factory_uid", "")
         if action in ("cancel_release_product", "off_product", "release_product",
@@ -441,8 +421,8 @@ def product_main(request):
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_info":
                 # 更新基本信息
-                ret = update_app_info(app_id, app_name, app_category, app_model, app_describe, app_site, app_logo,
-                                      app_command, app_device_value, app_group, app_factory_uid)
+                ret = update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo,
+                                      app_command, app_group, app_factory_uid)
                 if ret:
                     update_app_protocol(app)
                 res["data"] = ret
@@ -477,7 +457,6 @@ def product_main(request):
 def key_verify(request):
     # 验证key
     if request.method == 'POST':
-
         key = request.POST.get("key", "")
         if not key:
             return JsonResponse(parse_response(code=_code.MISSING_APP_KEY_CODE, msg=_code.MISSING_APP_KEY_MSG))

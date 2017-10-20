@@ -77,12 +77,8 @@
                     <dt>分类</dt>
                     <dd>
                         智能家居 /
-                        <select name="secondProType"  id="secondProType" ng-disabled="{[{ disabled }]}" ng-click="change()" class="sel1" ng-model="infoFormData.app_category"
-                                ng-options="t.value as t.name for t in secondProType">
-                        </select>
-                        <select name="secondDevType"  id="secondDevType" ng-disabled="{[{ disabled }]}" class="sel1" ng-model="infoFormData.app_device_value" style="width: 86px;">
-                            <option value="{[{app_device_value}]}" selected>{[{app_device_name}]}</option>
-                        </select>
+                        <input name="secondProType"  id="secondProType" ng-disabled="true"  class="sel1" ng-model="app_category"/>
+                        <input name="secondDevType"  id="secondDevType" ng-disabled="true" class="sel1" ng-model="app_device_name" style="width: 86px;"/>
                     </dd>
                 </dl>
 

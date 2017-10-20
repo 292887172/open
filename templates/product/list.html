@@ -689,24 +689,14 @@
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
             app_appid = $(obj).attr('data-appid');
-            $.ajax({
-                    url:"#",
-                    type: "POST",
-                    data: {"ui":"getmac","app_id":app_id},
-                    async :false,
-                    success: function (data) {
-                        mac = data['data'];
-                        if(mac){
-                             $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html&mac=" + mac);
-                        }
-                        else{
-                            $(obj).removeAttr('target');
-                            bootbox.alert("当前还未绑定任何设备，只需将产品Key写入协议通过握手帧上报，即可查看绑定设备!")
-                        }
-
-                    }
-                });
-
+            if('oven.53iq.com'.indexOf(location.href)==1)
+            {
+                $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html");
+            }
+            else
+            {
+                $(obj).attr('href', "http://192.168.1.92:8000/static/html/move.html?id="+app_appid+".html");
+            }
         }
         function export_protocol(id) {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
