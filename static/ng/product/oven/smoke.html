@@ -364,7 +364,8 @@
 
                     }
                     else{
-                        if(tmp_status[j].name == n){             parseInt(tmp_status[j].value);
+                        if(tmp_status[j].name == n){
+                            devices.funcList[i].value=parseInt(tmp_status[j].value);
                             if (name=='WIND'){
                                 // tmp.title = tmp.value_des[value];
                                 devices.funcList[i].title = devices.funcList[i].value_des[parseInt(tmp_status[j].value)]
