@@ -39,7 +39,7 @@
             max-height: 280px;
             overflow: auto;
             position: absolute;
-            top: 263px;
+
             border: #ddd 1px solid;
             z-index: 999;
             background: #fff;
@@ -109,15 +109,13 @@
                                     <dt>分类</dt>
                                     <dd>
                                         智能家居 /
-                                        <select name="product_category" id="product_category" class="sel1">
+                                        <select name="product_category" id="product_category" class="sel1" onblur="check_category(this)">
                                             <option value="无">请选择分类</option>
                                             {#                                        <option value="家电类">家电类</option>#}
                                             <option value="厨房类">厨房类</option>
 {#                                            <option value="卫浴类">卫浴类</option>#}
                                             {#                                        <option value="环境类">环境类</option>#}
                                         </select>
-
-
                                         <select name="product_category_detail" id="product_category_detail"
                                                 class="sel2">
                                             <option value="无">请选择分类</option>
@@ -125,19 +123,21 @@
                                     </dd>
 
                                 </dl>
+                                <span style="color: red;display: none;padding-left: 172px;" class="check-sel">请选择产品分类</span>
                                 <dl class="fmInfo">
                                     <dt>产品名称</dt>
                                     <dd>
                                         <input type="text" name="product_name" id="productNameText" maxlength="18"
-                                               class="w280 form-control" placeholder="请填写产品名称">
+                                               class="w280 form-control" onblur="check_app_name(this)" placeholder="请填写产品名称">
                                         <span class="tips-error hiden" id="productNameTips"></span>
                                     </dd>
                                 </dl>
+                                <span style="color: red;display: none;padding-left: 100px;" class="check-appname">请填写产品名称</span>
                                 <dl class="fmInfo">
                                     <dt>品牌</dt>
                                     <dd>
                                         <input type="hidden" name="brand_id" id="brand_id">
-                                        <input type="text" name="brandName" id="brandNameText" maxlength="18"
+                                        <input type="text" name="brandName" id="brandNameText" value="暂无品牌" maxlength="18"
                                                class="w280 form-control" placeholder="品牌名称"
                                                onclick="showBrandList('brandAddUl');"
                                                onkeyup="showBrandList('brandAddUl', this.value)">
@@ -173,17 +173,17 @@
                             </div>
                             <div style="float: right;width: 40%">
                                 <h4 class="infoTit02">
-                                    选择技术方案 <span class="f12">（方案确定后不能更改）</span>
+                                    选择技术方案 <span class="f12">（后期可自由进行WiFi/Android方案的0开发成本自由切换）</span>
                                 </h4>
                                 <div class="scheme">
                                     <dl class="cur plan" onclick="selectScheme(this, 2)" id="f1">
                                         <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
-                                        <dd>Wi-Fi/蜂窝方案<span>适合烤箱、油烟机等…</span></dd>
+                                        <dd>WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</dd>
                                     </dl>
 
                                     <dl onclick="selectScheme(this, 1)" id="f3" class="plan">
                                         <dt><img src="{% static 'image/product/android.png' %}"><i class="icon-selected"></i></dt>
-                                        <dd>Android屏方案<span>适合集成灶、烤箱等…</span></dd>
+                                        <dd>Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱</dd>
                                     </dl>
                                 </div>
                                 <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
@@ -212,6 +212,7 @@
 {% endblock %}
 
 {% block end_script %}
+    <script src="/static/js/product/bootbox.js"></script>
     <script>
         var brandListData = {{ factory_list|safe }};
         function showBrandList(ulID, qVal) {
@@ -268,13 +269,35 @@
             $("#product_group").val(val);
 
         }
+        function check_category(obj) {
+            var value = $("#product_category option:selected").val();
+            if(value == '无'){
+                $(".check-sel").css('display','block');
+                return '';
+            }
+            else {
+                $(".check-sel").css('display','none')
+            }
+        }
+        function check_app_name(obj) {
+            if($(obj).val() == ""){
+                $(".check-appname").css('display','block');
+                return '';
+            }
+            else {
+                $(".check-appname").css('display','none')
+            }
+        }
         $(document).ready(function () {
             $('#go').on('click', function (e) {
-                if ($("#productNameText").val() != "") {
+                if($("#productNameText").val() == ""){
+                    bootbox.alert("产品名称不能为空！");
+                }
+                else if($("#product_category option:selected").val()=='无'){
+                    bootbox.alert("产品还未分类！");
+                }
+                else{
                     $("form[name=productAddForm]").submit();
-
-                } else {
-                    alert("产品名称不能为空");
                 }
             });
             $("#product_category").on('change', function () {

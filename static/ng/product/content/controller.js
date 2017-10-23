@@ -25,6 +25,11 @@ angular.module('Product.content', ['ngRoute'])
         };
         $scope.ReleaseProduct = function () {
             $scope.releaseFormData["action"] = "release_product";
+            if(!$scope.band_name)
+            {
+                bootbox.alert("该产品没有选择品牌暂不能发布，请为产品添加品牌!");
+                return;
+            }
             $http({
                 method: "POST",
                 url: location.href,

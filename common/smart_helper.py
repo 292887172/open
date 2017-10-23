@@ -200,7 +200,7 @@ def get_factory_name(factory_uid):
         pass
     finally:
         conn.close()
-    return ''
+    return '暂无品牌'
 
 
 def get_factory_list():
