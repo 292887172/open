@@ -17,19 +17,19 @@ angular.module('Product.edit', ['ngRoute'])
          */
         $scope.Save = function () {
         	if (alert_ID()=="exist"){
-        		alert("该功能标识已经存在!!");
+        		bootbox.alert("该功能标识已经存在!!");
 				return ;
 			}
             if($.trim($('#Stream_ID').val())==''){
-					alert("请填写功能标识符!!");
+					bootbox.alert("请填写功能标识符!!");
 					return ;
 				}
 				if($.trim($('#name').val())==''){
-					alert("请填写功能名称信息!!");
+					bootbox.alert("请填写功能名称信息!!");
 					return;
 				}
 				if($.trim($('#mxsLength').val())==''){
-					alert("请填写功能参数长度!!");
+					bootbox.alert("请填写功能参数长度!!");
 					return;
 				}
 				var min=0;
@@ -108,7 +108,7 @@ angular.module('Product.edit', ['ngRoute'])
 				else if (types[3].checked) {
                 	var msg=checkTimer();
 					if(msg.length>0){
-						alert(msg);
+						bootbox.alert(msg);
 						return;
 					}
 					min=parseInt($.trim($('#minTimer').val()));
@@ -116,19 +116,19 @@ angular.module('Product.edit', ['ngRoute'])
 					save_mxs(min,max,"int");
                 }
 				if(errorType==1){
-					alert("请填写数据说明和传送数据!!");
+					bootbox.alert("请填写数据说明和传送数据!!");
 					return;
 				}
 				if(errorType==0){
-					alert("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
+					bootbox.alert("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
 					return;
 				}
 				if(errorType==2){
-					alert("传输数据必须在枚举值:"+enum_value+"中");
+					bootbox.bootbox.alert("传输数据必须在枚举值:"+enum_value+"中");
 					return;
 				}
 				if(errorType==-2){
-					alert("传输数据必须是数字");
+					bootbox.alert("传输数据必须是数字");
 					return;
 				}
 				var indata={};
@@ -180,10 +180,10 @@ angular.module('Product.edit', ['ngRoute'])
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	alert("修改成功!");
+                    	bootbox.alert("修改成功!");
                     }
                     else if(data=="add_success"){
-                    	alert("添加成功!");
+                    	bootbox.alert("添加成功!");
                     }
 					location.href='#/argue';
                 })
