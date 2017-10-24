@@ -234,12 +234,15 @@ def logout(request):
     :param request:
     :return:
     """
-    account_id = request.user.account_id
-    django.contrib.auth.logout(request)
-    response = HttpResponseRedirect(reverse("home"))
-    response.delete_cookie(AUTO_LOGIN)
-    update_user_login_data(account_id, '', '', '', 'delete')
-    return response
+    try:
+        account_id = request.user.account_id
+        django.contrib.auth.logout(request)
+        response = HttpResponseRedirect(reverse("home"))
+        response.delete_cookie(AUTO_LOGIN)
+        update_user_login_data(account_id, '', '', '', 'delete')
+        return response
+    except Exception as e:
+        logging.getLogger('').info(str(e))
 
 
 @csrf_exempt

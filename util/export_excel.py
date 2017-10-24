@@ -11,7 +11,6 @@ from common.app_helper import update_app_fun_widget
 from util.excelutil import write_data
 from model.center.app import App
 
-
 def write_excel(items, filename):
     headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
                'mxsLength': '长度(bit)', 'widget': '装置', 'command': '全指令', 'permission': '权限'}
