@@ -8,6 +8,8 @@ import logging
 import base64
 import hashlib
 import datetime
+import re
+
 import django
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -16,6 +18,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from base.const import ConventionValue
+from base.wx_login import deal_wxlogin_data
 from conf.apiconf import wx_oauth, wx_userinfo
 from conf.sessionconf import *
 from base.connection import RedisBaseHandler
@@ -693,8 +696,14 @@ def callback(request):
 
             r = requests.get(url)
             ret = r.json()
+            # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
+            if re.match('\d{9}', state):
+                # 推送微信登录消息
+                deal_wxlogin_data(unionid, state)
+                return HttpResponse('<p style="line-height: 300px;text-align: center;font-size: 30px;position: fixed;width: 100%;height: 100%;background-color: #333;top: -30px;color: #fff;left: -10px;">正在登录...</p>')
+                pass
             access_token = ret.get('access_token', None)
             if access_token is None:
                 return HttpResponse('code值无效')
