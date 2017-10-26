@@ -33,17 +33,27 @@ def to_check_bit(f_type, length, states, result=0):
 
 
 def to_com_frame(header, f_type, length, values, check_bit, result=''):
-    com_frame = header + ' 00 ' + f_type + ' ' + str(length) + result + ' '.join(values) + ' ' + check_bit
+    com_frame = header + ' 00 ' + f_type + ' ' + to_hex(length) + ' ' + result + ' '.join(values) + ' ' + check_bit
     return com_frame
+
+
+def to_hex(length):
+    num = hex(length)[2:]
+    if len(num) == 1:
+        return "0" + (num)
+    else:
+        return num
 
 
 def to_fun_state(num, flag=0):
     if int(num) < 10:
-        num = '0' + num
-    if flag == 0:
-        values = [num, '01', '', '']
+        state = '0' + str(num)
     else:
-        values = ['01', '01', num, '01']
+        state = str(num)
+    if flag == 0:
+        values = [state, '01', '', '']
+    else:
+        values = ['01', '01', state, '01']
     return values
 
 
@@ -73,11 +83,11 @@ def data_domain(sheet2, data, i):
         sheet2.write(5, index, line['name'], set_style('Arial', 220))
     sheet2.write_merge(4, 5, i+k+1, i+k+1, "校验", set_style('Arial', 220))
 
-    row4 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '21', length, '']
-    row5 = ['电控修改照明按钮状态', '电控->屏', '', '5A A5', '00', '21', length+1, '00']
+    row4 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
+    row5 = ['电控修改照明按钮状态', '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
     row6 = ['例子（单功能）', '', '', '帧头', '流水号', '帧类型', '长度', '结果码', '功能1', '状态1', '功能2', '状态2', '校验']
     row7 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '31', '02', '']
-    row8 = ['电控应答打开照明命令（照明打开，电源打开）', '电控->屏', '', '5A A5', '00', '31', '05', '00']
+    row8 = ['电控应答打开照明命令（照明打开，电源打开）', '电控->屏', '', '5A A5', '05', '31', '05', '00']
     # 全功能数据
     check_bit1 = to_check_bit('21', length, 2)
     check_bit2 = to_check_bit('21', length, 2, 1)
@@ -94,8 +104,8 @@ def data_domain(sheet2, data, i):
     fun_state1 = to_fun_state(lamp_id, 1)
     check_bit3 = to_check_bit('31', 2, int(lamp_id)+1)
     check_bit4 = to_check_bit('31', 5, int(lamp_id)+3, 1)
-    com_frame3 = to_com_frame('A5 5A', '31', '02', fun_state0, check_bit3, result=' ')
-    com_frame4 = to_com_frame('5A A5', '31', '05', fun_state1, check_bit4, result=' 00 ')
+    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result=' ')
+    com_frame4 = to_com_frame('5A A5', '31', 5, fun_state1, check_bit4, result=' 00 ')
     row7[2] = com_frame3
     row8[2] = com_frame4
     row7.extend(fun_state0)
@@ -127,7 +137,7 @@ def write_example(sheet2, data):
     row1 = ['连接上服务器后收到握手命令帧', '屏->电控', 'A5 5A 00 01 00 00', 'A5 5A', '00', '01', '00']
     row2 = ['电控应答握手帧上报MAC和型号编号', '电控->屏',
             '5A A5 00 01 17 00 00 01 41 41 41 41 41 41 42 42 42 42 42 42 30 30 30 30 30 30 30 30 AA',
-            '5A A5', '00', '01', '00', '00', '00', '01', '65', '65', '65', '65', '65', '65', '66', '66', '66',
+            '5A A5', '00', '01', '17', '00', '00', '01', '65', '65', '65', '65', '65', '65', '66', '66', '66',
             '66', '66', '66', '30', '30', '30', '30', '30', '30', '30', '30', 'AA']
     row3 = ["例子(全功能)", "指令流向", "完整帧", "帧头", "流水号", "帧类型", "长度"]
     j = 0
