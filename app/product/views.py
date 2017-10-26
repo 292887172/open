@@ -496,3 +496,13 @@ def upload_file(request):
             logging.getLogger("").info(r["msg"])
         data = ret["data"]
         return HttpResponse(data)
+
+
+def webPage(request):
+    if request.method == 'GET':
+        code = request.GET.get('code', None)
+        state = request.GET.get('state', None)
+        if code is None:
+            return HttpResponse('微信验证失败')
+        else:
+            return HttpResponse('微信验证成功')
