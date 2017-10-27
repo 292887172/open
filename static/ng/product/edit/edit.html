@@ -72,13 +72,6 @@
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<form method="post" class="form-horizontal" role="form">
-									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 </label>
-										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
-											<br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
-										</div>
-									</div>
                                     <div class="form-group">
                                         <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 </label>
 										<div class="col-sm-9 col-xs-9">
@@ -86,6 +79,14 @@
 											<br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 </label>
+										<div class="col-sm-9 col-xs-9">
+											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
+											<br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
+										</div>
+									</div>
+
                                     <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) </label>
 										<div class="col-sm-9 col-xs-9">
@@ -260,7 +261,7 @@
 
 		<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/assets/js/bootstrap.min.js"></script>
-
+        <script src="/static/js/product/bootbox.js"></script>
 		<script type="text/javascript">
 
             var StreamIds = [];

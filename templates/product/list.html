@@ -439,12 +439,12 @@
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
         <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
-        <div class="cont mt20" style="margin-top: 0px;">
-            <i class="">
-                <img id="show_logo" style="width: 110px;height: 120px;margin:-4% 0 0 -3%;"
+        <div class="cont mt20" style="margin-top: -15px;">
+            <div style="float:left;">
+                <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
                      src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
-            </i>
-            <div class="warnCont">
+            </div>
+            <div class="warnCont" style="width: 76%">
                 <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
@@ -457,14 +457,15 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" name="product_group"
-                                                                  id="c1" checked=""><label for="c1">Wi-Fi</label>
-
-                            <input class="product_group" type="radio" name="product_group" id="c2"><label for="c2">Android屏</label>
-
+                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm()" name="product_group" id="c1" checked="">
+                            <label for="c1">Wi-Fi</label>
+                            <input class="product_group" type="radio" name="product_group" onclick="select_progm()" id="c2">
+                            <label for="c2">Android屏</label>
                         </p>
 
+                        <div  class="select-progm1" style="font-size: 12px;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
                     </div>
+
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品类型:</label>
                         <span class="ant-input-wrapper">厨房类
@@ -519,15 +520,26 @@
                     <dd>
                         <div class="goods-title"><a
                                 href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
+
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
+
+
                         </div>
                         <div class="product-info-div">
-                            <p class="product-info-p">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                            </div>
+                            <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}</p>
+                                           class="fa fa-rss"></label>{% endif %}
+                            <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                <label style="margin-left: 46%;" class="fa fa-qrcode"></label>
+                            </a>
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #1ab667">已发布</label></p>
                         </div>
@@ -564,11 +576,19 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                            </div>
+                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}</p>
+                                           class="fa fa-rss"></label>{% endif %}
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #f39800">审核中</label></p>
                         </div>
@@ -603,13 +623,23 @@
                                 href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
+
+
                         </div>
                         <div class="product-info-div">
-                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                            </div>
+                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 {% if app.app_group == 1 %}
-                                    <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
+                                    <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}</p>
+                                           class="fa fa-rss"></label>{% endif %}
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #333">未发布</label></p>
                         </div>
@@ -645,13 +675,24 @@
                                 href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
+                            <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                            </a>
                         </div>
                         <div class="product-info-div">
-                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                            </div>
+                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}</p>
+                                           class="fa fa-rss"></label>{% endif %}
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #c91423">未通过</label></p>
                         </div>
@@ -681,15 +722,74 @@
 {% block script %}
     <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script>
         var app_id = $("#delProLink").attr("data-id");
         var checkSubmitFlg = false;
-        //$("#loadingDiv").hide();
+        $(".goodsBox").height($(".goodsBox").height()+65);
+        function utf16to8(str) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for(i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+            }
+            }
+            return out;
+        }
+        function show_qrcode(obj) {
+            name = "name=" + $(obj).attr('data-name');
+            key = "&key=" + $(obj).attr('data-id');
+            date = "&date=" + $(obj).attr('data-date');
+            parcode = $(obj).parent('p').parent('div').children('div');
+            code = parcode.children('div');
+            parcode.css('display','block');
+            url = "test.open.53iq.com/static/ng/product/wexin.html?" + name + key + date;
+            // url 包括中文字符编码转换
+            url = utf16to8(url);
+            $(".markLayout").show();
+            if(code.children().length<1) {
+                code.qrcode({
+                    width: 120, //宽度
+                    height:120, //高度
+                    text: url});
+            }
+            else {
+                parcode.show();
+            }
+            $(document).ready(function () {
+                $(".markLayout").click(function (event) {
+                    if (!$(this).hasClass("parcode")) {
+                        $(".markLayout").hide();
+                        parcode.hide()
+                    }
+                    event.stopPropagation(); //阻止事件冒泡
+                });
+            });
+        }
+
+        function select_progm() {
+            if(document.getElementsByName('product_group')[0].checked){
+            $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机");
+            }
+            else{
+                $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱");
+            }
+        }
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
             app_appid = $(obj).attr('data-appid');
-            if('oven.53iq.com'.indexOf(location.href)==1)
+            if('open.53iq.com'.indexOf(location.href)==1)
             {
                 $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html");
             }
@@ -778,6 +878,7 @@
             });
         }
         function new_close() {
+
             $(".markLayout").hide();
             $("#newHtmlBox").css('display', 'none');
             $("#product_name").val('');

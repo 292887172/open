@@ -256,8 +256,7 @@ def product_main(request):
         api_list = api_handler.api_list
         band_name = get_factory_name(app.app_factory_uid)
         app_key = app.app_appid
-        len_key = len(app_key) - 8
-        key = app_key[len_key:]
+        key = app_key[-8:]
         template = "product/main.html"
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         content = dict(
@@ -379,8 +378,10 @@ def product_main(request):
         # 获取设备列表
         device_table = request.POST.get("device", "")
         if device_table == 'device_table':
+            key = app.app_appid
+            key = key[-8:]
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data': device_list})
+            return JsonResponse({'data': device_list, 'key': key})
         # 获取工厂列表
         data = request.POST.get("data", "")
         if data == "factory_list":
@@ -495,3 +496,13 @@ def upload_file(request):
             logging.getLogger("").info(r["msg"])
         data = ret["data"]
         return HttpResponse(data)
+
+
+def webPage(request):
+    if request.method == 'GET':
+        code = request.GET.get('code', None)
+        state = request.GET.get('state', None)
+        if code is None:
+            return HttpResponse('微信验证失败')
+        else:
+            return HttpResponse('微信验证成功')
