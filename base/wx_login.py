@@ -47,7 +47,7 @@ def deal_wxlogin_data(unionid, did):
         token = res['data']['token']
         topic = res['data']['mosquitto_topic']
         openid = str(topic).split("/")[-1]
-        logging.getLogger('').info("微信登录token："+ str(token))
+        logging.getLogger('').info("微信登录token：" + str(token)+">>openid:"+openid)
         send_wxlogin_data(did, openid, unionid, token)
         return token, openid
 
