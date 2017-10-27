@@ -224,6 +224,12 @@
                         }
                         else if(name=="LIGHT"){
                             this.clickLamp(tmp.value)
+                            if(tmp.value){
+                                 $("#smoke")[0].src = "/static/demo/img/lightopen.png";
+                            }
+                            else{
+                                 $("#smoke")[0].src = "/static/demo/img/lightclose.png";
+                            }
                         }
                         if(name =="SMALL_WIND"){
                             if (small.value){
