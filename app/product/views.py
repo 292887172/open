@@ -524,7 +524,7 @@ def webPage(request):
         string1 = '&'.join(['%s=%s' % (key.lower(), ret[key]) for key in sorted(ret)])
         signature = hashlib.sha1(string1.encode('utf-8')).hexdigest()
         signPackage = {
-            "appId": APPID,
+            "appId": WECAHT_APPID,
             "nonceStr":nonceStr,
             "timestamp":timestamp,
             "url":url,
