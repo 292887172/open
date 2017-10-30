@@ -529,16 +529,16 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
+                                <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 46%;" class="fa fa-qrcode"></label>
+                                </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
-                            <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                <label style="margin-left: 46%;" class="fa fa-qrcode"></label>
-                            </a>
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #1ab667">已发布</label></p>
@@ -554,7 +554,6 @@
                                     class="fa fa-download"></i></span></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
-
                         </ul>
                     </dd>
                 </dl>
@@ -578,16 +577,16 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #f39800">审核中</label></p>
@@ -629,16 +628,17 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
+
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #333">未发布</label></p>
@@ -675,23 +675,20 @@
                                 href="{% url 'product/main' %}?ID={{ app.app_id }}">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
-                            <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                            </a>
                         </div>
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #c91423">未通过</label></p>
@@ -727,7 +724,7 @@
     <script>
         var app_id = $("#delProLink").attr("data-id");
         var checkSubmitFlg = false;
-        $(".goodsBox").height($(".goodsBox").height()+65);
+        $(".goodsBox").height($(".goodsBox").height()+50);
         function utf16to8(str) {
             var out, i, len, c;
             out = "";
@@ -754,9 +751,12 @@
             parcode = $(obj).parent('p').parent('div').children('div');
             code = parcode.children('div');
             parcode.css('display','block');
-            url = "test.open.53iq.com/static/ng/product/wexin.html?" + name + key + date;
+            url = location.href.split(':')[0] + "://" + location.host+ "/product/webPage?" + name + key + date;
+            // url = "http://192.168.191.1:8000/product/webPage?"+name+key+date;
             // url 包括中文字符编码转换
+            console.log(url)
             url = utf16to8(url);
+
             $(".markLayout").show();
             if(code.children().length<1) {
                 code.qrcode({
