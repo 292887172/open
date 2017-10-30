@@ -5,8 +5,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
-import requests
-
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
@@ -28,11 +26,17 @@ from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
 
+import hashlib
 import time
 import json
 import logging
 import os
+import requests
+import random
+import string
 from conf.newuserconf import *
+from conf.wxconf import *
+from conf.apiconf import *
 from conf.message import *
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
@@ -497,12 +501,48 @@ def upload_file(request):
         data = ret["data"]
         return HttpResponse(data)
 
-
+@csrf_exempt
 def webPage(request):
+
+    def createNonceStr(length = 16):
+        #获取noncestr（随机字符串）
+        return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
+
     if request.method == 'GET':
-        code = request.GET.get('code', None)
-        state = request.GET.get('state', None)
-        if code is None:
-            return HttpResponse('微信验证失败')
+        url = 'https://' + request.get_host() + request.get_full_path()
+        r = requests.get(wx_ticket)
+        ret = r.json()
+        jsapiTicket = ret.get('jsapi_ticket', None)
+        timestamp = int(time.time())
+        nonceStr = createNonceStr()
+        ret = {
+            'nonceStr': nonceStr,
+            'jsapi_ticket': jsapiTicket,
+            'timestamp': timestamp,
+            'url': url
+        }
+        string1 = '&'.join(['%s=%s' % (key.lower(), ret[key]) for key in sorted(ret)])
+        signature = hashlib.sha1(string1.encode('utf-8')).hexdigest()
+        signPackage = {
+            "appId": APPID,
+            "nonceStr":nonceStr,
+            "timestamp":timestamp,
+            "url":url,
+            "signature":signature,
+            "rawString":string1
+        }
+        name = request.GET.get('name', None)
+        key = request.GET.get('key', None)
+        date = request.GET.get('date', None)
+        id = request.GET.get('id', None)
+        if name and key and date:
+            return render(request, 'product/wexin.html', locals())
+        elif id:
+            return render(request, 'product/control.html', locals())
         else:
-            return HttpResponse('微信验证成功')
+            return HttpResponse("网页错误")
+
+
+
+
+
