@@ -7,7 +7,8 @@
 </head>
 <body>
     <div class="" style="margin-left: 34%;">
-        <h2>id:{{ id }}</h2>
+        <h3>id:{{ id }}</h3>
+        <h3 style="display: none">key: <span class="appId"></span> </h3>
         <input type="button" onclick="fun()" value="扫一扫" id="button" style="background-color: #ff6202;color: #fff;border-color: #ff6202;border-radius: 6px;width: 80px;height: 31px;"/>
     </div>
 
@@ -39,16 +40,15 @@
         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
     });
     function fun() {
-            /*wx.previewImage({
-                current: 'http://cp1.douguo.net/upload/caiku/b/e/a/yuan_be62c4ab3e7f7f8f91e8b951b65884da.jpg', // 当前显示图片的http链接
-                urls: ['http://cp1.douguo.net/upload/caiku/0/2/9/yuan_025219ddfa23698cfe1831f546c97cc9.jpg'] // 需要预览的图片http链接列表
-            });
-            */
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    url = result.search.substr(1);
+                    key = url.split('&')[1].split('key=')[1];
+                    $(".appId").parent('h3').css('display','block');
+                    $(".appId").text(key);
                 }
             });
         }
