@@ -45,10 +45,27 @@
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                    url = result.search.substr(1);
-                    key = url.split('&')[1].split('key=')[1];
+                    key = result.split('&')[1].split("key=")[1];
+                    id = "{{ id }}";
                     $(".appId").parent('h3').css('display','block');
-                    $(".appId").text(key);
+                    if(key){
+                        $(".appId").text(key);
+                        $.ajax({
+                            url:"/product/webPage",
+                            type: "POST",
+                            data: {"key":key,"id":id},
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            error:function () {
+                                alert("推送失败")
+                            }
+                        });
+                    }
+                    else{
+                        $(".appId").text("None");
+                    }
+
                 }
             });
         }

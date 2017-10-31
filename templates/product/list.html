@@ -754,7 +754,7 @@
             url = location.href.split(':')[0] + "://" + location.host+ "/product/webPage?" + name + key + date;
             // url = "http://192.168.191.1:8000/product/webPage?"+name+key+date;
             // url 包括中文字符编码转换
-            console.log(url)
+            console.log(url);
             url = utf16to8(url);
 
             $(".markLayout").show();
@@ -789,7 +789,7 @@
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
             app_appid = $(obj).attr('data-appid');
-            if('open.53iq.com'.indexOf(location.href)==1)
+            if(location.host.includes("open.53iq.com"))
             {
                 $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html");
             }
