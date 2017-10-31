@@ -541,8 +541,16 @@ def webPage(request):
             return render(request, 'product/control.html', locals())
         else:
             return HttpResponse("网页错误")
-
-
-
-
-
+    elif request.method == 'POST':
+        id = request.POST.get("id", "")
+        key = request.POST.get("key", "")
+        url = DOWNLOAD_ZIP.format(key)
+        TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
+        url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
+        data = {
+            "message": {"TK_TYPE": "DownloadZip","EB_TASK_PARAM": {"ZipUrl": url}, "TK_PY_ID": id},
+            "touser": id,
+        }
+        res = requests.post(url=url1, data =json.dumps(data))
+        res = res.json()
+        return HttpResponse(json.dumps(res))
