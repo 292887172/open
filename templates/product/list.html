@@ -529,11 +529,11 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 46%;" class="fa fa-qrcode"></label>
+                                    <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -577,11 +577,11 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -628,11 +628,11 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
@@ -679,11 +679,11 @@
                         <div class="product-info-div">
                             <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">使用微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -722,7 +722,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script>
-        var app_id = $("#delProLink").attr("data-id");
+        $('[data-rel=popover]').popover({container:'body'});
         var checkSubmitFlg = false;
         $(".goodsBox").height($(".goodsBox").height()+50);
         function utf16to8(str) {
@@ -754,7 +754,6 @@
             url = location.href.split(':')[0] + "://" + location.host+ "/product/webPage?" + name + key + date;
             // url = "http://192.168.191.1:8000/product/webPage?"+name+key+date;
             // url 包括中文字符编码转换
-            console.log(url);
             url = utf16to8(url);
 
             $(".markLayout").show();
