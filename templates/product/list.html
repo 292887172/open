@@ -751,8 +751,8 @@
             parcode = $(obj).parent('p').parent('div').children('div');
             code = parcode.children('div');
             parcode.css('display','block');
-            url = location.href.split(':')[0] + "://" + location.host+ "/product/webPage?" + name + key + date;
-            // url = "http://192.168.191.1:8000/product/webPage?"+name+key+date;
+            url = location.href.split(':')[0] + "://" + location.host+ "/product/wx_code?" + name + key + date;
+            // url = "http://192.168.191.1:8000/product/wx_code?"+name+key+date;
             // url 包括中文字符编码转换
             url = utf16to8(url);
 
