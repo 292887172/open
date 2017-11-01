@@ -54,7 +54,7 @@
                     if(id){
                         $(".device-id").text(id);
                         $.ajax({
-                            url:"/product/webPage",
+                            url:"/product/wx_code",
                             type: "POST",
                             data: {"key":"{{ key }}","id":id},
                             success: function (data) {

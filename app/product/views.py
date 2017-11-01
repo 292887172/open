@@ -470,7 +470,7 @@ def key_verify(request):
         if app and flag:
             http_host = request.META.get('HTTP_HOST')
 
-            url_add = 'http://'+http_host+'/static/file/'+key+'.zip'
+            url_add = 'http://' + http_host + '/static/file/' + key + '.zip'
             return JsonResponse(parse_response(code=_code.SUCCESS_CODE, msg=_code.SUCCESS_MSG, data=url_add))
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
@@ -501,11 +501,11 @@ def upload_file(request):
         data = ret["data"]
         return HttpResponse(data)
 
-@csrf_exempt
-def webPage(request):
 
-    def createNonceStr(length = 16):
-        #获取noncestr（随机字符串）
+@csrf_exempt
+def wx_scan_code(request):
+
+    def createRandomStr():
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
 
     if request.method == 'GET':
@@ -514,7 +514,8 @@ def webPage(request):
         ret = r.json()
         jsapiTicket = ret.get('jsapi_ticket', None)
         timestamp = int(time.time())
-        nonceStr = createNonceStr()
+        # 获取（随机字符串）
+        nonceStr = createRandomStr()
         ret = {
             'nonceStr': nonceStr,
             'jsapi_ticket': jsapiTicket,
@@ -525,32 +526,32 @@ def webPage(request):
         signature = hashlib.sha1(string1.encode('utf-8')).hexdigest()
         signPackage = {
             "appId": WECAHT_APPID,
-            "nonceStr":nonceStr,
-            "timestamp":timestamp,
-            "url":url,
-            "signature":signature,
-            "rawString":string1
+            "nonceStr": nonceStr,
+            "timestamp": timestamp,
+            "url": url,
+            "signature": signature,
+            "rawString": string1
         }
         name = request.GET.get('name', None)
         key = request.GET.get('key', None)
         date = request.GET.get('date', None)
-        id = request.GET.get('id', None)
+        device_id = request.GET.get('id', None)
         if name and key and date:
             return render(request, 'product/wexin.html', locals())
-        elif id:
+        elif device_id:
             return render(request, 'product/control.html', locals())
         else:
             return HttpResponse("网页错误")
     elif request.method == 'POST':
-        id = request.POST.get("id", "")
+        device_id = request.POST.get("id", "")
         key = request.POST.get("key", "")
         url = DOWNLOAD_ZIP.format(key)
         TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
         url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
         data = {
-            "message": {"TK_TYPE": "DownloadZip","EB_TASK_PARAM": {"ZipUrl": url}, "TK_PY_ID": id},
-            "touser": id,
+            "message": {"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url}, "TK_PY_ID": device_id},
+            "touser": device_id
         }
-        res = requests.post(url=url1, data =json.dumps(data))
+        res = requests.post(url=url1, data=json.dumps(data))
         res = res.json()
         return HttpResponse(json.dumps(res))
