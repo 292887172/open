@@ -17,49 +17,54 @@
     .mt20{
         overflow: hidden;
     }
+    .goods-list {
+        width: 90%;
+        margin-top: 20px;
+    }
+    .goods-list dl dt img {
+    width: 85%;
+    height: 85%;
+}
+    .goods-list dl dd {
+        margin: 0;
+        padding: 0;
+    }
+    .goods-list dl dd p{
+        color: #bfbfbf;
+    }
 </style>
 <div class="box2 relative">
      <div class="hl-help">
          <span class="linkBlue">产品控制台</span>
-
     </div>
     <div class="mt20">
-        <h1 style="margin: 20px 10px 10px 20px;color: #808080;">{[{app_name}]}</h1><br>
-         <div class="gd-opt" style="   float: none; margin-left: 64%;margin-top: -44px">
-            <div class="apply" ng-controller="ContentCtrl">
+        <div class="goods-list">
+            <dl>
+                <dt>
+                    <img src="{[{ app_logo }]}" onerror="this.src='/static/image/global/default.png'">
+                </dt>
+                <dd style="margin-left: 0px;padding-top: 6px;float: left;">
+                    <div class="good-title" style="">
+                        <span style="font-size: 18px">{[{app_name}]}</span>
+                        <span class="label bg-white" style="font-size: 100%;">{[{ app.app_model }]}</span>
+                    </div>
+                    <div class="product-info" style="margin-top: 5px;">
+                        <p class="product-info-p" style="">Key：{[{ key }]}</p>
+                        <p class="product-info-p" style="">Secret：{[{app_secret}]}</p>
+                        <div class="gd-opt" style="margin-top: 12px;float: left;">
+                        <div class="apply" ng-controller="ContentCtrl">
+                            <a ng-show="check_status!='体验产品'" href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
+                        </div>
+                    </div>
+                    </div>
 
-                <a ng-show="check_status!='体验产品'" href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
-            </div>
-         </div>
-            <div class="boxInfo" style="width: 40%;">
-                <dl class="fmInfo">
-                    <dt>审核状态：</dt><dd>{[{ check_status }]}</dd>
+                </dd>
+                <dd style="float: right">
+                    <p>创建于：{[{create_time}]}</p>
+                </dd>
+            </dl>
+        </div>
 
-                </dl>
-                <dl class="fmInfo">
-                    <dt>Key：</dt><dd>{[{key}]}</dd>
-
-                </dl>
-
-                <dl class="fmInfo">
-                    <dt>分类：</dt><dd>智能家居/</dd>
-                    <dd>
-                        <input type="hidden" name="secondProType"  id="secondProType" ng-disabled="true"  class="sel1" ng-model="app_category" value="app_category"/>
-                        <input type="hidden" name="secondDevType"  id="secondDevType" ng-disabled="true" class="sel1" ng-model="app_device_name" style=""/>
-                    </dd>
-                </dl>
-            </div>
-            <div class="boxInfo">
-                 <dl class="fmInfo">
-                     <dt>创建时间：</dt><dd>{[{create_time}]}</dd>
-                </dl>
-                <dl class="fmInfo">
-                    <dt>Secret：</dt><dd>{[{app_secret}]}</dd>
-                </dl>
-                <dl class="fmInfo">
-                    <dt>型号：</dt><dd>{[{app_model}]}</dd>
-                </dl>
-            </div>
     </div>
 </div>
 <script src="/static/js/common/ajaxfileupload.min.js">

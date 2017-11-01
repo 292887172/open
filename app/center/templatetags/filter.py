@@ -60,6 +60,13 @@ def cover_str(obj):
 register.filter(cover_str)
 
 
+def num_app(app):
+    return len(app)-1
+
+
+register.filter(num_app)
+
+
 def is_none(value):
     """
     检测是否为空
