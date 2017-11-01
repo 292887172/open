@@ -106,7 +106,40 @@
         display: inline-block;
         width: 160px;
     }
+    .fa{
+        line-height: 23px;
+        padding-left: 6px;
+        color: #fff;
+    }
+    .fa-sliders:before{
+        content: "1";
+    }
+    .fa-inbox:before {
+        content: "2";
+    }
+    .fa-file-text-o:before {
+        content: "3";
+    }
+    .fa-desktop:before {
+        content: "4";
+    }
 
+    .menuBox ul li.active a{
+        color: #4A6EA5;
+    }
+    .menuBox ul li.active a i{
+        background: #4A6EA5;
+    }
+    .menuBox ul li a i {
+        border-radius: 50%;
+        background: #ccc;
+    }
+    .menuBox ul li.hover a i{
+        background: #ff6202;
+    }
+    .menuBox ul li.hover a{
+        color: #ff6202;
+    }
     </style>
 {% endblock %}
 {% block menu %}
@@ -177,20 +210,21 @@
                         {{ app.app_name }}
                         <span class="caret"></span>
                     </p>
+                        {% if all_app|num_app %}
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                             {% for a in all_app %}
+                                    {% if a.app_id != app.app_id and a.check_status != 3 %}
 
-                         {% for a in all_app %}
-                                {% if a.app_id != app.app_id and a.check_status != 3 %}
+                                        <li role="presentation">
+                                            <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
+                                        </li>
+                                    {% endif %}
 
-                                    <li role="presentation">
-                                        <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
-                                    </li>
-                                {% endif %}
+                             {% endfor %}
 
-                         {% endfor %}
-
-                     </ul>
+                         </ul>
+                        {% endif %}
                  </div>
             </li>
             {% endif %}
@@ -492,6 +526,7 @@
                     $scope.nav = {
                         selected: function (id) {
                             jQuery(".jsNavItem").removeClass('hover');
+                            jQuery(".jsNavItem[data-id='" + id + "']").addClass('active');
                             jQuery(".jsNavItem[data-id='" + id + "']").addClass('hover');
                         }
                     };

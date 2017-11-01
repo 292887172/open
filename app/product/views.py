@@ -198,7 +198,7 @@ def product_add(request):
                 except Exception as e:
                     print(e)
                     pass
-                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/content'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
