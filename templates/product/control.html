@@ -8,22 +8,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Android屏</title>
 </head>
 <body style="background: #F2F4F8;">
-    <div style="margin-top: 22%;border-bottom: 1px solid #ccc;">
-        <img src="/static/image/home/logo-dev1.png" style="padding-left: 22%;;padding-bottom: 20px;max-width:80%;overflow:hidden;" >
+    <div style="margin-top: 22%;border-bottom: 1px solid #ccc">
+        <img src="/static/image/home/logo-dev1.png" style="padding-left: 23%;padding-bottom: 20px;max-width:78%;overflow:hidden;" >
     </div>
     <div class="param" style="margin-top: 60px;margin-left: 30%;;color: #717375">
-        <p>id:{{ id }}</p>
+        <p>id:{{ device_id }}</p>
         <p style="display: none">key: <span class="appId"></span> </p>
     </div>
     <div style="    margin-top: 51px;text-align: center">
             <input type="button" onclick="fun()" value="扫一扫" id="button" style="font-size: 16px;background-color: #537EBB;;color: #fff;border-color: #537EBB;;border-radius: 6px;width: 154px;height: 40px;"/>
     </div>
-
-
 </body>
 </html>
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -46,7 +44,7 @@
                 success: function (res) {
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
                     key = result.split('&')[1].split("key=")[1];
-                    id = "{{ id }}";
+                    id = "{{ device_id }}";
                     $(".appId").parent('p').css('display','block');
                     if(key){
                         $(".appId").text(key);

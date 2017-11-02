@@ -269,9 +269,9 @@
 			var num=url.indexOf('?id');
 			var str=url.substring(num+1);
 			var id = str.split("=")[1];
+			var edit_data={};
 			jQuery(function($) {
 
-                var edit_data={};
                 var post_data = {"name": "edit","id":id};
                 var flag ;
                 $.ajax({
@@ -281,8 +281,8 @@
                     async :false,
                     success: function (data) {
                         edit_data=data['data'];
+                        StreamIds = data['streamIds'];
                         if(!edit_data){
-                            StreamIds = data['streamIds'];
                             flag = true
                         }
                         else{flag = false;}
@@ -427,7 +427,7 @@
 
                 var temp =false;
                 for (var i = 0; i < StreamIds.length; i++) {
-                    if (StreamIds[i] == data) {
+                    if (StreamIds[i] == data && edit_data['Stream_ID']!=data) {
                         temp = true;
                         break
                     }
@@ -514,11 +514,10 @@
             }
             function alert_ID() {
 			    var data=$.trim($('#Stream_ID').val());
-                for (var i = 0; i < StreamIds.length; i++) {
-                    if (StreamIds[i] == data) {
-                        return "exist";
-                    }
-                    else {return "not-exist"}
-                }
+                    for (var i = 0; i < StreamIds.length; i++) {
+                        if (StreamIds[i] == data && edit_data['Stream_ID'] != data) {
+                            return "exist";}}
+                    return "no-exist";
+
             }
 		</script>

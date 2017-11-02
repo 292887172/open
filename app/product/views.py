@@ -192,9 +192,12 @@ def product_add(request):
             if result.app_id:
                 # 将产品key值推送到接口
                 try:
+                    update_app_protocol(result)
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    requests.get(KEY_URL, params={'key': key}, timeout=5)
+                    key_url = request.get_host() + "/api/produce/base_html"
+                    res = requests.get(key_url, params={'key': key})
+                    print(res)
                 except Exception as e:
                     print(e)
                     pass
@@ -307,7 +310,7 @@ def product_main(request):
                 streamId.append(opera_data[i]['Stream_ID'])
                 if str(opera_data[i]['id']) == edit_id:
                     edit_data = opera_data[i]
-                    return JsonResponse({'data': edit_data})
+                    return JsonResponse({'data': edit_data, 'streamIds': streamId})
             return JsonResponse({'streamIds': streamId})
         elif post_data == 'del':
             # 删除信息
@@ -549,8 +552,8 @@ def wx_scan_code(request):
         TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
         url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
         data = {
-            "message": {"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url}, "TK_PY_ID": device_id},
-            "touser": device_id
+            "message": [{"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url, "KEY": key}, "TK_PY_ID": device_id}],
+            "touser": [device_id]
         }
         res = requests.post(url=url1, data=json.dumps(data))
         res = res.json()
