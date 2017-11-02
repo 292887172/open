@@ -515,7 +515,7 @@
             function alert_ID() {
 			    var data=$.trim($('#Stream_ID').val());
                     for (var i = 0; i < StreamIds.length; i++) {
-                        if (StreamIds[i] == data && edit_data['Stream_ID']) {
+                        if (StreamIds[i] == data && edit_data['Stream_ID'] != data) {
                             return "exist";}}
                     return "no-exist";
 

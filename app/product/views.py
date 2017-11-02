@@ -192,9 +192,12 @@ def product_add(request):
             if result.app_id:
                 # 将产品key值推送到接口
                 try:
+                    update_app_protocol(result)
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    requests.get(KEY_URL, params={'key': key}, timeout=5)
+                    key_url = request.get_host() + "/api/produce/base_html"
+                    res = requests.get(key_url, params={'key': key})
+                    print(res)
                 except Exception as e:
                     print(e)
                     pass

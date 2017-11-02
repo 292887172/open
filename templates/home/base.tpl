@@ -89,14 +89,14 @@
                 <div class="menuBox">
 
                     <ul>
-                        <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i
+                        <li class="menu-li"><a href="/debug/debug_interface" target=""><i
                                 class="icon-wrench"></i>调试接口</a></li>
                     </ul>
                 </div>
                  <div class="menuBox">
 
                     <ul>
-                        <li class="menu-li"><a href="/debug/debug_device" target="_blank"><i
+                        <li class="menu-li"><a href="/debug/debug_device" target=""><i
                                 class="icon-compass"></i>调试设备</a></li>
                     </ul>
                 </div>
