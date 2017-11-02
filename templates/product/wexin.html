@@ -56,7 +56,7 @@
                         $.ajax({
                             url:"/product/wx_code",
                             type: "POST",
-                            data: {"key":"{{ key }}","id":id},
+                            data: {"key":key,"id":id},
                             success: function (data) {
                                 console.log(data);
                             },

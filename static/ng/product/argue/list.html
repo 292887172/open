@@ -451,12 +451,12 @@
                             console.log(data);
                             if(data=="del_success")
                             {
-                                alert("删除成功");
+                                bootbox.alert("删除成功");
                             }
                             location.reload();
                         },
                         error:function () {
-                            alert("删除失败")
+                            bootbox.alert("删除失败")
                         }
                     });
                 }
