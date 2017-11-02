@@ -195,8 +195,7 @@ def product_add(request):
                     update_app_protocol(result)
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    key_url = request.get_host() + "/api/produce/base_html"
-                    res = requests.get(key_url, params={'key': key})
+                    res = requests.get(KEY_URL, params={'key': key})
                     print(res)
                 except Exception as e:
                     print(e)

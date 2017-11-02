@@ -118,7 +118,7 @@ id                   设备编号
         {
             "code": 0,
             "data": {
-                "total": 8
+                "total": 1
             }
         }
         或者
