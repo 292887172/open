@@ -18,7 +18,7 @@
         overflow: hidden;
     }
     .goods-list {
-        width: 90%;
+        width: 100%;
         margin-top: 20px;
     }
     .goods-list dl dt img {
@@ -31,6 +31,10 @@
     }
     .goods-list dl dd p{
         color: #bfbfbf;
+        font-size: 16px;
+    }
+    .fa-arrow-circle-o-up{
+        line-height: 15px;
     }
 </style>
 <div class="box2 relative">
@@ -46,7 +50,7 @@
                 <dd style="margin-left: 0px;padding-top: 6px;float: left;">
                     <div class="good-title" style="">
                         <span style="font-size: 18px">{[{app_name}]}</span>
-                        <span class="label bg-white" style="font-size: 100%;">{[{ app.app_model }]}</span>
+                        <span style="font-size: 18px;padding-left: 19px;">{[{ app_model }]}</span>
                     </div>
                     <div class="product-info" style="margin-top: 5px;">
                         <p class="product-info-p" style="">Key：{[{ key }]}</p>

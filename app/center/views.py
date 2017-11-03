@@ -722,33 +722,34 @@ def callback(request):
             m = hashlib.md5()
             m.update(('token_' + unionid).encode('utf-8'))
             token = m.hexdigest()
-            update_user_login_data(unionid, '123'.encode('utf8'), token, request.META.get('REMOTE_ADDR'), 'save')
+            username = "53iq_" + unionid[-8:]
+            update_user_login_data(username, '123'.encode('utf8'), token, request.META.get('REMOTE_ADDR'), 'save')
 
             try:
-                ac = Account.objects.get(account_id=unionid)
+                ac = Account.objects.get(account_id=username)
                 ac.account_nickname = nickname
                 ac.save()
-                user_obj = authenticate(username=unionid, password='123')
+                user_obj = authenticate(username=username, password='123')
                 django.contrib.auth.login(request, user_obj)
                 if ac.is_developer:
                     response = HttpResponseRedirect('/product/list')
                 else:
-                    create_developer('', '', '', 0, '', '', '', '', '', '', '', '', unionid, unionid, 2)
+                    create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
                     response = HttpResponseRedirect('/product/list')
-                response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
+                response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
             except Exception as e:
                 pass
             try:
-                Account.objects.create_wx_user(unionid, '123', openid, nickname)
-                create_developer('', '', '', 0, '', '', '', '', '', '', '', '', unionid, unionid, 2)
+                Account.objects.create_wx_user(username, '123', openid, nickname)
+                create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
                 logging.getLogger('').info('创建微信账号出错'+str(e))
                 return HttpResponse('登录失败，请尝试其他方式登录')
-            user_obj = authenticate(username=unionid, password='123')
+            user_obj = authenticate(username=username, password='123')
             django.contrib.auth.login(request, user_obj)
             response = HttpResponseRedirect('/product/list')
-            response.set_cookie(COOKIE_USER_ACCOUNT, unionid, expires=dt)
+            response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
             response.set_cookie(AUTO_LOGIN, token, expires=dt)
             return response
