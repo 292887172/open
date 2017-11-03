@@ -424,12 +424,14 @@
 			function checkID(){
 				var role=/^[A-Z_]*$/;
 				var data=$.trim($('#Stream_ID').val());
-
                 var temp =false;
                 for (var i = 0; i < StreamIds.length; i++) {
-                    if (StreamIds[i] == data && edit_data['Stream_ID']!=data) {
-                        temp = true;
-                        break
+                    if(StreamIds[i] == data)
+                    {
+                        if((edit_data && edit_data['Stream_ID']!=data) || !edit_data) {
+                            temp = true;
+                            break
+                        }
                     }
                 }
                 if (data == '' || role.test(data) == false) {
