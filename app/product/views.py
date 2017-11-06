@@ -120,6 +120,9 @@ def product_list(request):
         if app_id and action in ("del", "del"):
 
             if action == "del":
+                app = App.objects.get(app_id=int(app_id))
+                key = app.app_appid[-8:]
+                del_protocol_conf(key)
                 ret = del_app(app_id)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))

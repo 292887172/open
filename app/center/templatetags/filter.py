@@ -160,6 +160,12 @@ def cover_user_name(user_id, nickname):
         if nickname:
             return nickname
         else:
+            a = list(user_id)
+            if "com" in user_id:
+                a[3:-9] = "****"
+            elif len(user_id) == 11:
+                a[3:-4] = "****"
+            user_id = ''.join(a)
             return user_id
     except:
         return ""
