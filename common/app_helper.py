@@ -50,10 +50,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                 app_app_id = gen_app_app_id()
                 app_app_secret = gen_app_app_secret()
                 try:
-                    if device_conf:
-                        device_conf = json.dumps(device_conf)
+                    device_conf = json.dumps(device_conf)
                 except Exception as e:
-                    device_conf = []
                     pass
                 app = App(developer=developer,
                           app_name=app_name,

@@ -85,6 +85,21 @@ def update_app_protocol(app):
     return res
 
 
+def del_protocol_conf(key):
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sql = "DELETE FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key)
+        res = cursor.execute(sql)
+        conn.commit()
+    except Exception as e:
+        print(e)
+        res = False
+    finally:
+        conn.close()
+    return res
+
+
 def get_device_type(device_type):
     """
     从ebdb_smartsys的ebt_device表中获取device_type对应的dt_id

@@ -75,7 +75,11 @@ def deal_json(app):
     j_data['model'] = app.app_model
     j_data['key'] = key[len_key:]
     j_data['secret'] = app.app_appsecret
-    config_data = json.loads(app.device_conf)
+    try:
+        config_data = json.loads(app.device_conf)
+    except Exception as e:
+        config_data = []
+        print("json loads error in :",e)
     for data in config_data:
         # 写入Excel的数据
         j = {}

@@ -304,15 +304,10 @@
             width: 75px;
         }
 
-        .progress li a {
-            color: #2980b9;
-        }
-
         .progress li a:hover {
-            color: #333;
+            color: #2980b9;
             text-underline: underline;
         }
-
         .progress li.cur {
             color: #626262;
         }
@@ -362,16 +357,16 @@
             top: 0;
         }
 
-        .progress li.prog_c a {
-            color: #333;
-        }
-
         .progress li.prog_d {
             position: relative;
             left: -45px;
             top: 0px;
             float: right;
         }
+        .goods-title a:hover {
+        text-decoration: none;
+    }
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -457,9 +452,9 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm()" name="product_group" id="c1" checked="">
+                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
                             <label for="c1">Wi-Fi</label>
-                            <input class="product_group" type="radio" name="product_group" onclick="select_progm()" id="c2">
+                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏</label>
                         </p>
 
@@ -475,7 +470,7 @@
                     </div>
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ developer.developer_id }}" name="developer_id">
-                    <input type="hidden" value="2" name="product_group">
+                    <input type="hidden" value="2" name="product_group" class="product_group">
                     <input type="hidden" value="是" name="product_command">
 
                 </form>
@@ -527,7 +522,7 @@
 
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
@@ -550,8 +545,8 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
-                                    class="fa fa-download"></i></span></li>
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
+                            <span><i class="fa fa-download"></i></span></a></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
                         </ul>
@@ -575,7 +570,7 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
@@ -598,8 +593,8 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
-                                    class="fa fa-download"></i></span></li>
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
+                            <span><i class="fa fa-download"></i></span></a></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
@@ -626,7 +621,7 @@
 
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
@@ -650,8 +645,9 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
-                                    class="fa fa-download"></i></span></li>
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
+                            <span><i class="fa fa-download"></i></span></a>
+                                </li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
@@ -677,7 +673,7 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 200px;border-radius: 4px;display: none">
+                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
@@ -700,8 +696,9 @@
                             </li>
                             <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载</a><span><i
-                                    class="fa fa-download"></i></span></li>
+                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
+                                <span><i class="fa fa-download"></i></span></a>
+                                </li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
                                                    target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
                         </ul>
@@ -759,8 +756,8 @@
             $(".markLayout").show();
             if(code.children().length<1) {
                 code.qrcode({
-                    width: 120, //宽度
-                    height:120, //高度
+                    width: 150, //宽度
+                    height:150, //高度
                     text: url});
             }
             else {
@@ -777,8 +774,9 @@
             });
         }
 
-        function select_progm() {
-            if(document.getElementsByName('product_group')[0].checked){
+        function select_progm(val) {
+            $(".product_group").val(val);
+            if(document.getElementsByName('select_group')[0].checked){
             $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机");
             }
             else{
