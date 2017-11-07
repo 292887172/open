@@ -537,12 +537,15 @@ def wx_scan_code(request):
             "signature": signature,
             "rawString": string1
         }
-        name = request.GET.get('name', None)
         key = request.GET.get('key', None)
-        date = request.GET.get('date', None)
         device_id = request.GET.get('id', None)
-        if name and key and date:
-            return render(request, 'product/wexin.html', locals())
+        if key:
+            query_app = App.objects.filter(app_appid__endswith = key)
+            if query_app:
+                app = query_app[0]
+                return render(request, 'product/wexin.html', locals())
+            else:
+                return HttpResponse("该key不存在")
         elif device_id:
             return render(request, 'product/control.html', locals())
         else:
@@ -551,6 +554,9 @@ def wx_scan_code(request):
         device_id = request.POST.get("id", "")
         key = request.POST.get("key", "")
         url = DOWNLOAD_ZIP.format(key)
+        code = requests.get(url).status_code
+        if code == 404:
+            url = ""
         TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
         url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
         data = {
