@@ -30,6 +30,11 @@
     </script>
 
 </head>
+<style>
+    .sign_out a:hover{
+        color: #ff6202;
+    }
+</style>
 <body>
 <div class="header">
     <div class="wrapper">
@@ -38,13 +43,11 @@
         {% block menu %}
 
         {% endblock %}
-
-
     <div class="sign_out">
         {% if user.account_id %}
                 <!-- 登录 -->
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
+                       style="text-decoration: none;">我的账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
@@ -89,14 +92,14 @@
                 <div class="menuBox">
 
                     <ul>
-                        <li class="menu-li"><a href="/debug/debug_interface" target="_blank"><i
+                        <li class="menu-li"><a href="/debug/debug_interface" target=""><i
                                 class="icon-wrench"></i>调试接口</a></li>
                     </ul>
                 </div>
                  <div class="menuBox">
 
                     <ul>
-                        <li class="menu-li"><a href="/debug/debug_device" target="_blank"><i
+                        <li class="menu-li"><a href="/debug/debug_device" target=""><i
                                 class="icon-compass"></i>调试设备</a></li>
                     </ul>
                 </div>

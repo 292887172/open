@@ -5,8 +5,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
-import requests
-
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
@@ -28,11 +26,17 @@ from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
 
+import hashlib
 import time
 import json
 import logging
 import os
+import requests
+import random
+import string
 from conf.newuserconf import *
+from conf.wxconf import *
+from conf.apiconf import *
 from conf.message import *
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
@@ -116,6 +120,9 @@ def product_list(request):
         if app_id and action in ("del", "del"):
 
             if action == "del":
+                app = App.objects.get(app_id=int(app_id))
+                key = app.app_appid[-8:]
+                del_protocol_conf(key)
                 ret = del_app(app_id)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
@@ -188,13 +195,15 @@ def product_add(request):
             if result.app_id:
                 # 将产品key值推送到接口
                 try:
+                    update_app_protocol(result)
                     app_key = result.app_appid
                     key = app_key[-8:]
-                    requests.get(KEY_URL, params={'key': key}, timeout=5)
+                    res = requests.get(KEY_URL, params={'key': key})
+                    print(res)
                 except Exception as e:
                     print(e)
                     pass
-                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/content'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
@@ -303,7 +312,7 @@ def product_main(request):
                 streamId.append(opera_data[i]['Stream_ID'])
                 if str(opera_data[i]['id']) == edit_id:
                     edit_data = opera_data[i]
-                    return JsonResponse({'data': edit_data})
+                    return JsonResponse({'data': edit_data, 'streamIds': streamId})
             return JsonResponse({'streamIds': streamId})
         elif post_data == 'del':
             # 删除信息
@@ -466,7 +475,7 @@ def key_verify(request):
         if app and flag:
             http_host = request.META.get('HTTP_HOST')
 
-            url_add = 'http://'+http_host+'/static/file/'+key+'.zip'
+            url_add = 'http://' + http_host + '/static/file/' + key + '.zip'
             return JsonResponse(parse_response(code=_code.SUCCESS_CODE, msg=_code.SUCCESS_MSG, data=url_add))
         return JsonResponse(parse_response(code=_code.INVALID_APP_KEY_CODE, msg=_code.INVALID_APP_KEY_MSG))
     elif request.method == 'GET':
@@ -498,11 +507,56 @@ def upload_file(request):
         return HttpResponse(data)
 
 
-def webPage(request):
+@csrf_exempt
+def wx_scan_code(request):
+
+    def createRandomStr():
+        return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
+
     if request.method == 'GET':
-        code = request.GET.get('code', None)
-        state = request.GET.get('state', None)
-        if code is None:
-            return HttpResponse('微信验证失败')
+        url = 'https://' + request.get_host() + request.get_full_path()
+        r = requests.get(wx_ticket)
+        ret = r.json()
+        jsapiTicket = ret.get('jsapi_ticket', None)
+        timestamp = int(time.time())
+        # 获取（随机字符串）
+        nonceStr = createRandomStr()
+        ret = {
+            'nonceStr': nonceStr,
+            'jsapi_ticket': jsapiTicket,
+            'timestamp': timestamp,
+            'url': url
+        }
+        string1 = '&'.join(['%s=%s' % (key.lower(), ret[key]) for key in sorted(ret)])
+        signature = hashlib.sha1(string1.encode('utf-8')).hexdigest()
+        signPackage = {
+            "appId": WECAHT_APPID,
+            "nonceStr": nonceStr,
+            "timestamp": timestamp,
+            "url": url,
+            "signature": signature,
+            "rawString": string1
+        }
+        name = request.GET.get('name', None)
+        key = request.GET.get('key', None)
+        date = request.GET.get('date', None)
+        device_id = request.GET.get('id', None)
+        if name and key and date:
+            return render(request, 'product/wexin.html', locals())
+        elif device_id:
+            return render(request, 'product/control.html', locals())
         else:
-            return HttpResponse('微信验证成功')
+            return HttpResponse("网页错误")
+    elif request.method == 'POST':
+        device_id = request.POST.get("id", "")
+        key = request.POST.get("key", "")
+        url = DOWNLOAD_ZIP.format(key)
+        TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
+        url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
+        data = {
+            "message": [{"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url, "KEY": key}, "TK_PY_ID": device_id}],
+            "touser": [device_id]
+        }
+        res = requests.post(url=url1, data=json.dumps(data))
+        res = res.json()
+        return HttpResponse(json.dumps(res))

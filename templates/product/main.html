@@ -102,7 +102,50 @@
         color: #ff6202;
         cursor: text;
     }
-
+    .step-navs>li{
+        display: inline-block;
+        width: 160px;
+    }
+    .fa{
+        line-height: 21px;
+        padding-left: 6px;
+    }
+    .fa-sliders:before{
+        content: "1";
+        color: #fff;
+    }
+    .fa-inbox:before {
+        content: "2";
+        color: #fff;
+    }
+    .fa-file-text-o:before {
+        content: "3";
+        color: #fff;
+    }
+    .fa-desktop:before {
+        content: "4";
+        color: #fff;
+    }
+    .fa-text:before{
+        content: "5";
+        color: #fff;
+    }
+    .menuBox ul li.active a{
+        color: #4A6EA5;
+    }
+    .menuBox ul li.active a i{
+        background: #4A6EA5;
+    }
+    .menuBox ul li a i {
+        border-radius: 50%;
+        background: #ccc;
+    }
+    .menuBox ul li.hover a i{
+        background: #ff6202;
+    }
+    .menuBox ul li.hover a{
+        color: #ff6202;
+    }
     </style>
 {% endblock %}
 {% block menu %}
@@ -173,20 +216,21 @@
                         {{ app.app_name }}
                         <span class="caret"></span>
                     </p>
+                        {% if all_app|num_app %}
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                             {% for a in all_app %}
+                                    {% if a.app_id != app.app_id and a.check_status != 3 %}
 
-                         {% for a in all_app %}
-                                {% if a.app_id != app.app_id and a.check_status != 3 %}
+                                        <li role="presentation">
+                                            <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
+                                        </li>
+                                    {% endif %}
 
-                                    <li role="presentation">
-                                        <a role="menuitem" onclick="update_href(this)" tabindex="-1" href="?ID={{ a.app_id }}#" data-appid={{ a.app_id }}>{{ a.app_name }}</a>
-                                    </li>
-                                {% endif %}
+                             {% endfor %}
 
-                         {% endfor %}
-
-                     </ul>
+                         </ul>
+                        {% endif %}
                  </div>
             </li>
             {% endif %}
@@ -250,7 +294,7 @@
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
                                 <a href="#/demo/{{ app.app_name}}">
-                                    <i class="fa fa-inbox" ></i>产品体验
+                                    <i class="fa fa-text" ></i>产品体验
                                 </a>
                             </li>
                         </ul>
@@ -365,7 +409,7 @@
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
                     $scope.key = "{{ key }}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
-                    $scope.create_time = "{{ app.app_create_date|utc2local2  }}";
+                    $scope.create_time = "{{ app.app_create_date|utc2local  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 申请发布 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
                     $scope.secondProType = [
@@ -488,6 +532,7 @@
                     $scope.nav = {
                         selected: function (id) {
                             jQuery(".jsNavItem").removeClass('hover');
+                            jQuery(".jsNavItem[data-id='" + id + "']").addClass('active');
                             jQuery(".jsNavItem[data-id='" + id + "']").addClass('hover');
                         }
                     };

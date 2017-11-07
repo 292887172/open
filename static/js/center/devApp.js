@@ -28,7 +28,7 @@ var DevAppInfo = {
         var value = obj.value;
         var errorObj = $('#' + obj.name + 'ErrorId');
         if (flag) {
-            if (value == null || value == '') {
+            if (value == null || value == '' || value.length<11) {
                 errorObj.html('请输入正确的手机号');
                 return false;
             } else if (!this.isNum(value)) {

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load filter %}
 <!DOCTYPE html>
 <html ng-app>
 
@@ -34,6 +35,11 @@ var _hmt = _hmt || [];
 </script>
 
 </head>
+<style>
+    .sign_out a:hover{
+        color: #ff6202;
+    }
+</style>
 <body>
 <div id="header">
     <div class="cnt">
@@ -43,7 +49,7 @@ var _hmt = _hmt || [];
         </h1>
         <ul class="nav">
 
-            {% if user.developer.developer_id and user.developer.developer_check_status == 1%}
+            {% if user.developer.developer_id and user.developer.developer_check_status == 1 or user.developer.developer_from == 3%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% endif %}
             <li><a href="{% url 'home/guide' %}">开发指南</a></li>
@@ -52,7 +58,7 @@ var _hmt = _hmt || [];
         <div class="sign_out">
             {% if user.account_id %}
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id }}<span class="corner"></span></a>
+                       style="text-decoration: none;">我的账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"

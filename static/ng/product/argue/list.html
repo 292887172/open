@@ -6,16 +6,21 @@
         margin: 0;
         overflow:auto;
       }
+        .ui-widget-header a {
+            color: #337ab7;
+        }
       .addButton{
-        color:#fff;
-        font-weight: 700;
-        text-decoration:none;
-        cursor:pointer;
+            box-shadow: 2px 2px 4px;
+            font-weight: 500;
+            text-decoration:none;
+            cursor:pointer;
+            border-radius: 4px;
       }
       .addButton:hover{
-        color:#fff;
+          color: #23527c;
         text-decoration:none;
         cursor:pointer;
+        font-weight: 800;
       }
         .ui-jqgrid tr.jqgrow td{
             overflow: visible;
@@ -151,9 +156,8 @@
         <div class="mt20"></div>
         <table id="grid-table" >
         </table>
-        <h1 class="headerH1"><span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
-        <div id="tips" style="background: #fff">
-
+        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
+        <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
             <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
@@ -161,7 +165,7 @@
             <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
             <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
          </div>
-        <div>
+        <div id="tip2" style="display: none;">
             <div class="prompt-class">
                 <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">单指令：</span>单指令数据部分添加功能序号和对应状态，每次只能传递一个功能状态</p>
                 <img src="/static/image/product/prompt1.jpg">
@@ -181,7 +185,7 @@
         <div id="ie-form"></div>
     </div>
 
-    <div class="popBox" id="newHtmlBox" style="display: block;">
+    <div class="popBox" id="newHtmlBox" style="display: block;z-index: 111111;">
         <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
         <h3 style="text-align: center">温馨提示</h3>
         <div class="cont mt20" style="margin-top: 20px;">
@@ -239,6 +243,16 @@
                         return unescape(arr[2]);
                     else
                         return null;
+                }
+                function show_tips(obj) {
+                    if($("#tips").css("display") == "none"){
+                        $("#tips").css("display","block");
+                        $("#tip2").css("display","block");
+                    }
+                    else {
+                        $("#tips").css("display","none");
+                        $("#tip2").css("display","none");
+                    }
                 }
             jQuery(function($) {
 				jQuery("#grid-table").jqGrid({
@@ -401,24 +415,6 @@
                 //把id传给前台
 				location.href="#/edit?id="+id;
 			}
-			function ban(id){
-                content = document.getElementById("forbiden-info" + id).innerHTML;
-                if ( content != "禁用") {
-                    h = '#/edit?id=' + id;
-                    document.getElementById("forbiden-info" + id).innerHTML="禁用";
-                    document.getElementById("edit-info" + id).setAttribute("href",h);
-                    document.getElementById("del-info" + id).setAttribute("href",'#/argue');
-                    document.getElementById("del-info" + id).setAttribute("onclick",'del(\''+id+'\')');
-                    document.getElementById("state-temp" + id).removeAttribute('disabled');
-                }
-                else {
-                    document.getElementById("forbiden-info" + id).innerHTML="恢复";
-                    document.getElementById("edit-info" + id).removeAttribute('href');
-                    document.getElementById("del-info"+id).removeAttribute('href');
-                    document.getElementById("del-info"+id).removeAttribute('onclick');
-                    document.getElementById("state-temp" + id).setAttribute('disabled','true');
-                }
-			}
             $('body').click(function (event) {
                 var target = $(event.target);
                 if (!target.hasClass('popover')
@@ -456,7 +452,7 @@
                             location.reload();
                         },
                         error:function () {
-                            alert("删除失败")
+                            bootbox.alert("删除失败")
                         }
                     });
                 }
