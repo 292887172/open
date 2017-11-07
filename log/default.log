@@ -25411,3 +25411,7 @@ RuntimeError: Unable to create a new session key. It is likely that the cache is
 2017-10-30 09:47:39,102 [Thread-192:123145386881024] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-30 09:55:04,204 [Thread-200:123145386881024] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-30 09:59:49,676 [Thread-208:123145386881024] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-07 09:55:08,694 [Thread-55:123145389797376] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-07 09:55:52,689 [Thread-71:123145389797376] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-11-07 09:55:54,224 [Thread-75:123145389797376] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2017-11-07 09:55:57,971 [Thread-77:123145389797376] [django.request:143] [WARNING]- Not Found: /center/admin/null
