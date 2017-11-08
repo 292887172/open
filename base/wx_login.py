@@ -35,6 +35,7 @@ def send_wxlogin_data(did, openid, unionid, token):
     logging.getLogger('').info("推送微信登录消息结果：" + r.text)
     print(r.text)
 
+
 def deal_wxlogin_data(unionid, did):
 
     url1 = "http://wechat.53iq.com/tmp/user/info"
@@ -44,7 +45,7 @@ def deal_wxlogin_data(unionid, did):
                                                       '875cb0',
                                       }).json()
     db = SandboxApiMongoDBHandler().db
-    # 同时保存当前该中控屏登录者关系
+    # 保存当前该中控屏登录者关系
     c = db.devices.find_one({'_id': did})
     if c:
         db.devices.update({'_id': did}, {'$set': {'device_type': -2, 'tags': ['中控'], 'login_user': unionid,
@@ -57,6 +58,21 @@ def deal_wxlogin_data(unionid, did):
             'login_date': datetime.datetime.utcnow(), 'danger': 0
         }
         db.devices.insert(tmp)
+
+    # 移除中控原有绑定关系
+    d = db.devices.find({'controller': {'$in': [did]}})
+    for i in d:
+        device_id = i['_id']
+        c_id = i['controller']
+        try:
+            c_id.remove(did)
+            c_id = list(set(c_id))
+            if len(c_id) > 10:
+                del c_id[0]
+        except ValueError:
+            pass
+
+        db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
 
     # 建立绑定关系
     d = db.devices_users.find({'openid': unionid, 'active': 1})
