@@ -25,8 +25,8 @@ def set_style1(name, height, bold=False):
     return style
 
 
-def to_check_bit(f_type, length, states, result=0):
-    check_bit = int('A5', 16) + int('5A', 16) + int(f_type, 16) + length + result + states
+def to_check_bit(f_type, length, states):
+    check_bit = int('A5', 16) + int('5A', 16) + int(f_type, 16) + length + states
     check_bit = bin(check_bit)[-8:]
     check_bit = hex(int(check_bit, 2))[2:]
     return check_bit
@@ -40,20 +40,17 @@ def to_com_frame(header, f_type, length, values, check_bit, result=''):
 def to_hex(length):
     num = hex(length)[2:]
     if len(num) == 1:
-        return "0" + (num)
+        return "0" + num
     else:
         return num
 
 
-def to_fun_state(num, flag=0):
+def to_fun_state(num):
     if int(num) < 10:
         state = '0' + str(num)
     else:
         state = str(num)
-    if flag == 0:
-        values = [state, '01', '', '']
-    else:
-        values = ['01', '01', state, '01']
+    values = [state, '01', '', '']
     return values
 
 
@@ -63,36 +60,48 @@ def data_domain(sheet2, data, i):
     k = len(funs)-1
     # 数据域长度（位数）
     length = k
-    values = ['01']
-    lamp_id = 2
+    values = []
+    lamp_id = 1
+    flag = False
+    fun_value = 0
+    fun_name = ''
     # 全功能头部部分
     sheet2.write_merge(4, 4, i, i+k, "数据域", set_style('Arial', 220))
     sheet2.write(5, i, "结果码", set_style('Arial', 220))
     for index, line in enumerate(funs[1:], i+1):
         # 获取数据域所有功能对应的值
-        if index > (i+1):
+        if not flag:
+            flag = True
+            fun_value = 1
+            lamp_id = line['id']
+            fun_name = line['name']
+            if int(line['mxsLength']) / 8 > 1:
+                values.append('01 00')
+                length += 1
+            else:
+                values.append('01')
+        else:
             if int(line['mxsLength']) / 8 > 1:
                 values.append('00 00')
                 length += 1
-            elif line['Stream_ID'] == 'LAMP':
-                lamp_id = line['id']
-                values.append('01')
             else:
                 values.append('00')
+
         # 找到照明对应的id
         sheet2.write(5, index, line['name'], set_style('Arial', 220))
     sheet2.write_merge(4, 5, i+k+1, i+k+1, "校验", set_style('Arial', 220))
-
-    row4 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
-    row5 = ['电控修改照明按钮状态', '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
+    S_C = "点击屏上{0}按钮打开{0}".format(fun_name)
+    C_S = "电控修改{0}按钮状态".format(fun_name)
+    row4 = [S_C, '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
+    row5 = [C_S, '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
     row6 = ['例子（单功能）', '', '', '帧头', '流水号', '帧类型', '长度', '结果码', '功能1', '状态1', '功能2', '状态2', '校验']
-    row7 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '31', '02', '']
-    row8 = ['电控应答打开照明命令（照明打开，电源打开）', '电控->屏', '', '5A A5', '00', '31', '05', '00']
+    row7 = [S_C, '屏->电控', '', 'A5 5A', '00', '31', '02', '']
+    row8 = [C_S, '电控->屏', '', '5A A5', '00', '31', '03', '00']
     # 全功能数据
-    check_bit1 = to_check_bit('21', length, 2)
-    check_bit2 = to_check_bit('21', length, 2, 1)
+    check_bit1 = to_check_bit('21', length, fun_value)
+    check_bit2 = to_check_bit('21', length + 1, fun_value)
     com_frame1 = to_com_frame('A5 5A', '21', length, values, check_bit1, result=' ')
-    com_frame2 = to_com_frame('5A A5', '21', length+1, values, check_bit2, result=' 00 ')
+    com_frame2 = to_com_frame('5A A5', '21', length + 1, values, check_bit2, result=' 00 ')
     row4[2] = com_frame1
     row5[2] = com_frame2
     row4.extend(values)
@@ -101,11 +110,11 @@ def data_domain(sheet2, data, i):
     row5.append(check_bit2)
     # 单功能数据
     fun_state0 = to_fun_state(lamp_id)
-    fun_state1 = to_fun_state(lamp_id, 1)
-    check_bit3 = to_check_bit('31', 2, int(lamp_id)+1)
-    check_bit4 = to_check_bit('31', 5, int(lamp_id)+3, 1)
+    fun_state1 = to_fun_state(lamp_id)
+    check_bit3 = to_check_bit('31', 2, int(lamp_id) + fun_value)
+    check_bit4 = to_check_bit('31', 3, int(lamp_id) + fun_value)
     com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result=' ')
-    com_frame4 = to_com_frame('5A A5', '31', 5, fun_state1, check_bit4, result=' 00 ')
+    com_frame4 = to_com_frame('5A A5', '31', 3, fun_state1, check_bit4, result=' 00 ')
     row7[2] = com_frame3
     row8[2] = com_frame4
     row7.extend(fun_state0)
