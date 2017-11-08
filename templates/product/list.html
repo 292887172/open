@@ -528,7 +528,7 @@
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                                    <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -576,7 +576,7 @@
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -610,7 +610,7 @@
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}">
                             <img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
                         </a>
-                        <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
@@ -627,7 +627,7 @@
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
@@ -664,7 +664,7 @@
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}"
                                                                                     onerror="this.src='{% static "image/global/default.png" %}'"
                                                                                     title="产品图标"></a>
-                        <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
@@ -679,7 +679,7 @@
                             </div>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -748,7 +748,7 @@
             parcode = $(obj).parent('p').parent('div').children('div');
             code = parcode.children('div');
             parcode.css('display','block');
-            url = location.href.split(':')[0] + "://" + location.host+ "/product/wx_code?" + name + key + date;
+            url = location.href.split(':')[0] + "://" + location.host+ "/product/wx_code?" + key;
             // url = "http://192.168.191.1:8000/product/wx_code?"+name+key+date;
             // url 包括中文字符编码转换
             url = utf16to8(url);
