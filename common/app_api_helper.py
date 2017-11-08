@@ -180,7 +180,7 @@ def gen_group_key(*args):
 
 
 def remove_control_id(device_id):
-    r = get_redis_client(3, 6)
+    r = get_redis_client(3)
     try:
         r.delete(gen_group_key(_cache_key.DEVICE_CONTROL_PREFIX, device_id.upper()))
     except Exception as e:
