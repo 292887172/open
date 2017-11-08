@@ -19,8 +19,9 @@
         <p>id:{{ device_id }}</p>
         <p style="display: none">key: <span class="appId"></span> </p>
     </div>
-    <div style="    margin-top: 51px;text-align: center">
+    <div style="margin-top: 51px;text-align: center">
             <input type="button" onclick="fun()" value="扫一扫" id="button" style="font-size: 16px;background-color: #537EBB;;color: #fff;border-color: #537EBB;;border-radius: 6px;width: 154px;height: 40px;"/>
+        <p>请扫描网页二维码下载最新UI</p>
     </div>
 </body>
 </html>
@@ -28,7 +29,7 @@
 <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: '{{ signPackage.appId }}', // 必填，公众号的唯一标识
         timestamp: '{{ signPackage.timestamp }}', // 必填，生成签名的时间戳
         nonceStr: '{{ signPackage.nonceStr }}', // 必填，生成签名的随机串
@@ -42,8 +43,9 @@
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
+                    alert("同步UI设备");
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                    key = result.split('&')[1].split("key=")[1];
+                    key = result.split('key=')[1];
                     id = "{{ device_id }}";
                     $(".appId").parent('p').css('display','block');
                     if(key){
@@ -64,6 +66,9 @@
                         $(".appId").text("None");
                     }
 
+                },
+                fail:function () {
+                    alert("同步UI设备失败");
                 }
             });
         }
