@@ -174,7 +174,6 @@ def fetch_api_data(api_id):
         return None
 
 
-
 def gen_group_key(*args):
     return ":".join(str(_) for _ in args)
 
