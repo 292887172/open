@@ -120,3 +120,11 @@ class ReleaseApiRedisHandler(object):
                                                      password=RELEASE_API_REDIS_PWD)
         redis_client = redis.Redis(connection_pool=redis_connection_pool)
         self.client = redis_client
+
+
+Redis3_ClientDB6 = Redis3().client
+
+def get_redis_client(host, db):
+    if host == 3:
+        return Redis3_ClientDB6
+
