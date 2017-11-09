@@ -4,7 +4,7 @@ import json
 
 import requests
 import logging,datetime
-from base.connection import  SandboxApiMongoDBHandler
+from base.connection import ReleaseApiMongoDBHandler
 from common.app_api_helper import remove_control_id
 __author__ = 'rdy'
 MSG_NOTIFY_URL = "https://api.53iq.com/1/message/push?access_token=%s"
@@ -44,7 +44,7 @@ def deal_wxlogin_data(unionid, did):
                                                       'cM8Ae8FjqBUl4_e1c54d31720f1e35f7967d2d9b3e559183'
                                                       '875cb0',
                                       }).json()
-    db = SandboxApiMongoDBHandler().db
+    db = ReleaseApiMongoDBHandler().db
     # 保存当前该中控屏登录者关系
     c = db.devices.find_one({'_id': did})
     if c:

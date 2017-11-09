@@ -124,6 +124,7 @@ class ReleaseApiRedisHandler(object):
 
 Redis3_ClientDB6 = Redis3(rdb=6).client
 
+
 def get_redis_client(host):
     if host == 3:
         return Redis3_ClientDB6

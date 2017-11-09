@@ -3057,3 +3057,5 @@ OSError: [Errno 51] Network is unreachable
 2017-10-19 09:41:33,084 [Thread-166:16952] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-10-19 12:36:38,721 [Thread-3:16164] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-10-19 14:39:05,313 [Thread-1652:16464] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-10-27 12:56:56,263 [Thread-3:139895649572608] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-01 14:12:26,732 [Thread-3:139975794353920] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
