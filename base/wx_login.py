@@ -3,8 +3,9 @@
 import json
 
 import requests
-import logging
-
+import logging,datetime
+from base.connection import ReleaseApiMongoDBHandler
+from common.app_api_helper import remove_control_id
 __author__ = 'rdy'
 MSG_NOTIFY_URL = "https://api.53iq.com/1/message/push?access_token=%s"
 
@@ -32,6 +33,7 @@ def send_wxlogin_data(did, openid, unionid, token):
     )
     r = requests.post(url, data=json.dumps(data).replace("'", '"'), timeout=8)
     logging.getLogger('').info("推送微信登录消息结果：" + r.text)
+    print(r.text)
 
 
 def deal_wxlogin_data(unionid, did):
@@ -42,6 +44,52 @@ def deal_wxlogin_data(unionid, did):
                                                       'cM8Ae8FjqBUl4_e1c54d31720f1e35f7967d2d9b3e559183'
                                                       '875cb0',
                                       }).json()
+    db = ReleaseApiMongoDBHandler().db
+    # 保存当前该中控屏登录者关系
+    c = db.devices.find_one({'_id': did})
+    if c:
+        db.devices.update({'_id': did}, {'$set': {'device_type': -2, 'tags': ['中控'], 'login_user': unionid,
+                                                         'login_date': datetime.datetime.utcnow()}})
+    else:
+        tmp = {
+            '_id': did,
+            'device_type': -2, '_updated': datetime.datetime.utcnow(),
+            'tags': ['中控'], 'login_user':  unionid, 'master':  unionid,
+            'login_date': datetime.datetime.utcnow(), 'danger': 0
+        }
+        db.devices.insert(tmp)
+
+    # 移除中控原有绑定关系
+    d = db.devices.find({'controller': {'$in': [did]}})
+    for i in d:
+        device_id = i['_id']
+        c_id = i['controller']
+        try:
+            c_id.remove(did)
+            c_id = list(set(c_id))
+            if len(c_id) > 10:
+                del c_id[0]
+        except ValueError:
+            pass
+
+        db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
+
+    # 建立绑定关系
+    d = db.devices_users.find({'openid': unionid, 'active': 1})
+    for i in d:
+        device_id = i['did']
+        d1 = db.devices.find_one({"_id": device_id})
+        try:
+            c_id = d1['controller']
+            c_id.append(did)
+            c_id = list(set(c_id))
+            if len(c_id) > 10:
+                del c_id[0]
+        except KeyError:
+            c_id = [did]
+            pass
+        db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
+        remove_control_id(device_id)
 
     if res['code'] == 0:
         token = res['data']['token']
@@ -53,5 +101,5 @@ def deal_wxlogin_data(unionid, did):
 
 
 if __name__ == '__main__':
-    a = deal_wxlogin_data('oixkIuJaT3J3AgwVmJx2Y4D81CdM', '100000319')
+    a = deal_wxlogin_data('0_p15267183467', '100008068')
     print(a)
