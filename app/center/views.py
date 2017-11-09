@@ -709,8 +709,13 @@ def callback(request):
             unionid = ret.get('unionid')
             if re.match('\d{9}', state):
                 # 推送微信登录消息
-                deal_wxlogin_data(unionid, state)
-                return HttpResponse('<p style="line-height: 300px;text-align: center;font-size: 30px;position: fixed;width: 101%;height: 100%;background-color: #333;top: -30px;color: #fff;left: -10px;">正在登录...</p>')
+                try:
+                    deal_wxlogin_data(unionid, state)
+                    login_status = True
+                except Exception as e:
+                    logging.getLogger('').info('推送微信消息出错'+str(e))
+                    login_status = False
+                return render(request, 'center/wx-login-wait.html', locals())
                 pass
             access_token = ret.get('access_token', None)
             if access_token is None:
