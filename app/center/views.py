@@ -700,17 +700,18 @@ def callback(request):
         else:
             url = wx_oauth.format(APPID, APP_SECRET, code)
 
-            #r = requests.get(url)
-            #ret = r.json()
-            ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
+            r = requests.get(url)
+            ret = r.json()
+            # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
             if re.match('\d{9}', state):
                 # 推送微信登录消息
                 try:
-                    # deal_wxlogin_data(unionid, state)
+                    deal_wxlogin_data(unionid, state)
                     login_status = True
                 except Exception as e:
+                    logging.getLogger('').info('推送微信消息出错'+str(e))
                     login_status = False
                 return render(request, 'center/wx-login-wait.html', locals())
                 pass
