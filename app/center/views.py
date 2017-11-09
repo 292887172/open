@@ -35,7 +35,7 @@ from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
 from common.developer_helper import create_developer
 from common.app_helper import create_app
-
+from base.connection import MyAdapter
 from util.sms.verify_code import verify_sms_code
 
 from conf.commonconf import HOST_DOMAIN
@@ -700,8 +700,10 @@ def callback(request):
         else:
             url = wx_oauth.format(APPID, APP_SECRET, code)
 
-            r = requests.get(url)
-            ret = r.json()
+            s = requests.Session()
+            s.mount('https://', MyAdapter())
+            s = requests.get(url)
+            ret = s.json()
             # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
