@@ -25051,3 +25051,68 @@ django.template.base.TemplateSyntaxError: Could not parse the remainder: '[0].ap
 2017-10-19 15:42:52,021 [Thread-3610:15796] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-19 15:44:25,504 [Thread-3636:13728] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-19 15:59:22,392 [Thread-4335:6072] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-09 19:50:49,897 [Thread-1:9828] [django.request:99] [WARNING]- Forbidden (CSRF cookie not set.): /center/callback
+2017-11-09 19:51:16,333 [Thread-1:9072] [django.request:231] [ERROR]- Internal Server Error: /center/callback
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.center.views.callback didn't return an HttpResponse object. It returned None instead.
+2017-11-09 19:53:52,588 [Thread-1:10204] [django.request:231] [ERROR]- Internal Server Error: /center/callback
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.center.views.callback didn't return an HttpResponse object. It returned None instead.
+2017-11-09 19:54:16,887 [Thread-1:8776] [django.request:231] [ERROR]- Internal Server Error: /center/callback
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.center.views.callback didn't return an HttpResponse object. It returned None instead.
+2017-11-09 19:55:06,689 [Thread-3:8040] [django.request:231] [ERROR]- Internal Server Error: /center/callback
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\connectionpool.py", line 544, in urlopen
+    body=body, headers=headers)
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\connectionpool.py", line 341, in _make_request
+    self._validate_conn(conn)
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\connectionpool.py", line 761, in _validate_conn
+    conn.connect()
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\connection.py", line 238, in connect
+    ssl_version=resolved_ssl_version)
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\util\ssl_.py", line 279, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python34\lib\ssl.py", line 364, in wrap_socket
+    _context=self)
+  File "C:\Python34\lib\ssl.py", line 578, in __init__
+    self.do_handshake()
+  File "C:\Python34\lib\ssl.py", line 805, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:598)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\requests\adapters.py", line 370, in send
+    timeout=timeout
+  File "F:\virtual\open\lib\site-packages\requests\packages\urllib3\connectionpool.py", line 574, in urlopen
+    raise SSLError(e)
+requests.packages.urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:598)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virtual\open\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virtual\open\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\project\open\app\center\views.py", line 704, in callback
+    r = requests.get(url)
+  File "F:\virtual\open\lib\site-packages\requests\api.py", line 69, in get
+    return request('get', url, params=params, **kwargs)
+  File "F:\virtual\open\lib\site-packages\requests\api.py", line 50, in request
+    response = session.request(method=method, url=url, **kwargs)
+  File "F:\virtual\open\lib\site-packages\requests\sessions.py", line 465, in request
+    resp = self.send(prep, **send_kwargs)
+  File "F:\virtual\open\lib\site-packages\requests\sessions.py", line 573, in send
+    r = adapter.send(request, **kwargs)
+  File "F:\virtual\open\lib\site-packages\requests\adapters.py", line 431, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:598)

@@ -3057,3 +3057,4 @@ OSError: [Errno 51] Network is unreachable
 2017-10-19 09:41:33,084 [Thread-166:16952] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-10-19 12:36:38,721 [Thread-3:16164] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-10-19 14:39:05,313 [Thread-1652:16464] [root:158] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-09 19:55:05,331 [Thread-3:8040] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
