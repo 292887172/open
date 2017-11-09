@@ -116,7 +116,7 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '4', 'Stream_ID': 'WASH'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:56', 'name': '清洗时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16', 'id': '5',
-         'Stream_ID': 'DISINFECT_DURATION'},
+         'Stream_ID': 'WASH_DURATION'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '烘干', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '8', 'id': '6', 'Stream_ID': 'DRY'},
