@@ -258,10 +258,9 @@
 				</div>
 			</div><!-- /.main-content -->
 		</div><!-- /.main-container -->
-
 		<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/assets/js/bootstrap.min.js"></script>
-        <script src="/static/js/product/bootbox.js"></script>
+        <script src="/static/assets/js/bootstrap.min.js"></script>
+
 		<script type="text/javascript">
 
             var StreamIds = [];
@@ -437,13 +436,16 @@
                 if (data == '' || role.test(data) == false) {
                     $('#checkID').html("该参数以大写字母和下划线组成、不能重复");
                     $('#checkID').css("display", "block");
+                    return "error";
                 }
                 else if(temp){
                     $('#checkID').html("该功能参数已经存在！");
                     $('#checkID').css("display", "block");
+                    return "repeat"
                 }
                 else {
                     $('#checkID').css("display", "none");
+                    return "correct";
                 }
 			}
 			function checkName(){
@@ -513,13 +515,5 @@
 					$('#checkEnum').css("display","none");
 					return "";
 				}
-            }
-            function alert_ID() {
-			    var data=$.trim($('#Stream_ID').val());
-                    for (var i = 0; i < StreamIds.length; i++) {
-                        if (StreamIds[i] == data && edit_data['Stream_ID'] != data) {
-                            return "exist";}}
-                    return "no-exist";
-
             }
 		</script>

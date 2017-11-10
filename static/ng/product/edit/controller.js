@@ -16,8 +16,13 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
-        	if (alert_ID()=="exist"){
-        		alert("该功能标识已经存在!!");
+        	var state = checkID();
+        	if(state == "repeat"){
+				alert("该功能标识已经存在!!");
+        		return ;
+			}
+			else if(state == "error"){
+				alert("该参数以大写字母和下划线组成、不能重复");
 				return ;
 			}
             if($.trim($('#Stream_ID').val())==''){
