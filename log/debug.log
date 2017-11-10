@@ -3499,3 +3499,71 @@ OSError: [Errno 51] Network is unreachable
 2017-11-08 16:01:08,766 [Thread-159:5744] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-11-08 16:26:05,133 [Thread-3:8376] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): oven.53iq.com
 2017-11-09 10:16:48,808 [Thread-3:2700] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-09 12:44:11,202 [Thread-3:18224] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-09 13:53:05,270 [Thread-1:2076] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 13:53:06,526 [Thread-1:2076] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 13:53:17,606 [Thread-5:15720] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 13:53:17,764 [Thread-5:15720] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:05:32,506 [Thread-8:2276] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:05:32,650 [Thread-8:2276] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:06:13,582 [Thread-11:13372] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:06:13,767 [Thread-11:13372] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:08:47,143 [Thread-14:18180] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:08:47,284 [Thread-14:18180] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:09:40,363 [Thread-17:2040] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:09:40,607 [Thread-17:2040] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:09:54,645 [Thread-20:11128] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:09:54,817 [Thread-20:11128] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:09:57,816 [Thread-23:4660] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:09:57,979 [Thread-23:4660] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:10:06,557 [Thread-26:14028] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:10:06,726 [Thread-26:14028] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:10:18,998 [Thread-29:13916] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:10:19,125 [Thread-29:13916] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:19:18,236 [Thread-1:16816] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:19:19,444 [Thread-1:16816] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:25:27,564 [Thread-1:9212] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:25:28,894 [Thread-1:9212] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:25:28,977 [Thread-1:9212] [root:715] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:25:58,193 [Thread-5:15312] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:25:58,347 [Thread-5:15312] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:25:58,404 [Thread-5:15312] [root:715] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:26:08,062 [Thread-1:4676] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:26:09,386 [Thread-1:4676] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:26:09,459 [Thread-1:4676] [root:716] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:26:39,200 [Thread-5:8416] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:26:39,436 [Thread-5:8416] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:26:39,488 [Thread-5:8416] [root:716] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:28:47,189 [Thread-8:4512] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:28:47,370 [Thread-8:4512] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:28:47,455 [Thread-8:4512] [root:716] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:29:01,073 [Thread-1:1776] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:29:02,561 [Thread-1:1776] [root:716] [INFO]- 推送微信消息出错division by zero
+2017-11-09 14:31:48,763 [Thread-1:7256] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:31:50,072 [Thread-1:7256] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:32:40,126 [Thread-1:7280] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:32:41,274 [Thread-1:7280] [root:715] [ERROR]- 推送微信消息出错division by zero
+2017-11-09 14:32:56,009 [Thread-5:13308] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:32:56,227 [Thread-5:13308] [root:715] [ERROR]- 推送微信消息出错division by zero
+2017-11-09 14:33:08,928 [Thread-1:4324] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:33:10,180 [Thread-1:4324] [root:716] [ERROR]- 推送微信消息出错division by zero
+2017-11-09 14:56:45,170 [Thread-1:11072] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:56:46,505 [Thread-1:11072] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 14:59:18,423 [Thread-5:5416] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 14:59:18,564 [Thread-5:5416] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:00:57,738 [Thread-8:10992] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:00:57,908 [Thread-8:10992] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:03:03,893 [Thread-11:12976] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:03:04,072 [Thread-11:12976] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:03:09,117 [Thread-14:5192] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:03:09,311 [Thread-14:5192] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:03:43,532 [Thread-17:17156] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:03:43,717 [Thread-17:17156] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:05:20,600 [Thread-20:11980] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:05:20,795 [Thread-20:11980] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:25:57,010 [Thread-26:15592] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-09 15:25:57,239 [Thread-26:15592] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-09 15:30:23,729 [Thread-30:2304] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-09 17:31:33,602 [Thread-1177:16792] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-11-09 17:33:00,891 [Thread-1190:4220] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 08:50:50,742 [Thread-3:15184] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
