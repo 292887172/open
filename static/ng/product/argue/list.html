@@ -207,7 +207,7 @@
         <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
         <span style="    padding-left: 40%;">
-            <a  onclick="new_close()" class="btn-blue">知道了</a>
+            <a  href="" onclick="new_close()"  class="btn-blue">知道了</a>
         </span>
 
     </div>
@@ -457,11 +457,6 @@
                         type: "POST",
                         data: post_data,
                         success: function (data) {
-                            console.log(data);
-                            if(data=="del_success")
-                            {
-                                console.log("删除成功");
-                            }
                         },
                         error:function () {
                             console.log("删除失败")
