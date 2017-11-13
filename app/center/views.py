@@ -700,10 +700,16 @@ def callback(request):
         else:
             url = wx_oauth.format(APPID, APP_SECRET, code)
 
-            s = requests.Session()
-            s.mount('https://', MyAdapter())
-            s = requests.get(url)
-            ret = s.json()
+            # s = requests.Session()
+            # s.mount('https://', MyAdapter())
+            try:
+                s = requests.get(url)
+                ret = s.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url)
+                ret = s.json()
             # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
@@ -721,9 +727,17 @@ def callback(request):
             if access_token is None:
                 return HttpResponse('code值无效')
             url2 = wx_userinfo.format(access_token, openid)
-            ret2 = requests.get(url2)
-            ret2.encoding = 'utf8'
-            ret2 = ret2.json()
+            try:
+
+                ret2 = requests.get(url2)
+                ret2.encoding = 'utf8'
+                ret2 = ret2.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url2)
+                s.encoding = 'utf8'
+                ret2 = s.json()
             nickname = ret2.get('nickname', '')
             dt = datetime.datetime.now() + datetime.timedelta(days=30)
             m = hashlib.md5()

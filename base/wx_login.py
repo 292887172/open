@@ -75,21 +75,25 @@ def deal_wxlogin_data(unionid, did):
         db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
 
     # 建立绑定关系
-    d = db.devices_users.find({'openid': unionid, 'active': 1})
-    for i in d:
-        device_id = i['did']
-        d1 = db.devices.find_one({"_id": device_id})
-        try:
-            c_id = d1['controller']
-            c_id.append(did)
-            c_id = list(set(c_id))
-            if len(c_id) > 10:
-                del c_id[0]
-        except KeyError:
-            c_id = [did]
-            pass
-        db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
-        remove_control_id(device_id)
+    u = db.users.find_one({"unionid": unionid})
+    if u:
+        t_openid = u['openid']
+        d = db.devices_users.find({'openid': t_openid, 'active': 1})
+        for i in d:
+            device_id = i['did']
+            d1 = db.devices.find_one({"_id": device_id})
+            try:
+                if d1:
+                    c_id = d1['controller']
+                    c_id.append(did)
+                    c_id = list(set(c_id))
+                    if len(c_id) > 10:
+                        del c_id[0]
+            except KeyError:
+                c_id = [did]
+                pass
+            db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
+            remove_control_id(device_id)
 
     if res['code'] == 0:
         token = res['data']['token']
@@ -101,5 +105,10 @@ def deal_wxlogin_data(unionid, did):
 
 
 if __name__ == '__main__':
-    a = deal_wxlogin_data('0_p15267183467', '100008068')
+    a = deal_wxlogin_data('oixkIuJaT3J3AgwVmJx2Y4D81CdM', '100023362')
     print(a)
+    # db = ReleaseApiMongoDBHandler().db
+    #
+    # u = db.users.find_one({"unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"})
+    #
+    # print(u['openid'])
