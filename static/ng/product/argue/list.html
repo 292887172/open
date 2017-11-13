@@ -28,6 +28,7 @@
             background: #9EBEE4;
             width: 937px;
             margin-top: 20px;
+            z-index: auto;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
             background-color: #337ab7;
@@ -145,6 +146,17 @@
     }
      .popover-title{
          border-radius: 5px 5px 0 0;
+         background: none;
+         border-bottom: none;
+     }
+     .popover.left {
+         margin-left: -27px;
+     }
+         .popover-content {
+        padding: 20px 15px;
+    }
+     .popover-content button{
+             padding: 4px 15px 4px 15px;
      }
     </style>
     <div class="main-container box2">
@@ -195,7 +207,7 @@
         <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
         <span style="    padding-left: 40%;">
-            <a  onclick="new_close()" class="btn-blue">知道了</a>
+            <a  href="" onclick="new_close()"  class="btn-blue">知道了</a>
         </span>
 
     </div>
@@ -334,7 +346,7 @@
                 row = rows.rows;
                 if(row.length==0){
                     $("#grid-table").jqGrid( 'setGridHeight', 'auto');
-                    $("#show-no-data").text("该产品您还没有添加参数");
+                    $("#show-no-data").text("您还未添加任何产品功能");
                 }
 
 
@@ -424,36 +436,35 @@
                 }
             });
 			function del(id){
-			    $(".del-info").popover({
+                // 选择是否删除产品功能
+			    $("#del-info"+id).popover({
                     trigger:'manual',
                     placement: 'left',
                     html: 'true',
-                    title : '<span class="text-info">确定删除该功能？</span>',
-                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
+                    title : '<span class="text-info">确定要删除该功能点吗 ？</span>',
+                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id +'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
                   });
-			    $(".del-info").popover('hide');
+                $('.del-info').popover('hide');
                 $("#del-info"+id).popover('toggle');
 			}
 			function delete_fun(id) {
+			    // 确认删除产品功能
 			    post_data = {'name':'del', 'id':id};
+			    $("#del-info"+id).popover('destroy');
+			    document.getElementById(id).remove();
                     $.ajax({
                         url:"#/argue",
                         type: "POST",
                         data: post_data,
                         success: function (data) {
-                            console.log(data);
-                            if(data=="del_success")
-                            {
-                                alert("删除成功");
-                            }
-                            location.reload();
                         },
                         error:function () {
-                            bootbox.alert("删除失败")
+                            console.log("删除失败")
                         }
                     });
                 }
                 function fun_close() {
+			    // 关闭删除弹窗
                     $('.del-info').popover('hide');
                 }
 		</script>
