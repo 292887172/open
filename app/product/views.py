@@ -203,7 +203,7 @@ def product_add(request):
                 except Exception as e:
                     print(e)
                     pass
-                url = '/product/main/?ID=' + str(result.app_id) + '#/content'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
@@ -240,6 +240,7 @@ def product_main(request):
         if res:
             return HttpResponse(res)
         if not request.user.developer.developer_id:
+            developer = ''
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -250,6 +251,7 @@ def product_main(request):
             # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
             print(e)
+            logging.getLogger('').info("应用出错",str(e))
             return HttpResponseRedirect(reverse("home/guide"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
