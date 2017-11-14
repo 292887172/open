@@ -54,6 +54,24 @@ def to_fun_state(num):
     return values
 
 
+def ascll_to_hex(key):
+    list = []
+    for i in key:
+        str1 = hex(ord(i))[2:]
+        if len(str1) == 1:
+            list.append("0" + str1)
+        else:
+            list.append(str1)
+    return list
+
+
+def cal_ascll(key):
+    num = 0
+    for i in key:
+        num += ord(i)
+    return num
+
+
 def data_domain(sheet2, data, i):
     funs = data['functions']
     # 数据域功能数,除去头部
@@ -113,8 +131,8 @@ def data_domain(sheet2, data, i):
     fun_state1 = to_fun_state(lamp_id)
     check_bit3 = to_check_bit('31', 2, int(lamp_id) + fun_value)
     check_bit4 = to_check_bit('31', 3, int(lamp_id) + fun_value)
-    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result=' ')
-    com_frame4 = to_com_frame('5A A5', '31', 3, fun_state1, check_bit4, result=' 00 ')
+    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result='')
+    com_frame4 = to_com_frame('5A A5', '31', 3, fun_state1, check_bit4, result='00 ')
     row7[2] = com_frame3
     row8[2] = com_frame4
     row7.extend(fun_state0)
@@ -141,15 +159,24 @@ def data_domain(sheet2, data, i):
 
 def write_example(sheet2, data):
     # 写入帧对应的表格
-    model = "型号(%s)"%(data['key'])
+    key = data['key']
+    model = "型号(%s)"%(key)
     row0 = ["例子（通信握手）", "指令流向", "完整帧", "帧头", "流水号", "帧类型", "长度", "结果码", "版本号",
             "唯一编号(MAC地址：AAAAAABBBBBB)", model, "校验"]
     row1 = ['连接上服务器后收到握手命令帧', '屏->电控', 'A5 5A 00 01 00 00', 'A5 5A', '00', '01', '00']
     row2 = ['电控应答握手帧上报MAC和型号编号', '电控->屏',
-            '5A A5 00 01 17 00 00 01 41 41 41 41 41 41 42 42 42 42 42 42 30 30 30 30 30 30 30 30 AA',
-            '5A A5', '00', '01', '17', '00', '00', '01', '65', '65', '65', '65', '65', '65', '66', '66', '66',
-            '66', '66', '66', '30', '30', '30', '30', '30', '30', '30', '30', 'AA']
+            '','5A A5', '00', '01', '17', '00', '00', '01']
     row3 = ["例子(全功能)", "指令流向", "完整帧", "帧头", "流水号", "帧类型", "长度"]
+
+    result_and_version = '00 00 01 '
+    value_list = ascll_to_hex("AAAAAABBBBBB") + ascll_to_hex(key)
+    values = cal_ascll("AAAAAABBBBBB") + cal_ascll(key)
+    check_bit = to_check_bit('01', 23, values + 1)
+    com_frame = to_com_frame('5A A5', '01', 23, value_list, check_bit, result_and_version)
+    row2[2] = com_frame
+    row2.extend(value_list)
+    row2.append(check_bit)
+
     j = 0
     sheet2.col(j).width = 256*40
     sheet2.col(2).width = 256*80

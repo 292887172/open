@@ -68,8 +68,11 @@
 <script src="/static/js/center/jsapi.js"></script>
 <script src="/static/js/jquery-1.11.0.min.js"></script>
 <script>
-    var status = "{{ login_status }}";
+
+
     $(document).ready(function () {
+        var status = "{{ login_status }}";
+        console.log(status)
             setTimeout(function () {
             WxLoginExit(status);
         },2000)

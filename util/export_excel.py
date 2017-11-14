@@ -85,8 +85,8 @@ def deal_json(app):
         j = {}
         j["remarks"] = ""
         for l in range(len(data["mxs"])):
-            j["remarks"] += data["mxs"][l]["data"]
-            j["remarks"] += data["mxs"][l]["desc"]
+            j["remarks"] += data["mxs"][l]["data"] + ' '
+            j["remarks"] += data["mxs"][l]["desc"] + ' '
         j['id'] = data['id']
         j["name"] = data["name"]
         j["Stream_ID"] = data["Stream_ID"]
