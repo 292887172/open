@@ -340,16 +340,12 @@
 							});
 	        },
             loadComplete:function (rows) {
-
-
                 $("[data-toggle='popover']").popover();
                 row = rows.rows;
                 if(row.length==0){
                     $("#grid-table").jqGrid( 'setGridHeight', 'auto');
                     $("#show-no-data").text("您还未添加任何产品功能");
                 }
-
-
                 for ( var i=0;i<row.length ;i++){
                     id = row[i].id;
                     streamID[id]=row[i].Stream_ID;
@@ -387,11 +383,10 @@
                     async :false,
                     success: function (data) {
                        if(data=='change_success'){
-                           alert("修改成功");
                        }
                         },
                     error:function (data) {
-                        alert("修改失败");
+                        console.log("启用失败");
                     }
                 });
             }
