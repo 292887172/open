@@ -67,6 +67,18 @@ def num_app(app):
 register.filter(num_app)
 
 
+def category_detail(obj):
+    try:
+        type = str(obj)
+        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '0': '自定义'}
+        return category[type]
+    except Exception as e:
+        print(e)
+
+
+register.filter(category_detail)
+
+
 def is_none(value):
     """
     检测是否为空

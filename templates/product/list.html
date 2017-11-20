@@ -295,7 +295,24 @@
             position: relative;
 
         }
-
+         .btn-default, .btn-default.focus, .btn-default:focus {
+            color: #333 !important;
+            background-color: #dddddd !important;
+        }
+        .btn-default:hover{
+            color: #333 !important;
+            background-color: #c6c6c6 !important;
+        }
+        .btn-primary, .btn-primary.focus, .btn-primary:focus {
+            color: #fff !important;
+            background-color: #ff6f37 !important;
+                border-color: coral;
+        }
+        .btn.btn-primary:hover{
+            color: #fff !important;
+            background-color: #ff6202 !important;
+            border-color: #ff6202 !important;
+        }
         .progress li {
             text-align: center;
             font-size: 14px;
@@ -306,7 +323,7 @@
 
         .progress li a:hover {
             color: #2980b9;
-            text-underline: underline;
+            text-decoration: none;
         }
         .progress li.cur {
             color: #626262;
@@ -364,8 +381,22 @@
             float: right;
         }
         .goods-title a:hover {
-        text-decoration: none;
-    }
+            text-decoration: none;
+        }
+        .modal{
+                text-align: center;
+        }
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+         .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+        }
 
     </style>
 {% endblock %}
@@ -458,7 +489,7 @@
                             <label for="c2">Android屏</label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -478,8 +509,8 @@
         </div>
         <div class="btnBar" style="background: none;height: 85px;">
               <span>
-                <a href="javascript:;" onclick="submit_product()" id="productSubmit" class="btn-blue"
-                   style="background: #59B784;">提交</a>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">提交</a>
               </span>
         </div>
     </div>
@@ -526,6 +557,9 @@
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
+                        <p class="product-info-p" >
+                        产品分类：油烟机
+                        </p>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
@@ -625,6 +659,7 @@
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
+
                             <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
@@ -634,6 +669,9 @@
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
 
+                            </p>
+                            <p class="product-info-p">
+                                产品分类：{{ app.app_device_type| category_detail}}
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
                                     style="float: right;color: #333">未发布</label></p>

@@ -715,13 +715,15 @@ def callback(request):
             if re.match('\d{9}', state):
                 # 推送微信登录消息
                 try:
-                    deal_wxlogin_data(unionid, state)
-                    login_status = True
+                    temp = deal_wxlogin_data(unionid, state)
+                    if temp:
+                        login_status = True
+                    else:
+                        login_status = False
                 except Exception as e:
-                    logging.getLogger('').info('推送微信消息出错'+str(e))
                     login_status = False
+                    logging.getLogger('').info('推送微信消息出错'+str(e))
                 return render(request, 'center/wx-login-wait.html', locals())
-                pass
             access_token = ret.get('access_token', None)
             if access_token is None:
                 return HttpResponse('code值无效')
