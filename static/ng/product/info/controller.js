@@ -101,7 +101,7 @@ angular.module('Product.info', ['ngRoute'])
             $scope.infoFormData.app_factory_uid = $("#brand_id").val();
             $scope.infoFormData.app_device_value = $("#secondDevType option:selected").val();
             if (!$scope.infoFormData.app_name){
-                alert("产品名称不能为空");
+                checkProductName();
             }
             else {
                 if (!startWith(productImg.attr("src"), "http://storage.56iq.net")) {

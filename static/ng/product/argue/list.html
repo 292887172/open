@@ -117,28 +117,22 @@
         border: 1px solid transparent;
         border-radius: 6px;
     }
-    .btn-default, .btn-default.focus, .btn-default:focus{
-        color: #788188 !important;
-        background-color: #fff !important;
-        border-color: #dbe2e7;
-        border-bottom-color: #d5dde3;
-        -webkit-box-shadow: 0 1px 1px rgba(90,90,90,0.1);
-        box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+    .btn-default, .btn-default.focus, .btn-default:focus {
+        color: #333 !important;
+        background-color: #dddddd !important;
     }
     .btn-default:hover{
-        color: #788188 !important;
-        background-color: #f2f2f2 !important;
-        border-color: #c2ced6;
+        color: #333 !important;
+        background-color: #c6c6c6 !important;
     }
     .btn-primary, .btn-primary.focus, .btn-primary:focus {
         color: #fff !important;
-        background-color: #545ca6 !important;
-        border-color: #545ca6!important;
+        background-color: #ff6f37 !important;
     }
     .btn.btn-primary:hover{
         color: #fff !important;
-        background-color: #464d8b!important;
-        border-color: #464d8b!important;
+        background-color: #ff6202 !important;
+        border-color: #ff6202 !important;
     }
     .bootbox-body{
         color: #788188;
@@ -158,6 +152,20 @@
      .popover-content button{
              padding: 4px 15px 4px 15px;
      }
+    .modal{
+            text-align: center;
+    }
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+     .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
     </style>
     <div class="main-container box2">
         <div class="hl-help">
@@ -166,14 +174,14 @@
         <div class="mt20"></div>
         <table id="grid-table" >
         </table>
-        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
+        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
-            <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
-            <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
-            <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
-            <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
+            <h1 class="headerH1">1.功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
+            <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1byte=8Bit<br></h1>
+            <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
+            <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，导致功能解析错乱，状态不正确</h1>
          </div>
         <div id="tip2" style="display: none;">
             <div class="prompt-class">
@@ -396,7 +404,7 @@
 			function export_parameter(){
                 var rows = $("#grid-table").getRowData();
                 if(rows == ''){
-                    alert("暂无参数信息！");
+                    bootbox.alert("暂无参数信息！");
                     return;
                 }
                 bootbox.confirm("确定导出控制协议参数吗?", function (result) {

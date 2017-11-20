@@ -307,30 +307,27 @@
             var value = $("#product_category option:selected").val();
             if(value == '无'){
                 $(".check-sel").css('display','block');
-                return '';
+                return false;
             }
             else {
                 $(".check-sel").css('display','none')
+                return true
             }
         }
         function check_app_name(obj) {
-            if($(obj).val() == ""){
+            if($("#productNameText").val() == ""){
                 $(".check-appname").css('display','block');
-                return '';
+                return false;
             }
             else {
-                $(".check-appname").css('display','none')
+                $(".check-appname").css('display','none');
+                return true
             }
         }
         $(document).ready(function () {
             $('#go').on('click', function (e) {
-                if($("#productNameText").val() == ""){
-                    bootbox.alert("产品名称不能为空！");
-                }
-                else if($("#product_category option:selected").val()=='无'){
-                    bootbox.alert("产品还未分类！");
-                }
-                else{
+                if (check_app_name() && check_category())
+                {
                     $("form[name=productAddForm]").submit();
                 }
             });

@@ -8,19 +8,30 @@ angular.module('Product.content', ['ngRoute'])
             controller: 'ContentCtrl'
         });
     }])
-
     .controller('ContentCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("contentMenu");
         $("#loadingDiv").hide();
         $scope.click = function(ele){
           if (ele == 0 || ele ==-1){
-              $scope.ReleaseProduct();
+              bootbox.confirm("申请发布后产品信息不可更改，确定申请？", function (result) {
+                  if(result){
+                      $scope.ReleaseProduct();
+                  }
+              })
           }
           else if(ele == 1){
-              $scope.CancelReleaseProduct();
+              bootbox.confirm("确定取消发布？", function (result) {
+                  if(result){
+                      $scope.CancelReleaseProduct();
+                  }
+              })
           }
           else if(ele == 2){
-              $scope.OffProduct();
+              bootbox.confirm("是否下架产品？", function (result) {
+                  if(result){
+                       $scope.OffProduct();
+                  }
+              })
           }
         };
         $scope.ReleaseProduct = function () {
