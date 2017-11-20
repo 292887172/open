@@ -17,26 +17,9 @@ angular.module('Product.edit', ['ngRoute'])
          */
         $scope.Save = function () {
         	var state = checkID();
-        	if(state == "repeat"){
-				alert("该功能标识已经存在!!");
-        		return ;
+			if (state !='correct' || !checkName() || !checkLength()){
+				return;
 			}
-			else if(state == "error"){
-				alert("该参数以大写字母和下划线组成、不能重复");
-				return ;
-			}
-            if($.trim($('#Stream_ID').val())==''){
-					alert("请填写功能标识符!!");
-					return ;
-				}
-				if($.trim($('#name').val())==''){
-					alert("请填写功能名称信息!!");
-					return;
-				}
-				if($.trim($('#mxsLength').val())==''){
-					alert("请填写功能参数长度!!");
-					return;
-				}
 				var min=0;
 				var max=0;
 				var mxsNum=0;
@@ -80,7 +63,6 @@ angular.module('Product.edit', ['ngRoute'])
 								errorType = 2;
 								break
 							}
-
 						}
 						mxs.push({data:data,desc:desc});
 					}
@@ -88,9 +70,7 @@ angular.module('Product.edit', ['ngRoute'])
                 }
 				if(types[0].checked){
 					var msg=checkInt();
-
 					if(msg.length>0){
-						alert(msg);
 						return;
 					}
 					min=parseInt($.trim($('#minInt').val()));
@@ -113,7 +93,6 @@ angular.module('Product.edit', ['ngRoute'])
 				else if (types[3].checked) {
                 	var msg=checkTimer();
 					if(msg.length>0){
-						alert(msg);
 						return;
 					}
 					min=parseInt($.trim($('#minTimer').val()));
@@ -121,19 +100,24 @@ angular.module('Product.edit', ['ngRoute'])
 					save_mxs(min,max,"int");
                 }
 				if(errorType==1){
-					alert("请填写数据说明和传送数据!!");
+					$('#checkData').css("display","block");
+					$('#checkData').html("请填写数据说明和传送数据");
+
 					return;
 				}
 				if(errorType==0){
-					alert("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
+					$('#checkData').css("display","block");
+					$('#checkData').html("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
 					return;
 				}
 				if(errorType==2){
-					alert("传输数据必须在枚举值:"+enum_value+"中");
+					$('#checkData').css("display","block");
+					$('#checkData').html("传输数据必须在枚举值:"+enum_value+"中");
 					return;
 				}
 				if(errorType==-2){
-					alert("传输数据必须是数字");
+					$('#checkData').css("display","block");
+					$('#checkData').html("传输数据必须是数字！！");
 					return;
 				}
 				var indata={};
@@ -185,10 +169,10 @@ angular.module('Product.edit', ['ngRoute'])
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	alert("修改成功!");
+                    	console.log("修改成功!");
                     }
                     else if(data=="add_success"){
-                    	alert("添加成功!");
+                    	console.log("添加成功!");
                     }
 					location.href='#/argue';
                 })

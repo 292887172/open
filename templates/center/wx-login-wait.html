@@ -55,7 +55,7 @@
 </head>
 <body style="position: fixed;width: 100%;height: 100%;">
     <div style="background: #000;opacity: 0.8; height: 100%;width: 100%;position: relative">
-        <div class="spinner"><span style="color: #fff;">正在登陆</span>
+        <div class="spinner"><span style="color: #fff;font-size: 20px;">正在登陆</span>
           <div class="bounce1"></div>
           <div class="bounce2"></div>
           <div class="bounce3"></div>
@@ -68,11 +68,9 @@
 <script src="/static/js/center/jsapi.js"></script>
 <script src="/static/js/jquery-1.11.0.min.js"></script>
 <script>
-
-
     $(document).ready(function () {
         var status = "{{ login_status }}";
-        console.log(status)
+        console.log(status);
             setTimeout(function () {
             WxLoginExit(status);
         },2000)
