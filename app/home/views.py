@@ -14,8 +14,8 @@ _convention = ConventionValue()
 
 
 def home(request):
-    return HttpResponseRedirect('/center/login')
-    # return render(request, "home/home.html", locals())
+    # return HttpResponseRedirect('/center/login')
+    return render(request, "home/home.html", locals())
 
 
 def guide(request):

@@ -27270,3 +27270,688 @@ TypeError: expected string or buffer
 2017-11-10 10:27:29,280 [Thread-1941:9944] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
 2017-11-10 10:28:01,860 [Thread-2000:16788] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-11-10 10:41:35,726 [Thread-2315:12320] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-10 11:09:06,090 [Thread-61:2144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 11:11:14,505 [Thread-138:4892] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 11:16:14,833 [Thread-158:12668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 11:26:02,343 [Thread-177:812] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-10 11:26:02,396 [Thread-178:12380] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-10 11:29:32,989 [Thread-205:9596] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 11:29:59,420 [Thread-244:9048] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 13:13:24,482 [Thread-32:776] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 14:42:52,049 [Thread-108:17532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:14:19,965 [Thread-145:7452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:14:52,300 [Thread-206:4768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:17:10,616 [Thread-271:10668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:17:56,947 [Thread-295:18424] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:23:07,133 [Thread-34:2308] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:25:29,671 [Thread-74:2492] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:25:41,250 [Thread-95:11528] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:25:53,910 [Thread-121:17568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:27:17,383 [Thread-19:5868] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:27:24,445 [Thread-25:10408] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 250, in get
+    a = 1/0
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 462, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 255, in get
+    return HttpResponseRedirect(reverse("/home/guide"))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/home/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 15:27:26,788 [Thread-26:14740] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-10 15:28:53,088 [Thread-27:4320] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 250, in get
+    a = 1/0
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 462, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 255, in get
+    return HttpResponseRedirect(reverse("/home/guide"))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/home/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 15:35:34,446 [Thread-33:9568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:35:35,657 [Thread-34:14248] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:35:57,788 [Thread-69:13000] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:36:26,404 [Thread-1:4952] [django.request:143] [WARNING]- Not Found: /guide/
+2017-11-10 15:36:40,498 [Thread-22:14276] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:40:36,572 [Thread-18:3316] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:42:38,251 [Thread-54:12632] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:42:57,229 [Thread-17:17908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:43:00,333 [Thread-25:13232] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 252, in get
+    a = 1/0
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 464, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 257, in get
+    return HttpResponseRedirect(reverse("/guide"))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 15:44:38,026 [Thread-41:16784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:44:54,665 [Thread-18:12864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:48:41,148 [Thread-19:8452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:48:53,432 [Thread-25:10984] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 252, in get
+    a = 1/0
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 464, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 257, in get
+    return HttpResponseRedirect(reverse("/guide",args=[]))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 15:52:05,088 [Thread-26:14864] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 252, in get
+    # user_apps = developer.developer_related_app.get(app_id=int(app_id))
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 464, in product_main
+    elif request.method == "POST":
+  File "E:\open\app\product\views.py", line 257, in get
+    return HttpResponseRedirect(reverse("product/list"))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 15:58:11,874 [Thread-60:4452] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 15:58:29,383 [Thread-89:14300] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:03:06,543 [Thread-19:17884] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:07:25,727 [Thread-17:1532] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:07:42,347 [Thread-55:7828] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:07:54,184 [Thread-78:12780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:10:02,214 [Thread-38:4148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:10:22,289 [Thread-18:8224] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:16:01,582 [Thread-18:14240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:16:28,353 [Thread-82:16360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:16:44,683 [Thread-18:18016] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:16:46,812 [Thread-26:14276] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:16:47,027 [Thread-27:9872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:17:08,128 [Thread-28:8400] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "E:\open\app\product\views.py", line 251, in get
+    a = 1/0
+ZeroDivisionError: division by zero
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 463, in product_main
+    return get()
+  File "E:\open\app\product\views.py", line 256, in get
+    return HttpResponseRedirect(reverse("/guide"))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/guide' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-10 16:24:16,377 [Thread-19:14612] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:25:56,855 [Thread-18:14996] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:29:47,605 [Thread-34:18332] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-10 16:35:16,040 [Thread-118:5176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-11 10:09:48,315 [Thread-5:5328] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-11 14:33:19,211 [Thread-184:13176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-11 14:47:15,971 [Thread-459:18976] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-11 14:49:46,840 [Thread-497:924] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 170, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 34, in process_request
+    if user and hasattr(user, 'get_session_auth_hash'):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 224, in inner
+    self._setup()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 357, in _setup
+    self._wrapped = self._setupfunc()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\__init__.py", line 151, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 49, in __getitem__
+    return self._session[key]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 175, in _get_session
+    self._session_cache = self.load()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 30, in load
+    self.create()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 48, in create
+    "Unable to create a new session key. "
+RuntimeError: Unable to create a new session key. It is likely that the cache is unavailable.
+2017-11-13 08:41:31,708 [Thread-5:6724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-13 11:08:55,324 [Thread-1191:9864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-13 13:47:10,246 [Thread-1333:17968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-13 13:47:29,352 [Thread-1361:14120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-13 13:47:48,924 [Thread-1388:6816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-13 15:37:05,899 [Thread-1666:2760] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-14 09:00:45,214 [Thread-5:12380] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 09:01:01,404 [Thread-16:2480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:21:07,604 [Thread-5:15928] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-14 10:37:00,978 [Thread-5:9980] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:37:11,597 [Thread-8:7680] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.product_list didn't return an HttpResponse object. It returned None instead.
+2017-11-14 10:44:12,203 [Thread-3:10520] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:44:14,319 [Thread-5:7072] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:44:21,059 [Thread-8:7092] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.product_list didn't return an HttpResponse object. It returned None instead.
+2017-11-14 10:45:33,972 [Thread-11:14176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:45:36,869 [Thread-13:7520] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:46:29,706 [Thread-11:8472] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:46:43,985 [Thread-19:12368] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.product_list didn't return an HttpResponse object. It returned None instead.
+2017-11-14 10:46:45,544 [Thread-20:12824] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-14 10:48:00,288 [Thread-21:14396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 10:57:42,891 [Thread-19:16956] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 11:07:13,853 [Thread-3:12272] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 11:18:33,020 [Thread-10:15704] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 11:29:31,949 [Thread-107:2304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:37:11,243 [Thread-174:20212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:39:38,387 [Thread-249:7868] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:41:20,656 [Thread-306:15536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:41:44,817 [Thread-332:19220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:43:02,399 [Thread-366:17584] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:43:45,342 [Thread-399:20052] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:52:12,936 [Thread-530:16648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 12:52:59,245 [Thread-593:19316] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 13:02:25,393 [Thread-33:11012] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-14 13:09:16,234 [Thread-25:1448] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-14 13:40:06,295 [Thread-33:8160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 13:41:24,790 [Thread-5:17764] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 13:42:12,536 [Thread-9:2208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 13:42:55,530 [Thread-30:12308] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-14 13:42:57,414 [Thread-38:14504] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-14 13:49:39,227 [Thread-20:18188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 16:12:16,759 [Thread-5:17672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 16:23:14,541 [Thread-11:18760] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-14 17:55:29,327 [Thread-17:17648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 12:59:18,920 [Thread-5:1152] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 12:59:28,489 [Thread-13:15200] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 13:05:02,893 [Thread-142:5084] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 13:25:22,122 [Thread-5:18260] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-15 13:25:23,729 [Thread-6:19916] [django.request:143] [WARNING]- Not Found: /static/image/53iq.ico
+2017-11-15 13:43:04,518 [Thread-10:7736] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:00:32,351 [Thread-6:17664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:04:19,727 [Thread-8:5744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:04:51,661 [Thread-18:8136] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:08:37,000 [Thread-19:20280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:09:53,002 [Thread-16:20264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:10:07,349 [Thread-27:7820] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:10:26,523 [Thread-36:15196] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:29:14,260 [Thread-38:8864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:29:25,067 [Thread-47:9736] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:29:40,793 [Thread-58:16088] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 14:30:25,499 [Thread-3:8128] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-15 15:00:47,829 [Thread-40:19496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-15 15:58:22,303 [Thread-95:8912] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:00:11,896 [Thread-106:16656] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:00:27,650 [Thread-140:13848] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:02:43,322 [Thread-154:9876] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:03:05,689 [Thread-164:7892] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:03:16,262 [Thread-167:14932] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:03:26,503 [Thread-173:1764] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:03:37,643 [Thread-182:3208] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:03:59,421 [Thread-191:18500] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:04:17,626 [Thread-195:5476] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:04:33,721 [Thread-206:13608] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:04:47,308 [Thread-215:19540] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:04:55,808 [Thread-224:11136] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:05:04,467 [Thread-233:20376] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:05:14,745 [Thread-241:9248] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:05:24,471 [Thread-251:8692] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-15 16:05:58,622 [Thread-283:16824] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-16 13:40:14,393 [Thread-6:15068] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-16 13:43:27,447 [Thread-98:17548] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-16 14:40:04,700 [Thread-121:9416] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-16 16:08:28,123 [Thread-125:2236] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-16 17:27:58,370 [Thread-210:4396] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-16 17:34:19,330 [Thread-263:8692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-16 17:35:41,324 [Thread-312:4828] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 09:15:17,012 [Thread-1:18052] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-17 09:15:19,950 [Thread-3:17236] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-17 10:27:44,141 [Thread-37:3160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-17 10:41:08,100 [Thread-76:17052] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-17 11:04:52,781 [Thread-79:18852] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-17 12:31:19,166 [Thread-5:13064] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-17 13:11:35,160 [Thread-503:14688] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:12:46,245 [Thread-529:1032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-17 13:41:48,106 [Thread-689:20072] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:41:59,873 [Thread-722:18012] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:49:23,485 [Thread-754:7036] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:50:06,116 [Thread-787:14484] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:50:54,594 [Thread-819:13412] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:53:27,457 [Thread-855:11672] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-17 13:57:52,783 [Thread-869:19252] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 08:45:11,879 [Thread-6:15772] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 08:49:27,183 [Thread-20:19368] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 08:55:41,168 [Thread-30:11800] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 08:56:26,496 [Thread-62:20248] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 08:59:04,148 [Thread-95:13716] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:13:18,468 [Thread-127:8296] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:21:04,290 [Thread-163:1908] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:24:00,770 [Thread-178:19180] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:24:21,792 [Thread-191:12644] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:27:38,792 [Thread-220:12144] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 09:49:04,719 [Thread-633:5828] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 09:50:08,410 [Thread-666:7396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 09:52:44,965 [Thread-692:9536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 09:55:10,925 [Thread-714:8188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 09:55:46,291 [Thread-740:10332] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:02:34,400 [Thread-764:1764] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:03:46,744 [Thread-789:7572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:25:18,547 [Thread-1063:2636] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:27:23,108 [Thread-1085:14512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:29:17,435 [Thread-1110:10980] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:31:33,423 [Thread-1170:16216] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:38:00,294 [Thread-1191:12468] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:46:14,714 [Thread-1202:17016] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:46:29,736 [Thread-1233:10524] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:47:26,199 [Thread-1266:11944] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 10:58:45,920 [Thread-1493:14312] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 10:59:53,253 [Thread-1514:9404] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 11:01:14,174 [Thread-1540:12808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 11:06:54,459 [Thread-1:14136] [django.request:143] [WARNING]- Not Found: /center/ca
+2017-11-20 11:06:55,319 [Thread-3:19020] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-20 12:32:41,339 [Thread-29:16524] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 12:40:34,919 [Thread-65:7076] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 12:40:35,859 [Thread-66:2008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 12:42:34,156 [Thread-113:18628] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2017-11-20 13:46:50,519 [Thread-154:18480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 13:47:46,785 [Thread-214:1004] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 14:11:15,067 [Thread-335:8972] [django.request:143] [WARNING]- Not Found: /product/main/{% static 'assets/css/bootstrap.min.css'%}
+2017-11-20 14:15:32,922 [Thread-370:4092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 14:42:32,349 [Thread-686:18668] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-11-20 14:54:43,541 [Thread-881:17192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 14:57:00,292 [Thread-947:17096] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:06:35,606 [Thread-970:13024] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:09:22,342 [Thread-996:17472] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:14:59,849 [Thread-1017:13324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:16:25,105 [Thread-1041:4876] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:22:08,681 [Thread-1063:14904] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:26:50,736 [Thread-1131:18776] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:36:33,478 [Thread-1168:4420] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:41:00,404 [Thread-1236:15192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:42:46,405 [Thread-1259:12636] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:42:46,829 [Thread-1260:2304] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:45:53,874 [Thread-1281:1576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:50:12,022 [Thread-5:15776] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\open\app\product\views.py", line 133, in product_list
+    return get()
+  File "E:\open\app\product\views.py", line 107, in get
+    return render(request, template, content)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 833, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 266, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 372, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 588, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.base.TemplateSyntaxError: Could not parse the remainder: '|' from 'app.app_device_type|'
+2017-11-20 15:58:24,789 [Thread-19:13464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:59:27,797 [Thread-17:16160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 15:59:58,214 [Thread-40:12500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 16:05:01,980 [Thread-21:9456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 16:05:11,525 [Thread-22:2740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 16:15:58,727 [Thread-18:16872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 16:16:23,670 [Thread-40:2748] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 16:17:03,055 [Thread-63:9940] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:15:02,883 [Thread-19:7584] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:16:40,157 [Thread-40:19464] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:20:22,042 [Thread-19:16808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:22:37,449 [Thread-43:9752] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:24:25,810 [Thread-32:1372] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:30:29,085 [Thread-36:8732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:31:15,777 [Thread-55:10872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:33:26,583 [Thread-134:11948] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:33:28,686 [Thread-135:428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:33:30,998 [Thread-141:12272] [django.request:143] [WARNING]- Not Found: /home
+2017-11-20 17:33:42,543 [Thread-157:17132] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:33:44,970 [Thread-165:17380] [django.request:143] [WARNING]- Not Found: /home
+2017-11-20 17:33:50,616 [Thread-166:3544] [django.request:143] [WARNING]- Not Found: /home/
+2017-11-20 17:34:25,401 [Thread-182:18652] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 452, in render
+    current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'open./' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 37, in wiki
+    return render(request, "wiki/doc.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\six.py", line 550, in reraise
+    raise value
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-20 17:34:31,070 [Thread-183:1576] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 452, in render
+    current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'open./' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 37, in wiki
+    return render(request, "wiki/doc.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\six.py", line 550, in reraise
+    raise value
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-20 17:34:37,784 [Thread-184:16440] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 452, in render
+    current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'open./' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 37, in wiki
+    return render(request, "wiki/doc.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\six.py", line 550, in reraise
+    raise value
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-20 17:38:29,609 [Thread-60:3764] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 452, in render
+    current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'open./' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 37, in wiki
+    return render(request, "wiki/doc.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\six.py", line 550, in reraise
+    raise value
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for '/' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2017-11-20 17:41:13,002 [Thread-123:13592] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:41:14,461 [Thread-124:1272] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:47:29,365 [Thread-220:12344] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:49:14,594 [Thread-257:4652] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 17:49:26,994 [Thread-290:8864] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 18:59:30,967 [Thread-714:3496] [django.request:143] [WARNING]- Not Found: /center/login/
+2017-11-20 19:10:55,301 [Thread-850:20292] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 19:11:03,676 [Thread-854:8148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-11-20 19:11:11,573 [Thread-861:20112] [django.request:143] [WARNING]- Not Found: /center/login/

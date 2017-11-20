@@ -23,7 +23,7 @@
             background: transparent;
         }
         .cl {
-            margin-top: 50px;
+            margin-top: 57px;
         }
         .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
@@ -33,6 +33,48 @@
             height: 70px;
             margin-left: 144px;
         }
+    .m-banner .hd{
+        overflow: visible;
+        top: 80px;
+    }
+    .btn-success{
+        width: 188px;
+        height: 48px;
+        line-height: 2.428571;
+        background-color: #ff6202;
+        border-color: #ff6202;
+    }
+    .btn-success:hover{
+        background-color: #ff6202;
+        border-color: #ff6202;
+    }
+    .n-step{
+        margin-top: 104px;
+        margin-bottom: 77px;
+    }
+    .m-banner{
+        height: 695px;
+    }
+    .m-banner .hd li{
+        width: auto;
+        height: auto;
+        overflow: visible;
+    }
+    .text{
+            padding-top: 36px;
+            color: #7F8285;
+        font-size: 20px;
+    }
+    .m-project {
+        padding-top: 61px;
+    }
+    .m-project .text p{
+        font-size: 20px;
+    }
+    .sign_out a:hover{
+        color: #fff;
+    }
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -41,18 +83,43 @@
 {% block content %}
     <div class="m-banner">
         <div class="hd">
-            <ul>
-                <!--li class="on"></li-->
-                <!--li class=""></li-->
-            </ul>
+            <h1 >1天出智能厨电</h1>
+            <p style="color: #5e5e5e;font-size: 18px;margin-top: 52px">
+                厨电自助开发平台帮厂家快速将厨电智能化，1天完成智能化<br><br>
+            精准的厨房电能，即时响应上亿厨房用户每天的需求</p>
+            <div class="" style="margin-top: 48px;">
+                <a href="/center/login" class="btn btn-s-lg btn-success">
+                    <span class="">立即智能化</span>
+                </a>
+            </div>
+            <div class="n-step">
+                <h2 style="">53iq厨电自主平台优势</h2>
+                <ul class="cl">
+                    <li class="p-list2" style="padding-right: 255px;">
+                        <img src="/static/image/home/1.png">
+                        <div class="text">
+
+                            <p>极短开发周期 </p>
+                        </div>
+                    </li>
+                    <li class="p-list3">
+                        <img src="/static/image/home/2.png">
+                        <div class="text">
+                            <p>超低研发投入</p>
+                        </div>
+                    </li>
+                    <li class="p-list4" style="padding-left: 241px;">
+                        <img src="/static/image/home/11.png">
+                        <div class="text">
+                            <p>高效平台工具</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
         </div>
-        <div class="bd">
-            <ul>
-                <li style="background:#F5F5F5"><img src="{% static 'image/home/banner1.jpg' %}" width="1200"
-                                                    height="500" alt=""></li>
-                <!--li style="background:#222222"><img src="/images/temp/banner2.png" width="1200" height="500" alt=""></li-->
-            </ul>
-        </div>
+
     </div>
 
     <!-- 公告 -->
@@ -70,109 +137,106 @@
     <div class="m-project">
         <div class="wrapper">
             <h2 style="text-align: center;">3步 实现厨电智能开发</h2>
-            <ul class="cl">
+            <div style="text-align: center;padding-top: 62px;padding-left: 63px;">
+                <img src="/static/image/home/0.png">
+            </div>
+            <ul class="cl" style="margin-top: 28px">
                 <li class="p-list2">
-                    <div class="text">
-                        <h3>1.注册 </h3>
+                    <div class="text" style="padding-top: 0px">
+                        <p>定义产品及其功能 </p>
                     </div>
                 </li>
                 <li class="p-list3">
 
-                    <div class="text">
-                        <h3>2.开发测试</h3>
+                    <div class="text" style="padding-top: 0px;">
+                        <p>根据生成的通讯协议开发</p>
                     </div>
                 </li>
                 <li class="p-list4">
-                    <div class="text">
-                        <h3>3.发布生产</h3>
+                    <div class="text" style="padding-top: 0px;">
+                        <p>UI和调试，验证成功后发布上线</p>
                     </div>
                 </li>
             </ul>
-            <div class="wrapper">
-                 <img src="{% static 'image/home/znpt.jpg' %}"  style="position: relative;top: 20px;left:180px">
-            </div>
-            <div class="more">
-                <a href="/guide#hz">了解详情</a>
-            </div>
         </div>
     </div>
 
     <!-- 成功案例 -->
-    <div class="m-case">
-        <div class="wrapper">
-            <h4>众多厨电成功案例</h4>
-            <p style="color: #808080;text-align: center;top: -38px;position: relative;">(合作伙伴)</p>
-
-            <div class="case-box cl">
-                <div class="half">
-                    <div class="case-img mr10">
-                        <img src="{% static 'image/home/youyanji.png' %}" width="276" height="276" alt="">
-                    </div>
-                    <div class="case-text">
-                        <dl>
-                            <dt>智能油烟机</dt>
-                            <dd>高可靠，流畅的高端智能触屏互动体验。<br/>
-                                流畅的智能控制，精准的故障自检，一键报修响应。<br/>
-                                53iq厨房智能，智能增值服务系统。<br/>
-                                7、9寸大屏超低成本，2.4、4.3寸小屏可选。
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="half">
-                    <div class="case-img mr10">
-                        <img src="{% static 'image/home/xiyiji.png' %}" width="276" height="276" alt="">
-                    </div>
-                    <div class="case-text">
-                        <dl>
-                            <dt>智能洗衣机</dt>
-                            <dd>便捷的预约，智能控制，自动提醒人性化设计。<br>
-                                流畅的智能操控，精准的故障自检。<br>
-                                通过53i厨房智能APP，可以在任何位置控制开关。<br>
-                                53iq厨房智能，智能增值服务系统。
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-border" style="margin-top: 100px;border-top:none">
-            <div class="wrapper">
-                <div class="case-box cl">
-                    <div class="half">
-                        <div class="case-img mr10">
-                            <img src="{% static 'image/home/binggui.png' %}" width="276" height="276" alt="">
-                        </div>
-                        <div class="case-text">
-                            <dl>
-                                <dt>智能冰箱</dt>
-                                <dd>智能化控制，食品智能管理，健康养生助手。<br/>
-                                    流畅的智能操控，精准的故障自检，及时的自动提醒。<br/>
-                                    53iq厨房智能，智能增值服务系统。
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="half">
-                        <div class="case-img mr10">
-                            <img src="{% static 'image/home/jichengzao.png' %}" width="276" height="276" alt="">
-                        </div>
-                        <div class="case-text">
-                            <dl>
-                                <dt>智能集成灶</dt>
-                                <dd>高可靠，流畅的高端智能大屏互动体验。<br/>
-                                    节能联动，丰富在线菜谱。<br/>
-                                    便捷的智能联网，精准的故障自检，一键报修响应。<br/>
-                                    53iq厨房智能，智能增值服务系统。
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{#    <div class="m-case">#}
+{#        <div class="wrapper">#}
+{#            <h4>众多厨电成功案例</h4>#}
+{#            <p style="color: #808080;text-align: center;top: -38px;position: relative;">(合作伙伴)</p>#}
+{##}
+{#            <div class="case-box cl">#}
+{#                <div class="half">#}
+{#                    <div class="case-img mr10">#}
+{#                        <img src="{% static 'image/home/youyanji.png' %}" width="276" height="276" alt="">#}
+{#                    </div>#}
+{#                    <div class="case-text">#}
+{#                        <dl>#}
+{#                            <dt>智能油烟机</dt>#}
+{#                            <dd>高可靠，流畅的高端智能触屏互动体验。<br/>#}
+{#                                流畅的智能控制，精准的故障自检，一键报修响应。<br/>#}
+{#                                53iq厨房智能，智能增值服务系统。<br/>#}
+{#                                7、9寸大屏超低成本，2.4、4.3寸小屏可选。#}
+{#                            </dd>#}
+{#                        </dl>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="half">#}
+{#                    <div class="case-img mr10">#}
+{#                        <img src="{% static 'image/home/xiyiji.png' %}" width="276" height="276" alt="">#}
+{#                    </div>#}
+{#                    <div class="case-text">#}
+{#                        <dl>#}
+{#                            <dt>智能洗衣机</dt>#}
+{#                            <dd>便捷的预约，智能控制，自动提醒人性化设计。<br>#}
+{#                                流畅的智能操控，精准的故障自检。<br>#}
+{#                                通过53i厨房智能APP，可以在任何位置控制开关。<br>#}
+{#                                53iq厨房智能，智能增值服务系统。#}
+{#                            </dd>#}
+{#                        </dl>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="mt-border" style="margin-top: 100px;border-top:none">#}
+{#            <div class="wrapper">#}
+{#                <div class="case-box cl">#}
+{#                    <div class="half">#}
+{#                        <div class="case-img mr10">#}
+{#                            <img src="{% static 'image/home/binggui.png' %}" width="276" height="276" alt="">#}
+{#                        </div>#}
+{#                        <div class="case-text">#}
+{#                            <dl>#}
+{#                                <dt>智能冰箱</dt>#}
+{#                                <dd>智能化控制，食品智能管理，健康养生助手。<br/>#}
+{#                                    流畅的智能操控，精准的故障自检，及时的自动提醒。<br/>#}
+{#                                    53iq厨房智能，智能增值服务系统。#}
+{#                                </dd>#}
+{#                            </dl>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="half">#}
+{#                        <div class="case-img mr10">#}
+{#                            <img src="{% static 'image/home/jichengzao.png' %}" width="276" height="276" alt="">#}
+{#                        </div>#}
+{#                        <div class="case-text">#}
+{#                            <dl>#}
+{#                                <dt>智能集成灶</dt>#}
+{#                                <dd>高可靠，流畅的高端智能大屏互动体验。<br/>#}
+{#                                    节能联动，丰富在线菜谱。<br/>#}
+{#                                    便捷的智能联网，精准的故障自检，一键报修响应。<br/>#}
+{#                                    53iq厨房智能，智能增值服务系统。#}
+{#                                </dd>#}
+{#                            </dl>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
 {% endblock %}
 
