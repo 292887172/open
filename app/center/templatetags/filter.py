@@ -105,6 +105,7 @@ def create_menu(context, cur=0, dev_id=None):
     else:
         if dev_id:
             menu = [
+                    {"url": "/", "title": "首页"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/guide", "title": "开发指南"},
                     {"url": "/wiki/", "title": "开发文档"}
@@ -114,6 +115,7 @@ def create_menu(context, cur=0, dev_id=None):
             if cur > 1:
                 ret['cur'] = 1
             menu = [
+                    {"url": "/home", "title": "首页"},
                     {"url": "/guide", "title": "开发指南"},
                     {"url": "/wiki/", "title": "开发文档"}
                     ]
@@ -162,10 +164,9 @@ register.filter(cover_str8)
 
 
 def cover_user_name(user_id, nickname):
-    """
-    转换微信昵称
+    """    转换微信昵称
     :param user_id:
-    :param nickname
+    :param nicknamem
     :return:
     """
     try:

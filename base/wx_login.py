@@ -31,9 +31,14 @@ def send_wxlogin_data(did, openid, unionid, token):
         touser=touser,
         message=message
     )
-    r = requests.post(url, data=json.dumps(data).replace("'", '"'), timeout=8)
-    logging.getLogger('').info("推送微信登录消息结果：" + r.text)
-    print(r.text)
+    try:
+        r = requests.post(url, data=json.dumps(data).replace("'", '"'), timeout=8)
+        login_state = True
+        logging.getLogger('').info("推送微信登录消息结果：" + r.text)
+    except requests.exceptions.ConnectTimeout:
+        login_state = False
+        logging.getLogger('').info("请求超时")
+    return login_state
 
 
 def deal_wxlogin_data(unionid, did):
@@ -100,8 +105,8 @@ def deal_wxlogin_data(unionid, did):
         topic = res['data']['mosquitto_topic']
         openid = str(topic).split("/")[-1]
         logging.getLogger('').info("微信登录token：" + str(token)+">>openid:"+openid)
-        send_wxlogin_data(did, openid, unionid, token)
-        return token, openid
+        login_state = send_wxlogin_data(did, openid, unionid, token)
+        return login_state
 
 
 if __name__ == '__main__':
