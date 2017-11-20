@@ -3567,3 +3567,336 @@ OSError: [Errno 51] Network is unreachable
 2017-11-09 17:31:33,602 [Thread-1177:16792] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
 2017-11-09 17:33:00,891 [Thread-1190:4220] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-11-10 08:50:50,742 [Thread-3:15184] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 11:03:19,773 [Thread-6:9960] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 13:12:44,149 [Thread-3:7068] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 15:13:36,035 [Thread-115:3176] [root:161] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 16:29:22,956 [Thread-4:8908] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 16:30:13,188 [Thread-45:18112] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-10 16:30:39,308 [Thread-59:5744] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-11-10 16:34:25,895 [Thread-73:4236] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-11-10 16:34:52,836 [Thread-87:8892] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-11 10:09:46,822 [Thread-3:7612] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-11 14:33:12,211 [Thread-166:13576] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-13 08:41:30,091 [Thread-3:7092] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-13 11:08:49,858 [Thread-1173:7256] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-13 13:46:36,592 [Thread-1274:18100] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-13 15:37:06,396 [Thread-1669:9000] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 09:00:41,033 [Thread-3:16224] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 10:21:05,530 [Thread-1:12008] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:21:06,860 [Thread-1:12008] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:21:17,875 [Thread-8:5364] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:21:18,034 [Thread-8:5364] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:21:21,525 [Thread-11:9228] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:21:21,624 [Thread-11:9228] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:21:39,372 [Thread-14:9804] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:21:39,505 [Thread-14:9804] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:21:42,364 [Thread-17:13608] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:21:42,473 [Thread-17:13608] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:23:37,526 [Thread-20:4988] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:23:37,676 [Thread-20:4988] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:25:01,318 [Thread-23:17076] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:25:01,439 [Thread-23:17076] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:25:18,600 [Thread-26:2008] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-14 10:25:18,729 [Thread-26:2008] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-14 10:37:11,590 [Thread-8:7680] [root:60] [ERROR]- can only concatenate list (not "int") to list
+2017-11-14 10:44:21,058 [Thread-8:7092] [root:60] [ERROR]- ord() expected a character, but string of length 8 found
+2017-11-14 10:46:43,983 [Thread-19:12368] [root:60] [ERROR]- ord() expected a character, but string of length 8 found
+2017-11-14 13:37:21,154 [Thread-4:4152] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 13:42:43,315 [Thread-13:19012] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 13:42:54,593 [Thread-25:12884] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 13:42:55,077 [Thread-27:16336] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 16:12:15,771 [Thread-3:3656] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-14 17:55:28,784 [Thread-15:1740] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 12:59:17,402 [Thread-3:7800] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 12:59:22,660 [Thread-8:14132] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 13:25:16,056 [Thread-3:19604] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 13:45:23,158 [Thread-13:8256] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 13:47:03,129 [Thread-1:12168] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:04:28,820 [Thread-11:7320] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:04:43,680 [Thread-14:10296] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:05:02,376 [Thread-19:12980] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:06:02,445 [Thread-1:7004] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:06:44,822 [Thread-13:12176] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:08:12,476 [Thread-24:19596] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:08:34,978 [Thread-1:17672] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:10:03,656 [Thread-25:2952] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:29:20,532 [Thread-45:17492] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:29:35,252 [Thread-54:16024] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-15 14:30:33,876 [Thread-4:14892] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-15 14:30:35,220 [Thread-4:14892] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-15 14:31:37,691 [Thread-8:3932] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-15 14:31:37,818 [Thread-8:3932] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-15 14:32:13,915 [Thread-11:8732] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-15 14:32:14,049 [Thread-11:8732] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-15 14:32:31,075 [Thread-14:9416] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-15 14:32:31,185 [Thread-14:9416] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-16 13:40:11,353 [Thread-3:14388] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-16 13:42:06,092 [Thread-36:14216] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-16 16:08:27,211 [Thread-123:11476] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-17 09:17:15,349 [Thread-5:18268] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-17 10:27:38,683 [Thread-17:3380] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-17 10:28:19,305 [Thread-51:15064] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:28:23,292 [Thread-52:10144] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:28:29,867 [Thread-54:9848] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:28:32,697 [Thread-55:8948] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:28:33,880 [Thread-56:16012] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:26,404 [Thread-58:9364] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:27,216 [Thread-59:17100] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:34,766 [Thread-61:11528] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:35,408 [Thread-62:904] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:36,820 [Thread-63:4844] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:37,404 [Thread-64:4360] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:38,251 [Thread-65:13508] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:41,732 [Thread-66:18024] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 10:31:42,200 [Thread-67:19076] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-17 11:09:18,929 [Thread-1:4664] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:09:20,134 [Thread-1:4664] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:09:20,200 [Thread-1:4664] [root:99] [INFO]- 微信登录token：api_token_b53c467e-cb44-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:09:20,209 [Thread-1:4664] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:09:20,353 [Thread-1:4664] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:11:09,531 [Thread-1:16688] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:11:09,532 [Thread-3:12872] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:11:10,791 [Thread-3:12872] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:11:10,804 [Thread-1:16688] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:11:10,863 [Thread-3:12872] [root:99] [INFO]- 微信登录token：api_token_f7314412-cb44-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:11:10,864 [Thread-1:16688] [root:99] [INFO]- 微信登录token：api_token_f730dae0-cb44-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:11:10,871 [Thread-3:12872] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:11:10,874 [Thread-1:16688] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:11:11,007 [Thread-3:12872] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:11:14,035 [Thread-1:16688] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:11:18,245 [Thread-6:916] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:11:18,388 [Thread-6:916] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:11:18,472 [Thread-6:916] [root:99] [INFO]- 微信登录token：api_token_fbb400ba-cb44-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:11:18,481 [Thread-6:916] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:11:18,628 [Thread-6:916] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:11:29,056 [Thread-9:7872] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:11:29,200 [Thread-9:7872] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:11:29,255 [Thread-9:7872] [root:99] [INFO]- 微信登录token：api_token_02263e0e-cb45-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:11:29,261 [Thread-9:7872] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:11:29,399 [Thread-9:7872] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:12:05,851 [Thread-1:16512] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:12:07,197 [Thread-1:16512] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:13:05,361 [Thread-1:10976] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:13:06,609 [Thread-1:10976] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:13:36,317 [Thread-5:8664] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:13:36,487 [Thread-5:8664] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:14:03,823 [Thread-1:11768] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:14:05,204 [Thread-1:11768] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:14:05,268 [Thread-1:11768] [root:99] [INFO]- 微信登录token：api_token_5f22942c-cb45-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:14:05,277 [Thread-1:11768] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:14:08,654 [Thread-1:11768] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:16:06,801 [Thread-1:11392] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:16:07,980 [Thread-1:11392] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:16:08,043 [Thread-1:11392] [root:100] [INFO]- 微信登录token：api_token_a84fa202-cb45-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:16:08,051 [Thread-1:11392] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:16:09,137 [Thread-1:11392] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:16:47,817 [Thread-1:9116] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:16:49,156 [Thread-1:9116] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:16:49,204 [Thread-1:9116] [root:101] [INFO]- 微信登录token：api_token_c0da31ca-cb45-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:16:49,209 [Thread-1:9116] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:16:55,746 [Thread-3:10612] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:16:55,892 [Thread-3:10612] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:16:55,949 [Thread-3:10612] [root:101] [INFO]- 微信登录token：api_token_c4de1b92-cb45-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:16:55,959 [Thread-3:10612] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:16:57,308 [Thread-1:9116] [root:715] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:17:04,089 [Thread-3:10612] [root:715] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:17:24,843 [Thread-6:6732] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:17:24,950 [Thread-6:6732] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:17:25,009 [Thread-6:6732] [root:101] [INFO]- 微信登录token：api_token_d630b9cc-cb45-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:17:25,018 [Thread-6:6732] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:17:25,138 [Thread-6:6732] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:20:01,975 [Thread-9:19164] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:20:02,132 [Thread-9:19164] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:20:03,189 [Thread-9:19164] [root:101] [INFO]- 微信登录token：api_token_3477d844-cb46-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:20:03,195 [Thread-9:19164] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:20:11,292 [Thread-9:19164] [root:715] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:21:40,103 [Thread-12:10288] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:21:40,245 [Thread-12:10288] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:21:40,312 [Thread-12:10288] [root:101] [INFO]- 微信登录token：api_token_6e5cbec6-cb46-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:21:40,321 [Thread-12:10288] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:21:40,487 [Thread-12:10288] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:25:37,286 [Thread-1:19676] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:25:38,551 [Thread-1:19676] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:25:38,621 [Thread-1:19676] [root:100] [INFO]- 微信登录token：api_token_fc66b910-cb46-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:25:38,626 [Thread-1:19676] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:25:44,968 [Thread-1:19676] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:25:47,591 [Thread-5:5536] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:25:47,739 [Thread-5:5536] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:25:47,788 [Thread-5:5536] [root:100] [INFO]- 微信登录token：api_token_01dcc8da-cb47-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:25:47,795 [Thread-5:5536] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:25:53,256 [Thread-5:5536] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:26:55,886 [Thread-8:7152] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:26:56,087 [Thread-8:7152] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:26:56,157 [Thread-8:7152] [root:100] [INFO]- 微信登录token：api_token_2a9e1756-cb47-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:26:56,162 [Thread-8:7152] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:27:06,530 [Thread-8:7152] [root:716] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:27:31,689 [Thread-1:18660] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:27:33,150 [Thread-1:18660] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:28:00,017 [Thread-1:17456] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:28:01,210 [Thread-1:17456] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:29:03,713 [Thread-1:6788] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:29:04,966 [Thread-1:6788] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:29:05,013 [Thread-1:6788] [root:100] [INFO]- 微信登录token：api_token_776aa3a6-cb47-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:29:05,018 [Thread-1:6788] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:29:05,139 [Thread-1:6788] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:31:43,687 [Thread-5:13760] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:31:43,843 [Thread-5:13760] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:31:43,895 [Thread-5:13760] [root:100] [INFO]- 微信登录token：api_token_d61d9f2a-cb47-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:31:43,904 [Thread-5:13760] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:31:53,112 [Thread-5:13760] [root:716] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:32:04,573 [Thread-3:6652] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:32:04,576 [Thread-1:17992] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:32:06,043 [Thread-3:6652] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:32:06,059 [Thread-1:17992] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:32:06,109 [Thread-3:6652] [root:100] [INFO]- 微信登录token：api_token_e3584348-cb47-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:32:06,117 [Thread-3:6652] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:32:06,118 [Thread-1:17992] [root:100] [INFO]- 微信登录token：api_token_e35ab1e6-cb47-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:32:06,123 [Thread-1:17992] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:32:06,325 [Thread-1:17992] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:32:06,329 [Thread-3:6652] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:32:29,350 [Thread-6:11100] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:32:29,531 [Thread-6:11100] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:32:29,587 [Thread-6:11100] [root:100] [INFO]- 微信登录token：api_token_f158a82a-cb47-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:32:29,595 [Thread-6:11100] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:32:31,593 [Thread-6:11100] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:33:29,046 [Thread-3:9208] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:33:29,047 [Thread-1:5288] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:33:30,352 [Thread-1:5288] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:33:30,361 [Thread-3:9208] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:33:30,438 [Thread-1:5288] [root:100] [INFO]- 微信登录token：api_token_1599afc2-cb48-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:33:30,440 [Thread-3:9208] [root:100] [INFO]- 微信登录token：api_token_1599ee4c-cb48-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:33:30,449 [Thread-1:5288] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:33:30,456 [Thread-3:9208] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:33:30,627 [Thread-1:5288] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:33:30,633 [Thread-3:9208] [root:35] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-17 11:40:29,562 [Thread-1:15612] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:40:31,029 [Thread-1:15612] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:40:31,109 [Thread-1:15612] [root:98] [INFO]- 微信登录token：api_token_10583d98-cb49-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:40:31,118 [Thread-1:15612] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:40:31,292 [Thread-1:15612] [root:35] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-17 11:40:55,542 [Thread-5:11100] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:40:55,665 [Thread-5:11100] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:40:55,717 [Thread-5:11100] [root:98] [INFO]- 微信登录token：api_token_1f043572-cb49-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-17 11:40:55,723 [Thread-5:11100] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-17 11:41:03,827 [Thread-5:11100] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-17 11:41:19,693 [Thread-1:4664] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:41:20,984 [Thread-1:4664] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:41:26,291 [Thread-5:1032] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:41:26,454 [Thread-5:1032] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:41:35,557 [Thread-8:13592] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:41:35,750 [Thread-8:13592] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:42:09,494 [Thread-11:8808] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:42:09,681 [Thread-11:8808] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 11:42:48,415 [Thread-14:4984] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-17 11:42:48,579 [Thread-14:4984] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-17 12:31:17,645 [Thread-3:6352] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 08:45:09,349 [Thread-3:15476] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 09:52:36,389 [Thread-672:15900] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 11:07:00,601 [Thread-4:10272] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:07:01,970 [Thread-4:10272] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:07:55,131 [Thread-1:10896] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:07:55,945 [Thread-3:7892] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:07:56,435 [Thread-3:7892] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:07:56,450 [Thread-1:10896] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:07:56,489 [Thread-3:7892] [root:99] [INFO]- 微信登录token：api_token_04a7d7e8-cda0-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:07:56,499 [Thread-1:10896] [root:99] [INFO]- 微信登录token：api_token_04a943e4-cda0-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:07:56,500 [Thread-3:7892] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:07:56,505 [Thread-1:10896] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:08:05,814 [Thread-3:7892] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:08:06,030 [Thread-1:10896] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:08:49,674 [Thread-6:18468] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:08:49,824 [Thread-6:18468] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:08:49,880 [Thread-6:18468] [root:99] [INFO]- 微信登录token：api_token_247a6f04-cda0-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:08:49,887 [Thread-6:18468] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:08:58,012 [Thread-6:18468] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:09:09,952 [Thread-1:19252] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:09:11,137 [Thread-1:19252] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:09:11,187 [Thread-1:19252] [root:99] [INFO]- 微信登录token：api_token_312e468a-cda0-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:09:11,193 [Thread-1:19252] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:09:19,293 [Thread-1:19252] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:09:51,673 [Thread-6:2324] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:09:51,841 [Thread-6:2324] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:09:51,902 [Thread-6:2324] [root:99] [INFO]- 微信登录token：api_token_4971b556-cda0-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:09:51,913 [Thread-6:2324] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:09:56,711 [Thread-6:2324] [root:36] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-20 11:10:11,177 [Thread-1:18984] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:10:12,508 [Thread-1:18984] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:10:12,569 [Thread-1:18984] [root:99] [INFO]- 微信登录token：api_token_55c36ec6-cda0-11e7-9872-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:10:12,578 [Thread-1:18984] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:10:17,759 [Thread-3:9536] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:10:17,900 [Thread-3:9536] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:10:17,957 [Thread-3:9536] [root:99] [INFO]- 微信登录token：api_token_58f94124-cda0-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:10:17,964 [Thread-3:9536] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:10:21,857 [Thread-1:18984] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:10:26,064 [Thread-3:9536] [root:717] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:16:59,724 [Thread-1:15556] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:17:00,997 [Thread-1:15556] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:17:01,086 [Thread-1:15556] [root:99] [INFO]- 微信登录token：api_token_493fa484-cda1-11e7-a044-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:17:01,092 [Thread-1:15556] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:17:07,132 [Thread-1:15556] [root:37] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-20 11:17:25,677 [Thread-5:20000] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 11:17:25,843 [Thread-5:20000] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 11:17:25,905 [Thread-5:20000] [root:99] [INFO]- 微信登录token：api_token_5809a000-cda1-11e7-aa85-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 11:17:25,914 [Thread-5:20000] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 11:17:34,040 [Thread-5:20000] [root:719] [INFO]- 推送微信消息出错HTTPSConnectionPool(host='api.53iq.com', port=443): Read timed out. (read timeout=8)
+2017-11-20 11:32:50,018 [Thread-62:11536] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-20 11:32:51,406 [Thread-63:3568] [root:187] [INFO]- Doc matching query does not exist.
+2017-11-20 13:46:43,444 [Thread-134:872] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 15:50:11,389 [Thread-3:1908] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 16:41:06,552 [Thread-8:1160] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:41:08,054 [Thread-8:1160] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:41:08,138 [Thread-8:1160] [root:102] [INFO]- 微信登录token：api_token_90c08d28-cdce-11e7-b082-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:41:08,148 [Thread-8:1160] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:41:52,882 [Thread-14:19152] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:41:53,081 [Thread-14:19152] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:41:53,138 [Thread-14:19152] [root:102] [INFO]- 微信登录token：api_token_ab92cab2-cdce-11e7-bee7-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:41:53,146 [Thread-14:19152] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:42:49,694 [Thread-1:16392] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:42:50,967 [Thread-1:16392] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:42:51,028 [Thread-1:16392] [root:104] [INFO]- 微信登录token：api_token_ce14617c-cdce-11e7-bee7-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:42:51,032 [Thread-1:16392] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:43:25,155 [Thread-5:8128] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:43:25,295 [Thread-5:8128] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:43:25,345 [Thread-5:8128] [root:104] [INFO]- 微信登录token：api_token_e2897278-cdce-11e7-b082-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:43:25,350 [Thread-5:8128] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:43:43,220 [Thread-1:14544] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:43:44,507 [Thread-1:14544] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:43:44,554 [Thread-1:14544] [root:105] [INFO]- 微信登录token：api_token_edfc1fd4-cdce-11e7-bee7-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:43:44,560 [Thread-1:14544] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:43:59,518 [Thread-5:1272] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:43:59,623 [Thread-5:1272] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:43:59,668 [Thread-5:1272] [root:105] [INFO]- 微信登录token：api_token_f6fed9be-cdce-11e7-9d0a-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:43:59,681 [Thread-5:1272] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:44:07,760 [Thread-5:1272] [root:716] [INFO]- 推送微信消息出错local variable 'r' referenced before assignment
+2017-11-20 16:49:08,491 [Thread-1:18372] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:49:09,710 [Thread-1:18372] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:49:09,779 [Thread-1:18372] [root:105] [INFO]- 微信登录token：api_token_afd43628-cdcf-11e7-9d0a-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:49:09,783 [Thread-1:18372] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:49:26,150 [Thread-5:1244] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:49:26,270 [Thread-5:1244] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:49:26,322 [Thread-5:1244] [root:105] [INFO]- 微信登录token：api_token_b9afd382-cdcf-11e7-9d0a-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:49:26,327 [Thread-5:1244] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:49:36,652 [Thread-1:20180] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:49:37,848 [Thread-1:20180] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:49:37,901 [Thread-1:20180] [root:105] [INFO]- 微信登录token：api_token_c0961a12-cdcf-11e7-bee7-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:49:37,906 [Thread-1:20180] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 16:50:13,004 [Thread-1:8948] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 16:50:14,331 [Thread-1:8948] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 16:50:14,381 [Thread-1:8948] [root:105] [INFO]- 微信登录token：api_token_d655d428-cdcf-11e7-9d0a-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 16:50:14,386 [Thread-1:8948] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 17:07:49,296 [Thread-1:6140] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 17:07:49,848 [Thread-3:18736] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.weixin.qq.com
+2017-11-20 17:07:50,525 [Thread-3:18736] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 17:07:50,546 [Thread-1:6140] [requests.packages.urllib3.connectionpool:203] [INFO]- Starting new HTTP connection (1): wechat.53iq.com
+2017-11-20 17:07:50,600 [Thread-3:18736] [root:103] [INFO]- 微信登录token：api_token_4bed2a54-cdd2-11e7-9d0a-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 17:07:50,601 [Thread-1:6140] [root:103] [INFO]- 微信登录token：api_token_4bed9566-cdd2-11e7-bee7-00a0d1edbe70>>openid:oYazTso5Aqjj9PzkoPggHjTeJJTI
+2017-11-20 17:07:50,607 [Thread-3:18736] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 17:07:50,608 [Thread-1:6140] [requests.packages.urllib3.connectionpool:735] [INFO]- Starting new HTTPS connection (1): api.53iq.com
+2017-11-20 17:07:50,712 [Thread-1:6140] [root:37] [INFO]- 推送微信登录消息结果：{"data": {"total": 1}, "code": 0}
+2017-11-20 17:07:50,734 [Thread-3:18736] [root:37] [INFO]- 推送微信登录消息结果：{"code": 0, "data": {"total": 1}}
+2017-11-20 17:51:14,116 [Thread-17:4488] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 17:53:18,470 [Thread-60:9144] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 17:54:15,854 [Thread-72:14232] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 19:13:25,361 [Thread-23:13524] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 19:15:08,820 [Thread-115:19304] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-11-20 19:15:43,687 [Thread-140:18868] [root:160] [INFO]- 'AnonymousUser' object has no attribute 'developer'

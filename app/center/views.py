@@ -151,9 +151,9 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/")
         if request.user.developer.developer_id:
-            return HttpResponseRedirect("/product/list")
+            return HttpResponseRedirect("/")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
@@ -168,7 +168,7 @@ def login(request):
             ac_pwd = base64.b64decode(al.al_account_pwd)
             user_obj = authenticate(username=ac_id, password=ac_pwd)
             django.contrib.auth.login(request, user_obj)
-            return HttpResponseRedirect("/product/list")
+            return HttpResponseRedirect("/")
         except Exception as e:
             pass
     return render(request, "center/login.html", locals())
@@ -709,13 +709,8 @@ def callback(request):
             if re.match('\d{9}', state):
                 # 推送微信登录消息
                 try:
-                    temp = deal_wxlogin_data(unionid, state)
-                    if temp:
-                        login_status = True
-                    else:
-                        login_status = False
+                    login_status = deal_wxlogin_data(unionid, state)
                 except Exception as e:
-                    login_status = False
                     logging.getLogger('').info('推送微信消息出错'+str(e))
                 return render(request, 'center/wx-login-wait.html', locals())
             access_token = ret.get('access_token', None)
