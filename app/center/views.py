@@ -153,7 +153,7 @@ def login(request):
     try:
         request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/")
         if request.user.developer.developer_id:
-            return HttpResponseRedirect("")
+            return HttpResponseRedirect("/")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
@@ -702,8 +702,8 @@ def callback(request):
             s = requests.Session()
             s.mount('https://', MyAdapter())
             s = requests.get(url)
-            # ret = s.json()
-            ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
+            ret = s.json()
+            # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
             if re.match('\d{9}', state):
