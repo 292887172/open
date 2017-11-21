@@ -113,9 +113,9 @@ def create_menu(context, cur=0, dev_id=None):
 
         else:
             if cur > 1:
-                ret['cur'] = 1
+                ret['cur'] = 2
             menu = [
-                    {"url": "/home", "title": "首页"},
+                    {"url": "/", "title": "首页"},
                     {"url": "/guide", "title": "开发指南"},
                     {"url": "/wiki/", "title": "开发文档"}
                     ]
