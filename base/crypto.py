@@ -46,3 +46,9 @@ def sha256_en(value):
     sha256 = hashlib.sha256()
     sha256.update(str(value).encode('utf-8'))
     return sha256.hexdigest()
+
+
+if __name__ == '__main__':
+    a = md5_en('wudt@#abc')
+    print(a)
+    # pbkdf2_sha256$12000$VbOA0Yl0RKXF$V69hbz7+e6gVAwtnG0Kjj3glupbiWNPKbnuTquSWorE=

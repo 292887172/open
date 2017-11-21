@@ -87,10 +87,11 @@ def home(request):
         # 合作厂商信息
         factory_name = request.POST.get('factory_name', '')
         factory_uuid = request.POST.get('coFacUid', '')
+        update = request.POST.get('coUpdate', None)
         r = RedisBaseHandler().client
         try:
             e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
-            if str(e_code.decode()).lower() == str(email_code).lower():
+            if update is not None or str(e_code.decode()).lower() == str(email_code).lower():
                 re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
@@ -381,13 +382,14 @@ def register_success(request):
     rg = request.REQUEST.get('rg', '')
     user = request.REQUEST.get('user', '')
     t = "center/register.html"
+
     if SESSION_REGISTER_SUCCESS in request.session:
         if rg == 'email':
             # base64加密user_id
             user_b64 = base64.b64encode(user.encode(encoding="utf-8"))
             send_mail(user, '53iq通行证-注册激活', HOST_DOMAIN + '/center/active?user=' + user_b64.decode())
         t = "center/register-success.html"
-        del request.session[SESSION_REGISTER_SUCCESS]
+        # del request.session[SESSION_REGISTER_SUCCESS]
     return render(request, t, locals())
 
 
@@ -553,6 +555,7 @@ def active(request):
     return HttpResponseRedirect('register')
 
 
+@csrf_exempt
 def forget_pwd(request):
     """
     忘记密码
@@ -699,10 +702,16 @@ def callback(request):
         else:
             url = wx_oauth.format(APPID, APP_SECRET, code)
 
-            s = requests.Session()
-            s.mount('https://', MyAdapter())
-            s = requests.get(url)
-            ret = s.json()
+            # s = requests.Session()
+            # s.mount('https://', MyAdapter())
+            try:
+                s = requests.get(url)
+                ret = s.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url)
+                ret = s.json()
             # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
@@ -711,15 +720,24 @@ def callback(request):
                 try:
                     login_status = deal_wxlogin_data(unionid, state)
                 except Exception as e:
+                    login_status = False
                     logging.getLogger('').info('推送微信消息出错'+str(e))
                 return render(request, 'center/wx-login-wait.html', locals())
             access_token = ret.get('access_token', None)
             if access_token is None:
                 return HttpResponse('code值无效')
             url2 = wx_userinfo.format(access_token, openid)
-            ret2 = requests.get(url2)
-            ret2.encoding = 'utf8'
-            ret2 = ret2.json()
+            try:
+
+                ret2 = requests.get(url2)
+                ret2.encoding = 'utf8'
+                ret2 = ret2.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url2)
+                s.encoding = 'utf8'
+                ret2 = s.json()
             nickname = ret2.get('nickname', '')
             dt = datetime.datetime.now() + datetime.timedelta(days=30)
             m = hashlib.md5()
