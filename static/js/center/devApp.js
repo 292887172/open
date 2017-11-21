@@ -293,7 +293,10 @@ var DevAppInfo = {
             return false;
         }
 
-        console.log($("#coFacUidErrorId").attr('class'));
+        if(DevAppInfo.doVerifyValue('coUpdate', 64, '更新', true)){
+            this.changeCss(true);
+            return true;
+        }
         if ($("#coFacUidErrorId").attr('class') == 'error') {
             this.changeCss(false);
             return false;

@@ -20,7 +20,7 @@ def verify_sms_code(user_id, code):
             save_code = save_code.decode()
             if save_code == code:
                 # 注册成功跳转到注册成功页面
-                url = reverse('register_success')
+                url = reverse('center')
                 return {'status': 1, 'url': url}
             else:
                 return {'status': 2, 'error': '验证码错误'}
