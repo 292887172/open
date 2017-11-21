@@ -75,7 +75,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 </label>
 										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="由大写字母、或下划线组成，不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
+											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
 											<br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
 										</div>
 									</div>
@@ -114,7 +114,7 @@
 												<div class="radio">
 														<label>
 															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="1" checked/>
-															<span class="lbl bigger-120"> int</span>
+															<span class="lbl bigger-120"> 开关</span>
 														</label>
 														<label>
 															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectError(this)" value="3"/>
@@ -138,10 +138,10 @@
 														</tr>
 														<tr style="border-top:1px solid #ccc">
 															<td width=80px>
-																<input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
+																<input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=0 onblur="checkInt()">
 															</td>
 															<td width=80px align="right">
-																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkInt()">
+																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=256 onblur="checkInt()">
 															</td>
 														</tr>
 													</table>
@@ -224,7 +224,7 @@
 										<label class="col-sm-2 col-xs-2 no-padding-right">  </label>
 										<label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                         <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                        <div id="checkData" style="color:red;display:none"></div>
+                                        <div id="checkArgue" style="color:red;display:none"></div>
 									</div>
 
 									<div class="form-group" id="addGroup">
@@ -240,10 +240,10 @@
 										<div class="col-sm-5 col-xs-6">
                                             <span class="pr20">
                                                 <button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
-												<i  class="ace-icon fa fa-check bigger-110" ></i>提交审核</button>
+												<i  class="ace-icon fa fa-check bigger-110" ></i>提交</button>
                                             </span>
                                             <span>
-                                                <button ng-hide='{[{ visible }]}' class="btn" onclick="javascript:window.location.reload()" >
+                                                <button ng-hide='{[{ visible }]}' class="btn" onclick="javascript:window.location.reload()" type="button">
 												<i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
                                             </span>
 
@@ -271,10 +271,11 @@
 			var str=url.substring(num+1);
 			var id = str.split("=")[1];
 			var edit_data={};
+			var flag ;
 			jQuery(function($) {
 
                 var post_data = {"name": "edit","id":id};
-                var flag ;
+
                 $.ajax({
                     url:"#/edit",
                     type: "POST",
@@ -297,6 +298,7 @@
                 else{
                     $('#mxsLength').val('8');
                     add();
+                    add()
                 }
 			});
 			function loadData(d){
@@ -354,10 +356,10 @@
 					group+='<div class="form-group">';
 					group+='	<div class="col-sm-2 col-xs-2"></div>';
 					group+='	<div class="col-sm-2 col-xs-3">';
-                    group+='		<input ng-disabled="{[{ disabled }]}"  type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
+                    group+='		<input ng-disabled="{[{ disabled }]}"  onkeypress="return onKeyPress(event)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].data+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2">';
-                    group+='		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
+                    group+='		<input ng-disabled="{[{ disabled }]}" onkeypress="return onKeyPress(event)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="'+d.mxs[i].desc+'"/>';
 					group+='	</div>';
 					group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 					group+='		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -371,6 +373,7 @@
 				document.getElementById('selectTimer').style.display="none";
 				document.getElementById('selectError').style.display="none";
 				document.getElementById('selectInt').style.display="block";
+                //corkmark = $("#corpMark").val();
 			}
 			function selectError(ele){
 				document.getElementById('selectInt').style.display="none";
@@ -408,10 +411,10 @@
 				group+='<div class="form-group">';
 				group+='	<div class="col-sm-2 col-xs-2"></div>';
 				group+='	<div class="col-sm-2 col-xs-3">';
-				group+='		<input type="text" id="checkData"  name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
+				group+='		<input type="text" id="checkData" onkeypress="return onKeyPress(event)" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
 				group+='	</div>';
 				group+='	<div class="col-sm-1 col-xs-2">';
-				group+='		<input type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12"/>';
+				group+='		<input type="text" name="paramDesc" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
 				group+='	</div>';
 				group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
 				group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -422,8 +425,13 @@
 			function del(ths){
 				$(ths.parentNode.parentNode).remove();
 			}
+			function onKeyPress(event) {
+			    if(event.keyCode==13){
+			        add();
+                }
+            }
 			function checkID(){
-				var role=/^[A-Z_]*$/;
+				var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
 				var data=$.trim($('#Stream_ID').val());
                 var temp =false;
                 for (var i = 0; i < StreamIds.length; i++) {
@@ -436,7 +444,7 @@
                     }
                 }
                 if (data == '' || role.test(data) == false) {
-                    $('#checkID').html("该参数以大写字母和下划线组成、不能重复");
+                    $('#checkID').html("该参数以英文字母、数字下划线组成、不能重复");
                     $('#checkID').css("display", "block");
                     return "error";
                 }
@@ -465,8 +473,48 @@
 					$('#checkLength').html("长度不能为空!!");
 					$('#checkLength').css("display","block");
 					return false
-				}else{
-					$('#checkLength').css("display","none");
+				}
+				else{
+				    $('#checkLength').css("display","none");
+				    length = parseInt($("#mxsLength").val());
+                    maxValue = Math.pow(2,length);
+                    $("#minInt").val(0);
+                    $("#maxInt").val(maxValue);
+                    if(flag ){
+                        params = document.getElementsByName('paramDesc');
+                        if (length == 1 ){
+                            if (params.length == 0){
+                                add();
+                                add();
+                                document.getElementsByName('paramData')[0].value='0';
+                                document.getElementsByName('paramDesc')[0].value='关';
+                                document.getElementsByName('paramData')[1].value='1';
+                                document.getElementsByName('paramDesc')[1].value='开';
+                            }
+                            else if(params.length == 1){
+                                add();
+                                document.getElementsByName('paramData')[1].value='1';
+                                document.getElementsByName('paramDesc')[1].value='开';
+                            }
+                            else if(params.length == 2){
+                                document.getElementsByName('paramData')[0].value='0';
+                                document.getElementsByName('paramDesc')[0].value='关';
+                                document.getElementsByName('paramData')[1].value='1';
+                                document.getElementsByName('paramDesc')[1].value='开';
+                            }
+                        }
+                        else if(length >8 || $("#corpName").val()!='') {
+                            for (var i=params.length-1 ;i>=0;i--){
+                                params[i].parentNode.parentNode.remove();
+                            }
+                        }
+                        else {
+                            document.getElementsByName('paramDesc')[0].value='';
+                            document.getElementsByName('paramDesc')[1].value='';
+                            document.getElementsByName('paramData')[0].value='';
+                            document.getElementsByName('paramData')[1].value='';
+                        }
+                    }
 					return true
 				}
 			}

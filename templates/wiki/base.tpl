@@ -113,9 +113,13 @@
         .sign_out a:hover{
             color: #ff6202;
         }
-        .sign_out .user-login:hover{
-            color: #fff;
-        }
+        .sign_out a.user-login{
+        background-color: #FF6F37
+    }
+    .sign_out .user-login:hover{
+        color: #fff;
+        background-color: #ff6202
+    }
     </style>
     {% block style %}
 

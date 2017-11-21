@@ -16,6 +16,7 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
+
         	var state = checkID();
 			if (state !='correct' || !checkName() || !checkLength()){
 				return;
@@ -100,24 +101,24 @@ angular.module('Product.edit', ['ngRoute'])
 					save_mxs(min,max,"int");
                 }
 				if(errorType==1){
-					$('#checkData').css("display","block");
-					$('#checkData').html("请填写数据说明和传送数据");
+					$('#checkArgue').css("display","block");
+					$('#checkArgue').html("请填写数据说明和传送数据");
 
 					return;
 				}
 				if(errorType==0){
-					$('#checkData').css("display","block");
-					$('#checkData').html("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
+					$('#checkArgue').css("display","block");
+					$('#checkArgue').html("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
 					return;
 				}
 				if(errorType==2){
-					$('#checkData').css("display","block");
-					$('#checkData').html("传输数据必须在枚举值:"+enum_value+"中");
+					$('#checkArgue').css("display","block");
+					$('#checkArgue').html("传输数据必须在枚举值:"+enum_value+"中");
 					return;
 				}
 				if(errorType==-2){
-					$('#checkData').css("display","block");
-					$('#checkData').html("传输数据必须是数字！！");
+					$('#checkArgue').css("display","block");
+					$('#checkArgue').html("传输数据必须是数字！！");
 					return;
 				}
 				var indata={};
