@@ -151,9 +151,9 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
         if request.user.developer.developer_id:
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/product/list")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
@@ -168,7 +168,7 @@ def login(request):
             ac_pwd = base64.b64decode(al.al_account_pwd)
             user_obj = authenticate(username=ac_id, password=ac_pwd)
             django.contrib.auth.login(request, user_obj)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/product/list")
         except Exception as e:
             pass
     return render(request, "center/login.html", locals())

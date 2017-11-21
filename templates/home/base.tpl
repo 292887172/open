@@ -34,6 +34,9 @@
     .sign_out a:hover{
         color: #ff6202;
     }
+    .sign_out .user-login:hover{
+        color: #fff;
+    }
 </style>
 <body>
 <div class="header">

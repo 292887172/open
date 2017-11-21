@@ -36,8 +36,11 @@ var _hmt = _hmt || [];
 
 </head>
 <style>
-    .sign_out a:hover{
+   .sign_out a:hover{
         color: #ff6202;
+    }
+    .sign_out .user-login:hover{
+        color: #fff;
     }
 </style>
 <body>
