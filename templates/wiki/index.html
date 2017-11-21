@@ -1,0 +1,107 @@
+{% extends 'wiki/base.tpl' %}
+
+{% block style %}
+<style>
+    .protocol-info-main {
+        width: 1200px;
+        color: #626262;
+        font-size: 14px;
+        margin-top: 40px;
+        overflow: hidden;
+    }
+    .protocol-info-main .item {
+        width: 220px;
+        height: 325px;
+        padding-top: 35px;
+        text-align: center;
+        background: #fff;
+        margin: 0 57px;
+        float: left;
+        list-style: none;
+    }
+    .protocol-info-main .item .title {
+        line-height: 28px;
+        font-size: 18px;
+        color: #000;
+        text-align: center;
+        border: none;
+        box-shadow:none;
+        padding: 25px 0 0 0;
+    }
+    .protocol-info-main .item .info-list {
+        line-height: 30px;
+        margin-left: 30px;
+        text-align: left;
+        height: 150px;
+    }
+    .protocol-info-main .item .info-list .info {
+        position: relative;
+        padding-left: 42px;
+    }
+
+    .protocol-info-main .item .info-list .info a {
+        color: #626262;
+    }
+    .protocol-info-main .item .info-list .info a:hover {
+        color: #ff6202;
+    }
+    .w {
+        width: 1200px;
+        margin: 0 26%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <body>
+        <div class="w">
+            <ul class="protocol-info-main">
+                <li class="item">
+                    <h4 class="title">接入指南</h4>
+                    <p class="icon icon-speed"></p>
+                    <div class="info-list">
+                        {% for m in menus1 %}
+                            {% if forloop.counter != 1%}
+                                <p class="info">
+                                    <a href="/wiki/doc_wiki?view=Navicat1#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                            </p>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+                </li>
+                <li class="item">
+                    <h4 class="title">接口文档</h4>
+                    <p class="icon icon-device"></p>
+                    <div class="info-list">
+                       {% for m in menus3 %}
+                            {% if m.menu_is_parent%}
+                                <p class="info">
+                                    <a href="/wiki/doc_wiki?view=Navicat3#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                            </p>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="item">
+                    <h4 class="title">开发者工具</h4>
+                    <p class="icon icon-frontend"></p>
+                    <div class="info-list">
+                       {% for m in menus2 %}
+                            {% if forloop.counter != 1 %}
+                                <p class="info">
+                                    <a href="/wiki/doc_wiki?view=Navicat2#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                            </p>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </body>
+{% endblock %}

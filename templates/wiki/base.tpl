@@ -24,8 +24,6 @@
             padding-bottom: 9999px;
             background-color: #fff;
         }
-
-
         .rightMain {
             float: right;
             width: 894px;
