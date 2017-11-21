@@ -166,7 +166,7 @@ register.filter(cover_str8)
 def cover_user_name(user_id, nickname):
     """    转换微信昵称
     :param user_id:
-    :param nicknamem
+    :param nickname
     :return:
     """
     try:
@@ -185,3 +185,22 @@ def cover_user_name(user_id, nickname):
 
 
 register.filter(cover_user_name)
+
+
+def check_isphone_mail(val, type):
+    """
+    检查是否为电话或者邮箱
+    :param val:
+    :return:
+    """
+    import re
+    if type == 'phone':
+        if re.match('1[34578]\\d{9}', val):
+            return val
+
+    elif type == 'mail':
+        if "@" in val:
+            return val
+    return ''
+
+register.filter(check_isphone_mail)

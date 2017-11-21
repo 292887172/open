@@ -69,22 +69,22 @@
            <div class="ui-success-show">
             <img class="ui-success-img" src="{% static 'image/yes_ok.png' %}">
 
-            <p class="ui-success-text">感谢您的注册，请立即验证邮箱地址。</p>
+            <p class="ui-success-text">感谢您的注册，请验证邮箱激活账号</p>
 
             <!--/row-fluid-->
         </div>
         <div style="margin-top: 45px">
             <dl style="border-bottom: 1px solid #ccc">
                 <dt>登录您的邮箱激活账号!</dt>
-                <dd>我们已经将确认邮件发送到您的邮箱 {{ user }}</dd>
+                <dd>系统已向您的邮箱 {{ user }} 发送了一封激活邮件，请您注意查收！</dd>
                 <dd>请进入邮箱完成激活流程,点击邮件里的确认链接即可登录。</dd>
-                <dd>请您到邮箱中进行确认,确认后直接<a href="">登录</a></dd>
+                <dd>请您到邮箱中进行确认,确认后直接<a href="/center/login">登录</a></dd>
 
 
             </dl>
             <dl>
                 <dt>还没有收到确认邮件?</dt>
-                <dd>1.到垃圾邮件目录里找找，或者<a href="#">点击这里</a>重新发送注册确认邮件</dd>
+                <dd>1.到垃圾邮件目录里找找，或者<a href="">点击这里</a>重新发送注册确认邮件</dd>
                 <dd>2.如果您始终无法验证成功，请<a href="register">重新注册</a>。</dd>
 
 
