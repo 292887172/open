@@ -717,6 +717,7 @@ def callback(request):
                 try:
                     login_status = deal_wxlogin_data(unionid, state)
                 except Exception as e:
+                    login_status = False
                     logging.getLogger('').info('推送微信消息出错'+str(e))
                 return render(request, 'center/wx-login-wait.html', locals())
             access_token = ret.get('access_token', None)
