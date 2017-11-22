@@ -8,7 +8,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
-from common.app_helper import create_app,update_app_fun_widget
+from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
 from common.app_helper import del_app
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -324,6 +324,7 @@ def product_main(request):
                     fun_name = opera_data[i]["name"]
                     opera_data.pop(i)
                     break
+            replace_fun_id(opera_data,del_id)
             save_app(app, opera_data)
             message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)

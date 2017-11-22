@@ -335,6 +335,12 @@ def update_app_config(app_id, app_push_url, app_push_token):
         logging.getLogger("").error(e)
         return False
 
+def replace_fun_id(opera_data, del_id):
+    for i in range(len(opera_data)):
+        id = int(opera_data[i].get("id"))
+        if id > int(del_id):
+            opera_data[i]['id'] = id - 1
+
 
 def reset_app_secret(app_id):
     """
