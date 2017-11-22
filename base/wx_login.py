@@ -3,26 +3,27 @@
 import json
 
 import requests
-import logging,datetime
+import logging, datetime, time
 from base.connection import ReleaseApiMongoDBHandler
 from common.app_api_helper import remove_control_id
 __author__ = 'rdy'
 MSG_NOTIFY_URL = "https://api.53iq.com/1/message/push?access_token=%s"
 
 
-def send_wxlogin_data(did, openid, unionid, token):
+def send_wxlogin_data(did, openid, unionid, token, nickname):
     access_token = 'SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e'
     url = MSG_NOTIFY_URL % access_token
 
     data = dict(
-        msg_type=str('wechat_login'),
+        msg_type='wechat_login',
         device_id=str(did),
         msg_data={
             'openid': openid,
             'unionid': unionid,
-            'token': token
+            'token': token,
+            'nickname': nickname
         },
-        create_time=1,
+        create_time=time.time(),
         sender=''
     )
     touser = [did]
@@ -80,9 +81,11 @@ def deal_wxlogin_data(unionid, did):
         db.devices.update({'_id': device_id}, {"$set": {'controller': c_id}})
 
     # 建立绑定关系
+    nickname = ''
     u = db.users.find_one({"unionid": unionid})
     if u:
         t_openid = u['openid']
+        nickname = u['nickname']
         d = db.devices_users.find({'openid': t_openid, 'active': 1})
         for i in d:
             device_id = i['did']
@@ -105,7 +108,7 @@ def deal_wxlogin_data(unionid, did):
         topic = res['data']['mosquitto_topic']
         openid = str(topic).split("/")[-1]
         logging.getLogger('').info("微信登录token：" + str(token)+">>openid:"+openid)
-        login_state = send_wxlogin_data(did, openid, unionid, token)
+        login_state = send_wxlogin_data(did, openid, unionid, token, nickname)
         return login_state
 
 
