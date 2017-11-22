@@ -18,6 +18,7 @@
         margin: 0 57px;
         float: left;
         list-style: none;
+        border: 1px solid #ccc;
     }
     .protocol-info-main .item .title {
         line-height: 28px;
@@ -42,17 +43,32 @@
     .protocol-info-main .item .info-list .info a {
         color: #626262;
     }
-    .protocol-info-main .item .info-list .info a:hover {
+    .protocol-info-main .item .info-list .info a:hover, .protocol-info-main .item .info-list .info a:active,.protocol-info-main .item .info-list .info a:focus{
         color: #ff6202;
     }
     .w {
         width: 1200px;
         margin: 0 26%;
     }
+    .home-logo{
+        background: #4687DB;
+        text-align: center;
+    }
+    .f-tit{
+        position: absolute;
+        left: 500px;
+        top: 167px;
+        color: #fff;
+    }
+
 </style>
 {% endblock %}
 {% block content %}
     <body>
+        <div class="home-logo">
+            <h2 class="f-tit">欢迎来到文档中心</h2>
+            <img src="/static/image/wiki/banner_1.jpg">
+        </div>
         <div class="w">
             <ul class="protocol-info-main">
                 <li class="item">

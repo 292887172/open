@@ -477,7 +477,7 @@
 				else{
 				    $('#checkLength').css("display","none");
 				    length = parseInt($("#mxsLength").val());
-                    maxValue = Math.pow(2,length);
+                    maxValue = Math.pow(2,length)-1;
                     $("#minInt").val(0);
                     $("#maxInt").val(maxValue);
                     if(flag ){

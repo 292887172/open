@@ -455,21 +455,37 @@
                 $("#del-info"+id).popover('toggle');
 			}
 			function delete_fun(id) {
-			    // 确认删除产品功能
-			    post_data = {'name':'del', 'id':id};
-			    $("#del-info"+id).popover('destroy');
-			    document.getElementById(id).remove();
-                    $.ajax({
-                        url:"#/argue",
-                        type: "POST",
-                        data: post_data,
-                        success: function (data) {
-                        },
-                        error:function () {
-                            console.log("删除失败")
-                        }
-                    });
+                // 确认删除产品功能
+                post_data = {'name': 'del', 'id': id};
+                $("#del-info" + id).popover('destroy');
+                document.getElementById(id).remove();
+
+                // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
+                rows = document.getElementById("grid-table").rows.length;
+                for (var i = 1; i <=rows; i++) {
+                    if (parseInt(id) < i){
+                        $("#"+i).children()[0].innerText = i-1;
+                        $("#"+i).attr('id',i-1);
+                        a = "del(" + (i-1) + ")";
+                        b = "del-info" + (i-1);
+                        $("#del-info"+i).attr("onclick",a);
+                        $("#del-info"+i).attr('id', b)
+                    }
                 }
+                // 异步请求后台删除数据
+                $.ajax({
+                    url:"#/argue",
+                    type: "POST",
+                    data: post_data,
+                    success: function (data) {
+                        console.log("删除成功");
+                        bootbox.alert("该功能已删除")
+                    },
+                    error:function () {
+                        console.log("删除失败")
+                    }
+                });
+            }
                 function fun_close() {
 			    // 关闭删除弹窗
                     $('.del-info').popover('hide');

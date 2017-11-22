@@ -130,7 +130,10 @@ def login(request):
                 msg = "<div class='ui-error-box' ><b></b><p>该帐号已被禁用，暂时无法登录</P></div>"
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
-            uri = request.session[SESSION_REDIRECT_URI]
+            if account == 'admin':
+                uri = "/center"
+            else:
+                uri = request.session[SESSION_REDIRECT_URI]
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             # 将用户登录信息保存到cookie

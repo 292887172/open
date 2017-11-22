@@ -20,8 +20,8 @@
             float: left;
             width: 204px;
             border: 1px solid #dddddd;
-            margin-bottom: -9999px;
-            padding-bottom: 9999px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
             background-color: #fff;
         }
         .rightMain {
