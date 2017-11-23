@@ -56,10 +56,11 @@
         }
         #show-no-data{
             position: relative;
-            width: 200px;
-            height: 200px;
-            left: 42%;
-            top: 40px;"
+            display: none;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 4%;
+            color: #777;
         }
      .help-button{
          background-color: #337ab7;
@@ -178,14 +179,22 @@
         <div class="mt20"></div>
         <table id="grid-table" >
         </table>
+        <div id="show-no-data">
+
+            <div style="    padding: 30px 0 24px 0;">
+                <a role="button" class="btn-blue" onclick="add()">立即定义产品功能</a>
+            </div>
+            <span id="advice-content"></span>
+
+        </div>
         <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
-            <h1 class="headerH1">1.功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
-            <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1byte=8Bit<br></h1>
-            <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
-            <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，导致功能解析错乱，状态不正确</h1>
+            <h1 class="headerH1">1.功能序号：主要关系二进制 数据中改值所在帧结构中位置<br></h1>
+            <h1 class="headerH1">2.长度：是指该功能占用的位数，单位(Bit)。1byte=8Bit<br></h1>
+            <h1 class="headerH1">3.单功能帧：设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
+            <h1 class="headerH1">4.全功能帧：设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，导致功能解析错乱，状态不正确</h1>
          </div>
         <div id="tip2" style="display: none;">
             <div class="prompt-class">
@@ -202,7 +211,7 @@
                 <img style="    position: relative;margin-left: 75%;" src="/static/image/product/tishi.png">
             </div>
         </div>
-        <div id="show-no-data"></div>
+
         <div id="grid-pager"></div>
         <div id="ie-form"></div>
     </div>
@@ -330,7 +339,7 @@
 					altRows: true,
 					multiselect: false,
 	        multiboxonly: true,
-            caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()'  class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+            caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
 
             gridComplete:function(){
 					    $("[data-toggle='popover']").popover();
@@ -356,7 +365,9 @@
                 row = rows.rows;
                 if(row.length==0){
                     $("#grid-table").jqGrid( 'setGridHeight', 'auto');
-                    $("#show-no-data").text("您还未添加任何产品功能");
+                    $("#export-protocol").css('display','none');
+                    $("#show-no-data").css('display','block');
+                    $("#advice-content").text("当前没有任何功能，选择立即定义。");
                 }
                 for ( var i=0;i<row.length ;i++){
                     id = row[i].id;
