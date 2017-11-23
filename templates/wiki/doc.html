@@ -65,8 +65,8 @@
             width: 927px;
             padding: 20px;
             margin: 0 auto;
-            overflow-y: scroll;
-            height: 706px;
+            overflow: hidden;
+
         }
     .markdown-body h3{
         font-size: 16px;
@@ -128,12 +128,12 @@
         margin-top: 110px;
     }
     .leftSide{
-
         overflow-y: visible;
-        height: 790px;
+        position: fixed;
     }
     .box1{
         min-height: 0;
+        max-height: 706px;
     }
     </style>
 {% endblock %}

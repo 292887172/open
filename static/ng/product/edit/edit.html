@@ -73,14 +73,14 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<form method="post" class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 </label>
+                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据点及其参数传输时的变量名，支持英文字母、数字和下划线，以英文字母开头。" title="">?</span></label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID" ng-model="argueFormData.csrfmiddlewaretoken" placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
 											<br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text" id="name" ng-model="argueFormData.Stream_ID" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
 											<br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
@@ -88,7 +88,7 @@
 									</div>
 
                                     <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) </label>
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据域和结果码的长度，单位是bit，例如（开关：1bit）" title="">?</span></label>
 										<div class="col-sm-9 col-xs-9">
 											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength" ng-model="argueFormData.mxsLength" placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
 											<br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
@@ -503,16 +503,14 @@
                                 document.getElementsByName('paramDesc')[1].value='开';
                             }
                         }
-                        else if(length >8 || $("#corpName").val()!='') {
+                        else {
                             for (var i=params.length-1 ;i>=0;i--){
                                 params[i].parentNode.parentNode.remove();
                             }
-                        }
-                        else {
-                            document.getElementsByName('paramDesc')[0].value='';
-                            document.getElementsByName('paramDesc')[1].value='';
-                            document.getElementsByName('paramData')[0].value='';
-                            document.getElementsByName('paramData')[1].value='';
+                            if(length <16){
+                                add();
+                                add();
+                            }
                         }
                     }
 					return true
