@@ -12,7 +12,9 @@
             margin: 0 auto;
 
         }
-
+        body{
+            overflow-x: hidden;
+        }
         .mt20 {
             margin-top: 20px;
         }
@@ -65,8 +67,8 @@
             width: 927px;
             padding: 20px;
             margin: 0 auto;
-            overflow-y: scroll;
-            height: 706px;
+            overflow: hidden;
+
         }
     .markdown-body h3{
         font-size: 16px;
@@ -128,12 +130,18 @@
         margin-top: 110px;
     }
     .leftSide{
-
         overflow-y: visible;
-        height: 790px;
+        position: fixed;
     }
     .box1{
         min-height: 0;
+        max-height: 706px;
+    }
+    @media screen and (max-width: 1108px) {
+        .relative{
+            width: 71%;
+        }
+
     }
     </style>
 {% endblock %}
