@@ -174,10 +174,10 @@ angular.module('Product.edit', ['ngRoute'])
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	console.log("修改成功!");
+                    	console.log("edit success!");
                     }
                     else if(data=="add_success"){
-                    	console.log("添加成功!");
+                    	console.log("add success!");
                     }
 					location.href='#/argue';
                 })
