@@ -558,7 +558,7 @@
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
                         <p class="product-info-p" >
-                        产品分类：油烟机
+                        产品分类：{{ app.app_device_type| category_detail}}
                         </p>
                             <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">

@@ -115,6 +115,8 @@ def deal_json(app):
             i['type'] = 'error'
         elif data['paramType'] == 4:
             i['type'] = 'enum'
+        elif data['paramType'] == 5:
+            i['type'] = 'timer'
         if str(data["isControl"]) == '1':
             i['permission'] = '777'
             j['permission'] = "读写"
