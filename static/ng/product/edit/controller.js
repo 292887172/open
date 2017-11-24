@@ -16,10 +16,14 @@ angular.module('Product.edit', ['ngRoute'])
          * @constructor
          */
         $scope.Save = function () {
-
         	var state = checkID();
-			if (state !='correct' || !checkName() || !checkLength()){
+			if (state !='correct' || !checkName()){
 				return;
+			}
+			if($.trim($('#mxsLength').val())==''){
+				$('#checkLength').html("长度不能为空!!");
+				$('#checkLength').css("display","block");
+				return ;
 			}
 				var min=0;
 				var max=0;
@@ -170,10 +174,10 @@ angular.module('Product.edit', ['ngRoute'])
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	console.log("修改成功!");
+                    	console.log("edit success!");
                     }
                     else if(data=="add_success"){
-                    	console.log("添加成功!");
+                    	console.log("add success!");
                     }
 					location.href='#/argue';
                 })

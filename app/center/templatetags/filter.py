@@ -70,7 +70,7 @@ register.filter(num_app)
 def category_detail(obj):
     try:
         type = str(obj)
-        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '0': '自定义'}
+        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '0': '自定义'}
         return category[type]
     except Exception as e:
         print(e)

@@ -1,6 +1,7 @@
 {% extends 'wiki/base.tpl' %}
 
 {% block style %}
+    <link rel="stylesheet" href="/static/common/css/font-awesome.min.css">
 <style>
     .protocol-info-main {
         width: 1014px;
@@ -12,7 +13,7 @@
     }
     .protocol-info-main .item {
         width: 220px;
-        height: 325px;
+        height: 385px;
         padding-top: 35px;
         text-align: center;
         background: #fff;
@@ -61,7 +62,17 @@
         top: 167px;
         color: #fff;
     }
-
+    .set-radius{
+        width: 90px;
+        height: 90px;
+        border-radius: 52px;
+        border: 1px solid;
+        margin-left: 55px;
+        margin-bottom: 20px;
+    }
+    .fa-4x{
+            margin-top: 16px;
+    }
 </style>
 {% endblock %}
 {% block content %}
@@ -74,7 +85,12 @@
             <ul class="protocol-info-main">
                 <li class="item">
                     <h4 class="title">接入指南</h4>
-                    <p class="icon icon-speed"></p>
+                    <div class="set-radius">
+                        <p class="fa fa-navicon fa-4x"></p>
+                    </div>
+
+
+
                     <div class="info-list">
                         {% for m in menus1 %}
                             {% if forloop.counter != 1%}
@@ -89,7 +105,9 @@
                 </li>
                 <li class="item">
                     <h4 class="title">接口文档</h4>
-                    <p class="icon icon-device"></p>
+                    <div class="set-radius">
+                        <p class="fa fa-file fa-4x"></p>
+                    </div>
                     <div class="info-list">
                        {% for m in menus3 %}
                             {% if m.menu_is_parent%}
@@ -103,7 +121,9 @@
                 </li>
                 <li class="item">
                     <h4 class="title">开发者工具</h4>
-                    <p class="icon icon-frontend"></p>
+                    <div class="set-radius">
+                        <p class="fa fa-wrench fa-4x"></p>
+                    </div>
                     <div class="info-list">
                        {% for m in menus2 %}
                             {% if forloop.counter != 1 %}
