@@ -23,7 +23,7 @@ def send_wxlogin_data(did, openid, unionid, token, nickname):
             'token': token,
             'nickname': nickname
         },
-        create_time=time.time(),
+        create_time=int(time.time()),
         sender=''
     )
     touser = [did]
