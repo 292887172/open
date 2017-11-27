@@ -7,6 +7,7 @@
         margin: 0;
         overflow:auto;
       }
+
       .addButton{
             padding: 4px;
           background: #327AB7;
@@ -238,6 +239,8 @@
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
+    <script src="/static/common/js/jquery.sortable.js"></script>
+    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -387,14 +390,11 @@
                     document.getElementById('grid-table').style.width='938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
                     tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-                     $( "#grid-table" ).children('tbody').sortable();
-                    $( "#grid-table" ).children('tbody').disableSelection();
+                    $("#grid-table").children('tbody').sortable();
+                        $("#grid-table").children('tbody').disableSelection();
                 }
 
             });
-
-
-
 
             function show_table(item) {
                 $(item).nextAll('div').show();

@@ -181,21 +181,26 @@
             padding: 10px;
             font-size: 12px;
         }
-
+        .goods-list{
+            width: 346px;
+            height: 186px;
+            padding: 14px;
+            margin-right: 36px;
+        }
         .goods-list dl dt {
             width: auto;
             height: auto;
         }
 
         .goods-list dl dd {
-            margin-left: 85px;
+            margin-left: 96px;
             padding-top: 6px;
         }
 
         .goods-list dl dt img {
             width: 70px;
             height: 75px;
-            margin-top: 4px;
+            margin-top: 8px;
         }
 
         .goods-list dl dd .goods-title {
@@ -214,7 +219,7 @@
         }
 
         .goods-list dl dd.ui-control {
-            padding-top: 85px;
+            padding-top: 97px;
             margin-left: 0;
         }
 
@@ -382,6 +387,9 @@
         }
         .goods-title a:hover {
             text-decoration: none;
+        }
+        .goods-list dl dd p{
+            width: 100%;
         }
         .modal{
                 text-align: center;
@@ -557,10 +565,7 @@
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
-                        <p class="product-info-p" >
-                        产品分类：{{ app.app_device_type| category_detail}}
-                        </p>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
+                            <p class="product-info-p">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
                                 <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
@@ -569,8 +574,11 @@
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
+                            <p class="product-info-p" >
+                                产品分类：{{ app.app_device_type| category_detail}}
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #1ab667">已发布</label></p>
+                                    style=" margin-left: 8%;color: #1ab667">已发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -608,7 +616,8 @@
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
@@ -617,8 +626,11 @@
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
+                            <p class="product-info-p" >
+                                产品分类：{{ app.app_device_type| category_detail}}
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #f39800">审核中</label></p>
+                                    style=" margin-left: 8%;color: #f39800">审核中</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -660,7 +672,7 @@
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
 
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
@@ -674,7 +686,7 @@
                                 产品分类：{{ app.app_device_type| category_detail}}
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #333">未发布</label></p>
+                                    style="margin-left: 8%;color: #333">未发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -715,7 +727,7 @@
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                 <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                            <p class="product-info-p">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
                                 <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫下载最新UI"></label>
                                 </a>
@@ -724,8 +736,11 @@
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
+                            <p class="product-info-p" >
+                                产品分类：{{ app.app_device_type| category_detail}}
+                            </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #c91423">未通过</label></p>
+                                    style=" margin-left: 8%;color: #c91423">未通过</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">

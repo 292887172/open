@@ -23,29 +23,21 @@
     <![endif]-->
     {% block style %}
     {% endblock %}
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?9088d602c7fd9fd4bfb8f3472bd734b7";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
+    <style>
+            .sign_out a:hover{
+                color: #ff6202;
+            }
+            .sign_out a.user-login{
+                background-color: #FF6F37
+            }
+            .sign_out .user-login:hover{
+                color: #fff;
+                background-color: #ff6202
+        }
+    </style>
 </head>
-<style>
-    .sign_out a:hover{
-        color: #ff6202;
-    }
-    .sign_out a.user-login{
-        background-color: #FF6F37
-    }
-    .sign_out .user-login:hover{
-        color: #fff;
-        background-color: #ff6202
-    }
-</style>
+
+
 <body>
 <div class="header">
     <div class="wrapper">
@@ -109,8 +101,17 @@ var _hmt = _hmt || [];
 
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>
 </div>
-<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
 <script src="/static/assets/js/bootstrap.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?9088d602c7fd9fd4bfb8f3472bd734b7";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 {% block end_fixed_script %}{% endblock %}
 {% block end_script %}{% endblock %}
 </body>
