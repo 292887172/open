@@ -85,8 +85,12 @@
                         {% for m in menus1 %}
                             {% if forloop.counter != 1%}
                                 <p class="info">
+                                {% if m.menu_name == "接入指南" %}
+                                    <b><a href="/wiki/doc_wiki?view=Navicat1#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a></b>
+                                {% else %}
                                     <a href="/wiki/doc_wiki?view=Navicat1#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
-                            </p>
+                                {% endif %}
+                                </p>
                             {% endif %}
 
                         {% endfor %}
@@ -96,14 +100,16 @@
                 <li class="item">
                         <h4 class="title">开发者工具</h4>
                         <div class="info-list">
+{#                            <p class="info">#}
+{#                                    <a href="/debug/debug_interface" target="_self">接口调试</a>#}
+{#                            </p>#}
+{#                            <p class="info">#}
+{#                                    <a href="/debug/debug_device" target="_self">设备调试</a>#}
+{#                            </p>#}
                             <p class="info">
-                                    <a href="/debug/debug_interface" target="_self">接口调试</a>
-                            </p>
-                            <p class="info">
-                                    <a href="/debug/debug_device" target="_self">设备调试</a>
-                            </p>
-                            <p class="info">
+                                <b>
                                     <a href="/wiki/doc_wiki?view=Navicat2#10000" target="_self">下载中心</a>
+                                </b>
                             </p>
                            {% for m in menus2 %}
                                 {% if m.menu_parent_id > 0 %}
