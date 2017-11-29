@@ -8,7 +8,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf
-from common.app_helper import create_app,update_app_fun_widget
+from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
 from common.app_helper import del_app
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -203,7 +203,7 @@ def product_add(request):
                 except Exception as e:
                     print(e)
                     pass
-                url = '/product/main/?ID=' + str(result.app_id) + '#/content'
+                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
                 return HttpResponseRedirect(url)
             else:
                 ret["code"] = 100003
@@ -240,6 +240,7 @@ def product_main(request):
         if res:
             return HttpResponse(res)
         if not request.user.developer.developer_id:
+            developer = ''
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -250,6 +251,7 @@ def product_main(request):
             # user_apps = developer.developer_related_app.get(app_id=int(app_id))
         except Exception as e:
             print(e)
+            logging.getLogger('').info("应用出错",str(e))
             return HttpResponseRedirect(reverse("home/guide"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
@@ -322,6 +324,7 @@ def product_main(request):
                     fun_name = opera_data[i]["name"]
                     opera_data.pop(i)
                     break
+            replace_fun_id(opera_data,del_id)
             save_app(app, opera_data)
             message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -537,12 +540,15 @@ def wx_scan_code(request):
             "signature": signature,
             "rawString": string1
         }
-        name = request.GET.get('name', None)
         key = request.GET.get('key', None)
-        date = request.GET.get('date', None)
         device_id = request.GET.get('id', None)
-        if name and key and date:
-            return render(request, 'product/wexin.html', locals())
+        if key:
+            query_app = App.objects.filter(app_appid__endswith = key)
+            if query_app:
+                app = query_app[0]
+                return render(request, 'product/wexin.html', locals())
+            else:
+                return HttpResponse("该key不存在")
         elif device_id:
             return render(request, 'product/control.html', locals())
         else:
@@ -551,6 +557,9 @@ def wx_scan_code(request):
         device_id = request.POST.get("id", "")
         key = request.POST.get("key", "")
         url = DOWNLOAD_ZIP.format(key)
+        code = requests.get(url).status_code
+        if code == 404:
+            url = ""
         TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
         url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
         data = {

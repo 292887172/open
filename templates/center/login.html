@@ -6,12 +6,15 @@
 {% endblock %}
 {% block style %}
     <style>
+    body, html{
+        background: initial;
+    }
     body{
 
         background: url("{% static 'image/center/login_bg.jpg' %}") center center / cover no-repeat fixed;
         width: 100%;
         height: 100%;
-        position: fixed;
+
 
     }
     body:before{
@@ -57,6 +60,7 @@
         .container-narrow {
             width: 95%;
             max-width: 430px;
+            min-width: 400px;
             margin: 10% auto;
         }
 
@@ -197,7 +201,7 @@
         left: 35px;
     }
     a{
-        color: #c9c9c9;
+        color: #fff;
     }
     .ui-partner{
         margin-top: 105px;
@@ -259,7 +263,7 @@
 {% endblock %}
 
 {% block menu %}
-
+    <li><a href="{% url 'home' %}">首页</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
     <li><a href="/wiki/">开发文档</a></li>
 {% endblock %}

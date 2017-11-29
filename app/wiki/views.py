@@ -14,13 +14,22 @@ from model.wiki.wikiapi import Api, ApiDoc
 
 def wiki(request):
     """
-    文档页面
+    文档导航页面
     :param request:
     :return:
     """
-    # data = Api.objects.all()
+    menus1,menus2,menus3 = nav_content()
+    return render(request, "wiki/index.html", locals())
+
+
+def nav_content(name=''):
+    menus1 = []
+    menus2 = []
+    menus3 = []
+    parent_id2 = ''
+    parent_id1 = ''
+    temp = ["开发者必读", '开发者工具']
     dm = DocMenu.objects.all()
-    menus = []
     for i in dm:
         menu = dict()
         menu['menu_id'] = i.dm_id
@@ -31,7 +40,50 @@ def wiki(request):
         menu['menu_ordernum'] = i.dm_order_num
         menu['menu_parent_id'] = i.dm_parent_id
         menu['menu_class'] = i.dm_class
-        menus.append(menu)
+        if i.dm_name in temp[0]:
+            parent_id1 = i.dm_id
+            menus1.append(menu)
+        elif i.dm_name in temp[1]:
+            parent_id2 = i.dm_id
+            menus2.append(menu)
+    for i in dm:
+        menu = dict()
+        menu['menu_id'] = i.dm_id
+        menu['menu_name'] = i.dm_name
+        menu['menu_is_parent'] = i.dm_is_parent
+        menu['menu_url'] = i.dm_url
+        menu['menu_depth'] = i.dm_depth
+        menu['menu_ordernum'] = i.dm_order_num
+        menu['menu_parent_id'] = i.dm_parent_id
+        menu['menu_class'] = i.dm_class
+        if i.dm_parent_id == parent_id1:
+            menus1.append(menu)
+        elif i.dm_parent_id == parent_id2 and i.dm_name !="接口在线调试":
+            menus2.append(menu)
+        elif i.dm_id!=parent_id1 and i.dm_id!=parent_id2:
+            menus3.append(menu)
+    if name == '':
+        return [menus1,menus2,menus3]
+    elif name =='Navicat1':
+        return menus1
+    elif name =='Navicat2':
+        default_dubug = {'menu_id': '10000', 'menu_name': '下载中心', 'menu_url': '/sdk', 'menu_parent_id': parent_id2, 'menu_ordernum': '10000', 'menu_depth': '2'}
+        menus2.append(default_dubug)
+        return menus2
+    elif name =='Navicat3':
+        return menus3
+
+
+def doc_wiki(request):
+    """
+    文档页面
+    :param request:
+    :return:
+    """
+    # data = Api.objects.all()
+
+    view = request.GET.get("view", '')
+    menus = nav_content(view)
     # 保存菜单到session中
     request.session['menus'] = json.dumps(menus)
     return render(request, "wiki/doc.html", locals())

@@ -1,4 +1,5 @@
- <style>
+
+<style>
         html, body {
         width: 100%;
         height: 100%;
@@ -6,18 +7,18 @@
         margin: 0;
         overflow:auto;
       }
-        .ui-widget-header a {
-            color: #337ab7;
-        }
+
       .addButton{
-            box-shadow: 2px 2px 4px;
+            padding: 4px;
+          background: #327AB7;
+          color:#fff;
             font-weight: 500;
             text-decoration:none;
             cursor:pointer;
             border-radius: 4px;
       }
       .addButton:hover{
-          color: #23527c;
+          color: #fff;
         text-decoration:none;
         cursor:pointer;
         font-weight: 800;
@@ -30,6 +31,7 @@
             background: #9EBEE4;
             width: 937px;
             margin-top: 20px;
+            z-index: auto;
         }
         input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {
             background-color: #337ab7;
@@ -56,10 +58,11 @@
         }
         #show-no-data{
             position: relative;
-            width: 200px;
-            height: 200px;
-            left: 42%;
-            top: 40px;"
+            display: none;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 4%;
+            color: #777;
         }
      .help-button{
          background-color: #337ab7;
@@ -118,28 +121,22 @@
         border: 1px solid transparent;
         border-radius: 6px;
     }
-    .btn-default, .btn-default.focus, .btn-default:focus{
-        color: #788188 !important;
-        background-color: #fff !important;
-        border-color: #dbe2e7;
-        border-bottom-color: #d5dde3;
-        -webkit-box-shadow: 0 1px 1px rgba(90,90,90,0.1);
-        box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+    .btn-default, .btn-default.focus, .btn-default:focus {
+        color: #333 !important;
+        background-color: #dddddd !important;
     }
     .btn-default:hover{
-        color: #788188 !important;
-        background-color: #f2f2f2 !important;
-        border-color: #c2ced6;
+        color: #333 !important;
+        background-color: #c6c6c6 !important;
     }
     .btn-primary, .btn-primary.focus, .btn-primary:focus {
         color: #fff !important;
-        background-color: #545ca6 !important;
-        border-color: #545ca6!important;
+        background-color: #ff6f37 !important;
     }
     .btn.btn-primary:hover{
         color: #fff !important;
-        background-color: #464d8b!important;
-        border-color: #464d8b!important;
+        background-color: #ff6202 !important;
+        border-color: #ff6202 !important;
     }
     .bootbox-body{
         color: #788188;
@@ -147,6 +144,37 @@
     }
      .popover-title{
          border-radius: 5px 5px 0 0;
+         background: none;
+         border-bottom: none;
+     }
+     .popover.left {
+         margin-left: -27px;
+     }
+         .popover-content {
+        padding: 20px 15px;
+    }
+     .popover-content button{
+             padding: 4px 15px 4px 15px;
+     }
+    .modal{
+            text-align: center;
+    }
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+     .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+     .tips-tbl{
+         max-width: none;
+     }
+     .btn-blue, .btn-blue2{
+         background-color: #FF6F37;
      }
     </style>
     <div class="main-container box2">
@@ -156,14 +184,22 @@
         <div class="mt20"></div>
         <table id="grid-table" >
         </table>
-        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 产品功能填写规则</h1>
+        <div id="show-no-data">
+
+            <div style="    padding: 30px 0 24px 0;">
+                <a role="button" class="btn-blue" onclick="add()">立即定义产品功能</a>
+            </div>
+            <span id="advice-content"></span>
+
+        </div>
+        <h1 class="headerH1"><span class="help-button" onmouseover="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
-            <h1 class="headerH1">1.id表示该产品功能序号，主要关系二进制 数据中改值所在帧结构中位置<br></h1>
-            <h1 class="headerH1">2.长度是指该功能占用的位数，单位(Bit)。1Byte=8Bit<br></h1>
-            <h1 class="headerH1">3.若是单功能帧，设备只需要传输设备功能的id紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
-            <h1 class="headerH1">4.全功能帧，设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和id对应位置不匹配，导致功能解析错乱，状态不正确</h1>
+            <h1 class="headerH1">1.功能序号：主要关系二进制 数据中改值所在帧结构中位置<br></h1>
+            <h1 class="headerH1">2.长度：是指该功能占用的位数，单位(Bit)。1byte=8Bit<br></h1>
+            <h1 class="headerH1">3.单功能帧：设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
+            <h1 class="headerH1">4.全功能帧：设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，导致功能解析错乱，状态不正确</h1>
          </div>
         <div id="tip2" style="display: none;">
             <div class="prompt-class">
@@ -180,7 +216,7 @@
                 <img style="    position: relative;margin-left: 75%;" src="/static/image/product/tishi.png">
             </div>
         </div>
-        <div id="show-no-data"></div>
+
         <div id="grid-pager"></div>
         <div id="ie-form"></div>
     </div>
@@ -197,7 +233,7 @@
         <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
         <span style="    padding-left: 40%;">
-            <a  onclick="new_close()" class="btn-blue">知道了</a>
+            <a  href="" onclick="new_close()"  class="btn-blue">知道了</a>
         </span>
 
     </div>
@@ -206,7 +242,8 @@
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
-    <script src="/static/js/product/bootbox.js"></script>
+    <script src="/static/common/js/jquery.sortable.js"></script>
+    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -254,64 +291,64 @@
                         $("#tip2").css("display","none");
                     }
                 }
-            jQuery(function($) {
-				jQuery("#grid-table").jqGrid({
-					url:"#/argue",
-					postData:{"name": "list"},
-					datatype: "json",
-					mtype:"POST",
-					colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
-					colModel:[
-						{name:'id' , width:107,align:'center'},
 
-						{name:'Stream_ID', width:143},
-                        {name:'mxsLength',width:100,align:'center'},
-						{name:'name', width:127,align:'center'},
-						{name:'mxsNum', width:120,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="" || cellvalue=="0"){
-										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
-									}else{
-                                        var id="canshu"+rowObject.id;
-                                        group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
-                                        return group;
-									}
-							}
-						},
-						{name:'isControl', width:108,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="1"){
-										return '是';
-									}else{
-										return '否';
-									}
-							}
-						},
-						{name:'state', width:131,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="1"){
+            jQuery("#grid-table").jqGrid({
+                url:location.href,
+                postData:{"name": "list"},
+                datatype: "json",
+                mtype:"POST",
+                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
+                colModel:[
+                    {name:'id' , width:107,align:'center'},
 
-										return '<input id="state-temp'+rowObject.id+'" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+                    {name:'Stream_ID', width:143},
+                    {name:'mxsLength',width:100,align:'center'},
+                    {name:'name', width:127,align:'center'},
+                    {name:'mxsNum', width:120,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="" || cellvalue=="0"){
+                                    return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
+                                }else{
+                                    var id="canshu"+rowObject.id;
+                                    group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
+                                    return group;
+                                }
+                        }
+                    },
+                    {name:'isControl', width:108,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
+                                    return '是';
+                                }else{
+                                    return '否';
+                                }
+                        }
+                    },
+                    {name:'state', width:131,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
 
-									}else{
-										return '<input id="state-temp'+rowObject.id+'"  onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-									}
-							}
-						},
-						{name:'operation', width:150,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
-						}
-						}
-					],
-					//height:600,
-					viewrecords : true,
-					altRows: true,
-					multiselect: false,
-	        multiboxonly: true,
-            caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()'  class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+                                    return '<input id="state-temp'+rowObject.id+'" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
 
-            gridComplete:function(){
+                                }else{
+                                    return '<input id="state-temp'+rowObject.id+'"  onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
+                                }
+                        }
+                    },
+                    {name:'operation', width:150,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                        return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
+                    }
+                    }
+                ],
+                //height:600,
+                viewrecords : true,
+                altRows: true,
+                multiselect: false,
+                multiboxonly: true,
+                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+
+                gridComplete:function(){
 					    $("[data-toggle='popover']").popover();
                     $('.ui-jqgrid-sortable').eq(0).attr("align","center");
                     //$('.ui-jqgrid-sortable').eq(2).attr("align","center");
@@ -329,38 +366,39 @@
                             $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 
 							});
-	        },
-            loadComplete:function (rows) {
+                },
+                loadComplete:function (rows) {
 
+                    $("[data-toggle='popover']").popover();
+                    row = rows.rows;
+                    if(row.length==0){
+                        $("#grid-table").jqGrid( 'setGridHeight', 'auto');
+                        $("#export-protocol").css('display','none');
+                        $("#show-no-data").css('display','block');
+                        $("#advice-content").text("当前没有任何功能，选择立即定义。");
+                    }
+                    for ( var i=0;i<row.length ;i++){
+                        id = row[i].id;
+                        streamID[id]=row[i].Stream_ID;
 
-                $("[data-toggle='popover']").popover();
-                row = rows.rows;
-                if(row.length==0){
-                    $("#grid-table").jqGrid( 'setGridHeight', 'auto');
-                    $("#show-no-data").text("该产品您还没有添加参数");
+                        temp=document.getElementById("canshu"+id);
+                        $(temp).parents('td').removeAttr('title');
+                        if (rows.check_state >= 1) {
+                        document.getElementById("state-temp"+id).setAttribute('disabled','true');
+                        document.getElementById("edit-info"+id).removeAttribute('href');
+                        document.getElementById("del-info"+id).removeAttribute('onclick');
+                        document.getElementById("del-info"+id).removeAttribute('href');
+                    }
+                    }
+                    document.getElementById('grid-table').style.width='938px';
+                    tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
+                    tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
+                    $("#grid-table").children('tbody').sortable();
+                        $("#grid-table").children('tbody').disableSelection();
                 }
 
+            });
 
-                for ( var i=0;i<row.length ;i++){
-                    id = row[i].id;
-                    streamID[id]=row[i].Stream_ID;
-
-                    temp=document.getElementById("canshu"+id);
-                    $(temp).parents('td').removeAttr('title');
-                    if (rows.check_state >= 1) {
-                    document.getElementById("state-temp"+id).setAttribute('disabled','true');
-                    document.getElementById("edit-info"+id).removeAttribute('href');
-                    document.getElementById("del-info"+id).removeAttribute('onclick');
-                    document.getElementById("del-info"+id).removeAttribute('href');
-                }
-                }
-                document.getElementById('grid-table').style.width='938px';
-                tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
-                tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-            }
-				});
-				//$("#loadingDiv").hide();
-			});
             function show_table(item) {
                 $(item).nextAll('div').show();
                 $(item).nextAll('div').children('table').show()
@@ -372,17 +410,16 @@
 			function state(id) {
 			    post_data = {'name':'state','id':id};
 			    $.ajax({
-                   url:"#/argue",
+                   url:location.href,
                     type:"POST",
                     data:post_data,
                     async :false,
                     success: function (data) {
                        if(data=='change_success'){
-                           alert("修改成功");
                        }
                         },
                     error:function (data) {
-                        alert("修改失败");
+                        console.log("启用失败");
                     }
                 });
             }
@@ -392,7 +429,7 @@
 			function export_parameter(){
                 var rows = $("#grid-table").getRowData();
                 if(rows == ''){
-                    alert("暂无参数信息！");
+                    bootbox.alert("暂无参数信息！");
                     return;
                 }
                 bootbox.confirm("确定导出控制协议参数吗?", function (result) {
@@ -427,36 +464,56 @@
                 }
             });
 			function del(id){
-			    $(".del-info").popover({
+                // 选择是否删除产品功能
+			    $("#del-info"+id).popover({
                     trigger:'manual',
                     placement: 'left',
                     html: 'true',
-                    title : '<span class="text-info">确定删除该功能？</span>',
-                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id+'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
+                    title : '<span class="text-info">确定要删除该功能点吗 ？</span>',
+                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id +'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
                   });
-			    $(".del-info").popover('hide');
+                $('.del-info').popover('hide');
                 $("#del-info"+id).popover('toggle');
 			}
 			function delete_fun(id) {
-			    post_data = {'name':'del', 'id':id};
-                    $.ajax({
-                        url:"#/argue",
-                        type: "POST",
-                        data: post_data,
-                        success: function (data) {
-                            console.log(data);
-                            if(data=="del_success")
-                            {
-                                alert("删除成功");
-                            }
-                            location.reload();
-                        },
-                        error:function () {
-                            bootbox.alert("删除失败")
-                        }
-                    });
+                // 确认删除产品功能
+                post_data = {'name': 'del', 'id': id};
+                $("#del-info" + id).popover('destroy');
+                if(isIE()){
+                    document.getElementById(id).removeNode(true);
                 }
-                function fun_close() {
-                    $('.del-info').popover('hide');
+                else{
+                    document.getElementById(id).remove();
                 }
+                // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
+                rows = document.getElementById("grid-table").rows.length;
+                for (var i = 1; i <=rows; i++) {
+                    if (parseInt(id) < i){
+                        $("#"+i).children()[0].innerText = i-1;
+                        $("#"+i).attr('id',i-1);
+                        a = "del(" + (i-1) + ")";
+                        b = "del-info" + (i-1);
+                        $("#del-info"+i).attr("onclick",a);
+                        $("#del-info"+i).attr('id', b)
+                    }
+                }
+                // 异步请求后台删除数据
+                $.ajax({
+                    url:location.href,
+                    type: "POST",
+                    data: post_data,
+                    success: function (data) {
+                        console.log("删除成功");
+                        bootbox.alert("该功能已删除")
+                    },
+                    error:function () {
+                        console.log("删除失败")
+                    }
+                });
+            }
+            function fun_close() {
+            // 关闭删除弹窗
+                $('.del-info').popover('hide');
+            }
+
 		</script>

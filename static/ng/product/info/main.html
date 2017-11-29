@@ -6,7 +6,7 @@
         color: #999;
         top: 36px;
         left: -107px;
-        height: 33px;
+        height: 37px;
     }
     .vague {
         width: 360px;
@@ -34,6 +34,12 @@
     #loadingDiv{
             top: 24%;
     }
+    .boxInfo {
+        padding-bottom: 0;
+    }
+    .fmInfo {
+        padding-bottom: 10px;
+    }
 </style>
 <div class="box2 relative">
     <div class="hl-help">
@@ -52,8 +58,8 @@
                     <dd>
                         <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" onblur="checkProductName()" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
                         <span class="tips-error hiden" id="productNameTips"></span>
-                        <div id="checkProduct" style="color:red;display:none;top: -29px;left: 204px;position: relative;"></div>
                     </dd>
+                     <dd id="checkProduct" style="color:red;display:none;left: 20px;position: relative;"></dd>
                 </dl>
 
                 <dl class="fmInfo">
@@ -94,7 +100,6 @@
                 </dl>
             </div>
             <div class="boxInfo">
-                <h3 class="tit5">产品信息</h3>
                 <dl class="fmInfo">
                     <dt>产品描述</dt>
                     <dd>

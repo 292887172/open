@@ -122,20 +122,15 @@
         <div class="leftSide">
             <div class="box1">
                 <!-- 左侧菜单 begin -->
-                {% for a in api %}
-                <div class="menuBox">
-
-                    <ul>
-                        <li><a href="javascript:void(0)"><i class="icon11"></i>{{ a.api_name }}</a></li>
-
-                    </ul>
-                </div>
-                {% endfor %}
-                <div class="menuBox">
-                    <ul>
-                        <li><a href="javascript:void(0)"><i class="icon11"></i>自定义组合</a></li>
-                    </ul>
-                </div>
+                 <div class="menuBox">
+                       <h5 class="h5pro" onclick="ul_toggle(this)" style="color: rgb(255, 98, 2);"><i class="icon-caret-right icon-caret-down"></i><p style="padding-left: 17px;">接口调试</p></h5>
+                       <ul hidden="hidden" class="menuUl" style="display: block;">
+                            {% for a in api %}
+                                <li><a href="javascript:void(0)"><i class="menu-li"></i>{{ a.api_name }}</a></li>
+                            {% endfor %}
+                            <li><a href="javascript:void(0)"><i class="menu-li"></i>自定义组合</a></li>
+                       </ul>
+                 </div>
             </div>
         </div>
         <div class="rightMain">

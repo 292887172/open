@@ -11,11 +11,12 @@ from common.app_helper import update_app_fun_widget
 from util.excelutil import write_data
 from model.center.app import App
 
+
 def write_excel(items, filename):
     headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
-               'mxsLength': '长度(bit)', 'widget': '装置', 'command': '全指令', 'permission': '权限'}
+               'mxsLength': '长度(bit)', 'widget': '单位', 'permission': '权限'}
     items['functions'].insert(0, headers)
-    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'widget', 'command', 'permission']
+    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'widget', 'permission']
     excel_name = write_data(items, header, filename)
     return excel_name
 
@@ -71,6 +72,9 @@ def deal_json(app):
     e_data['secret'] = app.app_appsecret
     e_data['key'] = key[len_key:]
     e_data['model'] = app.app_model
+    e_data['command'] = app.app_command
+    from common.smart_helper import get_factory_name
+    e_data['band_name'] = get_factory_name(app.app_factory_uid)
     j_data['name'] = app.app_name
     j_data['model'] = app.app_model
     j_data['key'] = key[len_key:]
@@ -85,15 +89,14 @@ def deal_json(app):
         j = {}
         j["remarks"] = ""
         for l in range(len(data["mxs"])):
-            j["remarks"] += data["mxs"][l]["data"]
-            j["remarks"] += data["mxs"][l]["desc"]
+            j["remarks"] += data["mxs"][l]["data"] + ' '
+            j["remarks"] += data["mxs"][l]["desc"] + ' '
         j['id'] = data['id']
         j["name"] = data["name"]
         j["Stream_ID"] = data["Stream_ID"]
         j["mxsLength"] = data["mxsLength"]
-        j["command"] = app.app_command
         j["values"] = json.dumps([data["min"], data["max"]])
-        j['widget'] = update_app_fun_widget(data)
+        j['widget'] = data['corpName']
 
         # 写入json的数据
         i = {}
@@ -104,7 +107,6 @@ def deal_json(app):
         i["title"] = data["name"]
         i["length"] = data["mxsLength"]
         i['unit'] = data['corpMark']
-        i['widget'] = update_app_fun_widget(data)
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
@@ -113,6 +115,8 @@ def deal_json(app):
             i['type'] = 'error'
         elif data['paramType'] == 4:
             i['type'] = 'enum'
+        elif data['paramType'] == 5:
+            i['type'] = 'timer'
         if str(data["isControl"]) == '1':
             i['permission'] = '777'
             j['permission'] = "读写"

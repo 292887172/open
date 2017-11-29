@@ -5,6 +5,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
@@ -15,17 +16,16 @@
     <link rel="stylesheet" href="{% static 'css/wiki/global.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
+
     <style>
         .leftSide {
             float: left;
             width: 204px;
             border: 1px solid #dddddd;
-            margin-bottom: -9999px;
-            padding-bottom: 9999px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
             background-color: #fff;
         }
-
-
         .rightMain {
             float: right;
             width: 894px;
@@ -110,6 +110,16 @@
         .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
+        .sign_out a:hover{
+            color: #ff6202;
+        }
+        .sign_out a.user-login{
+        background-color: #FF6F37
+    }
+    .sign_out .user-login:hover{
+        color: #fff;
+        background-color: #ff6202
+    }
     </style>
     {% block style %}
 
@@ -130,20 +140,14 @@
 <div class="wrapper">
 <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
-    <ul class="nav">
         {% block menu %}
-            {% if user.developer.developer_id and user.developer.developer_check_status >= 1%}
-                <li><a href="{% url 'product/list' %}">产品管理</a></li>
-            {% endif %}
-                <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-                <li><a href="/wiki/" class="nav-current" >开发文档</a></li>
+
         {% endblock %}
-    </ul>
 <div class="sign_out">
         {% if user.account_id %}
                 <!-- 登录 -->
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
+                       style="text-decoration: none;">我的账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
@@ -154,8 +158,10 @@
                         {% endif %}
 
                         <a rel="nofollow" href="/center?" class="login_out" onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
-                        <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
-                        <a rel="nofollow" id="modify_pwd_id" href="/guide#" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                        {% if not user.account_nicknam %}
+                            <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
+                        {% endif %}
+                        <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
             {% else %}
@@ -182,10 +188,8 @@
     <ul>
         <li><a href="http://www.53iq.com/about" target="_blank" rel="nofollow">关于53iq</a></li>
         <li>|</li>
-        <li><a href="/guide">53iq云</a></li>
-        <li>|</li>
 
-        <li><a href="/guide#contact" target="_blank" rel="nofollow">联系我们</a></li>
+        <li><a href="/contact" target="" rel="nofollow">联系我们</a></li>
 
     </ul>
     <p>Copyright©2015 53iq 版权所有</p><a name="chaper" class="ui-scroll-top"
@@ -195,7 +199,21 @@
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
 <script src="{% static 'js/center/bootbox.js' %}"></script>
+<script src="{% static 'js/check-ie.js' %}"></script>
 <script>
+    //判断ie浏览器版本是否低于9
+    if(lessIE9()){
+        $.ajax({
+            type: "get",
+            url: '/error',
+            data: "",
+            success: function (msg) {
+                $("body").html(msg)
+            },
+            error: function () {
+            }
+        })
+    }
     function ul_toggle(hobj) {
         $(hobj).children('i').toggleClass('icon-caret-down');
         $(hobj).next('ul').toggle();

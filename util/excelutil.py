@@ -25,8 +25,8 @@ def set_style1(name, height, bold=False):
     return style
 
 
-def to_check_bit(f_type, length, states, result=0):
-    check_bit = int('A5', 16) + int('5A', 16) + int(f_type, 16) + length + result + states
+def to_check_bit(f_type, length, states):
+    check_bit = int('A5', 16) + int('5A', 16) + int(f_type, 16) + length + states
     check_bit = bin(check_bit)[-8:]
     check_bit = hex(int(check_bit, 2))[2:]
     return check_bit
@@ -40,21 +40,36 @@ def to_com_frame(header, f_type, length, values, check_bit, result=''):
 def to_hex(length):
     num = hex(length)[2:]
     if len(num) == 1:
-        return "0" + (num)
+        return "0" + num
     else:
         return num
 
 
-def to_fun_state(num, flag=0):
+def to_fun_state(num):
     if int(num) < 10:
         state = '0' + str(num)
     else:
         state = str(num)
-    if flag == 0:
-        values = [state, '01', '', '']
-    else:
-        values = ['01', '01', state, '01']
+    values = [state, '01', '', '']
     return values
+
+
+def ascll_to_hex(key):
+    list = []
+    for i in key:
+        str1 = hex(ord(i))[2:]
+        if len(str1) == 1:
+            list.append("0" + str1)
+        else:
+            list.append(str1)
+    return list
+
+
+def cal_ascll(key):
+    num = 0
+    for i in key:
+        num += ord(i)
+    return num
 
 
 def data_domain(sheet2, data, i):
@@ -63,36 +78,48 @@ def data_domain(sheet2, data, i):
     k = len(funs)-1
     # 数据域长度（位数）
     length = k
-    values = ['01']
-    lamp_id = 2
+    values = []
+    lamp_id = 1
+    flag = False
+    fun_value = 0
+    fun_name = ''
     # 全功能头部部分
     sheet2.write_merge(4, 4, i, i+k, "数据域", set_style('Arial', 220))
     sheet2.write(5, i, "结果码", set_style('Arial', 220))
     for index, line in enumerate(funs[1:], i+1):
         # 获取数据域所有功能对应的值
-        if index > (i+1):
+        if not flag:
+            flag = True
+            fun_value = 1
+            lamp_id = line['id']
+            fun_name = line['name']
+            if int(line['mxsLength']) / 8 > 1:
+                values.append('01 00')
+                length += 1
+            else:
+                values.append('01')
+        else:
             if int(line['mxsLength']) / 8 > 1:
                 values.append('00 00')
                 length += 1
-            elif line['Stream_ID'] == 'LAMP':
-                lamp_id = line['id']
-                values.append('01')
             else:
                 values.append('00')
+
         # 找到照明对应的id
         sheet2.write(5, index, line['name'], set_style('Arial', 220))
     sheet2.write_merge(4, 5, i+k+1, i+k+1, "校验", set_style('Arial', 220))
-
-    row4 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
-    row5 = ['电控修改照明按钮状态', '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
+    S_C = "点击屏上{0}按钮打开{0}".format(fun_name)
+    C_S = "电控修改{0}按钮状态".format(fun_name)
+    row4 = [S_C, '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
+    row5 = [C_S, '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
     row6 = ['例子（单功能）', '', '', '帧头', '流水号', '帧类型', '长度', '结果码', '功能1', '状态1', '功能2', '状态2', '校验']
-    row7 = ['点击屏上照明按钮打开照明', '屏->电控', '', 'A5 5A', '00', '31', '02', '']
-    row8 = ['电控应答打开照明命令（照明打开，电源打开）', '电控->屏', '', '5A A5', '05', '31', '05', '00']
+    row7 = [S_C, '屏->电控', '', 'A5 5A', '00', '31', '02', '']
+    row8 = [C_S, '电控->屏', '', '5A A5', '00', '31', '03', '00']
     # 全功能数据
-    check_bit1 = to_check_bit('21', length, 2)
-    check_bit2 = to_check_bit('21', length, 2, 1)
+    check_bit1 = to_check_bit('21', length, fun_value)
+    check_bit2 = to_check_bit('21', length + 1, fun_value)
     com_frame1 = to_com_frame('A5 5A', '21', length, values, check_bit1, result=' ')
-    com_frame2 = to_com_frame('5A A5', '21', length+1, values, check_bit2, result=' 00 ')
+    com_frame2 = to_com_frame('5A A5', '21', length + 1, values, check_bit2, result=' 00 ')
     row4[2] = com_frame1
     row5[2] = com_frame2
     row4.extend(values)
@@ -101,11 +128,11 @@ def data_domain(sheet2, data, i):
     row5.append(check_bit2)
     # 单功能数据
     fun_state0 = to_fun_state(lamp_id)
-    fun_state1 = to_fun_state(lamp_id, 1)
-    check_bit3 = to_check_bit('31', 2, int(lamp_id)+1)
-    check_bit4 = to_check_bit('31', 5, int(lamp_id)+3, 1)
-    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result=' ')
-    com_frame4 = to_com_frame('5A A5', '31', 5, fun_state1, check_bit4, result=' 00 ')
+    fun_state1 = to_fun_state(lamp_id)
+    check_bit3 = to_check_bit('31', 2, int(lamp_id) + fun_value)
+    check_bit4 = to_check_bit('31', 3, int(lamp_id) + fun_value)
+    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result='')
+    com_frame4 = to_com_frame('5A A5', '31', 3, fun_state1, check_bit4, result='00 ')
     row7[2] = com_frame3
     row8[2] = com_frame4
     row7.extend(fun_state0)
@@ -132,14 +159,24 @@ def data_domain(sheet2, data, i):
 
 def write_example(sheet2, data):
     # 写入帧对应的表格
+    key = data['key']
+    model = "型号(%s)"%(key)
     row0 = ["例子（通信握手）", "指令流向", "完整帧", "帧头", "流水号", "帧类型", "长度", "结果码", "版本号",
-            "唯一编号(MAC地址：AAAAAABBBBBB)", "型号(00000000)", "校验"]
+            "唯一编号(MAC地址：AAAAAABBBBBB)", model, "校验"]
     row1 = ['连接上服务器后收到握手命令帧', '屏->电控', 'A5 5A 00 01 00 00', 'A5 5A', '00', '01', '00']
     row2 = ['电控应答握手帧上报MAC和型号编号', '电控->屏',
-            '5A A5 00 01 17 00 00 01 41 41 41 41 41 41 42 42 42 42 42 42 30 30 30 30 30 30 30 30 AA',
-            '5A A5', '00', '01', '17', '00', '00', '01', '65', '65', '65', '65', '65', '65', '66', '66', '66',
-            '66', '66', '66', '30', '30', '30', '30', '30', '30', '30', '30', 'AA']
+            '','5A A5', '00', '01', '17', '00', '00', '01']
     row3 = ["例子(全功能)", "指令流向", "完整帧", "帧头", "流水号", "帧类型", "长度"]
+
+    result_and_version = '00 00 01 '
+    value_list = ascll_to_hex("AAAAAABBBBBB") + ascll_to_hex(key)
+    values = cal_ascll("AAAAAABBBBBB") + cal_ascll(key)
+    check_bit = to_check_bit('01', 23, values + 1)
+    com_frame = to_com_frame('5A A5', '01', 23, value_list, check_bit, result_and_version)
+    row2[2] = com_frame
+    row2.extend(value_list)
+    row2.append(check_bit)
+
     j = 0
     sheet2.col(j).width = 256*40
     sheet2.col(2).width = 256*80
@@ -192,29 +229,31 @@ def write_data(data, header, filename):
     sheet1.write_merge(0, 1, 1, 1, '沙箱环境')
     sheet1.write(0, 2, 'url')
     sheet1.write(1, 2, 'port')
-    sheet1.write(0, 3, 'suite.63iq.com')
+    sheet1.write(0, 3, 'sandbox.53iq.com')
     sheet1.write(1, 3, '2502')
     sheet1.write_merge(2, 3, 1, 1, '生产环境')
     sheet1.write(2, 2, 'url')
     sheet1.write(3, 2, 'port')
     sheet1.write(2, 3, 'suite.53iq.com')
     sheet1.write(3, 3, '2502')
-    sheet1.write_merge(4, 5, 0, 0, '产品信息', set_style1('Arial', 220, True))
+    sheet1.write_merge(4, 6, 0, 0, '产品信息', set_style1('Arial', 220, True))
     sheet1.write(4, 1, '品牌')
-    sheet1.write(4, 2, '纳帕集成灶')
+    sheet1.write(4, 2, data['band_name'])
     sheet1.write(5, 1, '型号')
     sheet1.write(5, 2, data['model'])
-    sheet1.write_merge(6, 9, 0, 0, '授权信息', set_style1('Arial', 220, True))
-    sheet1.write_merge(6, 7, 1, 1, '沙箱环境')
-    sheet1.write_merge(8, 9, 1, 1, '生产环境')
-    sheet1.write(6, 2, 'key')
-    sheet1.write(6, 3, data['key'])
-    sheet1.write(7, 2, 'secret')
-    sheet1.write(7, 3, data['secret'])
-    sheet1.write(8, 2, 'key')
-    sheet1.write(8, 3, data['key'])
-    sheet1.write(9, 2, 'secret')
-    sheet1.write(9, 3, data['secret'])
+    sheet1.write(6, 1, '全指令')
+    sheet1.write(6, 2, data['command'])
+    sheet1.write_merge(7, 10, 0, 0, '授权信息', set_style1('Arial', 220, True))
+    sheet1.write_merge(7, 8, 1, 1, '沙箱环境')
+    sheet1.write_merge(9, 10, 1, 1, '生产环境')
+    sheet1.write(7, 2, 'key')
+    sheet1.write(7, 3, data['key'])
+    sheet1.write(8, 2, 'secret')
+    sheet1.write(8, 3, data['secret'])
+    sheet1.write(9, 2, 'key')
+    sheet1.write(9, 3, data['key'])
+    sheet1.write(10, 2, 'secret')
+    sheet1.write(10, 3, data['secret'])
     # l表示行
     l = 10
     n = len(header)

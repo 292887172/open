@@ -15,7 +15,9 @@ from conf.mongoconf import RELEASE_API_MONGODB_HOST, RELEASE_API_MONGODB_PORT, R
 from conf.mongoconf import RELEASE_API_MONGODB_USER, RELEASE_API_MONGODB_PWD
 from conf.redisconf import SANDBOX_API_REDIS_HOST, SANDBOX_API_REDIS_PORT, SANDBOX_API_REDIS_DB, SANDBOX_API_REDIS_PWD
 from conf.redisconf import RELEASE_API_REDIS_HOST, RELEASE_API_REDIS_PORT, RELEASE_API_REDIS_DB, RELEASE_API_REDIS_PWD
-
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.poolmanager import PoolManager
+import ssl
 
 class RedisBaseHandler(object):
     """
@@ -120,3 +122,19 @@ class ReleaseApiRedisHandler(object):
                                                      password=RELEASE_API_REDIS_PWD)
         redis_client = redis.Redis(connection_pool=redis_connection_pool)
         self.client = redis_client
+
+
+Redis3_ClientDB6 = Redis3(rdb=6).client
+
+
+def get_redis_client(host):
+    if host == 3:
+        return Redis3_ClientDB6
+
+
+class MyAdapter(HTTPAdapter):
+    def init_poolmanager(self, connections, maxsize, block=False):
+        self.poolmanager = PoolManager(num_pools=connections,
+                                       maxsize=maxsize,
+                                       block=block,
+                                       ssl_version=ssl.PROTOCOL_TLSv1)

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
 <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
-    <link rel="stylesheet" href="{% static 'assets/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/font-awesomfjquee/4.5.0/css/font-awesome.min.css'%}" />
     <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css'%}" />
     <link rel="stylesheet" href="{% static 'assets/css/ui.jqgrid.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/ace.min.css' %}" class="ace-main-stylesheet" id="main-ace-style" />
@@ -130,12 +130,7 @@
         content: "5";
         color: #fff;
     }
-    .menuBox ul li.active a{
-        color: #4A6EA5;
-    }
-    .menuBox ul li.active a i{
-        background: #4A6EA5;
-    }
+
     .menuBox ul li a i {
         border-radius: 50%;
         background: #ccc;
@@ -149,10 +144,10 @@
     </style>
 {% endblock %}
 {% block menu %}
-
+    <li><a href="{% url 'home' %}">首页</a></li>
     <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-    <li><a href="/wiki/">开发文档</a></li>
+
 
 {% endblock %}
 
@@ -206,7 +201,6 @@
                          {% endfor %}
                      </ul>
                  </div>
-
             </li>
             {% else %}
             <li id="owner-app-id" >
@@ -300,17 +294,17 @@
                         </ul>
                     </div>
                     {% endif %}
-                    <div class="menuBox">
-                        <h3>生产测试</h3>
-                        <ul>
-                            <li id="debugMenu" ng-hide="true" class="jsNavItem" data-id="debugMenu"
-                                ng-click="nav.selected('debugMenu')">
-                                <a href="#/debug">
-                                    <i class="fa fa-glass"></i>产品测试
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+{#                    <div class="menuBox">#}
+{#                        <h3>生产测试</h3>#}
+{#                        <ul>#}
+{#                            <li id="debugMenu" ng-hide="true" class="jsNavItem" data-id="debugMenu"#}
+{#                                ng-click="nav.selected('debugMenu')">#}
+{#                                <a href="#/debug">#}
+{#                                    <i class="fa fa-glass"></i>产品测试#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
 
                     <!-- 左侧菜单 end -->
                 </div>
@@ -329,7 +323,6 @@
 {% endblock %}
 
 {% block end_fixed_script %}
-
     <script src="//apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script src="//apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="{% static "ng/product/app.js" %}"></script>
@@ -342,9 +335,10 @@
     <script src="{% static "ng/product/content/controller.js" %}"></script>
     <script src="{% static "ng/product/oven/controller.js" %}"></script>
     <script src="/static/js/product/bootbox.js"></script>
-    <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
 
+    <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
     <script>
+
     function update_href(obj){
             var id = $(obj).attr("data-appid");
             var name = $(obj).attr("data-name");

@@ -35,7 +35,7 @@ from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
 from common.developer_helper import create_developer
 from common.app_helper import create_app
-
+from base.connection import MyAdapter
 from util.sms.verify_code import verify_sms_code
 
 from conf.commonconf import HOST_DOMAIN
@@ -87,10 +87,11 @@ def home(request):
         # 合作厂商信息
         factory_name = request.POST.get('factory_name', '')
         factory_uuid = request.POST.get('coFacUid', '')
+        update = request.POST.get('coUpdate', None)
         r = RedisBaseHandler().client
         try:
             e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
-            if str(e_code.decode()).lower() == str(email_code).lower():
+            if update is not None or str(e_code.decode()).lower() == str(email_code).lower():
                 re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                       contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                       factory_uuid, user, user_from)
@@ -129,7 +130,10 @@ def login(request):
                 msg = "<div class='ui-error-box' ><b></b><p>该帐号已被禁用，暂时无法登录</P></div>"
                 return render(request, "center/login.html", locals())
             # 登录成功后跳转回请求的页面
-            uri = request.session[SESSION_REDIRECT_URI]
+            if account == 'admin':
+                uri = "/center"
+            else:
+                uri = request.session[SESSION_REDIRECT_URI]
             response = HttpResponseRedirect(uri)
             remember = request.POST.get("remember")
             # 将用户登录信息保存到cookie
@@ -151,9 +155,8 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/guide")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
         if request.user.developer.developer_id:
-
             return HttpResponseRedirect("/product/list")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
@@ -169,7 +172,7 @@ def login(request):
             ac_pwd = base64.b64decode(al.al_account_pwd)
             user_obj = authenticate(username=ac_id, password=ac_pwd)
             django.contrib.auth.login(request, user_obj)
-            return HttpResponseRedirect("/guide")
+            return HttpResponseRedirect("/product/list")
         except Exception as e:
             pass
     return render(request, "center/login.html", locals())
@@ -382,13 +385,14 @@ def register_success(request):
     rg = request.REQUEST.get('rg', '')
     user = request.REQUEST.get('user', '')
     t = "center/register.html"
+
     if SESSION_REGISTER_SUCCESS in request.session:
         if rg == 'email':
             # base64加密user_id
             user_b64 = base64.b64encode(user.encode(encoding="utf-8"))
             send_mail(user, '53iq通行证-注册激活', HOST_DOMAIN + '/center/active?user=' + user_b64.decode())
         t = "center/register-success.html"
-        del request.session[SESSION_REGISTER_SUCCESS]
+        # del request.session[SESSION_REGISTER_SUCCESS]
     return render(request, t, locals())
 
 
@@ -554,6 +558,7 @@ def active(request):
     return HttpResponseRedirect('register')
 
 
+@csrf_exempt
 def forget_pwd(request):
     """
     忘记密码
@@ -700,23 +705,42 @@ def callback(request):
         else:
             url = wx_oauth.format(APPID, APP_SECRET, code)
 
-            r = requests.get(url)
-            ret = r.json()
+            # s = requests.Session()
+            # s.mount('https://', MyAdapter())
+            try:
+                s = requests.get(url)
+                ret = s.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url)
+                ret = s.json()
             # ret = {"openid": "", "unionid": "oixkIuJaT3J3AgwVmJx2Y4D81CdM"}
             openid = ret.get('openid')
             unionid = ret.get('unionid')
             if re.match('\d{9}', state):
                 # 推送微信登录消息
-                deal_wxlogin_data(unionid, state)
-                return HttpResponse('<p style="line-height: 300px;text-align: center;font-size: 30px;position: fixed;width: 101%;height: 100%;background-color: #333;top: -30px;color: #fff;left: -10px;">正在登录...</p>')
-                pass
+                try:
+                    login_status = deal_wxlogin_data(unionid, state)
+                except Exception as e:
+                    login_status = False
+                    logging.getLogger('').info('推送微信消息出错'+str(e))
+                return render(request, 'center/wx-login-wait.html', locals())
             access_token = ret.get('access_token', None)
             if access_token is None:
                 return HttpResponse('code值无效')
             url2 = wx_userinfo.format(access_token, openid)
-            ret2 = requests.get(url2)
-            ret2.encoding = 'utf8'
-            ret2 = ret2.json()
+            try:
+
+                ret2 = requests.get(url2)
+                ret2.encoding = 'utf8'
+                ret2 = ret2.json()
+            except Exception as e:
+                s = requests.Session()
+                s.mount('https://', MyAdapter())
+                s = requests.get(url2)
+                s.encoding = 'utf8'
+                ret2 = s.json()
             nickname = ret2.get('nickname', '')
             dt = datetime.datetime.now() + datetime.timedelta(days=30)
             m = hashlib.md5()

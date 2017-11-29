@@ -181,21 +181,26 @@
             padding: 10px;
             font-size: 12px;
         }
-
+        .goods-list{
+            width: 346px;
+            height: 186px;
+            padding: 14px;
+            margin-right: 36px;
+        }
         .goods-list dl dt {
             width: auto;
             height: auto;
         }
 
         .goods-list dl dd {
-            margin-left: 85px;
+            margin-left: 96px;
             padding-top: 6px;
         }
 
         .goods-list dl dt img {
             width: 70px;
             height: 75px;
-            margin-top: 4px;
+            margin-top: 8px;
         }
 
         .goods-list dl dd .goods-title {
@@ -214,7 +219,7 @@
         }
 
         .goods-list dl dd.ui-control {
-            padding-top: 85px;
+            padding-top: 97px;
             margin-left: 0;
         }
 
@@ -254,7 +259,7 @@
 
             .right {
                 max-width: 300px;
-                min-width: 300px;
+                min-width: 330px;
             }
         }
 
@@ -290,12 +295,29 @@
             margin: auto;
             height: 43px;
             overflow: visible;
-            background-color: initial;
+            background-color: #fff;
             border-radius: 0;
             position: relative;
 
         }
-
+         .btn-default, .btn-default.focus, .btn-default:focus {
+            color: #333 !important;
+            background-color: #dddddd !important;
+        }
+        .btn-default:hover{
+            color: #333 !important;
+            background-color: #c6c6c6 !important;
+        }
+        .btn-primary, .btn-primary.focus, .btn-primary:focus {
+            color: #fff !important;
+            background-color: #ff6f37 !important;
+                border-color: coral;
+        }
+        .btn.btn-primary:hover{
+            color: #fff !important;
+            background-color: #ff6202 !important;
+            border-color: #ff6202 !important;
+        }
         .progress li {
             text-align: center;
             font-size: 14px;
@@ -306,7 +328,7 @@
 
         .progress li a:hover {
             color: #2980b9;
-            text-underline: underline;
+            text-decoration: none;
         }
         .progress li.cur {
             color: #626262;
@@ -347,7 +369,7 @@
 
         .progress li.prog_a {
             position: relative;
-            left: 0px;
+            left: 0;
             top: 0;
         }
 
@@ -360,17 +382,54 @@
         .progress li.prog_d {
             position: relative;
             left: -45px;
-            top: 0px;
+            top: 0;
             float: right;
         }
         .goods-title a:hover {
-        text-decoration: none;
+            text-decoration: none;
+        }
+        .goods-list dl dd p{
+            width: 100%;
+        }
+        .modal{
+                text-align: center;
+        }
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+         .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+        }
+    .arrow{
+        transform: rotate(45deg);
+        background: #fff;
+        left: 56%;
+        margin-top: -5px;
+        border-top: 1px solid;
+        border-left: 1px solid;
     }
+    .parcode{
+        top: 56%;
+        border: 1px solid #ccc;
+        width: 168px;
+        height: 184px;
+        margin-left: 37px;
+        z-index: 1000;
+        background-color: #fff;
+        border-radius: 4px;
+        display: none;
+        position: absolute;
 
+    }
     </style>
 {% endblock %}
 {% block menu %}
-    {% create_menu 1 user.developer.developer_id %}
+    {% create_menu 2 user.developer.developer_id %}
 
 {% endblock %}
 {% block content %}
@@ -458,7 +517,7 @@
                             <label for="c2">Android屏</label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -478,8 +537,8 @@
         </div>
         <div class="btnBar" style="background: none;height: 85px;">
               <span>
-                <a href="javascript:;" onclick="submit_product()" id="productSubmit" class="btn-blue"
-                   style="background: #59B784;">提交</a>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">提交</a>
               </span>
         </div>
     </div>
@@ -522,21 +581,26 @@
 
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
+                            <div class="parcode">
+                                <div class="arrow"></div>
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
+                                <p style="text-align: center;color: #717375;">扫码发送到屏端快速验证</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label >{{ app.app_appid| cover_str8 }}</label>
-                                <a role="button" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 46%;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                            <p class="product-info-p" >
+                                分类：{{ app.app_device_type| category_detail}}
+                            </p>
+                            <p class="product-info-p">Key：<label >{{ app.app_appid| cover_str8 }}</label>
+                                <a role="button" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 46%;" class="fa fa-qrcode" ></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
+
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #1ab667">已发布</label></p>
+                                    style=" margin-left: 8%;color: #1ab667">已发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -548,7 +612,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
                         </ul>
                     </dd>
                 </dl>
@@ -570,13 +634,17 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
+                            <div class="parcode">
+                                <div class="arrow"></div>
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
+                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                            <p class="product-info-p" >
+                                分类：{{ app.app_device_type| category_detail}}
+                            </p>
+                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
@@ -584,7 +652,7 @@
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #f39800">审核中</label></p>
+                                    style=" margin-left: 8%;color: #f39800">审核中</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -596,7 +664,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -610,7 +678,7 @@
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}">
                             <img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
                         </a>
-                        <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
@@ -621,13 +689,17 @@
 
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
+                            <div class="parcode">
+                                <div class="arrow"></div>
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
+                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                            <p class="product-info-p">
+                                分类：{{ app.app_device_type| category_detail}}
+                            </p>
+                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
@@ -635,8 +707,9 @@
                                            class="fa fa-rss"></label>{% endif %}
 
                             </p>
+
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #333">未发布</label></p>
+                                    style="margin-left: 8%;color: #333">未发布</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -649,7 +722,7 @@
                             <span><i class="fa fa-download"></i></span></a>
                                 </li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -664,7 +737,7 @@
                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}"><img src="{{ app.app_logo }}"
                                                                                     onerror="this.src='{% static "image/global/default.png" %}'"
                                                                                     title="产品图标"></a>
-                        <a class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
+                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
@@ -673,21 +746,26 @@
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode" style="position: absolute; z-index: 1000;background-color: #fff;width: 200px;height: 210px;border-radius: 4px;display: none">
+                            <div class="parcode">
+                                <div class="arrow"></div>
                                 <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">打开微信扫一扫</p>
+                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                             </div>
-                            <p class="product-info-p" style="width: 90%;">产品Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onclick="show_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="扫一扫"></label>
+                            <p class="product-info-p" >
+                                    分类：{{ app.app_device_type| category_detail}}
+                            </p>
+                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
+                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
                                 </a>
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
                             </p>
+
                             <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style="float: right;color: #c91423">未通过</label></p>
+                                    style=" margin-left: 8%;color: #c91423">未通过</label></p>
                         </div>
                     </dd>
                     <dd class="ui-control">
@@ -700,7 +778,7 @@
                                 <span><i class="fa fa-download"></i></span></a>
                                 </li>
                             <li class="prog_d "><a onclick="block_mac(this)" href="#"
-                                                   target="_blank" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
+                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
                         </ul>
                     </dd>
                 </dl>
@@ -714,14 +792,29 @@
 {% endblock %}
 
 {% block script %}
+
     <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
-    <script>
+    <script src="/static/js/check-ie.js"></script>
+        <script>
+        //判断ie浏览器版本是否低于9
+        if(lessIE9()){
+            $.ajax({
+                type: "get",
+                url: '/error',
+                data: "",
+                success: function (msg) {
+                    $("body").html(msg)
+                },
+                error: function () {
+                }
+            })
+        }
         $('[data-rel=popover]').popover({container:'body'});
         var checkSubmitFlg = false;
-        $(".goodsBox").height($(".goodsBox").height()+50);
+        $(".goodsBox").height($(".goodsBox").height()+110);
         function utf16to8(str) {
             var out, i, len, c;
             out = "";
@@ -742,36 +835,31 @@
             return out;
         }
         function show_qrcode(obj) {
-            name = "name=" + $(obj).attr('data-name');
-            key = "&key=" + $(obj).attr('data-id');
-            date = "&date=" + $(obj).attr('data-date');
+
+            key = "key=" + $(obj).attr('data-id');
             parcode = $(obj).parent('p').parent('div').children('div');
-            code = parcode.children('div');
+            code = parcode.children('div#code');
             parcode.css('display','block');
-            url = location.href.split(':')[0] + "://" + location.host+ "/product/wx_code?" + name + key + date;
+            url = location.href.split(':')[0] + "://" + location.host+ "/product/wx_code?" + key;
             // url = "http://192.168.191.1:8000/product/wx_code?"+name+key+date;
             // url 包括中文字符编码转换
             url = utf16to8(url);
+            //$(".markLayout").show();
 
-            $(".markLayout").show();
             if(code.children().length<1) {
                 code.qrcode({
-                    width: 150, //宽度
-                    height:150, //高度
+                    width: 120, //宽度
+                    height:120, //高度
                     text: url});
             }
             else {
                 parcode.show();
             }
-            $(document).ready(function () {
-                $(".markLayout").click(function (event) {
-                    if (!$(this).hasClass("parcode")) {
-                        $(".markLayout").hide();
-                        parcode.hide()
-                    }
-                    event.stopPropagation(); //阻止事件冒泡
-                });
-            });
+        }
+
+        function hide_qrcode(obj) {
+            parcode = $(obj).parent('p').parent('div').children('div');
+            parcode.hide()
         }
 
         function select_progm(val) {

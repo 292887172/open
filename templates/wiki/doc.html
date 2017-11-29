@@ -1,5 +1,7 @@
 {% extends 'wiki/base.tpl' %}
+{% load filter %}
 {% load staticfiles %}
+
 {% block title %}
     开发者文档
 {% endblock %}
@@ -12,7 +14,9 @@
             margin: 0 auto;
 
         }
-
+        body{
+            overflow-x: hidden;
+        }
         .mt20 {
             margin-top: 20px;
         }
@@ -65,6 +69,8 @@
             width: 927px;
             padding: 20px;
             margin: 0 auto;
+            overflow: hidden;
+
         }
     .markdown-body h3{
         font-size: 16px;
@@ -109,9 +115,42 @@
     .box2{
         padding: 0px;
     }
+     .menuBox ul li:hover, .menuBox ul li.hover{
+        background: none;
+        border-left: none;
+        color: #000;
+    }
+       .menuBox ul li:hover a, .menuBox ul li.hover a {
+        color: #000;
+    }
+    #header{
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+    .mt20 {
+        margin-top: 110px;
+    }
+    .leftSide{
+        overflow-y: visible;
+        position: fixed;
+    }
+    .box1{
+        min-height: 0;
+        max-height: 706px;
+    }
+    @media screen and (max-width: 1108px) {
+        .relative{
+            width: 71%;
+        }
+
+    }
     </style>
 {% endblock %}
 
+{% block menu %}
+   {% create_menu 3 user.developer.developer_id %}
+{% endblock %}
 {% block right %}
     <div class="rightMain markdown-body editormd-preview-container editormd-preview-active" previewcontainer="true">
         <div class="box2 relative ">
@@ -177,9 +216,10 @@
                     $(".h5pro").css('color','#000');
                     $(".h5pro").children('i').removeClass('icon-caret-down');
                     $(".menuUl").hide();
-                    $(aobj).children('a').css('color','#70ABD5');
+                    $(aobj).children('a').css('color','#ff6202');
                 },
                 success: function (msg) {
+                    console.log(msg)
 
                     $(".rightMain").html(msg);
                 },
@@ -219,15 +259,18 @@
         }
         //根据url地址中#id来加载相应的文档，解决单独加载某个文档的问题
         function load_res(id) {
-            $("." + id).parent('li').parent('ul').prev('h5').css('color', '#70ABD5');
+            $("." + id).parent('li').parent('ul').prev('h5').css('color', '#ff6202');
             $("." + id).parent('li').parent('ul').prev('h5').children('i').addClass('icon-caret-down');
             $("." + id).parent('li').parent('ul').show();
             // 判断是否为没有子菜单的菜单，条件成立则该菜单为没有子菜单的菜单，否则为有子菜单的菜单
             if(($("." + id).parent('li').attr('class')) == undefined){
-                $("." + id).css('color', '#70ABD5');
+                $("." + id).css('color', '#ff6202');
+            }
+            else{
+                $("." + id).parent('li').css('background','#e6e6e6');
+                $("." + id).parent('li').css('border-left','3px solid #ff6202');
             }
             var url = $("." + id).attr('name');
-{#            console.log(url);#}
             $.ajax({
                 type: "get",
                 url: url,
@@ -242,8 +285,10 @@
         }
 
         $(function () {
+            var href1 = location.href;
+            href1 = href1.split("=")[1].split("#")[0];
             var id = location.hash;
-            if (id) {
+            if (id && href1!="Navicat3") {
                 //确保资源加载完成
                 setTimeout(function(){
                     load_res(id.split("#")[1]);

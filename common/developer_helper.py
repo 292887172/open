@@ -50,22 +50,36 @@ def create_developer(company, company_url, company_address, company_scale, conta
         else:
             dev_from = 2
             dev_id = '2_' + user
-        dev = Developer(
-            developer_id=dev_id,
-            developer_account=user,
-            developer_factory=factory_name,
-            developer_symbol=factory_uuid,
-            developer_from=dev_from,
-            developer_inc=company,
-            developer_site=company_url,
-            developer_address=company_address,
-            developer_person=company_scale,
-            developer_realname=contact_name,
-            developer_job=contact_role,
-            developer_email=contact_email,
-            developer_check_status=check_status,
-            developer_mobile=contact_mobile)
-        dev.save()
+        try:
+            d = Developer.objects.get(developer_account=user)
+            if d:
+                d.developer_inc = company
+                d.developer_site = company_url
+                d.developer_address = company_address
+                d.developer_person = company_scale
+                d.developer_realname = contact_name
+                d.developer_job = contact_role
+                d.developer_email = contact_email
+                d.developer_mobile = contact_mobile
+                d.save()
+        except Exception as e:
+            dev = Developer(
+                developer_id=dev_id,
+                developer_account=user,
+                developer_factory=factory_name,
+                developer_symbol=factory_uuid,
+                developer_from=dev_from,
+                developer_inc=company,
+                developer_site=company_url,
+                developer_address=company_address,
+                developer_person=company_scale,
+                developer_realname=contact_name,
+                developer_job=contact_role,
+                developer_email=contact_email,
+                developer_check_status=check_status,
+                developer_mobile=contact_mobile)
+
+            dev.save()
         return dev_id
     except Exception as e:
         logging.getLogger('').info(str(e))

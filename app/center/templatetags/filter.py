@@ -67,6 +67,18 @@ def num_app(app):
 register.filter(num_app)
 
 
+def category_detail(obj):
+    try:
+        type = str(obj)
+        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '0': '自定义'}
+        return category[type]
+    except Exception as e:
+        print(e)
+
+
+register.filter(category_detail)
+
+
 def is_none(value):
     """
     检测是否为空
@@ -93,17 +105,18 @@ def create_menu(context, cur=0, dev_id=None):
     else:
         if dev_id:
             menu = [
+                    {"url": "/", "title": "首页"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/guide", "title": "开发指南"},
-                    {"url": "/wiki/", "title": "开发文档"}
                     ]
 
         else:
             if cur > 1:
-                ret['cur'] = 1
+                ret['cur'] = 2
             menu = [
+                    {"url": "/", "title": "首页"},
                     {"url": "/guide", "title": "开发指南"},
-                    {"url": "/wiki/", "title": "开发文档"}
+
                     ]
         ret["menu"] = menu
 
@@ -150,8 +163,7 @@ register.filter(cover_str8)
 
 
 def cover_user_name(user_id, nickname):
-    """
-    转换微信昵称
+    """    转换微信昵称
     :param user_id:
     :param nickname
     :return:
@@ -172,3 +184,22 @@ def cover_user_name(user_id, nickname):
 
 
 register.filter(cover_user_name)
+
+
+def check_isphone_mail(val, type):
+    """
+    检查是否为电话或者邮箱
+    :param val:
+    :return:
+    """
+    import re
+    if type == 'phone':
+        if re.match('1[34578]\\d{9}', val):
+            return val
+
+    elif type == 'mail':
+        if "@" in val:
+            return val
+    return ''
+
+register.filter(check_isphone_mail)

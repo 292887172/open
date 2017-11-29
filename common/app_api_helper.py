@@ -8,8 +8,10 @@ from django.core.paginator import Paginator
 from model.center.api import Api
 from base.convert import date2ymdhms
 from base.convert import utctime2localtime
-
+from base.connection import get_redis_client,REDIS_DB
 import logging
+from common.code import ResponseCode
+_cache_key = ResponseCode()
 
 
 class ApiHandler(object):
@@ -170,3 +172,15 @@ def fetch_api_data(api_id):
     except Exception as e:
         logging.getLogger("").error(e)
         return None
+
+
+def gen_group_key(*args):
+    return ":".join(str(_) for _ in args)
+
+
+def remove_control_id(device_id):
+    r = get_redis_client(3)
+    try:
+        r.delete(gen_group_key(_cache_key.DEVICE_CONTROL_PREFIX, device_id.upper()))
+    except Exception as e:
+        pass
