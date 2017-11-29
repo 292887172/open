@@ -8,6 +8,7 @@
 
 <head lang="en">
     <meta charset="UTF-8"/>
+
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
@@ -39,6 +40,49 @@ var _hmt = _hmt || [];
         color: #fff;
         background-color: #ff6202
     }
+    .leftSide{
+        margin-bottom:0;
+        padding-bottom: 0;
+    }
+    .h5pro{
+            padding-left: 15px;
+            padding-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .icon-caret-down{
+                background: url(/static/image/wiki/arrow_up.png) no-repeat center;
+                background-size: 80%;
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                margin-left: 82%;
+        }
+        .icon-caret-right {
+            background: url(/static/image/wiki/arrow_down.png) no-repeat center;
+            background-size: 80%;
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            margin-left: 82%;
+        }
+        .menuBox ul{
+            display: block;
+            padding-left: 0px;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 7px;
+        }
+        .menuBox ul li {
+            height: 55px;
+            line-height: 55px;
+        }
+        .box1 {
+            min-height: 0;
+        }
+        .menuBox {
+                border-top: 1px solid #f5f5f5;
+                padding: 20px 0px 0 0px;
+            }
 </style>
 <body>
 <div class="header">
@@ -50,7 +94,7 @@ var _hmt = _hmt || [];
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% endif %}
             <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-            <li><a href="/wiki/" >开发文档</a></li>
+
         </ul>
         <div class="user">
             <div class="sign_out">
@@ -70,7 +114,7 @@ var _hmt = _hmt || [];
                         {% if not user.account_nicknam %}
                             <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
                         {% endif %}
-                        <a rel="nofollow" id="modify_pwd_id" href="/guide#" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
                 {% else %}
@@ -86,13 +130,32 @@ var _hmt = _hmt || [];
 {% endblock %}
 <div class="footer">
     <p><a href="http://www.53iq.com/about" target="_blank">关于53iq</a>
-        <a href="/guide#contact">联系我们</a>
+        <a href="/contact">联系我们</a>
     </p>
 
     <p>Copyright©2015 53iq 版权所有</p>
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script>
+    function ul_toggle(hobj) {
+        $(hobj).children('i').toggleClass('icon-caret-down');
+        $(hobj).next('ul').toggle();
+        $(".h5pro").css('color', '#000');
+        // 解决没有子菜单的菜单点击后再点击别的菜单时焦点颜色不同步的问题
+        $(".h5pro").children('a').css('color', '#000');
+        if ($(hobj).next('ul').is(":hidden")) {
+            $(hobj).css('color', '#000')
+        }
+        else {
+            $(".menuUl").hide();
+            $(".menuUl").prev('h5').children('i').removeClass('icon-caret-down');
+            $(hobj).next('ul').show();
+            $(hobj).children('i').addClass('icon-caret-down');
+            $(hobj).css('color', '#ff6202')
+        }
+    }
+</script>
 {% block script %}
 
 {% endblock %}

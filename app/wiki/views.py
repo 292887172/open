@@ -58,7 +58,7 @@ def nav_content(name=''):
         menu['menu_class'] = i.dm_class
         if i.dm_parent_id == parent_id1:
             menus1.append(menu)
-        elif i.dm_parent_id == parent_id2:
+        elif i.dm_parent_id == parent_id2 and i.dm_name !="接口在线调试":
             menus2.append(menu)
         elif i.dm_id!=parent_id1 and i.dm_id!=parent_id2:
             menus3.append(menu)
@@ -67,6 +67,8 @@ def nav_content(name=''):
     elif name =='Navicat1':
         return menus1
     elif name =='Navicat2':
+        default_dubug = {'menu_id': '10000', 'menu_name': '下载中心', 'menu_url': '/sdk', 'menu_parent_id': parent_id2, 'menu_ordernum': '10000', 'menu_depth': '2'}
+        menus2.append(default_dubug)
         return menus2
     elif name =='Navicat3':
         return menus3

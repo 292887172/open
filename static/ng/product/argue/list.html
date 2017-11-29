@@ -170,6 +170,9 @@
         text-align: left;
         vertical-align: middle;
     }
+     .tips-tbl{
+         max-width: none;
+     }
      .btn-blue, .btn-blue2{
          background-color: #FF6F37;
      }
@@ -189,7 +192,7 @@
             <span id="advice-content"></span>
 
         </div>
-        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
+        <h1 class="headerH1"><span class="help-button" onmouseover="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
@@ -290,7 +293,7 @@
                 }
 
             jQuery("#grid-table").jqGrid({
-                url:"#/argue",
+                url:location.href,
                 postData:{"name": "list"},
                 datatype: "json",
                 mtype:"POST",
@@ -407,7 +410,7 @@
 			function state(id) {
 			    post_data = {'name':'state','id':id};
 			    $.ajax({
-                   url:"#/argue",
+                   url:location.href,
                     type:"POST",
                     data:post_data,
                     async :false,
@@ -476,8 +479,12 @@
                 // 确认删除产品功能
                 post_data = {'name': 'del', 'id': id};
                 $("#del-info" + id).popover('destroy');
-                document.getElementById(id).remove();
-
+                if(isIE()){
+                    document.getElementById(id).removeNode(true);
+                }
+                else{
+                    document.getElementById(id).remove();
+                }
                 // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
                 rows = document.getElementById("grid-table").rows.length;
                 for (var i = 1; i <=rows; i++) {
@@ -492,7 +499,7 @@
                 }
                 // 异步请求后台删除数据
                 $.ajax({
-                    url:"#/argue",
+                    url:location.href,
                     type: "POST",
                     data: post_data,
                     success: function (data) {
@@ -504,9 +511,9 @@
                     }
                 });
             }
-                function fun_close() {
-			    // 关闭删除弹窗
-                    $('.del-info').popover('hide');
-                }
+            function fun_close() {
+            // 关闭删除弹窗
+                $('.del-info').popover('hide');
+            }
 
 		</script>
