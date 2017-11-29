@@ -108,7 +108,6 @@ def create_menu(context, cur=0, dev_id=None):
                     {"url": "/", "title": "首页"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/guide", "title": "开发指南"},
-                    {"url": "/wiki/", "title": "开发文档"}
                     ]
 
         else:
@@ -117,7 +116,7 @@ def create_menu(context, cur=0, dev_id=None):
             menu = [
                     {"url": "/", "title": "首页"},
                     {"url": "/guide", "title": "开发指南"},
-                    {"url": "/wiki/", "title": "开发文档"}
+
                     ]
         ret["menu"] = menu
 

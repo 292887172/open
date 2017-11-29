@@ -1,5 +1,7 @@
 {% extends 'wiki/base.tpl' %}
+{% load filter %}
 {% load staticfiles %}
+
 {% block title %}
     开发者文档
 {% endblock %}
@@ -146,6 +148,9 @@
     </style>
 {% endblock %}
 
+{% block menu %}
+   {% create_menu 3 user.developer.developer_id %}
+{% endblock %}
 {% block right %}
     <div class="rightMain markdown-body editormd-preview-container editormd-preview-active" previewcontainer="true">
         <div class="box2 relative ">

@@ -15,6 +15,7 @@ urlpatterns = patterns(
     url(r'^dynamic$', 'dynamic', name='dynamic'),
     url(r'^kfz$', 'kfz', name='kfz'),
     url(r'^sdk$', 'sdk', name='sdk'),
+    url(r'^error$', 'error', name='error'),
     url(r'^big$', 'big', name='big'),
     url(r'^contact$', 'contact', name='contact'),
 
