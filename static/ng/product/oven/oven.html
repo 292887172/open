@@ -42,9 +42,9 @@
         <div id="operation" style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute; overflow: hidden;display:block;">
             <div style="  margin-top:44px;height:358px;width:84%;margin-left:53px;background-color:#1f1d1d;overflow:hidden;">
                 <div class="mui-content" id="DeviceConf" v-cloak="" style="height:355px; overflow:hidden; ">
-                    <div style="color:white;height: 100px;text-align: center;"><h3>烤箱Test10000023</h3></div>
+                    <div style="color:white;height: 100px;text-align: center;background-color: #1f1d1d;"><h3>烤箱Test10000023</h3></div>
                     <ul class="mui-table-view mui-grid-view mui-grid-9" style="margin-top: -18px;">
-                        <li class="mui-table-view-cell mui-media mui-col-xs-2 mui-col-sm-2" v-for="f in funcList">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-2 mui-col-sm-2" v-for="f in funcList" style="background-color: #1f1d1d;">
                             <div @click="sendCommand(f.name,f.value)" class="mui-div-botton" style="height:60px;width:60px;">
                                 <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
                                 <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']" style="height:40px;width:40px;margin-top: -4px;margin-left: 9px;"></span><div v-if="reversedWidget(f.widget, 'input')" class="mui-media-body">{{ f.title }}</div>
@@ -571,5 +571,6 @@
 
         }
 </script>
+
 </body>
 </html>

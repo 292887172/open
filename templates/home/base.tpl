@@ -5,6 +5,7 @@
 
 <head lang="en">
     <meta charset="UTF-8"/>
+
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
@@ -68,7 +69,7 @@
                         {% if not user.account_nicknam %}
                             <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
                         {% endif %}
-                        <a rel="nofollow" id="modify_pwd_id" href="/guide#contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
             {% else %}
@@ -113,7 +114,6 @@
                     </ul>
                 </div>
                 <div class="menuBox">
-
                     <ul>
                         <li class="menu-li" onclick="addHover('/sdk',this)"><a href="#"><i
                                 class="icon-cloud-download"></i>下载中心</a></li>
@@ -129,7 +129,7 @@
 
 <div class="footer">
     <p><a href="http://www.53iq.com/about" target="_blank">关于53iq</a>
-        <a href="/guide#contact" onclick="addHover('contact',this)">联系我们</a>
+        <a href="/contact">联系我们</a>
     </p>
 
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>

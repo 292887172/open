@@ -10,23 +10,49 @@
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
     <title>{% block title %}{% endblock %} 智能厨房电器方案提供商</title>
     <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
-    {#    <link rel="stylesheet" href="{% static 'css/home/main.css' %}"/>#}
+
+
 
 
 </head>
+<style>
+    .tit6{
+        font-size: 16px;
+        font-weight: 400;
+        color: #808080;
+
+    }
+        .hbox {
+        padding-bottom: 0;
+    }
+        .downBlock a{
+            height: 25px;
+        }
+    .downBlock a i {
+        display: inline-block;
+        margin-right: 5px;
+        width: 16px;
+        height: 16px;
+        background: url("/static/css/images/icon-all-change.png") no-repeat;
+        background-position: -360px -30px;
+    }
+    .markdown-body h2{
+        margin-top: 0;
+    }
+</style>
 <body>
 
 <div class=" box2 relative">
     <div class="hbox">
-        <h3 class="tit6">技术方案：</h3>
+        <h2 >技术方案：</h2>
 
-        <p>WIFI接入</p>
+        <p style="margin-bottom: 0">WIFI接入</p>
 
         <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/WIFI设备于53iq智能云通信协议V1.0.docx' %}"><i class="icon-arrow-down"></i>WIFI设备与53iq智能云通信协议</a></span>
         </p>
     </div>
     <div class="line2 mt30"></div>
-    <div class="hbox mt20">
+    <div class="hbox mt20" style=" margin-top: 0;">
         <p>SDK下载</p>
 
         <p class="mt10"><span class="downBlock"><a href="{% static 'sdk/open-sdk-python.zip' %}"><i

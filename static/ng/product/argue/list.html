@@ -1,4 +1,5 @@
- <style>
+
+<style>
         html, body {
         width: 100%;
         height: 100%;
@@ -6,6 +7,7 @@
         margin: 0;
         overflow:auto;
       }
+
       .addButton{
             padding: 4px;
           background: #327AB7;
@@ -168,6 +170,9 @@
         text-align: left;
         vertical-align: middle;
     }
+     .tips-tbl{
+         max-width: none;
+     }
      .btn-blue, .btn-blue2{
          background-color: #FF6F37;
      }
@@ -187,7 +192,7 @@
             <span id="advice-content"></span>
 
         </div>
-        <h1 class="headerH1"><span class="help-button" onclick="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
+        <h1 class="headerH1"><span class="help-button" onmouseover="show_tips(this)" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则</h1>
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
@@ -237,6 +242,8 @@
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/js/ejs.js"></script>
+    <script src="/static/common/js/jquery.sortable.js"></script>
+    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -284,64 +291,64 @@
                         $("#tip2").css("display","none");
                     }
                 }
-            jQuery(function($) {
-				jQuery("#grid-table").jqGrid({
-					url:"#/argue",
-					postData:{"name": "list"},
-					datatype: "json",
-					mtype:"POST",
-					colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
-					colModel:[
-						{name:'id' , width:107,align:'center'},
 
-						{name:'Stream_ID', width:143},
-                        {name:'mxsLength',width:100,align:'center'},
-						{name:'name', width:127,align:'center'},
-						{name:'mxsNum', width:120,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="" || cellvalue=="0"){
-										return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
-									}else{
-                                        var id="canshu"+rowObject.id;
-                                        group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
-                                        return group;
-									}
-							}
-						},
-						{name:'isControl', width:108,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="1"){
-										return '是';
-									}else{
-										return '否';
-									}
-							}
-						},
-						{name:'state', width:131,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-									if(cellvalue=="1"){
+            jQuery("#grid-table").jqGrid({
+                url:location.href,
+                postData:{"name": "list"},
+                datatype: "json",
+                mtype:"POST",
+                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','操作'],
+                colModel:[
+                    {name:'id' , width:107,align:'center'},
 
-										return '<input id="state-temp'+rowObject.id+'" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+                    {name:'Stream_ID', width:143},
+                    {name:'mxsLength',width:100,align:'center'},
+                    {name:'name', width:127,align:'center'},
+                    {name:'mxsNum', width:120,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="" || cellvalue=="0"){
+                                    return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
+                                }else{
+                                    var id="canshu"+rowObject.id;
+                                    group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
+                                    return group;
+                                }
+                        }
+                    },
+                    {name:'isControl', width:108,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
+                                    return '是';
+                                }else{
+                                    return '否';
+                                }
+                        }
+                    },
+                    {name:'state', width:131,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
 
-									}else{
-										return '<input id="state-temp'+rowObject.id+'"  onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-									}
-							}
-						},
-						{name:'operation', width:150,align:'center',
-							formatter:function(cellvalue, options, rowObject){
-                            return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
-						}
-						}
-					],
-					//height:600,
-					viewrecords : true,
-					altRows: true,
-					multiselect: false,
-	        multiboxonly: true,
-            caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+                                    return '<input id="state-temp'+rowObject.id+'" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
 
-            gridComplete:function(){
+                                }else{
+                                    return '<input id="state-temp'+rowObject.id+'"  onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
+                                }
+                        }
+                    },
+                    {name:'operation', width:150,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                        return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
+                    }
+                    }
+                ],
+                //height:600,
+                viewrecords : true,
+                altRows: true,
+                multiselect: false,
+                multiboxonly: true,
+                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+
+                gridComplete:function(){
 					    $("[data-toggle='popover']").popover();
                     $('.ui-jqgrid-sortable').eq(0).attr("align","center");
                     //$('.ui-jqgrid-sortable').eq(2).attr("align","center");
@@ -359,36 +366,39 @@
                             $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
 
 							});
-	        },
-            loadComplete:function (rows) {
-                $("[data-toggle='popover']").popover();
-                row = rows.rows;
-                if(row.length==0){
-                    $("#grid-table").jqGrid( 'setGridHeight', 'auto');
-                    $("#export-protocol").css('display','none');
-                    $("#show-no-data").css('display','block');
-                    $("#advice-content").text("当前没有任何功能，选择立即定义。");
-                }
-                for ( var i=0;i<row.length ;i++){
-                    id = row[i].id;
-                    streamID[id]=row[i].Stream_ID;
+                },
+                loadComplete:function (rows) {
 
-                    temp=document.getElementById("canshu"+id);
-                    $(temp).parents('td').removeAttr('title');
-                    if (rows.check_state >= 1) {
-                    document.getElementById("state-temp"+id).setAttribute('disabled','true');
-                    document.getElementById("edit-info"+id).removeAttribute('href');
-                    document.getElementById("del-info"+id).removeAttribute('onclick');
-                    document.getElementById("del-info"+id).removeAttribute('href');
+                    $("[data-toggle='popover']").popover();
+                    row = rows.rows;
+                    if(row.length==0){
+                        $("#grid-table").jqGrid( 'setGridHeight', 'auto');
+                        $("#export-protocol").css('display','none');
+                        $("#show-no-data").css('display','block');
+                        $("#advice-content").text("当前没有任何功能，选择立即定义。");
+                    }
+                    for ( var i=0;i<row.length ;i++){
+                        id = row[i].id;
+                        streamID[id]=row[i].Stream_ID;
+
+                        temp=document.getElementById("canshu"+id);
+                        $(temp).parents('td').removeAttr('title');
+                        if (rows.check_state >= 1) {
+                        document.getElementById("state-temp"+id).setAttribute('disabled','true');
+                        document.getElementById("edit-info"+id).removeAttribute('href');
+                        document.getElementById("del-info"+id).removeAttribute('onclick');
+                        document.getElementById("del-info"+id).removeAttribute('href');
+                    }
+                    }
+                    document.getElementById('grid-table').style.width='938px';
+                    tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
+                    tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
+                    $("#grid-table").children('tbody').sortable();
+                        $("#grid-table").children('tbody').disableSelection();
                 }
-                }
-                document.getElementById('grid-table').style.width='938px';
-                tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
-                tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-            }
-				});
-				//$("#loadingDiv").hide();
-			});
+
+            });
+
             function show_table(item) {
                 $(item).nextAll('div').show();
                 $(item).nextAll('div').children('table').show()
@@ -400,7 +410,7 @@
 			function state(id) {
 			    post_data = {'name':'state','id':id};
 			    $.ajax({
-                   url:"#/argue",
+                   url:location.href,
                     type:"POST",
                     data:post_data,
                     async :false,
@@ -469,8 +479,12 @@
                 // 确认删除产品功能
                 post_data = {'name': 'del', 'id': id};
                 $("#del-info" + id).popover('destroy');
-                document.getElementById(id).remove();
-
+                if(isIE()){
+                    document.getElementById(id).removeNode(true);
+                }
+                else{
+                    document.getElementById(id).remove();
+                }
                 // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
                 rows = document.getElementById("grid-table").rows.length;
                 for (var i = 1; i <=rows; i++) {
@@ -485,7 +499,7 @@
                 }
                 // 异步请求后台删除数据
                 $.ajax({
-                    url:"#/argue",
+                    url:location.href,
                     type: "POST",
                     data: post_data,
                     success: function (data) {
@@ -497,8 +511,9 @@
                     }
                 });
             }
-                function fun_close() {
-			    // 关闭删除弹窗
-                    $('.del-info').popover('hide');
-                }
+            function fun_close() {
+            // 关闭删除弹窗
+                $('.del-info').popover('hide');
+            }
+
 		</script>

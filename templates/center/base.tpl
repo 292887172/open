@@ -5,6 +5,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
@@ -60,7 +61,7 @@ var _hmt = _hmt || [];
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% endif %}
             <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-            <li><a href="/wiki/"  >开发文档</a></li>
+
         </ul>
         <div class="sign_out">
             {% if user.account_id %}
@@ -80,7 +81,7 @@ var _hmt = _hmt || [];
                             <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
                         {% endif %}
 
-                        <a rel="nofollow" id="modify_pwd_id" href="/guide#contact" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
             {% endif %}
@@ -104,7 +105,7 @@ var _hmt = _hmt || [];
     <ul>
         <li><a href="http://www.53iq.com/about" target="_blank" rel="nofollow">关于53iq</a></li>
         <li>|</li>
-        <li><a href="/guide#contact"  rel="nofollow">联系我们</a></li>
+        <li><a href="/contact"  rel="nofollow">联系我们</a></li>
 
     </ul>
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>

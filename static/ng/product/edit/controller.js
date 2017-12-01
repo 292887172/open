@@ -177,9 +177,10 @@ angular.module('Product.edit', ['ngRoute'])
                     	console.log("edit success!");
                     }
                     else if(data=="add_success"){
+
                     	console.log("add success!");
                     }
-					location.href='#/argue';
+					window.location.href = '#/argue';
                 })
 
                 })

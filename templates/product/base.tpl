@@ -10,6 +10,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
     <title>{% block title %}{% endblock %} - 厨房智能平台</title>
@@ -23,29 +24,21 @@
     <![endif]-->
     {% block style %}
     {% endblock %}
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?9088d602c7fd9fd4bfb8f3472bd734b7";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
+    <style>
+            .sign_out a:hover{
+                color: #ff6202;
+            }
+            .sign_out a.user-login{
+                background-color: #FF6F37
+            }
+            .sign_out .user-login:hover{
+                color: #fff;
+                background-color: #ff6202
+        }
+    </style>
 </head>
-<style>
-    .sign_out a:hover{
-        color: #ff6202;
-    }
-    .sign_out a.user-login{
-        background-color: #FF6F37
-    }
-    .sign_out .user-login:hover{
-        color: #fff;
-        background-color: #ff6202
-    }
-</style>
+
+
 <body>
 <div class="header">
     <div class="wrapper">
@@ -83,7 +76,7 @@ var _hmt = _hmt || [];
                        style="width: 120px; cursor: pointer; display: none;">修改密码</a>
                     {% endif %}
 
-                        <a rel="nofollow" id="modify_pwd_id" href="/guide#contact" onclick="addHover('/contact',this)" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
+                        <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                      <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'"
                        onmouseover="$('.login_out').show()" class="login_out"
                        style="width: 120px; cursor: pointer; display: none;">退出</a>
@@ -104,13 +97,35 @@ var _hmt = _hmt || [];
 
 <div class="footer">
     <p><a href="http://www.53iq.com/about" target="_blank">关于53iq</a>
-        <a href="/guide#contact" onclick="addHover('contact',this)">联系我们</a>
+        <a href="/contact">联系我们</a>
     </p>
 
     <p>Copyright©{% now 'Y' %} 53iq 版权所有</p>
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/js/check-ie.js"></script>
+<script>
+    if(lessIE9()){
+        $.ajax({
+            type: "get",
+            url: '/error',
+            data: "",
+            success: function (msg) {
+                $("body").html(msg)
+            },
+            error: function () {
+            }
+        })
+    }
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?9088d602c7fd9fd4bfb8f3472bd734b7";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 {% block end_fixed_script %}{% endblock %}
 {% block end_script %}{% endblock %}
 </body>
