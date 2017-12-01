@@ -53,7 +53,7 @@
             <div style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute;">
                 <div class="mui-content" id="DeviceConf" v-cloak="" >
                     <div class="mui-content-padded"  >
-                        <div style="height: 100px;"><h3 style="line-height: 100px;">油烟机100056</h3></div>
+                        <div style="height: 100px;background-color: #1f1d1d;"><h3 style="line-height: 100px;background-color: #1f1d1d;">油烟机100056</h3></div>
                             </div>
                                 <div class="mui-left">
                                     <div class="mui-col-sm-9" >
@@ -63,7 +63,7 @@
                                 </div>
                             <div class="mui-right">
                                 <ul class="mui-table-view mui-grid-view mui-grid-9" style="border-left: 1px solid rgba(255, 255, 255, 0.2);margin-left: 10px;" >
-                                    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList">
+                                    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" v-for="f in funcList" style="background-color: #1f1d1d;">
                                         <div @click="sendCommand(f.name,f.value)" class="mui-div-botton">
                                             <input v-if="reversedWidget(f.widget, 'input')" type="text" :value="f.value" :id="f.name">
                                             <span v-else="reversedWidget(f.widget, 'other')" class="mui-icon" :id="f.name" :class="[f.value?'mui-icon-control-c':'mui-icon-control']" style="width: 40px;height: 40px;"></span>
