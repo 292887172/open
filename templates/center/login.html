@@ -261,11 +261,9 @@
 {% block image %}
     <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev.png' %}" height="40"></a></h1>
 {% endblock %}
-
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
-    <li><a href="/wiki/">开发文档</a></li>
+    <li><a href="{% url 'wiki' %}">开发指南</a></li>
 {% endblock %}
 {% block content %}
 <div class="ui-mmask"></div>

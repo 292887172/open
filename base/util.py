@@ -84,6 +84,23 @@ def gen_app_access_token():
     return access_token
 
 
+def get_app_default_logo(value):
+    category = {1: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7EqAV4cjAAAJEEiqGrI732.png',
+                2: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok6-KAJ2WKAAAHByAZqnw209.png',
+                6: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok6sSAB3aaAAAGU1GU_50524.png',
+                11: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7AGAbEI3AAAJd2HNrOM829.png',
+                20: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7HWAPlS6AAAEoYqCIN8230.png',
+                25: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok68SASi2XAAAKV6tvHYA952.png',
+                26: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok65uAE6WvAAAJoXjpBUE995.png',
+                27: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7CiAad4FAAAIZ6wuFKI298.png'}
+    try:
+        app_logo = category.get(value)
+        return app_logo
+    except Exception as e:
+        print("获取默认app_logo失败",e)
+        return ''
+
+
 def gen_app_default_conf(val):
     smoke = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,

@@ -7,7 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from base.util import gen_app_default_conf
+from base.util import gen_app_default_conf,get_app_default_logo
 from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
 from common.app_helper import del_app
 from common.app_helper import release_app
@@ -177,6 +177,8 @@ def product_add(request):
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
         device_conf = gen_app_default_conf(app_category_detail)
+        app_logo = get_app_default_logo(app_category_detail)
+
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -193,6 +195,9 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
+                if app_logo:
+                    result.app_logo = app_logo
+                    result.save()
                 # 将产品key值推送到接口
                 try:
                     update_app_protocol(result)
@@ -329,6 +334,16 @@ def product_main(request):
             message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse('del_success')
+        elif post_data == 'update':
+            funs = request.POST.get("funs")
+            funs = json.loads(funs)
+            for i in range(len(opera_data)):
+                for j in range(len(funs)):
+                    if str(opera_data[i].get("Stream_ID")) == funs[j]:
+                        opera_data[i]["id"] = j + 1
+            save_app(app, opera_data)
+            return HttpResponse('update_success')
+
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
