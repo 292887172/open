@@ -3066,3 +3066,5 @@ OSError: [Errno 51] Network is unreachable
 2017-12-01 12:31:10,066 [Thread-902:123145459806208] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-12-01 13:14:31,190 [Thread-1166:123145459806208] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-12-01 13:16:08,626 [Thread-1308:123145459806208] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-01 13:37:10,836 [Thread-1773:123145459806208] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-01 15:25:13,106 [Thread-1846:123145459806208] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
