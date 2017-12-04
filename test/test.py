@@ -12,3 +12,30 @@ for dirpath, dirnames, filenames in os.walk(root):
                 print(dirpath)
             except Exception as e:
                 pass
+
+
+# def Square(num):
+#     temp = str(num)
+#     n = 0
+#     for index,value in enumerate(temp):
+#         if index == len(temp)-1:
+#             print(value+'*'+value, end='')
+#         else:
+#             print(value+'*'+value+' + ', end='')
+#         a= int(value)
+#         n += a*a
+#     print(' = ',n,)
+#     if n == 1:
+#         return 1
+#     return Square(n)
+# def countBits(self, num):
+#         """
+#         :type num: int
+#         :rtype: List[int]
+#         """
+#         list = []
+#         for i in range(0,num+1):
+#             count = bin(i).count('1')
+#             list.append(count)
+#         return list
+
