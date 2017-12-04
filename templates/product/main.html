@@ -146,7 +146,7 @@
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
     <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
-    <li><a href="{% url 'home/guide' %}">开发指南</a></li>
+    <li><a href="{% url 'wiki' %}">开发指南</a></li>
 
 
 {% endblock %}
@@ -293,6 +293,16 @@
                             </li>
                         </ul>
                     </div>
+                    {% else %}
+                        <div class="menuBox">
+                            <ul>
+                                <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
+                                    <a href="http://oven.53iq.com/static/html/move.html?id={{ app.app_appid |cover_str8}}.html">
+                                        <i class="fa fa-text" ></i>UI编辑
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     {% endif %}
 {#                    <div class="menuBox">#}
 {#                        <h3>生产测试</h3>#}
