@@ -314,13 +314,11 @@ def product_main(request):
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id", "")
-            streamId = []
             for i in range(len(opera_data)):
-                streamId.append(opera_data[i]['Stream_ID'])
                 if str(opera_data[i]['id']) == edit_id:
                     edit_data = opera_data[i]
-                    return JsonResponse({'data': edit_data, 'streamIds': streamId})
-            return JsonResponse({'streamIds': streamId})
+                    return JsonResponse({'data': edit_data, 'funs':opera_data})
+            return JsonResponse({'data': '','funs': opera_data})
         elif post_data == 'del':
             # 删除信息
             del_id = request.POST.get("id")
@@ -377,7 +375,6 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
-            print(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
