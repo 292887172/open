@@ -377,6 +377,7 @@ def product_main(request):
             # 接收要编辑或者添加的数据
             indata = request.POST.get('d')
             indata = json.loads(indata)
+            print(indata)
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)

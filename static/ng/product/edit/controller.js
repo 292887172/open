@@ -158,10 +158,22 @@ angular.module('Product.edit', ['ngRoute'])
 				}else{
 					indata.isControl=0;//不可控
 				}
+				if(document.getElementsByName("isFunction")[0].checked){
+					indata.isFunction=1;//功能按钮
+				}
+				else{
+					indata.isFunction=0;//属性按钮
+				}
 				if(document.getElementById("state").checked){
 					indata.state=1;//启用
 				}else{
 					indata.state=0;//不启用
+				}
+				if(document.getElementById("toSwitch").checked){
+					indata.toSwitch=1;//设置为总开关
+				}
+				else {
+					indata.toSwitch=0;//不设置为总开关
 				}
 				indata.corpName=$.trim($('#corpName').val());
 				indata.corpMark=$.trim($('#corpMark').val());

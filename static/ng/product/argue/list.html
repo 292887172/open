@@ -405,6 +405,7 @@
 
             });
             function update_id(item) {
+                // 重新按位置排序，并更新这一行中所有用到id的位置
                 id = item.attr("id");
                 fun_name = [];
                 rows = document.getElementById("grid-table").rows;
@@ -412,16 +413,18 @@
                 for (var i = 1; i <length; i++) {
                     rows[i].children[0].innerText = i;
                     rows[i].id = i;
-                    a = "del(" + i + ")";
-                    b = "del-info" + i;
+                    d_id = "del-info" + i;
+                    e_id = "edit-info" + i;
                     last = rows[i].children[rows[i].children.length-1];
-                    last.firstChild.id="edit-info"+i;
-                    last.firstChild.href="#/edit?id="+i;
-                    last.lastChild.id = b;
-                    $("#"+b).attr("onclick",a);
+                    last.firstChild.id = e_id;
+                    $("#"+e_id).attr("href","#/edit?id="+i);
+
+                    last.lastChild.id = d_id;
+                    $("#"+d_id).attr("onclick","del(" + i + ")");
                     fun_name.push(rows[i].children[1].title);
                 }
                 fun_name = JSON.stringify(fun_name);
+                // 更新后台功能顺序
                 $.ajax({
                    url:location.href,
                     type:"POST",
@@ -434,7 +437,6 @@
                         console.log("更新失败");
                     }
                 });
-
             }
 
             function show_table(item) {

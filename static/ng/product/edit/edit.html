@@ -185,7 +185,7 @@
 										</div>
 									</div>
 
-									<div class="form-group">
+                                    <div class="form-group">
 										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isControl" style="text-align:right"> 可控 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="可控”表示您的参数可以被控制，如：“开关”；“不可控”表示您的参数不可被控制，如：“PM2.5”；" title="">?</span> </label>
 										<div class="col-sm-9 col-xs-9">
 												<div class="radio">
@@ -200,11 +200,32 @@
 												</div>
 										</div>
 									</div>
+                                    <div class="form-group">
+										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" style="text-align:right"> 功能属性 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
+										<div class="col-sm-9 col-xs-9">
+												<div class="radio">
+														<label>
+															<input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="1" checked/>
+															<span class="lbl bigger-120"> 功能</span>
+														</label>
+														<label>
+															<input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="0"/>
+															<span class="lbl bigger-120"> 属性</span>
+														</label>
+												</div>
+										</div>
+									</div>
+                                    <div class="form-group" style="width: 48%;float: left;padding-left: 14%">
 
-									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right;padding-top: 16px;"> 启用状态 </label>
+                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right;padding-top: 16px;"> 启用状态 </label>
 										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
 												<input ng-disabled='{[{ disabled }]}' id="state" type="checkbox" class="ace ace-switch ace-switch-5" value="1" checked/><span class="lbl middle"></span>
+										</div>
+                                    </div>
+                                    <div class="form-group" style="width: 27%;float: left;">
+                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="toSwitch" style="text-align:right;padding-top: 16px;"> 总开关 </label>
+										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
+												<input ng-disabled='{[{ disabled }]}' id="toSwitch" type="checkbox" class="ace ace-switch ace-switch-5" value="0" /><span class="lbl middle"></span>
 										</div>
 									</div>
 
@@ -292,7 +313,7 @@
                 });
                 $('[data-rel=popover]').popover({container:'body'});
                 if(flag == false){
-                    var obj={id:id,Stream_ID:edit_data["Stream_ID"],name:edit_data["name"],isControl:edit_data["isControl"],state:edit_data["state"],min:edit_data["min"],max:edit_data["max"],paramType:edit_data["paramType"],corpName:edit_data["corpName"],corpMark:edit_data["corpMark"],mxs:edit_data["mxs"],mxsLength:edit_data["mxsLength"],time:edit_data["time"]};
+                    var obj={id:id,Stream_ID:edit_data["Stream_ID"],name:edit_data["name"],isControl:edit_data["isControl"],state:edit_data["state"],isFunction:edit_data["isFunction"],toSwitch:edit_data["toSwitch"],min:edit_data["min"],max:edit_data["max"],paramType:edit_data["paramType"],corpName:edit_data["corpName"],corpMark:edit_data["corpMark"],mxs:edit_data["mxs"],mxsLength:edit_data["mxsLength"],time:edit_data["time"]};
                     loadData(obj);
                 }
                 else{
@@ -317,6 +338,16 @@
 					document.getElementById('state').checked=true;
 				}else{
 					document.getElementById('state').checked=false;
+				}
+				if(d.isFunction==1){
+					document.getElementsByName('isFunction')[0].checked=true;
+				}else{
+					document.getElementsByName('isFunction')[1].checked=true;
+				}
+				if(d.toSwitch==1){
+					document.getElementById('toSwitch').checked=true;
+				}else{
+					document.getElementById('toSwitch').checked=false;
 				}
 				if(d.paramType==1){
 					document.getElementsByName('paramType')[0].checked=true;
@@ -433,6 +464,16 @@
 			function onKeyPress(event) {
 			    if(event.keyCode==13){
 			        add();
+                }
+            }
+            function checkToSwitch() {
+                var funs=[];
+                var advice = "该App已经设置总开关";
+                for(var i;i<funs.length;i++){
+                    if(funs[i].toSwitch==1){
+                        break;
+
+                    }
                 }
             }
 			function checkID(){

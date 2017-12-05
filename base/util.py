@@ -275,6 +275,216 @@ def gen_app_default_conf(val):
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
          'paramType': 1, 'mxsLength': '8', 'id': '8', 'Stream_ID': 'FRE_POWER'},
     ]
+    small_oven = [
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:40:34",
+        "Stream_ID": "POWER",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "电源",
+        "id": "1",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:40:41",
+        "Stream_ID": "FREEZE",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "解冻",
+        "id": "2",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "min": 0,
+        "state": 1,
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "蛋糕",
+        "time": "2017-12-04 15:40:47",
+        "Stream_ID": "CAKE",
+        "corpName": "",
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "id": "3",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:28:34",
+        "Stream_ID": "BREAD",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "面包",
+        "id": "4",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:29:12",
+        "Stream_ID": "poultry",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "家禽",
+        "id": "5",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:30:27",
+        "Stream_ID": "bake",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "烘烤",
+        "id": "6",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:30:46",
+        "Stream_ID": "fast_heat",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "快热",
+        "id": "7",
+        "paramType": 1
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:31:24",
+        "Stream_ID": "fermentation",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "发酵",
+        "id": "8",
+        "paramType": 1
+    }
+]
 
     if val == 1:
         return smoke
@@ -286,5 +496,7 @@ def gen_app_default_conf(val):
         return oven
     elif val == 20:
         return steam
+    elif val == 27:
+        return small_oven
     else:
         return []
