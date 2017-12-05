@@ -225,8 +225,9 @@
                                     <div class="form-group" style="width: 27%;float: left;">
                                         <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="toSwitch" style="text-align:right;padding-top: 16px;"> 总开关 </label>
 										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
-												<input ng-disabled='{[{ disabled }]}' id="toSwitch" type="checkbox" class="ace ace-switch ace-switch-5" value="0" /><span class="lbl middle"></span>
+												<input ng-disabled='{[{ disabled }]}' id="toSwitch" onclick="checkToSwitch(this)" type="checkbox" class="ace ace-switch ace-switch-5" value="0" /><span class="lbl middle"></span>
 										</div>
+                                        <div id="checkSwitch" style="color: red;position: relative; top: 14px;display: none"></div>
 									</div>
 
 								</form><!-- PAGE CONTENT ENDS -->
@@ -286,12 +287,13 @@
 
 		<script type="text/javascript">
 
-            var StreamIds = [];
+
 			var url=location.href;
 			var num=url.indexOf('?id');
 			var str=url.substring(num+1);
 			var id = str.split("=")[1];
 			var edit_data={};
+			var funs=[];
 			var flag ;
 			jQuery(function($) {
 
@@ -304,16 +306,30 @@
                     async :false,
                     success: function (data) {
                         edit_data=data['data'];
-                        StreamIds = data['streamIds'];
+                        funs = data['funs'];
                         if(!edit_data){
-                            flag = true
+                            flag = true;
                         }
                         else{flag = false;}
                     }
                 });
                 $('[data-rel=popover]').popover({container:'body'});
                 if(flag == false){
-                    var obj={id:id,Stream_ID:edit_data["Stream_ID"],name:edit_data["name"],isControl:edit_data["isControl"],state:edit_data["state"],isFunction:edit_data["isFunction"],toSwitch:edit_data["toSwitch"],min:edit_data["min"],max:edit_data["max"],paramType:edit_data["paramType"],corpName:edit_data["corpName"],corpMark:edit_data["corpMark"],mxs:edit_data["mxs"],mxsLength:edit_data["mxsLength"],time:edit_data["time"]};
+                    var obj={
+                        id:id,
+                        Stream_ID:edit_data["Stream_ID"],
+                        name:edit_data["name"],
+                        isControl:edit_data["isControl"],
+                        state:edit_data["state"],
+                        isFunction:edit_data["isFunction"],
+                        toSwitch:edit_data["toSwitch"],
+                        min:edit_data["min"],max:edit_data["max"],
+                        paramType:edit_data["paramType"],
+                        corpName:edit_data["corpName"],
+                        corpMark:edit_data["corpMark"],
+                        mxs:edit_data["mxs"],
+                        mxsLength:edit_data["mxsLength"],
+                        time:edit_data["time"]};
                     loadData(obj);
                 }
                 else{
@@ -467,12 +483,13 @@
                 }
             }
             function checkToSwitch() {
-                var funs=[];
-                var advice = "该App已经设置总开关";
-                for(var i;i<funs.length;i++){
-                    if(funs[i].toSwitch==1){
-                        break;
-
+                var advice = "该产品功能已经设置了总开关";
+                for(var i=0;i< funs.length;i++){
+                    if(funs[i].toSwitch==1 && funs[i].Stream_ID != edit_data.Stream_ID){
+                        document.getElementById('toSwitch').checked=false;
+                        $("#checkSwitch").html(advice);
+                        $('#checkSwitch').css("display", "block");
+                        return;
                     }
                 }
             }
@@ -480,10 +497,10 @@
 				var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
 				var data=$.trim($('#Stream_ID').val());
                 var temp =false;
-                for (var i = 0; i < StreamIds.length; i++) {
-                    if(StreamIds[i] == data)
+                for (var i = 0; i < funs.length; i++) {
+                    if(funs[i].Stream_ID == data)
                     {
-                        if((edit_data && edit_data['Stream_ID']!=data) || !edit_data) {
+                        if((edit_data && edit_data.Stream_ID!=data) || !edit_data) {
                             temp = true;
                             break
                         }
