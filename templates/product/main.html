@@ -47,8 +47,8 @@
            border: 0;
            font-size: 16px;
        }
-       .dropdown-menu>li>a:hover{
-           background: initial;
+       .dropdown-menu>li:hover>a, .dropdown-menu>li>a:active, .dropdown-menu>li>a:focus{
+           background: #ff6202;
            border: 0;
        }
        .menuBox h3{
@@ -98,7 +98,7 @@
     .breadcrumb>li>a:hover{
         color: #ff6202;
     }
-    .breadcrumb>li, .breadcrumb>li.active{
+    .breadcrumb>li, .breadcrumb>li.active,.breadcrumb>li:active,.breadcrumb>li:focus{
         color: #ff6202;
         cursor: text;
     }

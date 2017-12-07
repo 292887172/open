@@ -169,12 +169,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}else{
 					indata.state=0;//不启用
 				}
-				if(document.getElementById("toSwitch").checked){
-					indata.toSwitch=1;//设置为总开关
-				}
-				else {
-					indata.toSwitch=0;//不设置为总开关
-				}
+
 				indata.corpName=$.trim($('#corpName').val());
 				indata.corpMark=$.trim($('#corpMark').val());
 				indata.mxsLength=$.trim($('#mxsLength').val());
