@@ -215,20 +215,13 @@
 												</div>
 										</div>
 									</div>
-                                    <div class="form-group" style="width: 48%;float: left;padding-left: 14%">
+                                    <div class="form-group">
 
                                         <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="state" style="text-align:right;padding-top: 16px;"> 启用状态 </label>
 										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
 												<input ng-disabled='{[{ disabled }]}' id="state" type="checkbox" class="ace ace-switch ace-switch-5" value="1" checked/><span class="lbl middle"></span>
 										</div>
                                     </div>
-                                    <div class="form-group" style="width: 27%;float: left;">
-                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="toSwitch" style="text-align:right;padding-top: 16px;"> 总开关 </label>
-										<div class="col-sm-9 col-xs-9" style="padding-top:6px">
-												<input ng-disabled='{[{ disabled }]}' id="toSwitch" onclick="checkToSwitch(this)" type="checkbox" class="ace ace-switch ace-switch-5" value="0" /><span class="lbl middle"></span>
-										</div>
-                                        <div id="checkSwitch" style="color: red;position: relative; top: 14px;display: none"></div>
-									</div>
 
 								</form><!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -322,7 +315,6 @@
                         isControl:edit_data["isControl"],
                         state:edit_data["state"],
                         isFunction:edit_data["isFunction"],
-                        toSwitch:edit_data["toSwitch"],
                         min:edit_data["min"],max:edit_data["max"],
                         paramType:edit_data["paramType"],
                         corpName:edit_data["corpName"],
@@ -360,11 +352,7 @@
 				}else{
 					document.getElementsByName('isFunction')[1].checked=true;
 				}
-				if(d.toSwitch==1){
-					document.getElementById('toSwitch').checked=true;
-				}else{
-					document.getElementById('toSwitch').checked=false;
-				}
+
 				if(d.paramType==1){
 					document.getElementsByName('paramType')[0].checked=true;
 					$('#minInt').val(d.min);
@@ -482,17 +470,7 @@
 			        add();
                 }
             }
-            function checkToSwitch() {
-                var advice = "该产品功能已经设置了总开关";
-                for(var i=0;i< funs.length;i++){
-                    if(funs[i].toSwitch==1 && funs[i].Stream_ID != edit_data.Stream_ID){
-                        document.getElementById('toSwitch').checked=false;
-                        $("#checkSwitch").html(advice);
-                        $('#checkSwitch').css("display", "block");
-                        return;
-                    }
-                }
-            }
+
 			function checkID(){
 				var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
 				var data=$.trim($('#Stream_ID').val());

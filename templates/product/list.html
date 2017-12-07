@@ -877,14 +877,21 @@
         function block_mac(obj) {
             app_id = $(obj).attr('data-id');
             app_appid = $(obj).attr('data-appid');
-            if(location.host.includes("open.53iq.com"))
-            {
-                $(obj).attr('href', "http://oven.53iq.com/static/html/move.html?id="+app_appid+".html");
-            }
-            else
-            {
-                $(obj).attr('href', "http://192.168.1.92:8000/static/html/move.html?id="+app_appid+".html");
-            }
+            $.ajax({
+                type: "get",
+                url: 'http://oven.53iq.com/api/produce/base_html',
+                data: {'key':app_appid,'sign':1},
+                complete: function () {
+                    if(location.host.includes("open.53iq.com"))
+                    {
+                        location.href="http://oven.53iq.com/static/html/move.html?id="+app_appid+".html";
+                    }
+                    else
+                    {
+                        location.href="http://192.168.1.92:8000/static/html/move.html?id="+app_appid+".html";
+                    }
+                }
+            })
         }
         function export_protocol(id) {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
