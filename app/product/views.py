@@ -7,7 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from base.util import gen_app_default_conf
+from base.util import gen_app_default_conf,get_app_default_logo
 from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
 from common.app_helper import del_app
 from common.app_helper import release_app
@@ -177,6 +177,8 @@ def product_add(request):
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
         device_conf = gen_app_default_conf(app_category_detail)
+        app_logo = get_app_default_logo(app_category_detail)
+
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -193,6 +195,9 @@ def product_add(request):
             result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group)
             if result.app_id:
+                if app_logo:
+                    result.app_logo = app_logo
+                    result.save()
                 # 将产品key值推送到接口
                 try:
                     update_app_protocol(result)
@@ -301,6 +306,12 @@ def product_main(request):
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
             print(e)
+
+        def find(id):
+            for i in range(len(opera_data)):
+                if str(opera_data[i]['id']) == id:
+                    return [i,opera_data[i]]
+            return []
         # 接收页面请求信息
         post_data = request.POST.get("name")
         if post_data == 'list':
@@ -309,41 +320,57 @@ def product_main(request):
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id", "")
-            streamId = []
-            for i in range(len(opera_data)):
-                streamId.append(opera_data[i]['Stream_ID'])
-                if str(opera_data[i]['id']) == edit_id:
-                    edit_data = opera_data[i]
-                    return JsonResponse({'data': edit_data, 'streamIds': streamId})
-            return JsonResponse({'streamIds': streamId})
+            edit_data = find(edit_id)[1]
+            return JsonResponse({'data': edit_data, 'funs':opera_data})
         elif post_data == 'del':
             # 删除信息
             del_id = request.POST.get("id")
+            data = find(del_id)
+            if data:
+                i = data[0]
+                fun_name = data[1].get("name")
+                opera_data.pop(i)
+                replace_fun_id(opera_data,del_id)
+                save_app(app, opera_data)
+                message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                return HttpResponse('del_success')
+        elif post_data == 'update':
+            funs = request.POST.get("funs")
+            funs = json.loads(funs)
             for i in range(len(opera_data)):
-                if str(opera_data[i].get("id")) == del_id:
-                    fun_name = opera_data[i]["name"]
-                    opera_data.pop(i)
-                    break
-            replace_fun_id(opera_data,del_id)
+                for j in range(len(funs)):
+                    if str(opera_data[i].get("Stream_ID")) == funs[j]:
+                        opera_data[i]["id"] = j + 1
             save_app(app, opera_data)
-            message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
-            return HttpResponse('del_success')
+            return HttpResponse('update_success')
+
         elif post_data == 'state':
             # 更改参数状态
             state_id = request.POST.get("id")
-            for i in opera_data:
-                if str(i['id']) == state_id:
-                    fun_name = i['name']
-                    if str(i['state']) == '0':
-                        i['state'] = '1'
-                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
-                    elif str(i['state']) == '1':
-                        i['state'] = '0'
-                        message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
-                    save_app(app, opera_data)
-                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
-                    return HttpResponse('change_success')
+            data = find(state_id)
+            if data:
+                fun_name = data[1]['name']
+                if str(data[1]['state']) == '0':
+                    data[1]['state'] = '1'
+                    fun_state = UPDATE_FUN_OPEN
+                else:
+                    data[1]['state'] = '0'
+                    fun_state = UPDATE_FUN_CLOSE
+                save_app(app, opera_data)
+                message_content = '"' + app.app_name + '"' + fun_name + fun_state
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                return HttpResponse('change_success')
+
+        elif post_data == 'switch':
+            id = request.POST.get("id")
+            val = request.POST.get("dd")
+            data = find(id)
+            if data:
+                data[1]['toSwitch'] = val
+                save_app(app, opera_data)
+                return HttpResponse('change_success')
+
         elif post_data == "export":
             res = date_deal(app_id)
             return res
@@ -368,10 +395,8 @@ def product_main(request):
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
-                for i in opera_data:
-                    if str(i['id']) == indata['id']:
-                        i.update(indata)
-                        break
+                data = find(indata['id'])
+                data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
             else:

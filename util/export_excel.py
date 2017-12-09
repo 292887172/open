@@ -83,7 +83,7 @@ def deal_json(app):
         config_data = json.loads(app.device_conf)
     except Exception as e:
         config_data = []
-        print("json loads error in :",e)
+        print("json loads error in :", e)
     for data in config_data:
         # 写入Excel的数据
         j = {}
@@ -123,12 +123,12 @@ def deal_json(app):
         else:
             i['permission'] = '477'
             j['permission'] = "读"
-        if str(data['state']) == '1':
+        if str(data['state']) == '1' and data.get('toSwitch') != 1:
             temp1_data.append(i)
             temp2_data.append(j)
     e_data['functions'] = temp2_data
     j_data['functions'] = temp1_data
-    return {'e_data':e_data, 'j_data':j_data}
+    return {'e_data': e_data, 'j_data': j_data}
 
 
 def date_deal(app_id):

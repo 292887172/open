@@ -84,69 +84,86 @@ def gen_app_access_token():
     return access_token
 
 
+def get_app_default_logo(value):
+    category = {1: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7EqAV4cjAAAJEEiqGrI732.png',
+                2: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok6-KAJ2WKAAAHByAZqnw209.png',
+                6: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok6sSAB3aaAAAGU1GU_50524.png',
+                11: 'http://storage.56iq.net/group1/M00/27/B6/CgoKQ1onfHuAFkXQAAAGs5b60BI117.png',
+                20: 'http://storage.56iq.net/group1/M00/27/B6/CgoKQ1onfKmACVD1AAAGY2NWOAc179.png',
+                25: 'http://storage.56iq.net/group1/M00/27/B6/CgoKQ1onfCKADlDtAAAHmuiIXls002.png',
+                26: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok65uAE6WvAAAJoXjpBUE995.png',
+                27: 'http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok7CiAad4FAAAIZ6wuFKI298.png'}
+    try:
+        app_logo = category.get(value)
+        return app_logo
+    except Exception as e:
+        print("获取默认app_logo失败",e)
+        return ''
+
+
 def gen_app_default_conf(val):
     smoke = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER'},
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER','toSwitch':'0','isFunction':'1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 4,
          'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '1档', 'data': '1'}, {'desc': '2档', 'data': '2'},
                                 {'desc': '3档', 'data': '3'}, {'desc': '4档', 'data': '4'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAN'},
+         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAN','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '照明', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '3', 'Stream_ID': 'LAMP'},
+         'mxsLength': '8', 'id': '3', 'Stream_ID': 'LAMP','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '延时', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '4', 'Stream_ID': 'DELAY'}
+         'mxsLength': '8', 'id': '4', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'}
         ]
     stove = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER'},
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 4,
          'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '1档', 'data': '1'}, {'desc': '2档', 'data': '2'},
                                 {'desc': '3档', 'data': '3'}, {'desc': '4档', 'data': '4'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAN'},
+         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAN','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '照明', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '3', 'Stream_ID': 'LAMP'},
+         'mxsLength': '8', 'id': '3', 'Stream_ID': 'LAMP','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:10', 'name': '清洗', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '4', 'Stream_ID': 'WASH'},
+         'mxsLength': '8', 'id': '4', 'Stream_ID': 'WASH','toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:56', 'name': '清洗时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16', 'id': '5',
-         'Stream_ID': 'WASH_DURATION'},
+         'Stream_ID': 'WASH_DURATION','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '烘干', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '6', 'Stream_ID': 'DRY'},
+         'mxsLength': '8', 'id': '6', 'Stream_ID': 'DRY','toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:40', 'name': '烘干时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16', 'id': '7',
-         'Stream_ID': 'DRY_DURATION'},
+         'Stream_ID': 'DRY_DURATION','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '消毒', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '8', 'Stream_ID': 'DISINFECT'},
+         'mxsLength': '8', 'id': '8', 'Stream_ID': 'DISINFECT','toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:56', 'name': '消毒时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16', 'id': '9',
-         'Stream_ID': 'DISINFECT_DURATION'},
+         'Stream_ID': 'DISINFECT_DURATION','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:23', 'name': '恒温', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '10', 'Stream_ID': 'WARM'},
+         'mxsLength': '8', 'id': '10', 'Stream_ID': 'WARM','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '延时', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '11', 'Stream_ID': 'DELAY'},
+         'mxsLength': '8', 'id': '11', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'},
     ]
 
     oven = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER'},
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '童锁', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '2',  'Stream_ID': 'BODY_LOCK'},
+         'mxsLength': '8', 'id': '2',  'Stream_ID': 'BODY_LOCK', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '照明', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP'},
+         'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:10', 'name': '工作模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 65535, 'mxsNum': '17',
          'mxs': [{'desc': '无选择', 'data': '0'}, {'desc': '快热', 'data': '1'}, {'desc': '烘焙', 'data': '2'},
@@ -156,45 +173,45 @@ def gen_app_default_conf(val):
                  {'desc': '披萨', 'data': '12'}, {'desc': '发酵', 'data': '13'}, {'desc': '饼干', 'data': '14'},
                  {'desc': '家禽', 'data': '15'}, {'desc': '保温', 'data': '16'}
                  ],
-         'corpName': '', 'paramType': 1, 'mxsLength': '8', 'id': '4', 'Stream_ID': 'MODEL'},
+         'corpName': '', 'paramType': 1, 'mxsLength': '8', 'id': '4', 'Stream_ID': 'MODEL', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '时间下限', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '5', 'Stream_ID': 'TIME_LOWER_LIMIT'},
+         'id': '5', 'Stream_ID': 'TIME_LOWER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '建议工作时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '6', 'Stream_ID': 'SUGGEST_TIME'},
+         'id': '6', 'Stream_ID': 'SUGGEST_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '时间上限', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '7', 'Stream_ID': 'TIME_UPPER_LIMIT'},
+         'id': '7', 'Stream_ID': 'TIME_UPPER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '工作时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '8', 'Stream_ID': 'WORK_TIME'},
+         'id': '8', 'Stream_ID': 'WORK_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '剩余时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '9', 'Stream_ID': 'REMAIN_TIME'},
+         'id': '9', 'Stream_ID': 'REMAIN_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '温度下限', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '10', 'Stream_ID': 'TEMPE_LOWER_LIMIT'},
+         'id': '10', 'Stream_ID': 'TEMPE_LOWER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '建议温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '11', 'Stream_ID': 'SUGGEST_TEMPE'},
+         'id': '11', 'Stream_ID': 'SUGGEST_TEMPE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '温度上限', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '12', 'Stream_ID': 'TEMPE_UPPER_LIMIT'},
+         'id': '12', 'Stream_ID': 'TEMPE_UPPER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '当前温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '13', 'Stream_ID': 'CUR_TEMPE'},
+         'id': '13', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0','isFunction': '1'},
     ]
     steam = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER'},
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:35', 'name': '童锁', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '2', 'Stream_ID': 'BODY_LOCK'},
+         'mxsLength': '8', 'id': '2', 'Stream_ID': 'BODY_LOCK', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '照明', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP'},
+         'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:10', 'name': '工作模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 65535, 'mxsNum': '13',
          'mxs': [{'desc': '无选择', 'data': '0'}, {'desc': '肉类', 'data': '1'}, {'desc': '鱼类', 'data': '2'},
@@ -203,61 +220,287 @@ def gen_app_default_conf(val):
                  {'desc': '水果', 'data': '9'}, {'desc': '杀菌', 'data': '10'}, {'desc': '高温', 'data': '11'},
                  {'desc': '清洗', 'data': '12'}
                  ],
-         'corpName': '', 'paramType': 1, 'mxsLength': '8', 'id': '4', 'Stream_ID': 'MODEL'},
+         'corpName': '', 'paramType': 1, 'mxsLength': '8', 'id': '4', 'Stream_ID': 'MODEL', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '时间下限', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '5', 'Stream_ID': 'TIME_LOWER_LIMIT'},
+         'id': '5', 'Stream_ID': 'TIME_LOWER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '建议工作时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '6', 'Stream_ID': 'SUGGEST_TIME'},
+         'id': '6', 'Stream_ID': 'SUGGEST_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '时间上限', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '7', 'Stream_ID': 'TIME_UPPER_LIMIT'},
+         'id': '7', 'Stream_ID': 'TIME_UPPER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '工作时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '8', 'Stream_ID': 'WORK_TIME'},
+         'id': '8', 'Stream_ID': 'WORK_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:51:40', 'name': '剩余时间', 'corpMark': 's', 'widget': 'input', 'min': 0,
          'max': 65535, 'mxsNum': '0', 'mxs': [], 'corpName': '秒', 'paramType': 1, 'mxsLength': '16',
-         'id': '9', 'Stream_ID': 'REMAIN_TIME'},
+         'id': '9', 'Stream_ID': 'REMAIN_TIME', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '温度下限', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '10', 'Stream_ID': 'TEMPE_LOWER_LIMIT'},
+         'id': '10', 'Stream_ID': 'TEMPE_LOWER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '建议温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '11', 'Stream_ID': 'SUGGEST_TEMPE'},
+         'id': '11', 'Stream_ID': 'SUGGEST_TEMPE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '温度上限', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '12', 'Stream_ID': 'TEMPE_UPPER_LIMIT'},
+         'id': '12', 'Stream_ID': 'TEMPE_UPPER_LIMIT', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '当前温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '13', 'Stream_ID': 'CUR_TEMPE'},
+         'id': '13', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0','isFunction': '1'},
     ]
     fridge = [
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '智能模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '1', 'Stream_ID': 'SMART_MODE'},
+         'paramType': 1, 'mxsLength': '8', 'id': '1', 'Stream_ID': 'SMART_MODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '速冻模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAST_FREMODE'},
+         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAST_FREMODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '速冷模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '3', 'Stream_ID': 'FAST_FRIMODE'},
+         'paramType': 1, 'mxsLength': '8', 'id': '3', 'Stream_ID': 'FAST_FRIMODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '变温室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '4', 'Stream_ID': 'VAR_TEMP'},
+         'id': '4', 'Stream_ID': 'VAR_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷冻室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '5', 'Stream_ID': 'FRE_TEMP'},
+         'id': '5', 'Stream_ID': 'FRE_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷藏室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '6', 'Stream_ID': 'FRI_TEMP'},
+         'id': '6', 'Stream_ID': 'FRI_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '变温室开关', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '7', 'Stream_ID': 'VAR_POWER'},
+         'paramType': 1, 'mxsLength': '8', 'id': '7', 'Stream_ID': 'VAR_POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷冻室开关', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '8', 'Stream_ID': 'FRE_POWER'},
+         'paramType': 1, 'mxsLength': '8', 'id': '8', 'Stream_ID': 'FRE_POWER', 'toSwitch': '0','isFunction': '1'},
     ]
+    small_oven = [
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:40:34",
+        "Stream_ID": "POWER",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "电源",
+        "id": "1",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:40:41",
+        "Stream_ID": "FREEZE",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "解冻",
+        "id": "2",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "min": 0,
+        "state": 1,
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "蛋糕",
+        "time": "2017-12-04 15:40:47",
+        "Stream_ID": "CAKE",
+        "corpName": "",
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "id": "3",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:28:34",
+        "Stream_ID": "BREAD",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "面包",
+        "id": "4",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:29:12",
+        "Stream_ID": "poultry",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "家禽",
+        "id": "5",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:30:27",
+        "Stream_ID": "bake",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "烘烤",
+        "id": "6",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:30:46",
+        "Stream_ID": "fast_heat",
+        "corpName": "",
+        "min": 0,
+        "isControl": 1,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "快热",
+        "id": "7",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    },
+    {
+        "corpMark": "",
+        "time": "2017-12-04 15:31:24",
+        "Stream_ID": "fermentation",
+        "corpName": "",
+        "min": 0,
+        "mxs": [
+            {
+                "data": "0",
+                "desc": "关"
+            },
+            {
+                "data": "1",
+                "desc": "开"
+            }
+        ],
+        "isControl": 1,
+        "state": 1,
+        "max": 1,
+        "mxsLength": "1",
+        "mxsNum": "2",
+        "widget": "button",
+        "name": "发酵",
+        "id": "8",
+        "paramType": 1,
+        'toSwitch': '0',
+        'isFunction': '1'
+    }
+]
 
     if val == 1:
         return smoke
@@ -269,5 +512,7 @@ def gen_app_default_conf(val):
         return oven
     elif val == 20:
         return steam
+    elif val == 27:
+        return small_oven
     else:
         return []

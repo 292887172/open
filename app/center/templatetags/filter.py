@@ -70,7 +70,7 @@ register.filter(num_app)
 def category_detail(obj):
     try:
         type = str(obj)
-        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '0': '自定义'}
+        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '0': '其他'}
         return category[type]
     except Exception as e:
         print(e)
@@ -107,7 +107,7 @@ def create_menu(context, cur=0, dev_id=None):
             menu = [
                     {"url": "/", "title": "首页"},
                     {"url": "/product/list/", "title": "产品管理"},
-                    {"url": "/guide", "title": "开发指南"},
+                    {"url": "/wiki", "title": "开发指南"},
                     ]
 
         else:
@@ -115,33 +115,12 @@ def create_menu(context, cur=0, dev_id=None):
                 ret['cur'] = 2
             menu = [
                     {"url": "/", "title": "首页"},
-                    {"url": "/guide", "title": "开发指南"},
+                    {"url": "/wiki", "title": "开发指南"},
 
                     ]
         ret["menu"] = menu
 
-
     return ret
-
-
-def cover_device_type(obj):
-    """
-    转换产品类别
-    :param obj:
-    :return:
-    """
-    try:
-        t = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱'}
-        s1 = str(obj)
-        if s1 in t.keys():
-            return t[s1]
-        else:
-            return ''
-    except:
-        return ""
-
-
-register.filter(cover_device_type)
 
 
 def cover_str8(obj):
