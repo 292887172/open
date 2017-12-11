@@ -22,10 +22,10 @@
     </style>
 </head>
 <script>
-      var userID = '' // 用户id
+      var userID = '';// 用户id
       window.onload = function MyAutoRun() {
       var a = getck('COOKIE_USER_ACCOUNT')
-          console.log(a)
+          console.log(a);
           userID = 'test'+ a +'-smoke'
           document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
@@ -47,7 +47,7 @@
 <script src="/static/demo/js/vue-resource.js"></script>
 <script src="/static/demo/js/jquery.min.js"></script>
 <script src="/static/demo/js/smoking.js"></script>
-<script src="/static/demo/js/mui.min.js"> </script>
+<script src="/static/js/my_mui.js"> </script>
  <body style="background-color: white;">
      <div class="zhong_background">
             <div style="height: 350px;width:560px;background-color:#1f1d1d; margin-left: 54px;margin-top: 43px; position: absolute;">
@@ -199,7 +199,7 @@
                 }
             },
             sendCommand: function (name, value) {
-                value = !value
+                value = !value;
                 small = this.get_func("SMALL_WIND");
                 mid = this.get_func("MIDDLE_WIND");
                 big = this.get_func("BIG_WIND");
@@ -223,7 +223,7 @@
                             this.sync_power_all(tmp.value);
                         }
                         else if(name=="LIGHT"){
-                            this.clickLamp(tmp.value)
+                            this.clickLamp(tmp.value);
                             if(tmp.value){
                                  $("#smoke")[0].src = "/static/demo/img/lightopen.png";
                             }
@@ -263,8 +263,8 @@
 
                 send_data = {'did': userID, 'name': name, 'value':value};
 
-                console.log(name)
-                console.log(value)
+                console.log(name);
+                console.log(value);
 
                 this.$http.post('/product/control', JSON.stringify(send_data).toString()
                          ).then(function (res) {
@@ -311,7 +311,7 @@
                     //alert("Error : " + frame.body);
                 };
                 stomp.onconnectedframe = function () {
-                    console.log("Connected. Subcribing");
+                    console.log("Connected. Subcribing"+'------'+userID);
                     stomp.subscribe('/' + userID);
                     // first_get_status();
                 };
@@ -376,7 +376,39 @@
                                 devices.funcList[i].title = devices.funcList[i].value_des[parseInt(tmp_status[j].value)]
                             }
                         }
+                     }
+                 }
+                 // 同步左边灯 风扇的状态
+                 if(devices.funcList[i].name =='SMALL_WIND'){
+                     if(devices.funcList[i].value){
+                         clearInterval(timer2);
+                         clearInterval(timer3);
+                         devices.play(tmp,"timer1");
+                     }
 
+                 }
+                 if(devices.funcList[i].name=='MODDLE_WIND'){
+                     if(devices.funcList[i].value){
+                          clearInterval(timer1);
+                         clearInterval(
+
+                         );
+                         devices.play(tmp,"timer2");
+                     }
+                 }
+                 if(devices.funcList[i].name=='BIG_WIND'){
+                     if(devices.funcList[i].value){
+                          clearInterval(timer1);
+                         clearInterval(timer2);
+                         devices.play(tmp,"timer3");
+                     }
+                 }
+                 if(devices.funcList[i].name=='LIGHT'){
+                     if(devices.funcList[i].value){
+                         $("#smoke")[0].src = "/static/demo/img/lightopen.png";
+                     }
+                     else{
+                         $("#smoke")[0].src = "/static/demo/img/lightclose.png";
                      }
                  }
             }
