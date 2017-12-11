@@ -26202,7 +26202,7 @@ Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 225, in inner
     return func(self._wrapped, *args)
 AttributeError: 'AnonymousUser' object has no attribute 'developer'
-2017-10-27 12:07:23,444 [Thread-3:6180] [django.request:143] [WARNING]- Not Found: /product/webPage£¿id=214
+2017-10-27 12:07:23,444 [Thread-3:6180] [django.request:143] [WARNING]- Not Found: /product/webPageï¿½ï¿½id=214
 2017-10-27 12:32:56,580 [Thread-19:16604] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-10-27 14:47:11,093 [Thread-4:2172] [django.request:231] [ERROR]- Internal Server Error: /product/add/
 Traceback (most recent call last):
@@ -26537,7 +26537,7 @@ Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
     return view_func(*args, **kwargs)
   File "E:\open\app\product\views.py", line 555, in webPage
-    print("·µ»Ø²ÎÊý",response.json())
+    print("ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½",response.json())
   File "C:\Users\Administrator\ven2\lib\site-packages\requests\models.py", line 819, in json
     return json.loads(self.text, **kwargs)
   File "C:\Users\Administrator\ven2\lib\site-packages\simplejson\__init__.py", line 516, in loads
@@ -26554,7 +26554,7 @@ Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
     return view_func(*args, **kwargs)
   File "E:\open\app\product\views.py", line 556, in webPage
-    print("·µ»Ø²ÎÊý",ret.json())
+    print("ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½",ret.json())
   File "C:\Users\Administrator\ven2\lib\site-packages\requests\models.py", line 819, in json
     return json.loads(self.text, **kwargs)
   File "C:\Users\Administrator\ven2\lib\site-packages\simplejson\__init__.py", line 516, in loads
@@ -27137,7 +27137,7 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap>", line 1532, in source_to_code
   File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
   File "E:\open\app\product\views.py", line 548
-    return HttpResponse({'code'':'10010','msg':"¸Ãkey²»´æÔÚ"})
+    return HttpResponse({'code'':'10010','msg':"ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"})
                                       ^
 SyntaxError: invalid syntax
 2017-11-07 15:38:13,811 [Thread-110:13416] [django.request:143] [WARNING]- Not Found: /product/list/None
@@ -29689,11 +29689,11 @@ django.template.base.TemplateDoesNotExist: wiki/index.html
 2017-12-04 11:21:48,909 [Thread-47:17100] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-04 11:22:37,859 [Thread-67:11544] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-04 11:22:38,006 [Thread-69:11864] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-12-04 11:27:31,868 [Thread-135:4404] [django.request:143] [WARNING]- Not Found: /product/main/±ùÏä
-2017-12-04 11:27:58,430 [Thread-139:1028] [django.request:143] [WARNING]- Not Found: /product/main/±ùÏä
-2017-12-04 11:28:00,423 [Thread-143:2240] [django.request:143] [WARNING]- Not Found: /product/main/±ùÏä
+2017-12-04 11:27:31,868 [Thread-135:4404] [django.request:143] [WARNING]- Not Found: /product/main/ï¿½ï¿½ï¿½ï¿½
+2017-12-04 11:27:58,430 [Thread-139:1028] [django.request:143] [WARNING]- Not Found: /product/main/ï¿½ï¿½ï¿½ï¿½
+2017-12-04 11:28:00,423 [Thread-143:2240] [django.request:143] [WARNING]- Not Found: /product/main/ï¿½ï¿½ï¿½ï¿½
 2017-12-04 11:28:11,492 [Thread-166:4840] [django.request:143] [WARNING]- Not Found: /product/list/None
-2017-12-04 11:28:11,738 [Thread-168:7964] [django.request:143] [WARNING]- Not Found: /product/list/±ùÏä
+2017-12-04 11:28:11,738 [Thread-168:7964] [django.request:143] [WARNING]- Not Found: /product/list/ï¿½ï¿½ï¿½ï¿½
 2017-12-04 11:29:03,144 [Thread-27:17212] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-04 11:29:29,911 [Thread-54:8848] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-04 11:30:16,951 [Thread-80:15944] [django.request:143] [WARNING]- Not Found: /product/list/None
