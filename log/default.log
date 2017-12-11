@@ -30890,3 +30890,95 @@ SyntaxError: invalid syntax
 2017-12-09 15:37:37,486 [Thread-268:123145425862656] [django.request:143] [WARNING]- Not Found: /tcp
 2017-12-09 15:41:17,625 [Thread-287:123145431117824] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2017-12-11 08:32:54,496 [Thread-15:123145520635904] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-12-11 16:18:36,110 [Thread-115:123145446178816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-11 16:18:37,242 [Thread-118:123145446178816] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 488, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 273, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-11 16:18:46,538 [Thread-120:123145451433984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-11 16:18:48,868 [Thread-121:123145456689152] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 488, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 273, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-11 16:20:19,408 [Thread-126:123145451433984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-11 16:20:24,359 [Thread-131:123145446178816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-11 16:20:25,681 [Thread-132:123145451433984] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 488, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 273, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-11 16:20:51,894 [Thread-136:123145446178816] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 488, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 273, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
