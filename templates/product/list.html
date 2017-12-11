@@ -157,6 +157,7 @@
 
         .index-banner {
             min-width: 1200px;
+            margin-top: 90px;
         }
 
         .left {
@@ -787,6 +788,7 @@
             </div>
         {% endfor %}
     </div>
+    </div>
     <div id="ie-form"></div>
 
     <!-- 未发布的产品 -->
@@ -880,7 +882,8 @@
                 type: "get",
                 url: 'http://oven.53iq.com/api/produce/base_html',
                 data: {'key':app_appid,'sign':1},
-                complete: function () {
+                complete: function (data) {
+                    console.log("请求返回：",data);
                     if(location.host.includes("open.53iq.com"))
                     {
                         location.href="http://oven.53iq.com/static/html/move.html?id="+app_appid+".html";

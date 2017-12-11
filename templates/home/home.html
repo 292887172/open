@@ -36,7 +36,7 @@
         }
     .m-banner .hd{
         overflow: visible;
-        top: 11%;
+        top: 9%;
     }
     .btn-success{
         width: 188px;
@@ -50,8 +50,9 @@
         border-color: #ff6202;
     }
     .n-step{
-        margin-top: 104px;
-        margin-bottom: 77px;
+        padding-top: 104px;
+        padding-bottom: 77px;
+        background: #F1F4F9;
     }
     .header{
         min-width: 1200px;
@@ -59,6 +60,9 @@
     .m-banner{
         height: 695px;
         min-width: 1200px;
+        background: #fff;
+        min-height: 974px;
+
     }
     .m-banner .hd{
         width: 100%;
@@ -86,6 +90,11 @@
     .sign_out a:hover{
         color: #fff;
     }
+    .home-logo{
+        background-image: url("/static/image/home/back1.jpg");
+        position: relative;
+        height: 444px;
+    }
 
     </style>
 {% endblock %}
@@ -95,21 +104,23 @@
 {% block content %}
     <div class="m-banner">
         <div class="hd">
-            <h1 >1天出智能厨电</h1>
-            <p style="color: #5e5e5e;font-size: 18px;margin-top: 4%;">
-                厨电自助开发平台帮厂家快速将厨电智能化，1天完成智能化<br><br>
-            精准的厨房电能，即时响应上亿厨房用户每天的需求</p>
-            <div class="" style="margin-top: 48px;">
-                {% if user.account_id %}
-                    <a href="/product/list" class="btn btn-s-lg btn-success">
-                        <span class="">控制台</span>
+            <div class="home-logo">
+                <h1 style="padding-top: 4%;color: #fff;">1天出智能厨电</h1>
+                <p style="color: #fff;font-size: 18px;margin-top: 4%;">
+                    厨电自助开发平台帮厂家快速将厨电智能化，1天完成智能化<br><br>
+                精准的厨房电能，即时响应上亿厨房用户每天的需求</p>
+                <div class="" style="margin-top: 48px;">
+                    {% if user.account_id %}
+                        <a href="/product/list" class="btn btn-s-lg btn-success">
+                            <span class="">控制台</span>
 
-                    </a>
-                {% else %}
-                    <a href="/center/login" class="btn btn-s-lg btn-success">
-                        <span class="">立即智能化</span>
-                    </a>
-                {% endif %}
+                        </a>
+                    {% else %}
+                        <a href="/center/login" class="btn btn-s-lg btn-success">
+                            <span class="">立即智能化</span>
+                        </a>
+                    {% endif %}
+                </div>
             </div>
             <div class="n-step">
                 <h2 style="">53iq厨电自主平台优势</h2>
@@ -135,8 +146,6 @@
                     </li>
                 </ul>
             </div>
-
-
         </div>
 
     </div>

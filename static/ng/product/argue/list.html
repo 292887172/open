@@ -291,7 +291,7 @@
                         $("#tip2").css("display","none");
                     }
                 }
-
+                 $('[data-rel=popover]').popover({container:'body'});
             jQuery("#grid-table").jqGrid({
                 url:location.href,
                 postData:{"name": "list"},
@@ -339,10 +339,10 @@
                         formatter:function(cellvalue, options, rowObject){
                                 if(cellvalue=="1"){
 
-                                    return '<input id="toSwitch'+rowObject.id+'" onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+                                    return '<input id="toSwitch'+rowObject.id+'" onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
 
                                 }else{
-                                    return '<input id="toSwitch'+rowObject.id+'"  onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
+                                    return '<input id="toSwitch'+rowObject.id+'"  onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
                                 }
                         }
                     },
@@ -360,7 +360,7 @@
                 caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
 
                 gridComplete:function(){
-					    $("[data-toggle='popover']").popover();
+
                     $('.ui-jqgrid-sortable').eq(0).attr("align","center");
                     //$('.ui-jqgrid-sortable').eq(2).attr("align","center");
 	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
@@ -380,7 +380,7 @@
                 },
                 loadComplete:function (rows) {
 
-                    $("[data-toggle='popover']").popover();
+
                     row = rows.rows;
                     if(row.length==0){
                         $("#grid-table").jqGrid( 'setGridHeight', 'auto');
@@ -397,6 +397,10 @@
                         if (rows.check_state >= 1) {
                         document.getElementById("state-temp"+id).setAttribute('disabled','true');
                         document.getElementById("edit-info"+id).removeAttribute('href');
+
+                        document.getElementById("toSwitch"+id).setAttribute('disabled','true');
+                        document.getElementById("toSwitch"+id).removeAttribute('onclick');
+
                         document.getElementById("del-info"+id).removeAttribute('onclick');
                         document.getElementById("del-info"+id).removeAttribute('href');
                     }

@@ -14,14 +14,13 @@
         background: url("{% static 'image/center/login_bg.jpg' %}") center center / cover no-repeat fixed;
         width: 100%;
         height: 100%;
-
-
     }
     body:before{
         background: rgba(0,0,0,0.5);
     }
     .header{
         border-bottom:none;
+        background: none !important;
     }
     .nav li a:hover {
         color: #fff;
@@ -56,7 +55,9 @@
         .row-fluid .span12 {
             width: 100%;
         }
-
+        .container{
+            margin-top: 90px;
+        }
         .container-narrow {
             width: 95%;
             max-width: 430px;
@@ -286,18 +287,18 @@
 
                         </div>
                         <div class="widget-body clearfix" style="padding:25px;">
-                            <form method="post" name="loginform" action="#">
+                            <form method="post" name="loginform">
                                     {{ msg|safe }}
                                     {% csrf_token %}
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input name="account" class="btn-block" type="text" id="inputEmail" value="{% if username %}{{ username|safe }}{% else %}{% endif %}"
+                                        <input name="account" class="btn-block" type="text" id="inputEmail" value="{% if account %}{{ account|safe }}{% else %}{% endif %}"
                                                placeholder="邮箱/手机号">
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input name="show-password" class="btn-block" type="password" id="show-inputPassword"
+                                        <input name="show-password" value="{% if password %}{{ password|safe }}{% else %}{% endif %}" class="btn-block" type="password" id="show-inputPassword"
                                                placeholder="密码" onkeyup="encryption(this)">
                                         <input name="password" class="btn-block hidden" type="password" id="inputPassword"
                                                placeholder="密码" >
@@ -354,16 +355,11 @@
     console.log(image1);
     function encryption(item) {
              var b = new Base64();
+             console.log("password:",$(item).val());
              var str = b.encode($(item).val());
              $("#inputPassword").val(str);
         }
     $(function () {
-         var username = '{{ username }}';
-         if (username != '') {
-             if(!$("input[type='checkbox']").is(':checked')){
-                 $(".ui-remember-account").click()
-             }
-        }
         $(".ui-login").mouseover(function () {
             var img_src = $(this).children().children('img').attr('src');
             if(img_src.indexOf('-c') < 0){
