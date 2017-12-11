@@ -1047,3 +1047,4 @@
 2017-12-11 11:37:50,770 [Thread-98:123145446178816] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"value": "1|1|0|0|0|0|0|1|0|0|0|0", "id": "test15267183467-smoke", "type": 2500}}', b'\x00']
 2017-12-11 11:37:50,770 [Thread-98:123145446178816] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:613e16a4-5b96-4856-840e-254079ca4993\n', '\n', b'\x00']
 2017-12-11 11:37:50,841 [Thread-100:123145456689152] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-11 16:18:35,889 [Thread-103:123145456689152] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
