@@ -54,7 +54,7 @@ def send_test_device_status(did, status):
     # default = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]    # '0|0|0|0|0|0|0|0|0|0|0|0'
     default = deal_test_device_status(did, '', 'get')
     userID = did
-    print('用户:',userID)
+    print('用户:', userID)
     if did =='test15267183467-stove':
         if status:
             name = status.get('name')
@@ -111,48 +111,48 @@ def send_test_device_status(did, status):
             obj_res = "ERR"
             pass
         return obj_res
-    if did =='test15267183467-smoke':
+    if did == 'test15267183467-smoke':
         if status:
             name = status.get('name')
-            value =status.get('value')
+            value = status.get('value')
 
-            if name =='POWER':
+            if name == 'POWER':
                 if value:
-                    default[0]=1
-                    default[1]=1
-                else :
-                    default[0]=0
-                    default[1]=0
-                    default[2]=0
-                    default[3]=0
+                    default[0] = 1
+                    default[1] = 1
+                else:
+                    default[0] = 0
+                    default[1] = 0
+                    default[2] = 0
+                    default[3] = 0
                 if value == 0:
                     default = [str(0) for e in default]
-            elif name =='LIGHT':
+            elif name == 'LIGHT':
                 if value:
-                    default[1] =1
+                    default[1] = 1
                 else:
-                    default[1]=0
+                    default[1] = 0
             elif name == 'BIG_WIND':
                 if value:
-                    default[2] =1
-                    default[3] =0
-                    default[7]=0
+                    default[2] = 1
+                    default[3] = 0
+                    default[7] = 0
                 else:
                     default[2] =0
-            elif name =='SMALL_WIND':
+            elif name == 'SMALL_WIND':
                 if value:
-                    default[3] =1
-                    default[2]=0
-                    default[7]=0
+                    default[3] = 1
+                    default[2] = 0
+                    default[7] = 0
                 else:
-                    default[3]=0
+                    default[3] = 0
             elif name == 'MIDDLE_WIND':
                 if value:
-                    default[7] =1
-                    default[2]=0
-                    default[3]=0
-                else :
-                    default[7] =0
+                    default[7] = 1
+                    default[2] = 0
+                    default[3] = 0
+                else:
+                    default[7] = 0
         deal_test_device_status(did, default, 'set')
         default = [str(e) for e in default]
         default = "|".join(default)
