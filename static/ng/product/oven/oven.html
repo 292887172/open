@@ -98,15 +98,18 @@
 <script src="/static/demo/js/oven.js"></script>
 
     <script>
-        var a = getCookie('COOKIE_USER_ACCOUNT');
-        function getCookie(name) {
+        var userID;
+         window.onload=function () {
+             var a = getCookie('COOKIE_USER_ACCOUNT');
+              userID ='test'+a+'-oven'  //订阅id
+         };
+         function getCookie(name) {
             var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
             if (arr = document.cookie.match(reg))
                 return unescape(arr[2]);
             else
                 return null;
         }
-       var userID ='test'+a+'-oven'  //订阅id
     </script>
 <script type="text/javascript">
       var status='预热中'; //显示工作状态
@@ -153,8 +156,8 @@
         }
     </script>
 <script>
-      Oven_time = parseInt(blockHour)*60 +parseInt(blockMin)
-      console.log(Oven_time)
+      Oven_time = parseInt(blockHour)*60 +parseInt(blockMin);
+      console.log(Oven_time);
     function DyPoppicker(name) {
         //级联示例
         DatePicker.setData(timeData);
@@ -317,10 +320,10 @@
                          });
               }
               else {
-                  pause.innerHTML='暂停'
+                  pause.innerHTML='暂停';
                   goTime=true;
-                  operation = 'go_on'
-                  nowtime =Math.round(nowtime)
+                  operation = 'go_on';
+                  nowtime =Math.round(nowtime);
                   send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {
                              res = JSON.parse(res);
@@ -347,7 +350,7 @@
 </script>
 <script type="text/javascript">
     <!-- 循环灯光和风扇图片-->
-    var wind =  document.getElementById('wind')
+    var wind =  document.getElementById('wind');
     var flag = true;
     var bool = true;
     function Checkwind()
@@ -505,6 +508,10 @@
                 };
                 stomp.onconnectedframe = function () {
                     console.log("Connected. Subcribing");
+                    if(userID==''){
+                        var a = getCookie('COOKIE_USER_ACCOUNT');
+                         userID ='test'+a+'-oven'  //订阅id
+                    }
                     stomp.subscribe('/' + userID);
                     // first_get_status();
                 };
@@ -519,11 +526,11 @@
                     // type==1时为遥控器状态控制,
                     // 2500时为socket状态，其它的为音乐电台之类的
                     if (type == 2500) {
-                        console.log('已连接')
+                        console.log('已连接');
                         // socket状态
                         <!-- 发送数据 ID | 模式 | 温度 | 时间 | 工作状态 | 操作 | 风扇 | 电灯 |-->
                          tmp_status = {'did': userID, 'model': devices.oven_type, 'temp':Oven_temp,'time':nowtime,'status':status,'wind':wind,'light':light};
-                        console.log(tmp_status)
+                        console.log(tmp_status);
                         ChangeStatus(tmp_status)
                     }
                     else if (type == 2501) {
