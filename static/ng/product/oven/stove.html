@@ -21,14 +21,14 @@
 <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 </body>
 <script>
-      var userID = '' // 用户id
+      var userID = ''; // 用户id
       window.onload = function MyAutoRun() {
-      var a = getck('COOKIE_USER_ACCOUNT')
-          console.log(a)
-          userID = 'test'+a +'-stove'
+      var a = getck('COOKIE_USER_ACCOUNT');
+          console.log(a);
+          userID = 'test'+a +'-stove';
           document.body.style.overflow="hidden";
         <!-- 读取页面Cookie 获取用户ID 固定html滚动条 -->
-       }
+       };
       var acookie=document.cookie.split("; ");// 获取cookie
                 function getck(sname)
                 {//获取单个cookies
@@ -292,6 +292,10 @@
                 };
                 stomp.onconnectedframe = function () {
                     console.log("Connected. Subcribing");
+                    if(userID==''){
+                        var a = getck('COOKIE_USER_ACCOUNT');
+                        userID = 'test'+a +'-stove';
+                    }
                     stomp.subscribe('/' + userID);
                     // first_get_status();
                 };

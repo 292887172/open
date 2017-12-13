@@ -53,9 +53,10 @@ def send_test_device_status(did, status):
     # 电源|照明|大风|小风|消毒|烘干|延时|中风|故障|火(| 运行时间|风险指数)”
     # default = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]    # '0|0|0|0|0|0|0|0|0|0|0|0'
     default = deal_test_device_status(did, '', 'get')
-    userID = did
-    print('用户:', userID)
-    if did =='test15267183467-stove':
+    userID = did.split('-')[1]
+    print(userID)
+
+    if userID == 'stove':
         if status:
             name = status.get('name')
             value = status.get('value')
@@ -111,7 +112,7 @@ def send_test_device_status(did, status):
             obj_res = "ERR"
             pass
         return obj_res
-    if did == 'test15267183467-smoke':
+    if userID == 'smoke':
         if status:
             name = status.get('name')
             value = status.get('value')
@@ -183,7 +184,7 @@ def send_test_device_status(did, status):
     # ID | 模式 | 温度 | 时间 | 工作状态 | 操作 | 风扇 | 电灯 | -->
     #  tmp_status = {'did': userID, 'model': devices.oven_type, 'temp': Oven_temp, 'time': nowtime, 'status': status, 'wind': wind, 'light': light};
 
-    if did =='test15267183467-smoke':
+    if did == 'oven':
         if status:
             oven_model = status.get('model')
             oven_temp = status.get('temp')
@@ -197,7 +198,7 @@ def send_test_device_status(did, status):
             default[3]=oven_status
             default[4]=oven_wind
             default[5]=oven_light
-        deal_test_device_status(did,default,'set')
+        deal_test_device_status(did, default, 'set')
         try:
             conn = stomp.Connection10(host_and_ports=[(STOMP_ADDR, STOMP_PORT)])
             conn.start()
