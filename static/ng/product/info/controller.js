@@ -127,6 +127,7 @@ angular.module('Product.info', ['ngRoute'])
                             }).success(function (data) {
                                 if (data.code == 10000) {
                                     window.location.reload();
+
                                 }
                             }).error(function (error) {
                                 alert(error);
@@ -144,6 +145,7 @@ angular.module('Product.info', ['ngRoute'])
                     }).success(function (data) {
                         if (data.code == 10000) {
                             window.location.reload();
+
                         }
                     }).error(function (error) {
                         alert(error);

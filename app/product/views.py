@@ -17,6 +17,7 @@ from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
+from common.app_api_helper import remove_conf_prefix
 from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
@@ -289,6 +290,8 @@ def product_main(request):
     def save_app(app, opera_data):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
+        key = app.app_appid[-8:]
+        remove_conf_prefix(key)
         update_app_protocol(app)
         app.save()
 
