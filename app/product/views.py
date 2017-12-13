@@ -257,7 +257,7 @@ def product_main(request):
         except Exception as e:
             print(e)
             logging.getLogger('').info("应用出错",str(e))
-            return HttpResponseRedirect(reverse("home/guide"))
+            return HttpResponseRedirect(reverse("wiki"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
