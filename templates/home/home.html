@@ -11,7 +11,6 @@
             padding: 0;
             margin: 0 auto;
         }
-
         .mt20 {
             margin-top: 20px;
         }
@@ -24,27 +23,28 @@
         }
         .cl {
             margin-top: 57px;
+            margin-left: 52px;
         }
         .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
-
         .m-project li {
             height: 70px;
-            margin-left: 144px;
-
+            margin-left: 126px;
         }
     .m-banner .hd{
         overflow: visible;
-        top: 9%;
+        top: 90px;
     }
     .btn-success{
         width: 188px;
-        height: 60px;
-        line-height: 49px;
-        font-size: 20px;
-        background-color: #FF6F37;
+        height: 48px;
+        line-height: 2.428571;
         border-color: #FF6F37;
+        background: url(/static/image/home/arrow.png) no-repeat center #ff6202;
+        background-size: 48px 66%;
+        background-position: 86% 9px;
+
     }
     .btn-success:hover,.btn-success:focus,.btn-success:active{
         background-color: #ff6202;
@@ -53,7 +53,6 @@
     .n-step{
         padding-top: 104px;
         padding-bottom: 77px;
-        background: #F1F4F9;
     }
     .header{
         min-width: 1200px;
@@ -82,8 +81,8 @@
         font-size: 20px;
     }
     .m-project {
-        padding-top: 61px;
         min-width: 1200px;
+        padding-top: 8%;
     }
     .m-project .text p{
         font-size: 20px;
@@ -92,9 +91,14 @@
         color: #fff;
     }
     .home-logo{
-        background-image: url("/static/image/home/back1.jpg");
+        background: url(/static/image/home/back2.jpg) no-repeat center #0D0F28;
         position: relative;
         height: 600px;
+    }
+    .show-control{
+        position: relative;
+        float: left;
+        left: 26%;
     }
 
     </style>
@@ -106,19 +110,19 @@
     <div class="m-banner">
         <div class="hd">
             <div class="home-logo">
-                <h1 style="padding-top: 7%;color: #fff;">1天出智能厨电</h1>
+                <h1 style="padding-top: 8%;color: #fff;">1天出智能厨电</h1>
                 <p style="color: #fff;font-size: 18px;margin-top: 4%;">
                     厨电自助开发平台帮厂家快速将厨电智能化，1天完成智能化<br><br>
                 精准的厨房电能，即时响应上亿厨房用户每天的需求</p>
-                <div class="" style="margin-top: 48px;">
+                <div class="arrow" style="margin-top: 48px;">
                     {% if user.account_id %}
                         <a href="/product/list" class="btn btn-s-lg btn-success">
-                            <span class="">控制台</span>
+                            <span class="show-control">产品管理</span>
 
                         </a>
                     {% else %}
                         <a href="/center/login" class="btn btn-s-lg btn-success">
-                            <span class="">立即智能化</span>
+                            <span class="show-control">立即智能化</span>
                         </a>
                     {% endif %}
                 </div>
@@ -140,7 +144,7 @@
                         </div>
                     </li>
                     <li class="p-list4" style="padding-left: 241px;">
-                        <img src="/static/image/home/11.png">
+                        <img src="/static/image/home/3.png">
                         <div class="text">
                             <p>高效平台工具</p>
                         </div>
@@ -152,21 +156,13 @@
     </div>
 
     <!-- 公告 -->
-    <div class="m-notice" style="display: none">
-        <div class="wrapper">
-            <i class="icon"></i>
-            <ul id="div_backdata">
 
-            </ul>
-            <a href="#" class="more" target="_blank">更多公告</a>
-        </div>
-    </div>
 
     <!-- 合作项目 -->
     <div class="m-project">
         <div class="wrapper">
             <h2 style="text-align: center;">3步 实现厨电智能开发</h2>
-            <div style="text-align: center;padding-top: 62px;padding-left: 63px;">
+            <div style="text-align: center;padding-top: 62px;padding-left:8%;">
                 <img src="/static/image/home/0.png">
             </div>
             <ul class="cl" style="margin-top: 28px">
