@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
 
     <style>
+        #header{
+            position: fixed;
+            width: 100%;
+            top:0;
+        }
         .leftSide {
             float: left;
             width: 204px;

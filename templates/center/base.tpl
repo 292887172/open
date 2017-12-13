@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
         color: #fff;
         background-color: #ff6202
     }
+    #header{
+        position: fixed;
+        width:100%;
+        top:0;
+    }
 </style>
 <body>
 <div id="header">

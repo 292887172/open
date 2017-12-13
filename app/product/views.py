@@ -257,7 +257,7 @@ def product_main(request):
         except Exception as e:
             print(e)
             logging.getLogger('').info("应用出错",str(e))
-            return HttpResponseRedirect(reverse("home/guide"))
+            return HttpResponseRedirect(reverse("wiki"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
@@ -320,7 +320,11 @@ def product_main(request):
         elif post_data == 'edit':
             # 返回编辑页面信息
             edit_id = request.POST.get("id", "")
-            edit_data = find(edit_id)[1]
+            edit_data = find(edit_id)
+            if edit_data:
+                edit_data = edit_data[1]
+            else :
+                edit_data = ''
             return JsonResponse({'data': edit_data, 'funs':opera_data})
         elif post_data == 'del':
             # 删除信息

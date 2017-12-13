@@ -157,6 +157,7 @@
 
         .index-banner {
             min-width: 1200px;
+            margin-top: 90px;
         }
 
         .left {
@@ -255,8 +256,8 @@
 
         @media screen and (max-width: 1200px) {
             .index-banner {
-                background-image: url("{% static 'image/product/banner_bg.jpg' %}");
-                background-size: 100%;
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+                background-size: 100% 100%;
                 height: 300px;
             }
 
@@ -268,18 +269,18 @@
 
         @media screen and (min-width: 1201px) {
             .index-banner {
-                background-image: url("{% static 'image/product/banner_bg.jpg' %}");
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
 
-                background-size: 100%;
+                background-size: 100% 100%;
                 height: 300px;
             }
         }
 
         @media screen and (min-width: 1800px) {
             .index-banner {
-                background-image: url("{% static 'image/product/banner_bg.jpg' %}");
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
 
-                background-size: 70%;
+                background-size: 100% 100%;
                 height: 300px;
             }
         }
@@ -405,9 +406,16 @@
         }
          .modal-dialog {
             display: inline-block;
-            text-align: left;
+            text-align: center;
             vertical-align: middle;
+             width: 400px;
         }
+         .modal-footer{
+             text-align: center;
+         }
+         .modal-footer .btn+.btn {
+              margin-left: 66px;
+          }
     .arrow{
         transform: rotate(45deg);
         background: #fff;
@@ -787,6 +795,7 @@
             </div>
         {% endfor %}
     </div>
+    </div>
     <div id="ie-form"></div>
 
     <!-- 未发布的产品 -->
@@ -880,7 +889,8 @@
                 type: "get",
                 url: 'http://oven.53iq.com/api/produce/base_html',
                 data: {'key':app_appid,'sign':1},
-                complete: function () {
+                complete: function (data) {
+                    console.log("请求返回：",data);
                     if(location.host.includes("open.53iq.com"))
                     {
                         location.href="http://oven.53iq.com/static/html/move.html?id="+app_appid+".html";

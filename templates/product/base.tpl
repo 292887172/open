@@ -23,6 +23,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     {% block style %}
+
     {% endblock %}
     <style>
             .sign_out a:hover{
@@ -34,13 +35,18 @@
             .sign_out .user-login:hover{
                 color: #fff;
                 background-color: #ff6202
-        }
+            }
+            .header{
+                position: fixed;
+                top: 0;
+                width: 100%;
+
+            }
+
     </style>
 </head>
-
-
 <body>
-<div class="header">
+<div class="header" style="background: #F1F4F9;">
     <div class="wrapper">
         {% block image %}
             <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>

@@ -21,8 +21,24 @@
            height: 944px;
        }
        .header{
-           margin-top: 0px;
-           margin-bottom: 0px;
+           margin-top: 0;
+           margin-bottom: 0;
+       }
+       .title{
+           position: fixed;
+            width: 100%;
+            top: 90px;
+            z-index: 1;
+       }
+       .leftSide{
+           position: fixed;
+           margin-bottom: 0;
+           padding-bottom: 0;
+           max-height: 704px;
+           overflow-y: visible;
+       }
+       .box1{
+           min-height: 0;
        }
        .breadcrumb{
            font-size: 16px;
@@ -156,7 +172,6 @@
 
     <div ng-controller="ProductBaseCtrl">
      <div class="title">
-
             <div class="wrapper">
             {% for default_app in default_apps %}
                 <input type="hidden" class="default-app" data-appid={{ default_app.app_id }}>
@@ -230,18 +245,20 @@
             </li>
             {% endif %}
             </ol>
-            </div>
-        </div>
-        {% if app.check_remarks and app.check_status == -1 %}
-            <div class="wrapper">
-                <div class="alert alert-danger">
+                <span style="margin-left: 22%;color: red;"> {% if app.check_status == 1 %}该产品处于发布审核阶段，功能点不可修改。{% elif app.check_status == 2 %}该产品已发布，功能点不可修改。{% elif app.check_status == 3 %}体验产品，功能点不可修改。{% endif %}</span>
 
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <i class="fa fa-bell-o"></i>&nbsp;&nbsp;[应用未通过原因]&nbsp;&nbsp;<span>{{ app.check_remarks }}</span>
-                </div>
             </div>
-        {% endif %}
-        <div class="wrapper mt20 fn-clear" style="border-top: none;">
+            {% if app.check_remarks and app.check_status == -1 %}
+
+                <div class="wrapper" style=" padding-top: 20px;">
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <i class="fa fa-bell-o"></i>&nbsp;&nbsp;[应用未通过原因]&nbsp;&nbsp;<span>{{ app.check_remarks }}</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="wrapper mt20 fn-clear" style="border-top: none;padding-top: 158px;">
             <div class="leftSide">
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
@@ -473,6 +490,21 @@
                         "app_group": $scope.app_group,
                         "band_name": $scope.band_name,
                         "app_factory_uid": $scope.app_factory_uid
+                    };
+                    $scope.resetInfo=function () {
+                           $scope.infoFormData = {
+                            "csrfmiddlewaretoken": $scope.csrf_token,
+                            "app_id": $scope.app_id,
+                            "app_name": $scope.app_name,
+                            "app_model": $scope.app_model,
+                            "app_describe": $scope.app_describe,
+                            "app_site": $scope.app_site,
+                            "app_logo": $scope.app_logo,
+                            "app_command": $scope.app_command,
+                            "app_group": $scope.app_group,
+                            "band_name": $scope.band_name,
+                            "app_factory_uid": $scope.app_factory_uid
+                        }
                     };
                     // 配置信息表单
                     $scope.configFormData = {

@@ -3,10 +3,10 @@
         display: none;
         left: 20px;
         position: relative;
-        color: #999;
+        color: #337AB7;
         top: 36px;
         left: -107px;
-        height: 37px;
+        height: 41px;
     }
     .vague {
         width: 360px;
@@ -39,6 +39,14 @@
     }
     .fmInfo {
         padding: 8px 0;
+    }
+    .btn-gray:hover{
+        background: rgb(150, 148, 148);
+            color: #fff;
+    }
+    .btn-gray{
+        color: #fff;
+        background: #c6c6c6;
     }
 </style>
 <div class="box2 relative">
@@ -137,8 +145,8 @@
         </form>
 
         <div class="ml100 mt10 mb20" ng-hide="{[{ visible }]}" id="butActDiv">
-            <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitInfoForm()">保 存</a></span>
-            <span><a href="javascript:" onclick="window.location.reload();" class="btn-gray">取 消</a></span>
+            <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitInfoForm()">保存</a></span>
+            <span><a href="javascript:" ng-click="resetInfo()" class="btn-gray">重置</a></span>
         </div>
     </div>
 </div>
