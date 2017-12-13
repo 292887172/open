@@ -322,6 +322,40 @@
             background-color: #ff6202 !important;
             border-color: #ff6202 !important;
         }
+        .bootbox-body{
+            line-height: 1.4;
+            padding: 20px;
+            font-size: 16px;
+        }
+        .modal-body {
+            padding: 20px;
+            height: 97px;
+        }
+         .modal{
+                text-align: center;
+        }
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+         .modal-dialog {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+             width: 400px;
+        }
+         .modal-footer{
+             text-align: center;
+         }
+         .modal-footer .btn+.btn {
+             margin-left: 42px;
+             border: solid 1px #c9c9c9;
+         }
+         .btn{
+             width: 75px;
+         }
         .progress li {
             text-align: center;
             font-size: 14px;
@@ -395,27 +429,6 @@
         .goods-list dl dd p{
             width: 100%;
         }
-        .modal{
-                text-align: center;
-        }
-        .modal:before {
-            display: inline-block;
-            vertical-align: middle;
-            content: " ";
-            height: 100%;
-        }
-         .modal-dialog {
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-             width: 400px;
-        }
-         .modal-footer{
-             text-align: center;
-         }
-         .modal-footer .btn+.btn {
-              margin-left: 66px;
-          }
     .arrow{
         transform: rotate(45deg);
         background: #fff;
@@ -887,7 +900,7 @@
             app_appid = $(obj).attr('data-appid');
             $.ajax({
                 type: "get",
-                url: 'http://oven.53iq.com/api/produce/base_html',
+                url: 'https://oven.53iq.com/api/produce/base_html',
                 data: {'key':app_appid,'sign':1},
                 complete: function (data) {
                     console.log("请求返回：",data);

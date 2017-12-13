@@ -184,3 +184,12 @@ def remove_control_id(device_id):
         r.delete(gen_group_key(_cache_key.DEVICE_CONTROL_PREFIX, device_id.upper()))
     except Exception as e:
         pass
+
+
+def remove_conf_prefix(key):
+    r = get_redis_client(3)
+    try:
+        r.delete(gen_group_key(_cache_key.DEVICE_CONF_PREFIX, key))
+    except Exception as e:
+        print(e)
+        pass
