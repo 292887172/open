@@ -44,12 +44,17 @@
     }
     .footer{
         position: relative;
+        padding: 20px;
     }
     .header{
         position: fixed;
         width: 100%;
         top: 0;
     }
+     .footer > p {
+            margin-top: 0;
+            display:block;
+        }
 </style>
 <body>
 <div class="header">

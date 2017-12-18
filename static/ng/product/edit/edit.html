@@ -256,7 +256,8 @@
 										<div class="col-sm-5 col-xs-6">
                                             <span class="pr20">
                                                 <button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
-												<i  class="ace-icon fa fa-check bigger-110" ></i>保存</button>
+												<i  class="ace-icon fa fa-check bigger-110" ></i><span id="save-content">保存</span>
+                                                </button>
                                             </span>
                                             <span>
                                                 <button ng-hide='{[{ visible }]}' class="btn" onclick="init()" type="button">
@@ -287,8 +288,6 @@
 			var funs=[];
 			var flag ;
 			var count=0;
-
-
                 var post_data = {"name": "edit","id":id};
 
                 $.ajax({

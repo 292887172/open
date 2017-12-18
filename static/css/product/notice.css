@@ -1,0 +1,47 @@
+.notification-container {
+    box-sizing: border-box;
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
+    z-index: 999999;
+    padding: 0 15px;
+    max-height: calc(100% - 30px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.notification {
+     box-sizing: border-box;
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #ccc;
+    box-shadow: 0 2px 7px rgba(0,0,0,.1);
+     cursor: pointer;
+     font-size: 14px;
+     line-height: 20px;
+     font-weight: 400;
+     position: relative;
+     opacity: .9;
+    margin: 10px;
+}
+.notification-success {
+    background-color: #ff6202;
+}
+.notification-message {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    min-width: 100px;
+    max-width: 240px;
+}
+.notification-action {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    opacity: .75;
+    color: #fff;
+}

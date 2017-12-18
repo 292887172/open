@@ -8,6 +8,8 @@
 {% block style %}
     <link rel="stylesheet" href="{% static 'common/css/app.css' %}"/>
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="/static/css/product/notice.css">
+
     <style>
         .wrapper {
             width: 1200px;
@@ -251,6 +253,7 @@
             </div>
         </div>
     </div>
+    <div class="notification-container"></div>
 {% endblock %}
 
 {% block end_script %}
@@ -336,7 +339,12 @@
             $('#go').on('click', function (e) {
                 if (check_app_name() && check_category())
                 {
+                    var msg = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">创建产品成功！</div><div class="notification-action"></div></div></div>';
                     $("form[name=productAddForm]").submit();
+                    $(".notification-container").html(msg);
+                    setTimeout(function () {
+                        $(".notification-container").html('');
+                    },2000);
                 }
             });
             $("#product_category").on('change', function () {

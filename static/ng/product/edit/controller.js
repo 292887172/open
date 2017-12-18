@@ -175,19 +175,25 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.mxsLength=$.trim($('#mxsLength').val());
 
 				//保存操作
+				var msg_notice = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">保存成功！</div><div class="notification-action"></div></div></div>';
                 $.ajax({
                     method: "POST",
                     url: location.href,
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	console.log("edit success!");
+                    	console.log("modify success!");
                     }
                     else if(data=="add_success"){
 
                     	console.log("add success!");
                     }
-					window.location.href = '#/argue';
+                    $(".notification-container").html(msg_notice);
+					setTimeout(function () {
+						$(".notification-container").html('');
+						location.href="#/argue"
+					},2000);
+
                 })
 
                 })
