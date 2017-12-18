@@ -42,6 +42,14 @@
                 width: 100%;
 
             }
+            .footer{
+                position: relative;
+                padding: 20px;
+            }
+            .footer > p {
+                margin-top: 0;
+                display:block;
+            }
 
     </style>
 </head>

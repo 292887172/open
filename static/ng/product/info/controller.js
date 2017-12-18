@@ -104,6 +104,8 @@ angular.module('Product.info', ['ngRoute'])
                 checkProductName();
             }
             else {
+                var msg = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">保存成功！</div><div class="notification-action"></div></div></div>';
+
                 if (!startWith(productImg.attr("src"), "http://storage.56iq.net")) {
                     $.ajaxFileUpload({
                         url: "/product/upload_file/?type=callback&t=" + new Date().getTime(),
@@ -126,8 +128,10 @@ angular.module('Product.info', ['ngRoute'])
                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                             }).success(function (data) {
                                 if (data.code == 10000) {
-                                    window.location.reload();
-
+                                    $(".notification-container").html(msg);
+                                    setTimeout(function () {
+                                        $(".notification-container").html('');
+                                    },2000);
                                 }
                             }).error(function (error) {
                                 alert(error);
@@ -144,8 +148,10 @@ angular.module('Product.info', ['ngRoute'])
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                     }).success(function (data) {
                         if (data.code == 10000) {
-                            window.location.reload();
-
+                            $(".notification-container").html(msg);
+                            setTimeout(function () {
+                                $(".notification-container").html('');
+                            },2000);
                         }
                     }).error(function (error) {
                         alert(error);

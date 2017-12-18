@@ -640,8 +640,8 @@
 {#                                    console.log(response['status']);#}
 {#                                    console.log(response['msg']);#}
                                 if (response['status'] == 'ok') {
-
-                                    location.href="/product/list"
+                                    $("#submitBtn").text('提交成功...');
+                                    location.reload();
                                 }
                                 else{
                                     DevAppInfo.sAlert(response['msg'])

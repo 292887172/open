@@ -528,18 +528,22 @@ def control(request):
 
 @csrf_exempt
 def upload_file(request):
-    if len(request.FILES.dict()) >= 1:
-        f = request.FILES["productImgFile"]
-        store = EbStore(CLOUD_TOKEN)
-        r = store.upload(f.read(), f.name, f.content_type)
-        ret = json.loads(r)
-        if ret["code"] == 0:
-            print("上传成功")
-        else:
-            print(ret["msg"])
-            logging.getLogger("").info(r["msg"])
-        data = ret["data"]
-        return HttpResponse(data)
+    try:
+        if len(request.FILES.dict()) >= 1:
+            f = request.FILES["productImgFile"]
+            store = EbStore(CLOUD_TOKEN)
+            r = store.upload(f.read(), f.name, f.content_type)
+            ret = json.loads(r)
+            if ret["code"] == 0:
+                print("上传成功")
+            else:
+                print(ret["msg"])
+                logging.getLogger("").info(r["msg"])
+            data = ret["data"]
+            return HttpResponse(data)
+    except Exception as e:
+        print(e)
+
 
 
 @csrf_exempt
