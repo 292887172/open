@@ -112,6 +112,7 @@ def deal_json(app):
         i['unit'] = data['corpMark']
         i['isFunction'] = data.get("isFunction")
         i['toSwitch'] = data.get('toSwitch')
+        i['isShow'] = data.get('isShow')
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:

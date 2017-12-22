@@ -239,7 +239,7 @@
                 postData:{"name": "list"},
                 datatype: "json",
                 mtype:"POST",
-                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','是否总开关','操作'],
+                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','是否总开关','卡片显示','操作'],
                 colModel:[
                     {name:'id' , width:107,align:'center'},
 
@@ -285,6 +285,17 @@
 
                                 }else{
                                     return '<input id="toSwitch'+rowObject.id+'"  onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
+                                }
+                        }
+                    },
+                    {name:'isShow', width:131,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
+
+                                    return '<input id="isShow'+rowObject.id+'" onclick="checkToShow(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
+
+                                }else{
+                                    return '<input id="isShow'+rowObject.id+'"  onclick="checkToShow(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
                                 }
                         }
                     },
@@ -361,6 +372,20 @@
                 }
 
             });
+            function SendPostData(data, types) {
+                $.ajax({
+                    url:location.href,
+                    type:"POST",
+                    data:data,
+                    async :false,
+                    success: function (data) {
+                            console.log(types, "更新成功")
+                        },
+                    error:function (data) {
+                        console.log(types, "更新失败");
+                    }
+                });
+            }
             function update_id(item) {
                 // 重新按位置排序，并更新这一行中所有用到id的位置
                 id = item.attr("id");
@@ -391,23 +416,13 @@
                 }
                 fun_name = JSON.stringify(fun_name);
                 // 更新后台功能顺序
-                $.ajax({
-                   url:location.href,
-                    type:"POST",
-                    data:{'name':'update','funs':fun_name},
-                    async :false,
-                    success: function (data) {
-                            console.log("更新成功")
-                        },
-                    error:function (data) {
-                        console.log("更新失败");
-                    }
-                });
+                SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
+
             }
             function checkToSwitch(id) {
                 var dd;
                 rows = document.getElementById("grid-table").rows.length;
-                var advice = "该产品功能只能设置一个总开关，若想设置，请先将设置的总开关按钮取消";
+                var advice = "本产品已经有总开关，请先取消后重新设置";
                 for(var i=1;i< rows;i++){
                     if($("#toSwitch"+i).prop('checked') == true && id != i){
                         $("#toSwitch"+id).attr('checked',false);
@@ -418,21 +433,32 @@
                 aa = $("#toSwitch"+id).prop('checked');
                 if(aa==false){dd=0;}
                 else{dd=1;}
-                post_data = {'name':'switch','id':id,'dd':dd};
-			    $.ajax({
-                   url:location.href,
-                    type:"POST",
-                    data:post_data,
-                    async :false,
-                    success: function (data) {
-                       if(data=='change_success'){
-                           console.log("设置成功");
-                       }
-                        },
-                    error:function (data) {
-                        console.log("设置失败");
+                post_data = {'name':'toSwitch','id':id,'dd':dd};
+                SendPostData(post_data, '设置产品总开关');
+
+            }
+            function checkToShow(id) {
+                var dd;
+                num=0;
+                rows = document.getElementById("grid-table").rows.length;
+                var advice = "本产品最多设置3个卡片显示值";
+                for(var i=1;i< rows;i++){
+                    if($("#isShow"+i).prop('checked') == true && id != i){
+                        num +=1;
                     }
-                });
+                    if (num>=3){
+                            $("#isShow"+id).attr('checked',false);
+                            bootbox.alert(advice);
+                            return;
+                        }
+
+                }
+                aa = $("#isShow"+id).prop('checked');
+                if(aa==false){dd=0;}
+                else{dd=1;}
+                post_data = {'name':'isShow','id':id,'dd':dd};
+                SendPostData(post_data, '设置卡片显示值');
+
             }
             function show_table(item) {
                 $(item).nextAll('div').show();
@@ -444,19 +470,8 @@
             }
 			function state(id) {
 			    post_data = {'name':'state','id':id};
-			    $.ajax({
-                   url:location.href,
-                    type:"POST",
-                    data:post_data,
-                    async :false,
-                    success: function (data) {
-                       if(data=='change_success'){
-                       }
-                        },
-                    error:function (data) {
-                        console.log("启用失败");
-                    }
-                });
+			    SendPostData(post_data, '设置功能启用状态');
+
             }
             function add(){
                 location.href = "#/edit";
