@@ -97,8 +97,8 @@ def deal_json(app):
         j["mxsLength"] = data["mxsLength"]
         j["values"] = json.dumps([data["min"], data["max"]])
         j['widget'] = data['corpName']
-        j['isFunction'] = data.get("isFunction")
-        j['toSwitch'] = data.get('toSwitch')
+        j['isFunction'] = data.get("isFunction", 1)
+        j['toSwitch'] = data.get('toSwitch', 0)
 
         # 写入json的数据
         i = {}
@@ -110,8 +110,9 @@ def deal_json(app):
         i["length"] = data["mxsLength"]
 
         i['unit'] = data['corpMark']
-        i['isFunction'] = data.get("isFunction")
-        i['toSwitch'] = data.get('toSwitch')
+        i['isFunction'] = data.get("isFunction", 1)
+        i['toSwitch'] = data.get('toSwitch', 0)
+        i['isShow'] = data.get('isShow', 0)
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
