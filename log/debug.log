@@ -376,3 +376,88 @@
 2017-12-12 17:21:59,966 [Thread-885:10408] [root:154] [INFO]- 'SESSION_REDIRECT_URI'
 2017-12-12 17:23:03,283 [Thread-928:4580] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-12-12 17:58:24,330 [Thread-968:7020] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-13 10:23:11,010 [Thread-50:123145327632384] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-13 10:37:42,910 [Thread-1:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:42,910 [Thread-3:123145510043648] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:42,919 [Thread-1:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:42,919 [Thread-3:123145510043648] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:42,920 [Thread-4:123145515298816] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:42,920 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:42,920 [Thread-5:123145520553984] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:42,920 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:42,921 [Thread-1:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:42,922 [Thread-3:123145510043648] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:42,927 [Thread-4:123145515298816] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '22481581'}, body=''
+2017-12-13 10:37:42,929 [Thread-5:123145520553984] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '22481582'}, body=''
+2017-12-13 10:37:42,932 [Thread-1:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:42,932 [Thread-3:123145510043648] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:42,932 [Thread-6:123145525809152] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:42,933 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:42,933 [Thread-7:123145531064320] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:42,933 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:42,933 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:42,934 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "0|0|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:42,934 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:42,934 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:42,944 [Thread-6:123145525809152] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '16630'}, body=''
+2017-12-13 10:37:42,945 [Thread-7:123145531064320] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '16631'}, body=''
+2017-12-13 10:37:42,989 [Thread-4:123145515298816] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:42,990 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:42,990 [Thread-1:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:42,996 [Thread-5:123145520553984] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:42,997 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "0|0|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:42,997 [Thread-3:123145510043648] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,007 [Thread-8:123145515298816] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,013 [Thread-8:123145515298816] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,014 [Thread-9:123145520553984] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,015 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,015 [Thread-8:123145515298816] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,023 [Thread-9:123145520553984] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '22481584'}, body=''
+2017-12-13 10:37:43,027 [Thread-8:123145515298816] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,027 [Thread-10:123145536319488] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,027 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,028 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,028 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,038 [Thread-10:123145536319488] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '16632'}, body=''
+2017-12-13 10:37:43,052 [Thread-6:123145525809152] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,061 [Thread-7:123145531064320] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,081 [Thread-9:123145520553984] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,081 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,081 [Thread-8:123145515298816] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,145 [Thread-10:123145536319488] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,150 [Thread-11:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,158 [Thread-11:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,159 [Thread-12:123145510043648] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,159 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,159 [Thread-11:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,167 [Thread-12:123145510043648] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '22481589'}, body=''
+2017-12-13 10:37:43,170 [Thread-11:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,171 [Thread-13:123145515298816] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,171 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,171 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "0|0|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,172 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,183 [Thread-13:123145515298816] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '16633'}, body=''
+2017-12-13 10:37:43,228 [Thread-12:123145510043648] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,228 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "0|0|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,229 [Thread-11:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,291 [Thread-13:123145515298816] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,309 [Thread-14:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,316 [Thread-14:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.71, port 61613
+2017-12-13 10:37:43,317 [Thread-15:123145510043648] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,317 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,317 [Thread-14:123145504788480] [stomp.py:637] [INFO]- Attempting connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,325 [Thread-15:123145510043648] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '22481592'}, body=''
+2017-12-13 10:37:43,329 [Thread-14:123145504788480] [stomp.py:670] [INFO]- Established connection to host 122.144.167.74, port 61613
+2017-12-13 10:37:43,329 [Thread-16:123145515298816] [stomp.py:479] [INFO]- Starting receiver loop
+2017-12-13 10:37:43,329 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['CONNECT', '\n', 'accept-version:1.0\n', '\n', b'\x00']
+2017-12-13 10:37:43,330 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,330 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,340 [Thread-16:123145515298816] [stomp.py:408] [INFO]- Received frame: 'CONNECTED', headers={'session': '16634'}, body=''
+2017-12-13 10:37:43,385 [Thread-15:123145510043648] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-13 10:37:43,385 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['SEND', '\n', 'destination:/test15267183467-smoke\n', '\n', b'{"msg": {"id": "test15267183467-smoke", "type": 2500, "value": "1|1|0|0|0|0|0|0|0|0|0|0"}}', b'\x00']
+2017-12-13 10:37:43,386 [Thread-14:123145504788480] [stomp.py:379] [INFO]- Sending frame ['DISCONNECT', '\n', 'receipt:3cd7dc53-8850-42c5-9dbb-640e1bc9d72a\n', '\n', b'\x00']
+2017-12-13 10:37:43,449 [Thread-16:123145515298816] [stomp.py:513] [INFO]- Receiver loop ended
+2017-12-20 09:24:59,107 [Thread-29:123145406083072] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-20 16:07:37,089 [Thread-208:123145406083072] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-20 17:46:22,904 [Thread-305:123145411338240] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-20 17:46:26,799 [Thread-308:123145416593408] [root:187] [INFO]- Doc matching query does not exist.
