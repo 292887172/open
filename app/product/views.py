@@ -369,12 +369,13 @@ def product_main(request):
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                 return HttpResponse('change_success')
 
-        elif post_data == 'switch':
+        elif post_data in ['toSwitch', 'isShow']:
             id = request.POST.get("id")
             val = request.POST.get("dd")
             data = find(id)
             if data:
-                data[1]['toSwitch'] = val
+
+                data[1][post_data] = val
                 save_app(app, opera_data)
                 return HttpResponse('change_success')
 
