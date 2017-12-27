@@ -461,3 +461,10 @@
 2017-12-20 16:07:37,089 [Thread-208:123145406083072] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2017-12-20 17:46:22,904 [Thread-305:123145411338240] [root:187] [INFO]- Doc matching query does not exist.
 2017-12-20 17:46:26,799 [Thread-308:123145416593408] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-26 08:53:36,904 [Thread-363:123145406083072] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-26 08:54:43,837 [Thread-465:123145411338240] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-26 08:54:45,456 [Thread-466:123145406083072] [root:187] [INFO]- Doc matching query does not exist.
+2017-12-26 08:56:59,561 [Thread-58:123145428848640] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2017-12-26 10:25:04,763 [Thread-62:123145428848640] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-26 10:25:11,441 [Thread-64:123145428848640] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2017-12-26 17:43:43,381 [Thread-118:123145428848640] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'

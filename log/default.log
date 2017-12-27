@@ -31388,3 +31388,106 @@ OSError: [Errno 22] Invalid argument
 2017-12-20 09:26:54,507 [Thread-192:123145406083072] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-20 16:07:39,187 [Thread-232:123145427103744] [django.request:143] [WARNING]- Not Found: /product/list/None
 2017-12-20 17:46:29,054 [Thread-311:123145432358912] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:53:38,912 [Thread-387:123145421848576] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:53:43,939 [Thread-395:123145406083072] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:53:49,384 [Thread-396:123145406083072] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 495, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 274, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-26 08:53:49,909 [Thread-397:123145406083072] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2017-12-26 08:53:52,854 [Thread-398:123145406083072] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 495, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 274, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-26 08:53:55,615 [Thread-400:123145416593408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:54:03,725 [Thread-424:123145411338240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:54:05,170 [Thread-425:123145416593408] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 495, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 274, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-26 08:54:09,432 [Thread-427:123145427103744] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:54:19,586 [Thread-434:123145411338240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:54:37,547 [Thread-452:123145411338240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:54:59,369 [Thread-471:123145406083072] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:55:18,398 [Thread-472:123145406083072] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 495, in product_main
+    return get()
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/app/product/views.py", line 274, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/smart_helper.py", line 214, in get_factory_name
+    print(e)
+BrokenPipeError: [Errno 32] Broken pipe
+2017-12-26 08:55:22,822 [Thread-474:123145411338240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:55:52,080 [Thread-3:123145428848640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:56:10,944 [Thread-34:123145434103808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 08:56:24,417 [Thread-41:123145434103808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 10:25:14,320 [Thread-93:123145428848640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2017-12-26 17:43:43,570 [Thread-121:123145428848640] [django.request:143] [WARNING]- Not Found: /product/list/None
