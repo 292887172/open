@@ -582,7 +582,7 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                            <li class="prog_d "><a onclick="block_mac(this)" href=""
                                                    target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
                         </ul>
                     </dd>
@@ -634,7 +634,7 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                            <li class="prog_d "><a onclick="block_mac(this)" href=""
                                                    target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
@@ -692,7 +692,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a>
                                 </li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                            <li class="prog_d "><a onclick="block_mac(this)" href=""
                                                    target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
 
                         </ul>
@@ -748,7 +748,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                                 <span><i class="fa fa-download"></i></span></a>
                                 </li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href="#"
+                            <li class="prog_d "><a onclick="block_mac(this)" href=""
                                                    target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
                         </ul>
                     </dd>
@@ -770,6 +770,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script src="/static/js/check-ie.js"></script>
+<script src="http://192.168.0.62:8081/target/target-script-min.js#anonymous"></script>
         <script>
         //判断ie浏览器版本是否低于9
         if(lessIE9()){
