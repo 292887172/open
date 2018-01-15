@@ -329,6 +329,7 @@ def product_main(request):
             else :
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs':opera_data})
+
         elif post_data == 'del':
             # 删除信息
             del_id = request.POST.get("id")
@@ -352,24 +353,7 @@ def product_main(request):
             save_app(app, opera_data)
             return HttpResponse('update_success')
 
-        elif post_data == 'state':
-            # 更改参数状态
-            state_id = request.POST.get("id")
-            data = find(state_id)
-            if data:
-                fun_name = data[1]['name']
-                if str(data[1]['state']) == '0':
-                    data[1]['state'] = '1'
-                    fun_state = UPDATE_FUN_OPEN
-                else:
-                    data[1]['state'] = '0'
-                    fun_state = UPDATE_FUN_CLOSE
-                save_app(app, opera_data)
-                message_content = '"' + app.app_name + '"' + fun_name + fun_state
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
-                return HttpResponse('change_success')
-
-        elif post_data in ['toSwitch', 'isShow']:
+        elif post_data in ['toSwitch', 'isShow', 'isControl', 'isDisplay']:
             id = request.POST.get("id")
             val = request.POST.get("dd")
             data = find(id)
