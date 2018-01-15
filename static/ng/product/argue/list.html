@@ -296,13 +296,12 @@
                         }
                     }
                 ],
-                //height:600,
                 viewrecords : true,
                 altRows: true,
                 multiselect: false,
                 multiboxonly: true,
                 caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>" +
-                "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;'><option value=0>选择总开关</option></select>",
+                "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;color: #ff6202;'><option value=0>选择总开关</option></select>",
 
                 gridComplete:function(){
 
@@ -345,7 +344,6 @@
                             names = ["del-info","toControl","isShow","isDisplay","edit-info"];
                             SetDisable(names,id);
                         }
-
                     }
                     document.getElementById('grid-table').style.width='938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
