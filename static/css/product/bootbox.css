@@ -39,6 +39,7 @@
     .modal-footer .btn+.btn{
         margin-left: 42px;
         border: solid 1px #c9c9c9;
+        background-color: #ff6f37 !important;
     }
     .btn{
          border-radius: 6px;

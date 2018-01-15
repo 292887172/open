@@ -24,8 +24,12 @@
         font-weight: 800;
       }
         .ui-jqgrid tr.jqgrow td{
-            overflow: visible;
             position: relative;
+            overflow: visible;
+            white-space: normal !important;
+            height:auto;
+            word-break:break-all;
+            line-height: 18px;
         }
         .ui-jqgrid-view>.ui-jqgrid-titlebar {
             background: #9EBEE4;
@@ -239,10 +243,9 @@
                 postData:{"name": "list"},
                 datatype: "json",
                 mtype:"POST",
-                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否启用','是否总开关','卡片显示','操作'],
+                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','操作'],
                 colModel:[
                     {name:'id' , width:107,align:'center'},
-
                     {name:'Stream_ID', width:143},
                     {name:'mxsLength',width:100,align:'center'},
                     {name:'name', width:127,align:'center'},
@@ -260,38 +263,16 @@
                     {name:'isControl', width:108,align:'center',
                         formatter:function(cellvalue, options, rowObject){
                                 if(cellvalue=="1"){
-                                    return '是';
-                                }else{
-                                    return '否';
-                                }
-                        }
-                    },
-                    {name:'state', width:131,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-
-                                    return '<input id="state-temp'+rowObject.id+'" onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+                                    return '<input id="toControl'+rowObject.id+'" onclick="toControl(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
 
                                 }else{
-                                    return '<input id="state-temp'+rowObject.id+'"  onclick="state(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                                }
-                        }
-                    },
-                    {name:'toSwitch', width:131,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-
-                                    return '<input id="toSwitch'+rowObject.id+'" onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
-
-                                }else{
-                                    return '<input id="toSwitch'+rowObject.id+'"  onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
+                                    return '<input id="toControl'+rowObject.id+'"  onclick="toControl(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
                                 }
                         }
                     },
                     {name:'isShow', width:131,align:'center',
                         formatter:function(cellvalue, options, rowObject){
                                 if(cellvalue=="1"){
-
                                     return '<input id="isShow'+rowObject.id+'" onclick="checkToShow(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
 
                                 }else{
@@ -299,10 +280,20 @@
                                 }
                         }
                     },
+                    {name:'isDisplay', width:131,align:'center',
+                        formatter:function(cellvalue, options, rowObject){
+                                if(cellvalue=="1"){
+                                    return '<input id="isDisplay'+rowObject.id+'" onclick="checkToDisplay(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+
+                                }else{
+                                    return '<input id="isDisplay'+rowObject.id+'"  onclick="checkToDisplay(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
+                                }
+                        }
+                    },
                     {name:'operation', width:150,align:'center',
                         formatter:function(cellvalue, options, rowObject){
                         return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
-                    }
+                        }
                     }
                 ],
                 //height:600,
@@ -310,7 +301,8 @@
                 altRows: true,
                 multiselect: false,
                 multiboxonly: true,
-                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>" +
+                "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;'><option value=0>选择总开关</option></select>",
 
                 gridComplete:function(){
 
@@ -332,8 +324,6 @@
 							});
                 },
                 loadComplete:function (rows) {
-
-
                     row = rows.rows;
                     if(row.length==0){
                         $("#grid-table").jqGrid( 'setGridHeight', 'auto');
@@ -342,36 +332,54 @@
                         $("#advice-content").text("当前没有任何功能，选择立即定义。");
                     }
                     for ( var i=0;i<row.length ;i++){
+                        msg = "<option value="+row[i].id+">"+row[i].Stream_ID+"</option>";
+                        $("#selectOpen").append(msg);
+                        if(row[i].toSwitch==1){
+                            $("#selectOpen").val(i+1);
+                        }
                         id = row[i].id;
                         streamID[id]=row[i].Stream_ID;
-
                         temp=document.getElementById("canshu"+id);
                         $(temp).parents('td').removeAttr('title');
                         if (rows.check_state >= 1) {
-                        document.getElementById("state-temp"+id).setAttribute('disabled','true');
-                        document.getElementById("edit-info"+id).removeAttribute('href');
+                            names = ["del-info","toControl","isShow","isDisplay","edit-info"];
+                            SetDisable(names,id);
+                        }
 
-                        document.getElementById("toSwitch"+id).setAttribute('disabled','true');
-                        document.getElementById("toSwitch"+id).removeAttribute('onclick');
-
-                        document.getElementById("del-info"+id).removeAttribute('onclick');
-                        document.getElementById("del-info"+id).removeAttribute('href');
-                    }
                     }
                     document.getElementById('grid-table').style.width='938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
                     tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
+
                     $("#grid-table").children('tbody').sortable({
-                        update: function (event, ui) {
+                        update:function (event, ui) {
                             var item = ui.item;
-                            update_id(item)
+                            bootbox.confirm("确定交换两者位置?", function (result) {
+                                if (result) {
+                                        update_id(item)
+                                    }
+                                    else{
+                                        $("#grid-table").children('tbody').sortable('cancel');
+                                    }
+                                })
                         }
                     });
                     $("#grid-table").children('tbody').disableSelection();
-
                 }
-
             });
+            function SetDisable(names,id) {
+                for(var j=0;j<names.length;j++){
+                   if(names[j]=="edit-info" || names[j]=="del-info") {
+                       document.getElementById(names[j] + id).removeAttribute('href');
+                       document.getElementById(names[j]+id).removeAttribute('onclick');
+                   }
+                   else
+                   {
+                       document.getElementById(names[j]+id).setAttribute('disabled','true');
+                       document.getElementById(names[j]+id).removeAttribute('onclick');
+                   }
+                }
+            }
             function SendPostData(data, types) {
                 $.ajax({
                     url:location.href,
@@ -391,7 +399,7 @@
                 id = item.attr("id");
                 fun_name = [];
                 rows = document.getElementById("grid-table").rows;
-                length = document.getElementById("grid-table").rows.length;
+                length = rows.length;
                 for (var i = 1; i <length; i++) {
                     rows[i].children[0].innerText = i;
                     rows[i].id = i;
@@ -405,37 +413,37 @@
                     $("#"+d_id).attr("onclick","del(" + i + ")");
                     fun_name.push(rows[i].children[1].title);
 
-                    is_state = rows[i].children[rows[i].children.length-3];
-                    is_state.firstChild.id = "state-temp"+i;
-                    $("#"+"state-temp"+i).attr('onclick',"state("+i+")");
-
-                    is_switch = rows[i].children[rows[i].children.length-2];
-                    is_switch.firstChild.id = "toSwitch"+i;
-                    $("#"+"toSwitch"+i).attr('onclick',"checkToSwitch("+i+")");
-
+                    var dict = {"toControl":"toControl",
+                            "isShow": "checkToShow",
+                            "isDisplay": "checkToDisplay"
+                    };
+                    EditButton(dict,i, rows[i]);
                 }
                 fun_name = JSON.stringify(fun_name);
                 // 更新后台功能顺序
                 SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
 
             }
-            function checkToSwitch(id) {
-                var dd;
-                rows = document.getElementById("grid-table").rows.length;
-                var advice = "本产品已经有总开关，请先取消后重新设置";
-                for(var i=1;i< rows;i++){
-                    if($("#toSwitch"+i).prop('checked') == true && id != i){
-                        $("#toSwitch"+id).attr('checked',false);
-                        bootbox.alert(advice);
-                        return ;
-                    }
+            function EditButton(dict,i, row) {
+                var temp=0;
+                for(var k in dict){
+                    fun = row.children[5+temp];
+                    fun.firstChild.id = k + i;
+                    $("#"+k+i).attr('onclick',dict[k]+"("+i+")");
+                    temp++;
                 }
-                aa = $("#toSwitch"+id).prop('checked');
+            }
+            function checkToSwitch(ths) {
+                id = $(ths).val();
+                post_data = {'name':'toSwitch','id':id};
+                SendPostData(post_data, '设置产品总开关');
+            }
+            function toControl(id) {
+                aa = $("#toControl"+id).prop('checked');
                 if(aa==false){dd=0;}
                 else{dd=1;}
-                post_data = {'name':'toSwitch','id':id,'dd':dd};
-                SendPostData(post_data, '设置产品总开关');
-
+                post_data = {'name':'isControl','id':id,'dd':dd};
+			    SendPostData(post_data, '设置是否可控');
             }
             function checkToShow(id) {
                 var dd;
@@ -451,7 +459,6 @@
                             bootbox.alert(advice);
                             return;
                         }
-
                 }
                 aa = $("#isShow"+id).prop('checked');
                 if(aa==false){dd=0;}
@@ -459,6 +466,13 @@
                 post_data = {'name':'isShow','id':id,'dd':dd};
                 SendPostData(post_data, '设置卡片显示值');
 
+            }
+            function checkToDisplay(id) {
+                aa = $("#isDisplay"+id).prop('checked');
+                if(aa==false){dd=0;}
+                else{dd=1;}
+                post_data = {'name':'isDisplay','id':id,'dd':dd};
+			    SendPostData(post_data, '设置是否显示在UI上');
             }
             function show_table(item) {
                 $(item).nextAll('div').show();
@@ -468,11 +482,7 @@
                 $(item).nextAll('div').hide();
                 $(item).nextAll('div').children('table').hide()
             }
-			function state(id) {
-			    post_data = {'name':'state','id':id};
-			    SendPostData(post_data, '设置功能启用状态');
 
-            }
             function add(){
                 location.href = "#/edit";
 			}
@@ -543,12 +553,6 @@
                         $("#"+i).attr('id',i-1);
                         a = "del(" + (i-1) + ")";
                         b = "del-info" + (i-1);
-
-                        $("#toSwitch"+i).attr('onclick',"checkToSwitch("+(i-1)+")");
-                        $("#toSwitch"+i).attr('id',"toSwitch"+(i-1));
-
-                        $("#state-temp"+i).attr('onclick',"state("+(i-1)+")");
-                        $("#state-temp"+i).attr('id',"state-temp"+(i-1));
 
                         $("#edit-info"+i).attr("href",'#/edit?id='+(i-1));
                         $("#edit-info"+i).attr('id', "edit-info"+(i-1));
