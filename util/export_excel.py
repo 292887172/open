@@ -13,10 +13,10 @@ from model.center.app import App
 
 
 def write_excel(items, filename):
-    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能属性',
-               'mxsLength': '长度(bit)', 'widget': '单位', 'permission': '权限'}
+    headers = {'id': '功能序号', 'name': "产品功能", 'remarks': '备注', 'values': '值域', 'Stream_ID': '功能标识',
+               'mxsLength': '长度(bit)', 'widget': '单位', 'permission': '权限', 'isFunction': '功能（属性）', 'toSwitch': '总开关'}
     items['functions'].insert(0, headers)
-    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'widget', 'permission']
+    header = ['id', 'name', 'remarks', 'values', 'Stream_ID', 'mxsLength', 'widget', 'permission', 'isFunction', 'toSwitch']
     excel_name = write_data(items, header, filename)
     return excel_name
 

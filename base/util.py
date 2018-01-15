@@ -115,7 +115,10 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '3', 'Stream_ID': 'LAMP','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '延时', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
-         'mxsLength': '8', 'id': '4', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'}
+         'mxsLength': '8', 'id': '4', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
         ]
     stove = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
@@ -152,6 +155,9 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:50:49', 'name': '延时', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '8', 'id': '11', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '12', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
 
     oven = [
@@ -201,6 +207,9 @@ def gen_app_default_conf(val):
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '当前温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
          'id': '13', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '14', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
     steam = [
         {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
@@ -248,32 +257,41 @@ def gen_app_default_conf(val):
         {'isControl': 0, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '当前温度', 'corpMark': '℃', 'widget': 'input', 'min': 0,
          'max': 255, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
          'id': '13', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '14', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
     fridge = [
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '智能模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '1', 'Stream_ID': 'SMART_MODE', 'toSwitch': '0','isFunction': '1'},
+         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'SMART_MODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '速冻模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '2', 'Stream_ID': 'FAST_FREMODE', 'toSwitch': '0','isFunction': '1'},
+         'paramType': 1, 'mxsLength': '8', 'id': '3', 'Stream_ID': 'FAST_FREMODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '速冷模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '3', 'Stream_ID': 'FAST_FRIMODE', 'toSwitch': '0','isFunction': '1'},
+         'paramType': 1, 'mxsLength': '8', 'id': '4', 'Stream_ID': 'FAST_FRIMODE', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '变温室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '4', 'Stream_ID': 'VAR_TEMP', 'toSwitch': '0','isFunction': '1'},
+         'id': '5', 'Stream_ID': 'VAR_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷冻室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '5', 'Stream_ID': 'FRE_TEMP', 'toSwitch': '0','isFunction': '1'},
+         'id': '6', 'Stream_ID': 'FRE_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷藏室温度', 'corpMark': '℃', 'widget': 'input', 'min': -20,
          'max': 20, 'mxsNum': '0', 'mxs': [], 'corpName': '摄氏度', 'paramType': 1, 'mxsLength': '8',
-         'id': '6', 'Stream_ID': 'FRI_TEMP', 'toSwitch': '0','isFunction': '1'},
+         'id': '7', 'Stream_ID': 'FRI_TEMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '变温室开关', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '7', 'Stream_ID': 'VAR_POWER', 'toSwitch': '0','isFunction': '1'},
+         'paramType': 1, 'mxsLength': '8', 'id': '8', 'Stream_ID': 'VAR_POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:52:12', 'name': '冷冻室开关', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 1, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
-         'paramType': 1, 'mxsLength': '8', 'id': '8', 'Stream_ID': 'FRE_POWER', 'toSwitch': '0','isFunction': '1'},
+         'paramType': 1, 'mxsLength': '8', 'id': '9', 'Stream_ID': 'FRE_POWER', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '10', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
     small_oven = [
     {
@@ -499,8 +517,19 @@ def gen_app_default_conf(val):
         "paramType": 1,
         'toSwitch': '0',
         'isFunction': '1'
-    }
+    },
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '9', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 ]
+    other = [
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsLength': '8', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+    ]
 
     if val == 1:
         return smoke
@@ -515,4 +544,4 @@ def gen_app_default_conf(val):
     elif val == 27:
         return small_oven
     else:
-        return []
+        return other

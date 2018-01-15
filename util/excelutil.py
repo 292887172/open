@@ -72,12 +72,28 @@ def cal_ascll(key):
     return num
 
 
+def getLength(temp,length,toLen):
+
+    temp += length
+
+    if(temp%8 == 0):
+        toLen += temp//8
+        temp = 0
+    elif(temp>8):
+        a = (temp-length)//8+1
+        toLen += a
+        temp = length
+    return temp,toLen
+
+
+
 def data_domain(sheet2, data, i):
     funs = data['functions']
     # 数据域功能数,除去头部
     k = len(funs)-1
     # 数据域长度（位数）
-    length = k
+    toLen = 0
+    temp = 0
     values = []
     lamp_id = 1
     flag = False
@@ -88,38 +104,43 @@ def data_domain(sheet2, data, i):
     sheet2.write(5, i, "结果码", set_style('Arial', 220))
     for index, line in enumerate(funs[1:], i+1):
         # 获取数据域所有功能对应的值
+        length = int(line['mxsLength'])
         if not flag:
             flag = True
             fun_value = 1
             lamp_id = line['id']
             fun_name = line['name']
-            if int(line['mxsLength']) / 8 > 1:
+            if length / 8 > 1:
                 values.append('01 00')
-                length += 1
             else:
                 values.append('01')
         else:
-            if int(line['mxsLength']) / 8 > 1:
+            if length / 8 > 1:
                 values.append('00 00')
-                length += 1
             else:
                 values.append('00')
+        temp,toLen = getLength(temp,length,toLen)
 
         # 找到照明对应的id
         sheet2.write(5, index, line['name'], set_style('Arial', 220))
+    if(temp>0):
+        if temp%8==0:
+            toLen += temp//8
+        else:
+            toLen += temp//8 + 1
     sheet2.write_merge(4, 5, i+k+1, i+k+1, "校验", set_style('Arial', 220))
     S_C = "点击屏上{0}按钮打开{0}".format(fun_name)
     C_S = "电控修改{0}按钮状态".format(fun_name)
-    row4 = [S_C, '屏->电控', '', 'A5 5A', '00', '21', to_hex(length), '']
-    row5 = [C_S, '电控->屏', '', '5A A5', '00', '21', to_hex(length + 1), '00']
+    row4 = [S_C, '屏->电控', '', 'A5 5A', '00', '21', to_hex(toLen), '']
+    row5 = [C_S, '电控->屏', '', '5A A5', '00', '21', to_hex(toLen + 1), '00']
     row6 = ['例子（单功能）', '', '', '帧头', '流水号', '帧类型', '长度', '结果码', '功能1', '状态1', '功能2', '状态2', '校验']
     row7 = [S_C, '屏->电控', '', 'A5 5A', '00', '31', '02', '']
     row8 = [C_S, '电控->屏', '', '5A A5', '00', '31', '03', '00']
     # 全功能数据
-    check_bit1 = to_check_bit('21', length, fun_value)
-    check_bit2 = to_check_bit('21', length + 1, fun_value)
-    com_frame1 = to_com_frame('A5 5A', '21', length, values, check_bit1, result=' ')
-    com_frame2 = to_com_frame('5A A5', '21', length + 1, values, check_bit2, result=' 00 ')
+    check_bit1 = to_check_bit('21', toLen, fun_value)
+    check_bit2 = to_check_bit('21', toLen + 1, fun_value)
+    com_frame1 = to_com_frame('A5 5A', '21', toLen, values, check_bit1, result=' ')
+    com_frame2 = to_com_frame('5A A5', '21', toLen + 1, values, check_bit2, result=' 00 ')
     row4[2] = com_frame1
     row5[2] = com_frame2
     row4.extend(values)
