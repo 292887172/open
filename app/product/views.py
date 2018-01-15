@@ -317,13 +317,13 @@ def product_main(request):
             return []
         # 接收页面请求信息
         post_data = request.POST.get("name")
+        id = request.POST.get("id")
         if post_data == 'list':
             # 显示所有列表信息
             return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_id = request.POST.get("id", "")
-            edit_data = find(edit_id)
+            edit_data = find(id)
             if edit_data:
                 edit_data = edit_data[1]
             else :
@@ -332,13 +332,12 @@ def product_main(request):
 
         elif post_data == 'del':
             # 删除信息
-            del_id = request.POST.get("id")
-            data = find(del_id)
+            data = find(id)
             if data:
                 i = data[0]
                 fun_name = data[1].get("name")
                 opera_data.pop(i)
-                replace_fun_id(opera_data,del_id)
+                replace_fun_id(opera_data,id)
                 save_app(app, opera_data)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -352,17 +351,23 @@ def product_main(request):
                         opera_data[i]["id"] = j + 1
             save_app(app, opera_data)
             return HttpResponse('update_success')
-
-        elif post_data in ['toSwitch', 'isShow', 'isControl', 'isDisplay']:
-            id = request.POST.get("id")
+        elif post_data == 'toSwitch':
+            print("---------------")
+            for switch in opera_data:
+                if int(switch["id"]) == int(id):
+                    print("++++++++++",id)
+                    switch["toSwitch"] = 1
+                else:
+                    switch["toSwitch"] = 0
+            save_app(app, opera_data)
+            return HttpResponse('select_success')
+        elif post_data in ['isShow', 'isControl', 'isDisplay']:
             val = request.POST.get("dd")
             data = find(id)
             if data:
-
                 data[1][post_data] = val
                 save_app(app, opera_data)
                 return HttpResponse('change_success')
-
         elif post_data == "export":
             res = date_deal(app_id)
             return res

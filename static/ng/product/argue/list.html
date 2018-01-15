@@ -243,7 +243,7 @@
                 postData:{"name": "list"},
                 datatype: "json",
                 mtype:"POST",
-                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '是否总开关','卡片显示','显示到UI','操作'],
+                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','操作'],
                 colModel:[
                     {name:'id' , width:107,align:'center'},
                     {name:'Stream_ID', width:143},
@@ -267,16 +267,6 @@
 
                                 }else{
                                     return '<input id="toControl'+rowObject.id+'"  onclick="toControl(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                                }
-                        }
-                    },
-                    {name:'toSwitch', width:131,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-                                    return '<input id="toSwitch'+rowObject.id+'" onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
-
-                                }else{
-                                    return '<input id="toSwitch'+rowObject.id+'"  onclick="checkToSwitch(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
                                 }
                         }
                     },
@@ -311,7 +301,8 @@
                 altRows: true,
                 multiselect: false,
                 multiboxonly: true,
-                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>",
+                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>" +
+                "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;'><option value=0>选择总开关</option></select>",
 
                 gridComplete:function(){
 
@@ -341,14 +332,20 @@
                         $("#advice-content").text("当前没有任何功能，选择立即定义。");
                     }
                     for ( var i=0;i<row.length ;i++){
+                        msg = "<option value="+row[i].id+">"+row[i].Stream_ID+"</option>";
+                        $("#selectOpen").append(msg);
+                        if(row[i].toSwitch==1){
+                            $("#selectOpen").val(i+1);
+                        }
                         id = row[i].id;
                         streamID[id]=row[i].Stream_ID;
                         temp=document.getElementById("canshu"+id);
                         $(temp).parents('td').removeAttr('title');
                         if (rows.check_state >= 1) {
-                            names = ["toSwitch","del-info","toControl","isShow","isDisplay","edit-info"];
+                            names = ["del-info","toControl","isShow","isDisplay","edit-info"];
                             SetDisable(names,id);
                         }
+
                     }
                     document.getElementById('grid-table').style.width='938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
@@ -417,7 +414,6 @@
                     fun_name.push(rows[i].children[1].title);
 
                     var dict = {"toControl":"toControl",
-                            "toSwitch":"checkToSwitch",
                             "isShow": "checkToShow",
                             "isDisplay": "checkToDisplay"
                     };
@@ -437,23 +433,10 @@
                     temp++;
                 }
             }
-            function checkToSwitch(id) {
-                var dd;
-                rows = document.getElementById("grid-table").rows.length;
-                var advice = "本产品已经有总开关，请先取消后重新设置";
-                for(var i=1;i< rows;i++){
-                    if($("#toSwitch"+i).prop('checked') == true && id != i){
-                        $("#toSwitch"+id).attr('checked',false);
-                        bootbox.alert(advice);
-                        return ;
-                    }
-                }
-                aa = $("#toSwitch"+id).prop('checked');
-                if(aa==false){dd=0;}
-                else{dd=1;}
-                post_data = {'name':'toSwitch','id':id,'dd':dd};
+            function checkToSwitch(ths) {
+                id = $(ths).val();
+                post_data = {'name':'toSwitch','id':id};
                 SendPostData(post_data, '设置产品总开关');
-
             }
             function toControl(id) {
                 aa = $("#toControl"+id).prop('checked');
@@ -476,7 +459,6 @@
                             bootbox.alert(advice);
                             return;
                         }
-
                 }
                 aa = $("#isShow"+id).prop('checked');
                 if(aa==false){dd=0;}
@@ -571,9 +553,6 @@
                         $("#"+i).attr('id',i-1);
                         a = "del(" + (i-1) + ")";
                         b = "del-info" + (i-1);
-
-                        $("#toSwitch"+i).attr('onclick',"checkToSwitch("+(i-1)+")");
-                        $("#toSwitch"+i).attr('id',"toSwitch"+(i-1));
 
                         $("#edit-info"+i).attr("href",'#/edit?id='+(i-1));
                         $("#edit-info"+i).attr('id', "edit-info"+(i-1));
