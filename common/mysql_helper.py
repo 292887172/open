@@ -207,10 +207,11 @@ def get_ui_base_conf(key, conf):
             close_connection(conn)
 
 
-def modify_ui_conf(key,conf):
+def modify_ui_conf(key, conf):
     """
     通过key查询是否存在配置，存在时修改配置
     :param key: 
+    :param conf
     :return: 
     """
     conn = get_main_connection()
