@@ -324,9 +324,11 @@
                 },
                 loadComplete:function (rows) {
                     row = rows.rows;
+                    names = ["del-info","toControl","isShow","isDisplay","edit-info"];
                     if(row.length==0){
                         $("#grid-table").jqGrid( 'setGridHeight', 'auto');
                         $("#export-protocol").css('display','none');
+                        $("#selectOpen").css("display",'none');
                         $("#show-no-data").css('display','block');
                         $("#advice-content").text("当前没有任何功能，选择立即定义。");
                     }
@@ -341,28 +343,31 @@
                         temp=document.getElementById("canshu"+id);
                         $(temp).parents('td').removeAttr('title');
                         if (rows.check_state >= 1) {
-                            names = ["del-info","toControl","isShow","isDisplay","edit-info"];
                             SetDisable(names,id);
                         }
                     }
                     document.getElementById('grid-table').style.width='938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
                     tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-
-                    $("#grid-table").children('tbody').sortable({
-                        update:function (event, ui) {
-                            var item = ui.item;
-                            bootbox.confirm("确定交换两者位置?", function (result) {
-                                if (result) {
+                    if (rows.check_state < 1) {
+                        $("#grid-table").children('tbody').sortable({
+                            update: function (event, ui) {
+                                var item = ui.item;
+                                bootbox.confirm("确定交换两者位置?", function (result) {
+                                    if (result) {
                                         update_id(item)
                                     }
-                                    else{
+                                    else {
                                         $("#grid-table").children('tbody').sortable('cancel');
                                     }
                                 })
-                        }
-                    });
-                    $("#grid-table").children('tbody').disableSelection();
+                            }
+                        });
+                        $("#grid-table").children('tbody').disableSelection();
+                    }
+                    else{
+                        document.getElementById("selectOpen").setAttribute('disabled','true');
+                    }
                 }
             });
             function SetDisable(names,id) {
