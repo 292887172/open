@@ -109,10 +109,13 @@ def deal_json(app):
         i["title"] = data["name"]
         i["length"] = data["mxsLength"]
 
+
         i['unit'] = data['corpMark']
         i['isFunction'] = data.get("isFunction", 1)
         i['toSwitch'] = data.get('toSwitch', 0)
-        i['isShow'] = data.get('isShow', 0)
+        i["isCardShow"] = data.get('isShow', 0)
+        i["isUiShow"] = data.get("isDisplay", 0)
+
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
@@ -129,7 +132,7 @@ def deal_json(app):
         else:
             i['permission'] = '477'
             j['permission'] = "读"
-        if str(data['state']) == '1' and data.get('toSwitch') != 1:
+        if int(i['toSwitch']) != 1:
             temp1_data.append(i)
             temp2_data.append(j)
     e_data['functions'] = temp2_data

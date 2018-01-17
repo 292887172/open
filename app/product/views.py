@@ -352,10 +352,8 @@ def product_main(request):
             save_app(app, opera_data)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
-            print("---------------")
             for switch in opera_data:
                 if int(switch["id"]) == int(id):
-                    print("++++++++++",id)
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
