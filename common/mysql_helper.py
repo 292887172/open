@@ -139,3 +139,89 @@ def select_maker_account_by_id(user_id):
     finally:
         close_connection(conn)
 
+
+def query_data(key):
+    """
+    通过key查找设备的配置(ebt_protocol_conf)
+    :param key: 
+    :return: 
+    """
+    conn = get_main_connection()
+    try:
+        cursor = conn.cursor()
+        sql = "select * from ebt_protocol_conf where ebf_pc_device_key = '%s'" %(key)
+        cursor.execute(sql)
+        res = cursor.fetchone()
+        return res
+    except Exception as e:
+        print(e)
+        print('我已经存在了')
+    finally:
+        close_connection(conn)
+
+
+def query_ui_conf(key):
+    """
+    通过key查找设备的配置(ebt_protocol_conf)
+    :param key: 
+    :return: 
+    """
+    conn = get_main_connection()
+    try:
+        cursor = conn.cursor()
+        sql = "select * from ebt_device_page_conf where ebf_device_id='%s'" %(key)
+        cursor.execute(sql)
+        res = cursor.fetchone()
+        return res
+    except Exception as e:
+        print(e)
+        return 'error'
+    finally:
+        close_connection(conn)
+
+
+def get_ui_base_conf(key, conf):
+    """
+    获取自定义ui配置并且保存
+    :param key: 
+    :param conf: 
+    :return: 
+    """
+    conn = get_main_connection()
+    isExit = query_ui_conf(key)
+    if isExit:
+        back_data = modify_ui_conf(key, conf)
+        if back_data == 'ok':
+            return 'ok'
+    else:
+        try:
+            cursor = conn.cursor()
+            sql = '''insert into ebt_device_page_conf values(%s,%s)'''
+            l = [[key, conf]]
+            cursor.executemany(sql, l)
+            conn.commit()
+            return 'ok'
+        except Exception as e:
+            print(e)
+        finally:
+            close_connection(conn)
+
+
+def modify_ui_conf(key,conf):
+    """
+    通过key查询是否存在配置，存在时修改配置
+    :param key: 
+    :return: 
+    """
+    conn = get_main_connection()
+    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s'  WHERE ebf_device_id = '%s'" % (conf, key)
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        conn.commit()
+        return 'ok'
+    except Exception as e:
+        print(e)
+    finally:
+        close_connection(conn)
+

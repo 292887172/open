@@ -17,4 +17,6 @@ urlpatterns = patterns(
     url(r"^wiki/", include(wiki_patterns)),
     # 调试
     url(r"^debug/", include(debug_patterns)),
+    # api
+    url(r'^api/', include('api.urls')),
 )

@@ -3,7 +3,7 @@
 import sys
 from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
-
+from common.mysql_helper import query_data, get_ui_conf,modify_ui_conf
 
 class prpcrypt():
     def __init__(self, key):
@@ -30,10 +30,14 @@ class prpcrypt():
         return plain_text.rstrip('\0')
 
 if __name__ == "__main__":
-    pc = prpcrypt('keyskeyskeyskeys')  # 初始化密钥
-    e = pc.encrypt("00000")
-    d = pc.decrypt(e)
-    print(e, d)
-    e = pc.encrypt("00000000000000000000000000")
-    d = pc.decrypt(e)
-    print(e, d)
+    # pc = prpcrypt('keyskeyskeyskeys')  # 初始化密钥
+    # e = pc.encrypt("00000")
+    # d = pc.decrypt(e)
+    # print(e, d)
+    # e = pc.encrypt("00000000000000000000000000")
+    # d = pc.decrypt(e)
+    # print(e, d)
+    a = get_ui_conf('12313nf', 'de肉肉肉dfe')
+
+
+
