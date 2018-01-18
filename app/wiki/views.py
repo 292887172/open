@@ -80,10 +80,16 @@ def doc_wiki(request):
     :param request:
     :return:
     """
-    # data = Api.objects.all()
-
     view = request.GET.get("view", '')
-    menus = nav_content(view)
+    view = view.split("Navicat")
+    name = "Navicat" + view[1][0]
+    dm_id = int(view[1][1:])
+    try:
+        doc = DocMenu.objects.get(dm_id=dm_id)
+        isParent = doc.dm_is_parent
+    except Exception as e:
+        print(e)
+    menus = nav_content(name)
     # 保存菜单到session中
     request.session['menus'] = json.dumps(menus)
     return render(request, "wiki/doc.html", locals())
