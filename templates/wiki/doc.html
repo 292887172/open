@@ -153,49 +153,49 @@
 {% endblock %}
 {% block right %}
     <div class="rightMain markdown-body editormd-preview-container editormd-preview-active" previewcontainer="true">
+        {% if isParent %}
+
         <div class="box2 relative ">
-    <div class="hbox">
-        <h2 class="tit6">合作概况</h2>
-        <div class="plrb25">
-            <p class="txt2 mt20">53iq厨房智能云始终秉承开放合作的态度，为开发者提供最全面的API服务，为合作厂商提供成熟可以量产的技术方案支持，帮助家电企业迅速打造出自己的新产品。</p>
-            <p class="txt3"><b>开放资源</b>——最全面API服务</p>
-            <p><img src="{% static 'image/home/hz3.png' %}"></p>
+            <div class="hbox">
+                <h2 class="tit6">合作概况</h2>
+                <div class="plrb25">
+                    <p class="txt2 mt20">53iq厨房智能云始终秉承开放合作的态度，为开发者提供最全面的API服务，为合作厂商提供成熟可以量产的技术方案支持，帮助家电企业迅速打造出自己的新产品。</p>
+                    <p class="txt3"><b>开放资源</b>——最全面API服务</p>
+                    <p><img src="{% static 'image/home/hz3.png' %}"></p>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="hbox">
+                <h2 class="tit6 mt20">合作流程</h2>
+                <div class="plrb25">
+                    <p class="textL"><img src="{% static 'image/home/hz1.png' %}"></p>
+                    <div class="tbox">
+                        <p class="ft9">Step1：申请成为开发者:</p>
+                        <p>需要合作伙伴在53iq厨房智能云开发者中心进行注册，登录后按照页面要求，提供真实完整的公司基本信息及产品的基本信息。
+                            在您成功提交信息后，我们会有相应的工作人员在后台对您提交的信息进行预审，预审通过后会与您取得联系。</p>
+                    </div>
+                    <div class="tbox">
+                        <p class="ft9">Step2：技术对接:</p>
+                        <p>审核通过后，商务经理会与您取得联系沟通合作意向/方式/目标的相关内容。在达成商务合作意向后，
+                            我们会有专业的技术团队跟您进行技术确认，确定最终的技术方案。</p>
+                    </div>
+                    <div class="tbox">
+                        <p class="ft9">Step3：产品研发&测试：</p>
+                        <p>
+                            指定专业的技术团队协助厂家研制新品并测试产品性能
+                        </p>
+                    </div>
+                    <div class="tbox">
+                        <p class="ft9">Step4：批量排产&上线:</p>
+                        <p>
+                           制定排产计划，确定上线时间及推广方案
+                        </p>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="line"></div>
-    <div class="hbox">
-        <h2 class="tit6 mt20">合作流程</h2>
-        <div class="plrb25">
-            <p class="textL"><img src="{% static 'image/home/hz1.png' %}"></p>
-            <div class="tbox">
-                <p class="ft9">Step1：申请成为开发者:</p>
-                <p>需要合作伙伴在53iq厨房智能云开发者中心进行注册，登录后按照页面要求，提供真实完整的公司基本信息及产品的基本信息。
-                    在您成功提交信息后，我们会有相应的工作人员在后台对您提交的信息进行预审，预审通过后会与您取得联系。</p>
-            </div>
-            <div class="tbox">
-                <p class="ft9">Step2：技术对接:</p>
-                <p>审核通过后，商务经理会与您取得联系沟通合作意向/方式/目标的相关内容。在达成商务合作意向后，
-                    我们会有专业的技术团队跟您进行技术确认，确定最终的技术方案。</p>
-            </div>
-            <div class="tbox">
-                <p class="ft9">Step3：产品研发&测试：</p>
-                <p>
-                    指定专业的技术团队协助厂家研制新品并测试产品性能
-                </p>
-            </div>
-            <div class="tbox">
-                <p class="ft9">Step4：批量排产&上线:</p>
-                <p>
-                   制定排产计划，确定上线时间及推广方案
-                </p>
-            </div>
-
-        </div>
-    </div>
-
-
-</div>
-
+    {% endif %}
 
     </div>
 
@@ -269,31 +269,33 @@
             else{
                 $("." + id).parent('li').css('background','#e6e6e6');
                 $("." + id).parent('li').css('border-left','3px solid #ff6202');
+
             }
             var url = $("." + id).attr('name');
-            $.ajax({
-                type: "get",
-                url: url,
-                data: "",
-                success: function (msg) {
+            if(url!=undefined) {
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    data: "",
+                    success: function (msg) {
 
-                    $(".rightMain").html(msg);
-                },
-                error: function () {
-                }
-            })
+                        $(".rightMain").html(msg);
+                    },
+                    error: function () {
+                    }
+                })
+            }
         }
 
         $(function () {
             var href1 = location.href;
             href1 = href1.split("=")[1].split("#")[0];
             var id = location.hash;
-            if (id && href1!="Navicat3") {
-                //确保资源加载完成
-                setTimeout(function(){
-                    load_res(id.split("#")[1]);
-                }, 500);
-            }
+            //确保资源加载完成
+            setTimeout(function(){
+                load_res(id.split("#")[1]);
+            }, 500);
+
         })
     </script>
 {% endblock %}

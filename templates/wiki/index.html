@@ -85,9 +85,9 @@
                             {% if forloop.counter != 1%}
                                 <p class="info">
                                 {% if m.menu_name == "接入指南" %}
-                                    <b><a href="/wiki/doc_wiki?view=Navicat1#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a></b>
+                                    <b><a href="/wiki/doc_wiki?view=Navicat1{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a></b>
                                 {% else %}
-                                    <a href="/wiki/doc_wiki?view=Navicat1#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                                    <a href="/wiki/doc_wiki?view=Navicat1{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
                                 {% endif %}
                                 </p>
                             {% endif %}
@@ -107,13 +107,13 @@
 {#                            </p>#}
                             <p class="info">
                                 <b>
-                                    <a href="/wiki/doc_wiki?view=Navicat2#10000" target="_self">下载中心</a>
+                                    <a href="/wiki/doc_wiki?view=Navicat21000#10000" target="_self">下载中心</a>
                                 </b>
                             </p>
                            {% for m in menus2 %}
                                 {% if m.menu_parent_id > 0 %}
                                     <p class="info">
-                                        <a href="/wiki/doc_wiki?view=Navicat2#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                                        <a href="/wiki/doc_wiki?view=Navicat2{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
                                 </p>
                                 {% endif %}
 
@@ -128,7 +128,7 @@
                        {% for m in menus3 %}
                             {% if m.menu_is_parent%}
                                 <p class="info">
-                                    <a href="/wiki/doc_wiki?view=Navicat3#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
+                                    <a href="/wiki/doc_wiki?view=Navicat3{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
                             </p>
                             {% endif %}
 

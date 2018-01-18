@@ -307,7 +307,7 @@
                                 <button type="submit" class="btn pull-right">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
                                 <div class="control-group">
                                     <div class="controls clearfix" style="float: left">
-                                         <div style="margin-top: 10px;color: #c9c9c9 "><a href="forget_pwd">忘记密码？</a></div>
+                                         <div style="margin-top: 10px;color: #c9c9c9 "><a href="{% url 'register' %}">立即注册</a></div>
                                         <!--
                                         <label style="width:auto" class="checkbox pull-left">
                                             <input name="remember" type="hidden" class="ui-remember-account" checked> 自动登录
@@ -315,13 +315,11 @@
                                         -->
                                         <!--<a style="padding: 5px 0px 0px 5px;" href="#" class="pull-right">忘记密码?</a>-->
                                     </div>
-                                    <div style="float: right;margin-top: 10px;"><a style="color: #ff6202;" href="{% url 'register' %}">立即注册</a></div>
+                                    <div style="float: right;margin-top: 10px;"><a style="color: #ff6202;" href="forget_pwd">忘记密码？</a></div>
                                 </div>
                             <label style="width:auto;display: none;" class="checkbox pull-left">
                                             <input name="remember" type="checkbox" class="ui-remember-account" checked> 自动登录
                             </label>
-
-
                             </form>
                             <div class="ui-partner">
                                 <ul>
@@ -352,10 +350,10 @@
     var num = Math.round(Math.random()*2+1);
     var image1 = "/static/image/center/login_bg"+num+'.jpg';
     $("body").css("background","url("+image1+")center center / cover no-repeat fixed");
-    console.log(image1);
+
     function encryption(item) {
              var b = new Base64();
-             console.log("password:",$(item).val());
+             //console.log("password:",$(item).val());
              var str = b.encode($(item).val());
              $("#inputPassword").val(str);
         }

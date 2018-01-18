@@ -119,11 +119,13 @@
         .ui-from-validate {
             width: 75px;
         }
-
         .btn-identify {
-            position: relative;
-            top: -34px;
-            left: 36%;
+            background: #FF6F37;
+            color: #fff;
+        }
+        .btn-identify:hover{
+            color: #fff;
+            background: #ff6202;
         }
         .ui-validate-text{
             position: relative;
@@ -266,11 +268,14 @@
                 if (password2 != password) {
                     $("#ui-password2-text").addClass('ui-input-red');
                     $("#ui-password2-error").addClass('ui-error-text-red').text('两次输入密码不相同');
+                    $("#btnSave").removeClass("btn-identify")
 
                 }
                 else {
                     $("#ui-password2-text").removeClass('ui-input-red');
                     $("#ui-password2-error").removeClass('ui-error-text-red').text('');
+                    $("#btnSave").addClass("btn-identify")
+
                 }
 
             });
@@ -302,14 +307,14 @@
                                     response = jQuery.parseJSON(response);
 
                                     if (response['status'] == 1) {
-                                        alert(response['error']);
                                         url = response['url'];
                                         window.location.href = url;
                                     }
                                     else{
                                         $("#btnSave").text("确认");
                                         $(".ui-loading-img").hide();
-                                        alert(response['error'])
+                                        $("#ui-validate_code").addClass('ui-input-red');
+                                        $("#ui-code-error").addClass('ui-error-text-red').text(response['error']);
                                     }
 
                                 }

@@ -312,7 +312,8 @@
                                     else{
                                         $("#btnSave").text("确认");
                                         $(".ui-loading-img").hide();
-                                        alert(response['error'])
+                                        $("#ui-validate_code").addClass('ui-input-red');
+                                        $("#ui-code-error").addClass('ui-error-text-red').text(response['error']);
                                     }
 
                                 }
