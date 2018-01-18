@@ -6,7 +6,7 @@
 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'bootstrap/app.css' %}"/>
-
+    <link rel="stylesheet" href="/static/css/product/notice.css">
     <style>
         .container-narrow {
             width: 95%;
@@ -281,6 +281,7 @@
         </div>
         <!--/row-fluid-->
     </div>
+    <div class="notification-container"></div>
 
 {% endblock %}
 
@@ -316,7 +317,8 @@
                                 success: function (response) {
                                     response = jQuery.parseJSON(response);
                                     if (response['status'] == 0) {
-                                            alert(response['msg']);
+                                        var msg = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">'+response['msg']+'</div><div class="notification-action"></div></div></div>';
+                                        $(".notification-container").html(msg);
                                         window.location.href='/center'
                                     }
                                     else if(response['status'] == 1){
@@ -338,11 +340,9 @@
                             //两次密码不一致
                             $("#ui-password2-error").addClass('ui-error-text-red').text('两次输入密码不一致')
                         }
-
-
                     }
                     else {
-                        alert('请输入验证码')
+                        //$("#ui-code-error").addClass('ui-error-text-red').text("请输入验证码");
                     }
 
                 }
