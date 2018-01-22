@@ -174,7 +174,6 @@ def query_ui_conf(key, conn):
         sql = "select * from ebt_device_page_conf where ebf_device_key='%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
-        print(res)
         return res
     except Exception as e:
         print(e)
@@ -218,7 +217,7 @@ def modify_ui_conf(key, conf, conn):
     :param conn    
     :return: 
     """
-    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s'  WHERE ebf_device_key = '%s'" % (conf, key)
+    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s', ebf_ui_update_date = '%s' WHERE ebf_device_key = '%s'" % (conf, datetime.datetime.utcnow(), key)
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
