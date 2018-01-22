@@ -56,32 +56,16 @@ angular.module('Product.edit', ['ngRoute'])
 						else if (flag == 'error'){
 
 						}
-						else {
-							var temp = 0;
-							for(var i=0;i<flag.length;i++){
-									if (data == flag[i]){
-									temp = 1;
-									break;
-								}
-							}
-							if(temp==0){
-								errorType = 2;
-								break
-							}
-						}
+
 						var trig = getTrigger(data);
 						mxs.push({data:data,desc:desc,trigger:trig});
 					}
 					mxsNum=mxs.length+"";
                 }
 				if(types[0].checked){
-					var msg=checkInt();
-					if(msg.length>0){
-						return;
-					}
-					min=parseInt($.trim($('#minInt').val()));
-					max=parseInt($.trim($('#maxInt').val()));
-					save_mxs(min,max,"int");
+					min=0;
+					max=1;
+					save_mxs(min,max,'int');
 				}
 				else if(types[1].checked){
 					var error_value = $.trim($('#errorValue').val());
@@ -90,11 +74,13 @@ angular.module('Product.edit', ['ngRoute'])
 					save_mxs(1,1,'error');
 				}
 				else if(types[2].checked){
-					var enum_value=$.trim($('#maxEnum').val());
-					min ='';
-					max = enum_value;
-					enum_value = enum_value.split(' ');
-					save_mxs(1,1,enum_value);
+					var msg=checkInt();
+					if(msg.length>0){
+						return;
+					}
+					min=parseInt($.trim($('#minInt').val()));
+					max=parseInt($.trim($('#maxInt').val()));
+					save_mxs(min,max,"int");
 				}
 				else if (types[3].checked) {
                 	var msg=checkTimer();
@@ -116,11 +102,7 @@ angular.module('Product.edit', ['ngRoute'])
 					$('#checkArgue').html("传输数据必须位于最小值"+min+"和最大值"+max+"之间!!");
 					return;
 				}
-				if(errorType==2){
-					$('#checkArgue').css("display","block");
-					$('#checkArgue').html("传输数据必须在枚举值:"+enum_value+"中");
-					return;
-				}
+
 				if(errorType==-2){
 					$('#checkArgue').css("display","block");
 					$('#checkArgue').html("传输数据必须是数字！！");
@@ -130,11 +112,11 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.Stream_ID=$.trim($('#Stream_ID').val());
 				indata.name=$.trim($('#name').val());
 				if(types[0].checked){
-					indata.paramType=1;//整数
+					indata.paramType=1;// 开关型
 				}else if(types[1].checked){
 					indata.paramType=3;//故障类型
 				}else if(types[2].checked){
-					indata.paramType=4;//枚举
+					indata.paramType=4;//整数
 				}
 				else if(types[3].checked){
 					indata.paramType=5;//定时型

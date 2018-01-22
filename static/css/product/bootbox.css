@@ -30,26 +30,26 @@
         border-radius: 6px;
         box-shadow: none;
     }
-    .btn-default, .btn-default.focus{
+
+    .modal-footer .btn+.btn{
+        margin-left: 42px;
+        border: solid 1px #c9c9c9;
+    }
+    .btn.btn-default, .btn.btn-default.focus{
         color: #333 !important;
         background-color: #dddddd !important;
         border: none;
         border: solid 1px #c9c9c9;
     }
-    .modal-footer .btn+.btn{
-        margin-left: 42px;
-        border: solid 1px #c9c9c9;
-        background-color: #ff6f37 !important;
-    }
     .btn{
          border-radius: 6px;
         width: 75px;
     }
-    .btn-default:hover,.btn-default:active,.btn-default:active:hover{
+    .btn.btn-default:hover,.btn.btn-default:active,.btn.btn-default:active:hover{
         color: #333 !important;
         background-color: #c6c6c6 !important;
     }
-    .btn-primary, .btn-primary.focus, .btn-primary:focus {
+    .btn.btn-primary, .btn.btn-primary.focus, .btn.btn-primary:focus {
         color: #fff !important;
         background-color: #ff6f37 !important;
         border-color: #ff6202 !important;

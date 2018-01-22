@@ -1,4 +1,5 @@
-<link href="/static/css/product/bootbox.css"/>
+        <link href="/static/css/product/bootbox.css"/>
+
 		<style>
             .modal-body{
                 height: auto;
@@ -85,7 +86,6 @@
             }
 
 		</style>
-
 		<div class="main-container ace-save-state box2" id="main-container">
             <div class="hl-help">
 
@@ -145,7 +145,7 @@
 										<div class="col-sm-9 col-xs-9" id="param-type">
 												<div class="radio">
 														<label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="1" checked/>
+															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectBool(this)" value="1" checked/>
 															<span class="lbl bigger-120"> 开关</span>
 														</label>
 														<label>
@@ -154,15 +154,37 @@
 														</label>
 
                                                         <label>
-                                                                <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectEnum(this)" value="4"/>
-                                                                <span class="lbl bigger-120"> 枚举型</span>
+                                                                <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="4"/>
+                                                                <span class="lbl bigger-120"> 整型</span>
                                                             </label>
                                                         <label>
 															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
 															<span class="lbl bigger-120"> 定时型</span>
 														</label>
 												</div>
-												<div id="selectInt" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+												<div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+													<table border=0>
+														<tr>
+															<td height=30px align="center">最小值</td>
+															<td align="center">最大值</td>
+														</tr>
+														<tr style="border-top:1px solid #ccc">
+															<td width=80px>
+																<input ng-disabled='true' id="minBool" ng-value="0" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
+															</td>
+															<td width=80px align="right">
+																<input ng-disabled='true' id="maxBool" ng-value="1" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
+															</td>
+														</tr>
+													</table>
+													<div id="checkBool" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
+												</div>
+                                                <div id="selectError" style="background-color:#fff;display:none;margin-left:95px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                                    <span style="position:relative;top: 10px;left: -70px;">故障值：</span>
+                                                    <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
+													<div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
+												</div>
+                                                <div id="selectInt" style="background-color:#fff;display:block;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
 													<table border=0>
 														<tr>
 															<td height=30px align="center">最小值</td>
@@ -173,31 +195,13 @@
 																<input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=0 onblur="checkInt()">
 															</td>
 															<td width=80px align="right">
-																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=256 onblur="checkInt()">
+																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=1 onblur="checkInt()">
 															</td>
 														</tr>
 													</table>
 													<div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
 												</div>
-                                                <div id="selectError" style="background-color:#fff;display:none;margin-left:95px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
-                                                    <span style="position:relative;top: 10px;left: -70px;">故障值：</span>
-                                                    <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
-													<div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
-												</div>
-                                                <div id="selectEnum" style="background-color:#fff;display:none;margin-left:200px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
-													<table border=0>
-														<tr>
-															<td height=30px align="center">枚举值</td>
-														</tr>
-														<tr style="border-top:1px solid #ccc">
-															<td width=80px align="center">
-																<input ng-disabled='{[{ disabled }]}' id="maxEnum" type="text" style="border:none;width:160px;text-align:center;border-bottom:1px solid #ccc" onblur="checkEnum()">
-															</td>
-														</tr>
-													</table>
-													<div id="checkEnum" style="margin-left:-10px;color:red;display:none;left: 409px;top: 77px;position:absolute"></div>
-												</div>
-                                                <div id="selectTimer" style="background-color:#fff;display:none;margin-left:298px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
+                                                <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
 													<table border=0>
 														<tr>
 															<td height=30px align="center">最小值</td>
@@ -389,18 +393,18 @@
 
 				if(d.paramType==1){
 					document.getElementsByName('paramType')[0].checked=true;
-					$('#minInt').val(d.min);
-					$('#maxInt').val(d.max);
-					selectInt();
+
+					selectBool();
 				}else if(d.paramType==3){
 					document.getElementsByName('paramType')[1].checked=true;
 					$('#errorValue').val(d.max);
 					selectError();
 				}
 				else if(d.paramType==4){
-				    $('#maxEnum').val(d.max);
+				    $('#minInt').val(d.min);
+					$('#maxInt').val(d.max);
                     document.getElementsByName('paramType')[2].checked=true;
-					selectEnum();
+					selectInt();
                 }
                 else if(d.paramType==5){
                     document.getElementsByName('paramType')[3].checked=true;
@@ -435,15 +439,15 @@
 			function selectError(){
 				SetDisplay("selectError");
 			}
-			function selectEnum(){
-				selectError("selectEnum")
+			function selectBool(){
+				SetDisplay("selectBool")
 			}
 			function selectTimer(){
-				selectEnum("selectTimer")
+				SetDisplay("selectTimer")
 			}
 			function SetDisplay(name) {
 			    $('#selectInt').css("display","none");
-                $('#selectEnum').css("display","none");
+                $('#selectBool').css("display","none");
                 $('#selectTimer').css("display","none");
                 $('#selectError').css("display","none");
 				$("#"+name).css("display","block");
@@ -572,6 +576,7 @@
                     buttons:{
                         "success": {
                             "label": "<i class='icon-info'></i> 确定",
+                            "className": "btn-primary",
                             "callback":function () {
                                 if(mxs!=null){
                                     mxs[dataVal].trigger=trig;
@@ -579,7 +584,8 @@
                             }
                         },
                         "cancel" : {
-                            "label": "<i class='icon-ok'></i> 取消"
+                            "label": "<i class='icon-ok'></i> 取消",
+                            "className": "btn-default",
                         }
                     }
                 })
