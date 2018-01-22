@@ -171,7 +171,7 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'time': '2017-07-27 16:51:10', 'name': '工作模式', 'corpMark': '', 'widget': 'button', 'min': 0,
-         'max': 65535, 'mxsNum': '17',
+         'max': 255, 'mxsNum': '17',
          'mxs': [{'desc': '无选择', 'data': '0'}, {'desc': '快热', 'data': '1'}, {'desc': '烘焙', 'data': '2'},
                  {'desc': '风扇烤', 'data': '3'}, {'desc': '风焙烤', 'data': '4'}, {'desc': '底加热', 'data': '5'},
                  {'desc': '烧烤', 'data': '6'}, {'desc': '强烧烤', 'data': '7'}, {'desc': '增强焙烤', 'data': '8'},
