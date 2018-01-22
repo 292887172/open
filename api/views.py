@@ -42,7 +42,6 @@ def get_ui_conf(request):
         if device_id:
             if device_conf:
                 back_data = get_ui_base_conf(device_id, device_conf)
-                print(back_data)
                 if back_data == 'ok':
                     data = {'code': 0, 'msg': 'ok'}
                     return HttpResponse(json.dumps(data), content_type="application/json")
@@ -56,12 +55,11 @@ def get_ui_conf(request):
             data = {'code': -1, 'msg': 'no key'}
             return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 @csrf_exempt
 def diy_ui_conf(request):
         device_key = request.GET.get('key')
-        print(device_key)
         if device_key:
-            back_data = query_ui_conf(device_key, 'pp')
-            print(json.dumps(back_data)['ebf_page_conf]'])
+            back_data = query_ui_conf(device_key)
             if back_data != 'error':
-                return HttpResponse(json.dumps(back_data)['ebf_page_conf]'], content_type="application/json")
+                return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
