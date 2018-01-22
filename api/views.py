@@ -58,10 +58,10 @@ def get_ui_conf(request):
 
 @csrf_exempt
 def diy_ui_conf(request):
-    if request.method == 'GET':
         device_key = request.GET.get('key')
+        print(device_key)
         if device_key:
-            back_data = query_ui_conf(device_key)
-            print(back_data)
+            back_data = query_ui_conf(device_key, 'pp')
+            print(json.dumps(back_data)['ebf_page_conf]'])
             if back_data != 'error':
-                return HttpResponse({'code':1})
+                return HttpResponse(json.dumps(back_data)['ebf_page_conf]'], content_type="application/json")
