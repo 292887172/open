@@ -31783,413 +31783,174 @@ ValueError: Extra data: line 1 column 3 - line 1 column 9 (char 2 - 8)
 2018-01-18 18:14:13,438 [Thread-226:123145512493056] [django.request:143] [WARNING]- Not Found: /product/list/None
 2018-01-18 18:14:58,916 [Thread-245:123145512493056] [django.request:143] [WARNING]- Not Found: /product/list/None
 2018-01-18 18:15:46,696 [Thread-251:123145517748224] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-22 10:19:10,600 [Thread-1:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:20:41,007 [Thread-3:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:20:42,202 [Thread-4:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:20:43,027 [Thread-5:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:20:43,634 [Thread-6:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:20:44,106 [Thread-7:123145422655488] [django.request:143] [WARNING]- Not Found: /api/device/get_ui_conf/
-2018-01-22 10:21:08,249 [Thread-8:123145422655488] [django.request:143] [WARNING]- Not Found: /api/get_ui_conf/
-2018-01-22 10:21:10,176 [Thread-9:123145422655488] [django.request:143] [WARNING]- Not Found: /api/get_ui_conf/
-2018-01-22 10:21:11,121 [Thread-10:123145422655488] [django.request:143] [WARNING]- Not Found: /api/get_ui_conf/
-2018-01-22 10:21:11,886 [Thread-11:123145422655488] [django.request:143] [WARNING]- Not Found: /api/get_ui_conf/
-2018-01-22 10:21:40,600 [Thread-1:123145555689472] [django.request:143] [WARNING]- Not Found: /api/get_ui_conf/
-2018-01-22 10:52:19,796 [Thread-3:123145540542464] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+2018-01-22 15:18:39,577 [Thread-3:139818992604928] [django.request:231] [ERROR]- Internal Server Error: /product/uiconf/
 Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 823, in _connect
-    (self.host, self.port), self.connect_timeout)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/socket.py", line 516, in create_connection
-    raise err
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/socket.py", line 507, in create_connection
-    sock.connect(sa)
-TimeoutError: [Errno 60] Operation timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 17, in pull_ui_conf
-    a = query_data(device_key)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/mysql_helper.py", line 149, in query_data
-    conn = get_main_connection()
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/common/mysql_helper.py", line 21, in get_main_connection
-    cursorclass=pymysql.cursors.DictCursor
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/pymysql/__init__.py", line 88, in Connect
-    return Connection(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 644, in __init__
-    self._connect()
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/pymysql/connections.py", line 869, in _connect
-    raise exc
-pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '192.168.0.62' ([Errno 60] Operation timed out)")
-2018-01-22 13:09:08,042 [Thread-3:123145535586304] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['functions']
-KeyError: 'ebf_pc_conf'
-2018-01-22 13:10:41,931 [Thread-1:123145317838848] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['functions']
-KeyError: 'ebf_pc_conf'
-2018-01-22 13:10:43,712 [Thread-3:123145317838848] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['functions']
-KeyError: 'ebf_pc_conf'
-2018-01-22 13:10:47,503 [Thread-4:123145317838848] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['functions']
-KeyError: 'ebf_pc_conf'
-2018-01-22 13:11:21,403 [Thread-1:123145435545600] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_page_conf'])['functions']
-KeyError: 'functions'
-2018-01-22 13:13:00,026 [Thread-1:123145469235200] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 25, in pull_ui_conf
-    new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
-KeyError: 'id'
-2018-01-22 13:15:21,492 [Thread-1:123145399623680] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 25, in pull_ui_conf
-    new_functions.append({'name': i['name'], "id": i['oder'], 'title': i['title']})
-KeyError: 'oder'
-2018-01-22 13:15:36,108 [Thread-1:123145549991936] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 25, in pull_ui_conf
-    new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
-KeyError: 'id'
-2018-01-22 13:15:56,293 [Thread-1:123145518370816] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 26, in pull_ui_conf
-    new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
-KeyError: 'id'
-2018-01-22 13:16:31,960 [Thread-1:123145418276864] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 30, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:20:37,620 [Thread-1:123145362501632] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 31, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:20:48,301 [Thread-3:123145362501632] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 31, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:21:48,423 [Thread-1:123145388015616] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 31, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:23:06,857 [Thread-1:123145314250752] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 32, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:23:08,392 [Thread-3:123145314250752] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 32, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:23:57,445 [Thread-1:123145498521600] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 32, in pull_ui_conf
-    new_list = {'name':  json.loads(a['ebf_page_conf'])['name'], 'key': json.loads(a['ebf_page_conf'])['key'],
-KeyError: 'name'
-2018-01-22 13:28:39,303 [Thread-1:123145560346624] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 22, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['function']
-KeyError: 'ebf_pc_conf'
-2018-01-22 13:32:43,077 [Thread-1:123145366962176] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 21, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['function']
-KeyError: 'function'
-2018-01-22 13:32:59,064 [Thread-3:123145366962176] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 21, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['function']
-KeyError: 'function'
-2018-01-22 13:33:09,687 [Thread-1:123145329680384] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 21, in pull_ui_conf
-    function_list = json.loads(a['ebf_pc_conf'])['function']
-KeyError: 'function'
-2018-01-22 13:33:39,400 [Thread-1:123145330167808] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 24, in pull_ui_conf
-    new_functions.append({'name': i['name'], "id": i['order'], 'title': i['title']})
-KeyError: 'order'
-2018-01-22 13:46:19,353 [Thread-1:123145439248384] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:46:59,460 [Thread-1:123145508220928] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:47:22,248 [Thread-1:123145455169536] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:57:45,234 [Thread-1:123145478713344] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:58:24,544 [Thread-1:123145462824960] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:59:44,969 [Thread-1:123145327726592] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 13:59:55,191 [Thread-3:123145327726592] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 14:00:18,056 [Thread-1:123145521627136] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 14:00:26,367 [Thread-3:123145521627136] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 14:00:29,516 [Thread-4:123145521627136] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 14:00:52,654 [Thread-1:123145397317632] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
-    % (callback.__module__, view_name))
-ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-22 14:01:12,059 [Thread-3:123145397317632] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 64, in diy_ui_conf
-    back_data = query_ui_conf(device_key)
-TypeError: query_ui_conf() missing 1 required positional argument: 'conn'
-2018-01-22 14:01:27,946 [Thread-4:123145397317632] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 64, in diy_ui_conf
-    back_data = query_ui_conf(device_key)
-TypeError: query_ui_conf() missing 1 required positional argument: 'conn'
-2018-01-22 14:02:22,405 [Thread-1:123145400786944] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 67, in diy_ui_conf
-    return HttpResponse(json.dumps(back_data), content_type="application/json")
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 230, in dumps
-    return _default_encoder.encode(obj)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 192, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 250, in iterencode
-    return _iterencode(o, 0)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 173, in default
-    raise TypeError(repr(o) + " is not JSON serializable")
-TypeError: datetime.datetime(2018, 1, 22, 4, 54, 24) is not JSON serializable
-2018-01-22 14:03:14,996 [Thread-1:123145325539328] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 67, in diy_ui_conf
-    return HttpResponse(json.loads(back_data), content_type="application/json")
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 312, in loads
-    s.__class__.__name__))
-TypeError: the JSON object must be str, not 'dict'
-2018-01-22 14:03:56,427 [Thread-1:123145426997248] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 65, in diy_ui_conf
-    print( json.dumps(back_data))
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 230, in dumps
-    return _default_encoder.encode(obj)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 192, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 250, in iterencode
-    return _iterencode(o, 0)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 173, in default
-    raise TypeError(repr(o) + " is not JSON serializable")
-TypeError: datetime.datetime(2018, 1, 22, 4, 54, 24) is not JSON serializable
-2018-01-22 14:07:23,808 [Thread-1:123145340510208] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 65, in diy_ui_conf
-    print( json.dumps(back_data)['ebf_page_conf]'])
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 230, in dumps
-    return _default_encoder.encode(obj)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 192, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 250, in iterencode
-    return _iterencode(o, 0)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 173, in default
-    raise TypeError(repr(o) + " is not JSON serializable")
-TypeError: datetime.datetime(2018, 1, 22, 4, 54, 24) is not JSON serializable
-2018-01-22 14:08:57,505 [Thread-1:123145490935808] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 65, in diy_ui_conf
-    print(json.dumps(back_data)['ebf_page_conf]'])
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 230, in dumps
-    return _default_encoder.encode(obj)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 192, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 250, in iterencode
-    return _iterencode(o, 0)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 173, in default
-    raise TypeError(repr(o) + " is not JSON serializable")
-TypeError: datetime.datetime(2018, 1, 22, 4, 54, 24) is not JSON serializable
-2018-01-22 14:18:56,933 [Thread-1:123145389715456] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 65, in diy_ui_conf
-    print(json.dumps(back_data)['ebf_page_conf]'])
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 230, in dumps
-    return _default_encoder.encode(obj)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 192, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 250, in iterencode
-    return _iterencode(o, 0)
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/encoder.py", line 173, in default
-    raise TypeError(repr(o) + " is not JSON serializable")
-TypeError: datetime.datetime(2018, 1, 22, 4, 54, 24) is not JSON serializable
-2018-01-22 14:25:04,092 [Thread-1:123145500983296] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
-Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/Users/zhanlingjie/Documents/mypython/Git/open/api/views.py", line 65, in diy_ui_conf
-    print(json.loads(back_data))
-  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/json/__init__.py", line 312, in loads
-    s.__class__.__name__))
-TypeError: the JSON object must be str, not 'dict'
+  File "/home/rdy/git-workspace/open/app/product/views.py", line 596, in ui_conf_main
+    return render(request, template, locals())
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 148, in render
+    return self._render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/defaulttags.py", line 305, in render
+    match = condition.eval(context)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/defaulttags.py", line 898, in eval
+    return self.value.resolve(context, ignore_failures=True)
+  File "/home/rdy/virtualENv/openEnv/lib/python3.4/site-packages/django/template/base.py", line 624, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/home/rdy/git-workspace/open/app/center/templatetags/filter.py", line 64, in num_app
+    return len(app)-1
+TypeError: object of type 'NoneType' has no len()
+2018-01-22 15:18:41,597 [Thread-4:139818992604928] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-22 15:19:25,826 [Thread-18:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/no.png
+2018-01-22 15:19:25,882 [Thread-19:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/00.jpg
+2018-01-22 15:19:26,040 [Thread-20:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/01.jpg
+2018-01-22 15:19:26,048 [Thread-21:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/02.jpg
+2018-01-22 15:19:26,108 [Thread-22:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/03.jpg
+2018-01-22 15:19:26,149 [Thread-23:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/04.jpg
+2018-01-22 15:19:26,183 [Thread-24:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/05.jpg
+2018-01-22 15:19:26,251 [Thread-25:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/06.jpg
+2018-01-22 15:19:26,274 [Thread-26:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/07.jpg
+2018-01-22 15:19:26,301 [Thread-27:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/08.jpg
+2018-01-22 15:19:26,372 [Thread-28:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/09.jpg
+2018-01-22 15:19:26,385 [Thread-29:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/10.jpg
+2018-01-22 15:19:26,425 [Thread-30:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/11.jpg
+2018-01-22 15:19:26,458 [Thread-31:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/12.jpg
+2018-01-22 15:19:26,530 [Thread-32:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/13.jpg
+2018-01-22 15:19:26,555 [Thread-33:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/14.jpg
+2018-01-22 15:19:26,619 [Thread-34:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/15.jpg
+2018-01-22 15:19:26,636 [Thread-35:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/16.jpg
+2018-01-22 15:19:26,691 [Thread-36:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/17.jpg
+2018-01-22 15:19:26,753 [Thread-37:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/18.jpg
+2018-01-22 15:19:26,764 [Thread-38:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/19.jpg
+2018-01-22 15:19:26,778 [Thread-39:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/20.jpg
+2018-01-22 15:19:26,795 [Thread-40:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/21.jpg
+2018-01-22 15:19:26,827 [Thread-41:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/22.jpg
+2018-01-22 15:19:26,961 [Thread-44:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/23.jpg
+2018-01-22 15:19:27,003 [Thread-45:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/24.jpg
+2018-01-22 15:19:27,030 [Thread-47:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/26.jpg
+2018-01-22 15:19:27,038 [Thread-46:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/25.jpg
+2018-01-22 15:19:27,059 [Thread-48:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/27.jpg
+2018-01-22 15:19:27,094 [Thread-49:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/28.jpg
+2018-01-22 15:19:27,182 [Thread-50:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/29.jpg
+2018-01-22 15:19:27,249 [Thread-51:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/30.jpg
+2018-01-22 15:19:27,324 [Thread-52:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/31.jpg
+2018-01-22 15:19:27,352 [Thread-53:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/32.jpg
+2018-01-22 15:19:27,383 [Thread-54:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/33.jpg
+2018-01-22 15:19:27,424 [Thread-55:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/34.jpg
+2018-01-22 15:19:27,434 [Thread-56:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/35.jpg
+2018-01-22 15:19:27,527 [Thread-58:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/37.jpg
+2018-01-22 15:19:27,529 [Thread-57:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/36.jpg
+2018-01-22 15:19:27,550 [Thread-59:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/38.jpg
+2018-01-22 15:19:27,595 [Thread-60:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/39.jpg
+2018-01-22 15:20:09,881 [Thread-77:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/no.png
+2018-01-22 15:20:09,987 [Thread-78:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/00.jpg
+2018-01-22 15:20:10,012 [Thread-79:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/01.jpg
+2018-01-22 15:20:10,033 [Thread-80:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/02.jpg
+2018-01-22 15:20:10,044 [Thread-81:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/03.jpg
+2018-01-22 15:20:10,078 [Thread-83:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/05.jpg
+2018-01-22 15:20:10,113 [Thread-82:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/04.jpg
+2018-01-22 15:20:10,189 [Thread-84:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/06.jpg
+2018-01-22 15:20:10,243 [Thread-85:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/07.jpg
+2018-01-22 15:20:10,297 [Thread-86:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/08.jpg
+2018-01-22 15:20:10,347 [Thread-87:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/09.jpg
+2018-01-22 15:20:10,442 [Thread-89:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/11.jpg
+2018-01-22 15:20:10,443 [Thread-88:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/10.jpg
+2018-01-22 15:20:10,459 [Thread-90:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/12.jpg
+2018-01-22 15:20:10,480 [Thread-91:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/13.jpg
+2018-01-22 15:20:10,562 [Thread-93:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/15.jpg
+2018-01-22 15:20:10,565 [Thread-92:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/14.jpg
+2018-01-22 15:20:10,585 [Thread-94:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/16.jpg
+2018-01-22 15:20:10,613 [Thread-95:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/17.jpg
+2018-01-22 15:20:10,661 [Thread-96:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/18.jpg
+2018-01-22 15:20:10,890 [Thread-97:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/19.jpg
+2018-01-22 15:20:10,921 [Thread-98:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/20.jpg
+2018-01-22 15:20:10,956 [Thread-99:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/21.jpg
+2018-01-22 15:20:10,984 [Thread-101:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/23.jpg
+2018-01-22 15:20:11,010 [Thread-100:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/22.jpg
+2018-01-22 15:20:11,077 [Thread-102:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/24.jpg
+2018-01-22 15:20:11,230 [Thread-105:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/25.jpg
+2018-01-22 15:20:11,289 [Thread-106:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/27.jpg
+2018-01-22 15:20:11,304 [Thread-107:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/26.jpg
+2018-01-22 15:20:11,359 [Thread-109:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/28.jpg
+2018-01-22 15:20:11,408 [Thread-110:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/29.jpg
+2018-01-22 15:20:11,430 [Thread-111:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/30.jpg
+2018-01-22 15:20:11,481 [Thread-112:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/31.jpg
+2018-01-22 15:20:11,486 [Thread-113:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/32.jpg
+2018-01-22 15:20:11,550 [Thread-115:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/34.jpg
+2018-01-22 15:20:11,553 [Thread-114:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/33.jpg
+2018-01-22 15:20:11,574 [Thread-116:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/35.jpg
+2018-01-22 15:20:11,716 [Thread-117:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/36.jpg
+2018-01-22 15:20:11,824 [Thread-119:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/37.jpg
+2018-01-22 15:20:11,848 [Thread-120:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/38.jpg
+2018-01-22 15:20:11,881 [Thread-121:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/39.jpg
+2018-01-22 15:21:49,593 [Thread-141:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/no.png
+2018-01-22 15:21:49,655 [Thread-142:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/00.jpg
+2018-01-22 15:21:49,704 [Thread-143:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/01.jpg
+2018-01-22 15:21:49,775 [Thread-144:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/02.jpg
+2018-01-22 15:21:49,812 [Thread-145:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/03.jpg
+2018-01-22 15:21:49,846 [Thread-146:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/04.jpg
+2018-01-22 15:21:49,919 [Thread-147:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/05.jpg
+2018-01-22 15:21:49,937 [Thread-148:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/06.jpg
+2018-01-22 15:21:49,967 [Thread-149:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/07.jpg
+2018-01-22 15:21:50,025 [Thread-150:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/08.jpg
+2018-01-22 15:21:50,049 [Thread-151:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/09.jpg
+2018-01-22 15:21:50,054 [Thread-152:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/10.jpg
+2018-01-22 15:21:50,138 [Thread-153:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/11.jpg
+2018-01-22 15:21:50,213 [Thread-156:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/12.jpg
+2018-01-22 15:21:50,218 [Thread-157:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/13.jpg
+2018-01-22 15:21:50,267 [Thread-159:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/15.jpg
+2018-01-22 15:21:50,269 [Thread-158:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/14.jpg
+2018-01-22 15:21:50,316 [Thread-161:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/17.jpg
+2018-01-22 15:21:50,327 [Thread-160:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/16.jpg
+2018-01-22 15:21:50,386 [Thread-163:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/18.jpg
+2018-01-22 15:21:50,436 [Thread-164:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/19.jpg
+2018-01-22 15:21:50,447 [Thread-165:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/20.jpg
+2018-01-22 15:21:50,463 [Thread-166:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/21.jpg
+2018-01-22 15:21:50,480 [Thread-167:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/22.jpg
+2018-01-22 15:21:50,528 [Thread-168:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/23.jpg
+2018-01-22 15:21:50,540 [Thread-169:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/24.jpg
+2018-01-22 15:21:50,612 [Thread-171:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/25.jpg
+2018-01-22 15:21:50,613 [Thread-172:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/26.jpg
+2018-01-22 15:21:50,646 [Thread-173:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/27.jpg
+2018-01-22 15:21:50,707 [Thread-175:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/29.jpg
+2018-01-22 15:21:50,718 [Thread-174:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/28.jpg
+2018-01-22 15:21:50,725 [Thread-176:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/30.jpg
+2018-01-22 15:21:50,775 [Thread-177:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/31.jpg
+2018-01-22 15:21:50,802 [Thread-178:140621012510464] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/32.jpg
+2018-01-22 15:21:50,806 [Thread-179:140621037688576] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/33.jpg
+2018-01-22 15:21:50,823 [Thread-180:140621020903168] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/34.jpg
+2018-01-22 15:21:50,879 [Thread-181:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/35.jpg
+2018-01-22 15:21:50,904 [Thread-182:140621046081280] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/36.jpg
+2018-01-22 15:21:50,911 [Thread-183:140621054473984] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/37.jpg
+2018-01-22 15:21:50,963 [Thread-184:140621029295872] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/38.jpg
+2018-01-22 15:21:50,989 [Thread-185:140621171894016] [django.request:143] [WARNING]- Not Found: /product/uiconf/static/image/bg/39.jpg
