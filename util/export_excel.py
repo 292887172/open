@@ -119,11 +119,11 @@ def deal_json(app):
         i["value"] = 0
         i["values"] = [data["min"], data["max"]]
         if data['paramType'] == 1:
-            i['type'] = 'int'
+            i['type'] = 'bool'
         elif data['paramType'] == 3:
             i['type'] = 'error'
         elif data['paramType'] == 4:
-            i['type'] = 'enum'
+            i['type'] = 'int'
         elif data['paramType'] == 5:
             i['type'] = 'timer'
         if str(data["isControl"]) == '1':
@@ -132,9 +132,9 @@ def deal_json(app):
         else:
             i['permission'] = '477'
             j['permission'] = "读"
-        if int(i['toSwitch']) != 1:
-            temp1_data.append(i)
-            temp2_data.append(j)
+
+        temp1_data.append(i)
+        temp2_data.append(j)
     e_data['functions'] = temp2_data
     j_data['functions'] = temp1_data
     return {'e_data': e_data, 'j_data': j_data}
