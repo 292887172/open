@@ -589,3 +589,8 @@ def wx_scan_code(request):
         res = requests.post(url=url1, data=json.dumps(data))
         res = res.json()
         return HttpResponse(json.dumps(res))
+
+
+def ui_conf_main(request):
+    template = "UI/main.html"
+    return render(request, template, locals())

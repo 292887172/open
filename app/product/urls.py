@@ -12,4 +12,5 @@ urlpatterns = patterns(
     url(r"^control$", "control", name="control"),
     url(r"^upload_file", "upload_file", name="upload_file"),
     url(r'^wx_code', "wx_scan_code", name='product/wx_code'),
+    url(r"^uiconf/$", "ui_conf_main", name="uiconf"),
 )
