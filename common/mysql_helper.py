@@ -156,12 +156,12 @@ def query_data(key):
         return res
     except Exception as e:
         print(e)
-        print('我已经存在了')
+        print('exits')
     finally:
         close_connection(conn)
 
 
-def query_ui_conf(key, conn):
+def query_ui_conf(key):
     """
     通过key查找设备的配置(ebt_protocol_conf)
     :param key: 
@@ -171,7 +171,7 @@ def query_ui_conf(key, conn):
     conn = get_main_connection()
     try:
         cursor = conn.cursor()
-        sql = "select * from ebt_device_page_conf where ebf_device_key='%s'" %(key)
+        sql = "select ebf_page_conf from ebt_device_page_conf where ebf_device_key='%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
         return res
@@ -190,7 +190,7 @@ def get_ui_base_conf(key, conf):
     :return: 
     """
     conn = get_main_connection()
-    isExit = query_ui_conf(key, conn)
+    isExit = query_ui_conf(key)
     if isExit:
         back_data = modify_ui_conf(key, conf, conn)
         if back_data == 'ok':
