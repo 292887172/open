@@ -4,7 +4,7 @@ import pymysql
 
 from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL_PWD_SYS, MYSQL_DB_SYS
 from base.crypto import md5_en
-
+import datetime
 
 def get_main_connection():
     """
@@ -152,6 +152,7 @@ def query_data(key):
         sql = "select * from ebt_protocol_conf where ebf_pc_device_key = '%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
+        print(res)
         return res
     except Exception as e:
         print(e)
@@ -160,18 +161,20 @@ def query_data(key):
         close_connection(conn)
 
 
-def query_ui_conf(key):
+def query_ui_conf(key, conn):
     """
     通过key查找设备的配置(ebt_protocol_conf)
     :param key: 
+    :param conn
     :return: 
     """
     conn = get_main_connection()
     try:
         cursor = conn.cursor()
-        sql = "select * from ebt_device_page_conf where ebf_device_id='%s'" %(key)
+        sql = "select * from ebt_device_page_conf where ebf_device_key='%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
+        print(res)
         return res
     except Exception as e:
         print(e)
@@ -188,16 +191,16 @@ def get_ui_base_conf(key, conf):
     :return: 
     """
     conn = get_main_connection()
-    isExit = query_ui_conf(key)
+    isExit = query_ui_conf(key, conn)
     if isExit:
-        back_data = modify_ui_conf(key, conf)
+        back_data = modify_ui_conf(key, conf, conn)
         if back_data == 'ok':
             return 'ok'
     else:
         try:
             cursor = conn.cursor()
-            sql = '''insert into ebt_device_page_conf values(%s,%s)'''
-            l = [[key, conf]]
+            sql = '''insert into ebt_device_page_conf(ebf_device_key,ebf_page_conf,ebf_ui_create_date) values(%s,%s,%s)'''
+            l = [[key, conf, datetime.datetime.utcnow()]]
             cursor.executemany(sql, l)
             conn.commit()
             return 'ok'
@@ -207,14 +210,15 @@ def get_ui_base_conf(key, conf):
             close_connection(conn)
 
 
-def modify_ui_conf(key,conf):
+def modify_ui_conf(key, conf, conn):
     """
     通过key查询是否存在配置，存在时修改配置
     :param key: 
+    :param conf:
+    :param conn    
     :return: 
     """
-    conn = get_main_connection()
-    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s'  WHERE ebf_device_id = '%s'" % (conf, key)
+    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s'  WHERE ebf_device_key = '%s'" % (conf, key)
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
