@@ -35,7 +35,7 @@ def pull_ui_conf(request):
 
 
 @csrf_exempt
-def get_ui_conf(request):
+def upload_ui_conf(request):
     if request.method == 'POST':
         device_id = request.POST.get('key')
         device_conf = request.POST.get('ui_conf')
