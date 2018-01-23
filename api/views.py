@@ -39,6 +39,7 @@ def upload_ui_conf(request):
     if request.method == 'POST':
         device_id = request.POST.get('key')
         device_conf = request.POST.get('ui_conf')
+        print(device_id)
         if device_id:
             if device_conf:
                 back_data = get_ui_base_conf(device_id, device_conf)
