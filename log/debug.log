@@ -471,3 +471,8 @@
 2018-01-17 16:21:57,497 [Thread-17:123145559240704] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-01-18 09:17:21,729 [Thread-135:123145523003392] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-01-18 17:13:18,700 [Thread-140:123145517748224] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-01-22 16:19:52,945 [Thread-30:6900] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-01-23 10:43:16,154 [Thread-17:9660] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-01-23 10:43:29,761 [Thread-79:6464] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2018-01-23 10:43:58,067 [Thread-83:5228] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2018-01-23 10:44:28,766 [Thread-115:332] [root:187] [INFO]- Doc matching query does not exist.

@@ -151,7 +151,7 @@ $(function(){
             currentIcon=e.target.className.slice(10);
             items=icons.querySelectorAll("i");
             items.forEach(function(item){
-            item.style.color="#333";
+            item.style.color="#666";
             item.style.background="#fff";
         })
         e.target.style.color="#2222ff";
@@ -262,6 +262,7 @@ $(function(){
                 changeModel[index].style.height="1.3em";
             }
             if(this.value=="small"){
+                changeModel[index].style.display="block";
                 changeModel[index].style.width="calc(33% - 2px)";
             }else if(this.value=="hidden"){
                 changeModel[index].style.display="none";
