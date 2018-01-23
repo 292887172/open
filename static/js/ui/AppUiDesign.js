@@ -226,7 +226,7 @@ $(function(){
         console.log(JSON.stringify(uiConfig));
         $.ajax({
             type:"POST",
-            url:"http://open.53iq.com/api/upload_ui_conf",
+            url:"/api/get_ui_conf",
             data:{key:"F0FE6B15E97B",ui_conf:JSON.stringify(uiConfig)},
             dataType:'json',
             contentType: "application/json; charset=utf-8",
