@@ -3,12 +3,12 @@ body{background:#f8f8f8;color:#666;}
 .container select{color:#666;border-radius:4px;padding:0.5em 0.5em;margin-top:3px;margin-right:2em;background:#f8f8f8;}
 .container button{color:#666;}
 .container i{color:#666;}
-.container{margin:90px auto 0;width:1000px;padding:0;position:relative;}
+.container{margin:110px auto 0;width:1000px;padding:0;position:relative;}
 .container .mainTitle{position:fixed;background:#fff;left:30px;margin-top:0;}
-.container #logControl{border:1px solid #c5c5c5;line-height:3em;border-radius:4px;padding-left:15px;border-bottom:0;height:3em;color:#555;border-top:0;}
+.container #logControl{border:1px solid #c5c5c5;line-height:3em;border-radius:4px;padding-left:15px;border-bottom:0;height:3em;color:#555;background:#f8f8f8;}
 .container #logControl #logTrue{margin-left:30px;color:#666;}
 .container #logControl #logFalse{margin-left:30px;color:#666;}
-.container .choiceBg{border:1px solid #c5c5c5;line-height:3em;border-radius:4px;padding-left:15px;}
+.container .choiceBg{border:1px solid #c5c5c5;line-height:3em;border-radius:4px;padding-left:15px;background:#f8f8f8;}
 .container .choiceBg .title{width:15%;height:auto;padding:0;background:inherit;border:0;box-shadow:none;}
 .container .choiceBg #choiceBg{border-bottom:0;height:3em;line-height:3em;}
 .container .choiceBg #choiceBg span{background:#0071bb;height:1.8em;width:1.8em;border-radius:100%;display:inline-block;margin-right:2em;line-height:1.8em;position:relative;margin-top:0.6em;}

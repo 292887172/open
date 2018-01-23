@@ -133,6 +133,7 @@ $(function(){
     }
     //选择主题
     var bgs=document.querySelectorAll(".bgColor");
+    bgs=Array.prototype.slice.call(bgs);
     var currentTheme="#ff8312";
     bgs.forEach(function(item){
         item.addEventListener("click",function(e){
@@ -150,6 +151,7 @@ $(function(){
         if(e.target.localName=="i"){
             currentIcon=e.target.className.slice(10);
             items=icons.querySelectorAll("i");
+            items=Array.prototype.slice.call(items);
             items.forEach(function(item){
             item.style.color="#666";
             item.style.background="#fff";
@@ -161,6 +163,7 @@ $(function(){
     // 获取当前列表项
     var currentLi="";
     var iconBtns=document.querySelectorAll(".lis");
+    iconBtns=Array.prototype.slice.call(iconBtns);
         iconBtns.forEach(function(item){
             item.addEventListener("click",function(e){
                 currentLi=e.target.parentNode.parentNode;
@@ -171,6 +174,7 @@ $(function(){
     var changeBg=document.querySelector("#changeBg");
     var currentBg="";
     var imgs=changeBg.querySelectorAll("img");
+    imgs=Array.prototype.slice.call(imgs);
     var bigImg=document.querySelector("#bigImg");
     changeBg.addEventListener("click",function(e){
         if(e.target.localName=="img"){
@@ -249,6 +253,7 @@ $(function(){
     }
     //判断是否为大模块，是大模块加模块背景，其他模块取消背景
     var moduleControl=document.querySelectorAll(".moduleControl");
+    moduleControl=Array.prototype.slice.call(moduleControl);
     var changeModel=fnList.querySelectorAll("li");
     var switchBg=document.querySelectorAll(".switchBg");
     moduleControl.forEach(function(item,index){
