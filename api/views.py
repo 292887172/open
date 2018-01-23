@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.views.decorators.csrf import csrf_exempt
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from common.mysql_helper import query_data, get_ui_base_conf, query_ui_conf
 import json
 
@@ -27,7 +27,7 @@ def pull_ui_conf(request):
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],
                             "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions}
                 back_data = {"data": new_list, "code": 0}
-                return HttpResponse(json.dumps(back_data))
+                return JsonResponse(back_data)
             else:
                 return HttpResponse('not fonud conf')
         else:

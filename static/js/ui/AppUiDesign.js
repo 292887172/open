@@ -1,7 +1,7 @@
 $(function(){
         // 截取url参数
-        var url="https://oven.53iq.com/static/html/controler.html?d=F0FE6B15E97B&t=1";
-        //var url=window.location.href;
+        // var url="https://oven.53iq.com/static/html/controler.html?d=F0FE6B15E97B&t=1";
+        var url=window.location.href;
         function getUrlParam(url){
             var obj={};
             var str=url;
@@ -21,10 +21,12 @@ $(function(){
         $.ajax({
             type: "POST",
             async:false,
-            url: "https://oven.53iq.com/api/device/config",
-            data:{mac_addr:params.d,device_type: params.t},
+            url: "/api/pull_ui_conf",
+            data:{key:params.key,device_type: params.t},
             success: function(data){
+                console.log(data);
               var result=data.data.functions;
+
               result.forEach(function(item){
                 renderList.push(item.title);
                 renderName.push(item.name);
@@ -225,19 +227,16 @@ $(function(){
         getConfig();
         console.log(JSON.stringify(uiConfig));
         console.log(getInfo());
-        // $.ajax({
-        //     type:"POST",
-        //     url:"http://open.53iq.com/api/get_ui_conf",
-        //     data:JSON.stringify(uiConfig),
-        //     dataType:'json',
-        //     headers:{
-        //         Accept:"application/json",
-        //         "Content-Type":"application/json"
-        //     }
-        // }).done(function(){
-        //     alert("ok");
-        // })
-    })
+        $.ajax({
+            type:"POST",
+            url:"/api/upload_ui_conf",
+            data:{ key:'F0FE6B1T',
+                ui_conf:JSON.stringify(uiConfig) },
+
+        }).done(function(){
+            alert("ok");
+        })
+    });
     // 预览手机端效果
     function previewAppAgain(){
         var changeModel=document.querySelectorAll(".preApp");
