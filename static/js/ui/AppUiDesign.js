@@ -230,7 +230,7 @@ $(function(){
         $.ajax({
             type:"POST",
             url:"/api/upload_ui_conf",
-            data:{ key:'F0FE6B1T',
+            data:{ key:params.key,
                 ui_conf:JSON.stringify(uiConfig) },
 
         }).done(function(){
