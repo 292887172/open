@@ -149,7 +149,7 @@ $(function(){
             currentIcon=e.target.className.slice(10);
             items=icons.querySelectorAll("i");
             items.forEach(function(item){
-            item.style.color="#333";
+            item.style.color="#666";
             item.style.background="#fff";
         })
         e.target.style.color="#2222ff";
@@ -224,19 +224,16 @@ $(function(){
     save.addEventListener("click",function(){
         getConfig();
         console.log(JSON.stringify(uiConfig));
-        console.log(getInfo());
-        // $.ajax({
-        //     type:"POST",
-        //     url:"http://open.53iq.com/api/get_ui_conf",
-        //     data:JSON.stringify(uiConfig),
-        //     dataType:'json',
-        //     headers:{
-        //         Accept:"application/json",
-        //         "Content-Type":"application/json"
-        //     }
-        // }).done(function(){
-        //     alert("ok");
-        // })
+        $.ajax({
+            type:"POST",
+            url:"http://open.53iq.com/api/upload_ui_conf",
+            data:{key:"F0FE6B15E97B",ui_conf:JSON.stringify(uiConfig)},
+            dataType:'json',
+            contentType: "application/json; charset=utf-8",
+            success:function(data){
+                console.log(data);
+            }
+        })
     })
     // 预览手机端效果
     function previewAppAgain(){
@@ -263,6 +260,7 @@ $(function(){
                 changeModel[index].style.height="1.3em";
             }
             if(this.value=="small"){
+                changeModel[index].style.display="block";
                 changeModel[index].style.width="calc(33% - 2px)";
             }else if(this.value=="hidden"){
                 changeModel[index].style.display="none";
