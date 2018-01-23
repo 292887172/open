@@ -39,7 +39,7 @@ $(function(){
             var li=document.createElement("li");
             li.setAttribute("value",renderName[i]);
             li.className="clearfix ui-state-default";
-            var str='<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">'+renderList[i]+'</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon glyphicon-off pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img class="squareBg pull-right" /><button class="btn pull-right margin">选择背景</button></span>';
+            var str='<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">'+renderList[i]+'</span></span><select name="" id="" class="moduleControl pull-left"><option value="big">大模块</option><option value="medium">中模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon glyphicon-off pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img class="squareBg pull-right" /><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML=str;
             sortable.appendChild(li);
          }
@@ -232,8 +232,6 @@ $(function(){
             type:"POST",
             url:"/api/get_ui_conf",
             data:{key:"F0FE6B15E97B",ui_conf:JSON.stringify(uiConfig)},
-            dataType:'json',
-            contentType: "application/json; charset=utf-8",
             success:function(data){
                 console.log(data);
             }
