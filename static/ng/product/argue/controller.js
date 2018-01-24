@@ -7,6 +7,9 @@ angular.module('Product.argue', ['ngRoute'])
             templateUrl: "/static/ng/product/argue/list.html",
             controller: "argueCtrl"
         });
-    }]);
+    }])
+    .controller('argueCtrl', ['$scope', "$http", function ($scope, $http) {
+        $scope.dis = true;
+    }])
 
 

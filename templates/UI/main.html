@@ -564,6 +564,9 @@
 {% endblock %}
 
 {% block end_fixed_script %}
+    <script>
+    var device_key = "{{ device_key }}"
+    </script>
     <script src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
   <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>

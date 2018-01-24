@@ -116,6 +116,12 @@
      .btn-blue, .btn-blue2{
          background-color: #FF6F37;
      }
+    .ui-jqgrid .ui-jqgrid-htable th div{
+        text-align: center;
+    }
+    input[type=checkbox].ace.ace-switch.ace-switch-5+.lbl::before{
+        cursor: not-allowed;
+    }
     </style>
     <div class="main-container box2">
         <div class="hl-help">
@@ -127,7 +133,7 @@
         <div id="show-no-data" ng-hide='{[{ visible }]}'>
 
             <div style="    padding: 30px 0 24px 0;">
-                <a role="button" class="btn-blue" onclick="add()">立即定义产品功能</a>
+                <a role="button" class="btn-blue" href="#/edit">立即定义产品功能</a>
             </div>
             <span id="advice-content"></span>
 
@@ -183,7 +189,6 @@
         </span>
 
     </div>
-
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -191,397 +196,320 @@
     <script src="/static/common/js/jquery.sortable.js"></script>
     <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
-		<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-                var streamID={};
-                var flag = getCookie('cookie_prompt');
-                if(flag){
-                    $("#newHtmlBox").css('display','none');
-                    $(".markLayout").hide();
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        var flag = getCookie('cookie_prompt');
+        $('[data-rel=popover]').popover({container:'body'});
+        if(flag){
+            $("#newHtmlBox").css('display','none');
+            $(".markLayout").hide();
+        }
+        else{
+            $(".markLayout").show();
+        }
+        function new_close() {
+            var check_prompt = $("#check_continueShowTips").is(':checked');
+            // 关闭的情况下，选中不再提醒
+            if (check_prompt){
+                setCookie('cookie_prompt', check_prompt);
+            }
+            $("#newHtmlBox").css('display','none');
+            $(".markLayout").hide();
+        }
+        function setCookie(name, value) {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()+";path=/";
+        }
+        //读取cookies
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+            if (arr = document.cookie.match(reg))
+
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+        function show_tips(obj) {
+            if($("#tips").css("display") == "none"){
+                $("#tips").css("display","block");
+                $("#tip2").css("display","block");
+            }
+            else {
+                $("#tips").css("display","none");
+                $("#tip2").css("display","none");
+            }
+        }
+        jQuery("#grid-table").jqGrid({
+            url:location.href,
+            postData:{"name": "list"},
+            datatype: "json",
+            mtype:"POST",
+            colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','操作'],
+            colModel:[
+                {name:'id' , width:107,align:'center'},
+                {name:'Stream_ID', width:143},
+                {name:'mxsLength',width:100,align:'center'},
+                {name:'name', width:127,align:'center'},
+                {name:'mxsNum', width:120,align:'center',title:false,
+                    formatter:function(cellvalue, options, rowObject){
+                        msg = "<option value="+rowObject.id+">"+rowObject.Stream_ID+"</option>";
+                        $("#selectOpen").append(msg);
+                        if(rowObject.toSwitch==1){
+                            $("#selectOpen").val(rowObject.id);
+                        }
+                        if(cellvalue=="" || cellvalue=="0"){
+                            return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
+                        }else{
+                            group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"cellvalue":cellvalue,"mxs":rowObject.mxs});
+                            return group;
+                        }
+                    }
+                },
+                {name:'isControl', width:108,align:'center',
+                    formatter:function(cellvalue){
+                        if(cellvalue=="1"){
+                            return "<input name='toControl' onclick='toControl(this)' type='checkbox' class='ace ace-switch ace-switch-5' checked/><span class='lbl middle'></span>";
+
+                        }else{
+                            return "<input name='toControl' onclick='toControl(this)' type='checkbox' class='ace ace-switch ace-switch-5'/><span class='lbl middle'></span>";
+                        }
+                    }
+                },
+                {name:'isShow', width:131,align:'center',
+                    formatter:function(cellvalue){
+                        if(cellvalue=="1"){
+                            return '<input name="isShow" onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
+
+                        }else{
+                            return '<input name="isShow"  onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
+                        }
+                    }
+                },
+                {name:'isDisplay', width:131,align:'center',
+                    formatter:function(cellvalue){
+                            if(cellvalue=="1"){
+                                return '<input name="isDisplay" onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
+
+                            }else{
+                                return '<input name="isDisplay"  onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
+                            }
+                    }
+                },
+                {name:'operation', width:150,align:'center',
+                    formatter:function(cellvalue, options, rowObject){
+                    return "<a style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(this)' class='del-info' style='color:#337ab7'>删除</a>";
+                    }
+                }
+            ],
+            viewrecords : true,
+            altRows: true,
+            multiselect: false,
+            multiboxonly: true,
+            caption: "<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>" +
+            "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;color: #ff6202;'><option value=0>选择总开关</option></select>",
+
+            gridComplete:function(){
+                $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
+                $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
+                $(window).resize(function() {
+
+                    $("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
+                    $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
+                });
+            },
+            loadComplete:function (rows) {
+
+                document.getElementById('grid-table').style.width='938px';
+                tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
+                tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
+                if(rows.rows.length==0){
+                    $("#grid-table").jqGrid( 'setGridHeight', 'auto');
+                    $("#export-protocol").css('display','none');
+                    $("#selectOpen").css("display",'none');
+                    $("#show-no-data").css('display','block');
+                    $("#advice-content").text("当前没有任何功能，选择立即定义。");
+                }
+                if (rows.check_state >= 1) {
+                    document.getElementById("selectOpen").setAttribute('disabled','true');
+                    SetDisable();
                 }
                 else{
-                    $(".markLayout").show();
+                    $("#grid-table").children('tbody').sortable({
+                        update: function (event, ui) {
+                            var item = ui.item;
+                            bootbox.confirm("确定交换两者位置?", function (result) {
+                                if (result)
+                                    update_id(item);
+                                else
+                                    $("#grid-table").children('tbody').sortable('cancel');
+                            })
+                        }
+                    });
                 }
-                function new_close() {
-                    var check_prompt = $("#check_continueShowTips").is(':checked');
-                    // 关闭的情况下，选中不再提醒
-                    if (check_prompt){
-                        setCookie('cookie_prompt', check_prompt);
-                    }
-                    $("#newHtmlBox").css('display','none');
-                    $(".markLayout").hide();
-                }
-                function setCookie(name, value) {
-                    var Days = 30;
-                    var exp = new Date();
-                    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-                    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()+";path=/";
-                }
-                //读取cookies
-                function getCookie(name) {
-                    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-                    if (arr = document.cookie.match(reg))
-
-                        return unescape(arr[2]);
-                    else
-                        return null;
-                }
-                function show_tips(obj) {
-                    if($("#tips").css("display") == "none"){
-                        $("#tips").css("display","block");
-                        $("#tip2").css("display","block");
-                    }
-                    else {
-                        $("#tips").css("display","none");
-                        $("#tip2").css("display","none");
-                    }
-                }
-                 $('[data-rel=popover]').popover({container:'body'});
-            jQuery("#grid-table").jqGrid({
+            }
+        });
+        function SetDisable() {
+            $("input[type=checkbox].ace.ace-switch+.lbl").css({'cursor': 'not-allowed'});
+            $("input[type=checkbox].ace.ace-switch").css({'pointer-events':'none'});
+            $("td a").parent().css({'cursor': 'not-allowed'});
+            $("td a").css({'pointer-events':'none'});
+        }
+        function SendPostData(data, types) {
+            $.ajax({
                 url:location.href,
-                postData:{"name": "list"},
-                datatype: "json",
-                mtype:"POST",
-                colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','操作'],
-                colModel:[
-                    {name:'id' , width:107,align:'center'},
-                    {name:'Stream_ID', width:143},
-                    {name:'mxsLength',width:100,align:'center'},
-                    {name:'name', width:127,align:'center'},
-                    {name:'mxsNum', width:120,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="" || cellvalue=="0"){
-                                    return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
-                                }else{
-                                    var id="canshu"+rowObject.id;
-                                    group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"id":id, "cellvalue":cellvalue,"mxs":rowObject.mxs});
-                                    return group;
-                                }
-                        }
+                type:"POST",
+                data:data,
+                async :false,
+                success: function (data) {
+                        console.log(types, "更新成功")
                     },
-                    {name:'isControl', width:108,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-                                    return '<input id="toControl'+rowObject.id+'" onclick="toControl(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
-
-                                }else{
-                                    return '<input id="toControl'+rowObject.id+'"  onclick="toControl(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                                }
-                        }
-                    },
-                    {name:'isShow', width:131,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-                                    return '<input id="isShow'+rowObject.id+'" onclick="checkToShow(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
-
-                                }else{
-                                    return '<input id="isShow'+rowObject.id+'"  onclick="checkToShow(\''+rowObject.id+'\')" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
-                                }
-                        }
-                    },
-                    {name:'isDisplay', width:131,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                                if(cellvalue=="1"){
-                                    return '<input id="isDisplay'+rowObject.id+'" onclick="checkToDisplay(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
-
-                                }else{
-                                    return '<input id="isDisplay'+rowObject.id+'"  onclick="checkToDisplay(\''+rowObject.id+'\')" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                                }
-                        }
-                    },
-                    {name:'operation', width:150,align:'center',
-                        formatter:function(cellvalue, options, rowObject){
-                        return "<a id='edit-info"+rowObject.id+"' style='color:#337ab7'  href='#/edit?id="+rowObject.id+"' >编辑</a> | <a rel='popover' href='#/argue' id='del-info"+rowObject.id+"' onclick='del(\""+rowObject.id+"\")' class='del-info' style='color:#337ab7'>删除</a>";
-                        }
-                    }
-                ],
-                viewrecords : true,
-                altRows: true,
-                multiselect: false,
-                multiboxonly: true,
-                caption: "<a onclick='add()' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>定义产品功能</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='export_parameter()' id='export-protocol' class='addButton'><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>" +
-                "<select id='selectOpen' onchange='checkToSwitch(this)' style='margin-left: 448px;color: #ff6202;'><option value=0>选择总开关</option></select>",
-
-                gridComplete:function(){
-
-                    $('.ui-jqgrid-sortable').eq(0).attr("align","center");
-                    //$('.ui-jqgrid-sortable').eq(2).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(3).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(4).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(5).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(6).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(7).attr("align","center");
-	        	 	$('.ui-jqgrid-sortable').eq(8).attr("align","center");
-	        		$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
-
-	        		$("#grid-table").jqGrid( 'setGridHeight', 'auto' );
-	        		$(window).resize(function() {
-							$("#grid-table").jqGrid( 'setGridWidth', $(".rightMain").width()-33 );
-                            $("#grid-table").jqGrid( 'setGridHeight', 'auto' );
-
-							});
-                },
-                loadComplete:function (rows) {
-                    row = rows.rows;
-                    names = ["del-info","toControl","isShow","isDisplay","edit-info"];
-                    if(row.length==0){
-                        $("#grid-table").jqGrid( 'setGridHeight', 'auto');
-                        $("#export-protocol").css('display','none');
-                        $("#selectOpen").css("display",'none');
-                        $("#show-no-data").css('display','block');
-                        $("#advice-content").text("当前没有任何功能，选择立即定义。");
-                    }
-                    for ( var i=0;i<row.length ;i++){
-                        msg = "<option value="+row[i].id+">"+row[i].Stream_ID+"</option>";
-                        $("#selectOpen").append(msg);
-                        if(row[i].toSwitch==1){
-                            $("#selectOpen").val(i+1);
-                        }
-                        id = row[i].id;
-                        streamID[id]=row[i].Stream_ID;
-                        temp=document.getElementById("canshu"+id);
-                        $(temp).parents('td').removeAttr('title');
-                        if (rows.check_state >= 1) {
-                            SetDisable(names,id);
-                        }
-                    }
-                    document.getElementById('grid-table').style.width='938px';
-                    tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
-                    tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-                    if (rows.check_state < 1) {
-                        $("#grid-table").children('tbody').sortable({
-                            update: function (event, ui) {
-                                var item = ui.item;
-                                bootbox.confirm("确定交换两者位置?", function (result) {
-                                    if (result) {
-                                        update_id(item)
-                                    }
-                                    else {
-                                        $("#grid-table").children('tbody').sortable('cancel');
-                                    }
-                                })
-                            }
-                        });
-                        $("#grid-table").children('tbody').disableSelection();
-                    }
-                    else{
-                        document.getElementById("selectOpen").setAttribute('disabled','true');
-                    }
+                error:function (data) {
+                    console.log(types, "更新失败");
                 }
             });
-            function SetDisable(names,id) {
-                for(var j=0;j<names.length;j++){
-                   if(names[j]=="edit-info" || names[j]=="del-info") {
-                       document.getElementById(names[j] + id).removeAttribute('href');
-                       document.getElementById(names[j]+id).removeAttribute('onclick');
-                   }
-                   else
-                   {
-                       document.getElementById(names[j]+id).setAttribute('disabled','true');
-                       document.getElementById(names[j]+id).removeAttribute('onclick');
-                   }
+        }
+        function checkToSwitch(ths) {
+            id = $(ths).val();
+            post_data = {'name':'toSwitch','id':id};
+            SendPostData(post_data, '设置产品总开关');
+        }
+        function toControl(ths) {
+            aa = $(ths).prop('checked');
+            id = $(ths).parent().parent().attr("id");
+            if(aa==false){dd=0;}
+            else{dd=1;}
+            post_data = {'name':'isControl','id':id,'dd':dd};
+            SendPostData(post_data, '设置是否可控');
+        }
+        function checkToShow(ths) {
+            num=0;
+            id = $(ths).parent().parent().attr("id");
+            var advice = "本产品最多设置3个卡片显示值";
+            shows = document.getElementsByName("isShow");
+            for(var i=0;i< shows.length;i++){
+                if(shows[i].checked == true && id != i+1){
+                    num +=1;
                 }
-            }
-            function SendPostData(data, types) {
-                $.ajax({
-                    url:location.href,
-                    type:"POST",
-                    data:data,
-                    async :false,
-                    success: function (data) {
-                            console.log(types, "更新成功")
-                        },
-                    error:function (data) {
-                        console.log(types, "更新失败");
-                    }
-                });
-            }
-            function update_id(item) {
-                // 重新按位置排序，并更新这一行中所有用到id的位置
-                id = item.attr("id");
-                fun_name = [];
-                rows = document.getElementById("grid-table").rows;
-                length = rows.length;
-                for (var i = 1; i <length; i++) {
-                    rows[i].children[0].innerText = i;
-                    rows[i].id = i;
-                    d_id = "del-info" + i;
-                    e_id = "edit-info" + i;
-                    last = rows[i].children[rows[i].children.length-1];
-                    last.firstChild.id = e_id;
-                    $("#"+e_id).attr("href","#/edit?id="+i);
-
-                    last.lastChild.id = d_id;
-                    $("#"+d_id).attr("onclick","del(" + i + ")");
-                    fun_name.push(rows[i].children[1].title);
-
-                    var dict = {"toControl":"toControl",
-                            "isShow": "checkToShow",
-                            "isDisplay": "checkToDisplay"
-                    };
-                    EditButton(dict,i, rows[i]);
-                }
-                fun_name = JSON.stringify(fun_name);
-                // 更新后台功能顺序
-                SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
-
-            }
-            function EditButton(dict,i, row) {
-                var temp=0;
-                for(var k in dict){
-                    fun = row.children[5+temp];
-                    fun.firstChild.id = k + i;
-                    $("#"+k+i).attr('onclick',dict[k]+"("+i+")");
-                    temp++;
-                }
-            }
-            function checkToSwitch(ths) {
-                id = $(ths).val();
-                post_data = {'name':'toSwitch','id':id};
-                SendPostData(post_data, '设置产品总开关');
-            }
-            function toControl(id) {
-                aa = $("#toControl"+id).prop('checked');
-                if(aa==false){dd=0;}
-                else{dd=1;}
-                post_data = {'name':'isControl','id':id,'dd':dd};
-			    SendPostData(post_data, '设置是否可控');
-            }
-            function checkToShow(id) {
-                var dd;
-                num=0;
-                rows = document.getElementById("grid-table").rows.length;
-                var advice = "本产品最多设置3个卡片显示值";
-                for(var i=1;i< rows;i++){
-                    if($("#isShow"+i).prop('checked') == true && id != i){
-                        num +=1;
-                    }
-                    if (num>=3){
-                            $("#isShow"+id).attr('checked',false);
-                            bootbox.alert(advice);
-                            return;
-                        }
-                }
-                aa = $("#isShow"+id).prop('checked');
-                if(aa==false){dd=0;}
-                else{dd=1;}
-                post_data = {'name':'isShow','id':id,'dd':dd};
-                SendPostData(post_data, '设置卡片显示值');
-
-            }
-            function checkToDisplay(id) {
-                aa = $("#isDisplay"+id).prop('checked');
-                if(aa==false){dd=0;}
-                else{dd=1;}
-                post_data = {'name':'isDisplay','id':id,'dd':dd};
-			    SendPostData(post_data, '设置是否显示在UI上');
-            }
-            function show_table(item) {
-                $(item).nextAll('div').show();
-                $(item).nextAll('div').children('table').show()
-            }
-            function hide_table(item) {
-                $(item).nextAll('div').hide();
-                $(item).nextAll('div').children('table').hide()
-            }
-
-            function add(){
-                location.href = "#/edit";
-			}
-			function export_parameter(){
-                var rows = $("#grid-table").getRowData();
-                if(rows == ''){
-                    bootbox.alert("暂无参数信息！");
+                if (num>=3){
+                    $(ths).attr('checked',false);
+                    bootbox.alert(advice);
                     return;
                 }
-                bootbox.confirm("确定导出控制协议参数吗?", function (result) {
-                    if (result) {
-                        var form = document.createElement('form');
-                        form.action = '#/argue';
-                        form.method = 'post';
-                        form.style = "display: none";
-                        var input = document.createElement("input");
-                        input.name = "name";
-                        input.type = "text";
-                        input.value = "export";
-                        form.appendChild(input);
-                        $("#ie-form").html(form);
-                        form.submit();
-                    }
-                });
-			}
-			function edit(id){
-                //把id传给前台
-				location.href="#/edit?id="+id;
-			}
-            $('body').click(function (event) {
-                var target = $(event.target);
-                if (!target.hasClass('popover')
-                        && !target.hasClass('popover-content')
-                        && !target.hasClass('popover-title')
-                        && !target.hasClass('arrow')
-                        && !target.hasClass('del-info')
-                        &&!target.hasClass('text-info')) {
-                    $('.del-info').popover('hide');
+            }
+            aa = $(ths).prop('checked');
+            if(aa==false){dd=0;}
+            else{dd=1;}
+            post_data = {'name':'isShow','id':id,'dd':dd};
+            SendPostData(post_data, '设置卡片显示值');
+        }
+        function checkToDisplay(ths) {
+            id = $(ths).parent().parent().attr("id");
+            aa = $(ths).prop('checked');
+            if(aa==false){dd=0;}
+            else{dd=1;}
+            post_data = {'name':'isDisplay','id':id,'dd':dd};
+            SendPostData(post_data, '设置是否显示在UI上');
+        }
+        function show_table(item) {
+            $(item).nextAll('div').show();
+            $(item).nextAll('div').children('table').show()
+        }
+        function hide_table(item) {
+            $(item).nextAll('div').hide();
+            $(item).nextAll('div').children('table').hide()
+        }
+        function export_parameter(){
+            var rows = $("#grid-table").getRowData();
+            if(rows == ''){
+                bootbox.alert("暂无参数信息！");
+                return;
+            }
+            bootbox.confirm("确定导出控制协议参数吗?", function (result) {
+                if (result) {
+                    var form = document.createElement('form');
+                    form.action = '#/argue';
+                    form.method = 'post';
+                    form.style = "display: none";
+                    var input = document.createElement("input");
+                    input.name = "name";
+                    input.type = "text";
+                    input.value = "export";
+                    form.appendChild(input);
+                    $("#ie-form").html(form);
+                    form.submit();
                 }
             });
-			function del(id){
-                // 选择是否删除产品功能
-			    $("#del-info"+id).popover({
-                    trigger:'manual',
-                    placement: 'left',
-                    html: 'true',
-                    title : '<span class="text-info">确定要删除该功能点吗 ？</span>',
-                    content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id +'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
-                  });
-                $('.del-info').popover('hide');
-                $("#del-info"+id).popover('toggle');
-			}
-			function delete_fun(id) {
-                // 确认删除产品功能
-                post_data = {'name': 'del', 'id': id};
-                $("#del-info" + id).popover('destroy');
-                if(isIE()){
-                    document.getElementById(id).removeNode(true);
-                }
-                else{
-                    document.getElementById(id).remove();
-                }
-                // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
-                rows = document.getElementById("grid-table").rows.length;
-                for (var i = 1; i <=rows; i++) {
-                    if (parseInt(id) < i){
-                        $("#"+i).children()[0].innerText = i-1;
-                        $("#"+i).attr('id',i-1);
-                        a = "del(" + (i-1) + ")";
-                        b = "del-info" + (i-1);
-
-                        $("#edit-info"+i).attr("href",'#/edit?id='+(i-1));
-                        $("#edit-info"+i).attr('id', "edit-info"+(i-1));
-
-                        $("#del-info"+i).attr("onclick",a);
-                        $("#del-info"+i).attr('id', b);
-
-                    }
-                }
-                // 异步请求后台删除数据
-                $.ajax({
-                    url:location.href,
-                    type: "POST",
-                    data: post_data,
-                    success: function (data) {
-                        console.log("删除成功");
-                        bootbox.alert("该功能已删除")
-                    },
-                    error:function () {
-                        console.log("删除失败")
-                    }
-                });
-            }
-            function fun_close() {
-            // 关闭删除弹窗
+        }
+        $('body').click(function (event) {
+            var target = $(event.target);
+            if (!target.hasClass('popover')
+                    && !target.hasClass('popover-content')
+                    && !target.hasClass('popover-title')
+                    && !target.hasClass('arrow')
+                    && !target.hasClass('del-info')
+                    &&!target.hasClass('text-info')) {
                 $('.del-info').popover('hide');
             }
+        });
+        function del(ths){
+            // 选择是否删除产品功能
+            id = $(ths).parent().parent().attr("id");
+            $(ths).popover({
+                trigger:'manual',
+                placement: 'left',
+                html: 'true',
+                title : '<span class="text-info">确定要删除该功能点吗 ？</span>',
+                content : '<button onclick="fun_close()">取消</button> <button onclick="delete_fun(\''+id +'\')" style="background-color: #337AB7;border-color: #337AB7;margin-left: 20px;color: #fff;">确认</button>'
+              });
+            $('.del-info').popover('hide');
+            $(ths).popover('toggle');
+        }
+        function delete_fun(id) {
+            post_data = {'name': 'del', 'id': id};
+            $("#del-info" + id).popover('destroy');
+            SendPostData(post_data,"删除功能");
+            // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
+            RePosition(id,1);
+            if(isIE()){
+                document.getElementById(id).removeNode(true);
+            }
+            else{
+                document.getElementById(id).remove();
+            }
+        }
+        function update_id(item) {
+            id = item.attr("id");
+            fun_name = [];
+            // 重新按位置排序，并更新这一行中所有用到id的位置
+            fun_name = RePosition(0,0);
+            fun_name = JSON.stringify(fun_name);
+            SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
+        }
+        function RePosition(id,index) {
+            fun_name = [];
+            rows = document.getElementById("grid-table").rows;
+            length = rows.length;
+            for (var i = 1; i <length; i++) {
+                if (parseInt(id) < i) {
+                    rows[i].children[0].innerText = i - index;
+                    rows[i].id = i - index;
+                    d_id = "del-info" + (i - index);
 
-		</script>
+                    last = rows[i].children[rows[i].children.length - 1];
+                    last.firstChild.href = "#/edit?id=" + (i - index);
+
+                    last.lastChild.id = d_id;
+                    fun_name.push(rows[i].children[1].title);
+                }
+            }
+            return fun_name;
+        }
+        function fun_close() {
+        // 关闭删除弹窗
+            $('.del-info').popover('hide');
+        }
+
+    </script>

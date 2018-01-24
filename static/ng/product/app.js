@@ -12,11 +12,12 @@ angular.module('Product', [
     // 开发者
     // 设备管理
     "Product.device",
-    "Product.dev",
+    // "Product.dev",
     "Product.argue",
     "Product.edit",
     "Product.oven",
-    "Product.content"
+    "Product.content",
+    "Product.app"
 
 ])
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
