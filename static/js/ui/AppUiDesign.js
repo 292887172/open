@@ -1,7 +1,7 @@
 $(function(){
         // 截取url参数
-        var url="https://oven.53iq.com/static/html/controler.html?d=F0FE6B15E97B&t=1";
-        //var url=window.location.href;
+        // var url="https://oven.53iq.com/static/html/controler.html?d=F0FE6B15E97B&t=1";
+        var url=window.location.href;
         function getUrlParam(url){
             var obj={};
             var str=url;
@@ -24,7 +24,9 @@ $(function(){
             url: "/api/pull_ui_conf",
             data:{key:params.key,device_type: params.t},
             success: function(data){
+                console.log(data);
               var result=data.data.functions;
+
               result.forEach(function(item){
                 renderList.push(item.title);
                 renderName.push(item.name);
@@ -39,7 +41,7 @@ $(function(){
             var li=document.createElement("li");
             li.setAttribute("value",renderName[i]);
             li.className="clearfix ui-state-default";
-            var str='<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">'+renderList[i]+'</span></span><select name="" id="" class="moduleControl pull-left"><option value="big">大模块</option><option value="medium">中模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon glyphicon-off pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img class="squareBg pull-right" /><button class="btn pull-right margin">选择背景</button></span>';
+            var str='<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">'+renderList[i]+'</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon glyphicon-off pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img class="squareBg pull-right" /><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML=str;
             sortable.appendChild(li);
          }
@@ -228,15 +230,15 @@ $(function(){
     save.addEventListener("click",function(){
         getConfig();
         console.log(JSON.stringify(uiConfig));
+        console.log(getInfo());
         $.ajax({
             type:"POST",
-            url:"/api/get_ui_conf",
-            data:{key:"F0FE6B15E97B",ui_conf:JSON.stringify(uiConfig)},
-            dataType:'json',
-            contentType: "application/json; charset=utf-8",
-            success:function(data){
-                console.log(data);
-            }
+            url:"/api/upload_ui_conf",
+            data:{ key:params.key,
+                ui_conf:JSON.stringify(uiConfig) },
+
+        }).done(function(){
+            alert("ok");
         })
     });
     // 预览手机端效果
