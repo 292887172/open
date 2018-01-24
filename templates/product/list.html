@@ -582,8 +582,7 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href=""
-                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
                         </ul>
                     </dd>
                 </dl>
@@ -634,8 +633,7 @@
                             </li>
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href=""
-                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -692,8 +690,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                             <span><i class="fa fa-download"></i></span></a>
                                 </li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href=""
-                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8 }}">UI编辑</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
 
                         </ul>
                     </dd>
@@ -748,8 +745,7 @@
                             <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
                                 <span><i class="fa fa-download"></i></span></a>
                                 </li>
-                            <li class="prog_d "><a onclick="block_mac(this)" href=""
-                                                   target="" data-id="{{ app.app_id }}" data-appid="{{ app.app_appid| cover_str8}}">UI编辑</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
                         </ul>
                     </dd>
                 </dl>
@@ -844,26 +840,7 @@
                 $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱");
             }
         }
-        function block_mac(obj) {
-            app_id = $(obj).attr('data-id');
-            app_appid = $(obj).attr('data-appid');
-            $.ajax({
-                type: "get",
-                url: 'https://oven.53iq.com/api/produce/base_html',
-                data: {'key':app_appid,'sign':1},
-                complete: function (data) {
-                    console.log("请求返回：",data);
-                    if(location.host.includes("open.53iq.com"))
-                    {
-                        location.href="https://oven.53iq.com/static/html/move.html?id="+app_appid+".html";
-                    }
-                    else
-                    {
-                        location.href="http://192.168.1.92:8000/static/html/move.html?id="+app_appid+".html";
-                    }
-                }
-            })
-        }
+
         function export_protocol(id) {
             bootbox.confirm("确定导出控制协议参数吗?", function (result) {
                 if (result) {

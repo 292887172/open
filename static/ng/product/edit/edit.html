@@ -1,779 +1,778 @@
-        <link href="/static/css/product/bootbox.css"/>
 
-		<style>
-            .modal-body{
-                height: auto;
+<style>
+    .modal-body{
+        height: auto;
+    }
+    .modal-dialog{
+        width: auto;
+    }
+    caption, th{
+        padding: 5px 5px 5px 60px;
+    }
+    .float-left,.form-control.float-left{
+        float: left;
+    }
+    .modal-dialog {
+        width: 800px;
+    }
+    a{
+        cursor: default;
+    }
+    .headerH1 {
+        padding: 0;
+        margin: 0 8px;
+        font-size: 18px;
+        color: #000;
+    }
+    .addButton{
+        color: #337ab7;
+    }
+    .addButton:hover{
+    text-decoration:none;
+    cursor:pointer;
+        color: #23527c;
+  }
+    .col-sm-1 {
+        width: 16.6%;
+    }
+    .must-choose{
+        color: #d43f3a;
+    }
+    .help-button{
+        background-color: #9EBEE4;
+    }
+    .help-button:hover{
+        background-color: #337ab7;
+    }
+    .lbl bigger-120::before{
+           color: #337ab7;
+    }
+    .btn{
+        border-radius: 4px;
+        width: 118px;
+        height: 40px;
+         background-color: #c6c6c6!important;
+        border-color: #c6c6c6;
+        text-shadow: none;
+    }
+    .btn:hover,.btn:active:hover{
+        background-color: rgb(150, 148, 148)!important;
+        border-color: rgb(150, 148, 148);
+
+    }
+    .btn.btn-info:hover{
+        background-color: #ff6202!important;
+        border-color: #ff6202;
+
+    }
+    .btn.btn-info{
+        background-color: #ff6f37!important;
+        border-color: #ff6f37;
+        color: #fff !important;
+    }
+    .btn-success{
+        background-color: #5cb85c !important;
+        border-color: #5cb85c;
+        margin-left: 30px;
+        width: 55px;
+        height: auto;
+        padding: 2px;
+    }
+    .btn-success:hover,.btn-success:focus,.btn-success:active{
+        background-color: #629B58 !important;
+        border-color: #629B58;
+
+    }
+
+</style>
+<div class="main-container ace-save-state box2" id="main-container">
+    <div class="hl-help">
+
+    <span class="linkBlue">添加新功能</span>
+    </div>
+<div class="mt20"></div>
+    <div class="main-content">
+        <div class="main-content-inner">
+
+            <div class="page-content" style="padding-top:20px">
+
+
+                <h1 class="headerH1">参数信息</h1>
+                <div class="space-6"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form method="post" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据点及其参数传输时的变量名，支持英文字母、数字和下划线，以英文字母开头。" title="">?</span></label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID"  placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
+                                    <br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name"  placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
+                                    <br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据域和结果码的长度，单位是bit，例如（开关：1bit）" title="">?</span></label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength"  placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
+                                    <br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpName" style="text-align:right"> 单位名称 </label>
+                                    <div class="col-sm-9 col-xs-9">
+                                        <input ng-disabled='{[{ disabled }]}' type="text" id="corpName" placeholder="请输入参数的单位名称，如：摄氏度" class="col-xs-10 col-sm-5" />
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpMark" style="text-align:right"> 单位符号 </label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="corpMark" placeholder="请输入参数的单位名称，如：℃" class="col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="开关型(bool): 非真即假的二进制变量，如开关功能; 故障型: 专门用户统计和上报故障的功能点; 定时类型: 可选择型调节时间范围，如工作时间; 枚举型: 自定义的有限集合值，如档位的高、中、低。" title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9" id="param-type">
+                                        <div class="radio">
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectBool(this)" value="1" checked/>
+                                                    <span class="lbl bigger-120"> 开关</span>
+                                                </label>
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectError(this)" value="3"/>
+                                                    <span class="lbl bigger-120"> 故障型</span>
+                                                </label>
+
+                                                <label>
+                                                        <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="4"/>
+                                                        <span class="lbl bigger-120"> 整型</span>
+                                                    </label>
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
+                                                    <span class="lbl bigger-120"> 定时型</span>
+                                                </label>
+                                        </div>
+                                        <div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                            <table border=0>
+                                                <tr>
+                                                    <td height=30px align="center">最小值</td>
+                                                    <td align="center">最大值</td>
+                                                </tr>
+                                                <tr style="border-top:1px solid #ccc">
+                                                    <td width=80px>
+                                                        <input ng-disabled='true' id="minBool" ng-value="0" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
+                                                    </td>
+                                                    <td width=80px align="right">
+                                                        <input ng-disabled='true' id="maxBool" ng-value="1" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div id="checkBool" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
+                                        </div>
+                                        <div id="selectError" style="background-color:#fff;display:none;margin-left:95px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                            <span style="position:relative;top: 10px;left: -70px;">故障值：</span>
+                                            <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
+                                            <div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
+                                        </div>
+                                        <div id="selectInt" style="background-color:#fff;display:block;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                            <table border=0>
+                                                <tr>
+                                                    <td height=30px align="center">最小值</td>
+                                                    <td align="center">最大值</td>
+                                                </tr>
+                                                <tr style="border-top:1px solid #ccc">
+                                                    <td width=80px>
+                                                        <input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=0 onblur="checkInt()">
+                                                    </td>
+                                                    <td width=80px align="right">
+                                                        <input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=1 onblur="checkInt()">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
+                                        </div>
+                                        <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
+                                            <table border=0>
+                                                <tr>
+                                                    <td height=30px align="center">最小值</td>
+                                                    <td align="center">最大值</td>
+                                                </tr>
+                                                <tr style="border-top:1px solid #ccc">
+                                                    <td width=80px>
+                                                        <input ng-disabled='{[{ disabled }]}' id="minTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkTimer()">
+                                                    </td>
+                                                    <td width=80px align="right">
+                                                        <input ng-disabled='{[{ disabled }]}' id="maxTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkTimer()">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div id="checkTimer" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isControl" style="text-align:right"> 可控 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="可控”表示您的参数可以被控制，如：“开关”；“不可控”表示您的参数不可被控制，如：“PM2.5”；" title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                        <div class="radio">
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="isControl" onclick="showFun()" type="radio" class="ace input-lg" value="1" checked/>
+                                                    <span class="lbl bigger-120"> 可控</span>
+                                                </label>
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="isControl" onclick="hideFun()" type="radio" class="ace input-lg" value="0"/>
+                                                    <span class="lbl bigger-120"> 不可控</span>
+                                                </label>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="fun_attr">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" style="text-align:right"> 功能属性 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                        <div class="radio">
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="1" checked/>
+                                                    <span class="lbl bigger-120"> 功能</span>
+                                                </label>
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="0"/>
+                                                    <span class="lbl bigger-120"> 属性</span>
+                                                </label>
+                                        </div>
+                                </div>
+                            </div>
+                        </form><!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+
+                <div class="page-header"></div>
+                <h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与53iq智能云通信的数据及说明，例：传送数据:0 数据说明:关、传送数据:1 数据说明:开" title="">?</span></h1>
+                <div class="space-6"></div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
+                                <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
+                                <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
+                                <div id="checkArgue" style="color:red;display:none"></div>
+                            </div>
+
+                            <div class="form-group" id="addGroup">
+                                <div class="col-sm-2 col-xs-2"></div>
+                                <div class="col-sm-10 col-xs-10">
+                                    <a  ng-hide='{[{ visible }]}' href='#' onclick='add();return false' class='addButton'>
+                                        <i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数值</a>
+                                </div>
+                            </div>
+                            <div class="clearfix form-actions" style="margin-bottom:-15px;background-color: #fff">
+                                <div class="col-sm-2 col-xs-2"></div>
+
+                                <div class="col-sm-5 col-xs-6">
+                                    <span class="pr20">
+                                        <button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
+                                        <i  class="ace-icon fa fa-check bigger-110" ></i><span id="save-content">保存</span>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button ng-hide='{[{ visible }]}' class="btn" onclick="init()" type="button">
+                                        <i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form><!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+
+
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var url=location.href;
+    var num=url.indexOf('?id');
+    var str=url.substring(num+1);
+    var id = str.split("=")[1];
+    var edit_data={};
+    var funs=[];
+    var flag ;
+    var count=0;
+    var post_data = {"name": "edit","id":id};
+    var mxs = [];
+    var trig=[];
+    var dataVal = 0;
+
+    var Text='';
+
+    $.ajax({
+        url:location.href,
+        type: "POST",
+        data: post_data,
+        async :false,
+        success: function (data) {
+            edit_data=data['data'];
+            funs = data['funs'];
+            if(!edit_data){
+                flag = true;
             }
-            .modal-dialog{
-                width: auto;
+            else{flag = false;}
+            init();
+        }
+    });
+    $('[data-rel=popover]').popover({container:'body'});
+    function init() {
+        count++;
+        if(flag == false){
+            var obj={
+                id:id,
+                Stream_ID:edit_data["Stream_ID"],
+                name:edit_data["name"],
+                isControl:edit_data["isControl"],
+                isFunction:edit_data["isFunction"],
+                min:edit_data["min"],max:edit_data["max"],
+                paramType:edit_data["paramType"],
+                corpName:edit_data["corpName"],
+                corpMark:edit_data["corpMark"],
+                mxs:edit_data["mxs"],
+                mxsLength:edit_data["mxsLength"],
+                time:edit_data["time"]};
+                loadData(obj);
+                mxs=obj.mxs;
+        }
+        else{
+            $(".form-horizontal")[0].reset();
+            $(".form-horizontal")[1].reset();
+            $('#mxsLength').val('8');
+            if(count<=1){
+                 add();add()
             }
-            caption, th{
-                padding: 5px 5px 5px 60px;
-            }
-            .float-left,.form-control.float-left{
-                float: left;
-            }
-            .modal-dialog {
-                width: 800px;
-            }
-            a{
-                cursor: default;
-            }
-			.headerH1 {
-			    padding: 0;
-			    margin: 0 8px;
-			    font-size: 18px;
-                color: #000;
-			}
-            .addButton{
-                color: #337ab7;
-            }
-			.addButton:hover{
-		  	text-decoration:none;
-		  	cursor:pointer;
-                color: #23527c;
-		  }
-            .col-sm-1 {
-                width: 16.6%;
-            }
-            .must-choose{
-                color: #d43f3a;
-            }
-            .help-button{
-                background-color: #9EBEE4;
-            }
-            .help-button:hover{
-                background-color: #337ab7;
-            }
-            .lbl bigger-120::before{
-                   color: #337ab7;
-            }
-            .btn{
-                border-radius: 4px;
-                width: 118px;
-                height: 40px;
-                 background-color: #c6c6c6!important;
-                border-color: #c6c6c6;
-                text-shadow: none;
-            }
-            .btn:hover,.btn:active:hover{
-                background-color: rgb(150, 148, 148)!important;
-                border-color: rgb(150, 148, 148);
+        }
+    }
 
-            }
-            .btn.btn-info:hover{
-                background-color: #ff6202!important;
-                border-color: #ff6202;
+    function showFun() {
+        $("#fun_attr").css('display','block')
+    }
+    function hideFun() {
+        $("#fun_attr").css('display','none')
+    }
+    function loadData(d){
 
-            }
-            .btn.btn-info{
-                background-color: #ff6f37!important;
-                border-color: #ff6f37;
-                color: #fff !important;
-            }
-            .btn-success{
-                background-color: #5cb85c !important;
-                border-color: #5cb85c;
-                margin-left: 30px;
-                width: 55px;
-                height: auto;
-                padding: 2px;
-            }
-            .btn-success:hover,.btn-success:focus,.btn-success:active{
-                background-color: #629B58 !important;
-                border-color: #629B58;
+        $('#Stream_ID').val(d.Stream_ID);
+        $('#name').val(d.name);
+        $('#corpName').val(d.corpName);
+        $('#corpMark').val(d.corpMark);
+        $('#mxsLength').val(d.mxsLength);
+        if(d.isControl==1){
+            document.getElementsByName('isControl')[0].checked=true;
+            showFun();
+        }else{
+            document.getElementsByName('isControl')[1].checked=true;
+            hideFun();
+        }
+        if(d.isFunction==1){
+            document.getElementsByName('isFunction')[0].checked=true;
+        }else{
+            document.getElementsByName('isFunction')[1].checked=true;
+        }
 
-            }
+        if(d.paramType==1){
+            document.getElementsByName('paramType')[0].checked=true;
 
-		</style>
-		<div class="main-container ace-save-state box2" id="main-container">
-            <div class="hl-help">
-
-            <span class="linkBlue">添加新功能</span>
-            </div>
-        <div class="mt20"></div>
-			<div class="main-content">
-				<div class="main-content-inner">
-
-					<div class="page-content" style="padding-top:20px">
-
-
-						<h1 class="headerH1">参数信息</h1>
-						<div class="space-6"></div>
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<form method="post" class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据点及其参数传输时的变量名，支持英文字母、数字和下划线，以英文字母开头。" title="">?</span></label>
-										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="Stream_ID"  placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
-											<br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
-										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="name"  placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
-											<br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
-										</div>
-									</div>
-
-                                    <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据域和结果码的长度，单位是bit，例如（开关：1bit）" title="">?</span></label>
-										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength"  placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
-											<br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
-										</div>
-									</div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpName" style="text-align:right"> 单位名称 </label>
-                                            <div class="col-sm-9 col-xs-9">
-                                                <input ng-disabled='{[{ disabled }]}' type="text" id="corpName" placeholder="请输入参数的单位名称，如：摄氏度" class="col-xs-10 col-sm-5" />
-                                            </div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="corpMark" style="text-align:right"> 单位符号 </label>
-										<div class="col-sm-9 col-xs-9">
-											<input ng-disabled='{[{ disabled }]}' type="text" id="corpMark" placeholder="请输入参数的单位名称，如：℃" class="col-xs-10 col-sm-5"/>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="开关型(bool): 非真即假的二进制变量，如开关功能; 故障型: 专门用户统计和上报故障的功能点; 定时类型: 可选择型调节时间范围，如工作时间; 枚举型: 自定义的有限集合值，如档位的高、中、低。" title="">?</span> </label>
-										<div class="col-sm-9 col-xs-9" id="param-type">
-												<div class="radio">
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectBool(this)" value="1" checked/>
-															<span class="lbl bigger-120"> 开关</span>
-														</label>
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectError(this)" value="3"/>
-															<span class="lbl bigger-120"> 故障型</span>
-														</label>
-
-                                                        <label>
-                                                                <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectInt(this)" value="4"/>
-                                                                <span class="lbl bigger-120"> 整型</span>
-                                                            </label>
-                                                        <label>
-															<input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
-															<span class="lbl bigger-120"> 定时型</span>
-														</label>
-												</div>
-												<div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
-													<table border=0>
-														<tr>
-															<td height=30px align="center">最小值</td>
-															<td align="center">最大值</td>
-														</tr>
-														<tr style="border-top:1px solid #ccc">
-															<td width=80px>
-																<input ng-disabled='true' id="minBool" ng-value="0" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
-															</td>
-															<td width=80px align="right">
-																<input ng-disabled='true' id="maxBool" ng-value="1" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc">
-															</td>
-														</tr>
-													</table>
-													<div id="checkBool" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
-												</div>
-                                                <div id="selectError" style="background-color:#fff;display:none;margin-left:95px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
-                                                    <span style="position:relative;top: 10px;left: -70px;">故障值：</span>
-                                                    <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
-													<div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
-												</div>
-                                                <div id="selectInt" style="background-color:#fff;display:block;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
-													<table border=0>
-														<tr>
-															<td height=30px align="center">最小值</td>
-															<td align="center">最大值</td>
-														</tr>
-														<tr style="border-top:1px solid #ccc">
-															<td width=80px>
-																<input ng-disabled='{[{ disabled }]}' id="minInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=0 onblur="checkInt()">
-															</td>
-															<td width=80px align="right">
-																<input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=1 onblur="checkInt()">
-															</td>
-														</tr>
-													</table>
-													<div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
-												</div>
-                                                <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
-													<table border=0>
-														<tr>
-															<td height=30px align="center">最小值</td>
-															<td align="center">最大值</td>
-														</tr>
-														<tr style="border-top:1px solid #ccc">
-															<td width=80px>
-																<input ng-disabled='{[{ disabled }]}' id="minTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkTimer()">
-															</td>
-															<td width=80px align="right">
-																<input ng-disabled='{[{ disabled }]}' id="maxTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkTimer()">
-															</td>
-														</tr>
-													</table>
-													<div id="checkTimer" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
-												</div>
-										</div>
-									</div>
-
-                                    <div class="form-group">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isControl" style="text-align:right"> 可控 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="可控”表示您的参数可以被控制，如：“开关”；“不可控”表示您的参数不可被控制，如：“PM2.5”；" title="">?</span> </label>
-										<div class="col-sm-9 col-xs-9">
-												<div class="radio">
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="isControl" onclick="showFun()" type="radio" class="ace input-lg" value="1" checked/>
-															<span class="lbl bigger-120"> 可控</span>
-														</label>
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="isControl" onclick="hideFun()" type="radio" class="ace input-lg" value="0"/>
-															<span class="lbl bigger-120"> 不可控</span>
-														</label>
-												</div>
-										</div>
-									</div>
-                                    <div class="form-group" id="fun_attr">
-										<label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" style="text-align:right"> 功能属性 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
-										<div class="col-sm-9 col-xs-9">
-												<div class="radio">
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="1" checked/>
-															<span class="lbl bigger-120"> 功能</span>
-														</label>
-														<label>
-															<input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio" class="ace input-lg" value="0"/>
-															<span class="lbl bigger-120"> 属性</span>
-														</label>
-												</div>
-										</div>
-									</div>
-								</form><!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-
-						<div class="page-header"></div>
-						<h1 class="headerH1">参数值<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content=" 硬件与53iq智能云通信的数据及说明，例：传送数据:0 数据说明:关、传送数据:1 数据说明:开" title="">?</span></h1>
-						<div class="space-6"></div>
-
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<form class="form-horizontal" role="form">
-									<div class="form-group">
-										<label class="col-sm-2 col-xs-2 no-padding-right">  </label>
-										<label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
-                                        <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                        <div id="checkArgue" style="color:red;display:none"></div>
-									</div>
-
-									<div class="form-group" id="addGroup">
-										<div class="col-sm-2 col-xs-2"></div>
-										<div class="col-sm-10 col-xs-10">
-											<a  ng-hide='{[{ visible }]}' href='#' onclick='add();return false' class='addButton'>
-                                                <i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数值</a>
-										</div>
-									</div>
-									<div class="clearfix form-actions" style="margin-bottom:-15px;background-color: #fff">
-										<div class="col-sm-2 col-xs-2"></div>
-
-										<div class="col-sm-5 col-xs-6">
-                                            <span class="pr20">
-                                                <button  ng-hide='{[{ visible }]}' class="btn btn-info" type="button"  ng-click="Save(id)">
-												<i  class="ace-icon fa fa-check bigger-110" ></i><span id="save-content">保存</span>
-                                                </button>
-                                            </span>
-                                            <span>
-                                                <button ng-hide='{[{ visible }]}' class="btn" onclick="init()" type="button">
-												<i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
-                                            </span>
-										</div>
-									</div>
-								</form><!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-
-
-					</div><!-- /.page-content -->
-				</div>
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
-		<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
-        <script src="/static/assets/js/bootstrap.min.js"></script>
-
-		<script type="text/javascript">
-			var url=location.href;
-			var num=url.indexOf('?id');
-			var str=url.substring(num+1);
-			var id = str.split("=")[1];
-			var edit_data={};
-			var funs=[];
-			var flag ;
-			var count=0;
-            var post_data = {"name": "edit","id":id};
-            var mxs = [];
-            var trig=[];
-            var dataVal = 0;
-
-            var Text='';
-
-            $.ajax({
-                url:location.href,
-                type: "POST",
-                data: post_data,
-                async :false,
-                success: function (data) {
-                    edit_data=data['data'];
-                    funs = data['funs'];
-                    if(!edit_data){
-                        flag = true;
-                    }
-                    else{flag = false;}
-                    init();
-                }
-            });
-            $('[data-rel=popover]').popover({container:'body'});
-            function init() {
-                count++;
-                if(flag == false){
-                    var obj={
-                        id:id,
-                        Stream_ID:edit_data["Stream_ID"],
-                        name:edit_data["name"],
-                        isControl:edit_data["isControl"],
-                        isFunction:edit_data["isFunction"],
-                        min:edit_data["min"],max:edit_data["max"],
-                        paramType:edit_data["paramType"],
-                        corpName:edit_data["corpName"],
-                        corpMark:edit_data["corpMark"],
-                        mxs:edit_data["mxs"],
-                        mxsLength:edit_data["mxsLength"],
-                        time:edit_data["time"]};
-                        loadData(obj);
-                        mxs=obj.mxs;
-                }
-                else{
-                    $(".form-horizontal")[0].reset();
-                    $(".form-horizontal")[1].reset();
-                    $('#mxsLength').val('8');
-                    if(count<=1){
-                         add();add()
-                    }
-                }
-            }
-
-            function showFun() {
-                $("#fun_attr").css('display','block')
-            }
-            function hideFun() {
-                $("#fun_attr").css('display','none')
-            }
-			function loadData(d){
-
-				$('#Stream_ID').val(d.Stream_ID);
-				$('#name').val(d.name);
-				$('#corpName').val(d.corpName);
-				$('#corpMark').val(d.corpMark);
-				$('#mxsLength').val(d.mxsLength);
-				if(d.isControl==1){
-					document.getElementsByName('isControl')[0].checked=true;
-					showFun();
-				}else{
-					document.getElementsByName('isControl')[1].checked=true;
-					hideFun();
-				}
-				if(d.isFunction==1){
-					document.getElementsByName('isFunction')[0].checked=true;
-				}else{
-					document.getElementsByName('isFunction')[1].checked=true;
-				}
-
-				if(d.paramType==1){
-					document.getElementsByName('paramType')[0].checked=true;
-
-					selectBool();
-				}else if(d.paramType==3){
-					document.getElementsByName('paramType')[1].checked=true;
-					$('#errorValue').val(d.max);
-					selectError();
-				}
-				else if(d.paramType==4){
-				    $('#minInt').val(d.min);
-					$('#maxInt').val(d.max);
-                    document.getElementsByName('paramType')[2].checked=true;
-					selectInt();
-                }
-                else if(d.paramType==5){
-                    document.getElementsByName('paramType')[3].checked=true;
-					$('#minTimer').val(d.min);
-					$('#maxTimer').val(d.max);
-					selectTimer();
-                }
-                if(count<=1) {
-                    for (var i = 0; i < d.mxs.length; i++) {
-                        var group = '';
-                        group += '<div class="form-group">';
-                        group += '	<div class="col-sm-2 col-xs-2"></div>';
-                        group += '	<div class="col-sm-2 col-xs-3">';
-                        group += '		<input ng-disabled="{[{ disabled }]}"  onkeypress="return onKeyPress(event)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].data + '"/>';
-                        group += '	</div>';
-                        group += '	<div class="col-sm-2 col-xs-2">';
-                        group += '		<input ng-disabled="{[{ disabled }]}" onkeypress="return onKeyPress(event)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
-                        group += '	</div>';
-                        group += '	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
-                        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-                        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
-                        group += '	</div>';
-                        group += '</div>';
-                        $("#addGroup").before(group);
-                    }
-                }
-                else{$(".form-horizontal")[1].reset();}
-			}
-			function selectInt(){
-				SetDisplay("selectInt");
-			}
-			function selectError(){
-				SetDisplay("selectError");
-			}
-			function selectBool(){
-				SetDisplay("selectBool")
-			}
-			function selectTimer(){
-				SetDisplay("selectTimer")
-			}
-			function SetDisplay(name) {
-			    $('#selectInt').css("display","none");
-                $('#selectBool').css("display","none");
-                $('#selectTimer').css("display","none");
-                $('#selectError').css("display","none");
-				$("#"+name).css("display","block");
-            }
-			//获取元素的纵坐标
-			function getTop(e){
-				var offset=e.offsetTop;
-				if(e.offsetParent!=null) offset+=getTop(e.offsetParent);
-				return offset;
-			}
-			//获取元素的横坐标
-			function getLeft(e){
-				var offset=e.offsetLeft;
-				if(e.offsetParent!=null) offset+=getLeft(e.offsetParent);
-				return offset;
-			}
-			function add(){
-			    flag = true;
-				var group='';
-				group+='<div class="form-group">';
-				group+='	<div class="col-sm-2 col-xs-2"></div>';
-				group+='	<div class="col-sm-2 col-xs-3">';
-				group+='		<input type="text" id="checkData" onkeypress="return onKeyPress(event)" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
-				group+='	</div>';
-				group+='	<div class="col-sm-1 col-xs-2">';
-				group+='		<input type="text" name="paramDesc" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
-				group+='	</div>';
-				group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
-				group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
+            selectBool();
+        }else if(d.paramType==3){
+            document.getElementsByName('paramType')[1].checked=true;
+            $('#errorValue').val(d.max);
+            selectError();
+        }
+        else if(d.paramType==4){
+            $('#minInt').val(d.min);
+            $('#maxInt').val(d.max);
+            document.getElementsByName('paramType')[2].checked=true;
+            selectInt();
+        }
+        else if(d.paramType==5){
+            document.getElementsByName('paramType')[3].checked=true;
+            $('#minTimer').val(d.min);
+            $('#maxTimer').val(d.max);
+            selectTimer();
+        }
+        if(count<=1) {
+            for (var i = 0; i < d.mxs.length; i++) {
+                var group = '';
+                group += '<div class="form-group">';
+                group += '	<div class="col-sm-2 col-xs-2"></div>';
+                group += '	<div class="col-sm-2 col-xs-3">';
+                group += '		<input ng-disabled="{[{ disabled }]}"  onkeypress="return onKeyPress(event)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].data + '"/>';
+                group += '	</div>';
+                group += '	<div class="col-sm-2 col-xs-2">';
+                group += '		<input ng-disabled="{[{ disabled }]}" onkeypress="return onKeyPress(event)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
+                group += '	</div>';
+                group += '	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
+                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
                 group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
-				group+='	</div>';
-				group+='</div>';
-				$("#addGroup").before(group);
-				$('[data-rel=popover]').popover({container:'body'});
+                group += '	</div>';
+                group += '</div>';
+                $("#addGroup").before(group);
+            }
+        }
+        else{$(".form-horizontal")[1].reset();}
+    }
+    function selectInt(){
+        SetDisplay("selectInt");
+    }
+    function selectError(){
+        SetDisplay("selectError");
+    }
+    function selectBool(){
+        SetDisplay("selectBool")
+    }
+    function selectTimer(){
+        SetDisplay("selectTimer")
+    }
+    function SetDisplay(name) {
+        $('#selectInt').css("display","none");
+        $('#selectBool').css("display","none");
+        $('#selectTimer').css("display","none");
+        $('#selectError').css("display","none");
+        $("#"+name).css("display","block");
+    }
+    //获取元素的纵坐标
+    function getTop(e){
+        var offset=e.offsetTop;
+        if(e.offsetParent!=null) offset+=getTop(e.offsetParent);
+        return offset;
+    }
+    //获取元素的横坐标
+    function getLeft(e){
+        var offset=e.offsetLeft;
+        if(e.offsetParent!=null) offset+=getLeft(e.offsetParent);
+        return offset;
+    }
+    function add(){
+        flag = true;
+        var group='';
+        group+='<div class="form-group">';
+        group+='	<div class="col-sm-2 col-xs-2"></div>';
+        group+='	<div class="col-sm-2 col-xs-3">';
+        group+='		<input type="text" id="checkData" onkeypress="return onKeyPress(event)" name="paramData" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group+='	</div>';
+        group+='	<div class="col-sm-1 col-xs-2">';
+        group+='		<input type="text" name="paramDesc" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group+='	</div>';
+        group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
+        group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group+='	</div>';
+        group+='</div>';
+        $("#addGroup").before(group);
+        $('[data-rel=popover]').popover({container:'body'});
 
-                mxs.push({"data":'',"desc":''})
-			}
-			function del(ths){
-			    value = $(ths.parentNode.parentNode.children[1].children).val();
-			    for(var i=0;i<mxs.length;i++) {
-			        if(mxs[i].data==value) {
-			            mxs.splice(i,1);
-                        break;
+        mxs.push({"data":'',"desc":''})
+    }
+    function del(ths){
+        value = $(ths.parentNode.parentNode.children[1].children).val();
+        for(var i=0;i<mxs.length;i++) {
+            if(mxs[i].data==value) {
+                mxs.splice(i,1);
+                break;
+            }
+        }
+        if(isIE()){
+            $(ths.parentNode.parentNode).removeNode(true);
+        }
+        else{
+            $(ths.parentNode.parentNode).remove();
+        }
+    }
+    function onKeyPress(event) {
+        if(event.keyCode==13){
+            add();
+        }
+    }
+    function select_trigger(ths) {
+        value = $(ths.parentNode.parentNode.children[1].children).val();
+        name = $(ths.parentNode.parentNode.children[2].children).val();
+        if(value==""||name==""){
+            $('#checkArgue').css("display","block");
+            $('#checkArgue').html("请填写数据说明和传送数据");
+            return;
+        }
+        $('#checkArgue').css("display","none");
+        var funcs=[];
+        var data;
+        var bool = false;
+        var table = '<div class="table"><div style="text-align:left;color: #5f5f5f;">已添加</div><table class="prod-setting-table">\
+            <thead class="thead">\
+            <tr>\
+                <th class="td-1">功能名称</th>\
+                 <th class="td-5">最小值</th>\
+                 <th class="td-6">最大值\
+                </th>\
+                <th class="td-7">默认值</th>\
+                \<th class="td-7">操作</th>\
+            </tr>\
+            </thead>\
+           <tbody class="tbody" id="addFunc">';
+        trig = [];
+        for (var j = 0; j < mxs.length; j++) {
+            if (mxs[j].data == value) {
+                dataVal = j;
+                data = mxs[j];
+                bool = true;
+                if (data.trigger && data.trigger[0] != null) {
+                    temp = data.trigger;
+                    for (var k = 0; k < temp.length; k++) {
+                        table += '<tr>';
+                        table += '<th>' + temp[k].func + '</th>';
+                        table += '<th>' + temp[k].min + '</th>';
+                        table += '<th>' + temp[k].max + '</th>';
+                        table += '<th>' + temp[k].val + '</th>';
+                        table += '<th><a onclick="delFunc(this,\'' + temp[k].func + '\')">移除</a></th>';
+                        table += '</tr>';
+                        funcs.push(temp[k].func);
+                        trig.push(temp[k])
                     }
                 }
-			    if(isIE()){
-                    $(ths.parentNode.parentNode).removeNode(true);
+                break;
+            }
+        }
+        if(bool==false){    //新增加group
+            dataVal = mxs.length-1;
+            mxs[dataVal].data = value;
+            mxs[dataVal].desc = name;
+        }
+
+        table += '</tbody></table></div><hr>';
+        var msg = '<div class="row" style="text-align:left"><div class="col-xs-4"><span>功能: </span><select id="selectFunc" style="width:120px" onchange="SelectFunc(this)">';
+        msg += "<option value=0>选择功能</option>";
+        for(var i=0; i<funs.length;i++){
+            if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].Stream_ID, funcs)==-1)
+                msg += "<option value="+funs[i].Stream_ID+">"+funs[i].Stream_ID+"</option>"
+        }
+        msg += '</select></div>';
+        msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
+        msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
+        msg += '<div class="col-xs-4"><span class="float-left" >默认值: </span><input id="defaultVal" style="width:50px" step="1" placeholder="" class="form-control float-left">';
+        msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button></div></div>';
+        bootbox.dialog({
+            title:"添加触发器",
+            message:table+msg,
+            buttons:{
+                "success": {
+                    "label": "<i class='icon-info'></i> 确定",
+                    "className": "btn-primary",
+                    "callback":function () {
+                        if(mxs!=null){
+                            mxs[dataVal].trigger=trig;
+                        }
+                    }
+                },
+                "cancel" : {
+                    "label": "<i class='icon-ok'></i> 取消",
+                    "className": "btn-default",
+                }
+            }
+        })
+    }
+    function addToList() {
+        var ofRow={};
+        msg = '<tr>';
+        func = $("#selectFunc").val();
+        min = $("#minDefault").val();
+        max = $("#maxDefault").val();
+        val = $("#defaultVal").val();
+        if(func && func!=0) {
+            msg += '<th>' + func + '</th>';
+            msg += '<th>' + min + '</th>';
+            msg += '<th>' + max + '</th>';
+            msg += '<th>' + val + '</th>';
+            msg += '<th><a onclick="delFunc(this,\''+func+'\')">移除' + '</a></th>';
+            $("#addFunc").append(msg);
+            ofRow['func']=func;
+            ofRow['min']=min;
+            ofRow['max']=max;
+            ofRow['val']=val;
+            trig.push((ofRow));
+            $("#selectFunc option[value=" + func + "]").remove();
+        }
+    }
+
+    function delFunc(ths,name) {
+        opt = "<option value="+name+">"+name+"</option>";
+        $(ths.parentNode.parentNode).remove();
+        for(var i=0;i<trig.length;i++) {
+            if(trig[i].func==name){
+                trig.splice(i,1);
+            }
+        }
+        $("#selectFunc").append(opt);
+    }
+
+    function SelectFunc(ths) {
+        name = $(ths).val();
+        for(var i=0;i<funs.length;i++){
+            if(funs[i].Stream_ID==name){
+                $("#minDefault").val(funs[i].min);
+                $("#maxDefault").val(funs[i].max);
+                if(funs[i].mxs[0]!=null){
+                    $("#defaultVal").val(funs[i].mxs[0].data);
                 }
                 else{
-                    $(ths.parentNode.parentNode).remove();
-                }
-			}
-			function onKeyPress(event) {
-			    if(event.keyCode==13){
-			        add();
+                    $("#defaultVal").val('')
                 }
             }
-            function select_trigger(ths) {
-			    value = $(ths.parentNode.parentNode.children[1].children).val();
-			    name = $(ths.parentNode.parentNode.children[2].children).val();
-			    if(value==""||name==""){
-			        $('#checkArgue').css("display","block");
-					$('#checkArgue').html("请填写数据说明和传送数据");
-			        return;
+        }
+    }
+    function getTrigger(data) {
+        for(var i=0 ; i<mxs.length; i++)
+        {
+            if(mxs[i].data==data){
+                return mxs[i].trigger;
+            }
+        }
+        return [];
+    }
+    function checkID(){
+        var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
+        var data=$.trim($('#Stream_ID').val());
+        var temp =false;
+        for (var i = 0; i < funs.length; i++) {
+            if(funs[i].Stream_ID == data)
+            {
+                if((edit_data && edit_data.Stream_ID!=data) || !edit_data) {
+                    temp = true;
+                    break
                 }
-                $('#checkArgue').css("display","none");
-			    var funcs=[];
-			    var data;
-			    var bool = false;
-                var table = '<div class="table"><div style="text-align:left;color: #5f5f5f;">已添加</div><table class="prod-setting-table">\
-                    <thead class="thead">\
-                    <tr>\
-                        <th class="td-1">功能名称</th>\
-                         <th class="td-5">最小值</th>\
-                         <th class="td-6">最大值\
-                        </th>\
-                        <th class="td-7">默认值</th>\
-                        \<th class="td-7">操作</th>\
-                    </tr>\
-                    </thead>\
-                   <tbody class="tbody" id="addFunc">';
-                trig = [];
-                for (var j = 0; j < mxs.length; j++) {
-                    if (mxs[j].data == value) {
-                        dataVal = j;
-                        data = mxs[j];
-                        bool = true;
-                        if (data.trigger && data.trigger[0] != null) {
-                            temp = data.trigger;
-                            for (var k = 0; k < temp.length; k++) {
-                                table += '<tr>';
-                                table += '<th>' + temp[k].func + '</th>';
-                                table += '<th>' + temp[k].min + '</th>';
-                                table += '<th>' + temp[k].max + '</th>';
-                                table += '<th>' + temp[k].val + '</th>';
-                                table += '<th><a onclick="delFunc(this,\'' + temp[k].func + '\')">移除</a></th>';
-                                table += '</tr>';
-                                funcs.push(temp[k].func);
-                                trig.push(temp[k])
-                            }
-                        }
-                        break;
+            }
+        }
+        if (data == '' || role.test(data) == false) {
+            $('#checkID').html("该参数以英文字母、数字下划线组成、不能重复");
+            $('#checkID').css("display", "block");
+            return "error";
+        }
+        else if(temp){
+            $('#checkID').html("该功能参数已经存在！");
+            $('#checkID').css("display", "block");
+            return "repeat"
+        }
+        else {
+            $('#checkID').css("display", "none");
+            return "correct";
+        }
+    }
+    function checkName(){
+        if($.trim($('#name').val())==''){
+            $('#checkName').html("功能名称不能为空!!");
+            $('#checkName').css("display","block");
+            return false
+        }else{
+            $('#checkName').css("display","none");
+            return true
+        }
+    }
+    function checkLength(){
+        if($.trim($('#mxsLength').val())==''){
+            $('#checkLength').html("长度不能为空!!");
+            $('#checkLength').css("display","block");
+            return false
+        }
+        else{
+            $('#checkLength').css("display","none");
+            length = parseInt($("#mxsLength").val());
+            maxValue = Math.pow(2,length)-1;
+            $("#minInt").val(0);
+            $("#maxInt").val(maxValue);
+            if(flag ){
+                params = document.getElementsByName('paramDesc');
+                for (var i=params.length-1 ;i>=0;i--){
+                    if(isIE()){
+                        params[i].parentNode.parentNode.removeNode(true);
+                    }
+                    else{
+                        params[i].parentNode.parentNode.remove();
                     }
                 }
-                if(bool==false){    //新增加group
-                    dataVal = mxs.length-1;
-                    mxs[dataVal].data = value;
-                    mxs[dataVal].desc = name;
+                if (length == 1 ){
+                    add();
+                    add();
+                    document.getElementsByName('paramData')[0].value='0';
+                    document.getElementsByName('paramDesc')[0].value='关';
+                    document.getElementsByName('paramData')[1].value='1';
+                    document.getElementsByName('paramDesc')[1].value='开';
                 }
-
-                table += '</tbody></table></div><hr>';
-			    var msg = '<div class="row" style="text-align:left"><div class="col-xs-4"><span>功能: </span><select id="selectFunc" style="width:120px" onchange="SelectFunc(this)">';
-                msg += "<option value=0>选择功能</option>";
-			    for(var i=0; i<funs.length;i++){
-			        if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].Stream_ID, funcs)==-1)
-			            msg += "<option value="+funs[i].Stream_ID+">"+funs[i].Stream_ID+"</option>"
-                }
-                msg += '</select></div>';
-                msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
-                msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
-                msg += '<div class="col-xs-4"><span class="float-left" >默认值: </span><input id="defaultVal" style="width:50px" step="1" placeholder="" class="form-control float-left">';
-                msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button></div></div>';
-                bootbox.dialog({
-                    title:"添加触发器",
-                    message:table+msg,
-                    buttons:{
-                        "success": {
-                            "label": "<i class='icon-info'></i> 确定",
-                            "className": "btn-primary",
-                            "callback":function () {
-                                if(mxs!=null){
-                                    mxs[dataVal].trigger=trig;
-                                }
-                            }
-                        },
-                        "cancel" : {
-                            "label": "<i class='icon-ok'></i> 取消",
-                            "className": "btn-default",
-                        }
-                    }
-                })
-            }
-            function addToList() {
-			    var ofRow={};
-			    msg = '<tr>';
-			    func = $("#selectFunc").val();
-			    min = $("#minDefault").val();
-			    max = $("#maxDefault").val();
-			    val = $("#defaultVal").val();
-			    if(func && func!=0) {
-                    msg += '<th>' + func + '</th>';
-                    msg += '<th>' + min + '</th>';
-                    msg += '<th>' + max + '</th>';
-                    msg += '<th>' + val + '</th>';
-                    msg += '<th><a onclick="delFunc(this,\''+func+'\')">移除' + '</a></th>';
-                    $("#addFunc").append(msg);
-                    ofRow['func']=func;
-                    ofRow['min']=min;
-                    ofRow['max']=max;
-                    ofRow['val']=val;
-                    trig.push((ofRow));
-                    $("#selectFunc option[value=" + func + "]").remove();
+                else if(length <16){
+                    add();
+                    add();
                 }
             }
-
-            function delFunc(ths,name) {
-			    opt = "<option value="+name+">"+name+"</option>";
-			    $(ths.parentNode.parentNode).remove();
-			    for(var i=0;i<trig.length;i++) {
-                    if(trig[i].func==name){
-                        trig.splice(i,1);
-                    }
-                }
-			    $("#selectFunc").append(opt);
-            }
-
-            function SelectFunc(ths) {
-                name = $(ths).val();
-                for(var i=0;i<funs.length;i++){
-                    if(funs[i].Stream_ID==name){
-                        $("#minDefault").val(funs[i].min);
-                        $("#maxDefault").val(funs[i].max);
-                        if(funs[i].mxs[0]!=null){
-                            $("#defaultVal").val(funs[i].mxs[0].data);
-                        }
-                        else{
-                            $("#defaultVal").val('')
-                        }
-                    }
-                }
-            }
-            function getTrigger(data) {
-			    for(var i=0 ; i<mxs.length; i++)
-                {
-                    if(mxs[i].data==data){
-                        return mxs[i].trigger;
-                    }
-                }
-                return [];
-            }
-			function checkID(){
-				var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
-				var data=$.trim($('#Stream_ID').val());
-                var temp =false;
-                for (var i = 0; i < funs.length; i++) {
-                    if(funs[i].Stream_ID == data)
-                    {
-                        if((edit_data && edit_data.Stream_ID!=data) || !edit_data) {
-                            temp = true;
-                            break
-                        }
-                    }
-                }
-                if (data == '' || role.test(data) == false) {
-                    $('#checkID').html("该参数以英文字母、数字下划线组成、不能重复");
-                    $('#checkID').css("display", "block");
-                    return "error";
-                }
-                else if(temp){
-                    $('#checkID').html("该功能参数已经存在！");
-                    $('#checkID').css("display", "block");
-                    return "repeat"
-                }
-                else {
-                    $('#checkID').css("display", "none");
-                    return "correct";
-                }
-			}
-			function checkName(){
-				if($.trim($('#name').val())==''){
-					$('#checkName').html("功能名称不能为空!!");
-					$('#checkName').css("display","block");
-					return false
-				}else{
-					$('#checkName').css("display","none");
-					return true
-				}
-			}
-			function checkLength(){
-				if($.trim($('#mxsLength').val())==''){
-					$('#checkLength').html("长度不能为空!!");
-					$('#checkLength').css("display","block");
-					return false
-				}
-				else{
-				    $('#checkLength').css("display","none");
-				    length = parseInt($("#mxsLength").val());
-                    maxValue = Math.pow(2,length)-1;
-                    $("#minInt").val(0);
-                    $("#maxInt").val(maxValue);
-                    if(flag ){
-                        params = document.getElementsByName('paramDesc');
-                        for (var i=params.length-1 ;i>=0;i--){
-                            if(isIE()){
-                                params[i].parentNode.parentNode.removeNode(true);
-                            }
-                            else{
-                                params[i].parentNode.parentNode.remove();
-                            }
-                        }
-                        if (length == 1 ){
-                            add();
-                            add();
-                            document.getElementsByName('paramData')[0].value='0';
-                            document.getElementsByName('paramDesc')[0].value='关';
-                            document.getElementsByName('paramData')[1].value='1';
-                            document.getElementsByName('paramDesc')[1].value='开';
-                        }
-                        else if(length <16){
-                            add();
-                            add();
-                        }
-                    }
-					return true
-				}
-			}
-			function checkInt(){
-				var min=$.trim($('#minInt').val());
-				var max=$.trim($('#maxInt').val());
-				//正整数 + 0
-				var role1=/^\d+$/;
-				//负整数 + 0
-				var role2=/^((-\d+)|(0+))$/;
-				if((role1.test(min)==false && role2.test(min)==false) || (role1.test(max)==false && role2.test(max)==false)){
-					$('#checkInt').html("请填写整数!!");
-					$('#checkInt').css("display","block");
-					return "请填写整数!!";
-				}else if(parseInt(min) >= parseInt(max)){
-					$('#checkInt').html("最大值必须大于最小值!!");
-					$('#checkInt').css("display","block");
-					return "最大值必须大于最小值!!";
-				}else{
-					$('#checkInt').css("display","none");
-					return "";
-				}
-			}
-			function checkTimer() {
-                var min=$.trim($('#minTimer').val());
-				var max=$.trim($('#maxTimer').val());
-				//正整数 + 0
-				var role1=/^\d+$/;
-				//负整数 + 0
-				var role2=/^((-\d+)|(0+))$/;
-				if((role1.test(min)==false && role2.test(min)==false) || (role1.test(max)==false && role2.test(max)==false)){
-					$('#checkTimer').html("请填写时间！");
-					$('#checkTimer').css("display","block");
-					return "请填写时间!!";
-				}else if(parseInt(min) >= parseInt(max)){
-					$('#checkTimer').html("最大值必须大于最小值!!");
-					$('#checkTimer').css("display","block");
-					return "最大值必须大于最小值!!";
-				}else{
-					$('#checkTimer').css("display","none");
-					return "";
-				}
-            }
-            function checkEnum() {
-			    var enum_value=$.trim($('#maxEnum').val());
-                enum_value = enum_value.split(' ');
-                if(enum_value.length<2)
-                {
-                    $('#checkEnum').html("枚举值之间必须用空格隔开");
-                    $('#checkEnum').css("display","block");
-                }else{
-					$('#checkEnum').css("display","none");
-					return "";
-				}
-            }
-		</script>
+            return true
+        }
+    }
+    function checkInt(){
+        var min=$.trim($('#minInt').val());
+        var max=$.trim($('#maxInt').val());
+        //正整数 + 0
+        var role1=/^\d+$/;
+        //负整数 + 0
+        var role2=/^((-\d+)|(0+))$/;
+        if((role1.test(min)==false && role2.test(min)==false) || (role1.test(max)==false && role2.test(max)==false)){
+            $('#checkInt').html("请填写整数!!");
+            $('#checkInt').css("display","block");
+            return "请填写整数!!";
+        }else if(parseInt(min) >= parseInt(max)){
+            $('#checkInt').html("最大值必须大于最小值!!");
+            $('#checkInt').css("display","block");
+            return "最大值必须大于最小值!!";
+        }else{
+            $('#checkInt').css("display","none");
+            return "";
+        }
+    }
+    function checkTimer() {
+        var min=$.trim($('#minTimer').val());
+        var max=$.trim($('#maxTimer').val());
+        //正整数 + 0
+        var role1=/^\d+$/;
+        //负整数 + 0
+        var role2=/^((-\d+)|(0+))$/;
+        if((role1.test(min)==false && role2.test(min)==false) || (role1.test(max)==false && role2.test(max)==false)){
+            $('#checkTimer').html("请填写时间！");
+            $('#checkTimer').css("display","block");
+            return "请填写时间!!";
+        }else if(parseInt(min) >= parseInt(max)){
+            $('#checkTimer').html("最大值必须大于最小值!!");
+            $('#checkTimer').css("display","block");
+            return "最大值必须大于最小值!!";
+        }else{
+            $('#checkTimer').css("display","none");
+            return "";
+        }
+    }
+    function checkEnum() {
+        var enum_value=$.trim($('#maxEnum').val());
+        enum_value = enum_value.split(' ');
+        if(enum_value.length<2)
+        {
+            $('#checkEnum').html("枚举值之间必须用空格隔开");
+            $('#checkEnum').css("display","block");
+        }else{
+            $('#checkEnum').css("display","none");
+            return "";
+        }
+    }
+</script>

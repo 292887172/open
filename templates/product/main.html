@@ -316,8 +316,8 @@
                     {% else %}
                         <div class="menuBox">
                             <ul>
-                                <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
-                                    <a href="http://oven.53iq.com/static/html/move.html?id={{ app.app_appid |cover_str8}}.html">
+                                <li id="appMenu" class="jsNavItem" data-id="appMenu" ng-click="nav.selected('appMenu')">
+                                    <a href="#/app">
                                         <i class="fa fa-text" ></i>UI编辑
                                     </a>
                                 </li>
@@ -359,7 +359,7 @@
     <script src="{% static "ng/product/app.js" %}"></script>
     <script src="{% static "ng/product/controller.js" %}"></script>
     <script src="{% static "ng/product/info/controller.js" %}"></script>
-    <script src="{% static "ng/product/dev/controller.js" %}"></script>
+    <script src="{% static "ng/product/app/controller.js" %}"></script>
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
     <script src="{% static "ng/product/edit/controller.js" %}"></script>
     <script src="{% static "ng/product/device/controller.js" %}"></script>
