@@ -238,7 +238,7 @@ $(function(){
                 console.log(data);
             }
         })
-    })
+    });
     // 预览手机端效果
     function previewAppAgain(){
         var changeModel=document.querySelectorAll(".preApp");
