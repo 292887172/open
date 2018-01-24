@@ -172,7 +172,6 @@
 {% block content %}
 
     <div class="container">
-    <h3 class="mainTitle">AppUI配置</h3>
     <div id="logControl">显示日志<input type="radio" value="true" name="log" id="logTrue" checked="checked"><label for="logTrue">是</label><input type="radio" value="false" name="log" id="logFalse"><label for="logFalse">否</label></div>
       <div class="choiceBg clearfix">
         <span class="pull-left title">
@@ -565,6 +564,9 @@
 {% endblock %}
 
 {% block end_fixed_script %}
+    <script>
+    var device_key = "{{ device_key }}"
+    </script>
     <script src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
   <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>

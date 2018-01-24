@@ -591,6 +591,6 @@ def wx_scan_code(request):
         return HttpResponse(json.dumps(res))
 
 
-def ui_conf_main(request):
+def ui_conf_main(request, device_key):
     template = "UI/main.html"
     return render(request, template, locals())
