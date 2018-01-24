@@ -60,7 +60,7 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        if len(app_names)<3:
+        if len(app_names) < 3:
             for i in range(len(APP_NAME)):
                 if APP_NAME[i] not in app_names:
                     result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
@@ -223,7 +223,6 @@ def product_add(request):
             ret["msg"] = "created app error"
             ret["message"] = "创建应用失败"
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
-
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -533,13 +532,10 @@ def upload_file(request):
         print(e)
 
 
-
 @csrf_exempt
 def wx_scan_code(request):
-
     def createRandomStr():
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
-
     if request.method == 'GET':
         url = 'https://' + request.get_host() + request.get_full_path()
         r = requests.get(wx_ticket)
@@ -593,3 +589,8 @@ def wx_scan_code(request):
         res = requests.post(url=url1, data=json.dumps(data))
         res = res.json()
         return HttpResponse(json.dumps(res))
+
+
+def ui_conf_main(request, device_key):
+    template = "UI/main.html"
+    return render(request, template, locals())
