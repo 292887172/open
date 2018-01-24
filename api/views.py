@@ -29,9 +29,12 @@ def pull_ui_conf(request):
                 back_data = {"data": new_list, "code": 0}
                 return JsonResponse(back_data)
             else:
-                return HttpResponse('not fonud conf')
+                data = {'code': -1, 'msg': 'no  conf'}
+                return HttpResponse(json.dumps(data), content_type="application/json")
+
         else:
-            return HttpResponse('not found key')
+            data = {'code': -1, 'msg': 'no key'}
+            return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @csrf_exempt
