@@ -108,8 +108,6 @@ def deal_json(app):
         i["name"] = data["Stream_ID"]
         i["title"] = data["name"]
         i["length"] = data["mxsLength"]
-
-
         i['unit'] = data['corpMark']
         i['isFunction'] = data.get("isFunction", 1)
         i['toSwitch'] = data.get('toSwitch', 0)

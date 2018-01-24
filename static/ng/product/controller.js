@@ -27,7 +27,6 @@ angular.module('Product.main', ['ngRoute'])
             })
         };
 
-
         /**
          *
          * @constructor
