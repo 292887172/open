@@ -31769,3 +31769,134 @@ ValueError: Extra data: line 1 column 3 - line 1 column 9 (char 2 - 8)
 2018-01-15 18:49:29,636 [Thread-3:123145543262208] [django.request:143] [WARNING]- Not Found: /api/getl_ui_conf
 2018-01-15 18:50:11,069 [Thread-4:123145543262208] [django.request:143] [WARNING]- Not Found: /api/getl_ui_conf
 2018-01-15 18:50:22,055 [Thread-5:123145543262208] [django.request:143] [WARNING]- Not Found: /api/getl_ui_conf/
+2018-01-17 15:23:00,449 [Thread-277:18792] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-17 19:04:47,555 [Thread-263:11396] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-17 19:40:05,244 [Thread-503:18884] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 10:04:02,074 [Thread-17:8860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 10:49:23,758 [Thread-67:9676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 10:49:32,544 [Thread-70:12112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 10:58:09,756 [Thread-78:6476] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 14:37:05,093 [Thread-189:6360] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-18 16:11:33,268 [Thread-560:12264] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-18 16:28:08,731 [Thread-569:10076] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-19 15:49:31,124 [Thread-144:3852] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 15:51:06,244 [Thread-258:2816] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 15:53:58,995 [Thread-270:16344] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 15:54:27,548 [Thread-305:10028] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:07:22,442 [Thread-40:17924] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:10:42,799 [Thread-76:12036] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:11:37,623 [Thread-110:5148] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:13:03,090 [Thread-146:3124] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:16:31,087 [Thread-180:6676] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:17:46,461 [Thread-217:10768] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:31:47,406 [Thread-234:3248] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:32:01,607 [Thread-268:16840] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:33:13,692 [Thread-303:8896] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:34:48,348 [Thread-338:10968] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 16:47:09,577 [Thread-51:10160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-19 16:56:00,248 [Thread-35:17540] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-19 16:56:36,846 [Thread-41:4968] [django.request:231] [ERROR]- Internal Server Error: /product/list/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.product.views.product_list didn't return an HttpResponse object. It returned None instead.
+2018-01-19 16:56:38,150 [Thread-42:10768] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-19 16:56:46,541 [Thread-61:188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-19 17:07:03,109 [Thread-101:3120] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:09:02,432 [Thread-135:5240] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:11:37,879 [Thread-170:18292] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:20:08,302 [Thread-206:9720] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:20:40,299 [Thread-224:6884] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:24:38,270 [Thread-259:15900] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:31:47,680 [Thread-36:5016] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:32:05,738 [Thread-52:4116] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-19 17:32:16,607 [Thread-64:2764] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 10:39:13,895 [Thread-54:19076] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 11:30:27,614 [Thread-446:7624] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 170, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 34, in process_request
+    if user and hasattr(user, 'get_session_auth_hash'):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 224, in inner
+    self._setup()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 357, in _setup
+    self._wrapped = self._setupfunc()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\__init__.py", line 151, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 49, in __getitem__
+    return self._session[key]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 175, in _get_session
+    self._session_cache = self.load()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 30, in load
+    self.create()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 48, in create
+    "Unable to create a new session key. "
+RuntimeError: Unable to create a new session key. It is likely that the cache is unavailable.
+2018-01-20 11:30:43,070 [Thread-447:9748] [django.request:231] [ERROR]- Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 170, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 34, in process_request
+    if user and hasattr(user, 'get_session_auth_hash'):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 224, in inner
+    self._setup()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\utils\functional.py", line 357, in _setup
+    self._wrapped = self._setupfunc()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\auth\__init__.py", line 151, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 49, in __getitem__
+    return self._session[key]
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\base.py", line 175, in _get_session
+    self._session_cache = self.load()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 30, in load
+    self.create()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\contrib\sessions\backends\cache.py", line 48, in create
+    "Unable to create a new session key. "
+RuntimeError: Unable to create a new session key. It is likely that the cache is unavailable.
+2018-01-20 11:59:39,539 [Thread-647:13072] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:00:59,818 [Thread-682:14000] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:03:14,441 [Thread-714:17412] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:04:21,095 [Thread-749:2092] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:06:54,816 [Thread-783:12776] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:08:24,160 [Thread-818:12152] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:09:12,860 [Thread-850:16308] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:16:04,770 [Thread-886:15864] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:19:29,950 [Thread-922:412] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:20:43,885 [Thread-954:7040] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:21:58,565 [Thread-988:13052] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:23:13,192 [Thread-1023:9568] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:23:49,575 [Thread-1056:18996] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-20 12:24:29,997 [Thread-1091:14604] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 12:19:50,927 [Thread-2367:14712] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 14:41:39,827 [Thread-3907:7604] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 16:00:27,684 [Thread-4885:13168] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 16:57:18,239 [Thread-5575:18928] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 17:13:06,257 [Thread-5883:17052] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 17:13:14,753 [Thread-5894:17340] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 17:26:11,947 [Thread-6352:7776] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-23 17:39:28,812 [Thread-6666:6344] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-24 09:30:09,466 [Thread-68:8852] [django.request:143] [WARNING]- Not Found: /product/uiconf/{key}
+2018-01-24 09:30:10,054 [Thread-69:15500] [django.request:143] [WARNING]- Not Found: /favicon.ico
