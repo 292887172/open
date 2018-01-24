@@ -22,10 +22,10 @@ $(function(){
             type: "POST",
             async:false,
             url: "/api/pull_ui_conf",
-            data:{key:params.key,device_type: params.t},
+            data:{key:device_key},
             success: function(data){
                 console.log(data);
-              var result=data.data.functions;
+              var result=data['data'].functions;
 
               result.forEach(function(item){
                 renderList.push(item.title);
