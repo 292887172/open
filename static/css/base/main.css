@@ -54,7 +54,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .logo{ float:left; width:290px; height:50px; vertical-align:middle; margin:20px 0; overflow:hidden;}
 .nav{ float:left; margin:21px 0 0px 90px; height:50px;}
 .nav li{ float:left; padding:0 20px; font-size:16px;}
-.nav li a{ color:#333; padding-left: 5px; padding-right: 5px; text-align: center;}
+.nav li a{ color:#333; padding:5px; text-align: center;line-height:12px;}
 .nav li a:hover{ color:#333;  text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;}
 .user{ float:right; margin:29px 0; height:32px; overflow:hidden; color:#333;}
 .user i{ display:inline-block; *display:inline; zoom:1; vertical-align:middle; width:32px; height:32px; margin-right:10px; overflow:hidden; }
@@ -1024,3 +1024,4 @@ a.h5but:hover{ background:#37618f; text-decoration:none}
     top: 0px;
     z-index: 101;
         }
+        ::-webkit-scrollbar{width:5px;}
