@@ -590,3 +590,4 @@
 2018-01-24 09:29:35,483 [Thread-16:10040] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-01-25 09:04:20,419 [Thread-146:123145528782848] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-01-25 09:41:30,866 [Thread-16:123145409019904] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-01-25 11:02:32,595 [Thread-160:123145414275072] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
