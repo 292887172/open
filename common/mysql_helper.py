@@ -6,6 +6,7 @@ from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL
 from base.crypto import md5_en
 import datetime
 
+
 def get_main_connection():
     """
     连接主数据库
@@ -227,4 +228,6 @@ def modify_ui_conf(key, conf, conn):
         print(e)
     finally:
         close_connection(conn)
+
+
 
