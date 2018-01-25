@@ -237,7 +237,7 @@ $(function(){
                 ui_conf:JSON.stringify(uiConfig) },
 
         }).done(function(){
-            alert("ok");
+            bootbox.alert("ok");
         })
     });
     // 预览手机端效果
