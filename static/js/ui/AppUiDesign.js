@@ -22,11 +22,10 @@ $(function(){
             type: "POST",
             async:false,
             url: "/api/pull_ui_conf",
-            data:{key:params.key,device_type: params.t},
+            data:{key:device_key},
             success: function(data){
                 console.log(data);
               var result=data.data.functions;
-
               result.forEach(function(item){
                 renderList.push(item.title);
                 renderName.push(item.name);
@@ -234,7 +233,7 @@ $(function(){
         $.ajax({
             type:"POST",
             url:"/api/upload_ui_conf",
-            data:{ key:params.key,
+            data:{ key:device_key,
                 ui_conf:JSON.stringify(uiConfig) },
 
         }).done(function(){

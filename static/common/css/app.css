@@ -543,6 +543,7 @@ a.list-group-item:focus {
   min-height: 50px;
   padding: 0 15px;
 }
+.header{padding-left:0;padding-right:0;}
 .header > p,
 .footer > p {
   margin-top: 15px;
