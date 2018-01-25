@@ -11,7 +11,7 @@ $(function(){
                 arr.forEach(function(item){
                     var newArr=item.split("=");
                     obj[newArr[0]]=newArr[1];
-                });
+                })
              return obj;
         }
         var params=getUrlParam(url);
@@ -25,8 +25,7 @@ $(function(){
             data:{key:device_key},
             success: function(data){
                 console.log(data);
-              var result=data['data'].functions;
-
+              var result=data.data.functions;
               result.forEach(function(item){
                 renderList.push(item.title);
                 renderName.push(item.name);
@@ -84,7 +83,7 @@ $(function(){
                         src="null";   
                     }
                     functions[index].bg=src;
-                });
+                })
                 uiConfig.function=functions;
                 var moduleControl=document.querySelectorAll(".moduleControl");
                 var changeModel=fnList.querySelectorAll("li");
@@ -139,11 +138,11 @@ $(function(){
         item.addEventListener("click",function(e){
             bgs.forEach(function(item){
                 item.children[0].textContent=null;
-            });
+            })
             e.target.textContent="√";
             currentTheme= RGBToHex(getComputedStyle(e.target.parentNode)["background"]);
         })
-    });
+    })
     // 选择图标
     var icons=document.querySelector("#icons");
     var currentIcon="";
@@ -155,11 +154,11 @@ $(function(){
             items.forEach(function(item){
             item.style.color="#666";
             item.style.background="#fff";
-        });
+        })
         e.target.style.color="#2222ff";
         e.target.style.background="#ccc";
         }
-    });
+    })
     // 获取当前列表项
     var currentLi="";
     var iconBtns=document.querySelectorAll(".lis");
@@ -168,7 +167,7 @@ $(function(){
             item.addEventListener("click",function(e){
                 currentLi=e.target.parentNode.parentNode;
             })
-        });
+        })
 
     // 选择模块背景
     var changeBg=document.querySelector("#changeBg");
@@ -182,22 +181,22 @@ $(function(){
             imgs.forEach(function(item){
                 item.style.padding=0;
                 item.style.border=0;
-            });
+            })
             e.target.style.padding="2px";
             e.target.style.border="1px solid #333";
             bigImg.src=e.target.src;
         }
-    });
+    })
     // 选择图标模态框
     var confirm=document.querySelector(".confirm");
     confirm.addEventListener("click",function(){
         currentLi.querySelector(".switchIcon").querySelector("i").className="glyphicon "+currentIcon+" pull-right";
-    });
+    })
     //选择背景模态框
     var ensure=document.querySelector(".ensure");
     ensure.addEventListener("click",function(){
         currentLi.querySelector(".switchBg").querySelector("img").src=currentBg;
-    });
+    })
     // 生成JSON格式配置文件
     var uiConfig={};
     function getConfig(){
@@ -223,7 +222,7 @@ $(function(){
                 src="null";   
             }
             functions[index].bg=src;
-        });
+        })
         uiConfig.function=functions;
         return uiConfig;
     }
@@ -234,7 +233,7 @@ $(function(){
         $.ajax({
             type:"POST",
             url:"/api/upload_ui_conf",
-            data:{ key:params.key,
+            data:{ key:device_key,
                 ui_conf:JSON.stringify(uiConfig) },
 
         }).done(function(){
@@ -279,7 +278,7 @@ $(function(){
                 changeModel[index].style.width="calc(100% - 2px)";
             }
         })
-    });
+    })
     //获取页面所有属性
     function getInfo(){
         var arr=[];
@@ -290,7 +289,7 @@ $(function(){
             arr[index].module=item.querySelector(".moduleControl").value;
             arr[index].icon=item.querySelector(".switchIcon").querySelector("i").className.slice(0,9);
             arr[index].bg=item.querySelector(".switchBg").querySelector("img").src;
-        });
+        })
         return arr;
     }
 })

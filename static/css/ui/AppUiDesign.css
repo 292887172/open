@@ -55,3 +55,5 @@ body{background:#f8f8f8;color:#666;}
 #preview .screen .fnList li{display:inline-block;float:left;font-size:12px;width:calc(100% - 2px);padding:0;margin:0;text-align:center;background-color:#4c5b84;margin-bottom:2px;height:1.3em;margin-left:2px;line-height:1.3em;}
 .container .modal-body{height:auto;}
 .container .modal-dialog{width:800px;text-align:left;}
+
+::-webkit-scrollbar{width:5px;}
