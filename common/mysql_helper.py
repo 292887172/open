@@ -153,7 +153,6 @@ def query_data(key):
         sql = "select * from ebt_protocol_conf where ebf_pc_device_key = '%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
-        print(res)
         return res
     except Exception as e:
         print(e)
