@@ -1,23 +1,16 @@
 $(function(){
-        // 截取url参数
-        // var url="https://oven.53iq.com/static/html/controler.html?d=F0FE6B15E97B&t=1";
-        var url=window.location.href;
-        function getUrlParam(url){
-            var obj={};
-            var str=url;
-            var index=str.indexOf("?");
-            var newStr=str.slice(index+1);
-            var arr=newStr.split("&");
-                arr.forEach(function(item){
-                    var newArr=item.split("=");
-                    obj[newArr[0]]=newArr[1];
-                })
-             return obj;
-        }
-        var params=getUrlParam(url);
         // 渲染列表
         var renderList=[];
         var renderName=[];
+        // $.ajax({
+        //     type: "GET",
+        //     async:false,
+        //     url: "/api/diy_ui_conf",
+        //     data:{key:"12323131"},
+        //     success: function(data){
+        //       console.log(data);
+        //     }
+        //  });
         $.ajax({
             type: "POST",
             async:false,
@@ -59,13 +52,13 @@ $(function(){
         $( "#sortable" ).sortable({
             stop:function(event,ui){
                 previewAppAgain();
-                console.log(getInfo());
+                getConfig();
+                console.log(uiConfig);
                 var list=sortable.querySelectorAll("li");
                 var logTrue=document.querySelector("#logTrue");
                     logTrue.checked==false?uiConfig.isLog=false:uiConfig.isLog=true;
                     uiConfig.currentTheme=currentTheme;
                 var functions=[];
-                console.log(list);
                 list.forEach(function(item,index){
                     functions[index]=new Object();
                     functions[index].title=item.querySelector(".title").querySelector("span").textContent;
@@ -106,7 +99,7 @@ $(function(){
                         changeModel[index].style.display="block";
                     }
                 })
-    }) 
+    })
             }
         });
         var save=document.createElement("button");
@@ -200,6 +193,7 @@ $(function(){
     // 生成JSON格式配置文件
     var uiConfig={};
     function getConfig(){
+        uiConfig={};
         var functions=[];
         var logTrue=document.querySelector("#logTrue");
         logTrue.checked==false?uiConfig.isLog=false:uiConfig.isLog=true;
@@ -227,9 +221,8 @@ $(function(){
         return uiConfig;
     }
     save.addEventListener("click",function(){
-        getConfig();
-        console.log(JSON.stringify(uiConfig));
-        console.log(getInfo());
+        console.log(uiConfig);
+        //console.log(JSON.stringify(uiConfig));
         $.ajax({
             type:"POST",
             url:"/api/upload_ui_conf",
