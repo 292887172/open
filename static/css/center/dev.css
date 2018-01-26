@@ -10,7 +10,7 @@ a:hover{text-decoration:underline;}
 img{border:none;}
 
 /* 头部 */
-#header{position:relative; z-index:10; height:90px; background:#F1F4F9;border-bottom: 1px solid #ccc;margin-left:-2px;}
+#header{position:relative; z-index:10; height:90px; background:#F1F4F9;border-bottom: 1px solid #ccc;margin-left:-5px;}
 #header .cnt{width:1200px; height:90px; margin:0 auto;}
 #header .cnt h1{float:left;}
 #header .cnt h1 img{margin:20px 0;}
