@@ -4,6 +4,7 @@ $(function(){
         var renderName=[];
         var logBtn=false;
         var configList=[];
+        var dragControl=true;
         $.ajax({
             type: "GET",
             async:false,
@@ -92,6 +93,7 @@ $(function(){
         previewApp();
         $( "#sortable" ).sortable({
             stop:function(event,ui){
+                dragControl=false;
                 previewAppAgain();
                 getConfig();
                 console.log(uiConfig);
@@ -255,6 +257,10 @@ $(function(){
         uiConfig.function=functions;
     }
     save.addEventListener("click",function(){
+        console.log(dragControl);
+        if(dragControl){
+            getConfig();
+        }
         $.ajax({
             type:"POST",
             async:false,
