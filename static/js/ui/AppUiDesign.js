@@ -53,7 +53,6 @@ $(function(){
                 str+='</select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon '+item.icon+' pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:'+display+'" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="'+item.bg+'" class="squareBg pull-right"   /><button class="btn pull-right margin">选择背景</button></span>';
                 li.innerHTML=str;
                 sortable.appendChild(li);
-                getConfig();
             })
          }else{
              $.ajax({
@@ -95,6 +94,7 @@ $(function(){
             stop:function(event,ui){
                 previewAppAgain();
                 getConfig();
+                console.log(uiConfig);
                 var list=sortable.querySelectorAll("li");
                 var logTrue=document.querySelector("#logTrue");
                     logTrue.checked==false?uiConfig.isLog=false:uiConfig.isLog=true;
@@ -255,10 +255,9 @@ $(function(){
         uiConfig.function=functions;
     }
     save.addEventListener("click",function(){
-        getConfig();
-        console.log(uiConfig);
         $.ajax({
             type:"POST",
+            async:false,
             url:"/api/upload_ui_conf",
             data:{ key:device_key,
                 ui_conf:JSON.stringify(uiConfig)}
