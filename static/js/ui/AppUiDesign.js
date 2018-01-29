@@ -10,6 +10,7 @@ $(function(){
             url: "/api/diy_ui_conf",
             data:{key:device_key},
             success: function(data){
+                console.log(data);
                 data.function.forEach(function(item){
                     renderList.push(item.title);
                     renderName.push(item.name);
@@ -49,11 +50,7 @@ $(function(){
                     case "hidden":str+='<option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden" selected>不显示</option>',display="none";break;
                     default:str+='<option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>',display="none";
                 }
-                var showImg="block";
-                if(item.bg==null){
-                    showImg="none";
-                }
-                str+='</select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon '+item.icon+' pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:'+display+'" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img style="display:'+showImg+';" src="'+item.bg+'" class="squareBg pull-right"   /><button class="btn pull-right margin">选择背景</button></span>';
+                str+='</select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon '+item.icon+' pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:'+display+'" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="'+item.bg+'" class="squareBg pull-right"   /><button class="btn pull-right margin">选择背景</button></span>';
                 li.innerHTML=str;
                 sortable.appendChild(li);
                 getConfig();
@@ -258,6 +255,7 @@ $(function(){
         uiConfig.function=functions;
     }
     save.addEventListener("click",function(){
+        getConfig();
         console.log(uiConfig);
         $.ajax({
             type:"POST",
