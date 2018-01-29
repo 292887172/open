@@ -31905,34 +31905,1503 @@ RuntimeError: Unable to create a new session key. It is likely that the cache is
 2018-01-24 09:38:10,232 [Thread-102:7964] [django.request:143] [WARNING]- Not Found: /product/uiconf/214321421kahbeivb
 2018-01-24 09:38:12,571 [Thread-105:1468] [django.request:143] [WARNING]- Not Found: /product/uiconf/key=
 2018-01-24 09:38:18,186 [Thread-110:8436] [django.request:143] [WARNING]- Not Found: /product/uiconf/53SPjntgC4kahbeivb
-2018-01-25 09:04:21,887 [Thread-170:123145539293184] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 09:04:38,286 [Thread-194:123145534038016] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 09:41:33,491 [Thread-45:123145419530240] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 09:57:01,741 [Thread-145:123145409019904] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:22,918 [Thread-147:123145414275072] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:24,004 [Thread-150:123145414275072] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:24,831 [Thread-153:123145414275072] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:26,676 [Thread-158:123145409019904] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:34,547 [Thread-190:123145419530240] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:56,779 [Thread-5:123145398050816] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 11:02:58,207 [Thread-10:123145398050816] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 14:17:17,541 [Thread-3:123145385144320] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+2018-01-24 17:23:26,336 [Thread-8:7592] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:28,693 [Thread-11:8220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:28,787 [Thread-12:7788] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:30,451 [Thread-15:5784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:31,664 [Thread-18:4028] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:31,728 [Thread-19:9184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:23:36,804 [Thread-22:5172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:24:03,805 [Thread-25:7556] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:24:13,439 [Thread-30:7028] [django.request:143] [WARNING]- Not Found: /product
+2018-01-24 17:24:20,326 [Thread-37:1140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:24:38,129 [Thread-43:9020] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:24:38,262 [Thread-44:8216] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:24:38,899 [Thread-48:8524] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:33:58,923 [Thread-130:9176] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:33:59,752 [Thread-133:7848] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:33:59,821 [Thread-134:8348] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:01,223 [Thread-137:5236] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:06,502 [Thread-143:6208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:08,278 [Thread-146:8840] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:08,360 [Thread-147:1108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:11,595 [Thread-153:8184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 17:34:11,748 [Thread-154:8280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 18:23:42,690 [Thread-173:7340] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 18:24:07,823 [Thread-188:6992] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
 Traceback (most recent call last):
-  File "/Users/zhanlingjie/Documents/virEnv/openEnv/openEnv/lib/python3.4/site-packages/django/core/handlers/base.py", line 130, in get_response
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 18:24:13,561 [Thread-190:6664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 18:24:17,281 [Thread-191:9080] [django.request:231] [ERROR]- Internal Server Error: /product/main/
+Traceback (most recent call last):
+  File "F:\work\open\common\smart_helper.py", line 212, in get_factory_name
+    return result['ebf_factory_name']
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\app\product\views.py", line 482, in product_main
+    return get()
+  File "F:\work\open\app\product\views.py", line 273, in get
+    band_name = get_factory_name(app.app_factory_uid)
+  File "F:\work\open\common\smart_helper.py", line 214, in get_factory_name
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 18:24:18,132 [Thread-192:8488] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-24 18:24:27,847 [Thread-198:9896] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 18:25:48,953 [Thread-210:6684] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 18:25:57,113 [Thread-212:9116] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-24 18:26:21,240 [Thread-219:9764] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 18:27:15,094 [Thread-223:5968] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 19:41:46,701 [Thread-233:8112] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:48:06,394 [Thread-236:9712] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:48:06,562 [Thread-237:9616] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:48:24,280 [Thread-262:10204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:49:49,919 [Thread-269:8732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:49:50,088 [Thread-270:9768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 19:50:07,526 [Thread-272:8976] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-24 19:50:31,275 [Thread-274:9276] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-24 19:51:46,905 [Thread-280:3752] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 19:52:51,911 [Thread-283:9420] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 19:52:57,932 [Thread-330:10184] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 19:55:10,289 [Thread-349:9352] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 19:55:11,220 [Thread-354:6264] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:02:19,728 [Thread-358:9648] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:03:05,428 [Thread-362:7408] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:03:06,135 [Thread-366:2244] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:03:26,023 [Thread-371:3984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 20:03:26,131 [Thread-372:6512] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 20:03:50,394 [Thread-376:6760] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:06:38,684 [Thread-381:208] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:06:40,419 [Thread-401:6716] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 20:06:42,240 [Thread-404:9904] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:06:56,039 [Thread-448:7504] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-24 20:07:12,476 [Thread-473:7068] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 20:07:12,649 [Thread-474:7048] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-24 20:07:14,689 [Thread-478:3196] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 08:37:44,090 [Thread-23:4348] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:37:58,414 [Thread-105:2988] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:00,725 [Thread-115:3548] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:02,135 [Thread-118:5008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:03,428 [Thread-122:1620] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:05,111 [Thread-125:5080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:38,223 [Thread-127:5372] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:38:38,286 [Thread-128:4252] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:39:06,945 [Thread-138:5732] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:39:06,985 [Thread-139:908] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:59:30,996 [Thread-149:4932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 08:59:31,050 [Thread-150:1668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:03:26,322 [Thread-164:4624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:10:20,179 [Thread-209:5456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:18:40,039 [Thread-280:796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:22:14,158 [Thread-294:8140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:22:14,221 [Thread-295:8120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:23:42,776 [Thread-318:1608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:23:42,863 [Thread-319:8092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:26:38,250 [Thread-339:7800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:26:38,427 [Thread-340:6500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:29:47,855 [Thread-419:6032] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:33:40,360 [Thread-534:6884] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:33:50,229 [Thread-561:6932] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:33:56,195 [Thread-568:8188] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:34:11,612 [Thread-593:6564] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:35:56,835 [Thread-623:6780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:07,980 [Thread-629:5388] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:12,183 [Thread-640:1060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:25,848 [Thread-658:8288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:28,142 [Thread-663:8320] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:31,922 [Thread-669:8584] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:31,971 [Thread-670:8588] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:37,373 [Thread-674:9060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:41,523 [Thread-676:8300] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:43,264 [Thread-680:8380] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:43,324 [Thread-681:8388] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:51,324 [Thread-686:8608] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:54,531 [Thread-689:7912] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:36:56,544 [Thread-693:8536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:37:03,133 [Thread-701:6508] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:37:05,656 [Thread-706:9040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:06,533 [Thread-736:8500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:10,609 [Thread-743:8324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:10,843 [Thread-744:9108] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:12,904 [Thread-753:7364] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:14,770 [Thread-760:7852] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:14,902 [Thread-761:8948] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:25,082 [Thread-785:8640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:27,229 [Thread-802:7012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:40:27,308 [Thread-803:8456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:42:41,919 [Thread-851:8124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:42:42,016 [Thread-852:1060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:44:18,461 [Thread-861:6784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:44:18,559 [Thread-862:8232] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:46:26,310 [Thread-946:796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 09:46:26,391 [Thread-947:8404] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 10:00:31,207 [Thread-976:6444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 10:00:31,285 [Thread-977:7340] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 10:01:00,531 [Thread-1017:9120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 10:01:11,050 [Thread-1035:7644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 10:36:21,898 [Thread-1074:4600] [django.request:143] [WARNING]- Not Found: /api/user/device/list
+2018-01-25 10:36:23,066 [Thread-1075:9168] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 11:14:09,055 [Thread-1076:2512] [django.request:143] [WARNING]- Not Found: /api/user/device/list
+2018-01-25 13:20:03,733 [Thread-1100:6192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:20:12,088 [Thread-1104:1264] [django.request:143] [WARNING]- Not Found: /webapp/device
+2018-01-25 13:20:13,475 [Thread-1105:10204] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 13:20:58,493 [Thread-1111:8140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:20:58,587 [Thread-1112:9708] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:20,079 [Thread-1125:8644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:22,208 [Thread-1134:10152] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:23,854 [Thread-1138:9276] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:52,008 [Thread-1144:9572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:52,084 [Thread-1145:9020] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:53,859 [Thread-1151:2568] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:53,964 [Thread-1152:9260] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:57,105 [Thread-1157:5928] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:21:57,201 [Thread-1158:8204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:16,011 [Thread-1165:4860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:16,079 [Thread-1166:9976] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:18,454 [Thread-1171:10212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:18,541 [Thread-1172:9212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:24,993 [Thread-1177:10208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:22:25,258 [Thread-1178:10012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:08,202 [Thread-1187:6592] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:10,131 [Thread-1192:8228] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:10,223 [Thread-1193:10160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:23,202 [Thread-1228:9220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:26,010 [Thread-1241:1740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:39,594 [Thread-1246:9640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:39,672 [Thread-1247:2816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:42,206 [Thread-1252:6092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:42,424 [Thread-1253:1164] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:43,924 [Thread-1259:2904] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:44,077 [Thread-1260:7904] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:48,538 [Thread-1267:9972] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:50,763 [Thread-1270:8544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:52,656 [Thread-1273:9124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:57,725 [Thread-1277:2308] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:57,906 [Thread-1278:4820] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:23:59,855 [Thread-1283:9572] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:06,155 [Thread-1288:4924] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:06,259 [Thread-1289:6124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:26,458 [Thread-1294:9288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:28,940 [Thread-1299:5940] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:29,142 [Thread-1300:9636] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:49,101 [Thread-1305:5676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:51,553 [Thread-1310:7796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:53,627 [Thread-1316:9996] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:53,702 [Thread-1317:1740] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:55,789 [Thread-1322:4656] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:24:55,859 [Thread-1323:2364] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:06,766 [Thread-1328:2816] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:06,848 [Thread-1329:9640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:26,525 [Thread-1334:7660] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:51,512 [Thread-1354:10160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:51,563 [Thread-1355:4968] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:53,681 [Thread-1361:9880] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:53,808 [Thread-1362:3124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:56,597 [Thread-1368:10184] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:58,603 [Thread-1373:10084] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:25:58,654 [Thread-1374:8140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:09,390 [Thread-1385:9800] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:09,671 [Thread-1386:3260] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:12,311 [Thread-1392:8128] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:14,840 [Thread-1397:9808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:14,905 [Thread-1398:10036] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:18,311 [Thread-1404:6192] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:29,138 [Thread-1409:1480] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:39,505 [Thread-1477:8212] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:26:44,784 [Thread-1483:8124] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:26:50,487 [Thread-1488:7120] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:26:54,704 [Thread-1493:2932] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:27:09,090 [Thread-1499:7288] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:27:10,809 [Thread-1502:10084] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:27:12,554 [Thread-1507:9084] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:28:54,203 [Thread-1516:10080] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:30:48,385 [Thread-1519:3612] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:30:51,398 [Thread-1523:5300] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:32:19,374 [Thread-1525:2644] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 13:41:12,103 [Thread-1537:4548] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:41:15,876 [Thread-1540:9940] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:42:51,654 [Thread-1544:9928] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:46:59,199 [Thread-1548:9784] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:47:01,527 [Thread-1552:10260] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:47:04,707 [Thread-1556:10284] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:49:26,674 [Thread-1567:10712] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:49:59,897 [Thread-1589:11088] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:50:08,454 [Thread-1598:11216] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:51:54,922 [Thread-1647:9732] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 13:59:13,021 [Thread-1663:4820] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:13,059 [Thread-1664:4984] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:17,076 [Thread-1668:1624] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:17,113 [Thread-1669:2324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:18,237 [Thread-1673:9372] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:19,926 [Thread-1676:9436] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:20,014 [Thread-1677:8040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:20,667 [Thread-1679:8208] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:20,712 [Thread-1680:9092] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:21,673 [Thread-1684:2120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 13:59:23,872 [Thread-1687:4220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:31,889 [Thread-1691:8724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:31,955 [Thread-1692:5544] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:36,830 [Thread-1695:7648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:38,424 [Thread-1699:9280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:39,938 [Thread-1703:5444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:41,899 [Thread-1707:9728] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:44,729 [Thread-1710:10040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:02:48,820 [Thread-1714:8288] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:03:34,996 [Thread-1720:11032] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:03:35,556 [Thread-1723:9748] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:03:41,372 [Thread-1756:9080] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:06:44,924 [Thread-1790:9916] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:29:24,457 [Thread-1797:9868] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:29:31,201 [Thread-1831:11212] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:29:35,380 [Thread-1886:10752] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:30:57,826 [Thread-1925:10212] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:30:58,687 [Thread-1929:11208] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:31:04,666 [Thread-1942:10664] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:04,753 [Thread-1943:8068] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:05,851 [Thread-1946:5560] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:06,004 [Thread-1947:5668] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:07,913 [Thread-1953:10164] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:09,369 [Thread-1958:8288] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:09,484 [Thread-1959:9916] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:10,876 [Thread-1965:10700] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:14,378 [Thread-1970:6240] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:14,481 [Thread-1971:8724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:16,819 [Thread-1976:9516] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:16,893 [Thread-1977:6768] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:22,933 [Thread-1982:7040] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:24,610 [Thread-1988:2704] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:26,288 [Thread-1993:7896] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:26,416 [Thread-1994:10796] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:33,539 [Thread-2002:7500] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:33,599 [Thread-2003:9644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:35,371 [Thread-2009:8432] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:31:35,445 [Thread-2010:5404] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:36:31,099 [Thread-2023:10580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:36:36,408 [Thread-2029:10788] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:37:32,096 [Thread-2038:10028] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:37:33,486 [Thread-2042:8456] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:37:35,855 [Thread-2047:8548] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:37:37,013 [Thread-2049:10296] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:37:37,160 [Thread-2051:10960] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:37:52,480 [Thread-2053:4656] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:37:52,618 [Thread-2054:10324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:22,714 [Thread-2078:9788] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:26,920 [Thread-2082:10460] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:27,082 [Thread-2083:4220] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:28,677 [Thread-2086:10444] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:28,918 [Thread-2088:1060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:29,293 [Thread-2091:8476] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:34,200 [Thread-2094:8264] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:34,300 [Thread-2095:10148] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:39:40,311 [Thread-2100:5784] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:39:43,278 [Thread-2104:688] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:39:57,843 [Thread-2147:2324] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 14:41:47,646 [Thread-2200:4412] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:42:02,544 [Thread-2208:5480] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.pull_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 14:42:31,240 [Thread-2250:8572] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-25 14:46:19,934 [Thread-162:8440] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:23,356 [Thread-173:11200] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:25,956 [Thread-184:10140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:26,802 [Thread-188:6120] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:27,460 [Thread-190:9784] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:27,528 [Thread-191:8060] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:28,740 [Thread-193:7536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:28,771 [Thread-194:7340] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:30,090 [Thread-197:9080] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:35,055 [Thread-200:9644] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 14:46:40,618 [Thread-215:684] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 15:03:58,461 [Thread-389:9680] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
     % (callback.__module__, view_name))
 ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
-2018-01-25 14:19:10,438 [Thread-42:123145474633728] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 14:19:34,061 [Thread-65:123145474633728] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-25 16:18:58,079 [Thread-48:123145529704448] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 13:13:02,596 [Thread-41:123145377013760] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 13:14:47,515 [Thread-98:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 13:19:21,761 [Thread-192:123145382268928] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:13:47,693 [Thread-467:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:23:05,272 [Thread-573:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:23:05,307 [Thread-575:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:25:33,974 [Thread-605:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:42:18,326 [Thread-748:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 15:49:25,499 [Thread-781:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 16:37:42,425 [Thread-983:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 17:13:09,319 [Thread-1330:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
-2018-01-29 17:15:25,258 [Thread-1371:123145361248256] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 15:04:38,319 [Thread-447:7980] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:05:11,486 [Thread-577:3316] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:07:21,171 [Thread-655:10788] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:07:26,749 [Thread-676:9060] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:08:10,060 [Thread-32:5200] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:08:12,231 [Thread-99:10252] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view api.views.diy_ui_conf didn't return an HttpResponse object. It returned None instead.
+2018-01-25 15:14:33,531 [Thread-14:6416] [django.request:143] [WARNING]- Not Found: /api/user/device/list
+2018-01-25 15:14:34,859 [Thread-15:6184] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 15:14:51,044 [Thread-16:8032] [django.request:143] [WARNING]- Not Found: /product/uiconf/
+2018-01-25 15:14:51,312 [Thread-17:1056] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 16:06:58,111 [Thread-24:11332] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 16:07:07,704 [Thread-25:11280] [django.request:143] [WARNING]- Not Found: /api/user/device/list
+2018-01-25 16:07:07,894 [Thread-26:4888] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 16:12:16,975 [Thread-46:5080] [django.request:143] [WARNING]- Not Found: /webapp/device/cookbook
+2018-01-25 16:52:16,692 [Thread-5:11860] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 16:54:49,489 [Thread-9:9892] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-25 16:54:49,536 [Thread-10:12640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 09:13:27,685 [Thread-23:5780] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 10:22:33,987 [Thread-786:7008] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 10:22:34,065 [Thread-787:5408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 10:28:39,120 [Thread-901:7548] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-26 10:28:56,904 [Thread-966:7240] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-26 10:30:42,871 [Thread-1036:8712] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-26 10:51:44,921 [Thread-3:2536] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 10:51:44,994 [Thread-4:1676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 10:54:05,910 [Thread-11:8440] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-26 11:01:26,714 [Thread-13:6356] [django.request:143] [WARNING]- Not Found: /webapp/device
+2018-01-26 11:16:43,633 [Thread-17:7380] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:16:43,824 [Thread-18:9324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:17:07,608 [Thread-37:10212] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:17:11,471 [Thread-41:7992] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:17:13,474 [Thread-44:2548] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:17:16,037 [Thread-48:6204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:17:17,855 [Thread-51:5128] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:18:05,609 [Thread-55:8324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:18:07,252 [Thread-58:5888] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:18:09,113 [Thread-62:7456] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:19:05,398 [Thread-67:5808] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:19:06,850 [Thread-70:8640] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:19:08,300 [Thread-74:9252] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:19:09,687 [Thread-77:9160] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:22:17,594 [Thread-81:7352] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:22:19,337 [Thread-84:2280] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:22:21,737 [Thread-88:6728] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:25:16,053 [Thread-91:6428] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:25:25,372 [Thread-96:6392] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-26 11:25:44,151 [Thread-101:8204] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-26 11:25:45,163 [Thread-105:9884] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-26 11:26:10,698 [Thread-108:9372] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:26:16,166 [Thread-116:10080] [django.request:231] [ERROR]- Internal Server Error: /api/pull_ui_conf
+Traceback (most recent call last):
+  File "F:\work\open\common\mysql_helper.py", line 155, in query_data
+    print(res)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 16, in pull_ui_conf
+    a = query_data(device_key)
+  File "F:\work\open\common\mysql_helper.py", line 158, in query_data
+    print(e)
+OSError: [Errno 22] Invalid argument
+2018-01-26 11:28:23,460 [Thread-3:8872] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:23,590 [Thread-4:5692] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:27,267 [Thread-8:6048] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:27,323 [Thread-9:8580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:33,495 [Thread-18:6868] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:35,030 [Thread-21:7400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:36,449 [Thread-25:4700] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:36,486 [Thread-26:9672] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:47,587 [Thread-30:10132] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-26 11:28:47,668 [Thread-31:8724] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 10:24:42,828 [Thread-24:8284] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 10:24:50,221 [Thread-76:4716] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-29 10:25:04,971 [Thread-104:10468] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 65, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-01-29 11:33:26,706 [Thread-157:10484] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 12:41:02,698 [Thread-301:3244] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 12:41:08,409 [Thread-310:1604] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 12:41:08,458 [Thread-311:11172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 13:34:28,524 [Thread-710:2888] [django.request:143] [WARNING]- Not Found: /product/uiconf/undefined
+2018-01-29 13:34:33,704 [Thread-716:10032] [django.request:143] [WARNING]- Not Found: /product/uiconf/undefined
+2018-01-29 13:34:35,633 [Thread-722:10108] [django.request:143] [WARNING]- Not Found: /product/uiconf/undefined
+2018-01-29 13:34:36,168 [Thread-727:10252] [django.request:143] [WARNING]- Not Found: /product/uiconf/undefined
+2018-01-29 13:34:37,570 [Thread-736:9324] [django.request:143] [WARNING]- Not Found: /product/uiconf/undefined
+2018-01-29 13:35:07,771 [Thread-742:5904] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:17,013 [Thread-750:10688] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:22,638 [Thread-756:10436] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:23,472 [Thread-761:9124] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:31,674 [Thread-767:10784] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:33,281 [Thread-772:9544] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:35:40,234 [Thread-779:8072] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:38:18,342 [Thread-785:7592] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:38:27,542 [Thread-792:8336] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:43:13,539 [Thread-798:8744] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:43:21,796 [Thread-805:9064] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:43:33,121 [Thread-812:1896] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:46:53,021 [Thread-876:10860] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:51:52,651 [Thread-939:9308] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 13:52:02,753 [Thread-947:6344] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:04:39,409 [Thread-1281:11096] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:05:48,869 [Thread-1287:8944] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:07:43,818 [Thread-1293:9116] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:07:51,191 [Thread-1357:7364] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:15:02,191 [Thread-1567:6292] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:15:50,120 [Thread-1631:6288] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:20:10,265 [Thread-1695:10276] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:20:38,182 [Thread-1741:10816] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:23:09,652 [Thread-1824:6564] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:23:21,195 [Thread-1832:9928] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:23:31,280 [Thread-1838:10992] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:33:43,504 [Thread-1942:10040] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:34:18,635 [Thread-2009:10128] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:34:54,993 [Thread-2072:8524] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 14:42:30,269 [Thread-2136:10760] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:05:06,330 [Thread-2466:9580] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 15:05:06,379 [Thread-2467:4496] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 15:12:55,180 [Thread-3:10276] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 15:12:55,235 [Thread-4:3172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 15:45:07,910 [Thread-651:7416] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:17,209 [Thread-657:10580] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:29,290 [Thread-664:8688] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:30,810 [Thread-669:9376] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:32,003 [Thread-675:6616] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:35,718 [Thread-681:10816] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:37,475 [Thread-686:11108] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:38,953 [Thread-692:10756] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:45,104 [Thread-699:6240] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:46,466 [Thread-704:10100] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:47,919 [Thread-709:10576] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:53,744 [Thread-716:6936] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:55,169 [Thread-721:9272] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:56,434 [Thread-726:356] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:45:57,565 [Thread-731:7112] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:15,104 [Thread-737:10860] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:27,360 [Thread-744:11052] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:28,940 [Thread-749:7648] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:30,146 [Thread-754:8504] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:36,908 [Thread-761:8396] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:38,360 [Thread-766:6136] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:39,495 [Thread-771:5100] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:41,015 [Thread-776:10624] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:42,814 [Thread-781:6924] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:46:59,743 [Thread-844:10392] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:47:23,944 [Thread-851:4832] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:47:25,213 [Thread-856:7292] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:48:27,316 [Thread-862:9552] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
+2018-01-29 15:48:30,181 [Thread-880:7364] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-29 15:48:35,567 [Thread-907:3676] [django.request:143] [WARNING]- Not Found: /product/uiconf/null
