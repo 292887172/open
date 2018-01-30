@@ -16,12 +16,11 @@ def pull_ui_conf(request):
             a = query_data(device_key)
             if a:
                 new_functions = []
-
                 function_list = json.loads(a['ebf_pc_conf'])['functions']
                 # print(json.loads(a['ebf_page_conf'])['name'])
                 for i in function_list:
-                    new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
-
+                    if int(i['isUiShow']) == 1:
+                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
                 json.loads(a['ebf_pc_conf'])['functions'] = new_functions
 
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],

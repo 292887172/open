@@ -134,7 +134,7 @@ id                   设备编号
 获取设备的配置文件
 --------------------------
 
-* 接口地址：http://test.open.53iq.com/api/pull_ui_conf
+* 接口地址：http://open.53iq.com/api/pull_ui_conf
 * HTTP方式：POST(通过接口访问)
 
 输入参数
