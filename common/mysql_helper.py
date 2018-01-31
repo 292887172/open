@@ -6,6 +6,7 @@ from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL
 from base.crypto import md5_en
 import datetime
 
+
 def get_main_connection():
     """
     连接主数据库
@@ -152,7 +153,6 @@ def query_data(key):
         sql = "select * from ebt_protocol_conf where ebf_pc_device_key = '%s'" %(key)
         cursor.execute(sql)
         res = cursor.fetchone()
-        print(res)
         return res
     except Exception as e:
         print(e)
@@ -227,4 +227,6 @@ def modify_ui_conf(key, conf, conn):
         print(e)
     finally:
         close_connection(conn)
+
+
 
