@@ -183,7 +183,7 @@
                                             <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
                                             <div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
-                                        <div id="selectInt" style="background-color:#fff;display:block;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                        <div id="selectInt" style="background-color:#fff;display:none;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
                                             <table border=0>
                                                 <tr>
                                                     <td height=30px align="center">最小值</td>
@@ -286,8 +286,8 @@
                                         </button>
                                     </span>
                                     <span>
-                                        <button ng-hide='{[{ visible }]}' class="btn" onclick="init()" type="button">
-                                        <i  class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                                        <a ng-hide='{[{ visible }]}' class="btn" href="#/argue" type="button">
+                                        <i  class="ace-icon fa fa-undo bigger-110"></i>返回</a>
                                     </span>
                                 </div>
                             </div>
@@ -561,8 +561,8 @@
         var msg = '<div class="row" style="text-align:left"><div class="col-xs-4"><span>功能: </span><select id="selectFunc" style="width:120px" onchange="SelectFunc(this)">';
         msg += "<option value=0>选择功能</option>";
         for(var i=0; i<funs.length;i++){
-            if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].Stream_ID, funcs)==-1)
-                msg += "<option value="+funs[i].Stream_ID+">"+funs[i].Stream_ID+"</option>"
+            if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].name, funcs)==-1)
+                msg += "<option value="+funs[i].Stream_ID+">"+funs[i].name+"</option>"
         }
         msg += '</select></div>';
         msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
@@ -584,7 +584,7 @@
                 },
                 "cancel" : {
                     "label": "<i class='icon-ok'></i> 取消",
-                    "className": "btn-default",
+                    "className": "btn-default"
                 }
             }
         })
@@ -592,7 +592,8 @@
     function addToList() {
         var ofRow={};
         msg = '<tr>';
-        func = $("#selectFunc").val();
+        func = $("#selectFunc").find("option:selected").text();
+        stream_id = $("#selectFunc").val();
         min = $("#minDefault").val();
         max = $("#maxDefault").val();
         val = $("#defaultVal").val();
@@ -607,8 +608,9 @@
             ofRow['min']=min;
             ofRow['max']=max;
             ofRow['val']=val;
+            ofRow["stream_id"]= stream_id;
             trig.push((ofRow));
-            $("#selectFunc option[value=" + func + "]").remove();
+            $("#selectFunc option[value=" + stream_id + "]").remove();
         }
     }
 
@@ -642,7 +644,8 @@
         for(var i=0 ; i<mxs.length; i++)
         {
             if(mxs[i].data==data){
-                return mxs[i].trigger;
+                var trigger = mxs[i].trigger;
+                return trigger;
             }
         }
         return [];
