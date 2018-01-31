@@ -412,7 +412,7 @@ def product_main(request):
             key = app.app_appid
             key = key[-8:]
             device_list = get_device_list(app.app_appid)
-            return JsonResponse({'data': device_list, 'key': key})
+            return JsonResponse({'data': device_list, 'key': key, 'check_state': app.check_status})
         # 获取工厂列表
         data = request.POST.get("data", "")
         if data == "factory_list":
