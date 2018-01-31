@@ -31905,3 +31905,303 @@ RuntimeError: Unable to create a new session key. It is likely that the cache is
 2018-01-24 09:38:10,232 [Thread-102:7964] [django.request:143] [WARNING]- Not Found: /product/uiconf/214321421kahbeivb
 2018-01-24 09:38:12,571 [Thread-105:1468] [django.request:143] [WARNING]- Not Found: /product/uiconf/key=
 2018-01-24 09:38:18,186 [Thread-110:8436] [django.request:143] [WARNING]- Not Found: /product/uiconf/53SPjntgC4kahbeivb
+2018-01-25 17:26:04,601 [Thread-1299:18144] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-25 17:26:07,425 [Thread-1300:12796] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-30 10:27:26,300 [Thread-69:15204] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:32:29,142 [Thread-104:8828] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:33:39,332 [Thread-136:2652] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:39:31,889 [Thread-170:12092] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:44:42,280 [Thread-206:10668] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:48:04,807 [Thread-370:19976] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 10:51:28,556 [Thread-403:12792] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:39:27,008 [Thread-433:7392] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:42:08,373 [Thread-468:18048] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:43:03,147 [Thread-500:18852] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:43:18,932 [Thread-517:20372] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:43:25,977 [Thread-528:2016] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 12:44:27,582 [Thread-539:11512] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:00:50,019 [Thread-550:15664] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:13:56,128 [Thread-583:20296] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:17:10,376 [Thread-617:6540] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:25:42,691 [Thread-651:17916] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:27:17,038 [Thread-685:6212] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 13:30:00,184 [Thread-703:9060] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 15:05:26,248 [Thread-237:18820] [django.request:143] [WARNING]- Not Found: /product/main/jquery.min.map
+2018-01-30 16:38:58,391 [Thread-33:5312] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 286, in parse
+    compile_func = self.tags[command]
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 22, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 833, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 975, in do_if
+    nodelist = parser.parse(('elif', 'else', 'endif'))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 833, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 975, in do_if
+    nodelist = parser.parse(('elif', 'else', 'endif'))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 288, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 343, in invalid_block_tag
+    (command, get_text_list(["'%s'" % p for p in parse_until])))
+django.template.base.TemplateSyntaxError: Invalid block tag: 'endfor', expected 'elif'，'else' 或 'endif'
+2018-01-30 16:39:03,308 [Thread-34:18680] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-01-30 17:20:18,645 [Thread-47:12464] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 764, in _resolve_lookup
+    current = current[bit]
+KeyError: 'menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 770, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 773, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'menu'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 22, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 201, in render
+    nodelist.append(node.render(context))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 90, in render
+    output = self.filter_expression.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 618, in resolve
+    arg_vals.append(arg.resolve(context))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 734, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 780, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [menu] in "{'menu_class': '', 'menu_parent_id': 0, 'menu_is_parent': 1, 'menu_id': 12, 'menu_ordernum': 3, 'menu_name': '获取接口调用凭据', 'menu_url': '#', 'menu_depth': 1}"
+2018-01-30 17:20:50,645 [Thread-1:19096] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 22, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 833, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 975, in do_if
+    nodelist = parser.parse(('elif', 'else', 'endif'))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 266, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 372, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 583, in __init__
+    self.args_check(filter_name, filter_func, args)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 645, in args_check
+    (name, alen - dlen, plen))
+django.template.base.TemplateSyntaxError: check_first_child requires 2 arguments, 1 provided
+2018-01-30 17:21:03,741 [Thread-3:8008] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 22, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 170, in render_to_string
+    t = get_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 144, in get_template
+    template, origin = find_template(template_name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 132, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 44, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 50, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 156, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 132, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 162, in compile_string
+    return parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 201, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 175, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 833, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 290, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 975, in do_if
+    nodelist = parser.parse(('elif', 'else', 'endif'))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 266, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 372, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 583, in __init__
+    self.args_check(filter_name, filter_func, args)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 645, in args_check
+    (name, alen - dlen, plen))
+django.template.base.TemplateSyntaxError: check_first_child requires 2 arguments, 1 provided
+2018-01-30 17:27:17,125 [Thread-1:14452] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\open\app\wiki\views.py", line 22, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 201, in render
+    nodelist.append(node.render(context))
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\debug.py", line 90, in render
+    output = self.filter_expression.resolve(context)
+  File "C:\Users\Administrator\ven2\lib\site-packages\django\template\base.py", line 624, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "E:\open\app\center\templatetags\filter.py", line 191, in check_first_child
+    return m.menu_id
+AttributeError: 'dict' object has no attribute 'menu_id'
+2018-01-30 18:39:21,732 [Thread-230:9140] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-01-31 10:49:59,807 [Thread-38:11584] [django.request:143] [WARNING]- Not Found: /product/list/None
