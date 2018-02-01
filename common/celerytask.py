@@ -1,9 +1,13 @@
 from celery import Celery, platforms
 
-from conf.commonconf import IS_DEBUG,KEY_URL
-
+from conf.commonconf import IS_DEBUG, KEY_URL
+import os
+import sys
+import django
 import requests
-
+sys.path.append(os.path.join(os.path.dirname('.'), '..'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'open.settings'
+django.setup()
 
 if IS_DEBUG:
     celery = Celery('celerytask', broker='redis://:smart.53iq.com@56iq@192.168.0.62:6379/7')
