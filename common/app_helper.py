@@ -26,7 +26,7 @@ _convention = ConventionValue()
 
 
 def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
-               app_factory_id, app_group, check_status=0):
+               app_factory_id, app_group, app_logo, check_status=0):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -66,6 +66,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           package_name='',
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
+                          app_logo=app_logo,
                           check_status=check_status,
                           app_create_date=datetime.datetime.utcnow(),
                           app_update_date=datetime.datetime.utcnow()
