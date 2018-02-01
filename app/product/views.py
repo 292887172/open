@@ -195,7 +195,7 @@ def product_add(request):
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             from common.celerytask import add
             add.delay(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_group, app_logo)
+                      device_conf, app_factory_id, app_group, app_logo)
             url = '/product/list'
             return HttpResponseRedirect(url)
         except Exception as e:
