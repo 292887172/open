@@ -26,6 +26,7 @@ from conf.commonconf import CLOUD_TOKEN,KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
+from base.connection import Redis3
 
 import hashlib
 import time
@@ -44,7 +45,6 @@ from util.netutil import verify_push_url
 
 _code = StatusCode()
 _convention = ConventionValue()
-
 
 @login_required
 @csrf_exempt
@@ -193,29 +193,11 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            result = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_group)
-            if result.app_id:
-                if app_logo:
-                    result.app_logo = app_logo
-                    result.save()
-                # 将产品key值推送到接口
-                try:
-                    update_app_protocol(result)
-                    app_key = result.app_appid
-                    key = app_key[-8:]
-                    res = requests.get(KEY_URL, params={'key': key})
-                    print(res)
-                except Exception as e:
-                    print(e)
-                    pass
-                url = '/product/main/?ID=' + str(result.app_id) + '#/argue'
-                return HttpResponseRedirect(url)
-            else:
-                ret["code"] = 100003
-                ret["msg"] = "invalid app_id"
-                ret["message"] = "无效的产品编号"
-                return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            from common.celery import add
+            add.delay(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+                                device_conf, app_factory_id, app_group, app_logo)
+            url = '/product/list'
+            return HttpResponseRedirect(url)
         except Exception as e:
             logging.getLogger("root").error(e)
             logging.getLogger("root").error("创建应用失败")
@@ -286,21 +268,35 @@ def product_main(request):
         )
         return render(request, template, locals())
 
-    def save_app(app, opera_data):
+    def save_app(app, opera_data,r):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
         key = app.app_appid[-8:]
         remove_conf_prefix(key)
         update_app_protocol(app)
         app.save()
-
+        data= {'rows': opera_data, 'check_state': app.check_status}
+        r.set("product_funs",json.dumps(data))
+    def find(id, opera_data):
+            for i in range(len(opera_data)):
+                if str(opera_data[i]['id']) == id:
+                    return [i,opera_data[i]]
+            return []
     def post():
+        post_data = request.POST.get("name")
+        id = request.POST.get("id")
+        r = Redis3(rdb=6).client
+        if post_data == 'list':
+            try:
+                data = r.get("product_funs")
+                data = json.loads(data.decode())
+                return JsonResponse(data)
+            except Exception as e:
+                print("redis中还未保存数据",e)
         # 根据ID获取到数据库中的设备配置信息
         app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id=app_id)
         opera_data = []
-        fun_name = ''
-        message_content = ''
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
@@ -308,21 +304,15 @@ def product_main(request):
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
             print(e)
-
-        def find(id):
-            for i in range(len(opera_data)):
-                if str(opera_data[i]['id']) == id:
-                    return [i,opera_data[i]]
-            return []
         # 接收页面请求信息
-        post_data = request.POST.get("name")
-        id = request.POST.get("id")
         if post_data == 'list':
             # 显示所有列表信息
-            return JsonResponse({'rows': opera_data, 'check_state': app.check_status})
+            data= {'rows': opera_data, 'check_state': app.check_status}
+            r.set("product_funs",json.dumps(data))
+            return JsonResponse(data)
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_data = find(id)
+            edit_data = find(id,opera_data)
             if edit_data:
                 edit_data = edit_data[1]
             else :
@@ -331,13 +321,13 @@ def product_main(request):
 
         elif post_data == 'del':
             # 删除信息
-            data = find(id)
+            data = find(id,opera_data)
             if data:
                 i = data[0]
                 fun_name = data[1].get("name")
                 opera_data.pop(i)
                 replace_fun_id(opera_data,id)
-                save_app(app, opera_data)
+                save_app(app, opera_data, r)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                 return HttpResponse('del_success')
@@ -348,7 +338,7 @@ def product_main(request):
                 for j in range(len(funs)):
                     if str(opera_data[i].get("Stream_ID")) == funs[j]:
                         opera_data[i]["id"] = j + 1
-            save_app(app, opera_data)
+            save_app(app, opera_data,r)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -356,14 +346,14 @@ def product_main(request):
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
-            save_app(app, opera_data)
+            save_app(app, opera_data,r)
             return HttpResponse('select_success')
         elif post_data in ['isShow', 'isControl', 'isDisplay']:
             val = request.POST.get("dd")
-            data = find(id)
+            data = find(id,opera_data)
             if data:
                 data[1][post_data] = val
-                save_app(app, opera_data)
+                save_app(app, opera_data,r)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -389,7 +379,7 @@ def product_main(request):
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
-                data = find(indata['id'])
+                data = find(indata['id'],opera_data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -402,7 +392,7 @@ def product_main(request):
                 opera_data.append(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
-            save_app(app, opera_data)
+            save_app(app, opera_data,r)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse(tt)
 
