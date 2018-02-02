@@ -1,0 +1,25 @@
+#wrapper {
+    width: 288px;
+    height: 619px;
+    background: url(../img/iphone.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    left: 50%;
+    margin-left: -150px;
+    margin-top:15px;
+}
+
+#wrapper iframe {
+    left: 20px;
+    top: 88px;
+    position: absolute;
+    width: 250px;
+    height: 445px;
+    background: pink;
+}
+#wrapper iframe ::-webkit-scrollbar{
+  display:none;
+}
+::-webkit-scrollbar{
+  display:none;
+}
