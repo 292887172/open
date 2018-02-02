@@ -6,10 +6,10 @@
 {% endblock %}
 {% block style %}
 
-<!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}"/>
 
-    <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <link rel="stylesheet" href="/static/css/product/notice.css">
 
@@ -17,63 +17,74 @@
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="{% static 'css/ui/AppUiDesign.css'%}">
+    <link rel="stylesheet" href="{% static 'css/ui/AppUiDesign.css' %}">
+    <link rel="stylesheet" href="{% static 'iconfont/iconfont.css' %}">
     <style>
-       body {
-           background-color: #F1F4F9;
-           padding-bottom: 0;
-           font-size: 14px;
-           line-height: 0;
-           height: 944px;
-       }
-       .header{
-           margin-top: 0;
-           margin-bottom: 0;
-       }
+        body {
+            background-color: #F1F4F9;
+            padding-bottom: 0;
+            font-size: 14px;
+            line-height: 0;
+            height: 944px;
+        }
 
-       .leftSide{
-           position: fixed;
-           margin-bottom: 0;
-           padding-bottom: 0;
-           max-height: 704px;
-           overflow-y: visible;
-       }
-       .box1{
-           min-height: 0;
-       }
-       .breadcrumb{
-           font-size: 16px;
-           line-height: 0px;
-       }
-       .dropdown{
-           margin-left: 15px;
-           cursor: pointer;
-       }
-       .dropdown-menu{
-           margin-top: 10px;
-       }
-        .dropdown-menu>li{
-          height: 35px;
+        .header {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .leftSide {
+            position: fixed;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            max-height: 704px;
+            overflow-y: visible;
+        }
+
+        .box1 {
+            min-height: 0;
+        }
+
+        .breadcrumb {
+            font-size: 16px;
+            line-height: 0px;
+        }
+
+        .dropdown {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            margin-top: 10px;
+        }
+
+        .dropdown-menu > li {
+            height: 35px;
             line-height: 35px;
-       }
-       .dropdown-menu>li:hover{
-           background: #ff6202;
-       }
-       .dropdown-menu>li>a{
-           padding-bottom: 0;
-           line-height: 30px;
-           border: 0;
-           font-size: 16px;
-       }
-       .dropdown-menu>li:hover>a, .dropdown-menu>li>a:active, .dropdown-menu>li>a:focus{
-           background: #ff6202;
-           border: 0;
-       }
-       .menuBox h3{
-           padding-left: 15px;
-           margin-top: 5px;
-           font-size: 15px;
-       }
+        }
+
+        .dropdown-menu > li:hover {
+            background: #ff6202;
+        }
+
+        .dropdown-menu > li > a {
+            padding-bottom: 0;
+            line-height: 30px;
+            border: 0;
+            font-size: 16px;
+        }
+
+        .dropdown-menu > li:hover > a, .dropdown-menu > li > a:active, .dropdown-menu > li > a:focus {
+            background: #ff6202;
+            border: 0;
+        }
+
+        .menuBox h3 {
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
 
         .wrapper {
             width: 1200px;
@@ -83,87 +94,105 @@
 
         .mt20 {
             margin-top: 20px;
-            border-top:1px solid #ccc ;
+            border-top: 1px solid #ccc;
         }
 
         .goods span {
             height: 30px;
         }
+
         .nav > li > a:hover {
 
             background: transparent;
         }
+
         .footer {
             width: 1200px;
             padding-top: 20px;
 
         }
-        .nav>li>a {
+
+        .nav > li > a {
             padding: 5px;
         }
-        .highlight{
+
+        .highlight {
             background: #808080;
             border: 1px solid #808080;
         }
-        .nav-current{
-            text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
+
+        .nav-current {
+            text-decoration: none;
+            border-bottom: 3px solid #ff6202;
+            height: 35px;
         }
 
-    .breadcrumb>li>a{
-        color: #333;
-        cursor: pointer;
-    }
-    .breadcrumb>li>a:hover{
-        color: #ff6202;
-    }
-    .breadcrumb>li, .breadcrumb>li.active,.breadcrumb>li:active,.breadcrumb>li:focus{
-        color: #ff6202;
-        cursor: text;
-    }
-    .step-navs>li{
-        display: inline-block;
-        width: 160px;
-    }
-    .fa{
-        line-height: 21px;
-        padding-left: 6px;
-    }
-    .fa-sliders:before{
-        content: "1";
-        color: #fff;
-    }
-    .fa-inbox:before {
-        content: "2";
-        color: #fff;
-    }
-    .fa-file-text-o:before {
-        content: "3";
-        color: #fff;
-    }
-    .fa-desktop:before {
-        content: "4";
-        color: #fff;
-    }
-    .fa-text:before{
-        content: "5";
-        color: #fff;
-    }
+        .breadcrumb > li > a {
+            color: #333;
+            cursor: pointer;
+        }
 
-    .menuBox ul li a i {
-        border-radius: 50%;
-        background: #ccc;
-    }
-    .menuBox ul li.hover a i{
-        background: #ff6202;
-    }
-    .menuBox ul li.hover a{
-        color: #ff6202;
-    }
+        .breadcrumb > li > a:hover {
+            color: #ff6202;
+        }
+
+        .breadcrumb > li, .breadcrumb > li.active, .breadcrumb > li:active, .breadcrumb > li:focus {
+            color: #ff6202;
+            cursor: text;
+        }
+
+        .step-navs > li {
+            display: inline-block;
+            width: 160px;
+        }
+
+        .fa {
+            line-height: 21px;
+            padding-left: 6px;
+        }
+
+        .fa-sliders:before {
+            content: "1";
+            color: #fff;
+        }
+
+        .fa-inbox:before {
+            content: "2";
+            color: #fff;
+        }
+
+        .fa-file-text-o:before {
+            content: "3";
+            color: #fff;
+        }
+
+        .fa-desktop:before {
+            content: "4";
+            color: #fff;
+        }
+
+        .fa-text:before {
+            content: "5";
+            color: #fff;
+        }
+
+        .menuBox ul li a i {
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .menuBox ul li.hover a i {
+            background: #ff6202;
+        }
+
+        .menuBox ul li.hover a {
+            color: #ff6202;
+        }
     </style>
 {% endblock %}
 {% block menu %}
     <li><a href="{% url 'home' %}">首页</a></li>
-    <li ><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
+    <li><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
     <li><a href="{% url 'wiki' %}">开发指南</a></li>
 
 
@@ -172,403 +201,159 @@
 {% block content %}
 
     <div class="container">
-    <div id="logControl">显示日志<input type="radio" value="true" name="log" id="logTrue" checked="checked"><label for="logTrue">是</label><input type="radio" value="false" name="log" id="logFalse"><label for="logFalse">否</label></div>
-      <div class="choiceBg clearfix">
+        <div id="logControl">显示日志<input type="radio" value="true" name="log" id="logTrue" checked="checked"
+                                        onclick="previewLog(this)"><label
+                for="logTrue">是</label><input type="radio" value="false" name="log" id="logFalse"
+                                              onclick="previewLog(this)"><label
+                for="logFalse">否</label>
+        </div>
+        <div class="choiceBg clearfix">
         <span class="pull-left title">
           背景选择
         </span>
-        <div id="choiceBg" class="pull-left">
-          <span class="bgColor">
-            <i>√</i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-          <span class="bgColor">
-            <i></i>
-          </span>
-        </div>
-      </div>
-
-      <div class="fnTitle">功能点样式设置和排序</div>
-
-    <!-- 选择图标模态框 -->
-    <div id="iconList" class="fade modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div class="modal-title">选择图标</div>
-          </div>
-          <div class="modal-body">
-            <div id="icons">
-              <i class="glyphicon glyphicon-asterisk"></i>
-              <i class="glyphicon glyphicon-plus"></i>
-              <i class="glyphicon glyphicon-euro"></i>
-              <i class="glyphicon glyphicon-minus"></i>
-              <i class="glyphicon glyphicon-asterisk"></i>
-              <i class="glyphicon glyphicon-cloud"></i>
-              <i class="glyphicon glyphicon-envelope"></i>
-              <i class="glyphicon glyphicon-pencil"></i>
-              <i class="glyphicon glyphicon-glass"></i>
-              <i class="glyphicon glyphicon-music"></i>
-              <i class="glyphicon glyphicon-search"></i>
-              <i class="glyphicon glyphicon-heart"></i>
-              <i class="glyphicon glyphicon-star"></i>
-              <i class="glyphicon glyphicon-star-empty"></i>
-              <i class="glyphicon glyphicon-user"></i>
-              <i class="glyphicon glyphicon-film"></i>
-              <i class="glyphicon glyphicon-th-large"></i>
-              <i class="glyphicon glyphicon-th"></i>
-              <i class="glyphicon glyphicon-th-list"></i>
-              <i class="glyphicon glyphicon-ok"></i>
-              <i class="glyphicon glyphicon-music"></i>
-              <i class="glyphicon glyphicon-remove"></i>
-              <i class="glyphicon glyphicon-zoom-in"></i>
-              <i class="glyphicon glyphicon-zoom-out"></i>
-              <i class="glyphicon glyphicon-off"></i>
-              <i class="glyphicon glyphicon-signal"></i>
-              <i class="glyphicon glyphicon-cog"></i>
-              <i class="glyphicon glyphicon-trash"></i>
-              <i class="glyphicon glyphicon-home"></i>
-              <i class="glyphicon glyphicon-file"></i>
-              <i class="glyphicon glyphicon-time"></i>
-              <i class="glyphicon glyphicon-road"></i>
-              <i class="glyphicon glyphicon-download-alt"></i>
-              <i class="glyphicon glyphicon-download"></i>
-              <i class="glyphicon glyphicon-upload"></i>
-              <i class="glyphicon glyphicon-inbox"></i>
-              <i class="glyphicon glyphicon-play-circle"></i>
-              <i class="glyphicon glyphicon-repeat"></i>
-              <i class="glyphicon glyphicon-refresh"></i>
-              <i class="glyphicon glyphicon-list-alt"></i>
-              <i class="glyphicon glyphicon-lock"></i>
-              <i class="glyphicon glyphicon-flag"></i>
-              <i class="glyphicon glyphicon-headphones"></i>
-              <i class="glyphicon glyphicon-volume-off"></i>
-              <i class="glyphicon glyphicon-volume-down"></i>
-              <i class="glyphicon glyphicon-qrcode"></i>
-              <i class="glyphicon glyphicon-barcode"></i>
-              <i class="glyphicon glyphicon-tag"></i>
-              <i class="glyphicon glyphicon-tags"></i>
-              <i class="glyphicon glyphicon-book"></i>
-              <i class="glyphicon glyphicon-bookmark"></i>
-              <i class="glyphicon glyphicon-print"></i>
-              <i class="glyphicon glyphicon-camera"></i>
-              <i class="glyphicon glyphicon-font"></i>
-              <i class="glyphicon glyphicon-bold"></i>
-              <i class="glyphicon glyphicon-italic"></i>
-              <i class="glyphicon glyphicon-text-height"></i>
-              <i class="glyphicon glyphicon-text-width"></i>
-              <i class="glyphicon glyphicon-align-left"></i>
-              <i class="glyphicon glyphicon-align-center"></i>
-              <i class="glyphicon glyphicon-align-right"></i>
-              <i class="glyphicon glyphicon-align-justify"></i>
-              <i class="glyphicon glyphicon-list"></i>
-              <i class="glyphicon glyphicon-indent-left"></i>
-              <i class="glyphicon glyphicon-indent-right"></i>
-              <i class="glyphicon glyphicon-facetime-video"></i>
-              <i class="glyphicon glyphicon-picture"></i>
-              <i class="glyphicon glyphicon-map-marker"></i>
-              <i class="glyphicon glyphicon-adjust"></i>
-              <i class="glyphicon glyphicon-tint"></i>
-              <i class="glyphicon glyphicon-edit"></i>
-              <i class="glyphicon glyphicon-share"></i>
-              <i class="glyphicon glyphicon-check"></i>
-              <i class="glyphicon glyphicon-move"></i>
-              <i class="glyphicon glyphicon-step-backward"></i>
-              <i class="glyphicon glyphicon-fast-backward"></i>
-              <i class="glyphicon glyphicon-backward"></i>
-              <i class="glyphicon glyphicon-play"></i>
-              <i class="glyphicon glyphicon-pause"></i>
-              <i class="glyphicon glyphicon-stop"></i>
-              <i class="glyphicon glyphicon-forward"></i>
-              <i class="glyphicon glyphicon-fast-forward"></i>
-              <i class="glyphicon glyphicon-step-forward"></i>
-              <i class="glyphicon glyphicon-eject"></i>
-              <i class="glyphicon glyphicon-chevron-left"></i>
-              <i class="glyphicon glyphicon-chevron-right"></i>
-              <i class="glyphicon glyphicon-plus-sign"></i>
-              <i class="glyphicon glyphicon-minus-sign"></i>
-              <i class="glyphicon glyphicon-remove-sign"></i>
-              <i class="glyphicon glyphicon-ok-sign"></i>
-              <i class="glyphicon glyphicon-question-sign"></i>
-              <i class="glyphicon glyphicon-info-sign"></i>
-              <i class="glyphicon glyphicon-screenshot"></i>
-              <i class="glyphicon glyphicon-remove-circle"></i>
-              <i class="glyphicon glyphicon-ok-circle"></i>
-              <i class="glyphicon glyphicon-ban-circle"></i>
-              <i class="glyphicon glyphicon-arrow-left"></i>
-              <i class="glyphicon glyphicon-arrow-right"></i>
-              <i class="glyphicon glyphicon-arrow-up"></i>
-              <i class="glyphicon glyphicon-arrow-down"></i>
-              <i class="glyphicon glyphicon-share-alt"></i>
-              <i class="glyphicon glyphicon-resize-full"></i>
-              <i class="glyphicon glyphicon-resize-small"></i>
-              <i class="glyphicon glyphicon-exclamation-sign"></i>
-              <i class="glyphicon glyphicon-gift"></i>
-              <i class="glyphicon glyphicon-leaf"></i>
-              <i class="glyphicon glyphicon-fire"></i>
-              <i class="glyphicon glyphicon-eye-open"></i>
-              <i class="glyphicon glyphicon-eye-close"></i>
-              <i class="glyphicon glyphicon-warning-sign"></i>
-              <i class="glyphicon glyphicon-plane"></i>
-              <i class="glyphicon glyphicon-calendar"></i>
-              <i class="glyphicon glyphicon-random"></i>
-              <i class="glyphicon glyphicon-comment"></i>
-              <i class="glyphicon glyphicon-magnet"></i>
-              <i class="glyphicon glyphicon-chevron-up"></i>
-              <i class="glyphicon glyphicon-chevron-down"></i>
-              <i class="glyphicon glyphicon-retweet"></i>
-              <i class="glyphicon glyphicon-shopping-cart"></i>
-              <i class="glyphicon glyphicon-folder-close"></i>
-              <i class="glyphicon glyphicon-folder-open"></i>
-              <i class="glyphicon glyphicon-resize-vertical"></i>
-              <i class="glyphicon glyphicon-resize-horizontal"></i>
-              <i class="glyphicon glyphicon-hdd"></i>
-              <i class="glyphicon glyphicon-bullhorn"></i>
-              <i class="glyphicon glyphicon-bell"></i>
-              <i class="glyphicon glyphicon-certificate"></i>
-              <i class="glyphicon glyphicon-thumbs-up"></i>
-              <i class="glyphicon glyphicon-thumbs-down"></i>
-              <i class="glyphicon glyphicon-hand-right"></i>
-              <i class="glyphicon glyphicon-hand-left"></i>
-              <i class="glyphicon glyphicon-hand-up"></i>
-              <i class="glyphicon glyphicon-hand-down"></i>
-              <i class="glyphicon glyphicon-circle-arrow-right"></i>
-              <i class="glyphicon glyphicon-circle-arrow-left"></i>
-              <i class="glyphicon glyphicon-circle-arrow-up"></i>
-              <i class="glyphicon glyphicon-circle-arrow-down"></i>
-              <i class="glyphicon glyphicon-globe"></i>
-              <i class="glyphicon glyphicon-wrench"></i>
-              <i class="glyphicon glyphicon-tasks"></i>
-              <i class="glyphicon glyphicon-filter"></i>
-              <i class="glyphicon glyphicon-briefcase"></i>
-              <i class="glyphicon glyphicon-fullscreen"></i>
-              <i class="glyphicon glyphicon-dashboard"></i>
-              <i class="glyphicon glyphicon-paperclip"></i>
-              <i class="glyphicon glyphicon-heart-empty"></i>
-              <i class="glyphicon glyphicon-link"></i>
-              <i class="glyphicon glyphicon-phone"></i>
-              <i class="glyphicon glyphicon-pushpin"></i>
-              <i class="glyphicon glyphicon-usd"></i>
-              <i class="glyphicon glyphicon-gbp"></i>
-              <i class="glyphicon glyphicon-sort"></i>
-              <i class="glyphicon glyphicon-sort-by-alphabet"></i>
-              <i class="glyphicon glyphicon-sort-by-alphabet-alt"></i>
-              <i class="glyphicon glyphicon-sort-by-order"></i>
-              <i class="glyphicon glyphicon-sort-by-order-alt"></i>
-              <i class="glyphicon glyphicon-sort-by-attributes"></i>
-              <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
-              <i class="glyphicon glyphicon-unchecked"></i>
-              <i class="glyphicon glyphicon-expand"></i>
-              <i class="glyphicon glyphicon-collapse-down"></i>
-              <i class="glyphicon glyphicon-collapse-up"></i>
-              <i class="glyphicon glyphicon-log-in"></i>
-              <i class="glyphicon glyphicon-flash"></i>
-              <i class="glyphicon glyphicon-log-out"></i>
-              <i class="glyphicon glyphicon-new-window"></i>
-              <i class="glyphicon glyphicon-record"></i>
-              <i class="glyphicon glyphicon-save"></i>
-              <i class="glyphicon glyphicon-open"></i>
-              <i class="glyphicon glyphicon-saved"></i>
-              <i class="glyphicon glyphicon-import"></i>
-              <i class="glyphicon glyphicon-export"></i>
-              <i class="glyphicon glyphicon-send"></i>
-              <i class="glyphicon glyphicon-floppy-disk"></i>
-              <i class="glyphicon glyphicon-floppy-saved"></i>
-              <i class="glyphicon glyphicon-floppy-remove"></i>
-              <i class="glyphicon glyphicon-floppy-save"></i>
-              <i class="glyphicon glyphicon-floppy-open"></i>
-              <i class="glyphicon glyphicon-credit-card"></i>
-              <i class="glyphicon glyphicon-transfer"></i>
-              <i class="glyphicon glyphicon-cutlery"></i>
-              <i class="glyphicon glyphicon-header"></i>
-              <i class="glyphicon glyphicon-compressed"></i>
-              <i class="glyphicon glyphicon-earphone"></i>
-              <i class="glyphicon glyphicon-phone-alt"></i>
-              <i class="glyphicon glyphicon-tower"></i>
-              <i class="glyphicon glyphicon-stats"></i>
-              <i class="glyphicon glyphicon-sd-video"></i>
-              <i class="glyphicon glyphicon-hd-video"></i>
-              <i class="glyphicon glyphicon-subtitles"></i>
-              <i class="glyphicon glyphicon-sound-stereo"></i>
-              <i class="glyphicon glyphicon-sound-dolby"></i>
-              <i class="glyphicon glyphicon-sound-5-1"></i>
-              <i class="glyphicon glyphicon-sound-6-1"></i>
-              <i class="glyphicon glyphicon-sound-7-1"></i>
-              <i class="glyphicon glyphicon-copyright-mark"></i>
-              <i class="glyphicon glyphicon-registration-mark"></i>
-              <i class="glyphicon glyphicon-cloud-download"></i>
-              <i class="glyphicon glyphicon-cloud-upload"></i>
-              <i class="glyphicon glyphicon-tree-conifer"></i>
-              <i class="glyphicon glyphicon-tree-deciduous"></i>
-              <i class="glyphicon glyphicon-cd"></i>
-              <i class="glyphicon glyphicon-save-file"></i>
-              <i class="glyphicon glyphicon-open-file"></i>
-              <i class="glyphicon glyphicon-level-up"></i>
-              <i class="glyphicon glyphicon-copy"></i>
-              <i class="glyphicon glyphicon-paste"></i>
-              <i class="glyphicon glyphicon-alert"></i>
-              <i class="glyphicon glyphicon-equalizer"></i>
-              <i class="glyphicon glyphicon-king"></i>
-              <i class="glyphicon glyphicon-queen"></i>
-              <i class="glyphicon glyphicon-pawn"></i>
-              <i class="glyphicon glyphicon-bishop"></i>
-              <i class="glyphicon glyphicon-knight"></i>
-              <i class="glyphicon glyphicon-baby-formula"></i>
-              <i class="glyphicon glyphicon-tent"></i>
-              <i class="glyphicon glyphicon-blackboard"></i>
-              <i class="glyphicon glyphicon-bed"></i>
-              <i class="glyphicon glyphicon-apple"></i>
-              <i class="glyphicon glyphicon-erase"></i>
-              <i class="glyphicon glyphicon-hourglass"></i>
-              <i class="glyphicon glyphicon-lamp"></i>
-              <i class="glyphicon glyphicon-duplicate"></i>
-              <i class="glyphicon glyphicon-piggy-bank"></i>
-              <i class="glyphicon glyphicon-scissors"></i>
-              <i class="glyphicon glyphicon-bitcoin"></i>
-              <i class="glyphicon glyphicon-btc"></i>
-              <i class="glyphicon glyphicon-xbt"></i>
-              <i class="glyphicon glyphicon-yen"></i>
-              <i class="glyphicon glyphicon-jpy"></i>
-              <i class="glyphicon glyphicon-ruble"></i>
-              <i class="glyphicon glyphicon-rub"></i>
-              <i class="glyphicon glyphicon-scale"></i>
-              <i class="glyphicon glyphicon-ice-lolly"></i>
-              <i class="glyphicon glyphicon-ice-lolly-tasted"></i>
-              <i class="glyphicon glyphicon-education"></i>
-              <i class="glyphicon glyphicon-option-horizontal"></i>
-              <i class="glyphicon glyphicon-option-vertical"></i>
-              <i class="glyphicon glyphicon-menu-hamburger"></i>
-              <i class="glyphicon glyphicon-modal-window"></i>
-              <i class="glyphicon glyphicon-oil"></i>
-              <i class="glyphicon glyphicon-grain"></i>
-              <i class="glyphicon glyphicon-sunglasses"></i>
-              <i class="glyphicon glyphicon-text-size"></i>
-              <i class="glyphicon glyphicon-text-color"></i>
-              <i class="glyphicon glyphicon-text-background"></i>
-              <i class="glyphicon glyphicon-object-align-top"></i>
-              <i class="glyphicon glyphicon-object-align-bottom"></i>
-              <i class="glyphicon glyphicon-object-align-horizontal"></i>
-              <i class="glyphicon glyphicon-object-align-left"></i>
-              <i class="glyphicon glyphicon-object-align-vertical"></i>
-              <i class="glyphicon glyphicon-object-align-right"></i>
-              <i class="glyphicon glyphicon-triangle-right"></i>
-              <i class="glyphicon glyphicon-triangle-left"></i>
-              <i class="glyphicon glyphicon-triangle-bottom"></i>
-              <i class="glyphicon glyphicon-triangle-top"></i>
-              <i class="glyphicon glyphicon-console"></i>
-              <i class="glyphicon glyphicon-superscript"></i>
-              <i class="glyphicon glyphicon-subscript"></i>
-              <i class="glyphicon glyphicon-menu-left"></i>
-              <i class="glyphicon glyphicon-menu-right"></i>
-              <i class="glyphicon glyphicon-menu-down"></i>
-              <i class="glyphicon glyphicon-menu-up"></i>
+            <div id="choiceBg" class="pull-left">
+                <span class="bgColor" value="#FF8312">
+                    <i>√</i>
+                </span>
+                <span class="bgColor" value="#4B4048">
+                    <i></i>
+                </span>
+                <span class="bgColor" value="#B84441">
+                    <i></i>
+                </span>
+                <span class="bgColor" value="#737881">
+                    <i></i>
+                </span>
+                <span class="bgColor" value="#5097D8">
+                    <i></i>
+                </span>
+                <span class="bgColor" value="#A6B342">
+                    <i></i>
+                </span>
+                <span class="bgColor" value="#0071BB">
+                    <i></i>
+                </span>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default confirm" data-dismiss="modal">确定</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          </div>
         </div>
-      </div>
-    </div>
-    <!-- 选择背景模态框 -->
-    <div id="bgList" class="fade modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div class="modal-title">选择背景</div>
-          </div>
-          <div class="modal-body">
-            <div class="bgWrapper clearfix">
-              <div class="bgWrapper-left col-xs-7" id="changeBg">
-                <img src="/static/image/bg/no.png" alt="">
-                <img src="/static/image/bg/00.jpg" alt="">
-                <img src="/static/image/bg/01.jpg" alt="">
-                <img src="/static/image/bg/02.jpg" alt="">
-                <img src="/static/image/bg/03.jpg" alt="">
-                <img src="/static/image/bg/04.jpg" alt="">
-                <img src="/static/image/bg/05.jpg" alt="">
-                <img src="/static/image/bg/06.jpg" alt="">
-                <img src="/static/image/bg/07.jpg" alt="">
-                <img src="/static/image/bg/08.jpg" alt="">
-                <img src="/static/image/bg/09.jpg" alt="">
-                <img src="/static/image/bg/10.jpg" alt="">
-                <img src="/static/image/bg/11.jpg" alt="">
-                <img src="/static/image/bg/12.jpg" alt="">
-                <img src="/static/image/bg/13.jpg" alt="">
-                <img src="/static/image/bg/14.jpg" alt="">
-                <img src="/static/image/bg/15.jpg" alt="">
-                <img src="/static/image/bg/17.jpg" alt="">
-                <img src="/static/image/bg/18.jpg" alt="">
-                <img src="/static/image/bg/19.jpg" alt="">
-                <img src="/static/image/bg/20.jpg" alt="">
-                <img src="/static/image/bg/21.jpg" alt="">
-                <img src="/static/image/bg/22.jpg" alt="">
-                <img src="/static/image/bg/23.jpg" alt="">
-                <img src="/static/image/bg/24.jpg" alt="">
-                <img src="/static/image/bg/25.jpg" alt="">
-                <img src="/static/image/bg/26.jpg" alt="">
-                <img src="/static/image/bg/27.jpg" alt="">
-                <img src="/static/image/bg/28.jpg" alt="">
-                <img src="/static/image/bg/29.jpg" alt="">
-                <img src="/static/image/bg/30.jpg" alt="">
-                <img src="/static/image/bg/31.jpg" alt="">
-                <img src="/static/image/bg/32.jpg" alt="">
-                <img src="/static/image/bg/33.jpg" alt="">
-                <img src="/static/image/bg/34.jpg" alt="">
-                <img src="/static/image/bg/35.jpg" alt="">
-                <img src="/static/image/bg/36.jpg" alt="">
-                <img src="/static/image/bg/37.jpg" alt="">
-                <img src="/static/image/bg/38.jpg" alt="">
-                <img src="/static/image/bg/39.jpg" alt="">
-              </div>
-              <div class="bgWrapper-right col-xs-5">
-                <img src="/static/image/bg/no.png" alt="" id="bigImg">
-              </div>
+
+        <div class="fnTitle">功能点样式设置和排序</div>
+
+        <!-- 选择图标模态框 -->
+        <div id="iconList" class="fade modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-title">选择图标</div>
+                    </div>
+                    <div class="modal-body">
+                        <div id="icons">
+                            <i class="iconfont icon-liebiao7"></i>
+                            <i class="iconfont icon-fengji"></i>
+                            <i class="iconfont icon-44"></i>
+                            <i class="iconfont icon-icon24"></i>
+                            <i class="iconfont icon-icon28"></i>
+                            <i class="iconfont icon-shijianzhongbiao"></i>
+                            <i class="iconfont icon-kaiguan"></i>
+                            <i class="iconfont icon-timer"></i>
+                            <i class="iconfont icon-chachepanzhishideng"></i>
+                            <i class="iconfont icon-zhaoming"></i>
+                            <i class="iconfont icon-xiaodugui"></i>
+                            <i class="iconfont icon-chuangtoudeng"></i>
+                            <i class="iconfont icon-fanhui"></i>
+                            <i class="iconfont icon-heat"></i>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default confirm" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default ensure" data-dismiss="modal">确定</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          </div>
         </div>
-      </div>
-    </div>
-    <div id="preview">
-      <div class="screen">
-        <div class="log">设备日志</div>
+        <!-- 选择背景模态框 -->
+        <div id="bgList" class="fade modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-title">选择背景</div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bgWrapper clearfix">
+                            <div class="bgWrapper-left col-xs-7" id="changeBg">
+                                <img src="/static/image/bg/no.png" alt="">
+                                <img src="/static/image/bg/00.jpg" alt="">
+                                <img src="/static/image/bg/01.jpg" alt="">
+                                <img src="/static/image/bg/02.jpg" alt="">
+                                <img src="/static/image/bg/03.jpg" alt="">
+                                <img src="/static/image/bg/04.jpg" alt="">
+                                <img src="/static/image/bg/05.jpg" alt="">
+                                <img src="/static/image/bg/06.jpg" alt="">
+                                <img src="/static/image/bg/07.jpg" alt="">
+                                <img src="/static/image/bg/08.jpg" alt="">
+                                <img src="/static/image/bg/09.jpg" alt="">
+                                <img src="/static/image/bg/10.jpg" alt="">
+                                <img src="/static/image/bg/11.jpg" alt="">
+                                <img src="/static/image/bg/12.jpg" alt="">
+                                <img src="/static/image/bg/13.jpg" alt="">
+                                <img src="/static/image/bg/14.jpg" alt="">
+                                <img src="/static/image/bg/15.jpg" alt="">
+                                <img src="/static/image/bg/17.jpg" alt="">
+                                <img src="/static/image/bg/18.jpg" alt="">
+                                <img src="/static/image/bg/19.jpg" alt="">
+                                <img src="/static/image/bg/20.jpg" alt="">
+                                <img src="/static/image/bg/21.jpg" alt="">
+                                <img src="/static/image/bg/22.jpg" alt="">
+                                <img src="/static/image/bg/23.jpg" alt="">
+                                <img src="/static/image/bg/24.jpg" alt="">
+                                <img src="/static/image/bg/25.jpg" alt="">
+                                <img src="/static/image/bg/26.jpg" alt="">
+                                <img src="/static/image/bg/27.jpg" alt="">
+                                <img src="/static/image/bg/28.jpg" alt="">
+                                <img src="/static/image/bg/29.jpg" alt="">
+                                <img src="/static/image/bg/30.jpg" alt="">
+                                <img src="/static/image/bg/31.jpg" alt="">
+                                <img src="/static/image/bg/32.jpg" alt="">
+                                <img src="/static/image/bg/33.jpg" alt="">
+                                <img src="/static/image/bg/34.jpg" alt="">
+                                <img src="/static/image/bg/35.jpg" alt="">
+                                <img src="/static/image/bg/36.jpg" alt="">
+                                <img src="/static/image/bg/37.jpg" alt="">
+                                <img src="/static/image/bg/38.jpg" alt="">
+                                <img src="/static/image/bg/39.jpg" alt="">
+                            </div>
+                            <div class="bgWrapper-right col-xs-5">
+                                <img src="/static/image/bg/no.png" alt="" id="bigImg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default ensure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="preview">
+            <div class="screen">
+                <div class="log" style="display:block;">设备日志</div>
 
-        <ol class="fnList">
+                <ol class="fnList">
 
-        </ol>
-        <div class="communicatLog">通讯日志</div>
-      </div>
+                </ol>
+                <div class="communicateLog" style="display:block;">通讯日志</div>
+            </div>
+        </div>
     </div>
-  </div>
 {% endblock %}
 
 {% block end_fixed_script %}
     <script>
-    var device_key = "{{ device_key }}"
+        var device_key = "{{ device_key }}"
     </script>
     <script src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
-  <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 
     <script src="/static/js/product/bootbox.js"></script>

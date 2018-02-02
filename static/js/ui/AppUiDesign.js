@@ -4,7 +4,14 @@ $(function () {
     var renderName = [];
     var logBtn = false;
     var configList = [];
-    var dragControl = true;
+    var bgs = document.querySelectorAll(".bgColor");
+    bgs = Array.prototype.slice.call(bgs);
+    var initialList = [];
+    var controlLoad = true;
+    var theme = "#FF8312";
+    var logTrue = document.querySelector("#logTrue");
+    var logFalse = document.querySelector("#logFalse");
+    var screen = document.querySelector(".screen");
     // 获取保存的自定义UI配置
     $.ajax({
         type: "GET",
@@ -12,20 +19,46 @@ $(function () {
         url: "/api/diy_ui_conf",
         data: {key: device_key},
         success: function (data) {
+            console.log(data);
             data.function.forEach(function (item) {
                 renderList.push(item.title);
                 renderName.push(item.name);
             })
             logBtn = data.isLog;
-            if (logBtn) {
-                document.querySelector("#logTrue").checked = true;
-                document.querySelector("#logFalse").checked = false;
-            } else {
-                document.querySelector("#logTrue").checked = false;
-                document.querySelector("#logFalse").checked = true;
-            }
-
+            theme = data.currentTheme;
             configList = data.function;
+            $.ajax({ //获取初始化UI配置功能列表
+                type: "POST",
+                async: false,
+                url: "/api/pull_ui_conf",
+                data: {key: device_key},
+                success: function (data) {
+                    initialList = data.data.functions;
+                    if (configList.length == initialList.length) {
+                        configList.forEach(function (item, index) {
+                            var button = false;
+                            initialList.forEach(function (value, order) {
+                                if (item.title == value.title) {
+                                    button = true;
+                                }
+                            })
+                            if (controlLoad) {
+                                if (!button) {
+                                    controlLoad = false;
+                                }
+                            }
+                        })
+                    }
+                    if (!controlLoad) {
+                        renderList = [];
+                        renderName = [];
+                        initialList.forEach(function (item) {
+                            renderList.push(item.title);
+                            renderName.push(item.name);
+                        })
+                    }
+                }
+            });
         },
         error: function () {
             controlBtn = false;
@@ -37,14 +70,29 @@ $(function () {
     var sortable = document.createElement("ul");
     sortable.className = "clearfix";
     sortable.id = "sortable";
-    if (configList[0]) {
+    if (controlLoad) {
+        screen.style.backgroundColor = theme;
+        bgs.forEach(function (item) {
+            var value = item.getAttribute("value");
+            item.querySelector("i").textContent = null;
+            if (value == theme) {
+                item.querySelector("i").textContent = "√";
+            }
+        })
+        if (logBtn) {
+            logTrue.checked = true;
+            logFalse.checked = false;
+        } else {
+            logTrue.checked = false;
+            logFalse.checked = true;
+        }
         sortable.innerHTML = null;
         configList.forEach(function (item, index) {
             var display = "block";
             var li = document.createElement("li");
             li.setAttribute("value", renderName[index]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
             switch (item.model) {
                 case "big":
                     str += '<option value="medium">中模块</option><option value="big" selected>大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>', display = "block";
@@ -61,33 +109,17 @@ $(function () {
                 default:
                     str += '<option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>', display = "none";
             }
-            str += '</select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon ' + item.icon + ' pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:' + display + '" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="' + item.bg + '" class="squareBg pull-right"   /><button class="btn pull-right margin">选择背景</button></span>';
+            str += '</select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont ' + item.icon + ' pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:' + display + '" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="' + item.bg + '" class="squareBg pull-right"   /><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML = str;
             sortable.appendChild(li);
         })
     } else {
-        $.ajax({ //获取初始化UI配置功能列表
-            type: "POST",
-            async: false,
-            url: "/api/pull_ui_conf",
-            data: {key: device_key},
-            success: function (data) {
-                renderList = [];
-                renderName = [];
-                console.log(data);
-                var result = data.data.functions;
-                result.forEach(function (item) {
-                    renderList.push(item.title);
-                    renderName.push(item.name);
-                })
-            }
-        });
         sortable.innerHTML = null;
         for (var i = 0; i < renderList.length; i++) {
             var li = document.createElement("li");
             li.setAttribute("value", renderName[i]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="glyphicon glyphicon-align-justify"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="glyphicon glyphicon-off pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/no.png" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-liebiao7 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/no.png" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML = str;
             sortable.appendChild(li);
         }
@@ -108,59 +140,16 @@ $(function () {
     previewApp();
     $("#sortable").sortable({
         stop: function (event, ui) {
-            dragControl = false;
             previewAppAgain();
-            getConfig();
-            var list = sortable.querySelectorAll("li");
-            var logTrue = document.querySelector("#logTrue");
-            logTrue.checked == false ? uiConfig.isLog = false : uiConfig.isLog = true;
-            uiConfig.currentTheme = currentTheme;
-            var functions = [];
-            list.forEach(function (item, index) {
-                functions[index] = new Object();
-                functions[index].title = item.querySelector(".title").querySelector("span").textContent;
-                functions[index].order = index;
-                functions[index].name = item.getAttribute("value");
-                functions[index].model = item.querySelector(".moduleControl").value;
-                var str = item.querySelector(".switchIcon").querySelector("i").className;
-                var className = str.slice(10, str.length - 11);
-                functions[index].icon = className;
-                var img = item.querySelector(".switchBg").querySelector("img")
-                var src = img.src;
-                if (src.slice(src.length - 6) == "no.png") {
-                    src = "null";
-                } else if (src == "") {
-                    src = "null";
-                }
-                functions[index].bg = src;
-            })
-            uiConfig.function = functions;
-            var moduleControl = document.querySelectorAll(".moduleControl");
-            var changeModel = fnList.querySelectorAll("li");
-            var switchBg = document.querySelectorAll(".switchBg");
-            moduleControl.forEach(function (item, index) {
-                item.addEventListener("change", function () {
-                    getConfig();
-                    dragControl = false;
-                    if (this.value == "big") {
-                        switchBg[index].setAttribute("style", "display:block;")
-                        changeModel[index].style.height = "3em";
-                        changeModel[index].style.width = "calc(100% - 2px)";
-                    } else {
-                        switchBg[index].setAttribute("style", "display:none;");
-                        changeModel[index].style.height = "1.3em";
-                    }
-                    if (this.value == "small") {
-                        changeModel[index].style.width = "calc(33% - 2px)";
-                    } else if (this.value == "hidden") {
-                        changeModel[index].style.display = "none";
-                    } else {
-                        changeModel[index].style.display = "block";
-                    }
-                })
-            })
         }
     });
+    var backward = document.createElement("button");
+    backward.id = "backward";
+    backward.textContent = "返回";
+    backward.addEventListener("click", function () {
+        window.history.back();
+    })
+    container.appendChild(backward);
     var save = document.createElement("button");
     save.id = "save";
     save.textContent = "保存";
@@ -188,9 +177,7 @@ $(function () {
     }
 
     //选择主题
-    var bgs = document.querySelectorAll(".bgColor");
-    bgs = Array.prototype.slice.call(bgs);
-    var currentTheme = "#ff8312";
+    var currentTheme = theme;
     bgs.forEach(function (item) {
         item.addEventListener("click", function (e) {
             bgs.forEach(function (item) {
@@ -198,6 +185,7 @@ $(function () {
             })
             e.target.textContent = "√";
             currentTheme = RGBToHex(getComputedStyle(e.target.parentNode)["background"]);
+            screen.style.backgroundColor = currentTheme;
         })
     })
     // 选择图标
@@ -205,7 +193,7 @@ $(function () {
     var currentIcon = "";
     icons.addEventListener("click", function (e) {
         if (e.target.localName == "i") {
-            currentIcon = e.target.className.slice(10);
+            currentIcon = e.target.className.slice(9);
             items = icons.querySelectorAll("i");
             items = Array.prototype.slice.call(items);
             items.forEach(function (item) {
@@ -220,12 +208,12 @@ $(function () {
     var currentLi = "";
     var iconBtns = document.querySelectorAll(".lis");
     iconBtns = Array.prototype.slice.call(iconBtns);
-    iconBtns.forEach(function (item) {
+    iconBtns.forEach(function (item, index) {
         item.addEventListener("click", function (e) {
             currentLi = e.target.parentNode.parentNode;
+            console.log(currentLi.querySelector(".title").querySelector("span").textContent);
         })
     })
-
     // 选择模块背景
     var changeBg = document.querySelector("#changeBg");
     var currentBg = "";
@@ -247,42 +235,16 @@ $(function () {
     // 选择图标模态框
     var confirm = document.querySelector(".confirm");
     confirm.addEventListener("click", function () {
-        currentLi.querySelector(".switchIcon").querySelector("i").className = "glyphicon " + currentIcon + " pull-right";
+        currentLi.querySelector(".switchIcon").querySelector("i").className = "iconfont " + currentIcon + " pull-right";
     })
     //选择背景模态框
     var ensure = document.querySelector(".ensure");
     ensure.addEventListener("click", function () {
         currentLi.querySelector(".switchBg").querySelector("img").src = currentBg;
     })
-    // 生成JSON格式配置文件
-    var uiConfig = {};
-
-    function getConfig() {
-        uiConfig = {};
-        var functions = [];
-        var logTrue = document.querySelector("#logTrue");
-        logTrue.checked == false ? uiConfig.isLog = false : uiConfig.isLog = true;
-        uiConfig.currentTheme = currentTheme;
-        var lis = sortable.querySelectorAll("li");
-        lis.forEach(function (item, index) {
-            functions[index] = new Object();
-            functions[index].title = renderList[index];
-            functions[index].order = index;
-            functions[index].name = renderName[index];
-            functions[index].model = item.querySelector(".moduleControl").value;
-            var str = item.querySelector(".switchIcon").querySelector("i").className;
-            var className = str.slice(10, str.length - 11);
-            functions[index].icon = className;
-            var img = item.querySelector(".switchBg").querySelector("img");
-            functions[index].bg = img.src;
-        })
-        uiConfig.function = functions;
-    }
 
     save.addEventListener("click", function () {
-        if (dragControl) {
-            getConfig();
-        }
+        console.log(getInfo());
         $.ajax({
             type: "POST",
             async: false,
@@ -297,13 +259,18 @@ $(function () {
 
     // 预览手机端效果
     function previewAppAgain() {
-        var changeModel = document.querySelectorAll(".preApp");
+        var list=getInfo().function;
+        console.log(list);
         fnList.innerHTML = "";
-        for (var i = 0; i < changeModel.length; i++) {
+        list.forEach(function(item,index){
             var preLi = document.createElement("li");
-            preLi.textContent = changeModel[i].querySelector("span").innerText;
+            if(item.model=="big"&&item.bg.slice(-6)!="no.png"){
+                console.log(1);
+                preLi.style.backgroundImage="url("+item.bg+")";
+            }
+            preLi.textContent =item.title;
             fnList.appendChild(preLi);
-        }
+        })
     }
 
     //判断是否为大模块，是大模块加模块背景，其他模块取消背景
@@ -339,7 +306,6 @@ $(function () {
     //获取页面所有属性
     function getInfo() {
         var uploadConfig = {};
-        var logTrue = document.querySelector("#logTrue");
         logTrue.checked == false ? uploadConfig.isLog = false : uploadConfig.isLog = true;
         uploadConfig.currentTheme = currentTheme;
         var arr = [];
@@ -351,10 +317,18 @@ $(function () {
             arr[index].title = item.querySelector(".title").textContent;
             arr[index].model = item.querySelector(".moduleControl").value;
             var className = item.querySelector(".switchIcon").querySelector("i").className;
-            arr[index].icon = className.slice(10, className.length - 11);
+            arr[index].icon = className.slice(9, className.length - 11);
             arr[index].bg = item.querySelector(".switchBg").querySelector("img").src;
         })
         uploadConfig.function = arr;
         return uploadConfig;
     }
+
 })
+//显示日志单选框添加事件，App日志预览
+var preLog = document.querySelector("#preview").querySelector(".log");
+var communicateLog = document.querySelector("#preview").querySelector(".communicateLog");
+
+function previewLog(a) {
+    a.value == "true" ? (preLog.style.display = "block", communicateLog.style.display = "block") : (preLog.style.display = "none", communicateLog.style.display = "none");
+}
