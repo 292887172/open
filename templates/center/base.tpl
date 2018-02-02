@@ -57,21 +57,23 @@ var _hmt = _hmt || [];
 <div id="header">
     <div class="cnt">
         <h1>
-            <a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+            <a href="http://53iq.com/"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"
                                             title="53iq云智能云"></a>
         </h1>
         <ul class="nav">
-           <li><a href="{% url 'home' %}">首页</a></li>
-            {% if user.developer.developer_id and user.developer.developer_check_status == 1 or user.developer.developer_from == 3%}
+            {% if user.account_id or user.developer.developer_from == 3%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
+            {% else %}
+                <li><a href="{% url 'home' %}">首页</a></li>
             {% endif %}
+            <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
             <li><a href="{% url 'wiki' %}">开发指南</a></li>
 
         </ul>
         <div class="sign_out">
             {% if user.account_id %}
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">我的账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
+                       style="text-decoration: none;">账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"

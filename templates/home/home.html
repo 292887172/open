@@ -73,6 +73,7 @@
         left:0;
     }
     .m-banner .hd li{
+        margin-left: 4%;
         width: auto;
         height: auto;
         overflow: visible;
@@ -85,7 +86,7 @@
     .text a{
         color: #ff6202;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 26px;
     }
     .m-project {
         min-width: 1200px;
@@ -109,22 +110,22 @@
         left: 26%;
     }
     .cl li img{
-        width:40%;
+        width:45px;
     }
 
     </style>
 {% endblock %}
 {% block menu %}
-    {% create_menu 1 user.developer.developer_id %}
+    {% create_menu 1 user.account_id %}
 {% endblock %}
 {% block content %}
     <div class="m-banner">
         <div class="hd">
             <div class="home-logo">
-                <h1 style="padding-top: 8%;color: #fff;">厨电自助平台</h1>
+                <h1 style="padding-top: 55px;color: #fff;">厨电自助开发平台</h1>
                 <p style="color: #fff;font-size: 18px;margin-top: 4%;">
                     厨电自助开发平台帮厂家快速将厨电智能化，1天完成智能化<br><br>
-                精准的厨房电能，即时响应上亿厨房用户每天的需求</p>
+                精准的厨房智能，10+厨电电控厂成功接入，即时响应上亿厨房用户每天的需求</p>
                 <div class="arrow" style="margin-top: 48px;">
                     {% if user.account_id %}
                         <a href="/product/list" class="btn btn-s-lg btn-success">
@@ -137,43 +138,69 @@
                         </a>
                     {% endif %}
                 </div>
+                <div class="n-step">
+                    <ul class="cl">
+                        <li class="p-list2" style="">
+                            <div class="text"><a href="/wiki/doc_wiki?view=Navicat1100#100">开发指南</a></div>
+
+                        </li >
+                        <li class="p-list3" style="padding-left: 100px;">
+                            <div class="text">
+                                <a href="/wiki/doc_wiki?view=Navicat1103#103">合作概要</a>
+                            </div>
+                        </li >
+                        <li class="p-list4" style="padding-left: 149px;padding-right: 40px;">
+                            <div class="text">
+                                <a href="/wiki/doc_wiki?view=Navicat2111#111">常见问题</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="n-step">
-                <ul class="cl">
-                    <li class="p-list2" style="padding-left: 7%">
-                        <div class="text"><a href="/wiki/doc_wiki?view=Navicat1100#100">开发指南</a></div>
-
-                    </li >
-                    <li class="p-list3" style="padding-left: 12%">
-                        <div class="text">
-                            <a href="/wiki/doc_wiki?view=Navicat1103#103">合作概要</a>
-                        </div>
-                    </li >
-                    <li class="p-list4" style="padding-left: 12%;padding-right: 10%;">
-                        <div class="text">
-                            <a href="/wiki/doc_wiki?view=Navicat2111#111">常见问题</a>
-                        </div>
-                    </li>
-                </ul>
 
                 <ul class="cl">
-                    <li class="p-list2" style="padding-left: 7%">
+                    <li class="p-list2" style="">
                         <img src="/static/image/home/1.png">
                         <div class="text">
 
                             <p>极短开发周期 </p>
                         </div>
                     </li>
-                    <li class="p-list3" style="padding-left: 12%;">
+                    <li class="p-list3" style="padding-left: 71px;">
                         <img src="/static/image/home/2.png">
                         <div class="text">
                             <p>超低研发投入</p>
                         </div>
                     </li>
-                    <li class="p-list4" style="padding-left: 12%;padding-right: 10%;">
+                    <li class="p-list4" style="padding-left: 140px;padding-right: 40px;">
                         <img src="/static/image/home/3.png">
                         <div class="text">
                             <p>高效平台工具</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="n-step">
+                <h2 style="text-align: center;">3步 厨电智能开发</h2>
+
+                <ul class="cl" style="margin-top: 29px">
+                    <li class="p-list2" style="">
+                        <img src="/static/image/product/20180904-2.png">
+                        <div class="text" style="">
+                            <p>定义产品及其功能 </p>
+                        </div>
+                    </li>
+                    <li class="p-list3" style="">
+                        <img src="/static/image/product/20180904-4.png">
+                        <div class="text" style="">
+                            <p>根据生成的通讯协议开发</p>
+                        </div>
+                    </li>
+                    <li class="p-list4" style="">
+                        <img style="margin-left: 20px" src="/static/image/product/20180904-1.png">
+                        <div class="text" style="">
+                            <p>UI和调试，验证成功后发布上线</p>
                         </div>
                     </li>
                 </ul>
@@ -187,30 +214,7 @@
 
     <!-- 合作项目 -->
     <div class="m-project">
-        <div class="wrapper">
-            <h2 style="text-align: center;">3步 厨电智能开发</h2>
-            <div style="text-align: center;padding: 62px 237px 0 229px;">
-                <img src="/static/image/home/0.png">
-            </div>
-            <ul class="cl" style="margin-top: 29px">
-                <li class="p-list2">
-                    <div class="text" style="padding-top: 0px">
-                        <p>定义产品及其功能 </p>
-                    </div>
-                </li>
-                <li class="p-list3">
 
-                    <div class="text" style="padding-top: 0px;">
-                        <p>根据生成的通讯协议开发</p>
-                    </div>
-                </li>
-                <li class="p-list4" style="padding-left: 53px;">
-                    <div class="text" style="padding-top: 0px;">
-                        <p>UI和调试，验证成功后发布上线</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
     </div>
 
 {% endblock %}

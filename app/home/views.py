@@ -15,6 +15,11 @@ _convention = ConventionValue()
 
 def home(request):
     # return HttpResponseRedirect('/center/login')
+    try:
+        if request.user.account_id:
+            return HttpResponseRedirect("/product/list")
+    except Exception as e:
+        print(e)
     return render(request, "home/home.html", locals())
 
 
