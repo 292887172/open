@@ -16,12 +16,11 @@ def pull_ui_conf(request):
             a = query_data(device_key)
             if a:
                 new_functions = []
-
                 function_list = json.loads(a['ebf_pc_conf'])['functions']
                 # print(json.loads(a['ebf_page_conf'])['name'])
                 for i in function_list:
-                    new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
-
+                    if int(i['isUiShow']) == 1:
+                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
                 json.loads(a['ebf_pc_conf'])['functions'] = new_functions
 
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],
@@ -29,9 +28,12 @@ def pull_ui_conf(request):
                 back_data = {"data": new_list, "code": 0}
                 return JsonResponse(back_data)
             else:
-                return HttpResponse('not fonud conf')
+                data = {'code': -1, 'msg': 'no  conf'}
+                return HttpResponse(json.dumps(data), content_type="application/json")
+
         else:
-            return HttpResponse('not found key')
+            data = {'code': -1, 'msg': 'no key'}
+            return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @csrf_exempt

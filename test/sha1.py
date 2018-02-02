@@ -3,7 +3,7 @@
 import sys
 from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
-from common.mysql_helper import query_data, query_ui_conf,modify_ui_conf
+from common.mysql_helper import query_data, query_ui_conf,modify_ui_conf, get_main_connection
 
 class prpcrypt():
     def __init__(self, key):
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     # d = pc.decrypt(e)
     # print(e, d)
     a = query_ui_conf('AAAAAABBBBBT' , 'oo')
+
 
 
 

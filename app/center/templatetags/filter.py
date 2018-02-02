@@ -182,3 +182,12 @@ def check_isphone_mail(val, type):
     return ''
 
 register.filter(check_isphone_mail)
+
+
+def check_first_child(menus,id):
+    for m in menus:
+        if int(m["menu_parent_id"]) == int(id):
+            print(id,m["menu_parent_id"])
+            return m["menu_id"]
+    return id
+register.filter(check_first_child)

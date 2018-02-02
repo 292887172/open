@@ -79,7 +79,7 @@
         <div class="w">
             <ul class="protocol-info-main">
                 <li class="item">
-                    <h4 class="title">接入指南</h4>
+                    <h4 class="title">开发指南</h4>
                     <div class="info-list">
                         {% for m in menus1 %}
                             {% if forloop.counter != 1%}
@@ -128,8 +128,8 @@
                        {% for m in menus3 %}
                             {% if m.menu_is_parent%}
                                 <p class="info">
-                                    <a href="/wiki/doc_wiki?view=Navicat3{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
-                            </p>
+                                    <a href="/wiki/doc_wiki?view=Navicat3{{ m.menu_id }}#{{ menus3|check_first_child:m.menu_id}}" target="_self">{{ m.menu_name }}</a>
+                                </p>
                             {% endif %}
 
                         {% endfor %}
@@ -141,3 +141,10 @@
     </body>
 {% endblock %}
 
+{% block script %}
+   <script>
+
+
+   </script>
+
+{% endblock %}
