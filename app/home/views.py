@@ -13,14 +13,31 @@ from open import settings
 _convention = ConventionValue()
 
 
+def is_mobile(request):
+    """
+    判断浏览器是否为移动设备浏览器
+    :param request:
+    :return:
+    """
+    if "HTTP_USER_AGENT" in request.META.keys():
+        agent = request.META["HTTP_USER_AGENT"].lower()
+        view = request.REQUEST.get("view", "")
+        if "android" in agent or "mobile" in agent or "iemobile" in agent:
+            if view != "pc":
+                return True
+    return False
+
+
 def home(request):
-    # return HttpResponseRedirect('/center/login')
+    template = "home/home.html"
     try:
         if request.user.account_id:
             return HttpResponseRedirect("/product/list")
     except Exception as e:
         print(e)
-    return render(request, "home/home.html", locals())
+    if is_mobile(request):
+        template = "home/home-mobile.html"
+    return render(request, template, locals())
 
 
 def guide(request):

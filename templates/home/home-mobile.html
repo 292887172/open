@@ -7,7 +7,7 @@
 {% block style %}
     <style>
         .wrapper {
-            width: 1200px;
+
             padding: 0;
             margin: 0 auto;
         }
@@ -21,9 +21,7 @@
 
             background: transparent;
         }
-        .cl {
-            margin-top: 80px;
-        }
+
         .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
@@ -53,18 +51,12 @@
         font-weight: 600;
     }
     .n-step{
+        padding-top: 30px;
+    }
 
-        padding-bottom: 77px;
-    }
-    .header{
-        min-width: 1200px;
-    }
     .m-banner{
-        height: 695px;
-        min-width: 1200px;
+        height: 632px;
         background: #fff;
-        min-height: 974px;
-
     }
     .m-banner .hd{
         width: 100%;
@@ -74,7 +66,7 @@
     }
     .m-banner .hd li{
         margin-left: 4%;
-        width: auto;
+        width: 80px;
         height: auto;
         overflow: visible;
     }
@@ -86,14 +78,14 @@
     .text a{
         color: #ff6202;
         cursor: pointer;
-        font-size: 26px;
+        font-size: 1.8rem;
     }
     .m-project {
-        min-width: 1200px;
+
         padding-top: 0;
     }
     .m-project .text p{
-        font-size: 20px;
+        font-size: 1.5rem;
     }
     .sign_out a:hover{
         color: #fff;
@@ -101,7 +93,7 @@
     .home-logo{
         background: url(/static/image/home/back2.jpg) no-repeat center #0D0F28;
         position: relative;
-        height: 500px;
+        height: 300px;
         background-size: 100% 100%;
     }
     .show-control{
@@ -112,46 +104,44 @@
     .cl li img{
         width:45px;
     }
-
+    .footer{
+        width: auto;
+        margin: 0;
+    }
+    h1, .h1{
+        font-size: 3rem;
+    }
+    h2, .h2{
+        font-size: 2rem;
+    }
+    p{
+        font-size: 1.2rem;
+    }
     </style>
 {% endblock %}
-{% block menu %}
-    {% create_menu 1 user.account_id %}
-{% endblock %}
+
 {% block content %}
     <div class="m-banner">
         <div class="hd">
             <div class="home-logo">
                 <h1 style="padding-top: 55px;color: #fff;">厨电自助开发平台</h1>
-                <p style="color: #fff;font-size: 18px;margin-top: 4%;">
+                <p style="color: #fff;font-size: 1.2rem;margin-top: 4%;">
                     帮工程师快速将厨电智能化<br><br>
                     1天可实现WiFi智能厨电,  时间就是金钱<br><br>
 
                 数十家厨电企业、电控厂的选择 十万用户家中可靠验证</p>
-                <div class="arrow" style="margin-top: 48px;">
-                    {% if user.account_id %}
-                        <a href="/product/list" class="btn btn-s-lg btn-success">
-                            <span class="show-control">产品管理</span>
-
-                        </a>
-                    {% else %}
-                        <a href="/center/login" class="btn btn-s-lg btn-success">
-                            <span class="show-control">立即智能化</span>
-                        </a>
-                    {% endif %}
-                </div>
                 <div class="n-step">
                     <ul class="cl">
                         <li class="p-list2" style="">
                             <div class="text"><a href="/wiki/doc_wiki?view=Navicat1100#100">开发指南</a></div>
 
                         </li >
-                        <li class="p-list3" style="padding-left: 100px;">
+                        <li class="p-list3" >
                             <div class="text">
                                 <a href="/wiki/doc_wiki?view=Navicat1103#103">合作概要</a>
                             </div>
                         </li >
-                        <li class="p-list4" style="padding-left: 149px;padding-right: 40px;">
+                        <li class="p-list4" >
                             <div class="text">
                                 <a href="/wiki/doc_wiki?view=Navicat2111#111">常见问题</a>
                             </div>
@@ -169,13 +159,13 @@
                             <p>极短开发周期 </p>
                         </div>
                     </li>
-                    <li class="p-list3" style="padding-left: 71px;">
+                    <li class="p-list3" >
                         <img src="/static/image/home/2.png">
                         <div class="text">
                             <p>超低研发投入</p>
                         </div>
                     </li>
-                    <li class="p-list4" style="padding-left: 140px;padding-right: 40px;">
+                    <li class="p-list4" >
                         <img src="/static/image/home/3.png">
                         <div class="text">
                             <p>高效平台工具</p>
@@ -186,21 +176,21 @@
             <div class="n-step">
                 <h2 style="text-align: center;">3步 厨电智能开发</h2>
 
-                <ul class="cl" style="margin-top: 29px">
-                    <li class="p-list2" style="">
+                <ul class="cl" >
+                    <li class="p-list2" >
                         <img src="/static/image/product/20180904-2.png">
                         <div class="text" style="">
                             <p>定义产品及其功能 </p>
                         </div>
                     </li>
-                    <li class="p-list3" style="">
+                    <li class="p-list3" >
                         <img src="/static/image/product/20180904-4.png">
-                        <div class="text" style="">
+                        <div class="text" >
                             <p>根据生成的通讯协议开发</p>
                         </div>
                     </li>
-                    <li class="p-list4" style="">
-                        <img style="margin-left: 20px" src="/static/image/product/20180904-1.png">
+                    <li class="p-list4" style="width: 85px">
+                        <img src="/static/image/product/20180904-1.png">
                         <div class="text" style="">
                             <p>UI和调试，验证成功后发布上线</p>
                         </div>

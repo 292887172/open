@@ -41,8 +41,10 @@ def write_zip(e_data, j_data, export_name):
         zipFileFullDir = os.getcwd() + "/static/sdk/" + z_name
         z_file = zipfile.ZipFile(zipFileFullDir, 'w')
         z_file.write(j_name, "TRD.json")
-        path = os.getcwd()+"/static/sdk/WIFI设备于53iq智能云通信协议V1.0.docx"
-        z_file.write(path, 'WIFI设备于53iq智能云通信协议V1.0.docx')
+        path1 = os.getcwd()+"/static/sdk/WIFI设备于53iq智能云通信协议V1.0.docx"
+        path2 = os.getcwd()+"/static/sdk/53IQ电控通信协议V1.1.docx"
+        z_file.write(path1, 'WIFI设备于53iq智能云通信协议V1.0.docx')
+        z_file.write(path2, '53IQ电控通信协议V1.1.docx')
         z_file.write(e_name, "TRD.xls")
         os.remove(j_name)
         os.remove(e_name)
