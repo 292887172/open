@@ -97,6 +97,7 @@ var _hmt = _hmt || [];
             {% endif %}
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
             <li><a href="{% url 'wiki' %}">开发指南</a></li>
+            <li><a href="{% url 'smartmenu' %}">智能菜谱</a></li>
 
         </ul>
         <div class="user">

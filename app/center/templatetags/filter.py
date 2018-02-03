@@ -108,6 +108,7 @@ def create_menu(context, cur=0, username=None):
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/smartmenu", "title": "智能菜谱"},
                     ]
 
         else:
@@ -115,6 +116,7 @@ def create_menu(context, cur=0, username=None):
                     {"url": "/", "title": "首页"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/smartmenu", "title": "智能菜谱"},
 
                     ]
         ret["menu"] = menu
