@@ -1,5 +1,6 @@
 {% extends "product/base.tpl" %}
 {% load staticfiles %}
+{% load filter %}
 
 {% block title %}
     产品管理
@@ -116,11 +117,7 @@
 {% endblock %}
 
 {% block menu %}
-
-    <li><a href="{% url 'home' %}">首页</a></li>
-    <li class="cur"><a class="nav-current" href="{% url "product/list" %}">产品管理</a></li>
-    <li><a href="{% url 'wiki' %}">开发指南</a></li>
-
+    {% create_menu 1 user.account_id %}
 
 {% endblock %}
 

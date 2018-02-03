@@ -107,13 +107,7 @@
 {% endblock %}
 
 {% block menu %}
-    {% if user.account_id %}
-        <li><a href="{% url 'product/list' %}">产品管理</a></li>
-    {% else %}
-        <li><a href="{% url 'home' %}">首页</a></li>
-    {% endif %}
-    <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
-    <li><a href="{% url 'wiki' %}">开发指南</a></li>
+    {% create_menu 1 user.account_id %}
 {% endblock %}
 {% block content %}
     <div class="container">

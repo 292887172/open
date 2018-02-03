@@ -60,11 +60,10 @@
             <h1 class="logo"><a href="http://53iq.com/"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
         {% endblock %}
 
-        <ul class="nav">
-            {% block menu %}
 
-            {% endblock %}
-        </ul>
+        {% block menu %}
+
+        {% endblock %}
 
     <div class="sign_out">
          {% if user.account_id %}

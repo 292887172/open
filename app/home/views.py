@@ -40,6 +40,11 @@ def home(request):
     return render(request, template, locals())
 
 
+def smart_menu(request):
+
+    return render(request, "home/smart-menu.html", locals())
+
+
 def guide(request):
     try:
         if request.user.account_type == _convention.USER_IS_ADMIN:
