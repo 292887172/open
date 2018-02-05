@@ -60,12 +60,19 @@
             return val;
         }
     };
-
+    // 转换nickname
+    var toNicknameHtml = function (val) {
+        if (val == null){
+            return '<span class="text-info">无</span>';
+        }else{
+            return val;
+        }
+    };
     //列
     var cols = [
         {title: '账号', name: 'id', align: 'center', lockDisplay: true},
-        {title: '来源', name: 'f', align: 'center', lockDisplay: true},
-        {title: '类型', name: 't', align: 'center', lockDisplay: true, renderer: toTypeHtml},
+        {title: '昵称', name: 'nickname', align: 'center', lockDisplay: true, renderer: toTypeHtml},
+        {title: '类型', name: 't', align: 'center', lockDisplay: true, renderer: toNicknameHtml},
         {title: '邮箱', name: 'email', align: 'center', lockDisplay: true},
         {title: '联系方式', name: 'phone', width: 60, align: 'center', lockDisplay: true},
         {title: '创建时间', name: 'createtime', align: 'center', lockDisplay: true, sortable: true},
