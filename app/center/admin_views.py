@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
 from django.http.response import HttpResponse
-from common.app_helper import fetch_publishing_app_data
+from common.app_helper import fetch_publishing_app_data, fetch_all_app_data
 from common.app_helper import fetch_published_app_data
 from common.app_helper import pass_app
 from common.app_helper import denied_app
@@ -472,6 +472,34 @@ def application_checking_data(request):
     elif request.method == "POST":
         return post()
 
+
+def application_all_data(request):
+    """
+    已经发布的应用数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        (sort_name, sort_status) = sort.split(".")
+        order_by_names = ""
+        if sort_status == "desc":
+            order_by_names = "-"
+        if sort_name == "createtime":
+            order_by_names += "app_update_date"
+        ret = fetch_all_app_data(page, limit, order_by_names)
+        return HttpResponse(json.dumps(ret, separators=(",", ":")))
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
 
 def application_detail_modal(request):
     """
