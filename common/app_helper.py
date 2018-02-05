@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from model.center.app import App
 from model.center.app_history import AppHistory
 from model.center.developer import Developer
+from model.center.account import Account
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
@@ -18,7 +19,7 @@ from common.api_helper import delete_api_app
 from common.api_helper import reset_api_app_secret
 from common.message_helper import save_user_message
 from conf.message import *
-import time
+
 import logging
 import datetime
 __author__ = 'achais'
@@ -429,5 +430,51 @@ def fetch_publishing_app_data(page, limit, order_by_names):
         )
         return result
     except Exception as e:
+        logging.getLogger("").error(e)
+        return ""
+
+
+def fetch_all_app_data(page, limit, order_by_names):
+    """
+    获取所有的应用信息
+    :param page:
+    :param limit:
+    :return:
+    """
+    try:
+        pager = Paginator(App.objects.filter().order_by(order_by_names),
+                          int(limit))
+        apps = pager.page(int(page))
+        total_count = pager.count
+        data = []
+
+        for app in apps:
+            try:
+                an = Account.objects.filter(account_id__contains=app.developer.developer_id[2:]).extra(
+                    order_by=('account_create_date',))[0:1]
+                nickname = an[0].account_nickname
+                if not nickname:
+                    nickname = app.developer.developer_id
+            except Exception as e:
+                print(e)
+                nickname = ''
+                pass
+            d = dict(
+                id=app.app_id,
+                name=app.app_name,
+                logo=app.app_logo,
+                describe=app.app_describe,
+                site=app.app_site,
+                nickname=nickname,
+                createtime=date2ymdhms(utctime2localtime(app.app_update_date))
+            )
+            data.append(d)
+        result = dict(
+            totalCount=total_count,
+            items=data
+        )
+        return result
+    except Exception as e:
+        print(e)
         logging.getLogger("").error(e)
         return ""

@@ -57,8 +57,9 @@ def fetch_user_list_data(page, limit, order_by_names):
                 t=user.account_type,
                 email=user.account_email,
                 phone=user.account_phone,
+                nickname=user.account_nickname,
                 is_forbid=user.account_is_forbid,
-                createtime=date2ymdhms(utctime2localtime(user.account_create_date))
+                createtime=date2ymdhms(user.account_create_date)
             )
             data.append(d)
         result = dict(

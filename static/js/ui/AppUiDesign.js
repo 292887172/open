@@ -5,13 +5,14 @@ $(function () {
     var logBtn = false;
     var configList = [];
     var bgs = document.querySelectorAll(".bgColor");
-    bgs = Array.prototype.slice.call(bgs);
+    bgs=Array.prototype.slice.call(bgs);
     var initialList = [];
     var controlLoad = true;
     var theme = "#FF8312";
     var logTrue = document.querySelector("#logTrue");
     var logFalse = document.querySelector("#logFalse");
     var screen = document.querySelector(".screen");
+    var fnList = document.querySelector(".fnList");
     // 获取保存的自定义UI配置
     $.ajax({
         type: "GET",
@@ -19,7 +20,6 @@ $(function () {
         url: "/api/diy_ui_conf",
         data: {key: device_key},
         success: function (data) {
-            console.log(data);
             data.function.forEach(function (item) {
                 renderList.push(item.title);
                 renderName.push(item.name);
@@ -80,19 +80,23 @@ $(function () {
             }
         })
         if (logBtn) {
+            preLog.style.display = "block";
+            communicateLog.style.display = "block";
             logTrue.checked = true;
             logFalse.checked = false;
         } else {
+            preLog.style.display = "none";
+            communicateLog.style.display = "none";
             logTrue.checked = false;
             logFalse.checked = true;
         }
-        sortable.innerHTML = null;
+        sortable.innerHTML ="";
         configList.forEach(function (item, index) {
             var display = "block";
             var li = document.createElement("li");
             li.setAttribute("value", renderName[index]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
             switch (item.model) {
                 case "big":
                     str += '<option value="medium">中模块</option><option value="big" selected>大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>', display = "block";
@@ -114,33 +118,24 @@ $(function () {
             sortable.appendChild(li);
         })
     } else {
+        screen.style.backgroundColor = "FF8312";
         sortable.innerHTML = null;
         for (var i = 0; i < renderList.length; i++) {
             var li = document.createElement("li");
             li.setAttribute("value", renderName[i]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-liebiao7 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/no.png" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-dp_power2 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/01.jpg" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML = str;
             sortable.appendChild(li);
         }
     }
     container.appendChild(sortable);
-    // 初始预览手机端效果
-    var fnList = document.querySelector(".fnList");
-
-    function previewApp() {
-        fnList.innerHTML = "";
-        for (var i = 0; i < renderList.length; i++) {
-            var preLi = document.createElement("li");
-            preLi.textContent = renderList[i];
-            fnList.appendChild(preLi);
-        }
-    }
-
     previewApp();
+    toggleBg();
     $("#sortable").sortable({
         stop: function (event, ui) {
-            previewAppAgain();
+            previewApp();
+            toggleBg();
         }
     });
     var backward = document.createElement("button");
@@ -155,27 +150,6 @@ $(function () {
     save.textContent = "保存";
     container.appendChild(save);
 
-    // RGB颜色转十六进制色
-    function RGBToHex(rgb) {
-        var regexp = /^rgb\(([0-9]{0,3})\,\s*([0-9]{0,3})\,\s*([0-9]{0,3})\)/g;
-        var re = rgb.replace(regexp, "$1 $2 $3").split(" "); //利用正则表达式去掉多余的部分  
-        var hexColor = "#";
-        var hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-        for (var i = 0; i < 3; i++) {
-            var r = null;
-            var c = re[i];
-            var hexAr = [];
-            while (c > 16) {
-                r = c % 16;
-                c = (c / 16) >> 0;
-                hexAr.push(hex[r]);
-            }
-            hexAr.push(hex[c]);
-            hexColor += hexAr.reverse().join('');
-        }
-        return hexColor;
-    }
-
     //选择主题
     var currentTheme = theme;
     bgs.forEach(function (item) {
@@ -183,8 +157,8 @@ $(function () {
             bgs.forEach(function (item) {
                 item.children[0].textContent = null;
             })
-            e.target.textContent = "√";
-            currentTheme = RGBToHex(getComputedStyle(e.target.parentNode)["background"]);
+            e.target.textContent = "√"
+            currentTheme = e.target.parentNode.getAttribute("value");
             screen.style.backgroundColor = currentTheme;
         })
     })
@@ -211,7 +185,6 @@ $(function () {
     iconBtns.forEach(function (item, index) {
         item.addEventListener("click", function (e) {
             currentLi = e.target.parentNode.parentNode;
-            console.log(currentLi.querySelector(".title").querySelector("span").textContent);
         })
     })
     // 选择模块背景
@@ -236,15 +209,16 @@ $(function () {
     var confirm = document.querySelector(".confirm");
     confirm.addEventListener("click", function () {
         currentLi.querySelector(".switchIcon").querySelector("i").className = "iconfont " + currentIcon + " pull-right";
+        previewApp();
     })
     //选择背景模态框
     var ensure = document.querySelector(".ensure");
     ensure.addEventListener("click", function () {
         currentLi.querySelector(".switchBg").querySelector("img").src = currentBg;
+        previewApp();
     })
 
     save.addEventListener("click", function () {
-        console.log(getInfo());
         $.ajax({
             type: "POST",
             async: false,
@@ -258,50 +232,84 @@ $(function () {
     });
 
     // 预览手机端效果
-    function previewAppAgain() {
-        var list=getInfo().function;
-        console.log(list);
+    function previewApp() {
+        var list = getInfo().function;
         fnList.innerHTML = "";
-        list.forEach(function(item,index){
+        list.forEach(function (item, index) {
             var preLi = document.createElement("li");
-            if(item.model=="big"&&item.bg.slice(-6)!="no.png"){
-                console.log(1);
-                preLi.style.backgroundImage="url("+item.bg+")";
+            var url = "url(" + item.bg + ")";
+            if (item.model == "big") {
+                var i = document.createElement("i");
+                i.style = "color:#fff;margin-top:1px;";
+                i.className = "iconfont " + item.icon;
+                preLi.appendChild(i);
+                preLi.style.paddingTop = "2px";
+                preLi.style.backgroundImage = url;
+                preLi.style.backgroundSize = "cover";
+                preLi.style.height = "4em";
+                preLi.style.color = "#000";
+                var p = document.createElement("p");
+                p.textContent = item.title;
+                p.style.marginTop = "6px";
+                preLi.appendChild(p);
             }
-            preLi.textContent =item.title;
+            if (item.model == "small") {
+                var i = document.createElement("i");
+                i.style = "color:#fff;margin-top:1px;";
+                i.className = "iconfont " + item.icon;
+                preLi.appendChild(i);
+                preLi.style.paddingTop = "2px";
+                preLi.style.backgroundSize = "cover";
+                preLi.style.height = "3em";
+                preLi.style.color = "#000";
+                preLi.style.width = "25%";
+                preLi.style.margin = "0 4%";
+                preLi.style.backgroundColor = "inherit";
+                preLi.style.border = "0";
+                var p = document.createElement("p");
+                p.textContent = item.title;
+                preLi.appendChild(p);
+            }
+            if (item.model == "medium") {
+                var i = document.createElement("i");
+                i.style = "color:#fff;margin-top:1px;position:absolute;left:20px;";
+                i.className = "iconfont " + item.icon;
+                preLi.appendChild(i);
+                preLi.style.paddingTop = "2px";
+                preLi.style.backgroundSize = "cover";
+                preLi.style.height = "1.7em";
+                preLi.style.color = "#000";
+                var span = document.createElement("span");
+                span.textContent = item.title;
+                span.style = "margin-left:56%;";
+                preLi.appendChild(span);
+            }
+            if (item.model == "hidden") {
+                preLi.style.display = "none";
+            } else {
+                preLi.style.display = "block";
+            }
             fnList.appendChild(preLi);
         })
     }
 
     //判断是否为大模块，是大模块加模块背景，其他模块取消背景
-    var moduleControl = document.querySelectorAll(".moduleControl");
-    moduleControl = Array.prototype.slice.call(moduleControl);
-    var changeModel = fnList.querySelectorAll("li");
-    var switchBg = document.querySelectorAll(".switchBg");
-    moduleControl.forEach(function (item, index) {
-        item.addEventListener("change", function () {
-            if (this.value == "big") {
-                switchBg[index].setAttribute("style", "display:block;")
-                changeModel[index].style.height = "3em";
-                changeModel[index].style.width = "calc(100% - 2px)";
-            } else {
-                switchBg[index].setAttribute("style", "display:none;");
-                changeModel[index].style.height = "1.3em";
-            }
-            if (this.value == "small") {
-                changeModel[index].style.display = "block";
-                changeModel[index].style.width = "calc(33% - 2px)";
-            } else if (this.value == "hidden") {
-                changeModel[index].style.display = "none";
-            } else {
-                changeModel[index].style.display = "block";
-            }
-            if (this.value == "medium") {
-                changeModel[index].style.height = "1.3em";
-                changeModel[index].style.width = "calc(100% - 2px)";
-            }
+    function toggleBg() {
+        var selectModule = document.querySelectorAll(".moduleControl");
+        selectModule = Array.prototype.slice.call(selectModule);
+        var switchBg = document.querySelectorAll(".switchBg");
+        selectModule.forEach(function (item, index) {
+            item.addEventListener("change", function () {
+                if (this.value == "big") {
+                    switchBg[index].setAttribute("style", "display:block;")
+                } else {
+                    switchBg[index].setAttribute("style", "display:none;");
+                }
+                previewApp();
+            })
         })
-    })
+    }
+
 
     //获取页面所有属性
     function getInfo() {
@@ -310,6 +318,7 @@ $(function () {
         uploadConfig.currentTheme = currentTheme;
         var arr = [];
         var list = document.querySelector("#sortable").querySelectorAll("li");
+        list=Array.prototype.slice.call(list);
         list.forEach(function (item, index) {
             arr[index] = new Object();
             arr[index].name = item.getAttribute("value");
