@@ -91,6 +91,10 @@
         li a:hover{
             color: #ff6202;
         }
+    .breadcrumb > li + li:before{
+        content: "\f105";
+        font-family: FontAwesome;
+    }
 
     </style>
 {% endblock %}
@@ -110,7 +114,8 @@
                 {% endif %}
             {% endfor %}
             <ol class="breadcrumb" style="width: 36%;float: left">
-                <li><a href="/wiki">开发指南</a></li>
+                <li><a href="/product/list">产品管理</a></li>
+                <li style="color: #ff6202;">开发指南</li>
             </ol>
             <ol style="width: 50%;float: left;margin: 6px 0 1px;line-height: 0;" class="new-app">
                 <li style="color: #c6c6c6;">模板创建：</li>
