@@ -31,17 +31,19 @@ var checkSubmitFlg = false;
 
                 var product_name = $("#product_name").val();
                 if (product_name == '') {
-                    check_name()
+                    check_name();
                     return;
                 }
                 if (!checkSubmitFlg) {
                     checkSubmitFlg = true;
-                    console.log("不能重复提交");
                     form.submit();
+
+                    // $(".markLayout").hide();
+                    // new_close();
                     //$("#loadingDiv").show();
                 }
                 else {
-                    return;
+                    bootbox.alert("不能重复提交");
                 }
             }
         function check_name() {

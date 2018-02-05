@@ -104,6 +104,24 @@ def deal_json(app):
 
         # 写入json的数据
         i = {}
+        i["frames"] = []
+        i["cmdconfig"] = {
+            "SendHeart":True,
+            "HeartFrequency":1000,
+            "SupportSerial":True,
+            "ResendInterval":100,
+            "ResendTimes":5,
+            "SupportSignleContorl":False,
+            "SendResponse":True,
+            "AnalyzeData":True,
+            "isStandard":True,
+            "serial_name":"/dev/ttyS1",
+            "serial_baudrate":9600,
+            "serial_csize":8,
+            "serial_parity":-1,
+            "serial_stopbits":1
+
+        }
         i['value_des'] = data['mxs']
         i["id"] = data["id"]
         i["no"] = i["id"]

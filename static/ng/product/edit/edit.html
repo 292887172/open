@@ -592,23 +592,23 @@
     function addToList() {
         var ofRow={};
         msg = '<tr>';
-        func = $("#selectFunc").find("option:selected").text();
-        stream_id = $("#selectFunc").val();
+        name = $("#selectFunc").find("option:selected").text();
+        func = $("#selectFunc").val();
         min = $("#minDefault").val();
         max = $("#maxDefault").val();
         val = $("#defaultVal").val();
-        if(func && func!=0) {
-            msg += '<th>' + func + '</th>';
+        if(name && name!=0) {
+            msg += '<th>' + name + '</th>';
             msg += '<th>' + min + '</th>';
             msg += '<th>' + max + '</th>';
             msg += '<th>' + val + '</th>';
-            msg += '<th><a onclick="delFunc(this,\''+func+'\')">移除' + '</a></th>';
+            msg += '<th><a onclick="delFunc(this,\''+name+'\')">移除' + '</a></th>';
             $("#addFunc").append(msg);
-            ofRow['func']=func;
+            ofRow['name']=name;
             ofRow['min']=min;
             ofRow['max']=max;
             ofRow['val']=val;
-            ofRow["stream_id"]= stream_id;
+            ofRow["func"]= func;
             trig.push((ofRow));
             $("#selectFunc option[value=" + stream_id + "]").remove();
         }

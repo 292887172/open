@@ -17,47 +17,54 @@
     }
 </style>
 
-<script src="/static/js/ejs.js"></script>
+<div class="box2 relative">
+    <div class="hl-help">
+
+        <span class="linkBlue">设备管理中心</span>
+    </div>
+	<div class="mt20">
+        <div class="boxInfo">
+            <h3 class="tit5">设备管理表</h3>
+
+                <div class="loading" style="text-align: center;">
+                    <p style="font-size: 16px"><i class="fa fa-spin fa-spinner"></i> 正在做加载中，请稍后...</p>
+                </div>
+                <h3 class="tit5" id="no-info" >当前还未绑定任何设备，只需将产品Key写入协议通过握手帧上报，即可查看绑定设备!</h3>
+                <div class="panel panel-default" id="device-info" >
+
+                </div>
+                 <div class="row" id="barcon">
+                </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
-    var key='';
-    jQuery(function($) {
-        var device_list={};
-        var state;
 
-        $.ajax({
-            url: location.href,
-            type: "POST",
-            data: {'device': 'device_table'},
-            success: function (data) {
+    function load_table(device_list,state) {
 
-                device_list= data['data'];
-                key = data['key'];
-                state = data["check_state"];
-                if(! device_list){
-                    $("#device-info").css("display","none");
-                    $("#barcon").css("display","none");
-                    $("#no-info").css("display","block");
-                 }
-                load_table(device_list);
-            },
-            error: function (e) {
-                alert(e)
+        group = '<table class="table table-striped m-b-none">' +
+        '<thead> <tr> <th>id</th> <th>mac</th> <th>时间</th> <th>调试</th> </tr>' +
+        '</thead> <tbody id="table-device">';
+        for(var i=0;i<device_list.length;i++){
+            group += '<tr><td>'+device_list[i].ebf_device_id+'</td>';
+            group += '<td>'+device_list[i].ebf_device_mac+'</td>';
+            group += '<td>'+device_list[i].ebf_device_create_date+'</td><td>';
+            if (device_list[i].ebf_device_mac) {
+                group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="<%=device_list[i].ebf_device_mac%>" target="_blank" >调试</a>'
             }
-        });
-        function load_table(device_list) {
-
-            group = new EJS({url: '/static/js/tmpl/device_table.ejs'}).render({"device_list":device_list});
-            document.getElementById("device-info").innerHTML=group;
-            if(state>=1){
-                $("td a").css({'pointer-events':'none'});
-            }
-            $(".loading").css("display",'none');
-            goPage(1,20);
-            console.log(document.getElementById('current-page'));
-            // 分页显示
+            group += '</td></tr>'
         }
+        group += '</tbody></table>';
+        document.getElementById("device-info").innerHTML=group;
+        if(state>=1){
+            $("td a").css({'pointer-events':'none'});
+        }
+        goPage(1,20);
+        console.log(document.getElementById('current-page'));
+        // 分页显示
+    }
 
-    });
     function DebugDevice(item) {
         // href="https://oven.53iq.com/static/html/control.html?d=<%=device_list[i].ebf_device_mac%
         var mac = $(item).data('mac');
@@ -136,27 +143,4 @@
             document.getElementById("barcon").innerHTML = tempStr;
         }
 
-</script>
-
-<div class="box2 relative">
-    <div class="hl-help">
-
-        <span class="linkBlue">设备管理中心</span>
-    </div>
-	<div class="mt20">
-        <div class="boxInfo">
-            <h3 class="tit5">设备管理表</h3>
-
-                <div class="loading" style="text-align: center;">
-                    <p style="font-size: 16px"><i class="fa fa-spin fa-spinner"></i> 正在做加载中，请稍后...</p>
-                </div>
-                <h3 class="tit5" id="no-info" >当前还未绑定任何设备，只需将产品Key写入协议通过握手帧上报，即可查看绑定设备!</h3>
-                <div class="panel panel-default" id="device-info" >
-                </div>
-                 <div class="row" id="barcon">
-                </div>
-        </div>
-    </div>
-</div>
-<script>
 </script>

@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{% static 'css/wiki/global.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
+    <link rel="stylesheet" href="/static/common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/product/bootbox.css">
+    <link rel="stylesheet" href="/static/css/product/list.css"/>
 
     <style>
         #header{
@@ -179,6 +182,39 @@
 </div>
 </div>
 {% block content %}
+    <div class="title">
+            <div class="wrapper">
+            {% for default_app in default_apps %}
+                <input type="hidden" class="default-app" data-appid={{ default_app.app_id }}>
+            {% endfor %}
+            {% for a in all_app %}
+                {% if a.check_status != 3%}
+                    <input type="hidden" class="owner-app" data-appid={{ a.app_id }}>
+                {% endif %}
+            {% endfor %}
+            <ol class="breadcrumb" style="width: 36%;float: left">
+                <li><a href="/product/list">产品管理</a></li>
+                <li style="color: #ff6202;">开发指南</li>
+            </ol>
+            <ol style="width: 50%;float: left;margin: 6px 0 1px;line-height: 0;" class="new-app">
+                <li style="color: #c6c6c6;">模板创建：</li>
+                {% for app in default_apps %}
+                    <li>
+                        {% if user.developer.developer_id%}
+                            <a href="javascript:void(create_procuct('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
+                        {% else %}
+                            <a href="javascript:void(dont_develop())">{{ app.app_name }}</a>
+                        {% endif %}
+                    </li>
+                    {% if forloop.counter == 3 %}
+                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">体验中心</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+
+            </div>
+
+        </div>
     <div class="wrapper mt20 fn-clear">
         <div class="leftSide">
             <div class="box1">
@@ -201,10 +237,64 @@
                                       href="javascript:scroll(0,0);"><img src="{% static 'image/wiki/zhid2.png' %}"
                                                                           title="回到顶部"/></a>
 </div>
+<div class="popBox" id="newHtmlBox" style="display: none;">
+        <a href="javascript:" onclick="new_close()" class="close">关闭</a>
+        <h3 style="text-align: center;height: auto;">创建<span id="productType"></span>类产品</h3>
+        <div class="cont mt20" style="margin-top: -15px;">
+            <div style="float:left;">
+                <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
+                     src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+            </div>
+            <div class="warnCont" style="width: 76%">
+                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name" class="">产品名称:</label>
+                        <span class="ant-input-wrapper">
+                            <input type="text" value="" id="product_name" onblur="check_name()" name="product_name"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                        <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
+                    </div>
+                    <div class="ant-row ant-form-item" id="com_type">
+                        <label class="dtbox">技术方案:</label>
+
+                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                            <label for="c1">Wi-Fi</label>
+                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
+                            <label for="c2">Android屏</label>
+                        </p>
+
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                    </div>
+
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name" class="">产品类型:</label>
+                        <span class="ant-input-wrapper">厨房类
+                            <input type="hidden" value="厨房类" readonly="readonly" name="product_category"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                    </div>
+                    <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
+                    <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
+                    <input type="hidden" value="2" name="product_group" class="product_group">
+                    <input type="hidden" value="是" name="product_command">
+
+                </form>
+            </div>
+        </div>
+        <div class="btnBar" style="background: none;height: 57px;">
+              <span>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">提交</a>
+              </span>
+        </div>
+    </div>
+<div class="markLayout"></div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
 <script src="{% static 'js/center/bootbox.js' %}"></script>
 <script src="{% static 'js/check-ie.js' %}"></script>
+<script src="/static/js/product/fast_create.js"> </script>
 <script>
     //判断ie浏览器版本是否低于9
     if(lessIE9()){

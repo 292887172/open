@@ -7,7 +7,7 @@
 {% block style %}
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
 <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+
 
     <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css'%}" />
     <link rel="stylesheet" href="{% static 'assets/css/ui.jqgrid.min.css' %}" />
@@ -183,14 +183,8 @@
             <ol class="breadcrumb">
             <li><a href="/product/list/">产品管理</a></li>
             <li>
-                 <div class="dropdown" id="dropdown" >
-                     {% if app.check_status == 3 %}
-                         <p id="dropdownMenu2" data-toggle="dropdown">产品体验<span class="caret"></span></p>
-
-                     {% else %}
-                         <p id="dropdownMenu2" data-toggle="dropdown">我的产品<span class="caret"></span></p>
-                     {% endif %}
-                 </div>
+                     {% if app.check_status == 3 %}产品体验
+                     {% else %}我的产品{% endif %}
             </li>
             {% if app.check_status == 3 %}
             <li id="default-app-id">

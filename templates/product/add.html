@@ -17,12 +17,10 @@
             padding: 0;
             margin: 0 auto;
         }
-
         .mt20 {
             margin-top: 20px;
             padding-top: 155px;
         }
-
         .goods span {
             height: 30px;
         }
@@ -149,22 +147,25 @@
                                 <dl class="fmInfo">
                                     <dt>分类</dt>
                                     <dd>
-                                        智能家居 /
-                                        <select name="product_category" id="product_category" class="sel1" onblur="check_category(this)">
-                                            <option value="无">请选择分类</option>
-                                            {#                                        <option value="家电类">家电类</option>#}
-                                            <option value="厨房类">厨房类</option>
-{#                                            <option value="卫浴类">卫浴类</option>#}
-                                            {#                                        <option value="环境类">环境类</option>#}
-                                        </select>
+                                        厨房类 /
+                                        <input name="product_category" type="hidden" value="厨房类">
                                         <select name="product_category_detail" id="product_category_detail"
                                                 class="sel2">
-                                            <option value="无">请选择分类</option>
+                                            <option value="">请选择分类</option>
+                                            <option value="1">油烟机</option>
+                                            <option value="2">集成灶</option>
+                                            <option value="6">冰箱</option>
+                                            <option value="11">烤箱</option>
+                                            <option value="20">蒸箱</option>
+                                            <option value="25">电压力锅</option>
+                                            <option value="26">电饭煲</option>
+                                            <option value="27">台式小烤箱</option>
+                                            <option value="0">其他</option>
                                         </select>
                                     </dd>
-
+                                    <span style="color: red;display: none;padding-left: 20px;" class="check-sel">请选择产品分类</span>
                                 </dl>
-                                <span style="color: red;display: none;padding-left: 172px;" class="check-sel">请选择产品分类</span>
+
                                 <dl class="fmInfo">
                                     <dt>产品名称</dt>
                                     <dd>
@@ -311,9 +312,9 @@
             $("#product_group").val(val);
 
         }
-        function check_category(obj) {
-            var value = $("#product_category option:selected").val();
-            if(value == '无'){
+        function check_category_detail(obj) {
+            var value = $("#product_category_detail option:selected").val();
+            if(value == ''){
                 $(".check-sel").css('display','block');
                 return false;
             }
@@ -334,7 +335,7 @@
         }
         $(document).ready(function () {
             $('#go').on('click', function (e) {
-                if (check_app_name() && check_category())
+                if (check_app_name() && check_category_detail())
                 {
                     var msg = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">创建产品成功！</div><div class="notification-action"></div></div></div>';
                     $("form[name=productAddForm]").submit();
@@ -344,22 +345,6 @@
                     },2000);
                 }
             });
-            $("#product_category").on('change', function () {
-                var value = $("#product_category option:selected").val();
-                if (value == '无') {
-                    html = '<option value="0">请选择分类</option>'
-                }
-                else if (value == '厨房类') {
-                    html = '<option value="1">油烟机</option><option value="2">集成灶</option><option value="6">冰箱</option>' +
-                        '<option value="11">烤箱</option><option value="20">蒸箱</option><option value="25">电压力锅</option>' +
-                        '<option value="26">电饭煲</option><option value="27">台式小烤箱</option><option value="0">其他</option>'
-                }
-                else if (value == '卫浴类') {
-                    html = '<option value="12">马桶</option><option value="19">饮水机</option>'
-                }
-                $("#product_category_detail").html(html)
-            });
-
         })
     </script>
 {% endblock %}
