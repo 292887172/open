@@ -11,7 +11,7 @@ body{background:#f8f8f8;color:#666;}
 .container .choiceBg{border:1px solid #c5c5c5;line-height:3em;border-radius:4px;padding-left:15px;background:#f8f8f8;}
 .container .choiceBg .title{width:15%;height:auto;padding:0;background:inherit;border:0;box-shadow:none;}
 .container .choiceBg #choiceBg{border-bottom:0;height:3em;line-height:3em;}
-.container .choiceBg #choiceBg span{background:#0071bb;height:1.8em;width:1.8em;border-radius:100%;display:inline-block;margin-right:2em;line-height:1.8em;position:relative;margin-top:0.6em;}
+.container .choiceBg #choiceBg span{background:#1171bb;height:1.8em;width:1.8em;border-radius:100%;display:inline-block;margin-right:2em;line-height:1.8em;position:relative;margin-top:0.6em;}
 .container .choiceBg #choiceBg span i{position:absolute;color:#fff;font-weight:900;font-size:1.2em;width:100%;height:100%;padding-left:0.2em;}
 .container .choiceBg #choiceBg span:nth-child(1){background:#ff8312;}
 .container .choiceBg #choiceBg span:nth-child(2){background:#4b4048;}
@@ -44,11 +44,11 @@ body{background:#f8f8f8;color:#666;}
 #backward{margin-left:45%;height:2.5em;background:#999;line-height:2.5em;margin-top:1em;border-radius:4px;background:#2fa666;width:4.5em;color:#fff;text-align:center;}
 #save{margin-left:10px;height:2.5em;background:#999;line-height:2.5em;margin-top:1em;border-radius:4px;background:#2fa666;width:4.5em;color:#fff;text-align:center;}
 /* 手机端效果预览样式 */
-#preview{height:465px;width:220px;position:fixed;right:0;top:17%;background:url(/static/image/bg/iphone.jpg)no-repeat;background-size:cover;border-radius:30px;z-index:5;}
+#preview{height:465px;width:220px;position:fixed;right:calc(50% - 500px);top:17%;background:url(/static/image/bg/iphone.jpg)no-repeat;background-size:cover;border-radius:30px;z-index:5;}
 #preview .screen{color:#fff;height:334px;width:192px;position:absolute;top:66px;left:15px;list-style:none;background-size:100% 100%;padding:10px;overflow-y:scroll;}
 #preview .screen .log{line-height:1.8em;background:rgba(4, 4, 4, 0.2);margin-top:10px;border-radius:4px;}
-#preview .screen .fnList{overflow:hidden;}
-#preview .screen .fnList li{display:inline-block;float:left;font-size:12px;width:calc(100% - 2px);padding:0;margin:0;text-align:center;background-color:#4c5b84;margin-bottom:2px;height:1.3em;margin-left:2px;line-height:1.3em;o}
+#preview .screen .fnList{overflow:hidden;display:flex;flex-wrap:wrap;justify-content:space-around;}
+#preview .screen .fnList li{display:inline-block;float:left;font-size:12px;width:calc(100% - 2px);padding:0;margin:0;text-align:center;background-color:#4c5b84;margin-bottom:2px;height:1.3em;margin-left:2px;line-height:1.3em;}
 .container .modal-body{height:auto;}
 .container .modal-dialog{width:800px;text-align:left;}
 
