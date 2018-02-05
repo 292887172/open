@@ -1,0 +1,328 @@
+{% extends "home/base.tpl" %}
+{% load filter %}
+{% load staticfiles %}
+
+{% block title %}
+    厨电方案
+{% endblock %}
+{% block menu %}
+    {% create_menu 2 user.account_id %}
+
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
+    <link rel="stylesheet" href="/static/css/product/bootbox.css">
+    <style>
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a:hover {
+            background: transparent;
+        }
+        .set-radius {
+            background-color: #333;
+            border: 1px solid #333;
+            text-align: center;
+            height: 30px;
+            width: 30px;
+            float: left;
+            margin: 9px 18px;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            line-height: 28px;
+        }
+        .nav-current {
+            text-decoration: none;
+            border-bottom: 3px solid #ff6202;
+            height: 35px;
+        }
+        .set-float {
+            top: 32px;
+            position: relative;
+            float: left;
+            color: #fff;
+        }
+
+        .right {
+            float: right;
+            width: 33%;
+            height: 300px;
+            padding-top: 4%;
+            padding-left: 2%;
+        }
+
+        .left div {
+            float: right;
+            padding: 3px;
+            width: 218px;
+            height: 254px;
+
+        }
+
+        .left-dv1 {
+            background: rgba(47, 170, 116, .7);
+            transform: skewX(-1deg);
+            margin-top: 35px;
+            margin-left: -2px;
+        }
+
+        .left-dv2 {
+            background: rgba(255, 98, 2, .7);
+            transform: skewX(-1deg);
+            margin-top: 20px;
+            margin-left: -2px;
+        }
+
+        .left-dv3 {
+            background: rgba(110, 169, 248, .7);
+            transform: skewX(-1deg);
+            margin-top: 35px;
+        }
+
+        .left div.left-dv4 {
+            width: 110px;
+            background: rgba(110, 169, 248, .7);
+            transform: skewX(-1deg);
+            margin-top: 179px;
+            height: 110px;
+            cursor: pointer;
+        }
+
+        .left-dv4:hover {
+            opacity: 0.85;
+        }
+
+        .left div img {
+            top: 14px;
+            position: relative;
+            left: 29%;
+        }
+
+        .set-sample span {
+            margin: 25px;
+            font-size: 16px;
+        }
+
+        .index-banner {
+            min-width: 1200px;
+        }
+
+        .left {
+            float: left;
+            width: 66%;
+            margin-left: 13%;
+            height: 300px;
+            min-width: 810px;
+            max-width: 1050px;
+
+        }
+
+        .left h4 {
+            text-align: center;
+            margin-top: 12px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .left p {
+            color: #fff;
+            padding: 10px;
+            font-size: 12px;
+        }
+        .left div.ui-demo {
+            cursor: pointer;
+            border: 1px solid #fff;
+            color: #fff;
+            height: 30px;
+            width: 100px;
+            margin-top: 22px;
+            margin-left: 55px;
+            float: left;
+            text-align: center;
+            line-height: 22px
+        }
+
+        .ui-demo:hover {
+            background-color: #c3c8d1;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+                background-size: 100% 100%;
+                height: 300px;
+            }
+
+            .right {
+                max-width: 300px;
+                min-width: 330px;
+            }
+        }
+
+        @media screen and (min-width: 1201px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+
+                background-size: 100% 100%;
+                height: 300px;
+            }
+        }
+
+        @media screen and (min-width: 1800px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+
+                background-size: 100% 100%;
+                height: 300px;
+            }
+        }
+        .title{
+                margin-top: 90px;
+                width: 100%;
+                z-index: 1;
+                height: 61px;
+            }
+        .breadcrumb{
+            background-color: transparent;
+            margin: 6px 0 1px;
+            padding: 0;
+            font-size: 16px;
+            border-radius: 0;
+            color: #788197;
+        }
+    .breadcrumb>li>a {
+        color: #333;
+        cursor: pointer;
+    }
+    .breadcrumb>li>a:hover{
+        color: #ff6202;
+    }
+    .breadcrumb > li + li:before{
+        font-family: FontAwesome;
+        font-size: 14px;
+        content: "\>";
+        color: #B2B6BF;
+        padding: 0;
+        margin: 0 8px 0 0;
+        position: relative;
+        top: 1px;
+    }
+
+    </style>
+{% endblock %}
+{% block content %}
+     <div class="title">
+            <div class="wrapper">
+                <ol class="breadcrumb">
+                    <li><a href="/product/list">产品管理</a></li>
+                    <li>厨电方案</li>
+                </ol>
+            </div>
+
+        </div>
+    <div class="index-banner">
+    <div class="left">
+
+        {% for app in default_apps %}
+
+            {% if  forloop.counter == 1 %}
+                <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
+                    <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
+                    <h4 style="margin-top: 28px">体验中心</h4>
+
+                </div>
+                <div class="left-dv1">
+            {% elif forloop.counter == 2 %}
+                <div class="left-dv2">
+            {% else %}
+                <div class="left-dv3">
+            {% endif %}
+
+        <img src="{{ app.app_logo }}">
+        <h4>{{ app.app_name }}</h4>
+        {% if app.app_device_type == 1 %}
+            <p>智能显示，多档控制，强劲风力，多屏互动体验</p>
+        {% elif app.app_device_type == 2 %}
+            <p>WiFi/Android屏集成灶，远程监控灶状态，厨房风险指数模板快速接入</p>
+        {% elif app.app_device_type == 11 %}
+            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
+        {% endif %}
+        <div class="ui-demo">
+            {% if user.developer.developer_id%}
+                <a style="display:block;color:#fff" href="javascript:void(create_procuct('{{ app.app_device_type }}'))" >快速创建</a>
+            {% else %}
+                <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+            {% endif %}
+
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+        </div>
+    </div>
+    </div>
+    <div class="popBox" id="newHtmlBox" style="display: none;">
+        <a href="javascript:" onclick="new_close()" class="close">关闭</a>
+        <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
+        <div class="cont mt20" style="margin-top: -15px;">
+            <div style="float:left;">
+                <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
+                     src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+            </div>
+            <div class="warnCont" style="width: 76%">
+                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name" class="">产品名称:</label>
+                        <span class="ant-input-wrapper">
+                            <input type="text" value="" id="product_name" onblur="check_name()" name="product_name"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                        <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
+                    </div>
+                    <div class="ant-row ant-form-item" id="com_type">
+                        <label class="dtbox">技术方案:</label>
+
+                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                            <label for="c1">Wi-Fi</label>
+                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
+                            <label for="c2">Android屏</label>
+                        </p>
+
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                    </div>
+
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name" class="">产品类型:</label>
+                        <span class="ant-input-wrapper">厨房类
+                            <input type="hidden" value="厨房类" readonly="readonly" name="product_category"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                    </div>
+                    <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
+                    <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
+                    <input type="hidden" value="2" name="product_group" class="product_group">
+                    <input type="hidden" value="是" name="product_command">
+
+                </form>
+            </div>
+        </div>
+        <div class="btnBar" style="background: none;height: 85px;">
+              <span>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">提交</a>
+              </span>
+        </div>
+    </div>
+    <div class="markLayout"></div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="/static/js/product/bootbox.js"></script>
+    <script src="/static/js/product/fast_create.js"></script>
+
+{% endblock %}

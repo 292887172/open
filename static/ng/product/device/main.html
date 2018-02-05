@@ -17,17 +17,13 @@
     }
 </style>
 
-
 <script src="/static/js/ejs.js"></script>
 <script type="text/javascript">
     var key='';
     jQuery(function($) {
         var device_list={};
         var state;
-        var dialog1 = bootbox.dialog({
-                    title: '正在加载,请等候',
-                    message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
-                });
+
         $.ajax({
             url: location.href,
             type: "POST",
@@ -55,7 +51,7 @@
             if(state>=1){
                 $("td a").css({'pointer-events':'none'});
             }
-            dialog1.modal('hide');
+            $(".loading").css("display",'none');
             goPage(1,20);
             console.log(document.getElementById('current-page'));
             // 分页显示
@@ -150,6 +146,10 @@
 	<div class="mt20">
         <div class="boxInfo">
             <h3 class="tit5">设备管理表</h3>
+
+                <div class="loading" style="text-align: center;">
+                    <p style="font-size: 16px"><i class="fa fa-spin fa-spinner"></i> 正在做加载中，请稍后...</p>
+                </div>
                 <h3 class="tit5" id="no-info" >当前还未绑定任何设备，只需将产品Key写入协议通过握手帧上报，即可查看绑定设备!</h3>
                 <div class="panel panel-default" id="device-info" >
                 </div>

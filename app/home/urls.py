@@ -5,6 +5,7 @@ urlpatterns = patterns(
     'app.home.views',
     # url(r'^$', 'home', name='home'),
     url(r'^$', 'home', name='home'),
+    url(r'^smartmenu', 'smart_menu', name='smart_menu'),
     url(r'^guide$', 'guide', name='home/guide'),
     url(r'^test$', 'test', name='test'),
     url(r'^left$', 'left', name='left'),

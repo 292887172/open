@@ -57,20 +57,19 @@
 <div class="header" style="background: #F1F4F9;">
     <div class="wrapper">
         {% block image %}
-            <h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
+            <h1 class="logo"><a href="http://53iq.com/"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
         {% endblock %}
 
-        <ul class="nav">
-            {% block menu %}
 
-            {% endblock %}
-        </ul>
+        {% block menu %}
+
+        {% endblock %}
 
     <div class="sign_out">
          {% if user.account_id %}
                 <!-- 登录 -->
                 <a role="button" class="account" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
-                       style="text-decoration: none;">我的账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
+                       style="text-decoration: none;">账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
 
                        {% if user.developer.developer_id %}
