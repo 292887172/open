@@ -97,6 +97,7 @@ def doc_wiki(request):
     menus = nav_content(name)
     # 保存菜单到session中
     request.session['menus'] = json.dumps(menus)
+    default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     return render(request, "wiki/doc.html", locals())
 
 

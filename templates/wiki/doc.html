@@ -17,10 +17,6 @@
         body{
             overflow-x: hidden;
         }
-        .mt20 {
-            margin-top: 20px;
-        }
-
         .goods span {
             height: 30px;
         }
@@ -128,9 +124,6 @@
         width: 100%;
         top: 0;
     }
-    .mt20 {
-        margin-top: 110px;
-    }
     .leftSide{
         overflow-y: visible;
         position: fixed;
@@ -138,17 +131,48 @@
     .box1{
         min-height: 0;
     }
+    .mt20{
+            margin-top: 180px;
+        }
     @media screen and (max-width: 1108px) {
         .relative{
             width: 71%;
         }
 
     }
+     .title{
+            position: fixed;
+            width: 100%;
+            top: 90px;
+            z-index: 1;
+            height: 13px;
+        }
+        .breadcrumb{
+
+            line-height: 0;
+            background-color: transparent;
+            margin: 6px 0 1px;
+            padding: 0;
+            font-size: 16px;
+            border-radius: 0;
+        }
+         .new-app li{
+            display: inline;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        li a:hover{
+            color: #ff6202;
+        }
+        .breadcrumb > li + li:before{
+            content: "\f105";
+            font-family: FontAwesome;
+        }
     </style>
 {% endblock %}
 
 {% block menu %}
-   {% create_menu 3 user.account_id %}
+   {% create_menu 4 user.account_id %}
 {% endblock %}
 {% block right %}
     <div class="rightMain markdown-body editormd-preview-container editormd-preview-active" previewcontainer="true">
@@ -174,7 +198,7 @@
                     $(aobj).children('a').css('color','#ff6202');
                 },
                 success: function (msg) {
-                    console.log(msg)
+                    console.log(msg);
 
                     $(".rightMain").html(msg);
                 },

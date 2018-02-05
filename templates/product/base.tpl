@@ -15,7 +15,7 @@
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
     <title>{% block title %}{% endblock %} - 厨房智能平台</title>
     <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
-    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
+     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

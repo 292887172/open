@@ -208,10 +208,11 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+                        device_conf, app_factory_id, app_group, app_logo)
             from common.celerytask import add
-            add.delay(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                      device_conf, app_factory_id, app_group, app_logo)
-            url = '/product/list'
+            add.delay(app_id)
+            url = '/product/main/?ID=' + str(app_id) + '#/argue'
             return HttpResponseRedirect(url)
         except Exception as e:
             logging.getLogger("root").error(e)
@@ -303,8 +304,10 @@ def product_main(request):
         if post_data == 'list':
             try:
                 data = r.get("product_funs"+app_id)
-                data = json.loads(data.decode())
-                return JsonResponse(data)
+                print(data)
+                if data:
+                    data = json.loads(data.decode())
+                    return JsonResponse(data)
             except Exception as e:
                 logging.info("redis中还未保存数据",e)
         # 根据ID获取到数据库中的设备配置信息

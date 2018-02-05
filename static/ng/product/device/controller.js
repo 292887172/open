@@ -13,4 +13,26 @@ angular.module('Product.device', ['ngRoute'])
 
     .controller('deviceCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("deviceMenu");
+        $http({
+                method: "POST",
+                url: location.href,
+                data: $.param({'device': 'device_table'}),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                $scope.data_list = data.data;
+                $scope.key = data.key;
+                $scope.state = data.check_state;
+                $(".loading").css("display",'none');
+                if(! $scope.data_list){
+                    $("#device-info").css("display","none");
+                    $("#barcon").css("display","none");
+                    $("#no-info").css("display","block");
+                 }
+                 else{
+                    load_table($scope.data_list,$scope.state)
+                }
+
+            }).error(function (error) {
+                alert(error);
+            })
     }]);
