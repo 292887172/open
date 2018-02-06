@@ -538,13 +538,13 @@
                     temp = data.trigger;
                     for (var k = 0; k < temp.length; k++) {
                         table += '<tr>';
-                        table += '<th>' + temp[k].func + '</th>';
+                        table += '<th>' + temp[k].name + '</th>';
                         table += '<th>' + temp[k].min + '</th>';
                         table += '<th>' + temp[k].max + '</th>';
                         table += '<th>' + temp[k].val + '</th>';
-                        table += '<th><a onclick="delFunc(this,\'' + temp[k].func + '\')">移除</a></th>';
+                        table += '<th><a onclick="delFunc(this,\'' + temp[k].name + '\')">移除</a></th>';
                         table += '</tr>';
-                        funcs.push(temp[k].func);
+                        funcs.push(temp[k].name);
                         trig.push(temp[k])
                     }
                 }
@@ -610,7 +610,7 @@
             ofRow['val']=val;
             ofRow["func"]= func;
             trig.push((ofRow));
-            $("#selectFunc option[value=" + stream_id + "]").remove();
+            $("#selectFunc option[value=" + func + "]").remove();
         }
     }
 

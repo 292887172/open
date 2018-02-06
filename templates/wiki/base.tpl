@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="/static/css/product/list.css"/>
 
     <style>
+        .nav{
+        margin-top: 30px;
+    }
         #header{
             position: fixed;
             width: 100%;
@@ -146,7 +149,7 @@
 <body>
 <div id="header">
 <div class="wrapper">
-<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
+<h1 class="logo"><a href="http://53iq.com/dev"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
         {% block menu %}
 
