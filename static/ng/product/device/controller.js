@@ -16,13 +16,14 @@ angular.module('Product.device', ['ngRoute'])
         $http({
                 method: "POST",
                 url: location.href,
-                data: $.param({'device': 'device_table'}),
+                data: $.param({'name': 'device_table'}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {
                 $scope.data_list = data.data;
                 $scope.key = data.key;
                 $scope.state = data.check_state;
                 $(".loading").css("display",'none');
+                console.log("加载完成....");
                 if(! $scope.data_list){
                     $("#device-info").css("display","none");
                     $("#barcon").css("display","none");

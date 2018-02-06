@@ -304,7 +304,6 @@ def product_main(request):
         if post_data == 'list':
             try:
                 data = r.get("product_funs"+app_id)
-                print(data)
                 if data:
                     data = json.loads(data.decode())
                     return JsonResponse(data)
@@ -413,8 +412,7 @@ def product_main(request):
             return HttpResponse(tt)
 
         # 获取设备列表
-        device_table = request.POST.get("device", "")
-        if device_table == 'device_table':
+        if post_data == 'device_table':
             key = app.app_appid
             key = key[-8:]
             device_list = get_device_list(app.app_appid)
