@@ -119,13 +119,13 @@
 
             <div class="right_side">
                 {% if user.developer.developer_id %}
-                    {% if  user.developer.developer_check_status == 1 %}
+                    {% if  user.developer.developer_check_status >= 1 %}
 
                         <div class="right_side_body">
                         <ol class="check_status">
                             <li>
                                 <div><span class="account">1、 帐号：{{ user.account_id }}</span><span class="times">{{ user.developer.developer_create_date|utc2local|safe }}&nbsp;提交</span><span
-                                        class="status status_ok">厨房智能开发审核通过 </span></div>
+                                        class="status status_ok">厨房智能开发者审核通过 </span></div>
                             </li>
 
 
