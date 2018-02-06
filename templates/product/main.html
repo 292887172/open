@@ -183,7 +183,7 @@
             <ol class="breadcrumb">
             <li><a href="/product/list/">产品管理</a></li>
             <li>
-                     {% if app.check_status == 3 %}产品体验
+                     {% if app.check_status == 3 %}开发示例
                      {% else %}我的产品{% endif %}
             </li>
             {% if app.check_status == 3 %}
@@ -233,7 +233,7 @@
             </li>
             {% endif %}
             </ol>
-                <span style="margin-left: 22%;color: red;"> {% if app.check_status == 1 %}该产品处于发布审核阶段，功能点不可修改。{% elif app.check_status == 2 %}该产品已发布，功能点不可修改。{% elif app.check_status == 3 %}体验产品，功能点不可修改。{% endif %}</span>
+                <span style="margin-left: 22%;color: red;"> {% if app.check_status == 1 %}该产品处于发布审核阶段，功能点不可修改。{% elif app.check_status == 2 %}该产品已发布，功能点不可修改。{% elif app.check_status == 3 %}{{ app.app_name }}示例体验，功能点不可修改。{% endif %}</span>
 
             </div>
             {% if app.check_remarks and app.check_status == -1 %}
@@ -294,7 +294,7 @@
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
                                 <a href="#/demo/{{ app.app_name}}">
-                                    <i class="fa fa-text" ></i>产品体验
+                                    <i class="fa fa-text" ></i>开发示例
                                 </a>
                             </li>
                         </ul>

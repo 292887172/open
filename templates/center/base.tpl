@@ -21,6 +21,9 @@
     .nav-current{
             text-decoration:none; border-bottom: 3px solid #ff6202;height: 35px;
         }
+        .nav{
+        margin-top: 30px;
+    }
     </style>
     {% block style %}
 
@@ -57,7 +60,7 @@ var _hmt = _hmt || [];
 <div id="header">
     <div class="cnt">
         <h1>
-            <a href="http://53iq.com/"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"
+            <a href="{% if user.account_id %}/product/list{% else %}/{% endif %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"
                                             title="53iq云智能云"></a>
         </h1>
         <ul class="nav">

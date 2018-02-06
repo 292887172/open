@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="/static/css/product/list.css"/>
 
     <style>
+        .nav{
+        margin-top: 30px;
+    }
         #header{
             position: fixed;
             width: 100%;
@@ -146,7 +149,7 @@
 <body>
 <div id="header">
 <div class="wrapper">
-<h1 class="logo"><a href="{% url 'home' %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
+<h1 class="logo"><a href="{% if user.account_id %}/product/list{% else %}/{% endif %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a>
         </h1>
         {% block menu %}
 
@@ -207,7 +210,7 @@
                         {% endif %}
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">体验中心</a></li>
+                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
             </ol>

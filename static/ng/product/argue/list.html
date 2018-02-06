@@ -174,7 +174,7 @@
         <div id="ie-form"></div>
     </div>
 
-    <div class="popBox" id="newHtmlBox" style="display: block;z-index: 111111;">
+    <div class="popBox" id="newHtmlBox" style="display: block;z-index: 111111;text-align: center">
         <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
         <h3 style="text-align: center">温馨提示</h3>
         <div class="cont mt20" style="margin-top: 20px;">
@@ -185,15 +185,14 @@
         </div>
         <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
-        <span style="    padding-left: 40%;">
-            <a  href="" onclick="new_close()"  class="btn-blue">知道了</a>
+        <span >
+            <a  href="" onclick="new_close()"  class="btn-blue" style="margin-top: 46px;">知道了</a>
         </span>
 
     </div>
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
-    <script src="/static/js/ejs.js"></script>
     <script src="/static/common/js/jquery.sortable.js"></script>
     <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
@@ -264,7 +263,16 @@
                         if(cellvalue=="" || cellvalue=="0"){
                             return '<a href="#/argue" class="btn btn-white btn-xs" style="width:60px" >暂无</a>';
                         }else{
-                            group = new EJS({url: '/static/js/tmpl/table.ejs'}).render({"cellvalue":cellvalue,"mxs":rowObject.mxs});
+                            group = '<a class="btn btn-white btn-xs" style="width:60px" onmouseover="show_table(this)" onmouseout="hide_table(this)">'+cellvalue+'</a>';
+                            group += '<div style="display: none"><table class="tips-tbl" cellspacing="0" cellpadding="0" style="z-index:9999;float: left;width: 200px;' +
+                                'background: white;position: absolute;top: 45px;  border: 2px solid rgb(199, 211, 169);box-shadow:rgb(199, 211, 169) 2px 4px 6px;">'
+
+                            group += '<thead ><tr style="height: 30px"><th >传送数据 </th><th >数据说明</th></tr></thead><tbody style="word-break: break-all;">'
+                            trans_data = rowObject.mxs;
+                            for(var i=0;i<trans_data.length;i++){
+                                group += '<tr><td >'+trans_data[i].data+'</td><td >'+trans_data[i].desc+'</td></tr>'
+                            }
+                            group += '</tbody></table></div>';
                             return group;
                         }
                     }
