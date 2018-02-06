@@ -87,7 +87,7 @@ var _hmt = _hmt || [];
 <body>
 <div class="header">
     <div class="wrapper">
-        <h1 class="logo"><a href="http://53iq.com/"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a></h1>
+        <h1 class="logo"><a href="{% if user.account_id %}/product/list{% else %}/{% endif %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a></h1>
          <ul class="nav">
 
             {% if user.account_id or user.developer.developer_from == 3%}
