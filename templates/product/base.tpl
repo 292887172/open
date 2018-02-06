@@ -60,7 +60,7 @@
 <div class="header" style="background: #F1F4F9;">
     <div class="wrapper">
         {% block image %}
-            <h1 class="logo"><a href="http://53iq.com/dev"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
+            <h1 class="logo"><a href="{% if user.account_id %}/product/list{% else %}/{% endif %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"></a></h1>
         {% endblock %}
 
 
