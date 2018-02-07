@@ -81,7 +81,7 @@ var checkSubmitFlg = false;
                 $("#show_logo").attr('src', "");
                 $('#productName').css("display", "none");
                 $(".m").hide();
-                myPlayer.stop();
+                myPlayer.pause();
             }
         $("#dev-demo").click(function () {
                 window.location.href = $(this).parent('div').data('url')
