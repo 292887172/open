@@ -131,6 +131,10 @@
         color: #fff;
         background-color: #ff6202
     }
+      li a:hover{
+        color: #ff6202;
+        text-decoration: underline;
+    }
     </style>
     {% block style %}
 
@@ -210,7 +214,7 @@
                         {% endif %}
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >wifi烤箱</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
                         <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
@@ -264,7 +268,7 @@
                         <p class="technology" style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
                             <label for="c1">Wi-Fi</label>
                             <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
-                            <label for="c2">Android屏</label>
+                            <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
                         <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>

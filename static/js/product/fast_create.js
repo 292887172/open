@@ -1,5 +1,6 @@
 var checkSubmitFlg = false;
         function create_procuct(type,type1) {
+            $("#ScreenSize").text("(7寸)");
             if(type1=="wifi"){
                 $(".dtbox").hide();
                 $(".technology").hide();
@@ -20,6 +21,7 @@ var checkSubmitFlg = false;
                 $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
             }
             else if (type == '11') {
+                $("#ScreenSize").text("(5寸)");
                 $("#product_category_detail").val('11');
                 $("#productType").html("烤箱");
                 $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
