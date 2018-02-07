@@ -16,7 +16,7 @@ var checkSubmitFlg = false;
                 $("#productType").html("烤箱");
                 $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
             }
-            $("#newHtmlBox").css('display', 'block');
+                $("#newHtmlBox").css('display', 'block');
             $(document).ready(function () {
                 $(".markLayout").click(function (event) {
                     if (!$(this).hasClass("popBox") && !$(this).hasClass("tuya-btn tuya-btn-default mark-bottom-btn mark-children-bottom-btn")) {
@@ -72,10 +72,20 @@ var checkSubmitFlg = false;
                 $("#product_name").val('');
                 $("#show_logo").attr('src', "");
                 $('#productName').css("display", "none");
+                $(".m").hide();
+                myPlayer.stop();
             }
-        $(".left-dv4").click(function () {
-                window.location.href = $(this).data('url')
+        $("#dev-demo").click(function () {
+                window.location.href = $(this).parent('div').data('url')
             });
+        $("#WiFi-oven-demo").click(function () {
+            $(".markLayout").show();
+            $(".m").show();
+            myPlayer.play();
+        });
+        $(".close-video").click(function () {
+            new_close()
+        });
         function dont_develop() {
                 bootbox.confirm("您现在还不是开发者用户,请确定前往完善开发者信息",function(result){
                     if(result){

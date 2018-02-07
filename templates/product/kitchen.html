@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="http://www.jq22.com/demo/video-js/css/video-js.css">
     <style>
 
         .goods span {
@@ -84,16 +85,17 @@
         }
 
         .left div.left-dv4 {
-            width: 110px;
+            width: 125px;
             background: rgba(110, 169, 248, .7);
             transform: skewX(-1deg);
-            margin-top: 179px;
-            height: 110px;
-            cursor: pointer;
+            margin-top: 149px;
+            height: 140px;
+
         }
 
-        .left-dv4:hover {
+        .left-dv4 h4:hover, .left-dv4 p:hover,.close-video {
             opacity: 0.85;
+            cursor: pointer;
         }
 
         .left div img {
@@ -124,7 +126,7 @@
         .left h4 {
             text-align: center;
             margin-top: 12px;
-            margin-bottom: 10px;
+
             color: #fff;
         }
 
@@ -205,7 +207,31 @@
         font-family: FontAwesome;
         content: "\f105";
     }
-
+    .m{
+        width: 100%;
+    text-align: center;
+    position: relative;
+    top: -285px;
+        z-index: 101;
+    }
+    .my-video-dimensions{
+        width: 680px;
+        height: 400px;
+        margin: auto;
+    }
+    .close-video{
+        position: relative;
+    right: -324px;
+    line-height: 26px;
+    width: 33px;
+    height: 26px;
+    top: 26px;
+    color: #fff;
+    margin: auto;
+    z-index: 102;
+    cursor: pointer;
+    background-color: gray;
+    }
     </style>
 {% endblock %}
 {% block content %}
@@ -226,7 +252,8 @@
             {% if  forloop.counter == 1 %}
                 <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
                     <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
-                    <h4 style="margin-top: 28px">开发示例</h4>
+                    <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
+                <p id="WiFi-oven-demo" style="text-align: center"><i class="fa fa-play-circle-o">WiFi烤箱视频</i></p>
 
                 </div>
                 <div class="left-dv1">
@@ -313,6 +340,26 @@
         </div>
     </div>
     <div class="markLayout"></div>
+    <div class="m" style="display: none">
+    <div class="close-video">X</div>
+		<video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
+		  poster="m.png" data-setup="{}">
+			<source src="https://storage.53iq.com/group1/M00/2F/B6/CgoKQ1p5vy2AV2y9AA7Mj9T2wbc041.mp4" type="video/mp4">
+			<p class="vjs-no-js">
+			  To view this video please enable JavaScript, and consider upgrading to a web browser that
+			  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+			</p>
+		  </video>
+		  <script src="http://www.jq22.com/demo/video-js/js/video.min.js"></script>
+		  <script type="text/javascript">
+			var myPlayer = videojs('my-video');
+			videojs("my-video").ready(function(){
+				myPlayer = this;
+
+
+			});
+		</script>
+	</div>
 
 {% endblock %}
 
