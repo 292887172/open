@@ -1,5 +1,13 @@
 var checkSubmitFlg = false;
-        function create_procuct(type) {
+        function create_procuct(type,type1) {
+            if(type1=="wifi"){
+                $(".dtbox").hide();
+                $(".technology").hide();
+            }
+            else{
+                $(".dtbox").show();
+                $(".technology").show();
+            }
             $(".markLayout").show();
             if (type == '1') {
                 $("#product_category_detail").val('1');

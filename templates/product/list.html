@@ -451,6 +451,7 @@
 
                     </li>
                     {% if forloop.counter == 3 %}
+                        <li><a href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >wifi烤箱</a></li>
                         <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
@@ -480,7 +481,7 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                        <p class="technology" style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
                             <label for="c1">Wi-Fi</label>
                             <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏</label>
