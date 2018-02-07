@@ -23,39 +23,11 @@
         .nav > li > a:hover {
             background: transparent;
         }
-        .set-radius {
-            background-color: #333;
-            border: 1px solid #333;
-            text-align: center;
-            height: 30px;
-            width: 30px;
-            float: left;
-            margin: 9px 18px;
-            border-radius: 50%;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            line-height: 28px;
-        }
         .nav-current {
             text-decoration: none;
             border-bottom: 3px solid #ff6202;
             height: 35px;
         }
-        .set-float {
-            top: 32px;
-            position: relative;
-            float: left;
-            color: #fff;
-        }
-
-        .right {
-            float: right;
-            width: 33%;
-            height: 300px;
-            padding-top: 4%;
-            padding-left: 2%;
-        }
-
         .left div {
             float: right;
             padding: 3px;
@@ -90,10 +62,11 @@
             transform: skewX(-1deg);
             margin-top: 149px;
             height: 140px;
+            margin-right: 2px;
 
         }
 
-        .left-dv4 h4:hover, .left-dv4 p:hover,.close-video:hover {
+        .left-dv4 h4:hover, .left-dv4 img:hover,.close-video:hover {
             opacity: 0.85;
             cursor: pointer;
         }
@@ -108,14 +81,8 @@
             margin: 25px;
             font-size: 16px;
         }
-
-        .index-banner {
-            min-width: 1200px;
-        }
-
         .left {
             float: left;
-            width: 66%;
             margin-left: 13%;
             height: 300px;
             min-width: 810px;
@@ -151,35 +118,30 @@
         .ui-demo:hover {
             background-color: #c3c8d1;
         }
-
-        @media screen and (max-width: 1200px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-                background-size: 100% 100%;
-                height: 300px;
-            }
-
-            .right {
-                max-width: 300px;
-                min-width: 330px;
+         .index-banner {
+            min-width: 1200px;
+            background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+            background-size: 100% 100%;
+            height: 300px;
+        }
+         @media screen and (max-width: 1920px) {
+            .left {
+                margin-left: 24%;
             }
         }
-
-        @media screen and (min-width: 1201px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-
-                background-size: 100% 100%;
-                height: 300px;
+         @media screen and (max-width: 1440px) {
+            .left {
+                margin-left: 18%;
             }
         }
-
-        @media screen and (min-width: 1800px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-
-                background-size: 100% 100%;
-                height: 300px;
+        @media screen and (max-width: 1280px) {
+            .left {
+                margin-left: 12%;
+            }
+        }
+        @media screen and (max-width: 1080px) {
+            .left {
+                margin-left: 6%;
             }
         }
         .title{
@@ -253,7 +215,6 @@
                 <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
                     <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
                     <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
-                <p id="WiFi-oven-demo" style="text-align: center"><i class="fa fa-play-circle-o">WiFi烤箱视频</i></p>
 
                 </div>
                 <div class="left-dv1">
@@ -282,6 +243,10 @@
         </div>
         </div>
         {% endfor %}
+        <div class="left-dv4">
+            <img id="WiFi-oven-demo" src="/static/image/product/ico-video.png"/>
+            <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
+        </div>
     </div>
 
         </div>
