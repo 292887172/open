@@ -7,7 +7,11 @@ from django.views.decorators.csrf import csrf_exempt
 from common.api_helper import RequestMethod, RestApiClient
 from model.center.doc_menu import DocMenu
 from model.wiki.wikiapi import Api, ApiDoc
+from conf.newuserconf import *
+from model.center.app import App
+from base.const import ConventionValue
 
+_convention = ConventionValue()
 
 # @login_required
 
@@ -18,6 +22,7 @@ def wiki(request):
     :param request:
     :return:
     """
+    default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     menus1,menus2,menus3 = nav_content()
     return render(request, "wiki/index.html", locals())
 
@@ -88,7 +93,7 @@ def doc_wiki(request):
         doc = DocMenu.objects.get(dm_id=dm_id)
         isParent = doc.dm_is_parent
     except Exception as e:
-        print(e)
+        pass
     menus = nav_content(name)
     # 保存菜单到session中
     request.session['menus'] = json.dumps(menus)

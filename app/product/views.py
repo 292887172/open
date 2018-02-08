@@ -46,6 +46,12 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
+
+@csrf_exempt
+def product_kitchen(request):
+    default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+    return render(request, "product/kitchen.html", locals())
+
 @login_required
 @csrf_exempt
 def product_list(request):
@@ -68,15 +74,21 @@ def product_list(request):
                     if result:
                         result.app_logo = APP_LOGO[i]
                         result.save()
-        if not request.user.developer:
-            return HttpResponseRedirect(reverse("center"))
-        else:
-            developer = request.user.developer
-        keyword = request.GET.get("search", "")
-        if keyword:
-            user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword)
-        else:
-            user_apps = developer.developer_related_app.all()
+        try:
+            if request.user.developer:
+                developer = request.user.developer
+            else:
+                developer = ''
+            keyword = request.GET.get("search", "")
+            if keyword:
+                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
+            else:
+                user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+        except Exception as e:
+            user_apps=[]
+            developer = ''
+            keyword = ''
+            print(e)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         published_apps = []
         unpublished_apps = []
@@ -103,7 +115,7 @@ def product_list(request):
             publishing_apps=publishing_apps,
             unpublished_apps=unpublished_apps,
             failed_apps=failed_apps,
-            default_apps=default_apps
+            default_apps=default_apps,
         )
         return render(request, template, content)
 
@@ -126,6 +138,8 @@ def product_list(request):
                 del_protocol_conf(key)
                 ret = del_app(app_id)
                 res["data"] = ret
+                r = Redis3(rdb=6).client
+                r.delete("product_funs"+app_id)
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
         else:
             res["code"] = 10002
@@ -147,9 +161,8 @@ def product_add(request):
     ret = dict(
         code=0
     )
-
     def get():
-        if not request.user.developer.developer_id:
+        if not request.user.developer:
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
@@ -178,13 +191,15 @@ def product_add(request):
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
         device_conf = gen_app_default_conf(app_category_detail)
+
         app_logo = get_app_default_logo(app_category_detail)
 
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
             ret["message"] = "缺少开发者账号ID"
-            return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            url = '/center'
+            return HttpResponseRedirect(url)
         # 创建一个app
         try:
             if not developer_id or not app_name or not app_category or not app_command \
@@ -226,9 +241,8 @@ def product_main(request):
         res = request.GET.get("res", "")
         if res:
             return HttpResponse(res)
-        if not request.user.developer.developer_id:
+        if not request.user.developer:
             developer = ''
-            return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
         try:
@@ -243,7 +257,6 @@ def product_main(request):
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
-        developer_account = request.user.developer.developer_account
         app = user_apps
         all_app = user_related_app
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
@@ -268,7 +281,7 @@ def product_main(request):
         )
         return render(request, template, locals())
 
-    def save_app(app, opera_data,r):
+    def save_app(app, opera_data,r,app_id):
         # 保存修改后的device_config
         app.device_conf = json.dumps(opera_data)
         key = app.app_appid[-8:]
@@ -276,25 +289,25 @@ def product_main(request):
         update_app_protocol(app)
         app.save()
         data= {'rows': opera_data, 'check_state': app.check_status}
-        r.set("product_funs",json.dumps(data))
+        r.set("product_funs"+app_id,json.dumps(data))
     def find(id, opera_data):
             for i in range(len(opera_data)):
                 if str(opera_data[i]['id']) == id:
                     return [i,opera_data[i]]
             return []
     def post():
+        app_id = request.GET.get("ID", "")
         post_data = request.POST.get("name")
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
         if post_data == 'list':
             try:
-                data = r.get("product_funs")
+                data = r.get("product_funs"+app_id)
                 data = json.loads(data.decode())
                 return JsonResponse(data)
             except Exception as e:
-                print("redis中还未保存数据",e)
+                logging.info("redis中还未保存数据",e)
         # 根据ID获取到数据库中的设备配置信息
-        app_id = request.GET.get("ID", "")
         app = App.objects.get(app_id=app_id)
         opera_data = []
         try:
@@ -308,7 +321,7 @@ def product_main(request):
         if post_data == 'list':
             # 显示所有列表信息
             data= {'rows': opera_data, 'check_state': app.check_status}
-            r.set("product_funs",json.dumps(data))
+            r.set("product_funs"+app_id,json.dumps(data))
             return JsonResponse(data)
         elif post_data == 'edit':
             # 返回编辑页面信息
@@ -327,7 +340,7 @@ def product_main(request):
                 fun_name = data[1].get("name")
                 opera_data.pop(i)
                 replace_fun_id(opera_data,id)
-                save_app(app, opera_data, r)
+                save_app(app, opera_data, r ,app_id)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                 return HttpResponse('del_success')
@@ -338,7 +351,7 @@ def product_main(request):
                 for j in range(len(funs)):
                     if str(opera_data[i].get("Stream_ID")) == funs[j]:
                         opera_data[i]["id"] = j + 1
-            save_app(app, opera_data,r)
+            save_app(app, opera_data, r, app_id)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -346,14 +359,14 @@ def product_main(request):
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
-            save_app(app, opera_data,r)
+            save_app(app, opera_data,r,app_id)
             return HttpResponse('select_success')
         elif post_data in ['isShow', 'isControl', 'isDisplay']:
             val = request.POST.get("dd")
             data = find(id,opera_data)
             if data:
                 data[1][post_data] = val
-                save_app(app, opera_data,r)
+                save_app(app, opera_data,r,app_id)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -392,7 +405,7 @@ def product_main(request):
                 opera_data.append(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
-            save_app(app, opera_data,r)
+            save_app(app, opera_data,r,app_id)
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse(tt)
 

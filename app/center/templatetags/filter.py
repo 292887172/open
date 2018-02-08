@@ -95,7 +95,7 @@ register.filter(is_none)
 
 
 @register.inclusion_tag('component/menu.html', takes_context=True)
-def create_menu(context, cur=0, dev_id=None):
+def create_menu(context, cur=0, username=None):
     ret = {
         'menu': None,
         "cur": cur
@@ -103,23 +103,23 @@ def create_menu(context, cur=0, dev_id=None):
     if "menu" in context:
         ret["menu"] = context["menu"]
     else:
-        if dev_id:
+        if username:
             menu = [
-                    {"url": "/", "title": "首页"},
                     {"url": "/product/list/", "title": "产品管理"},
+                    {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/smartmenu", "title": "智能菜谱"},
                     ]
 
         else:
-            if cur > 1:
-                ret['cur'] = 2
             menu = [
                     {"url": "/", "title": "首页"},
+                    {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/smartmenu", "title": "智能菜谱"},
 
                     ]
         ret["menu"] = menu
-
     return ret
 
 
