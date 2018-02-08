@@ -62,6 +62,10 @@ def upload_ui_conf(request):
 def diy_ui_conf(request):
         device_key = request.GET.get('key')
         if device_key:
-            back_data = query_ui_conf(device_key)
-            if back_data != 'error':
-                return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+            try:
+                back_data = query_ui_conf(device_key)
+                if back_data and back_data != 'error':
+                    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+            except Exception as e:
+                print(e)
+            return JsonResponse({})
