@@ -33091,3 +33091,149 @@ Traceback (most recent call last):
   File "C:\Users\Administrator\ven2\lib\site-packages\django\core\urlresolvers.py", line 463, in _reverse_with_prefix
     (lookup_view_s, args, kwargs, len(patterns), patterns))
 django.core.urlresolvers.NoReverseMatch: Reverse for 'smartmenu' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2018-02-08 11:22:49,177 [Thread-3:7324] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 11:22:49,290 [Thread-5:8408] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 11:22:53,335 [Thread-10:1392] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:23:18,007 [Thread-49:1736] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:23:48,958 [Thread-65:5600] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 11:23:51,737 [Thread-69:3656] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:25:54,680 [Thread-72:9940] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:25:56,152 [Thread-77:6992] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:25:59,224 [Thread-81:9296] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:26:06,581 [Thread-90:8144] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 11:26:11,566 [Thread-96:2440] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 12:57:57,647 [Thread-276:9156] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 12:57:57,732 [Thread-277:1064] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 12:58:07,698 [Thread-286:7108] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:14,123 [Thread-290:3660] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:17,305 [Thread-296:6228] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:21,212 [Thread-302:8372] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:25,049 [Thread-308:5268] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:31,035 [Thread-312:8604] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:32,287 [Thread-316:4424] [django.request:231] [ERROR]- Internal Server Error: /api/diy_ui_conf
+Traceback (most recent call last):
+  File "F:\virven\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\virven\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\work\open\api\views.py", line 67, in diy_ui_conf
+    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+TypeError: 'NoneType' object is not subscriptable
+2018-02-08 12:58:38,707 [Thread-322:5804] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 13:09:10,112 [Thread-435:1804] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:05:48,165 [Thread-572:8400] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:05:48,306 [Thread-573:4036] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:06:04,892 [Thread-583:9172] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:06:27,385 [Thread-615:7612] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:06:42,537 [Thread-629:2012] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:09:14,940 [Thread-654:4648] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:09:16,468 [Thread-657:5828] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:16:30,573 [Thread-1064:9132] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-02-08 14:18:14,315 [Thread-1078:5192] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-02-08 14:21:22,664 [Thread-1239:8912] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-02-08 14:26:33,254 [Thread-1250:8376] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-02-08 14:37:43,726 [Thread-1251:10624] [django.request:143] [WARNING]- Not Found: /favicon.ico
