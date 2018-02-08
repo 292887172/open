@@ -230,8 +230,10 @@ $(function () {
             data: {
                 key: device_key,
                 ui_conf: JSON.stringify(getInfo())
+            },
+            success:function (res) {
+                bootbox.alert('保存成功')
             }
-
         })
     });
 
