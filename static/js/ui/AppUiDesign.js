@@ -5,7 +5,7 @@ $(function () {
     var logBtn = false;
     var configList = [];
     var bgs = document.querySelectorAll(".bgColor");
-    bgs=Array.prototype.slice.call(bgs);
+    bgs = Array.prototype.slice.call(bgs);
     var initialList = [];
     var controlLoad = true;
     var theme = "#FF8312";
@@ -20,13 +20,17 @@ $(function () {
         url: "/api/diy_ui_conf",
         data: {key: device_key},
         success: function (data) {
-            data.function.forEach(function (item) {
-                renderList.push(item.title);
-                renderName.push(item.name);
-            })
-            logBtn = data.isLog;
-            theme = data.currentTheme;
-            configList = data.function;
+            if (JSON.stringify(data) != "{}") {
+                data.function.forEach(function (item) {
+                    renderList.push(item.title);
+                    renderName.push(item.name);
+                })
+                logBtn = data.isLog;
+                theme = data.currentTheme;
+                configList = data.function;
+            } else {
+                controlLoad = false;
+            }
             $.ajax({ //获取初始化UI配置功能列表
                 type: "POST",
                 async: false,
@@ -34,22 +38,22 @@ $(function () {
                 data: {key: device_key},
                 success: function (data) {
                     initialList = data.data.functions;
-                    if (configList.length == initialList.length) {
-                        configList.forEach(function (item, index) {
-                            var button = false;
-                            initialList.forEach(function (value, order) {
-                                if (item.title == value.title) {
-                                    button = true;
+                    if (!controlLoad) {
+                        if (configList.length == initialList.length) {
+                            configList.forEach(function (item, index) {
+                                var button = false;
+                                initialList.forEach(function (value, order) {
+                                    if (item.title == value.title) {
+                                        button = true;
+                                    }
+                                })
+                                if (controlLoad) {
+                                    if (!button) {
+                                        controlLoad = false;
+                                    }
                                 }
                             })
-                            if (controlLoad) {
-                                if (!button) {
-                                    controlLoad = false;
-                                }
-                            }
-                        })
-                    }
-                    if (!controlLoad) {
+                        }
                         renderList = [];
                         renderName = [];
                         initialList.forEach(function (item) {
@@ -90,13 +94,13 @@ $(function () {
             logTrue.checked = false;
             logFalse.checked = true;
         }
-        sortable.innerHTML ="";
+        sortable.innerHTML = "";
         configList.forEach(function (item, index) {
             var display = "block";
             var li = document.createElement("li");
             li.setAttribute("value", renderName[index]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
             switch (item.model) {
                 case "big":
                     str += '<option value="medium">中模块</option><option value="big" selected>大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>', display = "block";
@@ -118,12 +122,13 @@ $(function () {
             sortable.appendChild(li);
         })
     } else {
+        screen.style.backgroundColor = "#FF8312";
         sortable.innerHTML = null;
         for (var i = 0; i < renderList.length; i++) {
             var li = document.createElement("li");
             li.setAttribute("value", renderName[i]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-liebiao7"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-liebiao7 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/no.png" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
+            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-dp_power2 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/01.jpg" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML = str;
             sortable.appendChild(li);
         }
@@ -237,7 +242,7 @@ $(function () {
         list.forEach(function (item, index) {
             var preLi = document.createElement("li");
             var url = "url(" + item.bg + ")";
-            if (item.model == "big" && item.bg.slice(-6) != "no.png") {
+            if (item.model == "big") {
                 var i = document.createElement("i");
                 i.style = "color:#fff;margin-top:1px;";
                 i.className = "iconfont " + item.icon;
@@ -261,8 +266,8 @@ $(function () {
                 preLi.style.backgroundSize = "cover";
                 preLi.style.height = "3em";
                 preLi.style.color = "#000";
-                preLi.style.width = "23%";
-                preLi.style.margin = "0 5%";
+                preLi.style.width = "25%";
+                preLi.style.margin = "0 4%";
                 preLi.style.backgroundColor = "inherit";
                 preLi.style.border = "0";
                 var p = document.createElement("p");
@@ -317,7 +322,7 @@ $(function () {
         uploadConfig.currentTheme = currentTheme;
         var arr = [];
         var list = document.querySelector("#sortable").querySelectorAll("li");
-        list=Array.prototype.slice.call(list);
+        list = Array.prototype.slice.call(list);
         list.forEach(function (item, index) {
             arr[index] = new Object();
             arr[index].name = item.getAttribute("value");
