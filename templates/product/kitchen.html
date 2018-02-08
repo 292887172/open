@@ -23,39 +23,11 @@
         .nav > li > a:hover {
             background: transparent;
         }
-        .set-radius {
-            background-color: #333;
-            border: 1px solid #333;
-            text-align: center;
-            height: 30px;
-            width: 30px;
-            float: left;
-            margin: 9px 18px;
-            border-radius: 50%;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            line-height: 28px;
-        }
         .nav-current {
             text-decoration: none;
             border-bottom: 3px solid #ff6202;
             height: 35px;
         }
-        .set-float {
-            top: 32px;
-            position: relative;
-            float: left;
-            color: #fff;
-        }
-
-        .right {
-            float: right;
-            width: 33%;
-            height: 300px;
-            padding-top: 4%;
-            padding-left: 2%;
-        }
-
         .left div {
             float: right;
             padding: 3px;
@@ -88,12 +60,11 @@
             width: 125px;
             background: rgba(110, 169, 248, .7);
             transform: skewX(-1deg);
-            margin-top: 149px;
-            height: 140px;
-
+            margin-top: 162px;
+            height: 127px;
+            margin-right: 2px;
         }
-
-        .left-dv4 h4:hover, .left-dv4 p:hover,.close-video:hover {
+        .left-dv4:hover {
             opacity: 0.85;
             cursor: pointer;
         }
@@ -108,14 +79,8 @@
             margin: 25px;
             font-size: 16px;
         }
-
-        .index-banner {
-            min-width: 1200px;
-        }
-
         .left {
             float: left;
-            width: 66%;
             margin-left: 13%;
             height: 300px;
             min-width: 810px;
@@ -151,35 +116,30 @@
         .ui-demo:hover {
             background-color: #c3c8d1;
         }
-
-        @media screen and (max-width: 1200px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-                background-size: 100% 100%;
-                height: 300px;
-            }
-
-            .right {
-                max-width: 300px;
-                min-width: 330px;
+         .index-banner {
+            min-width: 1200px;
+            background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+            background-size: 100% 100%;
+            height: 300px;
+        }
+         @media screen and (max-width: 1920px) {
+            .left {
+                margin-left: 24%;
             }
         }
-
-        @media screen and (min-width: 1201px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-
-                background-size: 100% 100%;
-                height: 300px;
+         @media screen and (max-width: 1440px) {
+            .left {
+                margin-left: 18%;
             }
         }
-
-        @media screen and (min-width: 1800px) {
-            .index-banner {
-                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
-
-                background-size: 100% 100%;
-                height: 300px;
+        @media screen and (max-width: 1280px) {
+            .left {
+                margin-left: 12%;
+            }
+        }
+        @media screen and (max-width: 1080px) {
+            .left {
+                margin-left: 6%;
             }
         }
         .title{
@@ -253,7 +213,6 @@
                 <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
                     <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
                     <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
-                <p id="WiFi-oven-demo" style="text-align: center"><i class="fa fa-play-circle-o">WiFi烤箱视频</i></p>
 
                 </div>
                 <div class="left-dv1">
@@ -282,6 +241,10 @@
         </div>
         </div>
         {% endfor %}
+        <div class="left-dv4" id="WiFi-oven-demo">
+            <img src="/static/image/product/ico-video.png"/>
+            <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
+        </div>
     </div>
 
         </div>
@@ -344,7 +307,7 @@
     <div class="close-video"><i class="fa fa-times"></i></div>
 		<video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
 		  poster="m.png" data-setup="{}">
-			<source src="https://storage.53iq.com/group1/M00/2F/B6/CgoKQ1p5vy2AV2y9AA7Mj9T2wbc041.mp4" type="video/mp4">
+			<source src="http://storage.56iq.net/group1/M00/2F/C2/CgoKQ1p6n8aALYczABCf_nyncbU136.mp4" type="video/mp4">
 			<p class="vjs-no-js">
 			  To view this video please enable JavaScript, and consider upgrading to a web browser that
 			  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
