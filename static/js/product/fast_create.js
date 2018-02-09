@@ -142,6 +142,14 @@ function toggleTab(text) {
     })
 }
 
+function uploadInfo(){
+    var user=document.querySelector("#user_address");
+    var userInfo={};
+    userInfo.name=user.querySelector(".name").value;
+    userInfo.phone=user.querySelector(".phone").value;
+    userInfo.address=user.querySelector(".address").value;
+    console.log(userInfo);
+}
 /**
  * Created by Administrator on 2018/2/2.
  */
