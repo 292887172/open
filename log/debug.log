@@ -82,3 +82,5 @@
 2018-02-08 14:21:22,621 [Thread-1238:4092] [root:217] [ERROR]- No module named 'celery'
 2018-02-08 14:21:22,621 [Thread-1238:4092] [root:218] [ERROR]- 创建应用失败
 2018-02-09 13:07:26,342 [Thread-4:139678299662080] [root:98] [INFO]-  鍒涘缓鐢ㄦ埛閭瘎鍦板潃淇℃伅澶辫触Account matching query does not exist.
+2018-02-09 13:33:34,510 [Thread-39:7356] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-09 13:33:41,191 [Thread-61:7056] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
