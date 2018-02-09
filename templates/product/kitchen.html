@@ -23,11 +23,13 @@
         .nav > li > a:hover {
             background: transparent;
         }
+
         .nav-current {
             text-decoration: none;
             border-bottom: 3px solid #ff6202;
             height: 35px;
         }
+
         .left div {
             float: right;
             padding: 3px;
@@ -64,6 +66,7 @@
             height: 127px;
             margin-right: 2px;
         }
+
         .left-dv4:hover {
             opacity: 0.85;
             cursor: pointer;
@@ -79,6 +82,7 @@
             margin: 25px;
             font-size: 16px;
         }
+
         .left {
             float: left;
             margin-left: 13%;
@@ -100,6 +104,7 @@
             padding: 10px;
             font-size: 12px;
         }
+
         .left div.ui-demo {
             cursor: pointer;
             border: 1px solid #fff;
@@ -116,39 +121,46 @@
         .ui-demo:hover {
             background-color: #c3c8d1;
         }
-         .index-banner {
+
+        .index-banner {
             min-width: 1200px;
             background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
             background-size: 100% 100%;
             height: 300px;
         }
-         @media screen and (max-width: 1920px) {
+
+        @media screen and (max-width: 1920px) {
             .left {
                 margin-left: 24%;
             }
         }
-         @media screen and (max-width: 1440px) {
+
+        @media screen and (max-width: 1440px) {
             .left {
                 margin-left: 18%;
             }
         }
+
         @media screen and (max-width: 1280px) {
             .left {
                 margin-left: 12%;
             }
         }
+
         @media screen and (max-width: 1080px) {
             .left {
                 margin-left: 6%;
             }
         }
-        .title{
-                margin-top: 90px;
-                width: 100%;
-                z-index: 1;
-                height: 61px;
-            }
-        .breadcrumb{
+
+        .title {
+            margin-top: 90px;
+            width: 100%;
+            z-index: 1;
+            height: 61px;
+        }
+
+        .breadcrumb {
             background-color: transparent;
             margin: 6px 0 1px;
             padding: 0;
@@ -156,99 +168,174 @@
             border-radius: 0;
             color: #788197;
         }
-    .breadcrumb>li>a {
-        color: #333;
-        cursor: pointer;
-    }
-    .breadcrumb>li>a:hover{
-        color: #ff6202;
-    }
-    .breadcrumb > li + li:before{
-        font-family: FontAwesome;
-        content: "\f105";
-    }
-    .m{
-        width: 100%;
-    text-align: center;
-    position: relative;
-    top: -285px;
-        z-index: 101;
-    }
-    .my-video-dimensions{
-        width: 680px;
-        height: 400px;
-        margin: auto;
-    }
-    .close-video{
-        position: relative;
-    right: -324px;
-    line-height: 26px;
-    width: 33px;
-    height: 26px;
-    top: 26px;
-    color: #fff;
-    margin: auto;
-    z-index: 102;
-    cursor: pointer;
-    background-color: gray;
-    }
+
+        .breadcrumb > li > a {
+            color: #333;
+            cursor: pointer;
+        }
+
+        .breadcrumb > li > a:hover {
+            color: #ff6202;
+        }
+
+        .breadcrumb > li + li:before {
+            font-family: FontAwesome;
+            content: "\f105";
+        }
+
+        .m {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            top: -285px;
+            z-index: 101;
+        }
+
+        .my-video-dimensions {
+            width: 680px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .close-video {
+            position: relative;
+            right: -324px;
+            line-height: 26px;
+            width: 33px;
+            height: 26px;
+            top: 26px;
+            color: #fff;
+            margin: auto;
+            z-index: 102;
+            cursor: pointer;
+            background-color: gray;
+        }
+
+        #template ul {
+            width: 800px;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-bottom: 46px;
+        }
+
+        #template ul li {
+            width: 136px;
+            float: left;
+            border-radius: 4px;
+            font: 18px/40px "microsoft yahei";
+            color: #ff6202;
+            text-align: center;
+            border: 1px solid #ff6202;
+            margin-right: 78px;
+        }
+
+        #template ul li:last-child {
+            margin-right: 0;
+        }
+
+        #template p {
+            width: 800px;
+            margin: 0 auto;
+            color: #cdcdcd;
+            font: 18px/32px "microsoft yahei";
+        }
+
+        #template p i {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            vertical-align: middle;
+            border-radius: 3px;
+            margin-right: 6px;
+        }
     </style>
 {% endblock %}
 {% block content %}
-     <div class="title">
-            <div class="wrapper">
-                <ol class="breadcrumb">
-                    <li><a href="/product/list">产品管理</a></li>
-                    <li style="color: #ff6202">厨电方案</li>
-                </ol>
+    <div class="title">
+        <div class="wrapper">
+            <ol class="breadcrumb">
+                <li><a href="/product/list">产品管理</a></li>
+                <li style="color: #ff6202">厨电方案</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="index-banner" style="height:550px;">
+        <div id="template" style="height:250px;">
+            <h3>如何进行WiFi智能厨电开发？</h3>
+            <ul>
+                <li onmouseover="toggleTab('new')">1.新建厨电品类</li>
+                <li onmouseover="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
+                <li onmouseover="toggleTab('define')" style="color:#fff;">3.定义功能</li>
+                <li onmouseover="toggleTab('debug')" style="color:#fff;">4.调试</li>
+            </ul>
+            <p id="new">
+                推荐品类：燃气灶、油烟机、蒸烤箱、电饭煲、炒菜机、洗碗机等。<br>
+                帮助低成本快速实现厨电智能化，拥有品牌专属厨房APP，包括厨电智能互动、安全提醒，成熟的厨房社区，海量智能云菜谱等。<br>
+                <span style="color:#ff6202;">快速创建 ></span>
+            </p>
+            <p id="hardware" style="display:none;">
+                <i></i><span style="color:#ff6202;">申请53iq标准协议WiFi模块 ></span><br>
+                <i></i>检查按键板状态 ，确认改造方案。示例1
+            </p>
+            <p id="define" style="display:none;">
+                根据实际接入厨电定义标准产品功能<br>
+                <span style="color:#ff6202;">WiFi厨电与53iq智能云通信协议 下载></span>
+            </p>
+            <p id="debug" style="display:none;">
+                <i></i><span style="color:#ff6202;">下载安卓通用版APP ></span><br>
+                <i></i>对接通讯协议， 远程支持QQ 253317348；<br>
+                <i></i>使用53iq厨电开发平台调试通信协议；<br>
+                <i></i>手机APP UI编辑，提供品牌专属厨房APP。
+            </p>
+        </div>
+        <div class="left">
+
+            {% for app in default_apps %}
+
+                {% if  forloop.counter == 1 %}
+                    <div class="left-dv4"
+                         data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
+                        <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
+                        <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
+
+                    </div>
+                    <div class="left-dv1">
+                {% elif forloop.counter == 2 %}
+                    <div class="left-dv2">
+                {% else %}
+                    <div class="left-dv3">
+                {% endif %}
+
+            <img src="{{ app.app_logo }}">
+            <h4>{{ app.app_name }}</h4>
+            {% if app.app_device_type == 1 %}
+                <p>智能显示，多档控制，强劲风力，多屏互动体验</p>
+            {% elif app.app_device_type == 2 %}
+                <p>WiFi/Android屏集成灶，远程监控灶状态，厨房风险指数模板快速接入</p>
+            {% elif app.app_device_type == 11 %}
+                <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
+            {% endif %}
+            <div class="ui-demo">
+                {% if user.developer.developer_id %}
+                    <a style="display:block;color:#fff"
+                       href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
+                {% else %}
+                    <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+                {% endif %}
+
+            </div>
+            </div>
+            {% endfor %}
+            <div class="left-dv4" id="WiFi-oven-demo">
+                <img src="/static/image/product/ico-video.png"/>
+                <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
+            </div>
             </div>
 
+            </div>
         </div>
-    <div class="index-banner">
-    <div class="left">
-
-        {% for app in default_apps %}
-
-            {% if  forloop.counter == 1 %}
-                <div class="left-dv4" data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
-                    <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
-                    <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
-
-                </div>
-                <div class="left-dv1">
-            {% elif forloop.counter == 2 %}
-                <div class="left-dv2">
-            {% else %}
-                <div class="left-dv3">
-            {% endif %}
-
-        <img src="{{ app.app_logo }}">
-        <h4>{{ app.app_name }}</h4>
-        {% if app.app_device_type == 1 %}
-            <p>智能显示，多档控制，强劲风力，多屏互动体验</p>
-        {% elif app.app_device_type == 2 %}
-            <p>WiFi/Android屏集成灶，远程监控灶状态，厨房风险指数模板快速接入</p>
-        {% elif app.app_device_type == 11 %}
-            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
-        {% endif %}
-        <div class="ui-demo">
-            {% if user.developer.developer_id%}
-                <a style="display:block;color:#fff" href="javascript:void(create_procuct('{{ app.app_device_type }}'))" >快速创建</a>
-            {% else %}
-                <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
-            {% endif %}
-
-        </div>
-        </div>
-        {% endfor %}
-        <div class="left-dv4" id="WiFi-oven-demo">
-            <img src="/static/image/product/ico-video.png"/>
-            <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
-        </div>
-    </div>
-
-        </div>
-    </div>
     </div>
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
@@ -271,13 +358,18 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio"
+                                                                  onclick="select_progm(2)" name="select_group" id="c1"
+                                                                  checked>
                             <label for="c1">Wi-Fi</label>
-                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
+                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
+                                   id="c2">
                             <label for="c2">Android屏</label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                        <div class="select-progm1" style="font-size: 12px;color: #2980b9;">
+                            WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机
+                        </div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -304,25 +396,25 @@
     </div>
     <div class="markLayout"></div>
     <div class="m" style="display: none">
-    <div class="close-video"><i class="fa fa-times"></i></div>
-		<video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
-		  poster="m.png" data-setup="{}">
-			<source src="http://storage.56iq.net/group1/M00/2F/C2/CgoKQ1p6n8aALYczABCf_nyncbU136.mp4" type="video/mp4">
-			<p class="vjs-no-js">
-			  To view this video please enable JavaScript, and consider upgrading to a web browser that
-			  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-			</p>
-		  </video>
-		  <script src="https://www.jq22.com/demo/video-js/js/video.min.js"></script>
-		  <script type="text/javascript">
-			var myPlayer = videojs('my-video');
-			videojs("my-video").ready(function(){
-				myPlayer = this;
+        <div class="close-video"><i class="fa fa-times"></i></div>
+        <video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
+               poster="m.png" data-setup="{}">
+            <source src="http://storage.56iq.net/group1/M00/2F/C2/CgoKQ1p6n8aALYczABCf_nyncbU136.mp4" type="video/mp4">
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+        <script src="https://www.jq22.com/demo/video-js/js/video.min.js"></script>
+        <script type="text/javascript">
+            var myPlayer = videojs('my-video');
+            videojs("my-video").ready(function () {
+                myPlayer = this;
 
 
-			});
-		</script>
-	</div>
+            });
+        </script>
+    </div>
 
 {% endblock %}
 
