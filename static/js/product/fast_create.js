@@ -173,9 +173,9 @@ function uploadInfo() {
                 $("#user_address").modal("hide");
                 switch(data.code){
                     case 0:bootbox.alert("保存成功");break;
-                    case 1:bootbox.alert("请求方法错误");break;
-                    case 2:bootbox.alert("保存失败，检查账号信息");break;
-                    case 3:bootbox.alert("缺少参数");
+                    case -1:bootbox.alert("请求方法错误");break;
+                    case -2:bootbox.alert("保存失败，检查账号信息");break;
+                    case -3:bootbox.alert("缺少参数");
                 }
             }
         })
