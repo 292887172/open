@@ -33237,3 +33237,25 @@ TypeError: 'NoneType' object is not subscriptable
 2018-02-08 14:21:22,664 [Thread-1239:8912] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2018-02-08 14:26:33,254 [Thread-1250:8376] [django.request:143] [WARNING]- Not Found: /favicon.ico
 2018-02-08 14:37:43,726 [Thread-1251:10624] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-02-09 09:26:14,568 [Thread-4:3736] [django.request:231] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "F:\virven\openVirenv\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "F:\virven\openVirenv\lib\site-packages\django\contrib\sessions\middleware.py", line 16, in process_request
+    request.session = self.SessionStore(session_key)
+  File "F:\virven\openVirenv\lib\site-packages\django\contrib\sessions\backends\cache.py", line 14, in __init__
+    self._cache = caches[settings.SESSION_CACHE_ALIAS]
+  File "F:\virven\openVirenv\lib\site-packages\django\core\cache\__init__.py", line 113, in __getitem__
+    cache = _create_cache(alias)
+  File "F:\virven\openVirenv\lib\site-packages\django\core\cache\__init__.py", line 88, in _create_cache
+    return backend_cls(location, params)
+  File "F:\virven\openVirenv\lib\site-packages\django\core\cache\backends\memcached.py", line 163, in __init__
+    import memcache
+ImportError: No module named 'memcache'
+2018-02-09 09:27:03,228 [Thread-28:7392] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:32:24,254 [Thread-34:6748] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:32:24,800 [Thread-35:6548] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:32:33,204 [Thread-36:7768] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:34:08,678 [Thread-52:6632] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:34:09,032 [Thread-56:4348] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 09:34:11,669 [Thread-57:7064] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
