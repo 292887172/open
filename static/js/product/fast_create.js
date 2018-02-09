@@ -172,7 +172,7 @@ function uploadInfo() {
             success: function (data) {
                 $("#user_address").modal("hide");
                 switch(data.code){
-                    case 0:bootbox.alert("您的申请已经受理，小助手尽快帮您安排邮寄");break;
+                    case 0:bootbox.alert("您的申请已受理，小助手尽快帮您安排邮寄");break;
                     case -1:bootbox.alert("请求方法错误");break;
                     case -2:bootbox.alert("保存失败，检查账号信息");break;
                     case -3:bootbox.alert("缺少参数");
@@ -191,9 +191,8 @@ var addressBtn = false;
 function validateName(that) {
     var patt = /[\u4e00-\u9fa5]/;
     if (!patt.test(that.value)) {
-        that.value = null;
         nameBtn = false;
-        document.querySelector(".name_tooltip").textContent = " X;";
+        document.querySelector(".name_tooltip").textContent = " X";
         document.querySelector(".name_tooltip").style.color = "red";
     } else {
         nameBtn = true;
@@ -203,9 +202,8 @@ function validateName(that) {
 }
 
 function validatePhone(that) {
-    var patt = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    var patt = /^1[3|4|5|8][0-9]\d{8}$/;
     if (!patt.test(that.value)) {
-        that.value = null;
         phoneBtn = false;
         document.querySelector(".phone_tooltip").textContent = " X";
         document.querySelector(".phone_tooltip").style.color = "red";
@@ -219,7 +217,6 @@ function validatePhone(that) {
 function validateAddress(that) {
     var patt = /([^\x00-\xff]|[A-Za-z0-9_])+/;
     if (!patt.test(that.value)) {
-        that.value = null;
         addressBtn = false;
         document.querySelector(".address_tooltip").textContent = " X";
         document.querySelector(".address_tooltip").style.color = "red";
