@@ -33748,3 +33748,7 @@ OSError: [Errno 22] Invalid argument
 2018-02-09 17:19:50,707 [Thread-121:10564] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
 2018-02-09 17:19:50,936 [Thread-122:3816] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
 2018-02-09 17:20:06,487 [Thread-125:4908] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 18:00:05,488 [Thread-5:7056] [django.request:143] [WARNING]- Not Found: /webapp/device
+2018-02-09 18:00:07,101 [Thread-8:10416] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-02-09 18:10:03,998 [Thread-26:13048] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-02-09 18:10:04,769 [Thread-29:12896] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
