@@ -4,8 +4,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http.response import HttpResponse, JsonResponse
 from common.mysql_helper import query_data, get_ui_base_conf, query_ui_conf
 import json
-
+import logging
+import datetime
 # Create your views here.
+from model.center.account import Account
+from model.center.account_info import AccountIfo
 
 
 @csrf_exempt
@@ -69,3 +72,32 @@ def diy_ui_conf(request):
             except Exception as e:
                 print(e)
             return JsonResponse({})
+
+
+@csrf_exempt
+def save_user_address(request):
+    if request.method == 'POST':
+        user_account = request.POST.get('user_account', '')
+        contact_name = request.POST.get('contact_name', '')
+        contact_phone = request.POST.get('contact_phone', '')
+        contact_address = request.POST.get('contact_address', '')
+
+        if user_account:
+            try:
+                ac = Account.objects.get(account_id=user_account)
+                ai = AccountIfo(
+                    account_id=ac,
+                    contact_name=contact_name,
+                    contact_phone=contact_phone,
+                    contact_address=contact_address,
+                    account_create_date=datetime.datetime.utcnow()
+                )
+                ai.save()
+                return JsonResponse({'code': 0, 'msg': 'success'})
+            except Exception as e:
+                logging.getLogger('').info(' 创建用户邮寄地址信息失败'+str(e))
+            return JsonResponse({'code': -2, 'msg': 'account save error'})
+        else:
+            return JsonResponse({'code': -3, 'msg': 'miss parameters'})
+    else:
+        return JsonResponse({'code': -1, 'msg': 'error request method'})

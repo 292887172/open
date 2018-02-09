@@ -15,6 +15,7 @@
    plan
    deploy
    debug
+   api
    log
 
 

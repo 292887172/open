@@ -38,6 +38,22 @@
       PRIMARY KEY (`ebf_account_id`)
     ) ENGINE=ndbcluster DEFAULT CHARSET=utf8 COMMENT='用户表';
 
+    -- --------------------------------------
+    -- Table structure for ebt_account_info
+    -- --------------------------------------
+    DROP TABLE IF EXISTS `ebt_account_info`;
+    CREATE TABLE `ebt_account_info` (
+      `ebf_account_info_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户信息编号',
+      `ebf_account_id`  varchar(64) NOT NULL COMMENT '用户账号',
+      `ebf_account_contact_name` varchar(64) DEFAULT NULL COMMENT '用户联系人姓名',
+      `ebf_account_contact_phone` varchar(32) NOT NULL COMMENT '用户联系人电话',
+      `ebf_account_contact_address` varchar(512) NOT NULL COMMENT '用户联系人地址',
+      `ebf_account_info_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_account_info_id`),
+      KEY `Index_12` (`ebf_account_id`),
+      CONSTRAINT `FK_Reference_9` FOREIGN KEY (`ebf_account_id`) REFERENCES `ebt_account` (`ebf_account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    ) ENGINE=ndbcluster DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
     -- ----------------------------
     -- Table structure for ebt_api
     -- ----------------------------
