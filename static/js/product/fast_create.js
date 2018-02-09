@@ -76,26 +76,29 @@ function select_progm(val) {
         $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
     }
 }
-        function check_name() {
-            if ($("#product_name").val() == '') {
-                $('#productName').html("产品名称不能为空");
-                $('#productName').css("display", "block");
-                return '';
-            }
-            else {
-                $('#productName').css("display", "none");
-            }
-        }
-        function select_progm(val) {
-            $(".product_group").val(val);
-            if(document.getElementsByName('select_group')[0].checked){
-            $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
-            }
-            else{
-                $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
-            }
-        }
-        function new_close() {
+
+function check_name() {
+    if ($("#product_name").val() == '') {
+        $('#productName').html("产品名称不能为空");
+        $('#productName').css("display", "block");
+        return '';
+    }
+    else {
+        $('#productName').css("display", "none");
+    }
+}
+
+function select_progm(val) {
+    $(".product_group").val(val);
+    if (document.getElementsByName('select_group')[0].checked) {
+        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
+    }
+    else {
+        $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
+    }
+}
+
+function new_close() {
 
     $(".markLayout").hide();
     $("#newHtmlBox").css('display', 'none');
@@ -142,14 +145,91 @@ function toggleTab(text) {
     })
 }
 
-function uploadInfo(){
-    var user=document.querySelector("#user_address");
-    var userInfo={};
-    userInfo.name=user.querySelector(".name").value;
-    userInfo.phone=user.querySelector(".phone").value;
-    userInfo.address=user.querySelector(".address").value;
-    console.log(userInfo);
+function getAccount() {
+    var str = document.cookie;
+    var obj = {};
+    var arr = str.split("; ")
+    arr.forEach(function (item) {
+        var newArr = item.split("=");
+        obj[newArr[0]] = newArr[1];
+    })
+    return obj;
 }
+
+function uploadInfo() {
+    var user = document.querySelector("#user_address");
+    var userInfo = {};
+    userInfo.user_account = getAccount().COOKIE_USER_ACCOUNT;
+    userInfo.contact_name = user.querySelector(".name").value;
+    userInfo.contact_phone = user.querySelector(".phone").value;
+    userInfo.contact_address = user.querySelector(".address").value;
+    console.log(userInfo);
+    if (nameBtn && phoneBtn && addressBtn) {
+        $.ajax({
+            type: "POST",
+            url: "/api/save/user/address",
+            data: userInfo,
+            success: function (data) {
+                $("#user_address").modal("hide");
+                switch(data.code){
+                    case 0:bootbox.alert("保存成功");break;
+                    case 1:bootbox.alert("请求方法错误");break;
+                    case 2:bootbox.alert("保存失败，检查账号信息");break;
+                    case 3:bootbox.alert("缺少参数");
+                }
+            }
+        })
+    }else{
+        bootbox.alert("请输入正确的信息！");
+    }
+}
+
+var nameBtn = false;
+var phoneBtn = false;
+var addressBtn = false;
+
+function validateName(that) {
+    var patt = /[\u4e00-\u9fa5]/;
+    if (!patt.test(that.value)) {
+        that.value = null;
+        nameBtn = false;
+        document.querySelector(".name_tooltip").textContent = " X;";
+        document.querySelector(".name_tooltip").style.color = "red";
+    } else {
+        nameBtn = true;
+        document.querySelector(".name_tooltip").textContent = " √";
+        document.querySelector(".name_tooltip").style.color = "#666";
+    }
+}
+
+function validatePhone(that) {
+    var patt = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    if (!patt.test(that.value)) {
+        that.value = null;
+        phoneBtn = false;
+        document.querySelector(".phone_tooltip").textContent = " X";
+        document.querySelector(".phone_tooltip").style.color = "red";
+    } else {
+        phoneBtn = true;
+        document.querySelector(".phone_tooltip").textContent = " √";
+        document.querySelector(".phone_tooltip").style.color = "#666";
+    }
+}
+
+function validateAddress(that) {
+    var patt = /([^\x00-\xff]|[A-Za-z0-9_])+/;
+    if (!patt.test(that.value)) {
+        that.value = null;
+        addressBtn = false;
+        document.querySelector(".address_tooltip").textContent = " X";
+        document.querySelector(".address_tooltip").style.color = "red";
+    } else {
+        addressBtn = true;
+        document.querySelector(".address_tooltip").textContent = " √";
+        document.querySelector(".address_tooltip").style.color = "#666";
+    }
+}
+
 /**
  * Created by Administrator on 2018/2/2.
  */
