@@ -81,3 +81,5 @@
 2018-02-08 14:18:24,310 [Thread-1156:6376] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-02-08 14:21:22,621 [Thread-1238:4092] [root:217] [ERROR]- No module named 'celery'
 2018-02-08 14:21:22,621 [Thread-1238:4092] [root:218] [ERROR]- 创建应用失败
+2018-02-09 10:28:47,078 [Thread-31:8616] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-09 10:29:11,357 [Thread-45:2256] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'

@@ -267,7 +267,7 @@
         font:16px/45px "microsoft yahei";
     }
     #user_address .modal-body p input{
-        text-indent:5px;
+        text-indent:10px;
         border-radius:3px;
         border:1px solid #d9d9d9;
         width:350px;
@@ -299,9 +299,9 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <p>&emsp;&emsp;姓名：<input type="text" class="name"></p>
-                        <p>联系电话：<input type="text" class="phone"></p>
-                        <p>收件地址：<input type="text" class="address"></p>
+                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名"></p>
+                        <p>联系电话：<input type="text" class="phone" placeholder="请输入电话号码"></p>
+                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址"></p>
                     </div>
                     <div class="modal-footer" >
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -331,7 +331,7 @@
                 {% endif %}
             </p>
             <p id="hardware" style="display:none;">
-                <i></i><span style="color:#ff6202;" data-toggle="modal"
+                <i></i><span style="color:#ff6202;cursor:pointer;" data-toggle="modal"
                              data-target="#user_address">申请53iq标准协议WiFi模块 ></span><br>
                 <i></i>检查按键板状态 ，确认改造方案。示例1
             </p>
