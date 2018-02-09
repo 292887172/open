@@ -38,6 +38,22 @@
       PRIMARY KEY (`ebf_account_id`)
     ) ENGINE=ndbcluster DEFAULT CHARSET=utf8 COMMENT='用户表';
 
+    -- --------------------------------------
+    -- Table structure for ebt_account_info
+    -- --------------------------------------
+    DROP TABLE IF EXISTS `ebt_account_info`;
+    CREATE TABLE `ebt_account_info` (
+      `ebf_account_info_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户信息编号',
+      `ebf_account_id`  varchar(64) NOT NULL COMMENT '用户账号',
+      `ebf_account_contact_name` varchar(64) DEFAULT NULL COMMENT '用户联系人姓名',
+      `ebf_account_contact_phone` varchar(32) NOT NULL COMMENT '用户联系人电话',
+      `ebf_account_contact_address` varchar(512) NOT NULL COMMENT '用户联系人地址',
+      `ebf_account_info_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_account_info_id`),
+      KEY `Index_12` (`ebf_account_id`),
+      CONSTRAINT `FK_Reference_9` FOREIGN KEY (`ebf_account_id`) REFERENCES `ebt_account` (`ebf_account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    ) ENGINE=ndbcluster DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
     -- ----------------------------
     -- Table structure for ebt_api
     -- ----------------------------
@@ -240,3 +256,34 @@
       KEY `Index_1` (`ebf_doc_id`),
       CONSTRAINT `FK_Reference_7` FOREIGN KEY (`ebf_doc_id`) REFERENCES `ebt_doc` (`ebf_doc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
     ) ENGINE=ndbcluster AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='文档菜单表';
+
+    -- ----------------------------
+    -- Table structure for ebt_auto_login
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_auto_login`;
+    CREATE TABLE `ebt_auto_login` (
+      `ebf_al_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_al_account_id` varchar(64) NOT NULL COMMENT '用户账号',
+      `ebf_al_account_password` varchar(512) NOT NULL COMMENT '用户密码',
+      `ebf_al_token` varchar(64) NOT NULL COMMENT '自动登录的token',
+      `ebf_al_login_ip` varchar(32) NOT NULL COMMENT '自动登录的ip',
+      `ebf_al_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_al_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_al_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='自动登录表';
+
+    -- ----------------------------
+    -- Table structure for ebt_message
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_message`;
+    CREATE TABLE `ebt_message` (
+      `ebf_message_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_message_content` varchar(512) NOT NULL COMMENT '消息内容',
+      `ebf_message_type` int(2) NOT NULL DEFAULT '1' COMMENT '消息类型（1：一般消息，2：系统消息）',
+      `ebf_message_sender` varchar(64) NOT NULL COMMENT '消息发送者id',
+      `ebf_message_target` varchar(64) NOT NULL COMMENT '消息目标接受者id',
+      `ebf_message_is_read` int(2) NOT NULL DEFAULT '0' COMMENT '是否阅读（1：已读，0：未读）',
+      `ebf_message_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_message_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_message_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息表';

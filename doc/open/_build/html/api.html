@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>api文档 &#8212; open 1.0 documentation</title>
+    
+    <title>api文档 &mdash; open 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="open 1.0 documentation" href="index.html" />
+    <link rel="next" title="更新日志" href="log.html" />
+    <link rel="prev" title="测试" href="debug.html" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=0.8">
     
+    
 
   </head>
-  <body>
+  <body role="document">
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
-        <li><a href="index.html">open 1.0 documentation</a> &#187;</li> 
+        <li><a href="index.html">open 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     
@@ -101,16 +106,366 @@
 </div>
 <div class="section" id="id4">
 <h3>输出参数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;http://test.open.53iq.com/static/file/m23cYZki.zip&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">&quot;data&quot;</span><span class="p">:</span> <span class="s">&quot;http://test.open.53iq.com/static/file/m23cYZki.zip&quot;</span><span class="p">,</span>
+    <span class="s">&quot;msg&quot;</span><span class="p">:</span> <span class="s">&quot;success&quot;</span>
 <span class="p">}</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">code不为0,msg为具体错误信息</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>控制多屏互动<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://test.open.53iq.com/product/control">http://test.open.53iq.com/product/control</a></li>
+<li>HTTP方式：POST (通过接口访问)</li>
+</ul>
+<div class="section" id="id6">
+<h3>输入参数<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>did</td>
+<td>获取设备编号</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h3>输出参数<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;code&#8221;: 0,</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id8">
+<h3>输出参数说明<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>code</td>
+<td>请求结果码</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>上传图片到云服务<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://test.open.53iq.com/product/upload_file">http://test.open.53iq.com/product/upload_file</a></li>
+</ul>
+<div class="section" id="id10">
+<h3>输入参数<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>productImgFile</td>
+<td>图片文件流</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h3>输出参数<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">&quot;data&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+    <span class="s">&quot;msg&quot;</span><span class="p">:</span> <span class="s">&quot;success&quot;</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">code不为0,msg为具体错误信息</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="zip">
+<h2>扫码推送zip文件<a class="headerlink" href="#zip" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://test.open.53iq.com/product/wx_code">http://test.open.53iq.com/product/wx_code</a></li>
+<li>HTTP方式：POST(通过接口访问)</li>
+</ul>
+<div class="section" id="id12">
+<h3>输入参数<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>产品标识符</td>
+</tr>
+<tr class="row-odd"><td>id</td>
+<td>设备编号</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id13">
+<h3>输出参数<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>{
+    &quot;code&quot;: 0,
+    &quot;data&quot;: {
+        &quot;total&quot;: 1
+    }
+}
+或者
+{
+    &quot;code&quot;: 42001,
+    &quot;msg&quot;: &quot;push message failed&quot;
+}
+&quot;&quot;&quot;
+code不为0,msg为具体错误信息
+&quot;&quot;&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>获取设备功能配置文件<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://open.53iq.com/api/pull_ui_conf">http://open.53iq.com/api/pull_ui_conf</a></li>
+<li>HTTP方式：POST(通过接口访问)</li>
+</ul>
+<div class="section" id="id15">
+<h3>输入参数<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>设备key</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id16">
+<h3>输出参数<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>           {
+             &quot;data&quot;: {
+               &quot;name&quot;: &quot;长帝烤箱&quot;,
+               &quot;key&quot;: &quot;ru3wb0Bm&quot;,
+               &quot;functions&quot;: [
+                 {
+
+                   &quot;name&quot;: &quot;POWER&quot;,
+                   &quot;no&quot;: &quot;1&quot;,
+                   &quot;id&quot;: &quot;1&quot;,
+                   &quot;title&quot;: &quot;开关&quot;
+                 }
+               ],
+               &quot;model&quot;: &quot;CKX&quot;
+             },
+             &quot;code&quot;: 0
+           }
+
+请求错误码：
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>参数
+{ &#39;code&#39;:-1, no key }   说明：未找到key
+{ &#39;code&#39;:-1, no conf }  说明：未找到conf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ui">
+<h2>保存和修改设备自定义ui配置文件<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://open.53iq.com/api/upload_ui_conf">http://open.53iq.com/api/upload_ui_conf</a></li>
+<li>HTTP方式：POST(通过接口访问)</li>
+</ul>
+<div class="section" id="id17">
+<h3>输入参数<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>设备key</td>
+</tr>
+<tr class="row-odd"><td>ui_conf</td>
+<td>自定义配置文件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h3>输出参数<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>data</td>
+<td><blockquote class="first">
+<div>{&#8216;code&#8217;:0 ,&#8217;msg&#8217;:ok}  保存成功</div></blockquote>
+<p class="last">{&#8216;code&#8217;: 1, &#8216;msg&#8217;: &#8216;save failed&#8217;}  保存失败
+{&#8216;code&#8217;: -1, &#8216;msg&#8217;: &#8216;no conf&#8217;} 缺少配置文件
+{&#8216;code&#8217;: -1, &#8216;msg&#8217;: &#8216;no conf&#8217;} 缺少key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>获取产品自定义UI配置文件接口<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址：<a class="reference external" href="http://open.53iq.com/api/diy_ui_conf">http://open.53iq.com/api/diy_ui_conf</a></li>
+<li>HTTP方式：GET(通过接口访问)</li>
+</ul>
+<div class="section" id="id20">
+<h3>输入参数<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>设备key</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id21">
+<h3>输出参数<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>自定义配置文件(json)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>保存账号邮寄地址接口<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>接口地址： <a class="reference external" href="https://open.53iq.com/api/save/user/address">https://open.53iq.com/api/save/user/address</a></li>
+<li>请求方式:POST</li>
+</ul>
+<div class="section" id="id23">
+<h3>输入参数<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>user_account</td>
+<td>当前登录用户账号</td>
+</tr>
+<tr class="row-odd"><td>contact_name</td>
+<td>联系人姓名</td>
+</tr>
+<tr class="row-even"><td>contact_phone</td>
+<td>联系人电话</td>
+</tr>
+<tr class="row-odd"><td>contact_address</td>
+<td>联系人邮寄地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id24">
+<h3>输出从参数<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;code&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;success&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>code取值说明</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">code取值</th>
+<th class="head">说明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>保存成功</td>
+</tr>
+<tr class="row-odd"><td>-1</td>
+<td>请求方法错误</td>
+</tr>
+<tr class="row-even"><td>-2</td>
+<td>保存失败，检查账号信息</td>
+</tr>
+<tr class="row-odd"><td>-3</td>
+<td>缺少参数</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -133,18 +488,63 @@
 <li><a class="reference internal" href="#id4">输出参数</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id5">控制多屏互动</a><ul>
+<li><a class="reference internal" href="#id6">输入参数</a></li>
+<li><a class="reference internal" href="#id7">输出参数</a></li>
+<li><a class="reference internal" href="#id8">输出参数说明</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">上传图片到云服务</a><ul>
+<li><a class="reference internal" href="#id10">输入参数</a></li>
+<li><a class="reference internal" href="#id11">输出参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zip">扫码推送zip文件</a><ul>
+<li><a class="reference internal" href="#id12">输入参数</a></li>
+<li><a class="reference internal" href="#id13">输出参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">获取设备功能配置文件</a><ul>
+<li><a class="reference internal" href="#id15">输入参数</a></li>
+<li><a class="reference internal" href="#id16">输出参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ui">保存和修改设备自定义ui配置文件</a><ul>
+<li><a class="reference internal" href="#id17">输入参数</a></li>
+<li><a class="reference internal" href="#id18">输出参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">获取产品自定义UI配置文件接口</a><ul>
+<li><a class="reference internal" href="#id20">输入参数</a></li>
+<li><a class="reference internal" href="#id21">输出参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id22">保存账号邮寄地址接口</a><ul>
+<li><a class="reference internal" href="#id23">输入参数</a></li>
+<li><a class="reference internal" href="#id24">输出从参数</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="debug.html"
+                        title="previous chapter">测试</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="log.html"
+                        title="next chapter">更新日志</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -157,11 +557,17 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="log.html" title="更新日志"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="debug.html" title="测试"
+             accesskey="P">previous</a> |</li>
       </ul>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2015, 53iq.
+        &copy; Copyright 2015, 53iq.
     </div>
   </body>
 </html>
