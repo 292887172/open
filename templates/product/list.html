@@ -483,12 +483,12 @@
                         <label class="dtbox">技术方案:</label>
 
                         <p class="technology" style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
-                            <label for="c1">Wi-Fi</label>
+                            <label for="c1">WiFi</label>
                             <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求电控板支持5V供电，两路串口</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -529,7 +529,7 @@
                 <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
                 <p style="color: #868586;">数百种APP界面随意挑选组合</p>
                 <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}">
-                    <button type="button" class="set-create">创建</button>
+                    <button type="button" class="set-create">创建产品</button>
                 </a>
             </div>
         {% endif %}

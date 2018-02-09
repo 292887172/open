@@ -69,10 +69,10 @@ var checkSubmitFlg = false;
         function select_progm(val) {
             $(".product_group").val(val);
             if(document.getElementsByName('select_group')[0].checked){
-            $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机");
+            $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
             }
             else{
-                $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱");
+                $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
             }
         }
         function new_close() {
