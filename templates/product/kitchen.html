@@ -186,8 +186,8 @@
         .m {
             width: 100%;
             text-align: center;
-            position: relative;
-            top: -285px;
+           position: absolute;
+            top: 204px;
             z-index: 101;
         }
 
@@ -227,6 +227,7 @@
             text-align: center;
             border: 1px solid #ff6202;
             margin-right: 78px;
+            cursor: default;
         }
 
         #template ul li:last-child {
@@ -273,7 +274,11 @@
             <p id="new">
                 推荐品类：燃气灶、油烟机、蒸烤箱、电饭煲、炒菜机、洗碗机等。<br>
                 帮助低成本快速实现厨电智能化，拥有品牌专属厨房APP，包括厨电智能互动、安全提醒，成熟的厨房社区，海量智能云菜谱等。<br>
-                <span style="color:#ff6202;">快速创建 ></span>
+                {% if user.developer.developer_id %}
+                    <a href="{% url "product/add" %}" style="color:#ff6202;">快速创建 ></a>
+                {% else %}
+                    <a href="javascript:void(dont_develop())" style="color:#ff6202;">快速创建 ></a>
+                {% endif %}
             </p>
             <p id="hardware" style="display:none;">
                 <i></i><span style="color:#ff6202;">申请53iq标准协议WiFi模块 ></span><br>
@@ -281,10 +286,10 @@
             </p>
             <p id="define" style="display:none;">
                 根据实际接入厨电定义标准产品功能<br>
-                <span style="color:#ff6202;">WiFi厨电与53iq智能云通信协议 下载></span>
+                <a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx" style="color:#ff6202;">WiFi厨电与53iq智能云通信协议 下载></a>
             </p>
             <p id="debug" style="display:none;">
-                <i></i><span style="color:#ff6202;">下载安卓通用版APP ></span><br>
+                <i></i><a href="https://wechat.53iq.com/tmp/kitchen/app/download?types=wifi" style="color:#ff6202;">下载安卓通用版APP ></a><br>
                 <i></i>对接通讯协议， 远程支持QQ 253317348；<br>
                 <i></i>使用53iq厨电开发平台调试通信协议；<br>
                 <i></i>手机APP UI编辑，提供品牌专属厨房APP。
@@ -368,7 +373,7 @@
                         </p>
 
                         <div class="select-progm1" style="font-size: 12px;color: #2980b9;">
-                            WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机
+                            WiFi方案要求设备支持5V供电，两路串口
                         </div>
                     </div>
 
@@ -399,7 +404,7 @@
         <div class="close-video"><i class="fa fa-times"></i></div>
         <video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
                poster="m.png" data-setup="{}">
-            <source src="http://storage.56iq.net/group1/M00/2F/C2/CgoKQ1p6n8aALYczABCf_nyncbU136.mp4" type="video/mp4">
+            <source src="https://storage.53iq.com/group1/M00/2F/FC/CgoKQ1p9BEGAHxNIABGN0xsO9Vw259.mp4" type="video/mp4">
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that
                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>

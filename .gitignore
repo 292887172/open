@@ -10,7 +10,7 @@ gen
 
 ### Python template
 # Django stuff:
-log/*
+log/*.log
 *.pyc
 
 tmp/

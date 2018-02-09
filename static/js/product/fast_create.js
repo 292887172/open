@@ -50,9 +50,6 @@ function submit_product() {
         checkSubmitFlg = true;
         form.submit();
 
-        // $(".markLayout").hide();
-        // new_close();
-        //$("#loadingDiv").show();
     }
     else {
         bootbox.alert("不能重复提交");
@@ -73,14 +70,32 @@ function check_name() {
 function select_progm(val) {
     $(".product_group").val(val);
     if (document.getElementsByName('select_group')[0].checked) {
-        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机");
+        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
     }
     else {
-        $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱");
+        $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
     }
 }
-
-function new_close() {
+        function check_name() {
+            if ($("#product_name").val() == '') {
+                $('#productName').html("产品名称不能为空");
+                $('#productName').css("display", "block");
+                return '';
+            }
+            else {
+                $('#productName').css("display", "none");
+            }
+        }
+        function select_progm(val) {
+            $(".product_group").val(val);
+            if(document.getElementsByName('select_group')[0].checked){
+            $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
+            }
+            else{
+                $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
+            }
+        }
+        function new_close() {
 
     $(".markLayout").hide();
     $("#newHtmlBox").css('display', 'none');
