@@ -315,14 +315,12 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名" onchange="validateName(this)"><span class="name_tooltip">&emsp;</span></p>
-                        <p>联系电话：<input type="text" class="phone" placeholder="请输入电话号码" onchange="validatePhone(this)"><span class="phone_tooltip">&emsp;</span></p>
-                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" onchange="validateAddress(this)"><span class="address_tooltip">&emsp;</span></p>
+                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip">&emsp;</span></p>
+                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip">&emsp;</span></p>
+                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip">&emsp;</span></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="uploadInfo()">
+                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
                             提交
                         </button>
                     </div>
