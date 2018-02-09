@@ -233,6 +233,7 @@
             </li>
             {% endif %}
             </ol>
+            <span style="color:#585252">Key:</span> <span>{{ app.app_appid|cover_product_key }}</span>
                 <span style="margin-left: 22%;color: red;"> {% if app.check_status == 1 %}该产品处于发布审核阶段，功能点不可修改。{% elif app.check_status == 2 %}该产品已发布，功能点不可修改。{% elif app.check_status == 3 %}{{ app.app_name }}示例体验，功能点不可修改。{% endif %}</span>
 
             </div>
@@ -250,22 +251,22 @@
             <div class="leftSide">
                 <div class="box1">
                     <!-- 左侧菜单 begin -->
-                    <div class="menuBox">
-
-                        <ul>
-                            <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">
-                                <a href="#/content">
-                                   <i class="fa fa-sliders"></i>产品控制台
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+{#                    <div class="menuBox">#}
+{##}
+{#                        <ul>#}
+{#                            <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">#}
+{#                                <a href="#/content">#}
+{#                                   <i class="fa fa-sliders"></i>产品控制台#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
                     <div class="menuBox">
 
                         <ul>
                             <li id="infoMenu" class="jsNavItem" data-id="infoMenu" ng-click="nav.selected('infoMenu')">
                                 <a href="#/info">
-                                    <i class="fa fa-inbox"></i>产品基本信息
+                                    <i class="fa fa-sliders "></i>基本信息
                                 </a>
                             </li>
                         </ul>
@@ -275,7 +276,7 @@
                         <ul>
                             <li id="argueMenu" class="jsNavItem" data-id="argueMenu" ng-click="nav.selected('argueMenu')">
                                 <a href="#/argue">
-                                    <i class="fa fa-file-text-o"></i>定义产品功能
+                                    <i class="fa fa-inbox"></i>定义功能
                                 </a>
                             </li>
                         </ul>
@@ -284,7 +285,7 @@
                         <ul>
                             <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
                                 <a href="#/device">
-                                    <i class="fa fa-desktop"></i>设备管理
+                                    <i class="fa fa-file-text-o "></i>设备调试
                                 </a>
                             </li>
                         </ul>
@@ -294,7 +295,7 @@
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
                                 <a href="#/demo/{{ app.app_name}}">
-                                    <i class="fa fa-text" ></i>开发示例
+                                    <i class="fa fa-desktop " ></i>开发示例
                                 </a>
                             </li>
                         </ul>
@@ -304,23 +305,19 @@
                             <ul>
                                 <li id="appMenu" class="jsNavItem" data-id="appMenu" ng-click="nav.selected('appMenu')">
                                     <a href="#/app">
-                                        <i class="fa fa-text" ></i>UI编辑
+                                        <i class="fa fa-desktop " ></i>UI编辑
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     {% endif %}
-{#                    <div class="menuBox">#}
-{#                        <h3>生产测试</h3>#}
-{#                        <ul>#}
-{#                            <li id="debugMenu" ng-hide="true" class="jsNavItem" data-id="debugMenu"#}
-{#                                ng-click="nav.selected('debugMenu')">#}
-{#                                <a href="#/debug">#}
-{#                                    <i class="fa fa-glass"></i>产品测试#}
-{#                                </a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
+                    <div class="menuBox">
+                        <div class="gd-opt" style="margin-top: 12px;margin-left: 29px;float: initial">
+                        <div class="apply" ng-controller="ContentCtrl">
+                            <a ng-show="check_status!='体验产品'" href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
+                        </div>
+                        </div>
+                    </div>
 
                     <!-- 左侧菜单 end -->
                 </div>
@@ -422,6 +419,7 @@
                     $scope.key = "{{ key }}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
                     $scope.create_time = "{{ app.app_create_date|utc2local  }}";
+                    $scope.update_time = "{{ app.app_update_date|utc2local  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 申请发布 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
                     $scope.secondProType = [
@@ -479,7 +477,9 @@
                         "app_command": $scope.app_command,
                         "app_group": $scope.app_group,
                         "band_name": $scope.band_name,
-                        "app_factory_uid": $scope.app_factory_uid
+                        "app_factory_uid": $scope.app_factory_uid,
+                        "app_create_time": $scope.create_time,
+                        "app_update_time": $scope.update_time
                     };
                     $scope.resetInfo=function () {
                            $scope.infoFormData = {
@@ -493,7 +493,8 @@
                             "app_command": $scope.app_command,
                             "app_group": $scope.app_group,
                             "band_name": $scope.band_name,
-                            "app_factory_uid": $scope.app_factory_uid
+                            "app_factory_uid": $scope.app_factory_uid,
+                            "app_update_time": $scope.update_time
                         }
                     };
                     // 配置信息表单

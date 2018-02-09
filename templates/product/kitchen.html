@@ -390,8 +390,16 @@
                 {% endif %}
             </p>
             <p id="hardware" style="display:none;">
-                <i></i><span style="color:#ff6202;cursor:pointer;" data-toggle="modal"
-                             data-target="#user_address">申请53iq标准协议WiFi模块 ></span><br>
+                <i></i>
+                 {% if user.developer.developer_id %}
+                    <span style="color:#ff6202;cursor:pointer;" data-toggle="modal"
+                             data-target="#user_address">申请53iq标准协议WiFi模块 ></span>
+                {% else %}
+                     <span style="color:#ff6202;cursor:pointer;"
+                             onclick="javascript:void(dont_develop())">申请53iq标准协议WiFi模块 ></span>
+
+                {% endif %}
+                <br>
                 <i></i>检查按键板状态 ，确认改造方案。示例1
             </p>
             <p id="define" style="display:none;">
