@@ -138,9 +138,11 @@ function toggleTab(text) {
         if (item.id == text) {
             item.style.display = "block";
             lis[index].style.color = "#ff6202";
+            lis[index].style.borderColor="orange";
         } else {
             item.style.display = "none";
             lis[index].style.color = "#fff";
+            lis[index].style.borderColor="#cdcdcd";
         }
     })
 }
