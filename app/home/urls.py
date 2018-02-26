@@ -19,5 +19,6 @@ urlpatterns = patterns(
     url(r'^error$', 'error', name='error'),
     url(r'^big$', 'big', name='big'),
     url(r'^contact$', 'contact', name='contact'),
+    url(r'^app/user$', 'app_user', name='app'),
 
 )

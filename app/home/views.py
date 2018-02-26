@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import codecs
 import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from base.connection import ReleaseApiMongoDBHandler
 from base.const import ConventionValue
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -178,3 +182,61 @@ def contact(request):
     :return:
     """
     return render(request, 'home/contact.html', locals())
+
+
+@csrf_exempt
+def app_user(request):
+    if request.method == 'POST':
+        db = ReleaseApiMongoDBHandler().db
+        # page = request.POST.get('page')
+        from_dict = {'ios': 'ios日记', 'zncf': '通用App', 'md':'美大厨房', 'arda': '安德厨房', 'kinde': '金帝厨房', 'app': '厨房日记'}
+        phone_user = db.ebc_app_users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
+        wx_user = db.users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
+        total_data = []
+        for i in phone_user:
+            nickname = i['phone']
+            account_id = i['account_id']
+            updated = i['_updated']
+
+            t = {
+                'nickname': nickname,
+                'openid': account_id,
+                'from': from_dict.get(i.get('source'), ''),
+                'is_bind_device': '',
+                'is_control': '',
+                'date': (updated++ datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+            }
+            total_data.append(t)
+        for j in wx_user:
+            nickname = j['nickname']
+            openid = j['openid']
+            updated = j['_updated']
+            t = {
+                'nickname': nickname,
+                'openid': openid,
+                'from': from_dict.get(j.get('source'), ''),
+                'is_bind_device': '',
+                'is_control': '',
+                'date': (updated+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+            }
+            total_data.append(t)
+        for z in total_data:
+            du = db.devices_users.find({"openid": z.get("openid")})
+            if du.count() > 0:
+                is_bind_device = True
+            else:
+                is_bind_device = False
+            if is_bind_device:
+                rd = db.record.find({"user": z.get("openid")})
+                if rd.count() > 0:
+                    is_control = True
+                else:
+                    is_control = False
+            else:
+                is_control = False
+            z['is_bind_device'] = is_bind_device
+            z['is_control'] = is_control
+
+        return JsonResponse({'code': 0, 'data': total_data})
+    else:
+        return render(request, "home/app-user.html", locals())
