@@ -14,17 +14,20 @@ function create_procuct(type, type1) {
     if (type == '1') {
         $("#product_category_detail").val('1');
         $("#productType").html("油烟机");
+        $("#product_name").val("油烟机");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png");
     }
     else if (type == '2') {
         $("#product_category_detail").val('2');
         $("#productType").html("集成灶");
+        $("#product_name").val("集成灶");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
     }
     else if (type == '11') {
         $("#ScreenSize").text("(5寸)");
         $("#product_category_detail").val('11');
         $("#productType").html("烤箱");
+        $("#product_name").val("烤箱");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
     }
     $("#newHtmlBox").css('display', 'block');
