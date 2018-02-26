@@ -77,3 +77,63 @@
 2018-02-03 13:46:56,627 [Thread-239:12064] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-02-03 15:08:40,196 [Thread-314:10172] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
 2018-02-03 15:09:37,942 [Thread-345:9228] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-03 15:34:49,731 [Thread-44:2624] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-05 10:33:19,863 [Thread-125:13520] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 12:38:38,234 [Thread-612:8584] [root:249] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2018-02-05 12:46:22,015 [Thread-665:11396] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 12:46:38,908 [Thread-695:908] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 13:14:06,722 [Thread-154:7644] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:15:01,431 [Thread-220:6968] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:16:09,582 [Thread-239:11828] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:16:41,149 [Thread-258:2196] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:17:48,654 [Thread-278:6460] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:24:10,154 [Thread-37:15440] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 13:24:46,670 [Thread-86:8560] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:25:01,907 [Thread-87:1188] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:25:02,838 [Thread-88:12908] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:25:11,959 [Thread-90:14352] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 13:27:27,174 [Thread-192:7872] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 13:28:32,923 [Thread-214:2996] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 14:45:22,834 [Thread-306:15992] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 14:50:08,940 [Thread-308:9596] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-05 15:13:59,453 [Thread-434:14788] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 15:31:48,547 [Thread-3:13232] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 15:49:26,895 [Thread-24:11964] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 16:15:52,811 [Thread-249:10152] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 16:22:51,798 [Thread-611:13200] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 18:30:26,463 [Thread-1198:9096] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 18:30:45,370 [Thread-1239:2424] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-05 18:44:26,592 [Thread-111:11652] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-06 08:50:42,013 [Thread-11:14388] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 09:24:10,248 [Thread-167:5420] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 09:27:56,740 [Thread-3:16828] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 09:27:57,451 [Thread-5:6924] [root:85] [ERROR]- Developer matching query does not exist.
+2018-02-06 09:27:57,467 [Thread-5:6924] [root:85] [ERROR]- Developer matching query does not exist.
+2018-02-06 09:27:57,483 [Thread-5:6924] [root:85] [ERROR]- Developer matching query does not exist.
+2018-02-06 10:02:37,770 [Thread-1:11884] [root:249] [INFO]- 'AnonymousUser' object has no attribute 'account_id'
+2018-02-06 10:08:07,629 [Thread-98:11424] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 10:12:14,498 [Thread-186:11496] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 10:12:33,254 [Thread-209:13656] [root:459] [INFO]- Account matching query does not exist.
+2018-02-06 10:12:57,583 [Thread-213:11200] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-06 10:13:38,084 [Thread-227:6332] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-06 10:13:38,252 [Thread-228:10588] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-06 10:54:10,901 [Thread-49:7336] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 12:25:11,724 [Thread-53:14724] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 12:25:23,016 [Thread-57:11916] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 12:27:27,530 [Thread-58:7704] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 12:27:35,591 [Thread-70:11652] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 14:28:32,011 [Thread-939:15908] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 15:54:46,638 [Thread-1129:1276] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-06 16:02:26,483 [Thread-1176:11080] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:03:01,644 [Thread-1194:2864] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:04:36,523 [Thread-1206:5044] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:04:52,639 [Thread-1218:16788] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:05:09,427 [Thread-1230:15512] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:13:49,735 [Thread-1533:9232] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:14:49,544 [Thread-1590:11684] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-06 16:14:53,384 [Thread-1603:17020] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-07 09:26:20,920 [Thread-11:10620] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-07 10:20:33,818 [Thread-361:13744] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-07 10:23:03,074 [Thread-383:7208] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-07 10:24:11,563 [Thread-405:16200] [root:187] [INFO]- Doc matching query does not exist.
+2018-02-07 13:00:05,608 [Thread-195:10500] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
