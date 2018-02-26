@@ -137,3 +137,27 @@
 2018-02-07 10:23:03,074 [Thread-383:7208] [root:187] [INFO]- Doc matching query does not exist.
 2018-02-07 10:24:11,563 [Thread-405:16200] [root:187] [INFO]- Doc matching query does not exist.
 2018-02-07 13:00:05,608 [Thread-195:10500] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 08:50:24,843 [Thread-19:9232] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 09:58:34,079 [Thread-728:13700] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 12:50:40,450 [Thread-973:16480] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 12:51:02,733 [Thread-995:6220] [root:459] [INFO]- Account matching query does not exist.
+2018-02-26 12:51:24,696 [Thread-999:16328] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:52:49,451 [Thread-1013:7048] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:06,847 [Thread-1014:9480] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:16,141 [Thread-1015:10536] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:27,900 [Thread-1016:11748] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:33,456 [Thread-1017:4420] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:56,292 [Thread-1018:16104] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 12:53:56,409 [Thread-1019:6192] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 13:16:04,188 [Thread-1188:10144] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 14:30:43,037 [Thread-1503:11492] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 14:31:08,152 [Thread-1538:9072] [root:459] [INFO]- Account matching query does not exist.
+2018-02-26 14:32:49,972 [Thread-1551:16620] [root:555] [INFO]- Incorrect padding
+2018-02-26 14:42:08,721 [Thread-1566:12416] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 14:44:05,499 [Thread-1582:14936] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-02-26 14:45:19,188 [Thread-1633:11908] [root:164] [INFO]- 'NoneType' object has no attribute 'developer_id'
+2018-02-26 14:45:38,302 [Thread-1643:15780] [root:555] [INFO]- Incorrect padding
+2018-02-26 14:45:51,535 [Thread-1649:10560] [root:164] [INFO]- 'NoneType' object has no attribute 'developer_id'
+2018-02-26 14:46:05,680 [Thread-1657:13956] [root:164] [INFO]- 'NoneType' object has no attribute 'developer_id'
+2018-02-26 14:46:24,808 [Thread-1664:16320] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-02-26 14:48:07,216 [Thread-1695:14720] [root:164] [INFO]- 'AnonymousUser' object has no attribute 'developer'

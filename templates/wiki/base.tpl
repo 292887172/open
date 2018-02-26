@@ -271,7 +271,7 @@
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求设备支持5V供电，两路串口</div>
                     </div>
 
                     <div class="ant-row ant-form-item">

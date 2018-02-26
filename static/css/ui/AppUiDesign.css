@@ -241,28 +241,28 @@ body {
 
 #backward {
     margin-left: 45%;
-    height: 2.5em;
-    background: #999;
+    height: 40px;
+    background: #c7c7c7;
     line-height: 2.5em;
     margin-top: 1em;
-    border-radius: 4px;
-    background: #2fa666;
-    width: 4.5em;
+    border:0;
+    width: 112px;
     color: #fff;
     text-align: center;
+    border-radius:3px;
 }
 
 #save {
     margin-left: 10px;
-    height: 2.5em;
-    background: #999;
+    height: 40px;
+    background: #ff6e36;
     line-height: 2.5em;
     margin-top: 1em;
-    border-radius: 4px;
-    background: #2fa666;
-    width: 4.5em;
+    border:0;
+    width: 112px;
     color: #fff;
     text-align: center;
+    border-radius:3px;
 }
 
 /* 手机端效果预览样式 */

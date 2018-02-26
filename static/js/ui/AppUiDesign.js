@@ -5,7 +5,7 @@ $(function () {
     var logBtn = false;
     var configList = [];
     var bgs = document.querySelectorAll(".bgColor");
-    bgs=Array.prototype.slice.call(bgs);
+    bgs = Array.prototype.slice.call(bgs);
     var initialList = [];
     var controlLoad = true;
     var theme = "#FF8312";
@@ -20,13 +20,17 @@ $(function () {
         url: "/api/diy_ui_conf",
         data: {key: device_key},
         success: function (data) {
-            data.function.forEach(function (item) {
-                renderList.push(item.title);
-                renderName.push(item.name);
-            })
-            logBtn = data.isLog;
-            theme = data.currentTheme;
-            configList = data.function;
+            if (JSON.stringify(data) != "{}") {
+                data.function.forEach(function (item) {
+                    renderList.push(item.title);
+                    renderName.push(item.name);
+                })
+                logBtn = data.isLog;
+                theme = data.currentTheme;
+                configList = data.function;
+            } else {
+                controlLoad = false;
+            }
             $.ajax({ //获取初始化UI配置功能列表
                 type: "POST",
                 async: false,
@@ -34,22 +38,22 @@ $(function () {
                 data: {key: device_key},
                 success: function (data) {
                     initialList = data.data.functions;
-                    if (configList.length == initialList.length) {
-                        configList.forEach(function (item, index) {
-                            var button = false;
-                            initialList.forEach(function (value, order) {
-                                if (item.title == value.title) {
-                                    button = true;
+                    if (!controlLoad) {
+                        if (configList.length == initialList.length) {
+                            configList.forEach(function (item, index) {
+                                var button = false;
+                                initialList.forEach(function (value, order) {
+                                    if (item.title == value.title) {
+                                        button = true;
+                                    }
+                                })
+                                if (controlLoad) {
+                                    if (!button) {
+                                        controlLoad = false;
+                                    }
                                 }
                             })
-                            if (controlLoad) {
-                                if (!button) {
-                                    controlLoad = false;
-                                }
-                            }
-                        })
-                    }
-                    if (!controlLoad) {
+                        }
                         renderList = [];
                         renderName = [];
                         initialList.forEach(function (item) {
@@ -90,7 +94,7 @@ $(function () {
             logTrue.checked = false;
             logFalse.checked = true;
         }
-        sortable.innerHTML ="";
+        sortable.innerHTML = "";
         configList.forEach(function (item, index) {
             var display = "block";
             var li = document.createElement("li");
@@ -118,7 +122,7 @@ $(function () {
             sortable.appendChild(li);
         })
     } else {
-        screen.style.backgroundColor = "FF8312";
+        screen.style.backgroundColor = "#FF8312";
         sortable.innerHTML = null;
         for (var i = 0; i < renderList.length; i++) {
             var li = document.createElement("li");
@@ -226,8 +230,10 @@ $(function () {
             data: {
                 key: device_key,
                 ui_conf: JSON.stringify(getInfo())
+            },
+            success:function (res) {
+                bootbox.alert('保存成功')
             }
-
         })
     });
 
@@ -318,7 +324,7 @@ $(function () {
         uploadConfig.currentTheme = currentTheme;
         var arr = [];
         var list = document.querySelector("#sortable").querySelectorAll("li");
-        list=Array.prototype.slice.call(list);
+        list = Array.prototype.slice.call(list);
         list.forEach(function (item, index) {
             arr[index] = new Object();
             arr[index].name = item.getAttribute("value");

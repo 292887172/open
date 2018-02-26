@@ -190,3 +190,18 @@ def check_first_child(menus,id):
             return m["menu_id"]
     return id
 register.filter(check_first_child)
+
+
+def cover_product_key(val):
+    """
+    转换产品key
+    :param val:
+    :return:
+    """
+    try:
+        s1 = str(val)
+        s2 = s1[-8:]
+        return s2
+    except:
+        return ""
+register.filter(cover_product_key)
