@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
             {% endif %}
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
             <li><a href="{% url 'wiki' %}">开发指南</a></li>
-            <li><a href="{% url 'smartmenu' %}">智能菜谱</a></li>
+            <li><a href="/smartmenu">智能菜谱</a></li>
 
         </ul>
         <div class="user">
@@ -106,6 +106,7 @@ var _hmt = _hmt || [];
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
                        style="text-decoration: none;">账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
+
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
