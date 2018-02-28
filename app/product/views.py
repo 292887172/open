@@ -168,11 +168,13 @@ def product_add(request):
             developer = request.user.developer
         factory_list = get_factory_list()
         template = "product/add.html"
+        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         content = dict(
             developer=developer,
-            factory_list=factory_list
+            factory_list=factory_list,
+            default_apps = default_apps
         )
-        return render(request, template, content)
+        return render(request, template,content)
 
     def post():
         developer_id = request.POST.get("developer_id", "")
@@ -182,9 +184,9 @@ def product_add(request):
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)
-            except ValueError:
+            except Exception as e:
                 app_category_detail = 0
-                pass
+                print(e)
         factory_name = request.POST.get("brandName", "")
         app_factory_id = get_factory_id(factory_name)
         app_model = request.POST.get("product_model", "")
@@ -290,7 +292,7 @@ def product_main(request):
         update_app_protocol(app)
         app.save()
         data= {'rows': opera_data, 'check_state': app.check_status}
-        r.set("product_funs"+app_id,json.dumps(data))
+        r.set("product_funs"+app_id,json.dumps(data),3600*24*3)
     def find(id, opera_data):
             for i in range(len(opera_data)):
                 if str(opera_data[i]['id']) == id:
@@ -303,8 +305,9 @@ def product_main(request):
         r = Redis3(rdb=6).client
         if post_data == 'list':
             try:
-                data = r.get("product_funs"+app_id)
-                if data:
+                res_status = r.exists("product_funs"+app_id)
+                if res_status:
+                    data = r.get("product_funs"+app_id)
                     data = json.loads(data.decode())
                     return JsonResponse(data)
             except Exception as e:
@@ -323,7 +326,7 @@ def product_main(request):
         if post_data == 'list':
             # 显示所有列表信息
             data= {'rows': opera_data, 'check_state': app.check_status}
-            r.set("product_funs"+app_id,json.dumps(data))
+            r.set("product_funs"+app_id,json.dumps(data),3600*24*3)
             return JsonResponse(data)
         elif post_data == 'edit':
             # 返回编辑页面信息
