@@ -455,25 +455,21 @@
             });
             $("#ui-account-text").focus(function () {
                 $("#ui-account-text").removeClass('ui-input-red');
-                $("#ui-account-error").removeClass('ui-error-text-red').text("完成验证后可直接用该号登录，找回密码");
+                // $("#ui-account-error").removeClass('ui-error-text-red').text("完成验证后可直接用该号登录，找回密码");
             });
             $("#ui-account-text").bind('keyup', function () {
                 tel = $("#ui-account-text").val();
-                if (verify_phone(tel)) {
-                    $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
-                            if (data['status'] == 'error') {
-                                $("#ui-account-text").removeClass('ui-input-red');
-                                $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
-                                $('#get-check-code').removeAttr('disabled').addClass('active');
-                            }
-                            else {
-                                $("#ui-account-text").addClass('ui-input-red');
-                                $("#ui-account-error").addClass('ui-error-text-red').html("该手机号已被注册，<strong><a href='login'>直接登录</a></strong>");
-                                $("#get-check-code").attr('disabled', true).removeClass('active');
-                            }
-                        }, 'json');
-                }else{
-                    $("#get-check-code").attr('disabled', true).removeClass('active');
+                if (getQueryString('rg')) {
+                    if (verify_email(tel)) {
+                        check_email(tel)
+                    }
+                }
+                else{
+                    if (verify_phone(tel)) {
+                        check_phone(tel);
+                    }else{
+                        $("#get-check-code").attr('disabled', true).removeClass('active');
+                    }
                 }
             });
 
@@ -483,16 +479,7 @@
                 if (getQueryString('rg')) {
                     if (verify_email(tel)) {
                         //验证帐号是否已经注册,返回ok表示已经存在,error表示不存在当前可用
-                        $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
-                            if (data['status'] == 'error') {
-                                $("#ui-account-text").removeClass('ui-input-red');
-                                $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
-                            }
-                            else {
-                                $("#ui-account-text").addClass('ui-input-red');
-                                $("#ui-account-error").addClass('ui-error-text-red').html("该邮箱已被注册，<strong><a href='login'> 直接登录</a></strong>");
-                            }
-                        }, 'json');
+                        check_email(tel);
                     }
                     else {
                         $("#ui-account-text").addClass('ui-input-red');
@@ -689,7 +676,32 @@
              * @param email
              * @returns {boolean}
              */
-
+            function check_email(tel) {
+                $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
+                            if (data['status'] == 'error') {
+                                $("#ui-account-text").removeClass('ui-input-red');
+                                $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
+                            }
+                            else {
+                                $("#ui-account-text").addClass('ui-input-red');
+                                $("#ui-account-error").addClass('ui-error-text-red').html("该邮箱已被注册，<strong><a href='login'> 直接登录</a></strong>");
+                            }
+                        }, 'json');
+            }
+            function check_phone(tel) {
+                $.post('{% url 'check_user_name' %}', {'username': tel}, function (data) {
+                    if (data['status'] == 'error') {
+                        $("#ui-account-text").removeClass('ui-input-red');
+                        $("#ui-account-error").removeClass('ui-error-text-red').html('<img src="{% static 'image/sucess.png' %}">');
+                        $('#get-check-code').removeAttr('disabled').addClass('active');
+                    }
+                    else {
+                        $("#ui-account-text").addClass('ui-input-red');
+                        $("#ui-account-error").addClass('ui-error-text-red').html("该手机号已被注册，<strong><a href='login'>直接登录</a></strong>");
+                        $("#get-check-code").attr('disabled', true).removeClass('active');
+                    }
+                }, 'json');
+            }
             var verify_email = function (email) {
                 return (/^[a-zA-Z0-9._\-]{1,}@[a-zA-Z0-9_\-]{1,}\.[a-zA-Z0-9_\-.]{1,}$/).test(email);
             };
