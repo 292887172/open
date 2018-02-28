@@ -345,21 +345,21 @@ var DevAppInfo = {
         } else {
             $('#devEmailErrorId').html('');
         }
-        var devCodeValue = $('input[name=devCode]').val();
-        if (devCodeValue == null || devCodeValue == '') {
-            this.changeCss(false);
-            return false;
-        } else if ($.trim(devCodeValue).length != 6) {
-            //$('#devCodeErrorId').html('请输入6位验证码');
-            this.changeCss(false);
-            return false;
-        } else if (!DevAppInfo.isNomal(devCodeValue)) {
-            //	$('#deCodeErrorId').html('输入信息中不能有特殊字符');
-            this.changeCss(false);
-            return false;
-        } else {
-            $('#devCodeErrorId').html('');
-        }
+        // var devCodeValue = $('input[name=devCode]').val();
+        // if (devCodeValue == null || devCodeValue == '') {
+        //     this.changeCss(false);
+        //     return false;
+        // } else if ($.trim(devCodeValue).length != 6) {
+        //     //$('#devCodeErrorId').html('请输入6位验证码');
+        //     this.changeCss(false);
+        //     return false;
+        // } else if (!DevAppInfo.isNomal(devCodeValue)) {
+        //     //	$('#deCodeErrorId').html('输入信息中不能有特殊字符');
+        //     this.changeCss(false);
+        //     return false;
+        // } else {
+        //     $('#devCodeErrorId').html('');
+        // }
         var checkeError = this.checkErro();
         if (!checkeError) {
             return checkeError;
