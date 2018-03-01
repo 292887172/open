@@ -266,7 +266,7 @@
                         <label class="dtbox">技术方案:</label>
 
                         <p class="technology" style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
-                            <label for="c1">Wi-Fi</label>
+                            <label for="c1">WiFi</label>
                             <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>

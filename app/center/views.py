@@ -82,7 +82,7 @@ def home(request):
         contact_phone = request.POST.get('coContactPhone', '')
         contact_qq = request.POST.get('coContactQq', '')
         contact_email = request.POST.get('devEmail', '')
-        email_code = request.POST.get('devCode', '')
+        # email_code = request.POST.get('devCode', '')
 
         # 合作厂商信息
         factory_name = request.POST.get('factory_name', '')
@@ -91,16 +91,14 @@ def home(request):
         r = RedisBaseHandler().client
         try:
             e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
-            if update is not None or str(e_code.decode()).lower() == str(email_code).lower():
-                re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
-                                      contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
-                                      factory_uuid, user, user_from)
-                if re:
-                    return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'product/list'}))
-                else:
-                    return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))
+            re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
+                                  contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
+                                  factory_uuid, user, user_from)
+            if re:
+                return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'product/list'}))
             else:
-                return HttpResponse(json.dumps({'status': 'error', 'msg': '验证码错误，请重新输入'}))
+                return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))
+
         except Exception as e:
             logging.getLogger('').info(str(e))
             return HttpResponse(json.dumps({'status': 'error', 'msg': '验证码失效，请重新获取'}))

@@ -6,6 +6,7 @@
 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/center/dev.css' %}"/>
+    <link rel="stylesheet" href="/static/css/product/bootbox.css">
 
     <style>
         .cnt_box p.btn {
@@ -107,7 +108,7 @@
 {% endblock %}
 
 {% block menu %}
-    {% create_menu 1 user.account_id %}
+    {% create_menu 0 user.account_id %}
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -172,13 +173,15 @@
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                            maxlength="64">
                                     <span id="devEmailErrorId" class="error"></span></dd>
-                                <dt><span>*</span>邮箱验证码：</dt>
-                                <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
-                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
-                                    <a id="getDevCodeId">获取邮箱验证码</a><span
-                                            id="devCodeMsgId"></span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
-                                </dd>
+                                <!--
+                                    <dt><span>*</span>邮箱验证码：</dt>
+                                    <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
+                                               onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
+                                        <a id="getDevCodeId">获取邮箱验证码</a><span
+                                                id="devCodeMsgId"></span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
+                                    </dd>
+                                -->
 
                             </dl>
                         </div>
@@ -267,6 +270,7 @@
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                            maxlength="64">
                                     <span id="devEmailErrorId" class="error"></span></dd>
+                                <!--
                                 <dt><span>*</span>邮箱验证码：</dt>
                                 <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
@@ -274,6 +278,7 @@
                                             id="devCodeMsgId"></span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
                                 </dd>
+                                -->
 
                             </dl>
                         </div>
@@ -445,6 +450,7 @@
                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                        maxlength="64">
                                 <span id="devEmailErrorId" class="error"></span></dd>
+                            <!--
                             <dt><span>*</span>邮箱验证码：</dt>
                             <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
@@ -452,6 +458,7 @@
                                         id="devCodeMsgId"></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
                             </dd>
+                            -->
 
                         </dl>
                     </div>
@@ -512,8 +519,7 @@
 {% block end_script %}
     <script type="text/javascript" language="JavaScript" src="{% static 'js/center/devApp.js' %}"
             charset="utf-8"></script>
-    <script type="text/javascript" language="JavaScript" src="{% static 'js/center/bootbox.js' %}"
-            charset="utf-8"></script>
+    <script src="/static/js/product/bootbox.js"></script>
     <script>
 
 
@@ -578,10 +584,10 @@
                     $("#devCodeMsgId").html('<img src="{% static 'image/loading.gif' %}">');
                     $.post('{% url 'send_email_code' %}', {'email': email}, function (data) {
                         if (data['result'] == 'ok') {
-                            DevAppInfo.sAlert('验证码已发送到邮箱');
+                            bootbox.alert('验证码已发送到邮箱')
                         }
                         else {
-                            DevAppInfo.sAlert('验证码发送失败，确认邮箱地址是否正确')
+                            bootbox.alert('验证码发送失败，确认邮箱地址是否正确')
 
                         }
                         $("#getDevCodeId").text("获取邮箱验证码");
@@ -637,10 +643,10 @@
 {#                                    console.log(response['msg']);#}
                                 if (response['status'] == 'ok') {
                                     $("#submitBtn").text('提交成功...');
-                                    location.reload();
+                                    location.href="/product/list";
                                 }
                                 else{
-                                    DevAppInfo.sAlert(response['msg'])
+                                    bootbox.alert(response['msg'])
                                     $("#submitBtn").text('提交');
                                 }
                             }
