@@ -51,7 +51,7 @@
             group += '<td>'+device_list[i].ebf_device_mac+'</td>';
             group += '<td>'+device_list[i].ebf_device_create_date+'</td><td>';
             if (device_list[i].ebf_device_mac) {
-                group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="<%=device_list[i].ebf_device_mac%>" target="_blank" >调试</a>'
+                group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="'+device_list[i].ebf_device_mac+'" target="_blank" >调试</a>'
             }
             group += '</td></tr>'
         }
@@ -80,7 +80,7 @@
             success: function (data) {
                 dialog.modal('hide');
                 if(data['code']== 0){
-                    window.location.href = 'https://oven.53iq.com/static/html/controlinternet.html?d='+mac
+                    window.location.href = 'https://oven.53iq.com/static/html/controler.html?d='+mac
                 }
                 else{
                     bootbox.alert(data['msg'])
