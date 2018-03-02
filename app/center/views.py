@@ -764,6 +764,13 @@ def callback(request):
             except Exception as e:
                 pass
             try:
+                emoji_pattern = re.compile("["
+                    u"\U0001F600-\U0001F64F"  # emoticons
+                    u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                    u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                    u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                                       "]+", flags=re.UNICODE)
+                nickname = emoji_pattern.sub(r'',nickname)
                 Account.objects.create_wx_user(username, '123', openid, nickname)
                 create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
