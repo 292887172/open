@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+  <meta charset="utf-8" />
+  <title>App用户简单统计</title>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="stylesheet" href="http://7xq1xx.com1.z0.glb.clouddn.com/bootstrap.css" type="text/css" />
+  <style>
+    th,td{
+      width: 25%
+    }
+  </style>
+
+</head>
+<body class="">
+
+                <div class="table-responsive">
+                  <table class="table table-striped b-t b-light">
+                    <thead>
+                      <tr>
+                        <th>用户 </th>
+                        <th>来源</th>
+
+                        <th>绑定设备</th>
+                        <th>控制</th>
+                         <th>时间</th>
+                      </tr>
+                    </thead>
+                    <tbody id="all-data">
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td>加载中....</td>
+                        <td></td>
+                        <td>
+
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+{#                <footer class="panel-footer">#}
+{#                  <div class="row">#}
+{##}
+{#                    <div class="col-sm-4 text-right text-center-xs">#}
+{#                      <ul class="pagination pagination-sm m-t-none m-b-none">#}
+{##}
+{#                        <li><a href="#">1</a></li>#}
+{#                        <li><a href="#">2</a></li>#}
+{#                        <li><a href="#">3</a></li>#}
+{#                        <li><a href="#">4</a></li>#}
+{#                        <li><a href="#">5</a></li>#}
+{##}
+{#                      </ul>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </footer>#}
+
+  <script src="http://7xq1xx.com1.z0.glb.clouddn.com/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="http://7xq1xx.com1.z0.glb.clouddn.com/bootstrap.js"></script>
+  <!-- App -->
+                <script>
+                    $(function () {
+                        jQuery.ajax({
+                        url: location.href,
+                        type: "POST",
+                        data: {},
+                        error: function (e) {
+                            console.log("error");
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            code = response.code;
+                            data = response.data;
+                            $("#all-data").html("");
+                            for(var i=0; i<data.length;i++){
+
+                                html = "<tr><td>"+data[i]['nickname']+"</td><td>"+data[i]['from']+"</td><td>"+data[i]['is_bind_device']+"</td><td>"+data[i]['is_control']+"</td><td>"+data[i]['date']+"</td></tr>";
+                                $("#all-data").append(html)
+                            }
+                        },
+                        beforeSend: function (xhr, settings) {
+
+                        }
+                    })
+                    })
+                </script>
+</body>
+</html>
