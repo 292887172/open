@@ -344,13 +344,13 @@
                                        maxlength="64">
                                 <span id="coContactRoleErrorId" class="error"></span></dd>
                             <dt><span>*</span>手机：</dt>
-                            <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value="{{ user.account_id|check_isphone_mail:'phone' }}"
+                            <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value="{{ user.account_phone}}"
                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
                                        maxlength="11">
                                 <span id="coContactMobileErrorId" class="error"></span></dd>
 
                             <dt><span>*</span>邮箱：</dt>
-                            <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value="{{ user.account_id|check_isphone_mail:'mail' }}"
+                            <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value="{{ user.account_email}}"
                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                        maxlength="64">
                                 <span id="devEmailErrorId" class="error"></span></dd>
@@ -510,6 +510,16 @@
                 if (DevAppInfo.changeButtonCSS(true)) {
 
                         var user_account = "{{ user.account_id }}";
+                        var email = "{{ user.account_email}}";
+                        var phone = "{{ user.account_phone}}";
+                        if(email && email!=$("#inEmail").val()){
+                            $("#devEmailErrorId").text('请输入正确的邮箱地址');
+                            return;
+                        }
+                        else if(phone && phone!=$("#inContactMobile").val()){
+                            $("#devEmailErrorId").text('请输入正确的手机号');
+                            return;
+                        }
                         var data_obj = {
                             'user': user_account,
                             'user_from': $("#user_from").val(),
