@@ -497,8 +497,6 @@
                         $("#getDevCodeId").text("获取邮箱验证码");
                         $("#devCodeMsgId").html("");
                     }, 'json');
-
-
                 }
                 else {
 
@@ -512,11 +510,11 @@
                         var user_account = "{{ user.account_id }}";
                         var email = "{{ user.account_email}}";
                         var phone = "{{ user.account_phone}}";
-                        if(email && email!=$("#inEmail").val()){
+                        if(user_account==email && email!=$("#inEmail").val()){
                             $("#devEmailErrorId").text('请输入正确的邮箱地址');
                             return;
                         }
-                        else if(phone && phone!=$("#inContactMobile").val()){
+                        else if(user_account==phone && phone!=$("#inContactMobile").val()){
                             $("#devEmailErrorId").text('请输入正确的手机号');
                             return;
                         }
