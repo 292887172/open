@@ -39,6 +39,7 @@ angular.module('Product.info', ['ngRoute'])
         // 一开始获取产品的设备类型，如果是普通app就不显示出指令类型选择
         if ($scope.infoFormData.app_group=='1'){
             $('#command-type').css("display","none");
+            $("#secret").css("display","block");
         }
         else {
             $('#command-type').css("display","block");
