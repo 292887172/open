@@ -105,6 +105,13 @@
                         {[{ infoFormData.app_update_time }]}
                     </dd>
                 </dl>
+                <dl class="fmInfo" id="secret" style="display: none">
+                    <dt>Secret</dt>
+                    <input type="hidden" id="app_group" value="{[{infoFormData.app_group}]}">
+                    <dd style="padding-top: 5px;">
+                        {[{app_secret}]}
+                    </dd>
+                </dl>
 
                 <dl class="fmInfo" id="command-type" >
                     <dt>指令类型</dt>
@@ -165,7 +172,8 @@
 <script src="/static/js/common/ajaxfileupload.min.js"></script>
 
 <script>
-    var brandListData = '';
+    var brandListData = ''
+
     $.ajax({
             url:location.href,
             type:"POST",
@@ -179,6 +187,7 @@
                 brandListData = data['data'];
             }
     });
+
     function checkProductName() {
         value = $("#productNameText").val();
         if (!value){
@@ -223,5 +232,6 @@
                 }
             }
     }
+
 </script>
 
