@@ -233,6 +233,7 @@ def product_add(request):
 
 @login_required
 @csrf_exempt
+
 def product_main(request):
     """
     应用详情
@@ -251,16 +252,17 @@ def product_main(request):
         try:
             user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
-            user_apps = App.objects.get(app_id=int(app_id))
-            # user_apps = developer.developer_related_app.get(app_id=int(app_id))
+            user_apps = App.objects.filter(developer=developer,app_id=int(app_id))
+            if not user_apps:
+                user_apps = App.objects.filter(developer=DEFAULT_USER,app_id=int(app_id))
         except Exception as e:
             print(e)
             logging.getLogger('').info("应用出错",str(e))
-            return HttpResponseRedirect(reverse("wiki"))
+            return HttpResponseRedirect(reverse("product/list"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
 
-        app = user_apps
+        app = user_apps[0]
         all_app = user_related_app
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
