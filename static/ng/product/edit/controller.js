@@ -15,6 +15,7 @@ angular.module('Product.edit', ['ngRoute'])
          * 提交配置信息表单
          * @constructor
          */
+
         $scope.Save = function () {
         	var state = checkID();
 			if (state !='correct' || !checkName()){

@@ -358,6 +358,7 @@ def product_main(request):
                 for j in range(len(funs)):
                     if str(opera_data[i].get("Stream_ID")) == funs[j]:
                         opera_data[i]["id"] = j + 1
+            opera_data.sort(key=lambda x: int(x.get("id")))
             save_app(app, opera_data, r, app_id)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
@@ -368,7 +369,7 @@ def product_main(request):
                     switch["toSwitch"] = 0
             save_app(app, opera_data,r,app_id)
             return HttpResponse('select_success')
-        elif post_data in ['isShow', 'isControl', 'isDisplay']:
+        elif post_data in ['isShow', 'isControl', 'isDisplay',"isCloudMenu"]:
             val = request.POST.get("dd")
             data = find(id,opera_data)
             if data:
