@@ -478,3 +478,15 @@ def fetch_all_app_data(page, limit, order_by_names):
         print(e)
         logging.getLogger("").error(e)
         return ""
+
+
+def fetch_published_fun_data(page, limit, order_by_names):
+    pass
+
+
+def fetch_publishing_fun_data(page, limit, order_by_names):
+    pass
+
+
+def fetch_all_fun_data(page, limit, order_by_names):
+    pass

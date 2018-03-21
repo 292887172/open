@@ -404,17 +404,17 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
+                save_app(app, opera_data,r,app_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             else:
-                # 添加一条参数信息首先获取当前最大id
+                # 添加一条参数信息需要申请审核
                 if opera_data:
                     indata['id'] = str(int(opera_data[-1]['id'])+1)
                 else:
                     indata['id'] = '1'
-                opera_data.append(indata)
-                message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
+                # opera_data.append(indata)
+                # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
-            save_app(app, opera_data,r,app_id)
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             return HttpResponse(tt)
 
         # 获取设备列表

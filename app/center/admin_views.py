@@ -501,6 +501,7 @@ def application_all_data(request):
     elif request.method == "POST":
         return post()
 
+
 def application_detail_modal(request):
     """
     应用详情modal详情
@@ -651,6 +652,93 @@ def application_detail_modal(request):
 
     if request.method == "GET":
         return get()
+
+
+def function_checked_data(request):
+    """
+    已经审核过的功能数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        # (sort_name, sort_status) = sort.split(".")
+        # order_by_names = ""
+        # if sort_status == "desc":
+        #     order_by_names = "-"
+        # if sort_name == "createtime":
+        #     order_by_names += "app_update_date"
+        # ret = fetch_published_app_data(page, limit, order_by_names)
+        return HttpResponse('')
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
+
+
+def function_checking_data(request):
+    """
+    需要审核的功能的数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        # (sort_name, sort_status) = sort.split(".")
+        # order_by_names = ""
+        # if sort_status == "desc":
+        #     order_by_names = "-"
+        # if sort_name == "createtime":
+        #     order_by_names += "app_update_date"
+        # ret = fetch_publishing_app_data(page, limit, order_by_names)
+        return HttpResponse('')
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
+
+
+def function_all_data(request):
+    """
+    所有的功能数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        # (sort_name, sort_status) = sort.split(".")
+        # order_by_names = ""
+        # if sort_status == "desc":
+        #     order_by_names = "-"
+        # if sort_name == "createtime":
+        #     order_by_names += "app_update_date"
+        # ret = fetch_all_app_data(page, limit, order_by_names)
+        return HttpResponse('')
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
 
 
 def api_list_data(request):

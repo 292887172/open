@@ -160,13 +160,14 @@ angular.module('Product.edit', ['ngRoute'])
                     data: {"name": "save", "d": JSON.stringify(indata)},
                     success:(function (data) {
                     if (data=="modify_success") {
-                    	console.log("modify success!");
+                    	console.log("修改信息成功!");
+                    	$(".notification-container").html(msg_notice);
                     }
                     else if(data=="add_success"){
 
-                    	console.log("add success!");
+                    	console.log("申请审核该功能!");
                     }
-                    $(".notification-container").html(msg_notice);
+
 					setTimeout(function () {
 						$(".notification-container").html('');
 						location.href="#/argue"
