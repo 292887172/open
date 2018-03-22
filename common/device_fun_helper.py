@@ -35,31 +35,32 @@ def add_device_fun(key,indata):
         print("新增产品保存信息",e)
 
 
-def pass_fun(app,name):
+def pass_fun(app,id):
     try:
-        key = app.app_appid[-8:]
-        dfs = Device_Fun.objects.filter(device_key=key)
+        df = Device_Fun.objects.get(df_id=id)
         devices = json.loads(app.device_conf)
-        for df in dfs:
-            fun = json.loads(df.device_function)
-            if fun["Stream_ID"] == name:
-                df.df_check_status = _convention.FUN_CHECKED
-                devices.append(fun)
-                save_app(app,devices)
-                df.save()
-                return True
-        return False
+        fun = json.loads(df.device_function)
+        df.df_check_status = _convention.FUN_CHECKED
+        devices.append(fun)
+        save_app(app,devices)
+        df.save()
+        return True
     except Exception as e:
         logging.getLogger("功能审核通过出错").error(e)
         print(e)
         return False
 
 
-def denied_fun(key):
+def denied_fun(app,id):
     try:
-        key = key[-8:]
-        df = Device_Fun.objects.get(device_key=key)
+        df = Device_Fun.objects.get(df_id=id)
+        devices = json.loads(app.device_conf)
+        fun = json.loads(df.device_function)
         df.df_check_status = _convention.FUN_CHECKING
+        for index,device in enumerate(devices):
+            if device["Stream_ID"] == fun["Stream_ID"]:
+                devices.pop(index)
+        save_app(app,devices)
         df.save()
         return True
     except Exception as e:
@@ -84,6 +85,7 @@ def fetch_all_fun_data(page, limit, order_by_names):
         for df in dfs:
             fun = json.loads(df.device_function)
             d = dict(
+                id = df.df_id,
                 key=df.device_key,
                 name=fun["Stream_ID"],
                 status=df.df_check_status,
@@ -117,6 +119,7 @@ def fetch_published_fun_data(page, limit, order_by_names):
         for df in dfs:
             fun = json.loads(df.device_function)
             d = dict(
+                id = df.df_id,
                 key=df.device_key,
                 name=fun["Stream_ID"],
                 status=df.df_check_status,
@@ -149,6 +152,7 @@ def fetch_publishing_fun_data(page, limit, order_by_names):
         for df in dfs:
             fun = json.loads(df.device_function)
             d = dict(
+                id = df.df_id,
                 key=df.device_key,
                 name=fun["Stream_ID"],
                 status=df.df_check_status,

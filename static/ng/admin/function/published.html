@@ -79,6 +79,7 @@
 
     //列
     var cols = [
+        {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
         {title: 'Key', name: 'key', width: 20, align: 'center', lockDisplay: true},
         {title: '名称', name: 'name', align: 'center',lockDisplay: true},
         {title: '状态', name: 'status', align: 'center', lockDisplay: true},
@@ -102,8 +103,8 @@
 
     mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
         $("#remarkTextArea").val("");
-        $("#failModalAppId").attr("data-id", item.key).attr("data-row", rowIndex);
-        $("#failModalAppId").attr("data-fun", item.name);
+        $("#failModalAppId").attr("data-key", item.key).attr("data-row", rowIndex);
+        $("#failModalAppId").attr("data-id", item.id);
     })
 
 </script>
