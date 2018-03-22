@@ -11,12 +11,14 @@ from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
 from base.util import gen_app_app_secret, gen_app_default_conf
+from base.connection import Redis3
 from base.const import ConventionValue
 from common.api_helper import create_sandbox_api_app
 from common.api_helper import create_release_api_app
 from common.api_helper import delete_release_api_app
 from common.api_helper import delete_api_app
 from common.api_helper import reset_api_app_secret
+from common.app_api_helper import remove_conf_prefix
 from common.message_helper import save_user_message
 from conf.message import *
 
@@ -480,13 +482,12 @@ def fetch_all_app_data(page, limit, order_by_names):
         return ""
 
 
-def fetch_published_fun_data(page, limit, order_by_names):
-    pass
-
-
-def fetch_publishing_fun_data(page, limit, order_by_names):
-    pass
-
-
-def fetch_all_fun_data(page, limit, order_by_names):
-    pass
+def save_app(app, opera_data):
+    # 保存修改后的device_config
+    r = Redis3(rdb=6).client
+    app.device_conf = json.dumps(opera_data)
+    key = app.app_appid[-8:]
+    remove_conf_prefix(key)
+    app.save()
+    data= {'rows': opera_data, 'check_state': app.check_status}
+    r.set("product_funs"+str(app.app_id),json.dumps(data),3600*24*3)

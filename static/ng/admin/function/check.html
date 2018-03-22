@@ -44,7 +44,7 @@
             <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
                 关闭
             </button>
-            <button type="button" id="failModalAppId" data-id="" ng-click="failFunction($event)" class="btn btn-success btn-s-xs">
+            <button type="button" id="failModalAppId" data-id="" data-fun="" ng-click="failFunction($event)" class="btn btn-success btn-s-xs">
                 确定
             </button>
          </div>
@@ -71,7 +71,7 @@
             <button type="button" class="btn btn-default btn-s-xs" data-dismiss="modal">
                 取消
             </button>
-            <button type="button" id="passModalAppId" data-id="" ng-click="passFunction($event)" class="btn btn-success btn-s-xs">
+            <button type="button" id="passModalAppId" data-id="" data-fun="" ng-click="passFunction($event)" class="btn btn-success btn-s-xs">
                 确定
             </button>
          </div>
@@ -106,20 +106,17 @@
     };
     //列
     var cols = [
-        {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
-        {title: '图标', name: 'logo', width: 60, align: 'center', lockDisplay: true, renderer: toLogoHtml},
-        {title: '名称', name: 'name', align: 'center', lockDisplay: true},
-        {title: '描述', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
-        {title: '网址', name: 'site', align: 'center', lockDisplay: true, renderer: toReadHtml},
-        {title: '提交时间', name: 'createtime', align: 'center', lockDisplay: true, sortable: true},
-        {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
-        {title: '操作', name: 'id', width: 130, align: 'center', lockDisplay: true, renderer: toControlHtml}
+        {title: 'Key', name: 'key', width: 20, align: 'center', lockDisplay: true},
+        {title: '名称', name: 'name', align: 'center',lockDisplay: true},
+        {title: '状态', name: 'status', align: 'center', lockDisplay: true},
+        {title: '提交时间', name: 'update_time', width: 60, align: 'center', lockDisplay: true},
+        {title: '操作', name: 'key', width: 130, align: 'center', lockDisplay: true, renderer: toControlHtml}
     ];
 
     var mmg = $('#table').mmGrid({
         url: "/center/admin/function/check/data",
         method: 'get',
-        sortName: 'createtime',
+        sortName: 'update_time',
         sortStatus: 'asc',
         remoteSort: true,
         fullWidthRows: true,
@@ -133,7 +130,9 @@
 
     mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
         $("#remarkTextArea").val("");
-        $("#failModalAppId").attr("data-id", item.id).attr("data-row", rowIndex);
-        $("#passModalAppId").attr("data-id", item.id).attr("data-row", rowIndex);
+        $("#failModalAppId").attr("data-id", item.key).attr("data-row", rowIndex);
+        $("#passModalAppId").attr("data-id", item.key).attr("data-row", rowIndex);
+        $("#passModalAppId").attr("data-fun", item.name);
+        $("#failModalAppId").attr("data-fun", item.name);
     })
 </script>

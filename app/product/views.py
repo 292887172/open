@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf,get_app_default_logo
 from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
-from common.app_helper import del_app
+from common.app_helper import del_app,save_app
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
 from common.app_helper import off_app
@@ -22,6 +22,7 @@ from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
+from common.device_fun_helper import add_device_fun
 from conf.commonconf import CLOUD_TOKEN,KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
@@ -286,15 +287,6 @@ def product_main(request):
         )
         return render(request, template, locals())
 
-    def save_app(app, opera_data,r,app_id):
-        # 保存修改后的device_config
-        app.device_conf = json.dumps(opera_data)
-        key = app.app_appid[-8:]
-        remove_conf_prefix(key)
-        update_app_protocol(app)
-        app.save()
-        data= {'rows': opera_data, 'check_state': app.check_status}
-        r.set("product_funs"+app_id,json.dumps(data),3600*24*3)
     def find(id, opera_data):
             for i in range(len(opera_data)):
                 if str(opera_data[i]['id']) == id:
@@ -347,7 +339,8 @@ def product_main(request):
                 fun_name = data[1].get("name")
                 opera_data.pop(i)
                 replace_fun_id(opera_data,id)
-                save_app(app, opera_data, r ,app_id)
+                save_app(app, opera_data)
+                update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
                 return HttpResponse('del_success')
@@ -359,7 +352,8 @@ def product_main(request):
                     if str(opera_data[i].get("Stream_ID")) == funs[j]:
                         opera_data[i]["id"] = j + 1
             opera_data.sort(key=lambda x: int(x.get("id")))
-            save_app(app, opera_data, r, app_id)
+            save_app(app, opera_data)
+            update_app_protocol(app)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -367,14 +361,16 @@ def product_main(request):
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
-            save_app(app, opera_data,r,app_id)
+            save_app(app, opera_data)
+            update_app_protocol(app)
             return HttpResponse('select_success')
         elif post_data in ['isShow', 'isControl', 'isDisplay',"isCloudMenu"]:
             val = request.POST.get("dd")
             data = find(id,opera_data)
             if data:
                 data[1][post_data] = val
-                save_app(app, opera_data,r,app_id)
+                save_app(app, opera_data)
+                update_app_protocol(app)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -404,7 +400,8 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_app(app, opera_data,r,app_id)
+                save_app(app, opera_data)
+                update_app_protocol(app)
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             else:
                 # 添加一条参数信息需要申请审核
@@ -412,6 +409,7 @@ def product_main(request):
                     indata['id'] = str(int(opera_data[-1]['id'])+1)
                 else:
                     indata['id'] = '1'
+                add_device_fun(app.app_appid,indata)
                 # opera_data.append(indata)
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"

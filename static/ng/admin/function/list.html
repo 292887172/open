@@ -40,20 +40,17 @@
 
     //列
     var cols = [
-        {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
-        {title: '图标', name: 'logo', width: 60, align: 'center', lockDisplay: true, renderer: toLogoHtml},
+        {title: 'Key', name: 'key', width: 20, align: 'center', lockDisplay: true},
         {title: '名称', name: 'name', align: 'center',lockDisplay: true},
-        {title: '描述', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
-        {title: '网址', name: 'site', align: 'center', lockDisplay: true, renderer: toReadHtml},
-        {title: '通过时间', name: 'createtime', lockDisplay: true, align: 'center', sortable: true},
-        {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
-        {title: '用户', name: 'nickname', width: 130, align: 'center', lockDisplay: true, renderer: toNicknameHtml}
+        {title: '状态', name: 'status', align: 'center', lockDisplay: true},
+        {title: '创建时间', name: 'update_time', lockDisplay: true, align: 'center', sortable: true},
+        {title: '更新时间', name: 'create_time', width: 60, align: 'center', lockDisplay: true},
     ];
 
     var mmg = $('#table').mmGrid({
         url: "/center/admin/function/all/data",
         method: 'get',
-        sortName: 'createtime',
+        sortName: 'create_time',
         sortStatus: 'desc',
         remoteSort: true,
         fullWidthRows: true,
@@ -66,7 +63,8 @@
 
     mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
         $("#remarkTextArea").val("");
-        $("#failModalAppId").attr("data-id", item.id).attr("data-row", rowIndex);
+        $("#failModalAppId").attr("data-id", item.key).attr("data-row", rowIndex);
+        $("#failModalAppId").attr("data-fun", item.name);
     })
 
 </script>
