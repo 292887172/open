@@ -1,0 +1,70 @@
+<header class="header bg-light dk">
+    <p>全部功能</p>
+</header>
+<section class="scrollable padder">
+    <div class="row m-t">
+        <div class="col-md-12">
+            <section class="panel panel-default" id="table">
+
+            </section>
+            <section id="paginator"></section>
+        </div>
+    </div>
+</section>
+
+<!-- /.modal -->
+<script type="text/javascript">
+    // 应用图标Html
+    var toLogoHtml = function (val) {
+        return '<img src="' + val + '" onerror="this.src=\'/static/image/global/default.png\'" width=64 height=64 alt="应用图标"/>'
+    };
+
+    // 描述Html
+    var toDescribeHtml = function (val) {
+        return val == "" || val == null ? "无描述" : val.substring(0, 37);
+    };
+
+    // 应用网站预览Html
+    var toReadHtml = function (val) {
+        return val == "" || val == null ? "无预览" : '<a href="' + val + '" target="_blank" class="text-info">产品预览</a>';
+    };
+
+    // 用户昵称
+    var toNicknameHtml = function (val) {
+        return val == "" || val == null ? "无" : val;
+    };
+    // 查看详细Html
+    var toDetailHtml = function (val) {
+        return '<a href="/center/admin/function/modal/detail?id='+val+'" data-toggle="ajaxModal" class="text-info">查看</a>'
+    };
+
+    //列
+    var cols = [
+        {title: 'Key', name: 'key', width: 20, align: 'center', lockDisplay: true},
+        {title: '名称', name: 'name', align: 'center',lockDisplay: true},
+        {title: '状态', name: 'status', align: 'center', lockDisplay: true},
+        {title: '创建时间', name: 'update_time', lockDisplay: true, align: 'center', sortable: true},
+        {title: '更新时间', name: 'create_time', width: 60, align: 'center', lockDisplay: true},
+    ];
+
+    var mmg = $('#table').mmGrid({
+        url: "/center/admin/function/all/data",
+        method: 'get',
+        sortName: 'create_time',
+        sortStatus: 'desc',
+        remoteSort: true,
+        fullWidthRows: true,
+        height: 550,
+        cols: cols,
+        plugins: [
+            $('#paginator').mmPaginator()
+        ]
+    });
+
+    mmg.on("cellSelected", function (e, item, rowIndex, colIndex) {
+        $("#remarkTextArea").val("");
+        $("#failModalAppId").attr("data-id", item.key).attr("data-row", rowIndex);
+        $("#failModalAppId").attr("data-fun", item.name);
+    })
+
+</script>

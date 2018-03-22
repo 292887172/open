@@ -127,6 +127,7 @@
     <div class="main-container box2">
         <div class="hl-help">
             <span class="linkBlue">定义产品功能</span>
+            <input type="hidden" id="device_type" ng-value="{[{ app_device_type }]}">
         </div>
         <div class="mt20"></div>
         <table id="grid-table" >
@@ -199,6 +200,7 @@
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
         var flag = getCookie('cookie_prompt');
+
         $('[data-rel=popover]').popover({container:'body'});
         if(flag){
             $("#newHtmlBox").css('display','none');
@@ -247,7 +249,7 @@
             postData:{"name": "list"},
             datatype: "json",
             mtype:"POST",
-            colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','操作'],
+            colNames:['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','云菜谱可控','操作'],
             colModel:[
                 {name:'id' , width:107,align:'center'},
                 {name:'Stream_ID', width:143},
@@ -305,6 +307,17 @@
                             }else{
                                 return '<input name="isDisplay"  onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
                             }
+                    }
+                },
+                {
+                    name:'isCloudMenu',width:108,algin:'center',
+                    formatter:function(cellvalue){
+                        if(cellvalue=="1"){
+                            return '<input name="isCloud" onclick="checkToCloud(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
+
+                        }else{
+                            return '<input name="isCloud"  onclick="checkToCloud(this)" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
+                        }
                     }
                 },
                 {name:'operation', width:150,align:'center',
@@ -422,6 +435,14 @@
             else{dd=1;}
             post_data = {'name':'isDisplay','id':id,'dd':dd};
             SendPostData(post_data, '设置是否显示在UI上');
+        }
+        function checkToCloud(ths) {
+            id = $(ths).parent().parent().attr("id");
+            aa = $(ths).prop('checked');
+            if(aa==false){dd=0;}
+            else{dd=1;}
+            post_data = {'name':'isCloudMenu','id':id,'dd':dd};
+            SendPostData(post_data, '设置云菜谱是否可控');
         }
         function show_table(item) {
             $(item).nextAll('div').show();

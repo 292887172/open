@@ -10,6 +10,7 @@ angular.module('Admin', [
     "Admin.index",
     "Admin.user",
     "Admin.application",
+    "Admin.function",
     "Admin.api",
     "Admin.doc"
 ])

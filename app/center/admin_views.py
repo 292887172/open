@@ -28,6 +28,7 @@ from common.developer_helper import toggle_forbid_developer
 from common.account_helper import fetch_user_list_data
 from common.account_helper import toggle_forbid_user
 from common.smart_helper import update_app_protocol
+from common.device_fun_helper import *
 from base.convert import date2ymdhms
 from base.convert import utctime2localtime
 from django.contrib.auth import authenticate
@@ -58,7 +59,7 @@ def admin_home(request):
         res = {"code": 10000}
         action = request.POST.get("action", "")
         if action in ("toggle_forbid_developer", "fail_developer", "pass_developer", "toggle_forbid_user",
-                      "fail_product", "pass_product",
+                      "fail_product", "pass_product","fail_function","pass_function",
                       "del_api", "add_api", "update_api"):
             if action == "fail_developer":
                 # 开发者审核不通过
@@ -98,6 +99,23 @@ def admin_home(request):
                 ret = pass_app(app_id)
                 app = App.objects.get(app_id=app_id)
                 if str(app.app_group) == '2':
+                    update_app_protocol(app)
+                res["data"] = ret
+                return HttpResponse(json.dumps(res, separators=(",", ":")))
+            elif action == "fail_function":
+                key = request.POST.get("key", "")
+                app = App.objects.get(app_appid__endswith=key)
+                ret = denied_fun(app.app_appid)
+                if ret:
+                    update_app_protocol(app)
+                res["data"] = ret
+                return HttpResponse(json.dumps(res, separators=(",", ":")))
+            elif action == "pass_function":
+                key1 = request.POST.get("key", "")
+                name = request.POST.get("name", "")
+                app = App.objects.get(app_appid__endswith=key1)
+                ret = pass_fun(app,name)
+                if ret:
                     update_app_protocol(app)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
@@ -501,6 +519,7 @@ def application_all_data(request):
     elif request.method == "POST":
         return post()
 
+
 def application_detail_modal(request):
     """
     应用详情modal详情
@@ -651,6 +670,93 @@ def application_detail_modal(request):
 
     if request.method == "GET":
         return get()
+
+
+def function_all_data(request):
+    """
+    所有的功能数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        (sort_name, sort_status) = sort.split(".")
+        order_by_names = ""
+        if sort_status == "desc":
+            order_by_names = "-"
+        if sort_name == "create_time":
+            order_by_names += "df_update_date"
+        ret = fetch_all_fun_data(page, limit, order_by_names)
+        return HttpResponse(json.dumps(ret, separators=(",", ":")))
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
+
+
+def function_checked_data(request):
+    """
+    已经审核过的功能数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        (sort_name, sort_status) = sort.split(".")
+        order_by_names = ""
+        if sort_status == "desc":
+            order_by_names = "-"
+        if sort_name == "update_time":
+            order_by_names += "df_update_date"
+        ret = fetch_published_fun_data(page, limit, order_by_names)
+        return HttpResponse(json.dumps(ret, separators=(",", ":")))
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
+
+
+def function_checking_data(request):
+    """
+    需要审核的功能的数据接口
+    :param request:
+    :return:
+    """
+
+    def get():
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        (sort_name, sort_status) = sort.split(".")
+        order_by_names = ""
+        if sort_status == "desc":
+            order_by_names = "-"
+        if sort_name == "update_time":
+            order_by_names += "df_update_date"
+        ret = fetch_publishing_fun_data(page, limit, order_by_names)
+        return HttpResponse(json.dumps(ret, separators=(",", ":")))
+
+    def post():
+        pass
+
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
 
 
 def api_list_data(request):
