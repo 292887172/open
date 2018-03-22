@@ -31,12 +31,11 @@ angular.module('Admin.function', ['ngRoute'])
     .controller('FunctionListCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.checkFormData = {
             "csrfmiddlewaretoken": $scope.csrf_token,
-            "key"             : "",
-            "name"             : ""
+            "key"             : ""
         };
         $scope.failFunction = function (event) {
-            $scope.checkFormData.key = $(event.target).attr("data-id");
-            $scope.checkFormData.name = $(event.target).attr("data-fun");
+            $scope.checkFormData.key = $(event.target).attr("data-key");
+            $scope.checkFormData.id = $(event.target).attr("data-id");
             $scope.checkFormData.action = "fail_function";
             $http({
                 method : "POST",
@@ -61,11 +60,10 @@ angular.module('Admin.function', ['ngRoute'])
         $scope.checkFormData = {
             "csrfmiddlewaretoken": $scope.csrf_token,
             "key"             : "",
-            "name"             : ""
         };
         $scope.failFunction = function (event) {
-            $scope.checkFormData.key = $(event.target).attr("data-id");
-            $scope.checkFormData.name = $(event.target).attr("data-fun");
+            $scope.checkFormData.key = $(event.target).attr("data-key");
+            $scope.checkFormData.id = $(event.target).attr("data-id");
             $scope.checkFormData.action = "fail_function";
             $http({
                 method : "POST",
@@ -82,8 +80,8 @@ angular.module('Admin.function', ['ngRoute'])
             })
         };
         $scope.passFunction = function (event) {
-            $scope.checkFormData.key = $(event.target).attr("data-id");
-            $scope.checkFormData.name = $(event.target).attr("data-fun");
+            $scope.checkFormData.key = $(event.target).attr("data-key");
+            $scope.checkFormData.id = $(event.target).attr("data-id");
             $scope.checkFormData.action = "pass_function";
             $http({
                 method : "POST",
@@ -108,11 +106,10 @@ angular.module('Admin.function', ['ngRoute'])
         $scope.checkFormData = {
             "csrfmiddlewaretoken": $scope.csrf_token,
             "key"             : "",
-            "name"             : ""
         };
         $scope.failFunction = function (event) {
-            $scope.checkFormData.key = $(event.target).attr("data-id");
-            $scope.checkFormData.name = $(event.target).attr("data-fun");
+            $scope.checkFormData.key = $(event.target).attr("data-key");
+            $scope.checkFormData.id = $(event.target).attr("data-id");
             $scope.checkFormData.action = "fail_function";
             $http({
                 method : "POST",
