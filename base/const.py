@@ -34,6 +34,10 @@ class ConventionValue(object):
     APP_CHECKED = 2
     APP_CHECK_FAILED = -1
     APP_DEFAULT = 3
+    # 功能审核 1：待审核，2：审核通过，-1审核失败
+    FUN_CHECKING = 1
+    FUN_CHECK_FAILED = -1
+    FUN_CHECKED = 2
     # 用户的权限,0:普通用户,1:运营人员,2:厂商账号
     USER_IS_ACCOUNT = 0
     USER_IS_ADMIN = 1

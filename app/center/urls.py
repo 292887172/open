@@ -31,6 +31,12 @@ admin_urlpatterns = patterns(
     url(r'^admin/application/all/data$', 'application_all_data'),
     url(r'^admin/application/check/data$', 'application_checking_data'),
     url(r'^admin/application/modal/detail$', 'application_detail_modal'),
+
+    url(r'^admin/function/data$', 'function_checked_data'),
+    url(r'^admin/function/all/data$', 'function_all_data'),
+    url(r'^admin/function/check/data$', 'function_checking_data'),
+
+
     url(r'^admin/api/list/data$', 'api_list_data'),
     url(r'^admin/api/data$', 'api_data'),
     url(r'^admin/api/modal/detail$', 'api_detail_modal'),
