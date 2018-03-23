@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf,get_app_default_logo
 from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
-from common.app_helper import del_app,save_app
+from common.app_helper import del_app,save_app,check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
 from common.app_helper import off_app
@@ -369,6 +369,8 @@ def product_main(request):
             data = find(id,opera_data)
             if data:
                 data[1][post_data] = val
+                if post_data == "isCloudMenu":
+                    app.app_is_cloudmenu_device = check_cloud(opera_data)
                 save_app(app, opera_data)
                 update_app_protocol(app)
                 return HttpResponse('change_success')
