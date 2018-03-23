@@ -70,7 +70,8 @@ class App(models.Model):
     app_command = models.CharField(max_length=8, null=True, db_column='ebf_app_command')
     # 厂家/品牌uid
     app_factory_uid = models.CharField(max_length=64, null=True, db_column='ebf_app_factory_uid')
-
+    # 云菜谱可控
+    app_is_cloudmenu_device = models.IntegerField(default=0, db_column='ebf_app_is_cloudmenu_device')
     class Meta:
         app_label = 'center'
         db_table = 'ebt_app'

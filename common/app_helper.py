@@ -488,6 +488,17 @@ def save_app(app, opera_data):
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
     remove_conf_prefix(key)
+
     app.save()
     data= {'rows': opera_data, 'check_state': app.check_status}
     r.set("product_funs"+str(app.app_id),json.dumps(data),3600*24*3)
+
+def check_cloud(opera_data):
+    # 检查功能是否被设为云菜谱可控
+    flag = 0
+    for data in opera_data:
+        value = data.get("isCloudMenu")
+        if value and int(value) == 1:
+            flag = 1
+            break
+    return flag
