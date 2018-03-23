@@ -128,6 +128,7 @@
       `ebf_app_protocol_type` int(3) NOT NULL DEFAULT '1' COMMENT '协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）',
       `ebf_app_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       `ebf_app_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_app_is_cloudmenu_device` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是云菜谱产品（0：否，1：是）',
       PRIMARY KEY (`ebf_app_id`),
       KEY `Index_1` (`ebf_developer_id`),
       CONSTRAINT `FK_Reference_6` FOREIGN KEY (`ebf_developer_id`) REFERENCES `ebt_developer` (`ebf_developer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -287,3 +288,17 @@
       `ebf_message_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       PRIMARY KEY (`ebf_message_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息表';
+
+    -- ----------------------------
+    -- Table structure for ebt_device_function
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_device_function`;
+    CREATE TABLE `ebt_device_function` (
+      `ebf_df_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_device_key` varchar(10) NOT NULL COMMENT '产品唯一key',
+      `ebf_device_function` varchar(1024) NOT NULL COMMENT '产品新增功能内容',
+      `ebf_df_check_status` int(2) NOT NULL DEFAULT '0' COMMENT '审核状态(0:待审核，1：审核通过，2：审核不通过)',
+      `ebf_df_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_df_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_df_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新增产品功能审核表';
