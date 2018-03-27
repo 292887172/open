@@ -174,7 +174,7 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '1', 'id': '4', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
 
-        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 15,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '4', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 
@@ -217,7 +217,7 @@ def gen_app_default_conf(val):
          'id': '14', 'Stream_ID': 'ERROR', 'toSwitch': '0','isFunction': '1'},
     ]
     steam = [
-        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 3,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '2', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '童锁', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -227,7 +227,7 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
 
-        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+        {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 15,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '4', 'id': '4', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 
