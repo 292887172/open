@@ -45,14 +45,15 @@
             .footer{
                 position: relative;
                 padding: 20px;
+                z-index: -1;
             }
             .footer > p {
                 margin-top: 0;
                 display:block;
             }
         .nav{
-        margin-top: 30px;
-    }
+            margin-top: 30px;
+        }
 
     </style>
 </head>
