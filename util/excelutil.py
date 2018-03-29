@@ -95,36 +95,52 @@ def data_domain(sheet2, data, i):
     toLen = 0
     temp = 0
     values = []
+    long_values = []
     lamp_id = 1
-    flag = False
     fun_value = 0
     fun_name = ''
+    num = 0
+    value = ''
     # 全功能头部部分
     sheet2.write_merge(4, 4, i, i+k, "数据域", set_style('Arial', 220))
     sheet2.write(5, i, "结果码", set_style('Arial', 220))
     for index, line in enumerate(funs[1:], i+1):
-        # 获取数据域所有功能对应的值
+        # 获取数据域所有功能对应的值 默认第一个数据位为1
+        _bit = '00'
         length = int(line['mxsLength'])
-        if not flag:
-            flag = True
-            fun_value = 1
+        num += length
+        if index == i+1:
             lamp_id = line['id']
             fun_name = line['name']
-            if length / 8 > 1:
-                values.append('01 00')
+            fun_value = 1
+            if length % 8 == 0:
+                _bit = '01' + ' 00'*(length//8-1)
+                values.append(_bit)
             else:
-                values.append('01')
+                t = '0' * (length % 8-1) + '1'
+                _bit = '01'
+                value += t
         else:
-            if length / 8 > 1:
-                values.append('00 00')
+            if num % 8 == 0 and length % 8 != 0:
+                num = 0
+                t = '0' * (length % 8)
+                value += t
+                v = int(value, 2)
+                value = ''
+                values.append(to_hex(v))
+            elif length % 8 == 0:
+                num = 0
+                _bit = '00'+' 00'*(length//8-1)
+                values.append(_bit)
             else:
-                values.append('00')
-        temp,toLen = getLength(temp,length,toLen)
-
+                t = '0' * (length % 8)
+                value += t
+        long_values.append(_bit)
+        temp, toLen = getLength(temp, length, toLen)
         # 找到照明对应的id
         sheet2.write(5, index, line['name'], set_style('Arial', 220))
-    if(temp>0):
-        if temp%8==0:
+    if temp > 0:
+        if temp % 8 == 0:
             toLen += temp//8
         else:
             toLen += temp//8 + 1
@@ -143,8 +159,8 @@ def data_domain(sheet2, data, i):
     com_frame2 = to_com_frame('5A A5', '21', toLen + 1, values, check_bit2, result=' 00 ')
     row4[2] = com_frame1
     row5[2] = com_frame2
-    row4.extend(values)
-    row5.extend(values)
+    row4.extend(long_values)
+    row5.extend(long_values)
     row4.append(check_bit1)
     row5.append(check_bit2)
     # 单功能数据

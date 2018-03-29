@@ -95,7 +95,7 @@ def deal_json(app):
         j["name"] = data["name"]
         j["Stream_ID"] = data["Stream_ID"]
         j["mxsLength"] = data["mxsLength"]
-        j["values"] = json.dumps([data["min"], data["max"]])
+        j["values"] = json.dumps([data.get("min",0), data.get("max")])
         j['widget'] = data['corpName']
         j['isFunction'] = data.get("isFunction", 1)
         j['toSwitch'] = data.get('toSwitch', 0)
@@ -133,7 +133,7 @@ def deal_json(app):
         i["isUiShow"] = data.get("isDisplay", 0)
 
         i["value"] = 0
-        i["values"] = [data["min"], data["max"]]
+        i["values"] = [data.get("min",0), data.get("max")]
         if data['paramType'] == 1:
             i['type'] = 'bool'
         elif data['paramType'] == 3:
@@ -173,4 +173,4 @@ def date_deal(app_id):
         return res
     except Exception as e:
         logging.error(e)
-        print(e)
+        print("写入excel出错",e)
