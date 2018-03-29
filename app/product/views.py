@@ -411,8 +411,10 @@ def product_main(request):
                     indata['id'] = str(int(opera_data[-1]['id'])+1)
                 else:
                     indata['id'] = '1'
-                add_device_fun(app.app_appid,indata)
-                # opera_data.append(indata)
+                add_device_fun(app.app_appid, indata)
+                opera_data.append(indata)
+                save_app(app, opera_data)
+                update_app_protocol(app)
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
             return HttpResponse(tt)

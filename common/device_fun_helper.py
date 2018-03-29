@@ -15,7 +15,8 @@ import datetime
 __author__ = 'gmy'
 _convention = ConventionValue()
 
-def add_device_fun(key,indata):
+
+def add_device_fun(key, indata):
     """
     统一产品key重复添加的相同的功能覆盖待完善
     :param key:
@@ -35,14 +36,20 @@ def add_device_fun(key,indata):
         print("新增产品保存信息",e)
 
 
-def pass_fun(app,id):
+def pass_fun(app, id):
     try:
         df = Device_Fun.objects.get(df_id=id)
         devices = json.loads(app.device_conf)
         fun = json.loads(df.device_function)
         df.df_check_status = _convention.FUN_CHECKED
-        devices.append(fun)
-        save_app(app,devices)
+        flag = True
+        for device in devices:
+            if device["Stream_ID"] == fun["Stream_ID"]:
+                flag = False
+                break
+        if flag:
+            devices.append(fun)
+            save_app(app, devices)
         df.save()
         return True
     except Exception as e:
@@ -51,7 +58,7 @@ def pass_fun(app,id):
         return False
 
 
-def denied_fun(app,id):
+def denied_fun(app, id):
     try:
         df = Device_Fun.objects.get(df_id=id)
         devices = json.loads(app.device_conf)
@@ -60,6 +67,7 @@ def denied_fun(app,id):
         for index,device in enumerate(devices):
             if device["Stream_ID"] == fun["Stream_ID"]:
                 devices.pop(index)
+                break
         save_app(app,devices)
         df.save()
         return True

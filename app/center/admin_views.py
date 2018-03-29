@@ -103,19 +103,21 @@ def admin_home(request):
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "fail_function":
+                # 功能审核不通过
                 id = request.POST.get("id", "")
                 key1 = request.POST.get("key", "")
                 app = App.objects.get(app_appid__endswith=key1)
-                ret = denied_fun(app,id)
+                ret = denied_fun(app, id)
                 if ret:
                     update_app_protocol(app)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "pass_function":
+                # 功能审核通过
                 id = request.POST.get("id", "")
                 key1 = request.POST.get("key", "")
                 app = App.objects.get(app_appid__endswith=key1)
-                ret = pass_fun(app,id)
+                ret = pass_fun(app, id)
                 if ret:
                     update_app_protocol(app)
                 res["data"] = ret
