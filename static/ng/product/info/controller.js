@@ -40,6 +40,7 @@ angular.module('Product.info', ['ngRoute'])
         if ($scope.infoFormData.app_group=='1'){
             $('#command-type').css("display","none");
             $("#secret").css("display","block");
+            $("#appid").css("display","block");
         }
         else {
             $('#command-type').css("display","block");

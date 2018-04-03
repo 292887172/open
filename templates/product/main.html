@@ -414,6 +414,7 @@
                     $scope.app_config_push_token = "{% if app.app_push_token %}{{ app.app_push_token|safe|linebreaksbr }}{% endif %}";
                     $scope.app_command = "{% if app.app_command %}{{ app.app_command|safe|linebreaksbr }}{% endif %}";
                     $scope.app_device_name = "{% if device_name %}{{ device_name|safe|linebreaksbr }}{% endif %}";
+                    $scope.app_device_type = "{% if app.app_device_type %}{{ app.app_device_type }}{% endif %}";
                     $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
                     $scope.band_name = "{{ band_name }}";
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
