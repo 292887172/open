@@ -150,11 +150,12 @@
         <div class="mt20"></div>
         <div class="headerH1">
             <a onclick='export_parameter()' style="cursor:pointer;" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>
-            <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; float: right;'>
-                <option value=0>选择总开关</option>
-            </select>
-            <span class='help-button' data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
-
+            <div style="float: right;">
+                <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
+                    <option value=0>选择总开关</option>
+                </select>
+                <span class='help-button' data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
+            </div>
         </div>
         <table id="grid-table" >
         </table>
@@ -418,6 +419,7 @@
                         }
                     }
                 ],
+                rowNum:-1,
                 viewrecords: true,
                 altRows: true,
                 multiselect: false,
