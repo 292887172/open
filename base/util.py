@@ -168,7 +168,7 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '1', 'id': '2',  'Stream_ID': 'BODY_LOCK', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
          'paramType': 1, 'mxsLength': '1', 'id': '3', 'Stream_ID': 'FAN','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:49', 'name': '照明', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
@@ -341,7 +341,7 @@ def gen_app_default_conf(val):
                 "desc": "开"
             }
         ],
-        "state": 1,'isDisplay':1,'isCloudMenu':0,'isShow':0,
+        "state": 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0,
         "max": 255,
         "mxsLength": "8",
         "mxsNum": "2",

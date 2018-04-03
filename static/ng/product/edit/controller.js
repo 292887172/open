@@ -33,7 +33,7 @@ angular.module('Product.edit', ['ngRoute'])
 					$scope.errorType=-2;
 					break;
 				}
-				if(!isdefault && parseInt(data)<=100){
+				if(!isdefault && edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && parseInt(data)<=100){
 					$scope.errorType=-3;
 					break;
 				}
@@ -132,7 +132,9 @@ angular.module('Product.edit', ['ngRoute'])
 			indata.min=$scope.min;
 			indata.max=$scope.max;
 			indata.mxsNum=$scope.mxsNum;
-
+			if(!edit_data){
+				indata.standa_or_define = 1;
+			}
 			var url=location.href;
 			var str=url.split("edit");
 			var id;

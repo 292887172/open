@@ -96,7 +96,7 @@ def deal_json(app):
         j["Stream_ID"] = data["Stream_ID"]
         j["mxsLength"] = data["mxsLength"]
         j["values"] = json.dumps([data.get("min",0), data.get("max")])
-        j['widget'] = data['corpName']
+        j['widget'] = data['widget']
         j['isFunction'] = data.get("isFunction", 1)
         j['toSwitch'] = data.get('toSwitch', 0)
 
@@ -131,6 +131,7 @@ def deal_json(app):
         i['toSwitch'] = data.get('toSwitch', 0)
         i["isCardShow"] = data.get('isShow', 0)
         i["isUiShow"] = data.get("isDisplay", 0)
+        i["widget"] = data.get("widget", "button")
 
         i["value"] = 0
         i["values"] = [data.get("min",0), data.get("max")]

@@ -93,6 +93,7 @@
     <div class="hl-help">
 
     <span class="linkBlue">添加新功能</span>
+        <input id="device_type" type="hidden" value="{[{ app_device_type}]}">
     </div>
 <div class="mt20"></div>
     <div class="main-content">
@@ -315,29 +316,26 @@
 <script src="/static/assets/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
     var url=location.href;
     var num=url.indexOf('?id');
     var str=url.substring(num+1);
     var id = str.split("=")[1];
-    var edit_data={};
-    var funs=[];
-    var flag ;
     var count=0;
-    var post_data = {"name": "edit","id":id};
     var mxs = [];
     var trig=[];
     var dataVal = 0;
-
     var Text='';
 
     $.ajax({
         url:location.href,
         type: "POST",
-        data: post_data,
+        data: {"name": "edit","id":id},
         async :false,
         success: function (data) {
             edit_data=data['data'];
             funs = data['funs'];
+            mods = data['mods'];
             if(!edit_data){
                 flag = true;
             }
@@ -347,6 +345,7 @@
     });
     $('[data-rel=popover]').popover({container:'body'});
     $('#dropdownMenu1').dropdown();
+
     function init() {
         count++;
         if(flag == false){
@@ -386,7 +385,9 @@
         $('#corpName').val(d.corpName);
         $('#corpMark').val(d.corpMark);
         $('#mxsLength').val(d.mxsLength);
-        $("#Stream_ID").attr("disabled",true);
+        if (edit_data.standa_or_define != 1){
+            $("#Stream_ID").attr("disabled",true);
+        }
         if(d.isControl==1){
             document.getElementsByName('isControl')[0].checked=true;
             showFun();
@@ -425,7 +426,7 @@
             for (var i = 0; i < d.mxs.length; i++) {
                 var group = '';
                 flag = false;
-                if(d.mxs[i].data<=100) {
+                if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && d.mxs[i].data<=100) {
                     flag = true;
                 }
                 group += '<div class="form-group">';
@@ -444,11 +445,11 @@
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
                 }
                 group += '</div>';
-                if(flag) {
-                    $("#addGroup").before(group);
+                if(edit_data.standa_or_define) {
+                    $("#addGroup1").before(group);
                 }
                 else{
-                    $("#addGroup1").before(group);
+                    $("#addGroup").before(group);
                 }
             }
         }
@@ -533,7 +534,7 @@
             $('#checkArgue1').html("请填写数据说明和传送数据");
             $('#checkArgue1').css("display","block");
         }
-        else if(value<=100){
+        else if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && value<=100){
             $('#checkArgue1').html("请保持自定义参数值大于100");
             $('#checkArgue1').css("display","block");
         }
@@ -695,16 +696,14 @@
         var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
         var data=$.trim($('#Stream_ID').val());
         var temp =false;
-        for (var i = 0; i < funs.length; i++) {
-            if(funs[i].Stream_ID == data)
+        for (var i = 0; i < mods.length; i++) {
+            if(mods[i] == data)
             {
-                if((edit_data && edit_data.Stream_ID!=data) || !edit_data) {
-                    temp = true;
-                    break
-                }
+                temp = true;
+                break;
             }
         }
-        if(edit_data &&edit_data.Stream_ID!=data){
+        if(edit_data && edit_data.standa_or_define != 1 &&edit_data.Stream_ID!=data){
             $('#checkID').html("该参数不可修改");
             $('#checkID').css("display", "block");
             return "error";

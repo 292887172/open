@@ -91,10 +91,10 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
 def update_app_fun_widget(data):
     """
 
-    :param data: 修改该功能点的widget值
+    :param data: 修改该功能点的widget值,有单位、不可控的是input
     :return:
     """
-    if data["corpMark"] and not data["isControl"]:
+    if not data["mxs"]:
         return "input"
     else:
         return "button"
@@ -339,11 +339,59 @@ def update_app_config(app_id, app_push_url, app_push_token):
         logging.getLogger("").error(e)
         return False
 
-def replace_fun_id(opera_data, del_id):
+
+def replace_fun_id(opera_data, del_id, is_standa):
     for i in range(len(opera_data)):
         id = int(opera_data[i].get("id"))
-        if id > int(del_id):
+        #  标准
+        if is_standa is None:
+            if id < 101 and (id > int(del_id)):
+                opera_data[i]['id'] = id - 1
+        elif id >= 101 and (id > int(del_id)):
             opera_data[i]['id'] = id - 1
+
+
+def add_fun_id(opera_data, indata):
+    is_define = int(indata.get("standa_or_define", 0))
+    indata['standa_or_define'] = str(is_define)
+    if opera_data:
+        id = int(opera_data[-1].get("id"))
+        if is_define == 1:
+            if id < 101:
+                indata["id"] = '101'
+            else:
+                indata["id"] = str(id + 1)
+    else:
+        indata["id"] = '101'
+    return indata
+
+
+def add_mod_funs(opera_data, device_conf, funs):
+    funs = json.loads(funs)
+    add_funs = []
+    max_num = 1
+    k = 0
+    for i in range(len(opera_data) - 1, 0, -1):
+        if int(opera_data[i].get("id")) < 101:
+            max_num = int(opera_data[i].get("id"))
+            break
+    for device in device_conf:
+        if device.get("Stream_ID") in funs:
+            k += 1
+            device["id"] = max_num + k
+
+            add_funs.append(device)
+    opera_data.extend(add_funs)
+    opera_data.sort(key=lambda x: int(x.get("id")))
+
+
+def get_mod_funs(opera_data, device_conf):
+    mod = []
+    fun_name = list(map(lambda x: x["Stream_ID"], opera_data))
+    for device in device_conf:
+        if device.get("Stream_ID") not in fun_name:
+            mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+    return mod
 
 
 def reset_app_secret(app_id):
@@ -490,8 +538,8 @@ def save_app(app, opera_data):
     remove_conf_prefix(key)
 
     app.save()
-    data= {'rows': opera_data, 'check_state': app.check_status}
-    r.set("product_funs"+str(app.app_id),json.dumps(data),3600*24*3)
+    data = {'rows': opera_data, 'check_state': app.check_status}
+    r.set("product_funs" + str(app.app_id), json.dumps(data), 3600*24*3)
 
 def check_cloud(opera_data):
     # 检查功能是否被设为云菜谱可控

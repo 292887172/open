@@ -7,9 +7,9 @@ from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from base.util import gen_app_default_conf,get_app_default_logo
-from common.app_helper import create_app,update_app_fun_widget, replace_fun_id
-from common.app_helper import del_app,save_app,check_cloud
+from base.util import gen_app_default_conf, get_app_default_logo
+from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
+from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
 from common.app_helper import off_app
@@ -258,7 +258,7 @@ def product_main(request):
                 user_apps = App.objects.filter(developer=DEFAULT_USER,app_id=int(app_id))
         except Exception as e:
             print(e)
-            logging.getLogger('').info("应用出错",str(e))
+            logging.getLogger('').info("应用出错", str(e))
             return HttpResponseRedirect(reverse("product/list"))
         if not user_apps:
             return HttpResponseRedirect(reverse("product/list"))
@@ -290,24 +290,32 @@ def product_main(request):
     def find(id, opera_data):
             for i in range(len(opera_data)):
                 if str(opera_data[i]['id']) == id:
-                    return [i,opera_data[i]]
+                    return [i, opera_data[i]]
             return []
     def post():
         app_id = request.GET.get("ID", "")
         post_data = request.POST.get("name")
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
+        standa = request.POST.get("is_standa", None)  # 标准、自定义
+
         if post_data == 'list':
             try:
                 res_status = r.exists("product_funs"+app_id)
                 if res_status:
                     data = r.get("product_funs"+app_id)
                     data = json.loads(data.decode())
+                    temp = []
+                    for line in data["rows"]:
+                        if str(line.get("standa_or_define")) == str(standa):
+                            temp.append(line)
+                    data["rows"] = temp
                     return JsonResponse(data)
             except Exception as e:
                 logging.info("redis中还未保存数据",e)
         # 根据ID获取到数据库中的设备配置信息
         app = App.objects.get(app_id=app_id)
+        device_conf = gen_app_default_conf(app.app_device_type)
         opera_data = []
         try:
             if app.device_conf:
@@ -319,26 +327,43 @@ def product_main(request):
         # 接收页面请求信息
         if post_data == 'list':
             # 显示所有列表信息
-            data= {'rows': opera_data, 'check_state': app.check_status}
-            r.set("product_funs"+app_id,json.dumps(data),3600*24*3)
+            temp = []
+            for line in opera_data:
+                if str(line.get("standa_or_define")) == str(standa):
+                    temp.append(line)
+            data = {'rows': opera_data, 'check_state': app.check_status}
+            r.set("product_funs"+app_id, json.dumps(data), 3600*24*3)
+            data["rows"] = temp
             return JsonResponse(data)
+        elif post_data in ['show_mod', "add_mod"]:
+
+            if post_data == "show_mod":
+                mod = get_mod_funs(opera_data, device_conf)
+                return JsonResponse({"data": mod})
+            elif post_data == "add_mod":
+                funs = request.POST.get("funs")
+                add_mod_funs(opera_data, device_conf, funs)
+                save_app(app, opera_data)
+                return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
-            edit_data = find(id,opera_data)
+            edit_data = find(id, opera_data)
+            mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             if edit_data:
                 edit_data = edit_data[1]
-            else :
+            else:
                 edit_data = ''
-            return JsonResponse({'data': edit_data, 'funs':opera_data})
+            return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
 
         elif post_data == 'del':
             # 删除信息
-            data = find(id,opera_data)
+            data = find(id, opera_data)
             if data:
                 i = data[0]
                 fun_name = data[1].get("name")
+                is_standa = data[1].get("standa_or_define", None)
                 opera_data.pop(i)
-                replace_fun_id(opera_data,id)
+                replace_fun_id(opera_data, id, is_standa)
                 save_app(app, opera_data)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
@@ -351,8 +376,10 @@ def product_main(request):
                 for j in range(len(funs)):
                     if str(opera_data[i].get("Stream_ID")) == funs[j]:
                         opera_data[i]["id"] = j + 1
-            opera_data.sort(key=lambda x: int(x.get("id")))
-            save_app(app, opera_data)
+            c_data = opera_data[:len(funs)]
+            c_data.sort(key=lambda x: int(x.get("id")))
+            c_data.extend(opera_data[len(funs):])
+            save_app(app, c_data)
             update_app_protocol(app)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
@@ -364,9 +391,9 @@ def product_main(request):
             save_app(app, opera_data)
             update_app_protocol(app)
             return HttpResponse('select_success')
-        elif post_data in ['isShow', 'isControl', 'isDisplay',"isCloudMenu"]:
+        elif post_data in ['isShow', 'isControl', 'isDisplay', "isCloudMenu"]:
             val = request.POST.get("dd")
-            data = find(id,opera_data)
+            data = find(id, opera_data)
             if data:
                 data[1][post_data] = val
                 if post_data == "isCloudMenu":
@@ -398,25 +425,21 @@ def product_main(request):
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
-                data = find(indata['id'],opera_data)
+                data = find(indata['id'], opera_data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_app(app, opera_data)
-                update_app_protocol(app)
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
             else:
                 # 添加一条参数信息需要申请审核
-                if opera_data:
-                    indata['id'] = str(int(opera_data[-1]['id'])+1)
-                else:
-                    indata['id'] = '1'
+                indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
                 opera_data.append(indata)
-                save_app(app, opera_data)
-                update_app_protocol(app)
+                opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
+            save_app(app, opera_data)
+            update_app_protocol(app)
             return HttpResponse(tt)
 
         # 获取设备列表
