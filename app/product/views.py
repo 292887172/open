@@ -422,6 +422,7 @@ def product_main(request):
             dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
+            indata["isDisplay"] = 1
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
