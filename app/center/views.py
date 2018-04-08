@@ -762,15 +762,15 @@ def callback(request):
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
             except Exception as e:
-                pass
+                logging.getLogger('').info("微信登录设置登录cookie出错"+str(e))
             try:
                 emoji_pattern = re.compile("["
-                    u"\U0001F600-\U0001F64F"  # emoticons
-                    u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                    u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                    u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                                       "]+", flags=re.UNICODE)
-                nickname = emoji_pattern.sub(r'',nickname)
+                    u"\U0001F600-\U0001F64F" 
+                    u"\U0001F300-\U0001F5FF"  
+                    u"\U0001F680-\U0001F6FF"  
+                    u"\U0001F1E0-\U0001F1FF"
+                                       "] +", flags=re.UNICODE)
+                nickname = emoji_pattern.sub(r'', nickname)
                 Account.objects.create_wx_user(username, '123', openid, nickname)
                 create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:

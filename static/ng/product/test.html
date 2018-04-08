@@ -1,0 +1,59 @@
+
+<html>
+  <head>
+    <title>jqGrid 实例</title>
+      <link rel="stylesheet" href="/static/assets/css/ui.jqgrid.min.css"/>
+  </head>
+  <body>
+    ···代码省略···
+    <table id="delgrid"></table>
+    <div id="pagerde"></div>
+    <input type="BUTTON" id="dedata" value="Delete Selected" />
+    ···代码省略···
+  </body>
+</html>
+<script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+<script src="/static/js/jquery-1.11.0.min.js"></script>
+
+<script>
+    $(function(){
+      pageInit();
+    });
+    function pageInit(){
+      jQuery("#delgrid").jqGrid(
+          {
+                url : 'http://127.0.0.1:8000/product/main/?ID=596',
+                data:'{"name":"list"}',
+                datatype : "json",
+                colNames: ['功能序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '卡片显示', '显示到UI', '云菜谱可控'],
+                colModel : [
+                             {name : 'id',index : 'id',width : 55,editable : false,editoptions : {readonly : true,size : 10}},
+                             {name : 'Stream_ID',index : 'Stream_ID',width : 80,editable : true,editoptions : {size : 10}},
+                             {name : 'mxsLength',index : 'mxsLength',width : 90,editable : true,editoptions : {size : 25}},
+                             {name : 'name',index : 'name',width : 60,align : "right",editable : true,editoptions : {size : 10}},
+                             {name : 'mxsNum',index : 'mxsNum',width : 60,align : "right",editable : true,editoptions : {size : 10}},
+                             {name : 'isControl',  index : 'isControl',  width : 60,  align : "right",  editable : true,  editoptions : {size : 10  }},
+                             {name : 'isShow',  index : 'isShow',  width : 55,  align : 'center',  editable : true,  edittype : "checkbox",  editoptions : {value : "Yes:No"  }},
+                             {name : 'isDisplay',  index : 'isDisplay',  width : 70,  editable : true,  edittype : "select",  editoptions : {value : "FE:FedEx;TN:TNT"  }},
+                             {name : 'isCloudMenu',index : 'isCloudMenu',width : 100,sortable : false,editable : true,edittype : "textarea",editoptions : {rows : "2",cols : "20"}}
+                           ],
+                rowNum : 10,
+                rowList : [ 10, 20, 30 ],
+                pager : '#pagerde',
+                sortname : 'id',
+                viewrecords : true,
+                sortorder : "desc",
+                caption : "Deleteing Example",
+                editurl : ctx+"/RowEditing"
+          });
+      $("#dedata").click(function() {
+        var gr = jQuery("#delgrid").jqGrid('getGridParam', 'selrow');
+        if (gr != null)
+          jQuery("#delgrid").jqGrid('delGridRow', gr, {
+            reloadAfterSubmit : false
+          });
+        else
+          alert("Please Select Row to delete!");
+      });
+    }
+</script>
