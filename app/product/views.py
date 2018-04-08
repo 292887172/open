@@ -298,21 +298,6 @@ def product_main(request):
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
         standa = request.POST.get("is_standa", None)  # 标准、自定义
-
-        if post_data == 'list':
-            try:
-                res_status = r.exists("product_funs"+app_id)
-                if res_status:
-                    data = r.get("product_funs"+app_id)
-                    data = json.loads(data.decode())
-                    temp = []
-                    for line in data["rows"]:
-                        if str(line.get("standa_or_define")) == str(standa):
-                            temp.append(line)
-                    data["rows"] = temp
-                    return JsonResponse(data)
-            except Exception as e:
-                logging.info("redis中还未保存数据",e)
         # 根据ID获取到数据库中的设备配置信息
         app = App.objects.get(app_id=app_id)
         device_conf = gen_app_default_conf(app.app_device_type)
@@ -327,16 +312,25 @@ def product_main(request):
         # 接收页面请求信息
         if post_data == 'list':
             # 显示所有列表信息
+            page = int(request.POST.get("page", 1))
+            rows = int(request.POST.get("rows", 10))
             temp = []
+            res_status = r.exists("product_funs" + app_id)
+            if res_status:
+                data = r.get("product_funs" + app_id)
+                data = json.loads(data.decode())
+                opera_data = data["rows"]
             for line in opera_data:
                 if str(line.get("standa_or_define")) == str(standa):
                     temp.append(line)
             data = {'rows': opera_data, 'check_state': app.check_status}
-            r.set("product_funs"+app_id, json.dumps(data), 3600*24*3)
-            data["rows"] = temp
+            r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
+            data["rows"] = temp[(page-1)*rows:page*rows]
+            data["total"] = len(temp)//rows + 1
+            data["records"] = len(temp)
             return JsonResponse(data)
         elif post_data in ['show_mod', "add_mod"]:
-
+            # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
                 mod = get_mod_funs(opera_data, device_conf)
                 return JsonResponse({"data": mod})
@@ -349,8 +343,12 @@ def product_main(request):
             # 返回编辑页面信息
             edit_data = find(id, opera_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
+            mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
+            mods_name.extend(mods_name1)
+            mods_name = list(set(mods_name))
             if edit_data:
                 edit_data = edit_data[1]
+                mods_name.remove(edit_data["Stream_ID"])
             else:
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})

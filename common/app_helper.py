@@ -369,17 +369,16 @@ def add_fun_id(opera_data, indata):
 def add_mod_funs(opera_data, device_conf, funs):
     funs = json.loads(funs)
     add_funs = []
-    max_num = 1
+    max_num = 0
     k = 0
-    for i in range(len(opera_data) - 1, 0, -1):
-        if int(opera_data[i].get("id")) < 101:
-            max_num = int(opera_data[i].get("id"))
-            break
+    for data in opera_data:
+        temp = int(data.get("id"))
+        if temp < 101 and temp > max_num:
+            max_num = temp
     for device in device_conf:
         if device.get("Stream_ID") in funs:
             k += 1
             device["id"] = max_num + k
-
             add_funs.append(device)
     opera_data.extend(add_funs)
     opera_data.sort(key=lambda x: int(x.get("id")))

@@ -1,5 +1,8 @@
 
 <style>
+   .box2{
+       position: relative;
+   }
     .modal-body{
         height: auto;
     }
@@ -696,14 +699,8 @@
         var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
         var data=$.trim($('#Stream_ID').val());
         var temp =false;
-        for (var i = 0; i < mods.length; i++) {
-            if(mods[i] == data)
-            {
-                temp = true;
-                break;
-            }
-        }
-        if(edit_data && edit_data.standa_or_define != 1 &&edit_data.Stream_ID!=data){
+
+        if(edit_data &&edit_data.standa_or_define != 1 && edit_data.Stream_ID!=data){
             $('#checkID').html("该参数不可修改");
             $('#checkID').css("display", "block");
             return "error";
@@ -713,7 +710,7 @@
             $('#checkID').css("display", "block");
             return "error";
         }
-        else if(temp){
+        else if(mods.indexOf(data)>-1){
             $('#checkID').html("该功能参数已经存在！");
             $('#checkID').css("display", "block");
             return "repeat"
