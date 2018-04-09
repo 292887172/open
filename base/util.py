@@ -277,6 +277,43 @@ def gen_app_default_conf(val):
             "corpName": "秒",
             "Stream_ID": "Suggest_Time_Up"
         },
+        {
+            "min": 0,
+            "isControl": 0,
+            "max": 255,
+            "mxs": [{
+                "desc": "门关",
+                "data": "0",
+                "trigger": []
+            }, {
+                "desc": "门开",
+                "data": "1",
+                "trigger": []
+            }, {
+                "desc": "水位",
+                "data": "2",
+                "trigger": []
+            }, {
+                "desc": "水箱",
+                "data": "4",
+                "trigger": []
+            }, {
+                "desc": "童锁开",
+                "data": "8",
+                "trigger": []
+            }],
+            "paramType": 4,
+            "mxsNum": "5",
+            "name": "状态反馈",
+            "mxsLength": "8",
+            "isFunction": 1,
+            "widget": "button",
+            "corpMark": "",
+            "id": 19,
+            "time": "2018-03-30 14:37:04",
+            "corpName": "",
+            "Stream_ID": "System_Status"
+        },
     ]
     steam = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 3,
@@ -385,6 +422,43 @@ def gen_app_default_conf(val):
             "id": 16,
             "corpName": "秒",
             "Stream_ID": "Suggest_Time_Up"
+        },
+        {
+            "min": 0,
+            "isControl": 0,
+            "max": 255,
+            "mxs": [{
+                "desc": "门关",
+                "data": "0",
+                "trigger": []
+            }, {
+                "desc": "门开",
+                "data": "1",
+                "trigger": []
+            }, {
+                "desc": "水位",
+                "data": "2",
+                "trigger": []
+            }, {
+                "desc": "水箱",
+                "data": "4",
+                "trigger": []
+            }, {
+                "desc": "童锁开",
+                "data": "8",
+                "trigger": []
+            }],
+            "paramType": 4,
+            "mxsNum": "5",
+            "name": "状态反馈",
+            "mxsLength": "8",
+            "isFunction": 1,
+            "widget": "button",
+            "corpMark": "",
+            "id": 17,
+            "time": "2018-03-30 14:37:04",
+            "corpName": "",
+            "Stream_ID": "System_Status"
         },
     ]
     fridge = [
