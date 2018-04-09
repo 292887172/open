@@ -45,12 +45,12 @@ def to_hex(length):
         return num
 
 
-def to_fun_state(num):
+def to_fun_state(num, lamp_bit):
     if int(num) < 10:
         state = '0' + str(num)
     else:
         state = str(num)
-    values = [state, '01', '', '']
+    values = [state, lamp_bit, '', '']
     return values
 
 
@@ -97,6 +97,7 @@ def data_domain(sheet2, data, i):
     values = []
     long_values = []
     lamp_id = 1
+    lamp_bit = ''
     fun_value = 0
     fun_name = ''
     num = 0
@@ -114,26 +115,33 @@ def data_domain(sheet2, data, i):
             fun_name = line['name']
             fun_value = 1
             if length % 8 == 0:
-                _bit = '01' + ' 00'*(length//8-1)
+                _bit = ' 00'*(length//8-1) + ' 01'
                 values.append(_bit)
             else:
                 t = '0' * (length % 8-1) + '1'
-                _bit = '01'
+                _bit = ' 00' * (length//8) + ' 01'
                 value += t
+            lamp_bit = _bit
         else:
             if num % 8 == 0 and length % 8 != 0:
                 num = 0
                 t = '0' * (length % 8)
                 value += t
-                v = int(value, 2)
+                zero = '00'*(len(value) // 8 - 1)
+                v = int(value[:8], 2)
+                v = to_hex(v) + zero
                 value = ''
-                values.append(to_hex(v))
+                values.append(v)
             elif length % 8 == 0:
+                if value != '':
+                    v = int(value[:8], 2)
+                    values.append(to_hex(v))
                 num = 0
                 _bit = '00'+' 00'*(length//8-1)
                 values.append(_bit)
             else:
                 t = '0' * (length % 8)
+                _bit = ' 00' * (length//8+1)
                 value += t
         long_values.append(_bit)
         temp, toLen = getLength(temp, length, toLen)
@@ -147,11 +155,12 @@ def data_domain(sheet2, data, i):
     sheet2.write_merge(4, 5, i+k+1, i+k+1, "校验", set_style('Arial', 220))
     S_C = "点击屏上{0}按钮打开{0}".format(fun_name)
     C_S = "电控修改{0}按钮状态".format(fun_name)
+    lamp_len = len(lamp_bit.split(" "))
     row4 = [S_C, '屏->电控', '', 'A5 5A', '00', '21', to_hex(toLen), '']
     row5 = [C_S, '电控->屏', '', '5A A5', '00', '21', to_hex(toLen + 1), '00']
     row6 = ['例子（单功能）', '', '', '帧头', '流水号', '帧类型', '长度', '结果码', '功能1', '状态1', '功能2', '状态2', '校验']
-    row7 = [S_C, '屏->电控', '', 'A5 5A', '00', '31', '02', '']
-    row8 = [C_S, '电控->屏', '', '5A A5', '00', '31', '03', '00']
+    row7 = [S_C, '屏->电控', '', 'A5 5A', '00', '31', '0'+str(lamp_len), '']
+    row8 = [C_S, '电控->屏', '', '5A A5', '00', '31', '0'+str(lamp_len+1), '00']
     # 全功能数据
     check_bit1 = to_check_bit('21', toLen, fun_value)
     check_bit2 = to_check_bit('21', toLen + 1, fun_value)
@@ -164,12 +173,13 @@ def data_domain(sheet2, data, i):
     row4.append(check_bit1)
     row5.append(check_bit2)
     # 单功能数据
-    fun_state0 = to_fun_state(lamp_id)
-    fun_state1 = to_fun_state(lamp_id)
-    check_bit3 = to_check_bit('31', 2, int(lamp_id) + fun_value)
-    check_bit4 = to_check_bit('31', 3, int(lamp_id) + fun_value)
-    com_frame3 = to_com_frame('A5 5A', '31', 2, fun_state0, check_bit3, result='')
-    com_frame4 = to_com_frame('5A A5', '31', 3, fun_state1, check_bit4, result='00 ')
+    fun_state0 = to_fun_state(lamp_id, lamp_bit)
+    fun_state1 = to_fun_state(lamp_id, lamp_bit)
+
+    check_bit3 = to_check_bit('31', lamp_len, int(lamp_id) + fun_value)
+    check_bit4 = to_check_bit('31', lamp_len+1, int(lamp_id) + fun_value)
+    com_frame3 = to_com_frame('A5 5A', '31', lamp_len, fun_state0, check_bit3, result='')
+    com_frame4 = to_com_frame('5A A5', '31', lamp_len+1, fun_state1, check_bit4, result='00 ')
     row7[2] = com_frame3
     row8[2] = com_frame4
     row7.extend(fun_state0)
