@@ -34,6 +34,6 @@ angular.module('Product.device', ['ngRoute'])
                 }
 
             }).error(function (error) {
-                alert(error);
+                console.log("请等待加载:",error)
             })
     }]);
