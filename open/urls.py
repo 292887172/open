@@ -11,6 +11,7 @@ urlpatterns = patterns(
     url(r'^', include('app.home.urls')),
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^test$', 'app.home.views.test'),
+    url(r'^status$', 'app.home.views.status'),
     url(r'^center/', include('app.center.urls')),
     url(r'^product/', include("app.product.urls")),
     # 开发文档

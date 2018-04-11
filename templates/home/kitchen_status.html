@@ -1,0 +1,80 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name='apple-touch-fullscreen' content='yes'>
+    <meta name="full-screen" content="yes">
+    <title>厨房使用列表</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
+</head>
+<body>
+    <div class="margin: 68px;">
+        <label for="date">选择当前时间</label>
+        <input id="date" name="date" type="date" value="" onchange="select_date()"/>
+        <table class="table table-bordered">
+            <caption>厨房用户使用统计</caption>
+            <thead>
+                <tr>
+                  <th>请求二维码次数</th>
+                  <th>扫描二维码次数 </th>
+                  <th>下载次数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="count">
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script>
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    $("#date").val(currentdate);
+    sendDate(currentdate);
+    function select_date(){
+        date = $("#date").val();
+        sendDate(date)
+    }
+    function sendDate(date) {
+
+        $.ajax({
+            type: "GET",
+            url: location.href,
+            data: {"date":date},
+            success: function (data) {
+                $("#count").html("");
+                $("#count").append('<td>'+data.req_code+'</td>');
+                $("#count").append('<td>'+data.scan_code+'</td>');
+                $("#count").append('<td>'+data.down_code+'</td>');
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+</script>
+</html>

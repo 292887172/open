@@ -64,6 +64,40 @@ def test(request):
     return render(request, "home/test.html", locals())
 
 
+@csrf_exempt
+def status(request):
+    """
+    :param request: 获取厨房用户状态
+    :return:
+    """
+    import pymongo
+    from django.http.response import JsonResponse
+    client = pymongo.MongoClient('s72.53iq.com', 27017)
+    db = client.ebdb_smartsys
+    collection = db.ebc_kitchen_user_stats
+    date = request.GET.get("date")
+    try:
+        temp = date.split("-")
+        temp[1] = str(int(temp[1]))
+        temp[2] = str(int(temp[2]))
+        date1 = ''.join(temp)
+        temp = datetime.datetime.strptime(date, '%Y-%m-%d')
+        date3 = temp - datetime.timedelta(hours=8)
+        date4 = temp + datetime.timedelta(hours=16)
+        req_code = collection.find({"action": "get_wechat_code", "day_time": date1}).count()
+        scan_code = collection.find({"action": "scan_qr", "date": {"$gte": date3, "$lt": date4}}).count()
+        down_code = collection.find({"action": "download_app", "date": {"$gte": date3, "$lt": date4}}).count()
+        ret = {
+            "req_code": req_code,
+            "scan_code": scan_code,
+            "down_code": down_code
+            }
+        return JsonResponse(ret)
+    except Exception as e:
+        print("获取秦秋次数出错:", e)
+    return render(request, "home/kitchen_status.html", locals())
+
+
 def left(request):
     """
     加载左侧菜单
