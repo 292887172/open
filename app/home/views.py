@@ -34,13 +34,17 @@ def is_mobile(request):
 
 def home(request):
     template = "home/home.html"
-    try:
-        if request.user.account_id:
-            return HttpResponseRedirect("/product/list")
-    except Exception as e:
-        print(e)
+    account = request.user.account_id
     if is_mobile(request):
         template = "home/home-mobile.html"
+    try:
+        if account == "admin":
+            uri = "/center"
+        else:
+            uri = "/product/list"
+        return HttpResponseRedirect(uri)
+    except Exception as e:
+        print(e)
     return render(request, template, locals())
 
 

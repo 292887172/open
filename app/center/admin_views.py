@@ -560,34 +560,6 @@ def application_detail_modal(request):
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-lg-3 control-label">应用描述</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">推送Url地址</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">推送UrlToken</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">品牌</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
             <label class="col-lg-3 control-label">分类</label>
             <div class="col-lg-9">
             <p class="form-control-static">{}</p>
@@ -595,49 +567,14 @@ def application_detail_modal(request):
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-lg-3 control-label">型号</label>
+            <label class="col-lg-3 control-label">Key</label>
             <div class="col-lg-9">
             <p class="form-control-static">{}</p>
             </div>
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-lg-3 control-label">等级</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">分组</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">设备类型</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">协议类型</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}（1:53iq协议，2：阿里小智协议，3：京东协议）</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">更新时间</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">创建时间</label>
+            <label class="col-lg-3 control-label">功能</label>
             <div class="col-lg-9">
             <p class="form-control-static">{}</p>
             </div>
@@ -648,27 +585,24 @@ def application_detail_modal(request):
         if app_id:
             app = fetch_app_data(app_id)
             if app:
+                # 产品名称
                 app_name = app.app_name if app.app_name else ""
-                app_describe = app.app_describe if app.app_describe else ""
-                # 设备品牌
-                app_brand = app.app_brand if app.app_brand else ""
+                # 产品分类
                 app_category = app.app_category if app.app_category else ""
-                app_model = app.app_model if app.app_model else ""
-                app_level = app.app_level if app.app_level is not None else ""
-                app_group = app.app_group if app.app_group is not None else ""
-                app_push_url = app.app_push_url if app.app_push_url else ""
-                app_push_token = app.app_push_token if app.app_push_token else ""
-                # 设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）
-                app_device_type = app.app_device_type if app.app_device_type is not None else ""
-                # 协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）
-                app_protocol_type = app.app_protocol_type if app.app_protocol_type is not None else ""
-                app_create_date = date2ymdhms(utctime2localtime(app.app_create_date))
-                app_update_date = date2ymdhms(utctime2localtime(app.app_update_date))
-                modal_content = content_template.format(app_name, app_describe, app_push_url, app_push_token,
-                                                        app_brand, app_category, app_model, app_level, app_group,
-                                                        app_device_type, app_protocol_type,
-                                                        app_update_date, app_create_date)
-        ret = template.format(modal_title, modal_content)
+                # 产品key
+                app_key = app.app_appid[-8:]
+                # 设备功能配置
+                devices = app.device_conf if app.device_conf else ""
+                app_device_conf = ''
+                if devices:
+                    devices = json.loads(devices)
+                else:
+                    devices = []
+                for d in devices:
+                    name = d.get("name")
+                    app_device_conf += name + "、 "
+                modal_content = content_template.format(app_name, app_category, app_key, app_device_conf)
+                ret = template.format(modal_title, modal_content)
         return HttpResponse(ret)
 
     if request.method == "GET":
