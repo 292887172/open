@@ -34,10 +34,10 @@ def is_mobile(request):
 
 def home(request):
     template = "home/home.html"
-    account = request.user.account_id
     if is_mobile(request):
         template = "home/home-mobile.html"
     try:
+        account = request.user.account_id
         if account == "admin":
             uri = "/center"
         else:
