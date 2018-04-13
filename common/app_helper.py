@@ -535,7 +535,7 @@ def save_app(app, opera_data):
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
     remove_conf_prefix(key)
-
+    app.app_update_date = datetime.datetime.utcnow()
     app.save()
     data = {'rows': opera_data, 'check_state': app.check_status}
     r.set("product_funs" + str(app.app_id), json.dumps(data), 3600*24*3)

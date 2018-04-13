@@ -338,6 +338,7 @@ def product_main(request):
                 funs = request.POST.get("funs")
                 add_mod_funs(opera_data, device_conf, funs)
                 save_app(app, opera_data)
+                update_app_protocol(app)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
