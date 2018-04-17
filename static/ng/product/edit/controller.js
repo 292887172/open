@@ -72,6 +72,10 @@ angular.module('Product.edit', ['ngRoute'])
 			var paramDescs1=document.getElementsByName("paramDesc1");
 
 			if(types[0].checked){
+				var msg = checkBool();
+				if (msg.length>0){
+					return;
+				}
 				$scope.min=0;$scope.max=1;
 			}
 			else if(types[1].checked){
