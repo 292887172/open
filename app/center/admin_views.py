@@ -575,9 +575,7 @@ def application_detail_modal(request):
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <label class="col-lg-3 control-label">功能</label>
-            <div class="col-lg-9">
-            <p class="form-control-static">{}</p>
-            </div>
+            <div class="col-lg-9">{}</div>
         </div>
         </form>
         """
@@ -593,14 +591,20 @@ def application_detail_modal(request):
                 app_key = app.app_appid[-8:]
                 # 设备功能配置
                 devices = app.device_conf if app.device_conf else ""
-                app_device_conf = ''
+                app_device_conf = '<ul style="list-style:none;padding-left: 0;">'
                 if devices:
                     devices = json.loads(devices)
+                    devices.sort(key=lambda x: int(x.get("id")))
                 else:
                     devices = []
                 for d in devices:
                     name = d.get("name")
-                    app_device_conf += name + "、 "
+                    mxs_length = d.get("mxsLength")
+                    is_control = d.get("isControl")
+                    is_control = "不可控" if int(is_control) == 0 else "可控"
+
+                    app_device_conf += '<li style="padding-left: 0" class="col-md-4">{}(长度：{}b, {})<li>'.format(name, mxs_length, is_control)
+                app_device_conf += "</ul>"
                 modal_content = content_template.format(app_name, app_category, app_key, app_device_conf)
                 ret = template.format(modal_title, modal_content)
         return HttpResponse(ret)

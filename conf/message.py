@@ -57,4 +57,7 @@ UPDATE_FUN_CLOSE = "功能关闭"
 # 删除产品功能
 DEL_FUN = "功能删除"
 
+# 设备存到redis
+DEVICE = "DEVICE"
+
 

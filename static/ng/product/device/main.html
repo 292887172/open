@@ -44,12 +44,19 @@
     function load_table(device_list,state) {
 
         group = '<table class="table table-striped m-b-none">' +
-        '<thead> <tr> <th>id</th> <th>mac</th> <th>时间</th> <th>调试</th> </tr>' +
+        '<thead> <tr> <th>id</th> <th>mac</th> <th>时间</th> <th>是否在线</th> <th>调试</th> </tr>' +
         '</thead> <tbody id="table-device">';
         for(var i=0;i<device_list.length;i++){
             group += '<tr><td>'+device_list[i].ebf_device_id+'</td>';
             group += '<td>'+device_list[i].ebf_device_mac+'</td>';
-            group += '<td>'+device_list[i].ebf_device_create_date+'</td><td>';
+            group += '<td>'+device_list[i].ebf_device_create_date+'</td>';
+            if(device_list[i].ebf_device_is_online == 0){
+                is_online = "离线"
+            }
+            else{
+                is_online = "在线"
+            }
+            group += '<td>'+is_online+'</td><td>';
             if (device_list[i].ebf_device_mac) {
                 group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="'+device_list[i].ebf_device_mac+'" target="_blank" >调试</a>'
             }

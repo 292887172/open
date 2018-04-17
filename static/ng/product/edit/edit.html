@@ -359,6 +359,7 @@
                 isControl:edit_data["isControl"],
                 isFunction:edit_data["isFunction"],
                 min:edit_data["min"],max:edit_data["max"],
+                errorData:edit_data["errorData"],
                 paramType:edit_data["paramType"],
                 corpName:edit_data["corpName"],
                 corpMark:edit_data["corpMark"],
@@ -410,7 +411,9 @@
             selectBool();
         }else if(d.paramType==3){
             document.getElementsByName('paramType')[1].checked=true;
-            $('#errorValue').val(d.max);
+            $('#errorValue').val(d.errorData);
+            $('#minInt').val(d.min);
+            $('#maxInt').val(d.max);
             selectError();
         }
         else if(d.paramType==4){
