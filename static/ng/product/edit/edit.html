@@ -359,6 +359,7 @@
                 isControl:edit_data["isControl"],
                 isFunction:edit_data["isFunction"],
                 min:edit_data["min"],max:edit_data["max"],
+                errorData:edit_data["errorData"],
                 paramType:edit_data["paramType"],
                 corpName:edit_data["corpName"],
                 corpMark:edit_data["corpMark"],
@@ -410,7 +411,9 @@
             selectBool();
         }else if(d.paramType==3){
             document.getElementsByName('paramType')[1].checked=true;
-            $('#errorValue').val(d.max);
+            $('#errorValue').val(d.errorData);
+            $('#minInt').val(d.min);
+            $('#maxInt').val(d.max);
             selectError();
         }
         else if(d.paramType==4){
@@ -465,6 +468,7 @@
         SetDisplay("selectError");
     }
     function selectBool(){
+        $("#mxsLength").val(1);
         SetDisplay("selectBool")
     }
     function selectTimer(){
@@ -748,6 +752,8 @@
     function checkInt(){
         var min=$.trim($('#minInt').val());
         var max=$.trim($('#maxInt').val());
+        var length = $.trim($('#mxsLength').val());
+        maxValue = Math.pow(2,length)-1;
         //正整数 + 0
         var role1=/^\d+$/;
         //负整数 + 0
@@ -760,7 +766,13 @@
             $('#checkInt').html("最大值必须大于最小值!!");
             $('#checkInt').css("display","block");
             return "最大值必须大于最小值!!";
-        }else{
+        }
+        else if(parseInt(max)>maxValue){
+            $('#checkInt').html("最大值必须小于默认极大值!!");
+            $('#checkInt').css("display","block");
+            return "最大值大于极大值";
+        }
+        else{
             $('#checkInt').css("display","none");
             return "";
         }
@@ -782,6 +794,18 @@
             return "最大值必须大于最小值!!";
         }else{
             $('#checkTimer').css("display","none");
+            return "";
+        }
+    }
+    function checkBool() {
+        var length= $('#mxsLength').val();
+        if (length!=1){
+            $("#checkBool").html("开关型的长度只能为1");
+            $("#checkBool").css("display","block");
+            return "开关型长度只能为1";
+        }
+        else{
+            $("#checkBool").css("display","none");
             return "";
         }
     }

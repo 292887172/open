@@ -309,7 +309,7 @@ def product_main(request):
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
             print(e)
-        # 接收页面请求信息
+        # 接收页面请求信
         if post_data == 'list':
             # 显示所有列表信息
             page = int(request.POST.get("page", 1))
@@ -444,9 +444,16 @@ def product_main(request):
 
         # 获取设备列表
         if post_data == 'device_table':
+            r5 = Redis3(rdb=5).client
             key = app.app_appid
             key = key[-8:]
-            device_list = get_device_list(app.app_appid)
+            device_content = DEVICE + "_" + key
+            if r5.exists(device_content):
+                device_list = r5.get(device_content)
+                device_list = json.loads(device_list.decode())
+            else:
+                device_list = get_device_list(app.app_appid)
+                r5.set(device_content, json.dumps(device_list), 5*60)
             return JsonResponse({'data': device_list, 'key': key, 'check_state': app.check_status})
         # 获取工厂列表
         data = request.POST.get("data", "")

@@ -11,6 +11,7 @@ angular.module('Product.edit', ['ngRoute'])
      .controller('argueCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("argueMenu");
         $scope.errorType = -1;
+        $scope.errorData = null;
         $scope.flag = 'int';
         $scope.mxs = [];
         $scope.min=0;
@@ -69,18 +70,26 @@ angular.module('Product.edit', ['ngRoute'])
 			var paramDescs=document.getElementsByName("paramDesc");
 			var paramDatas1=document.getElementsByName("paramData1");
 			var paramDescs1=document.getElementsByName("paramDesc1");
+
 			if(types[0].checked){
+				var msg = checkBool();
+				if (msg.length>0){
+					return;
+				}
 				$scope.min=0;$scope.max=1;
 			}
 			else if(types[1].checked){
 				var error_value = $.trim($('#errorValue').val());
 				$scope.flag = "error";
-				$scope.min = '';$scope.max = error_value;
+				$scope.errorData = error_value;
+				$scope.min=parseInt($.trim($('#minInt').val()));
+				$scope.max=parseInt($.trim($('#maxInt').val()));
 			}
 			else if(types[2].checked){
 				var msg=checkInt();
 				if(msg.length>0){
-					return;}
+					return;
+				}
 				$scope.min=parseInt($.trim($('#minInt').val()));
 				$scope.max=parseInt($.trim($('#maxInt').val()));
 			}
@@ -122,15 +131,19 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.paramType=1;// 开关型
 			}else if(types[1].checked){
 				indata.paramType=3;//故障类型
+
 			}else if(types[2].checked){
 				indata.paramType=4;//整数
 			}
 			else if(types[3].checked){
 				indata.paramType=5;//定时型
 			}
-			indata.mxs=$scope.mxs;
+			if($scope.errorData){
+				indata.errorData = $scope.errorData;
+			}
 			indata.min=$scope.min;
 			indata.max=$scope.max;
+			indata.mxs=$scope.mxs;
 			indata.mxsNum=$scope.mxsNum;
 			if(!edit_data){
 				indata.standa_or_define = 1;
