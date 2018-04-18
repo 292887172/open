@@ -18,6 +18,7 @@ from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from common.app_api_helper import remove_conf_prefix
+from common.device_online import device_online
 from base.const import StatusCode
 from base.const import ConventionValue
 from common.smart_helper import *
@@ -173,7 +174,7 @@ def product_add(request):
         content = dict(
             developer=developer,
             factory_list=factory_list,
-            default_apps = default_apps
+            default_apps=default_apps
         )
         return render(request, template,content)
 
@@ -454,6 +455,9 @@ def product_main(request):
             else:
                 device_list = get_device_list(app.app_appid)
                 r5.set(device_content, json.dumps(device_list), 5*60)
+            for k in device_list:
+                is_online = device_online(k['ebf_device_id'])
+                k["is_online"] = is_online
             return JsonResponse({'data': device_list, 'key': key, 'check_state': app.check_status})
         # 获取工厂列表
         data = request.POST.get("data", "")
