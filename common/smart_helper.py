@@ -137,7 +137,7 @@ def get_device_list(device_secret):
     key = device_secret[len(device_secret)-8:]
     try:
         cursor = conn.cursor()
-        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac, ebf_device_is_online FROM ebt_device WHERE ebf_device_secret="{0}" order BY ebf_device_id'.format(key)
+        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac FROM ebt_device WHERE ebf_device_secret="{0}" order BY ebf_device_id'.format(key)
         cursor.execute(sql)
         re = cursor.fetchall()
         if re:
