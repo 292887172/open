@@ -732,26 +732,523 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '9', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 ]
+    mini_steam = [
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0', 'isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '1', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0', 'isFunction': '1'},
+        {
+        "name": "系统保留",
+        "mxsNum": "4",
+        "isDisplay": 1,
+        "id": "3",
+        "mxs": [{
+            "desc": "无",
+            "data": "0",
+            "trigger": []
+        }, {
+            "desc": "可按",
+            "data": "1",
+            "trigger": []
+        }, {
+            "desc": "转烤",
+            "data": "2",
+            "trigger": []
+        }, {
+            "desc": "保留",
+            "data": "4",
+            "trigger": []
+        }],
+        "isFunction": 1,
+        "max": 7,
+        "corpName": "",
+        "Stream_ID": "SYSTEM_RESERVE",
+        "paramType": 4,
+        "isControl": 0,
+        "time": "2018-04-20 11:06:05",
+        "mxsLength": "3",
+        "min": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "童锁",
+        "mxsNum": "2",
+        "isDisplay": 1,
+        "id": "4",
+        "mxs": [{
+            "desc": "关",
+            "data": "0",
+            "trigger": []
+        }, {
+            "desc": "开",
+            "data": "1",
+            "trigger": []
+        }],
+        "isFunction": 1,
+        "max": 1,
+        "corpName": "",
+        "Stream_ID": "BODY_LOCK",
+        "paramType": 1,
+        "isControl": 1,
+        "time": "2018-04-20 11:06:38",
+        "mxsLength": "1",
+        "min": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "照明",
+        "mxsNum": "2",
+        "isDisplay": 1,
+        "id": "5",
+        "mxs": [{
+            "desc": "关",
+            "data": "0",
+            "trigger": []
+        }, {
+            "desc": "开",
+            "data": "1",
+            "trigger": []
+        }],
+        "max": 1,
+        "corpName": "",
+        "Stream_ID": "LAMP",
+        "paramType": 1,
+        "isControl": 1,
+        "time": "2018-04-20 11:08:36",
+        "min": 0,
+        "mxsLength": "1",
+        "isFunction": 1,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "模式",
+        "mxsNum": "14",
+        "isDisplay": 1,
+        "id": "6",
+        "mxs": [{
+            "desc": "微波",
+            "data": "8192",
+            "trigger": []
+        }, {
+            "desc": "纯蒸汽",
+            "data": "8193",
+            "trigger": []
+        }, {
+            "desc": "双动力烤",
+            "data": "8194",
+            "trigger": []
+        }, {
+            "desc": "烧烤",
+            "data": "8195",
+            "trigger": []
+        }, {
+            "desc": "烘烤",
+            "data": "8196",
+            "trigger": []
+        }, {
+            "desc": "发酵",
+            "data": "8197",
+            "trigger": []
+        }, {
+            "desc": "除臭",
+            "data": "8198",
+            "trigger": []
+        }, {
+            "desc": "炉腔清洗",
+            "data": "8199",
+            "trigger": []
+        }, {
+            "desc": "解冻",
+            "data": "8200",
+            "trigger": []
+        }, {
+            "desc": "微波+纯蒸汽",
+            "data": "8449",
+            "trigger": []
+        }, {
+            "desc": "微波+烧烤",
+            "data": "8450",
+            "trigger": []
+        }, {
+            "desc": "微波+烘烤",
+            "data": "8451",
+            "trigger": []
+        }, {
+            "desc": "微波+纯蒸汽+烧烤",
+            "data": "8452",
+            "trigger": []
+        }, {
+            "desc": "微波+纯蒸汽+烘烤",
+            "data": "8453",
+            "trigger": []
+        }],
+        "max": 65535,
+        "corpName": "",
+        "Stream_ID": "MODEL",
+        "paramType": 4,
+        "isControl": 1,
+        "time": "2018-04-20 11:23:22",
+        "min": 0,
+        "mxsLength": "16",
+        "isFunction": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "设定蒸汽温度",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "7",
+        "mxs": [],
+        "isFunction": 0,
+        "max": 255,
+        "corpName": "摄氏度",
+        "Stream_ID": "SET_STEAM_TEMP",
+        "paramType": 4,
+        "isControl": 1,
+        "time": "2018-04-20 11:30:35",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "℃",
+        "widget": "input"
+    }, {
+        "name": "蒸汽当前温度",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "8",
+        "mxs": [],
+        "max": 255,
+        "corpName": "摄氏度",
+        "Stream_ID": "STEAM_CUR_TEMP",
+        "paramType": 4,
+        "isControl": 0,
+        "time": "2018-04-20 11:31:22",
+        "min": 0,
+        "mxsLength": "8",
+        "isFunction": 0,
+        "corpMark": "℃",
+        "widget": "input"
+    }, {
+        "name": "设定蒸汽工作时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "9",
+        "mxs": [],
+        "isFunction": 0,
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "SET_STEAM_TIME",
+        "paramType": 5,
+        "isControl": 1,
+        "time": "2018-04-20 11:32:32",
+        "mxsLength": "16",
+        "min": 0,
+        "corpMark": "s",
+        "widget": "input"
+    }, {
+        "name": "蒸汽工作剩余时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "10",
+        "mxs": [],
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "REMAIN_STEAM_TIME",
+        "paramType": 5,
+        "isControl": 0,
+        "time": "2018-04-20 11:33:28",
+        "min": 0,
+        "mxsLength": "16",
+        "isFunction": 1,
+        "corpMark": "s",
+        "widget": "input"
+    }, {
+        "name": "设定烘烤温度",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "11",
+        "mxs": [],
+        "isFunction": 0,
+        "max": 255,
+        "corpName": "摄氏度",
+        "Stream_ID": "SET_BAKE_TEMP",
+        "paramType": 4,
+        "isControl": 1,
+        "time": "2018-04-20 11:34:20",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "℃",
+        "widget": "input"
+    }, {
+        "name": "烘烤当前温度",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "12",
+        "mxs": [],
+        "max": 255,
+        "corpName": "摄氏度",
+        "Stream_ID": "BAKE_CUR_TEMP",
+        "paramType": 4,
+        "isControl": 0,
+        "time": "2018-04-20 11:34:50",
+        "min": 0,
+        "mxsLength": "8",
+        "isFunction": 1,
+        "corpMark": "℃",
+        "widget": "input"
+    }, {
+        "name": "设置烘烤时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "13",
+        "mxs": [],
+        "isFunction": 0,
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "SET_BAKE_TIME",
+        "paramType": 5,
+        "isControl": 1,
+        "time": "2018-04-20 11:35:54",
+        "mxsLength": "16",
+        "min": 0,
+        "corpMark": "s",
+        "widget": "input"
+    }, {
+        "name": "烘烤剩余时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "14",
+        "mxs": [],
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "REMAIN_BAKE_TIME",
+        "paramType": 5,
+        "isControl": 0,
+        "time": "2018-04-20 11:36:31",
+        "min": 0,
+        "mxsLength": "16",
+        "isFunction": 1,
+        "corpMark": "s",
+        "widget": "input"
+    }, {
+        "name": "状态反馈",
+        "mxsNum": "5",
+        "isDisplay": 1,
+        "id": "15",
+        "mxs": [{
+            "desc": "门关",
+            "data": "0",
+            "trigger": []
+        }, {
+            "desc": "门开",
+            "data": "1",
+            "trigger": []
+        }, {
+            "desc": "水位",
+            "data": "2",
+            "trigger": []
+        }, {
+            "desc": "水箱",
+            "data": "4",
+            "trigger": []
+        }, {
+            "desc": "童锁开",
+            "data": "8",
+            "trigger": []
+        }],
+        "isFunction": 1,
+        "max": 255,
+        "corpName": "",
+        "Stream_ID": "SYSTEM_STATUS",
+        "paramType": 4,
+        "isControl": 0,
+        "time": "2018-04-20 11:38:24",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "故障",
+        "mxsNum": "6",
+        "isDisplay": 1,
+        "id": "16",
+        "mxs": [{
+            "desc": "无",
+            "data": "0",
+            "trigger": []
+        }, {
+            "desc": "箱短路",
+            "data": "1",
+            "trigger": []
+        }, {
+            "desc": "箱开路",
+            "data": "2",
+            "trigger": []
+        }, {
+            "desc": "热短路",
+            "data": "4",
+            "trigger": []
+        }, {
+            "desc": "热开路",
+            "data": "8",
+            "trigger": []
+        }, {
+            "desc": "缺水",
+            "data": "16",
+            "trigger": []
+        }],
+        "isFunction": 1,
+        "max": 1,
+        "corpName": "",
+        "Stream_ID": "ERROR",
+        "paramType": 3,
+        "isControl": 0,
+        "time": "2018-04-20 12:49:19",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "设置微波火力",
+        "mxsNum": "5",
+        "isDisplay": 1,
+        "id": "17",
+        "mxs": [{
+            "desc": "超低火",
+            "data": "1",
+            "trigger": []
+        }, {
+            "desc": "低火",
+            "data": "2",
+            "trigger": []
+        }, {
+            "desc": "中火",
+            "data": "3",
+            "trigger": []
+        }, {
+            "desc": "高火",
+            "data": "4",
+            "trigger": []
+        }, {
+            "desc": "超高火",
+            "data": "5",
+            "trigger": []
+        }],
+        "max": 255,
+        "corpName": "",
+        "Stream_ID": "SET_WAVE_FIRE",
+        "paramType": 4,
+        "isControl": 1,
+        "time": "2018-04-20 12:53:15",
+        "min": 0,
+        "mxsLength": "8",
+        "isFunction": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "微波当前火力",
+        "mxsNum": "5",
+        "isDisplay": 1,
+        "id": "18",
+        "mxs": [{
+            "desc": "超低火",
+            "data": "101",
+            "trigger": []
+        }, {
+            "desc": "低火",
+            "data": "102",
+            "trigger": []
+        }, {
+            "desc": "中火",
+            "data": "103",
+            "trigger": []
+        }, {
+            "desc": "高火",
+            "data": "104",
+            "trigger": []
+        }, {
+            "desc": "超高火",
+            "data": "105",
+            "trigger": []
+        }],
+        "isFunction": 1,
+        "max": 255,
+        "corpName": "",
+        "Stream_ID": "WAVE_CUR_FIRE",
+        "paramType": 4,
+        "isControl": 0,
+        "time": "2018-04-20 12:54:46",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "",
+        "widget": "button"
+    }, {
+        "name": "设定微波工作时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "19",
+        "mxs": [],
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "SET_WAVE_TIME",
+        "paramType": 5,
+        "isControl": 1,
+        "time": "2018-04-20 12:55:39",
+        "min": 0,
+        "mxsLength": "16",
+        "isFunction": 0,
+        "corpMark": "s",
+        "widget": "input"
+    }, {
+        "name": "微波剩余工作时间",
+        "mxsNum": "0",
+        "isDisplay": 1,
+        "id": "20",
+        "mxs": [],
+        "isFunction": 1,
+        "max": 65535,
+        "corpName": "秒",
+        "Stream_ID": "REMAIN_WAVE_TIME",
+        "paramType": 5,
+        "isControl": 0,
+        "time": "2018-04-20 12:56:35",
+        "mxsLength": "8",
+        "min": 0,
+        "corpMark": "s",
+        "widget": "input"
+}]
     other = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
-         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
+         'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
-         'mxsLength': '8', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+         'mxsLength': '1', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
 
     if val == 1:
+        # 油烟机
         return smoke
     elif val == 2:
+        # 集成灶
         return stove
     elif val == 6:
+        # 冰箱
         return fridge
     elif val == 11:
+        # 烤箱
         return oven
     elif val == 20:
+        # 蒸箱
         return steam
     elif val == 27:
+        # wifi小烤箱
         return small_oven
+    elif val == 30:
+        # 微蒸烤一体
+        return mini_steam
     else:
         return other
