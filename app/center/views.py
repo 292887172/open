@@ -774,7 +774,7 @@ def callback(request):
                 Account.objects.create_wx_user(username, '123', openid, nickname)
                 create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
-                logging.getLogger('').info('创建微信账号出错'+str(e))
+                logging.getLogger('').info('创建微信账号出错'+str(e), "  nickname:", nickname)
                 return HttpResponse('登录失败，请尝试其他方式登录')
             user_obj = authenticate(username=username, password='123')
             django.contrib.auth.login(request, user_obj)
