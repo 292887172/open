@@ -1,4 +1,4 @@
- # !/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import io
@@ -139,7 +139,7 @@ def login(request):
                 dt = datetime.datetime.now() + datetime.timedelta(days=30)
                 response.set_cookie(COOKIE_USER_ACCOUNT, account, expires=dt)
                 m = hashlib.md5()
-                m.update(('token_'+account).encode('utf-8'))
+                m.update(('token_' + account).encode('utf-8'))
                 token = m.hexdigest()
                 update_user_login_data(account, password, token, request.META.get('REMOTE_ADDR'), 'save')
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
@@ -576,8 +576,8 @@ def forget_pwd(request):
                         request.session[SESSION_USER_ID] = user_id
                         request.session['step1'] = 'step1'
                         return HttpResponse(json.dumps(
-                                {'status': 1, 'url': '/center/forget_pwd?id=9b782e40768fc9007786b032ba7911aa',
-                                 'error': ''}))
+                            {'status': 1, 'url': '/center/forget_pwd?id=9b782e40768fc9007786b032ba7911aa',
+                             'error': ''}))
                     else:
                         return HttpResponse(json.dumps({'status': 0, 'url': '', 'error': '验证码错误'}))
 
@@ -740,6 +740,8 @@ def callback(request):
                 s.encoding = 'utf8'
                 ret2 = s.json()
             nickname = ret2.get('nickname', '')
+            co = re.compile(u'[\U00010000-\U0010ffff]')
+            nickname = co.sub(r'', nickname)
             dt = datetime.datetime.now() + datetime.timedelta(days=30)
             m = hashlib.md5()
             m.update(('token_' + unionid).encode('utf-8'))
@@ -764,13 +766,6 @@ def callback(request):
             except Exception as e:
                 logging.getLogger('').info("微信登录设置登录cookie出错"+str(e))
             try:
-                emoji_pattern = re.compile("["
-                    u"\U0001F600-\U0001F64F" 
-                    u"\U0001F300-\U0001F5FF"  
-                    u"\U0001F680-\U0001F6FF"  
-                    u"\U0001F1E0-\U0001F1FF"
-                                       "] +", flags=re.UNICODE)
-                nickname = emoji_pattern.sub(r'', nickname)
                 Account.objects.create_wx_user(username, '123', openid, nickname)
                 create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
