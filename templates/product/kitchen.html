@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
-    <link rel="stylesheet" href="https://www.jq22.com/demo/video-js/css/video-js.css">
+    <link rel="stylesheet" href="{% static 'css/product/video-js.css' %}">
     <style>
 
         .goods span {
@@ -334,12 +334,12 @@
             {% for app in default_apps %}
 
                 {% if  forloop.counter == 1 %}
-                    <div class="left-dv4"
-                         data-url="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">
+                    <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}"><div class="left-dv4">
                         <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
                         <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
 
                     </div>
+                    </a>
                     <div class="left-dv1">
                 {% elif forloop.counter == 2 %}
                     <div class="left-dv2">
@@ -486,13 +486,11 @@
                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
             </p>
         </video>
-        <script src="https://www.jq22.com/demo/video-js/js/video.min.js"></script>
+        <script src="/static/js/product/video.min.js"></script>
         <script type="text/javascript">
             var myPlayer = videojs('my-video');
             videojs("my-video").ready(function () {
                 myPlayer = this;
-
-
             });
         </script>
     </div>
