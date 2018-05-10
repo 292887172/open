@@ -242,7 +242,7 @@ def app_user(request):
                 'from': from_dict.get(i.get('source'), ''),
                 'is_bind_device': '',
                 'is_control': '',
-                'date': (updated++ datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+                'date': (updated+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
             }
             total_data.append(t)
         for j in wx_user:
