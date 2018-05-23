@@ -334,12 +334,12 @@
             {% for app in default_apps %}
 
                 {% if  forloop.counter == 1 %}
-                    <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}"><div class="left-dv4">
+                    <!-- <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}"><div class="left-dv4">
                         <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
                         <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
 
                     </div>
-                    </a>
+                    </a>-->
                     <div class="left-dv1">
                 {% elif forloop.counter == 2 %}
                     <div class="left-dv2">

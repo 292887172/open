@@ -8,8 +8,7 @@ from base.connection import ReleaseApiMongoDBHandler
 from base.const import ConventionValue
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-import markdown
-from model.center.doc_menu import DocMenu
+#import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
 from conf.message import *
 

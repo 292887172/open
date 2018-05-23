@@ -90,7 +90,7 @@
                     </div>
             {% else %}
                 <!-- 登录 -->
-                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
+
 
             {% endif %}
     </div>
