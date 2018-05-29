@@ -36030,3 +36030,883 @@ ImportError: No module named 'app.center.admin_views'
 2018-05-15 15:30:24,886 [Thread-8:8692] [django.request:143] [WARNING]- Not Found: /center/admin/null
 2018-05-15 15:32:13,610 [Thread-11:8176] [django.request:143] [WARNING]- Not Found: /center/admin/null
 2018-05-15 15:32:22,547 [Thread-14:2688] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 08:31:01,079 [Thread-20:8928] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 27, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:31:02,860 [Thread-24:6292] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2018-05-29 08:33:09,071 [Thread-25:10476] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 27, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:33:12,533 [Thread-29:2564] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 27, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:33:15,440 [Thread-33:8348] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 27, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:33:21,051 [Thread-37:8444] [django.request:231] [ERROR]- Internal Server Error: /wiki/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 27, in wiki
+    return render(request, "wiki/index.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:33:40,098 [Thread-43:3436] [django.request:231] [ERROR]- Internal Server Error: /wiki/doc_wiki
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\wiki\views.py", line 101, in doc_wiki
+    return render(request, "wiki/doc.html", locals())
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 312, in render
+    return nodelist.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:35:16,706 [Thread-52:11024] [django.request:143] [WARNING]- Not Found: /a
+2018-05-29 08:35:27,273 [Thread-59:4260] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:36:59,006 [Thread-1:9964] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:37:01,599 [Thread-3:4200] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:38:13,481 [Thread-14:5936] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:52:42,653 [Thread-21:10144] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 08:52:45,225 [Thread-22:6220] [django.request:231] [ERROR]- Internal Server Error: /center/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\contrib\auth\decorators.py", line 26, in _wrapped_view
+    resolve_url(login_url or settings.LOGIN_URL))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\shortcuts.py", line 158, in resolve_url
+    return urlresolvers.reverse(to, args=args, kwargs=kwargs)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 546, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 410, in _reverse_with_prefix
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\product\views.py", line 21, in <module>
+    from common.device_online import device_online
+  File "D:\worksapce\open\common\device_online.py", line 13, in <module>
+    THRIFT_ONLINE = thriftpy.load(os.path.join(BASE_DIR, "idl/online.thrift"), module_name="device_online_service_thrift")
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\__init__.py", line 30, in load
+    include_dir=include_dir)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\thriftpy\parser\parser.py", line 488, in parse
+    data = fh.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 7: illegal multibyte sequence
+2018-05-29 09:02:45,101 [Thread-31:8440] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-05-29 09:02:45,329 [Thread-34:8732] [django.request:143] [WARNING]- Not Found: /product/kitchen/m.png
+2018-05-29 09:02:49,271 [Thread-46:10468] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-05-29 09:02:49,702 [Thread-48:4676] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-05-29 09:05:33,641 [Thread-126:7204] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-05-29 09:34:38,354 [Thread-133:10652] [django.request:143] [WARNING]- Not Found: /product/list/None
+2018-05-29 09:35:56,021 [Thread-185:7368] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:37:41,340 [Thread-192:4208] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:47:35,904 [Thread-214:3856] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:52:05,628 [Thread-220:8196] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:52:39,576 [Thread-8:8864] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:53:38,390 [Thread-12:9212] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:56:40,146 [Thread-23:11024] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:56:41,120 [Thread-27:10448] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:56:44,152 [Thread-29:8260] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:56:49,972 [Thread-31:4508] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:57:33,428 [Thread-44:3988] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:57:40,528 [Thread-47:6200] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:57:43,338 [Thread-49:8392] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:58:31,609 [Thread-61:9288] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:59:33,818 [Thread-67:8848] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 09:59:48,979 [Thread-70:2560] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:00:10,229 [Thread-76:1196] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:01:31,312 [Thread-82:10120] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:15:13,307 [Thread-87:10512] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:15:17,987 [Thread-89:10320] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:18:31,594 [Thread-94:2500] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:18:33,408 [Thread-96:1060] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:55:12,111 [Thread-6:10936] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:55:16,892 [Thread-14:10856] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:55:23,485 [Thread-16:9564] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:13,712 [Thread-6:8848] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:13,762 [Thread-7:2032] [django.request:143] [WARNING]- Not Found: /center/admin/undefined
+2018-05-29 10:57:31,536 [Thread-12:7892] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:40,019 [Thread-14:504] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:40,061 [Thread-15:4528] [django.request:143] [WARNING]- Not Found: /center/admin/undefined
+2018-05-29 10:57:46,299 [Thread-17:1348] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:46,301 [Thread-18:5440] [django.request:143] [WARNING]- Not Found: /center/admin/undefined
+2018-05-29 10:57:52,543 [Thread-20:3348] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:57:52,548 [Thread-21:8728] [django.request:143] [WARNING]- Not Found: /center/admin/undefined
+2018-05-29 10:58:14,332 [Thread-28:9208] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 10:58:14,339 [Thread-29:1300] [django.request:143] [WARNING]- Not Found: /center/admin/undefined
+2018-05-29 10:58:20,743 [Thread-31:932] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:37:57,948 [Thread-67:9244] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:39:22,704 [Thread-9:4500] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:39:33,544 [Thread-13:10972] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:41:01,504 [Thread-18:6232] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:41:15,691 [Thread-20:4632] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:44:58,212 [Thread-25:11404] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:45:05,026 [Thread-27:11568] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:45:26,836 [Thread-29:9516] [django.request:231] [ERROR]- Internal Server Error: /center/admin/application/all/data
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\center\admin_views.py", line 546, in application_all_data
+    return get()
+  File "D:\worksapce\open\app\center\admin_views.py", line 527, in get
+    (sort_name, sort_status) = sort.split(".")
+ValueError: need more than 1 value to unpack
+2018-05-29 14:45:32,446 [Thread-31:11824] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:46:04,363 [Thread-3:11540] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:46:45,089 [Thread-4:4360] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:46:46,110 [Thread-6:11956] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:46:53,524 [Thread-8:5564] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:47:23,551 [Thread-10:5816] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:47:40,469 [Thread-9:11484] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:47:46,807 [Thread-11:688] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:48:28,736 [Thread-13:5356] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:50:31,198 [Thread-76:10832] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:50:40,514 [Thread-81:1300] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:50:58,867 [Thread-83:3856] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:55:08,880 [Thread-9:11412] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:55:32,409 [Thread-13:11736] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 14:55:39,567 [Thread-15:11436] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:01:14,922 [Thread-8:9356] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:04:14,851 [Thread-11:10916] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:08:35,157 [Thread-8:2500] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:11:24,298 [Thread-12:4428] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:11:27,974 [Thread-14:11336] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:12:40,011 [Thread-32:9756] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:17:04,648 [Thread-41:11232] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:17:56,973 [Thread-46:10968] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:18:22,010 [Thread-51:4916] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:18:37,080 [Thread-56:6228] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:18:56,001 [Thread-63:1188] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:23:04,854 [Thread-141:1188] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 15:50:03,838 [Thread-11:7316] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 16:00:09,673 [Thread-1:10120] [django.request:231] [ERROR]- Internal Server Error: /center/admin/user/list/data
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\middleware\common.py", line 72, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\center\admin_views.py", line 29, in <module>
+    from common.account_helper import fetch_user_list_data
+  File "D:\worksapce\open\common\account_helper.py", line 75
+    pager = Paginator(Account.objects.filter(=search).order_by(order_by_names), int(limit))
+                                             ^
+SyntaxError: invalid syntax
+2018-05-29 16:00:24,296 [Thread-3:9276] [django.request:231] [ERROR]- Internal Server Error: /center/admin/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\center\admin_views.py", line 29, in <module>
+    from common.account_helper import fetch_user_list_data
+  File "D:\worksapce\open\common\account_helper.py", line 75
+    pager = Paginator(Account.objects.filter(=search).order_by(order_by_names), int(limit))
+                                             ^
+SyntaxError: invalid syntax
+2018-05-29 16:00:34,819 [Thread-4:7864] [django.request:231] [ERROR]- Internal Server Error: /center/admin/
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "D:\Python34\lib\functools.py", line 428, in wrapper
+    result = user_function(*args, **kwds)
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "D:\Python34\lib\importlib\__init__.py", line 104, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 2231, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 2214, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 2203, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "D:\worksapce\open\app\center\admin_views.py", line 29, in <module>
+    from common.account_helper import fetch_user_list_data
+  File "D:\worksapce\open\common\account_helper.py", line 76
+    pager = Paginator(Account.objects.filter(=search).order_by(order_by_names), int(limit))
+                                             ^
+SyntaxError: invalid syntax
+2018-05-29 16:01:45,680 [Thread-8:3856] [django.request:231] [ERROR]- Internal Server Error: /center/admin/user/list/data
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\center\admin_views.py", line 228, in account_list_data
+    return get()
+  File "D:\worksapce\open\app\center\admin_views.py", line 223, in get
+    ret= fetch_user_list_user_data(search,page, limit, order_by_names)
+NameError: name 'fetch_user_list_user_data' is not defined
+2018-05-29 16:02:05,047 [Thread-8:4904] [django.request:231] [ERROR]- Internal Server Error: /center/admin/user/list/data
+Traceback (most recent call last):
+  File "D:\virtualEnv\meida_ovenEnv\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\worksapce\open\app\center\admin_views.py", line 228, in account_list_data
+    return get()
+  File "D:\worksapce\open\app\center\admin_views.py", line 223, in get
+    ret= fetch_user_list_user_data(search,page, limit, order_by_names)
+NameError: name 'fetch_user_list_user_data' is not defined
+2018-05-29 16:15:51,745 [Thread-17:3496] [django.request:143] [WARNING]- Not Found: /center/admin/null
+2018-05-29 16:39:02,144 [Thread-12:5888] [django.request:143] [WARNING]- Not Found: /center/admin/null

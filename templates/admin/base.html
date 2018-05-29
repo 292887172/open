@@ -303,41 +303,6 @@
 
     {% block end_fixed_script %}{% endblock %}
     {% block end_script %}{% endblock %}
-    <script>
-        $("#applyCertNum").keydown(function (e) {
-            if (e.keyCode == 13) {
-                {#alert("12345....");#}
-                $.ajax({
-                    url: '/center/admin/user/list/data/serach',
-                    type: 'POST',
-                    data: {'data': $('#applyCertNum').val()},
 
-                    success: function (data) {
-                        data1 = JSON.parse(data);
-
-
-                        if (data1.status == '1') {
-                            {# 搜索到数据，返回相应的信息#}
-                            alert(data1);
-                            {#  location.href='/center/admin/application/all/data?';#}
-                            location.href = '#/application/list';
-                            alert(location.href)
-                            {#location.href=''#}
-                        }
-                        if (data.status == 2) {
-                            {# 搜索不到，返回相应处理 #}
-                            location.href = '#'
-
-                        }
-                        else {
-                            {# 搜索信息错误，返回信息 #}
-                            location.href = '#'
-                        }
-                    }
-                })
-
-            }
-        });
-    </script>
 </body>
 </html>

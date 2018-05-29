@@ -26,7 +26,7 @@ from common.developer_helper import fetch_developer_data
 from common.developer_helper import denied_developer
 from common.developer_helper import pass_developer
 from common.developer_helper import toggle_forbid_developer
-from common.account_helper import fetch_user_list_data
+from common.account_helper import fetch_user_list_data,fetch_user_list_user_data
 from common.app_helper import fetch_one_app_data
 from common.account_helper import toggle_forbid_user
 from common.smart_helper import update_app_protocol
@@ -209,13 +209,18 @@ def account_list_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search',"")
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "createtime":
             order_by_names += "account_create_date"
-        ret = fetch_user_list_data(page, limit, order_by_names)
+        if search == '':
+
+            ret = fetch_user_list_data(page, limit, order_by_names)
+        else:
+            ret= fetch_user_list_user_data(search,page, limit, order_by_names)
         print('a','error message')
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
@@ -522,13 +527,19 @@ def application_all_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search','')
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "createtime":
             order_by_names += "app_update_date"
-        ret = fetch_all_app_data(page, limit, order_by_names)
+        if search == '':
+            ret = fetch_all_app_data(page, limit, order_by_names)
+        else:
+            ret = fetch_one_app_data(search,page, limit, order_by_names)
+
+            return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
@@ -539,17 +550,6 @@ def application_all_data(request):
         return get()
     elif request.method == "POST":
         return post()
-
-@csrf_exempt
-def application_list_data_serach(request):
-    if request.method=='POST':
-        #print('xx')
-        #ret = {"status": 1}
-
-        serach_data = request.POST.get('data')
-        ret = fetch_one_app_data(serach_data)
-        ret['status']=1
-        return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
 
 def account_list_data_notfound(request):
@@ -656,13 +656,17 @@ def function_all_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search','')
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "create_time":
             order_by_names += "df_update_date"
-        ret = fetch_all_fun_data(page, limit, order_by_names)
+        if search == '':
+            ret = fetch_all_fun_data(page, limit, order_by_names)
+        else:
+            ret = fetch_all_app_search_data(search,page,limit,order_by_names)
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
     def post():

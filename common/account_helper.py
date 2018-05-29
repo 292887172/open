@@ -70,7 +70,33 @@ def fetch_user_list_data(page, limit, order_by_names):
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
+def fetch_user_list_user_data(search,page, limit, order_by_names):
 
+    try:
+        pager = Paginator(Account.objects.filter(account_id__icontains=search).order_by(order_by_names), int(limit))
+        users = pager.page(int(page))
+        total_count = pager.count
+        data = []
+        for user in users:
+            d = dict(
+                id=user.account_id,
+                f=user.account_from_id,
+                t=user.account_type,
+                email=user.account_email,
+                phone=user.account_phone,
+                nickname=user.account_nickname,
+                is_forbid=user.account_is_forbid,
+                createtime=date2ymdhms(user.account_create_date)
+            )
+            data.append(d)
+        result = dict(
+            totalCount=total_count,
+            items=data
+        )
+        return result
+    except Exception as e:
+        logging.getLogger("").error(e)
+        return ""
 
 def change_user_pwd(user_id, new_pwd):
     """

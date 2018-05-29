@@ -23,11 +23,7 @@ doc_urlpatterns = patterns(
 admin_urlpatterns = patterns(
     'app.center.admin_views',
     url(r'^admin/$', 'admin_home', name='admin_center'),
-    url(r'^admin/user/list/data$', 'account_list_data'),
-    # 添加 lw 2018/05/12
-    url(r'^admin/user/list/data/serach$', 'application_list_data_serach'),  # 搜索功能
-    url(r'^admin/user/list/data/notfound$', 'account_list_data_notfound'),  # 搜索error，错误处理
-
+    url(r'^admin/user/list/data$', 'account_list_data'),  # 全部用户
     url(r'^admin/developer/list/data$', 'developer_list_data'),
     url(r'^admin/developer/check/data$', 'developer_checking_data'),
     url(r'^admin/developer/modal/detail', 'developer_detail_modal'),

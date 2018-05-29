@@ -290,3 +290,73 @@
 2018-05-15 15:00:34,354 [Thread-3:3540] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
 2018-05-15 15:30:23,966 [Thread-6:9464] [kazoo.client:599] [INFO]- Connecting to 122.144.167.74:2181
 2018-05-15 15:30:23,994 [Thread-6:9464] [kazoo.client:465] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:31:00,898 [Thread-23:5680] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:31:00,964 [Thread-23:5680] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:33:06,686 [Thread-28:3812] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:33:06,772 [Thread-28:3812] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:33:12,426 [Thread-32:10356] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:33:12,448 [Thread-32:10356] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:33:15,339 [Thread-36:10436] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:33:15,366 [Thread-36:10436] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:33:20,957 [Thread-40:10288] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:33:20,976 [Thread-40:10288] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:33:39,982 [Thread-49:2144] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:33:40,017 [Thread-49:2144] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:35:27,177 [Thread-66:6828] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:35:27,200 [Thread-66:6828] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:36:58,889 [Thread-10:10596] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:36:58,919 [Thread-10:10596] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:37:01,497 [Thread-13:4960] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:37:01,524 [Thread-13:4960] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:38:13,380 [Thread-20:8152] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:38:13,406 [Thread-20:8152] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:52:42,533 [Thread-26:3096] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:52:42,557 [Thread-26:3096] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:52:45,118 [Thread-29:10856] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:52:45,139 [Thread-29:10856] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:55:44,113 [Thread-5:8260] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 08:55:44,132 [Thread-5:8260] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 08:55:44,303 [Thread-6:11032] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 09:02:39,792 [Thread-17:3192] [root:64] [INFO]- 'SESSION_LOGIN_THIRD'
+2018-05-29 09:34:50,569 [Thread-140:10044] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 09:52:37,519 [Thread-5:4612] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 09:52:37,604 [Thread-5:4612] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 09:55:03,997 [Thread-16:10788] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 09:56:16,341 [Thread-5:9280] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 09:56:16,400 [Thread-5:9280] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 09:56:34,507 [Thread-11:8788] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2018-05-29 10:55:10,851 [Thread-10:11256] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 10:55:10,873 [Thread-10:11256] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 10:57:12,178 [Thread-10:1088] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 10:57:12,202 [Thread-10:1088] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 14:37:47,581 [Thread-6:12168] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 14:37:47,608 [Thread-6:12168] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 14:37:47,922 [Thread-3:11524] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 14:39:21,140 [Thread-5:8916] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 14:39:21,165 [Thread-5:8916] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 14:47:38,863 [Thread-5:11868] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 14:47:38,891 [Thread-5:11868] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 14:50:21,167 [Thread-15:11864] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 14:55:07,649 [Thread-5:8968] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 14:55:07,678 [Thread-5:8968] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 15:01:13,665 [Thread-5:2564] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 15:01:13,691 [Thread-5:2564] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 15:08:33,793 [Thread-5:3096] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 15:08:33,821 [Thread-5:3096] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 15:12:17,527 [Thread-24:7268] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2018-05-29 15:22:51,115 [Thread-78:6220] [root:162] [INFO]- 'AnonymousUser' object has no attribute 'developer'
+2018-05-29 15:49:45,768 [Thread-5:5816] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 15:49:45,790 [Thread-5:5816] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:00:37,579 [Thread-8:10632] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:00:37,606 [Thread-8:10632] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:01:40,158 [Thread-5:10156] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:01:40,180 [Thread-5:10156] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:02:00,160 [Thread-6:10008] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:02:00,185 [Thread-6:10008] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:04:41,154 [Thread-5:12092] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:04:41,191 [Thread-5:12092] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:16:01,705 [Thread-25:9200] [root:335] [ERROR]- 'NoneType' object has no attribute 'api_name'
+2018-05-29 16:37:16,015 [Thread-5:2572] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:37:16,040 [Thread-5:2572] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED
+2018-05-29 16:38:45,313 [Thread-5:6288] [kazoo.client:575] [INFO]- Connecting to 122.144.167.74:2181
+2018-05-29 16:38:45,335 [Thread-5:6288] [kazoo.client:444] [INFO]- Zookeeper connection established, state: CONNECTED

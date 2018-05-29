@@ -531,12 +531,12 @@ def fetch_all_app_data(page, limit, order_by_names):
         print(e)
         logging.getLogger("").error(e)
         return ""
-def fetch_one_app_data(serach_data):
+def fetch_one_app_data(serach,page, limit, order_by_names):
     try:
-        #pager = Paginator(App.objects.filter().order_by(order_by_names),int(limit))
-        #apps = pager.page(int(page))
-        #total_count = pager.count
-        apps = App.objects.filter(app_appid__icontains=serach_data)
+        pager = Paginator(App.objects.filter(app_appid__icontains=serach).order_by(order_by_names),
+                          int(limit))
+        apps = pager.page(int(page))
+        total_count = pager.count
         data = []
 
         for app in apps:
@@ -564,7 +564,7 @@ def fetch_one_app_data(serach_data):
             data.append(d)
 
         result = dict(
-            totalCount='53',
+            totalCount=total_count,
             items=data
         )
         return result
