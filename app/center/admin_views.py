@@ -552,9 +552,6 @@ def application_all_data(request):
         return post()
 
 
-def account_list_data_notfound(request):
-    return account_list_data(request)
-
 def application_detail_modal(request):
     """
     应用详情modal详情
