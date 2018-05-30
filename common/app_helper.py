@@ -23,6 +23,8 @@ from common.app_api_helper import remove_conf_prefix
 from common.message_helper import save_user_message
 from conf.message import *
 
+from django.db.models import Q
+
 import logging
 import datetime
 __author__ = 'achais'
@@ -533,7 +535,7 @@ def fetch_all_app_data(page, limit, order_by_names):
         return ""
 def fetch_one_app_data(serach,page, limit, order_by_names):
     try:
-        pager = Paginator(App.objects.filter(app_appid__icontains=serach).order_by(order_by_names),
+        pager = Paginator(App.objects.filter(Q(app_appid__icontains=serach)|Q(app_name__icontains=serach)).order_by(order_by_names),
                           int(limit))
         apps = pager.page(int(page))
         total_count = pager.count
