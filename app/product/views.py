@@ -215,7 +215,10 @@ def product_add(request):
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                         device_conf, app_factory_id, app_group, app_logo)
             from common.celerytask import add
+            r = Redis3(rdb=6).client
             add.delay(app_id)
+            app = App.objects.get(app_id=app_id)
+            update_app_protocol(app)
             url = '/product/main/?ID=' + str(app_id) + '#/argue'
             return HttpResponseRedirect(url)
         except Exception as e:
