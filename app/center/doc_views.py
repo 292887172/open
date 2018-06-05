@@ -162,17 +162,35 @@ def doc_device(request):
         ret_msg = copy.deepcopy(DOC_RET_MSG)
         data = request.body.decode("utf-8")
         menu_data = json.loads(data)
+        r = RedisBaseHandler().client  # 调用redis存储
+        r_key = "device_menu_list1"
+
         # 处理菜单数据
         ret = save_device_menu(menu_data)
+
         if not ret:
             ret_msg["status"] = -1
+        else:
+            doc_device = DeviceMenu.objects.all()
+            ret = []
+            for i in doc_device:
+                dm = dict({
+                    "id": i.device_menu_id,
+                    "name": i.menu_name,
+                    "url": i.menu_url,
+                    "ordernum": i.device_key,
+                    "sort": i.device_type
+                })
+                ret.append(dm)
+            r.set(r_key, ret)
         return JsonResponse(ret_msg)
     if request.method == "GET":
         doc_device = DeviceMenu.objects.all()
         r = RedisBaseHandler().client  # 调用redis存储
-        r_key = "device_menu_list"
+        r_key = "device_menu_list1"
         r_value = r.get(r_key)
         if not r_value:
+            print('1',r_value)
             ret = []
             for i in doc_device:
                 dm = dict({
@@ -185,7 +203,8 @@ def doc_device(request):
                 ret.append(dm)
             r.set(r_key,ret)
         else:
-            ret = r_value
+            print('2',r_value)
+            ret = eval(r_value)
         return HttpResponse(json.dumps(ret))
 
 

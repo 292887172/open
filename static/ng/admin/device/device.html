@@ -27,16 +27,16 @@
                                     <input type="text" class="form-control" style="display: inline;width:100px;"
                                            placeholder="设备类型" ng-model="node.sort">
                                     <input type="text" class="form-control" style="display: inline;width:100px;"
-                                           placeholder="设备key" ng-model="node.ordernum" disabled="disabled">
+                                           placeholder="设备key" ng-model="node.ordernum" >
                                     <input type="text" class="form-control" style="display: inline;width:300px;"
                                            placeholder="url地址" ng-model="node.url">
 
                                     <a class="pull-right btn btn-danger btn-xs" data-nodrag
                                        ng-click="remove(this)">删除</a>
-                                    <a class="pull-right btn btn-primary btn-xs"
-                                       style="margin-right: 8px;"><i class="fa fa-plus"></i></a>
-                                    <!--<a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)"
+                                    <!--<a class="pull-right btn btn-primary btn-xs"
                                        style="margin-right: 8px;"><i class="fa fa-plus"></i></a>-->
+                                    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)"
+                                       style="margin-right: 8px;"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                              <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
@@ -44,8 +44,6 @@
                                 </li>
                             </ol>
                         </script>
-
-
                         <div class="row">
                             <div class="col-sm-12">
 

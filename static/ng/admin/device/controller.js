@@ -41,9 +41,9 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
             var nodeData = scope.$modelValue;
             nodeData.nodes.push({
                 id: nodeData.id * 10 + nodeData.nodes.length,
-                title: "新节点" + '.' + (nodeData.nodes.length + 1),
+                title: "产品名称",
                 url: "#",
-                ordernum: ++orderNum,
+                ordernum: "产品key",
 
             });
         };
@@ -51,7 +51,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
         if (typeof $scope.tree_menu1 == "undefined") {
             $scope.tree_menu1 = [{
                 'id': 1,
-                'title': '根节点',
+                'title': '产品名称',
                 'url': "#",
                 "ordernum": 0,
                 'nodes': []
@@ -61,7 +61,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 method: "GET",
                 url: window.location.origin + "/center/doc_device"
             }).success(function (data) {
-                console.log("data", data);
+
                 /*对数据进行处理
                  1、先取出一级菜单
                  */
@@ -76,8 +76,8 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                         obj.ordernum = item1.ordernum;
                         obj.url = item1.url;
                         obj.sort = item1.sort;
-                        //obj.nodes = [];
-                        console.log('xxx',obj);
+                        obj.nodes = [];
+
                         $scope.tree_menu1[0].nodes.push(obj);
                     }
                     // 根据obj.sort进行排序
@@ -107,4 +107,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 });
             }
         }
-    }])
+    }]);
+
+
+
