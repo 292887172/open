@@ -4,18 +4,22 @@ import copy
 import logging
 import json
 
+
+from base.connection import RedisBaseHandler
+from conf.redisconf import REDIS_DB,REDIS_HOST,REDIS_PWD,REDIS_PORT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as simplejson
-
-from common.doc_helper import DocBll, execute_menu
+from common.doc_mysql_help import get_device_list
+from common.doc_helper import DocBll, execute_menu,save_device_menu
 from conf.commonconf import CLOUD_TOKEN
 from conf.docconfig import DOC_RET_MSG
 from model.center.api import Api
 from model.center.doc import Doc
 from model.center.doc_menu import DocMenu
+from model.center.device_menu import DeviceMenu
 from util.jsonutil import MyEncoder
 
 
@@ -148,6 +152,45 @@ def doc_menu(request):
             ret.append(dm)
         # print(ret)
         return HttpResponse(json.dumps(ret))
+
+
+@csrf_exempt
+def doc_device(request):
+    """
+    文档菜单
+    :param request:
+    :return:
+    """
+    if request.method == "POST":
+        ret_msg = copy.deepcopy(DOC_RET_MSG)
+        data = request.body.decode("utf-8")
+        menu_data = json.loads(data)
+        # 处理菜单数据
+        ret = save_device_menu(menu_data)
+        if not ret:
+            ret_msg["status"] = -1
+        return JsonResponse(ret_msg)
+    if request.method == "GET":
+        doc_device = DeviceMenu.objects.all()
+        r = RedisBaseHandler().client  # 调用redis存储
+        r_key = "device_menu_list"
+        r_value = r.get(r_key)
+        if not r_value:
+            ret = []
+            for i in doc_device:
+                dm = dict({
+                    "id": i.device_menu_id,
+                    "name": i.menu_name,
+                    "url": i.menu_url,
+                    "ordernum": i.device_key,
+                    "sort":i.device_type
+                })
+                ret.append(dm)
+            r.set(r_key,ret)
+        else:
+            ret = r_value
+        return HttpResponse(json.dumps(ret))
+
 
 
 def action_doc_menu_view(request):
