@@ -4,15 +4,12 @@ import copy
 import logging
 import json
 
-
 from base.connection import RedisBaseHandler
-from conf.redisconf import REDIS_DB,REDIS_HOST,REDIS_PWD,REDIS_PORT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as simplejson
-from common.doc_mysql_help import get_device_list
 from common.doc_helper import DocBll, execute_menu,save_device_menu
 from conf.commonconf import CLOUD_TOKEN
 from conf.docconfig import DOC_RET_MSG
