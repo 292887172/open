@@ -68,8 +68,6 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 for (var i = 0; i < data.length; i++) {
 
                     var item1 = data[i];
-                     console.log(item1);
-
                         var obj = new Object();
                         obj.id = item1.id;
                         obj.title = item1.name;

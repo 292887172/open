@@ -190,7 +190,6 @@ def doc_device(request):
         r_key = "device_menu_list1"
         r_value = r.get(r_key)
         if not r_value:
-            print('1',r_value)
             ret = []
             for i in doc_device:
                 dm = dict({
@@ -203,7 +202,6 @@ def doc_device(request):
                 ret.append(dm)
             r.set(r_key,ret)
         else:
-            print('2',r_value)
             ret = eval(r_value)
         return HttpResponse(json.dumps(ret))
 

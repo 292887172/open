@@ -67,7 +67,6 @@ angular.module('Admin.doc', ['ngRoute', 'ngDialog'])
                 method: "GET",
                 url: window.location.origin + "/center/doc_menu"
             }).success(function (data) {
-                console.log("data", data);
                 /*对数据进行处理
                  1、先取出一级菜单
                  */
