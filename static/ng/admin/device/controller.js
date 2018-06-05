@@ -53,7 +53,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 'id': 1,
                 'title': '产品名称',
                 'url': "#",
-                "ordernum": 0,
+                "ordernum": '8位产品key',
                 'nodes': []
             }];
             $http({
