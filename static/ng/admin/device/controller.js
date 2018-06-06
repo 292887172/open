@@ -43,7 +43,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 id: nodeData.id * 10 + nodeData.nodes.length,
                 title: "产品名称",
                 url: "#",
-                ordernum: "产品key",
+                device_key: "产品key",
 
             });
         };
@@ -53,7 +53,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 'id': 1,
                 'title': '产品名称',
                 'url': "#",
-                "ordernum": '8位产品key',
+                "device_key": '8位产品key',
                 'nodes': []
             }];
             $http({
@@ -71,7 +71,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                         var obj = new Object();
                         obj.id = item1.id;
                         obj.title = item1.name;
-                        obj.ordernum = item1.ordernum;
+                        obj.device_key = item1.device_key;
                         obj.url = item1.url;
                         obj.sort = item1.sort;
                         obj.nodes = [];
@@ -106,6 +106,9 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
             }
         }
     }]);
-
+    window.onload=function(){
+        var t = document.getElementsByClassName('pull-right1');
+        t.style="margin-right: 8px;display: none"
+    }
 
 

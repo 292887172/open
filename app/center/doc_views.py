@@ -163,7 +163,7 @@ def doc_device(request):
         data = request.body.decode("utf-8")
         menu_data = json.loads(data)
         r = RedisBaseHandler().client  # 调用redis存储
-        r_key = "device_menu_list1"
+        r_key = "device_menu_list2"
 
         # 处理菜单数据
         ret = save_device_menu(menu_data)
@@ -187,8 +187,9 @@ def doc_device(request):
     if request.method == "GET":
         doc_device = DeviceMenu.objects.all()
         r = RedisBaseHandler().client  # 调用redis存储
-        r_key = "device_menu_list1"
+        r_key = "device_menu_list2"
         r_value = r.get(r_key)
+        print(r_value)
         if not r_value:
             ret = []
             for i in doc_device:
@@ -196,7 +197,7 @@ def doc_device(request):
                     "id": i.device_menu_id,
                     "name": i.menu_name,
                     "url": i.menu_url,
-                    "ordernum": i.device_key,
+                    "device_key": i.device_key,
                     "sort":i.device_type
                 })
                 ret.append(dm)
