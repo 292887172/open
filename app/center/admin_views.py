@@ -57,7 +57,6 @@ def admin_home(request):
     def get():
         template = "admin/index.html"
         content = dict()
-        print('zz'*20)
         return render(request, template, content)
 
     def post():
