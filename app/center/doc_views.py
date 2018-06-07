@@ -207,8 +207,6 @@ def doc_device(request):
         else:
             ret = r_value.decode("utf-8")
             ret = json.loads(ret)
-            print(ret,type(ret))
-
         return HttpResponse(json.dumps(ret))
 
 
