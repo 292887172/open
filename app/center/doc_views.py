@@ -167,7 +167,6 @@ def doc_device(request):
         r_key = _code.DEVICE_MENU_PREFIX
         # 处理菜单数据
         ret = save_device_menu(menu_data)
-
         if not ret:
             ret_msg["status"] = -1
         else:
@@ -178,7 +177,7 @@ def doc_device(request):
                     "id": i.device_menu_id,
                     "name": i.menu_name,
                     "url": i.menu_url,
-                    "ordernum": i.device_key,
+                    "device_key": i.device_key,
                     "sort": i.device_type
                 })
                 ret.append(dm)

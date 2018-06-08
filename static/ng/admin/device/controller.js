@@ -19,6 +19,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
 
     .controller('deviceAddCtrl', ['$scope', '$http', "ngDialog", function ($scope, $http, ngDialog) {
         // 对话框
+
         var orderNum = 0 ;
         $scope.addDeviceFormData = {
             "csrfmiddlewaretoken": $scope.csrf_token,
@@ -43,7 +44,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 id: nodeData.id * 10 + nodeData.nodes.length,
                 title: "产品名称",
                 url: "#",
-                device_key: "产品key",
+                ordernum: "产品key",
 
             });
         };
@@ -53,7 +54,7 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                 'id': 1,
                 'title': '产品名称',
                 'url': "#",
-                "device_key": '8位产品key',
+                "ordernum": '8位产品key',
                 'nodes': []
             }];
             $http({
@@ -71,11 +72,10 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                         var obj = new Object();
                         obj.id = item1.id;
                         obj.title = item1.name;
-                        obj.device_key = item1.device_key;
+                        obj.ordernum = item1.device_key;
                         obj.url = item1.url;
                         obj.sort = item1.sort;
                         obj.nodes = [];
-
                         $scope.tree_menu1[0].nodes.push(obj);
                     }
                     // 根据obj.sort进行排序
@@ -107,8 +107,8 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
         }
     }]);
     window.onload=function(){
-        var t = document.getElementsByClassName('pull-right1');
-        t.style="margin-right: 8px;display: none"
-    }
+        var t1 = document.getElementsByClassName('pull-right')[6];
+        t1.style = "margin-right: 8px;display:''"
+    };
 
 
