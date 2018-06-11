@@ -516,7 +516,7 @@ def fetch_all_app_data(page, limit, order_by_names):
                 id=app.app_id,
                 name=app.app_name,
                 logo=app.app_logo,
-                describe=app.app_appid,
+                describe=app.app_appid[-8:],
                 site=app.app_site,
                 nickname=nickname,
                 createtime=date2ymdhms(utctime2localtime(app.app_update_date))
@@ -557,7 +557,7 @@ def fetch_one_app_data(serach,page, limit, order_by_names):
                 id=app.app_id,
                 name=app.app_name,
                 logo=app.app_logo,
-                describe=app.app_appid,
+                describe=app.app_appid[-8:],
                 site=app.app_site,
                 nickname=nickname,
                 createtime=date2ymdhms(utctime2localtime(app.app_update_date))

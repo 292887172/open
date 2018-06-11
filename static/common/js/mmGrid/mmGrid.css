@@ -1,5 +1,6 @@
 
 .mmGrid{
+    height:773px;
     position: relative;
     overflow: hidden;
     background: #fff;
@@ -231,6 +232,7 @@
 
 /* 内容包装器 */
 .mmGrid .mmg-bodyWrapper{
+    height:737px;
     position: relative;
     overflow: auto;
     width: 9999px;
