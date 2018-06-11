@@ -106,3 +106,5 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
         }
     }]);
 
+
+

@@ -31,12 +31,10 @@
 
                                     <a class="pull-right btn btn-danger btn-xs" data-nodrag
                                        ng-click="remove(this)">删除</a>
-                                    <!--<a class="pull-right btn btn-primary btn-xs"
-                                       style="margin-right: 8px;"><i class="fa fa-plus"></i></a>-->
+
                                     <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)"
                                        style="margin-right: 8px"><i class="fa fa-plus"></i></a>
                                 </div>
-
                             </div>
                             <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
                                 <li ng-repeat="node in node.nodes" ui-tree-node>
