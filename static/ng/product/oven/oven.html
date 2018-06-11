@@ -99,10 +99,10 @@
 
     <script>
         var userID;
-         window.onload=function () {
-             var a = getCookie('COOKIE_USER_ACCOUNT');
-              userID ='test'+a+'-oven'  //订阅id
-         };
+
+         var a = getCookie('COOKIE_USER_ACCOUNT');
+          userID ='test'+a+'-oven'  //订阅id
+
          function getCookie(name) {
             var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
             if (arr = document.cookie.match(reg))
@@ -241,6 +241,7 @@
             var blockHour = document.getElementById('block-range-hour');
             var blockMin = document.getElementById('block-range-min');
            nowtime =Math.round(nowtime)
+
             <!-- 发送数据 ID | 模式 | 温度 | 时间 | 工作状态 | 操作 | 风扇 | 电灯 |-->
             send_data = {'did': userID, 'model': devices.oven_type,'temp':tempplus,'time':nowtime,'status':status,'operation':operation,'wind':wind,'light':light};
            $.post('/product/control', JSON.stringify(send_data).toString(), function (res) {

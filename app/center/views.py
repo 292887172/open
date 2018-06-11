@@ -105,7 +105,7 @@ def home(request):
     fac_info = get_factory_info(request.user.account_from_id)
     return render(request, "center/home.html", locals())
 
-
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         account = request.POST.get("account", "")

@@ -155,3 +155,4 @@ class ResponseCode(object):
     DEVICE_CONTROL_PREFIX = 'device_control_prefix'
     DEVICE_CONF_PREFIX = 'device_conf_prefix'
     TEST_DEVICE_STATUS_PREFIX = 'test_device_status_prefix'
+    DEVICE_MENU_PREFIX = 'device_menu_list_1'

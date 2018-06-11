@@ -77,11 +77,11 @@ def product_list(request):
                         result.app_logo = APP_LOGO[i]
                         result.save()
         try:
-            if request.user.developer:
+            if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
             else:
                 developer = ''
-            keyword = request.GET.get("search", "")
+            keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
             else:
@@ -96,6 +96,7 @@ def product_list(request):
         unpublished_apps = []
         publishing_apps = []
         failed_apps = []
+        #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
             # 已经发布
@@ -168,7 +169,7 @@ def product_add(request):
             return HttpResponseRedirect(reverse("center"))
         else:
             developer = request.user.developer
-        factory_list = get_factory_list()
+        factory_list = get_factory_list()  # 厂家列表
         template = "product/add.html"
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         content = dict(
@@ -179,6 +180,7 @@ def product_add(request):
         return render(request, template,content)
 
     def post():
+        print(request.form)
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
@@ -215,7 +217,10 @@ def product_add(request):
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                         device_conf, app_factory_id, app_group, app_logo)
             from common.celerytask import add
+            r = Redis3(rdb=6).client
             add.delay(app_id)
+            app = App.objects.get(app_id=app_id)
+            update_app_protocol(app)
             url = '/product/main/?ID=' + str(app_id) + '#/argue'
             return HttpResponseRedirect(url)
         except Exception as e:
@@ -236,7 +241,7 @@ def product_add(request):
 @login_required
 @csrf_exempt
 
-def product_main(request):
+def  product_main(request):
     """
     应用详情
     :param request:

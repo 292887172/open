@@ -17,7 +17,7 @@
 <script type="text/javascript">
     // 应用图标Html
     // 提醒用户进行key字段搜索
-    $("input").attr("placeholder","通过key进行搜索");
+    $("input").attr("placeholder","通过key/名称搜索");
     var toLogoHtml = function (val) {
         return '<img src="' + val + '" onerror="this.src=\'/static/image/global/default.png\'" width=64 height=64 alt="应用图标"/>'
     };
@@ -60,7 +60,7 @@
         sortStatus: 'desc',
         remoteSort: true,
         fullWidthRows: true,
-        height: 550,
+        height: 800,
         cols: cols,
         plugins: [
             $('#paginator').mmPaginator()
