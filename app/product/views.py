@@ -241,7 +241,7 @@ def product_add(request):
 @login_required
 @csrf_exempt
 
-def product_main(request):
+def  product_main(request):
     """
     应用详情
     :param request:

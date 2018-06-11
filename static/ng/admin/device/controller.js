@@ -84,7 +84,6 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
                     })
 
             })
-
         }
         // 保存操作
         $scope.submitDeviceMenuForm = function (scope) {
@@ -106,9 +105,4 @@ angular.module('Admin.device', ['ngRoute', 'ngDialog'])
             }
         }
     }]);
-    window.onload=function(){
-        var t1 = document.getElementsByClassName('pull-right')[6];
-        t1.style = "margin-right: 8px;display:''"
-    };
-
 
