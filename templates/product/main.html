@@ -133,20 +133,24 @@
         content: "1";
         color: #fff;
     }
-    .fa-inbox:before {
+    .fa-slider:before{
         content: "2";
         color: #fff;
     }
-    .fa-file-text-o:before {
+    .fa-inbox:before {
         content: "3";
         color: #fff;
     }
-    .fa-desktop:before {
+    .fa-file-text-o:before {
         content: "4";
         color: #fff;
     }
-    .fa-text:before{
+    .fa-desktop:before {
         content: "5";
+        color: #fff;
+    }
+    .fa-text:before{
+        content: "6";
         color: #fff;
     }
 
@@ -274,6 +278,16 @@
                     <div class="menuBox">
 
                         <ul>
+                            <li id="protocolMenu" class="jsNavItem" data-id="protocolMenu" ng-click="nav.selected('protocolMenu')">
+                                <a href="#/protocol">
+                                    <i class="fa fa-slider "></i>定义协议
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+
+                        <ul>
                             <li id="argueMenu" class="jsNavItem" data-id="argueMenu" ng-click="nav.selected('argueMenu')">
                                 <a href="#/argue">
                                     <i class="fa fa-inbox"></i>定义功能
@@ -349,6 +363,7 @@
     <script src="{% static "ng/product/device/controller.js" %}"></script>
     <script src="{% static "ng/product/content/controller.js" %}"></script>
     <script src="{% static "ng/product/oven/controller.js" %}"></script>
+    <script src="{% static "ng/product/protocol/controller.js" %}"></script>
     <script src="/static/js/product/bootbox.js"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
