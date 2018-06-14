@@ -26,11 +26,8 @@
         border-bottom-width: 0px;
         border-right-width: 0px;
     }
-    #ids{
-        display: none;
-    }
+
 </style>
-<link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
 <div class="box2 relative">
     <div class="hl-help">
         <span class="linkBlue" style="font-size:20px">定义协议</span>
@@ -44,7 +41,7 @@
 
     <hr>
     <div class="" style="margin-left: 50px">
-        <div class="col-md-4" style="display: inline;width: 300px;margin-left: 50px">
+        <div class="col-md-4" style="display: inline;width: 300px;margin-left: 50px;padding-left:0px">
             <input type="radio" name="xx" class="standard" checked value="standard">标准协议
         </div>
         <div class="" style="display: inline;margin-left: 50px">
@@ -104,7 +101,7 @@
     <hr>
     <div style="margin-top: 10px;margin-left: 100px;">
         <span style="font-size: large">帧头</span>
-        <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
@@ -130,7 +127,7 @@
     </div>
     <div style="margin-top: 10px;margin-left: 100px;">
         <span style="font-size: large">流水号</span>
-        <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
@@ -145,9 +142,9 @@
         </div>
         <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
     </div>
-    <div style="margin-top: 10px;margin-left: 100px;" id="ids">
+    <div style="margin-top: 10px;margin-left: 100px;" class="ids">
         <span style="font-size: large">设备类型</span>
-        <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+        <input type="checkbox" class=ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
@@ -162,9 +159,9 @@
         </div>
         <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
     </div>
-    <div style="margin-top: 10px;margin-left: 100px;" id="ids">
+    <div style="margin-top: 10px;margin-left: 100px;" class="ids">
         <span style="font-size: large">协议版本</span>
-        <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
@@ -181,7 +178,7 @@
     </div>
     <div style="margin-top: 10px;margin-left: 100px;">
         <span style="font-size: large">帧数据类型</span>
-        <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
@@ -209,12 +206,12 @@
                 <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 46px;width: 50px" value="">
             </div>
         </div>
-        <div style="margin-top: 50px" id="ids">
+        <div style="margin-top: 50px;display: none" class="ids">
             <button style="width: 142px;height: 22px;background-color: #169bd5;color: white">自定义添加数据类型</button>
         </div>
-        <div style="margin-top: 10px">
+        <div style="margin-top: 25px">
             <span style="font-size: large">帧长</span>
-            <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+            <input type="checkbox" class=ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         </div>
         <div class="u208 col-md-2">
             <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
@@ -227,7 +224,7 @@
         </div>
         <div style="margin-top: 50px">
             <span style="font-size: large">帧数据</span>
-            <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+            <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         </div>
         <div class="u208 col-md-2">
             <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
@@ -239,7 +236,7 @@
         </div>
         <div style="margin-top: 50px">
             <span style="font-size: large">帧检验</span>
-            <input type="checkbox" name="dd" id="ids" style="margin-left: 30px"><span id="ids">启用</span>
+            <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
         </div>
         <div class="u208 col-md-2">
             <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
@@ -273,11 +270,22 @@
 
 <script>
     $(".custom").on('click',function () {
-        console.log('xxx');
-        var t = document.getElementById("ids");
-        console.log(t);
-        t.style.display='';
+        var list = document.getElementsByClassName("ids");
+        for (var i = 0,l = list.length; i<l;i++) {
+            var obj = list[i];
+            obj.style.display='';
+        }
+
     })
+    $(".standard").on('click',function () {
+        var list = document.getElementsByClassName("ids");
+        for (var i = 0,l = list.length; i<l;i++) {
+            var obj = list[i];
+            obj.style.display='none';
+        }
+
+    })
+
 
 
 </script>
