@@ -535,7 +535,7 @@ def fetch_all_app_data(page, limit, order_by_names):
         return ""
 def fetch_one_app_data(serach,page, limit, order_by_names):
     try:
-        pager = Paginator(App.objects.filter(Q(app_appid__iendswith=serach)|Q(app_name__icontains=serach)).order_by(order_by_names),
+        pager = Paginator(App.objects.filter(Q(app_appid__icontains=serach)|Q(app_name__icontains=serach)).order_by(order_by_names),
                           int(limit))
         apps = pager.page(int(page))
         total_count = pager.count
