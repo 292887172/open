@@ -302,3 +302,17 @@
       `ebf_df_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       PRIMARY KEY (`ebf_df_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新增产品功能审核表';
+
+    -- ----------------------------
+    -- Table structure for ebt_device_function
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_factory_protocol`;
+    CREATE TABLE `ebt_factory_protocol` (
+      `ebf_fp_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+      `ebf_device_key` varchar(10) NOT NULL COMMENT '产品唯一key',
+      `ebf_factory_protocol_type` int(2) NOT NULL DEFAULT '0' COMMENT '协议类型(0:标准协议，1：厂家自定义协议)',
+      `ebf_factory_protocol_content` text COMMENT '协议具体内容',
+      `ebf_df_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_df_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_fp_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='厂家协议定义表';

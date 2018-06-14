@@ -3,7 +3,7 @@ var checkSubmitFlg = false;
 function create_procuct(type, type1) {
     $("#ScreenSize").text("(7寸)");
     if (type1 == "wifi") {
-        $(".dtbox").hide();
+        // $(".dtbox").hide();
         $(".technology").hide();
     }
     else {
