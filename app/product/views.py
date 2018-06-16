@@ -340,6 +340,7 @@ def  product_main(request):
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
             for ii in mlist:
                 res_list_data = ii.protocol_factory_content
+                print(res_list_data)
                 res_list_data1 = json.loads(res_list_data)
                 return HttpResponse(json.dumps(res_list_data1))
 
@@ -565,9 +566,10 @@ def  product_main(request):
             return HttpResponse(json.dumps({"data":"xxx"}, separators=(",", ":")))
 
         else:
-            m = Protocol.objects.all().filter(protocol_device_key='nyjYyfE6')
+            m = Protocol.objects.all().filter(protocol_device_key=data_protocol)
             for i in m:
                 res_ = i.protocol_factory_content
+                print(res_)
                 res_ = json.loads(res_)
             return HttpResponse(json.dumps(res_))
 
