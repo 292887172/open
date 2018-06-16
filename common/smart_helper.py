@@ -177,8 +177,11 @@ def get_factory_info(user_id):
         conn.close()
     return ''
 def update_protocol(list_key,data_sql_update):
-
-    t = Protocol.objects.filter(protocol_device_key=list_key).update(protocol_factory_content=data_sql_update)
+    t = Protocol.objects.filter(protocol_device_key=list_key)
+    if not t:
+        Protocol.objects.create(protocol_device_key=list_key,protocol_factory_content=data_sql_update,protocol_create_date=datetime.datetime.utcnow(),protocol_update_date=datetime.datetime.utcnow())
+    else:
+        t.update(protocol_factory_content=data_sql_update)
 
 def get_factory_id(factory_name):
     """

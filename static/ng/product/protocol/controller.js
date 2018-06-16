@@ -12,8 +12,8 @@ angular.module('Product.protocol', ['ngRoute'])
         var xx = 0;
         if( xx == 0) {
          $http({
-                method: "POST",
-                url: location.href,
+                method: "GET",
+                url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,
                 data: {'key': $scope.$parent.$parent.key},
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
@@ -37,10 +37,10 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.start_check_number =  $("#input_04").val();
              $scope.response.end_check_number =  $("#input_05").val();
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
-             console.log($scope.response);
+             console.log( $scope.response)
              $http({
                     method: "POST",
-                    url: location.href,
+                    url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,
                     data: $scope.response,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function (response) {$scope.response = response
