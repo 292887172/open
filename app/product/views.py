@@ -28,6 +28,7 @@ from conf.commonconf import CLOUD_TOKEN,KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
+from model.center.protocol import Protocol
 from base.connection import Redis3
 
 import hashlib
@@ -299,6 +300,8 @@ def  product_main(request):
                     return [i, opera_data[i]]
             return []
     def post():
+        data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
+        data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
         post_data = request.POST.get("name")
         id = request.POST.get("id")
@@ -307,6 +310,39 @@ def  product_main(request):
         # 根据ID获取到数据库中的设备配置信息
         app = App.objects.get(app_id=app_id)
         device_conf = gen_app_default_conf(app.app_device_type)
+        if data_protocol_list.get('action','') == 'update_protocol':
+            data_sql = {}
+            list_t = data_protocol_list.get('frame_content','')
+            list_key = data_protocol_list.get('key','')
+            list_f =[
+                {"name": "frame_head","title":"帧头","is_enable":"true","number": list_t[0],"length": list_t[1],"code":[{"value": list_t[2], "desc": "发送码"},{"value":list_t[3], "desc": "响应码"}]},
+                {"name": "flow_number","title":"流水号","is_enable":"true","number": list_t[4],"length":list_t[5]},
+                {"name": "device_type","title":"设备类型","is_enable":"true","number": list_t[6],"length":list_t[7]},
+                {"name": "protocol_version","title":"协议版本","is_enable":"true","number": list_t[8],"length":list_t[9]},
+                {"name": "frame_type","title":"帧数据类型","is_enable":"true","number": list_t[10],"length":list_t[11],"code":[{"value":list_t[12], "desc":"心跳帧"},{"value":list_t[13], "desc":"握手帧"},{"value":list_t[14], "desc":"查询帧"},{"value":list_t[15], "desc":"全指令控制帧"},{"value":list_t[16], "desc":"单指令控制帧"}, {"value":list_t[17], "desc":"故障报警帧"}]},
+                {"name": "frame_length","title":"帧长","is_enable":"true","number": list_t[18],"length":list_t[19]},
+                {"name": "data_domain","title":"数据域","is_enable":"true","number": list_t[20],"length":list_t[21]},
+                {"name": "check","title":"校验","is_enable":"true","number": list_t[22],"length":list_t[23]}]
+            data_sql['is_single_instruction'] = data_protocol_list.get('is_single_instruction')
+            data_sql['support_response_frame'] = data_protocol_list.get('support_response_frame')
+            data_sql['support_serial'] = data_protocol_list.get('support_serial')
+            data_sql['active_heartbeat'] = data_protocol_list.get('active_heartbeat')
+            data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
+            data_sql['support_repeat'] = data_protocol_list.get('support_repeat')
+            data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
+            data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
+            data_sql['frame_content'] = list_f
+            data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
+            data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
+            data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+            data_sql_update = json.dumps(data_sql)
+            update_protocol(list_key,data_sql_update)
+            mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
+            for ii in mlist:
+                res_list_data = ii.protocol_factory_content
+                res_list_data1 = json.loads(res_list_data)
+                return HttpResponse(json.dumps(res_list_data1))
+
         opera_data = []
         try:
             if app.device_conf:
@@ -525,8 +561,16 @@ def  product_main(request):
                 ret = reset_app_secret(app_id)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
+        if data_protocol == 'factory_list1':
+            return HttpResponse(json.dumps({"data":"xxx"}, separators=(",", ":")))
+
         else:
-            res["code"] = 10002
+            m = Protocol.objects.all().filter(protocol_device_key='nyjYyfE6')
+            for i in m:
+                res_ = i.protocol_factory_content
+                res_ = json.loads(res_)
+            return HttpResponse(json.dumps(res_))
+
         return HttpResponse(json.dumps(res, separators=(",", ":")))
 
     if request.method == "GET":

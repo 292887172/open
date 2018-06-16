@@ -101,6 +101,10 @@ def get_app_default_logo(value):
         return ''
 
 
+
+
+
+
 def gen_app_default_conf(val):
     smoke = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
