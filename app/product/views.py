@@ -16,7 +16,7 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
-from common.app_api_helper import ApiHandler,t
+from common.app_api_helper import ApiHandler
 from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
 from base.const import StatusCode
@@ -542,45 +542,36 @@ def  product_main(request):
 @csrf_exempt
 def protocol(request):
     if request.method == 'GET':
-
         key = request.GET.get('key','')
-        print(key)
-
-        m = Protocol.objects.all().filter(protocol_device_key=key)
-        if m:
-            for i in m:
-                res_ = i.protocol_factory_content
-                res_ = json.loads(res_)
-                return HttpResponse(json.dumps(res_))
-        else:
-          return HttpResponse(json.dumps(t))
+        t = select_protocol(key)
+        return HttpResponse(json.dumps(t))
     if request.method == "POST":
         data_protocol_list = json.loads(request.body.decode('utf-8'))
         if data_protocol_list.get('action', '') == 'update_protocol':
 
             data_sql = {}
             list_fivechoose = data_protocol_list.get('fivechoose','')
-            print(list_fivechoose,type(list_fivechoose))
-
             list_t = data_protocol_list.get('frame_content', '')
+            list_taf = data_protocol_list.get('frame_taf', '')
+            print(list_taf)
             list_key = data_protocol_list.get('key', '')
             list_f = [
-                {"name": "frame_head", "title": "帧头", "is_enable": "true", "number": list_t[0], "length": list_t[1],
+                {"name": "frame_head", "title": "帧头", "is_enable": list_taf[0], "number": list_t[0], "length": list_t[1],
                  "code": [{"value": list_t[2], "desc": "发送码"}, {"value": list_t[3], "desc": "响应码"}]},
-                {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": list_t[4], "length": list_t[5]},
-                {"name": "device_type", "title": "设备类型", "is_enable": "true", "number": list_t[6], "length": list_t[7]},
-                {"name": "protocol_version", "title": "协议版本", "is_enable": "true", "number": list_t[8],
+                {"name": "flow_number", "title": "流水号", "is_enable": list_taf[1], "number": list_t[4], "length": list_t[5]},
+                {"name": "device_type", "title": "设备类型", "is_enable": list_taf[2], "number": list_t[6], "length": list_t[7]},
+                {"name": "protocol_version", "title": "协议版本", "is_enable": list_taf[3], "number": list_t[8],
                  "length": list_t[9]},
-                {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": list_t[10],
+                {"name": "frame_type", "title": "帧数据类型", "is_enable": list_taf[4], "number": list_t[10],
                  "length": list_t[11],
                  "code": [{"value": list_t[12], "desc": "心跳帧"}, {"value": list_t[13], "desc": "握手帧"},
                           {"value": list_t[14], "desc": "查询帧"}, {"value": list_t[15], "desc": "全指令控制帧"},
                           {"value": list_t[16], "desc": "单指令控制帧"}, {"value": list_t[17], "desc": "故障报警帧"}]},
-                {"name": "frame_length", "title": "帧长", "is_enable": "true", "number": list_t[18],
+                {"name": "frame_length", "title": "帧长", "is_enable": list_taf[5], "number": list_t[18],
                  "length": list_t[19]},
-                {"name": "data_domain", "title": "数据域", "is_enable": "true", "number": list_t[20],
+                {"name": "data_domain", "title": "数据域", "is_enable": list_taf[6], "number": list_t[20],
                  "length": list_t[21]},
-                {"name": "check", "title": "校验", "is_enable": "true", "number": list_t[22], "length": list_t[23]}]
+                {"name": "check", "title": "校验", "is_enable": list_taf[7], "number": list_t[22], "length": list_t[23]}]
 
             data_sql['is_single_instruction'] = list_fivechoose[0]
             data_sql['support_response_frame'] = list_fivechoose[1]
@@ -595,7 +586,6 @@ def protocol(request):
             data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
             data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
             data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-            print(data_sql)
             data_sql_update = json.dumps(data_sql,ensure_ascii=False)
             update_protocol(list_key, data_sql_update)
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)

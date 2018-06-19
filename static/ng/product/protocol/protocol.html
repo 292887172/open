@@ -29,6 +29,13 @@
         border-right-width: 0px;
 
     }
+    .btnn{
+        opacity: 0.9%;
+        width: 62px;
+        height: 42px;
+        color: white;
+        background-color: #f35019;
+    }
 </style>
 <div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl">
 
@@ -112,9 +119,11 @@
     </div>
     <hr>
     <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
-        <span style="font-size: large">{[{ x.title }]},{[{ x.is_enable }]}</span>
+        <span style="font-size: large">{[{ x.title }]}</span>
 
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none" ng-if="x.is_enable" checked><span
+        <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
+        <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
+        <span
             class="ids" style="display: none">启用</span>
         <br>
         <br>
@@ -145,9 +154,9 @@
     <div class="u208 col-md-2 " style="margin-left: 100px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
         <select style="display: block;margin-top: 4px;height: 18px;width: 70px" name="checkout_algorithm" id="select_option">
-            <option value="SUM" selected="selected">SUM(加和效验)</option>
-            <option value="CRC-8">CRC-8</option>
-            <option value="CRC-16">CRC-16</option>
+            <option value="sum" selected="selected">SUM(加和效验)</option>
+            <option value="crc-8">CRC-8</option>
+            <option value="crc-16">CRC-16</option>
         </select>
 
     </div>
@@ -164,7 +173,7 @@
 
     </div>
     <div style="margin-top: 60px">
-        <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn btn-success btn-s-xs" ng-click="SubmitProtocol()">保存
+        <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
                         </button>
         </span>
      </div>
@@ -182,10 +191,9 @@
         }
         var list1 = document.getElementsByClassName("bianji");
         for (var ii = 0, ll = list1.length; ii < ll; ii++) {
-            $('input[class=bianji]').removeAttr("readonly");
+            $('input[class=bianji]').removeAttr("disabled");
         }
         var list11 = document.getElementsByClassName("bblchk");
-        console.log(list11)
         for (var iii = 0, lll = list11.length; iii < lll; iii++) {
             list11[iii].disabled=false;
         }
@@ -199,7 +207,7 @@
         }
         var lis1 = document.getElementsByClassName("bianji");
         for (var jj = 0, ll = lis1.length; jj < ll; jj++) {
-            $('input[class=bianji]').attr("readonly","readonly");
+            $('input[class=bianji]').attr("disabled","disabled");
         }
         var lis11 = document.getElementsByClassName("bblchk");
         for (var jjj = 0, lll = lis11.length; jjj < lll; jjj++) {
