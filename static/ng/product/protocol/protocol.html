@@ -157,7 +157,7 @@
     <hr>
 
     <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
-        <input style="margin-left: 0px" value="{[{ x.title }]}">
+        <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
         <span
