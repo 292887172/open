@@ -128,7 +128,7 @@
 
             <div class="u208">
                 <span style="display: block;margin-top: 11px;margin-left: 10px">心跳频率：</span>
-                <input id='input_01' class="bianji" placeholder="500ms" style="margin-left: 20px;" readonly="readonly" value="{[{ response.heart_rate}]}">
+                <input id='input_01' class="bianji" placeholder="500ms" style="margin-left: 20px;" disabled="disabled" value="{[{ response.heart_rate}]}">
 
             </div>
         </div>
@@ -139,11 +139,11 @@
             <div class="">
                 <div class="u208 col-md-4">
                     <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发间隔：</span>
-                    <input id='input_02' class="bianji" readonly="readonly" placeholder="100ms" value="{[{ response.repeat_rate}]}">
+                    <input id='input_02' class="bianji" disabled="disabled" placeholder="100ms" value="{[{ response.repeat_rate}]}">
                 </div>
                 <div class="u208 col-md-4 col-md-offset-1">
                     <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发次数：</span>
-                    <input id='input_03' class="bianji" readonly="readonly" placeholder="5" style="margin-left: 27px"
+                    <input id='input_03' class="bianji" disabled="disabled" placeholder="5" style="margin-left: 27px"
                            value="{[{ response.repeat_count}]}">
                 </div>
             </div>
@@ -167,17 +167,17 @@
         <div>
             <div class="u208 col-md-2">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-                <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 24px" value="{[{ x.number }]}">
+                <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px" value="{[{ x.number }]}">
             </div>
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 24px" value="{[{ x.length }]}">
+                <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px" value="{[{ x.length }]}">
             </div>
             <div ng-if="x.code">
                 <div class="u208 col-md-2" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code">
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
-                    <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 21px;text-align: center"
+                    <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 21px;text-align: center"
                            value="{[{ c.value }]}">
                 </div>
 
@@ -228,8 +228,7 @@
 <script>
 
     $(".custom").on('click', function () {
-        var r = document.getElementsByTagName("input");
-        r.readOnly="readonly";
+
         var list = document.getElementsByClassName("ids");
         for (var i = 0, l = list.length; i < l; i++) {
             var obj = list[i];
@@ -241,7 +240,11 @@
         }
         var list11 = document.getElementsByClassName("bblchk");
         for (var iii = 0, lll = list11.length; iii < lll; iii++) {
-            list11[iii].disabled=false;
+            list11[iii].disabled='false';
+        }
+        var list111 = document.getElementsByClassName("baf");
+        for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
+            list111[iiii].disabled='false';
         }
     });
     $(".standard").on('click', function () {
