@@ -13,28 +13,6 @@ import logging
 from common.code import ResponseCode
 
 _cache_key = ResponseCode()
-t = {"is_single_instruction": "true",
-                "support_response_frame": "true",
-                "support_serial": "true",
-                "active_heartbeat": "true",
-                "heart_rate": "",
-                "support_repeat":"true",
-                "repeat_rate": "",
-                "repeat_count": "",
-                "frame_content": [
-                {"name": "frame_head","title":"帧头","is_enable":"true","number": "","length": "","code":[{"value": "", "desc": "发送码"},{"value":"", "desc": "响应码"}]},
-                {"name": "flow_number","title":"流水号","is_enable":"true","number": "","length":""},
-                {"name": "device_type","title":"设备类型","is_enable":"true","number": "","length":""},
-                {"name": "protocol_version","title":"协议版本","is_enable":"true","number": "","length":""},
-                {"name": "frame_type","title":"帧数据类型","is_enable":"true","number": "","length":"","code":[{"value":"", "desc":"心跳帧"},{"value":"", "desc":"握手帧"},{"value":"", "desc":"查询帧"},{"value":"", "desc":"全指令控制帧"},{"value":"", "desc":"单指令控制帧"}, {"value":"", "desc":"故障报警帧"}]},
-                {"name": "frame_length","title":"帧长","is_enable":"true","number": "","length":""},
-                {"name": "data_domain","title":"数据域","is_enable":"true","number": "","length":""},
-                {"name": "check","title":"校验","is_enable":"true","number": "","length":""}
-                ],
-                "checkout_algorithm":"sum",
-                "start_check_number": "",
-                "end_check_number": ""
-                }
 
 class ApiHandler(object):
     """

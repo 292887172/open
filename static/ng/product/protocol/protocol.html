@@ -29,6 +29,13 @@
         border-right-width: 0px;
 
     }
+    .btnn{
+        opacity: 0.9;
+        width: 62px;
+        height: 42px;
+        color: white;
+        background-color: #f35019;
+    }
     /*预览帧样式*/
     .num {
       width: 70px;
@@ -97,20 +104,26 @@
     <hr>
     <div style="margin-left: 100px">
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard" ng-if="response.is_single_instruction">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false">
             <span class="linkBlue">是否支持单指令</span>
         </div>
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard" ng-if="response.support_response_frame ">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" value="false" ng-if="response.support_response_frame==false">
             <span class="linkBlue">是否控制端发送响应帧</span>
         </div>
         <div class="" style="display: inline">
-            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_serial">
+            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.support_serial==true">
+            <input type="checkbox"  class="bblchk bianji" disabled="disabled" value="false" ng-if="response.support_serial==false">
+
             <span class="linkBlue">是否控制端为串口通讯</span>
         </div>
         <br>
         <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" name="yy" value="standard" ng-if="response.active_heartbeat">
+            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.active_heartbeat==true">
+            <input type="checkbox" class="bblchk bianji" disabled="disabled" value="false" ng-if="response.active_heartbeat==false">
+
             <span class="linkBlue">是否主发起心跳查询</span>
 
             <div class="u208">
@@ -120,7 +133,8 @@
             </div>
         </div>
         <div class=" col-md-7" style="width: 300px;height: 60px;">
-            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_repeat">
+            <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true">
+            <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false">
             <span class="linkBlue">是否支持重发</span>
             <div class="">
                 <div class="u208 col-md-4">
@@ -142,9 +156,11 @@
     </div>
     <hr>
     <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
-        <span style="font-size: large">{[{ x.title }]},{[{ x.is_enable }]}</span>
+        <span style="font-size: large">{[{ x.title }]}</span>
 
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none" ng-if="x.is_enable" checked><span
+        <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
+        <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
+        <span
             class="ids" style="display: none">启用</span>
         <br>
         <br>
@@ -175,9 +191,9 @@
     <div class="u208 col-md-2 " style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
         <select style="display: block;margin-top: 4px;height: 18px;width: 70px" name="checkout_algorithm" id="select_option">
-            <option value="SUM" selected="selected">SUM(加和效验)</option>
-            <option value="CRC-8">CRC-8</option>
-            <option value="CRC-16">CRC-16</option>
+            <option value="sum" selected="selected">SUM(加和效验)</option>
+            <option value="crc-8">CRC-8</option>
+            <option value="crc-16">CRC-16</option>
         </select>
 
     </div>
@@ -203,7 +219,7 @@
     </div>
 
     <div style="margin-top: 60px">
-        <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn btn-success btn-s-xs" ng-click="SubmitProtocol()">保存
+        <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
                         </button>
         </span>
     </div>
@@ -221,7 +237,11 @@
         }
         var list1 = document.getElementsByClassName("bianji");
         for (var ii = 0, ll = list1.length; ii < ll; ii++) {
-            $('input[class=bianji]').removeAttr("readonly");
+            $('input[class=bianji]').removeAttr("disabled");
+        }
+        var list11 = document.getElementsByClassName("bblchk");
+        for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+            list11[iii].disabled=false;
         }
     });
     $(".standard").on('click', function () {
@@ -233,7 +253,11 @@
         }
         var lis1 = document.getElementsByClassName("bianji");
         for (var jj = 0, ll = lis1.length; jj < ll; jj++) {
-            $('input[class=bianji]').attr("readonly","readonly");
+            $('input[class=bianji]').attr("disabled","disabled");
+        }
+        var lis11 = document.getElementsByClassName("bblchk");
+        for (var jjj = 0, lll = lis11.length; jjj < lll; jjj++) {
+            lis11[jjj].disabled=true;
         }
 
     })
