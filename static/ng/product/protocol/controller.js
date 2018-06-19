@@ -28,6 +28,15 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.heart_rate =  $("#input_01").val();
              $scope.response.repeat_rate =  $("#input_02").val();
              $scope.response.repeat_count =  $("#input_03").val();
+             //input checked case
+             var list_0 = [];
+             var for1 = document.getElementsByClassName("bblchk");
+             for (var u = 0, lll1 = for1.length; u < lll1; u++) {
+                 var obj = for1[u].checked;
+                 list_0.push(obj)
+            }
+             $scope.response.fivechoose = list_0;
+             // 获取循环体的value
              var list_1 = [];
              $(".x1x input[value]").each(function () {
                  var v = $(this).val();
@@ -37,7 +46,7 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.start_check_number =  $("#input_04").val();
              $scope.response.end_check_number =  $("#input_05").val();
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
-             console.log( $scope.response)
+             console.log( $scope.response);
              $http({
                     method: "POST",
                     url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,

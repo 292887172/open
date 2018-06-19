@@ -60,20 +60,26 @@
     <hr>
     <div style="margin-left: 100px">
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard" ng-if="response.is_single_instruction">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false">
             <span class="linkBlue">是否支持单指令</span>
         </div>
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard" ng-if="response.support_response_frame">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true">
+            <input type="checkbox" class="bblchk bianji"  disabled="disabled" value="false" ng-if="response.support_response_frame==false">
             <span class="linkBlue">是否控制端发送响应帧</span>
         </div>
         <div class="" style="display: inline">
-            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_serial">
+            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.support_serial==true">
+            <input type="checkbox"  class="bblchk bianji" disabled="disabled" value="false" ng-if="response.support_serial==false">
+
             <span class="linkBlue">是否控制端为串口通讯</span>
         </div>
         <br>
         <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" name="yy" value="standard" ng-if="response.active_heartbeat">
+            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.active_heartbeat==true">
+            <input type="checkbox" class="bblchk bianji" disabled="disabled" value="false" ng-if="response.active_heartbeat==false">
+
             <span class="linkBlue">是否主发起心跳查询</span>
 
             <div class="u208">
@@ -83,7 +89,8 @@
             </div>
         </div>
         <div class=" col-md-7" style="width: 300px;height: 60px;">
-            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_repeat">
+            <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true">
+            <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false">
             <span class="linkBlue">是否支持重发</span>
             <div class="">
                 <div class="u208 col-md-4">
@@ -177,6 +184,11 @@
         for (var ii = 0, ll = list1.length; ii < ll; ii++) {
             $('input[class=bianji]').removeAttr("readonly");
         }
+        var list11 = document.getElementsByClassName("bblchk");
+        console.log(list11)
+        for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+            list11[iii].disabled=false;
+        }
     });
     $(".standard").on('click', function () {
 
@@ -188,6 +200,10 @@
         var lis1 = document.getElementsByClassName("bianji");
         for (var jj = 0, ll = lis1.length; jj < ll; jj++) {
             $('input[class=bianji]').attr("readonly","readonly");
+        }
+        var lis11 = document.getElementsByClassName("bblchk");
+        for (var jjj = 0, lll = lis11.length; jjj < lll; jjj++) {
+            lis11[jjj].disabled=true;
         }
 
     })

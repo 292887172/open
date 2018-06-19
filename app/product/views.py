@@ -559,6 +559,9 @@ def protocol(request):
         if data_protocol_list.get('action', '') == 'update_protocol':
 
             data_sql = {}
+            list_fivechoose = data_protocol_list.get('fivechoose','')
+            print(list_fivechoose,type(list_fivechoose))
+
             list_t = data_protocol_list.get('frame_content', '')
             list_key = data_protocol_list.get('key', '')
             list_f = [
@@ -578,18 +581,21 @@ def protocol(request):
                 {"name": "data_domain", "title": "数据域", "is_enable": "true", "number": list_t[20],
                  "length": list_t[21]},
                 {"name": "check", "title": "校验", "is_enable": "true", "number": list_t[22], "length": list_t[23]}]
-            data_sql['is_single_instruction'] = data_protocol_list.get('is_single_instruction')
-            data_sql['support_response_frame'] = data_protocol_list.get('support_response_frame')
-            data_sql['support_serial'] = data_protocol_list.get('support_serial')
-            data_sql['active_heartbeat'] = data_protocol_list.get('active_heartbeat')
+
+            data_sql['is_single_instruction'] = list_fivechoose[0]
+            data_sql['support_response_frame'] = list_fivechoose[1]
+            data_sql['support_serial'] = list_fivechoose[2]
+            data_sql['active_heartbeat'] = list_fivechoose[3]
+            data_sql['support_repeat'] = list_fivechoose[4]
+
             data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
-            data_sql['support_repeat'] = data_protocol_list.get('support_repeat')
             data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
             data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
             data_sql['frame_content'] = list_f
             data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
             data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
             data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+            print(data_sql)
             data_sql_update = json.dumps(data_sql,ensure_ascii=False)
             update_protocol(list_key, data_sql_update)
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
