@@ -590,12 +590,12 @@ def protocol(request):
             data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
             data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
             data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-            data_sql_update = json.dumps(data_sql)
+            data_sql_update = json.dumps(data_sql,ensure_ascii=False)
             update_protocol(list_key, data_sql_update)
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
             for ii in mlist:
                 res_list_data = ii.protocol_factory_content
-                print(res_list_data)
+
                 res_list_data1 = json.loads(res_list_data)
 
                 return HttpResponse(json.dumps(res_list_data1))

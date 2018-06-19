@@ -105,7 +105,7 @@
     </div>
     <hr>
     <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
-        <span style="font-size: large">{[{ x.title }]}</span>
+        <span style="font-size: large">{[{ x.title }]},{[{ x.is_enable }]}</span>
 
         <input type="checkbox" class="ids" style="margin-left: 30px;display: none" ng-if="x.is_enable" checked><span
             class="ids" style="display: none">启用</span>
