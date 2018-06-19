@@ -176,7 +176,7 @@
         <div id="show-no-data" ng-hide='{[{ visible }]}'>
 
             <div style="    padding: 30px 0 24px 0;">
-                <a role="button" class="btn-blue" href="#/edit">立即定义产品功能</a>
+                <a role="button" class="btn-blue" href="#/edit">创建自定义功能</a>
             </div>
             <span id="advice-content"></span>
 
@@ -456,7 +456,7 @@
                         $("#"+page).css("display","none");
                         if(table=="grid-table-new"){
                             $("#show-no-data").css('display', 'block');
-                            $("#advice-content").text("当前没有任何功能，选择立即定义。");
+                            $("#advice-content").text("标准功能无法满足，可创建自定义功能");
                         }
                     }
                     if (rows.check_state >= 1) {

@@ -30,12 +30,49 @@
 
     }
     .btnn{
-        opacity: 0.9%;
+        opacity: 0.9;
         width: 62px;
         height: 42px;
         color: white;
         background-color: #f35019;
     }
+    /*预览帧样式*/
+    .num {
+      width: 76px;
+      /*height: 50px;*/
+      text-align: center;
+      /*line-height: 50px;*/
+      border: 1px solid #c3c3c3;
+      background-color: #FEDCD2;
+      border-radius: 10px;
+      margin-right: 5px;
+      color: #333;
+    }
+    .num:nth-child(2){
+       background-color: #BFD8D2;
+     }
+
+    .num:nth-last-child(1){
+       background-color: #DF744A;
+     }
+    .num-title,.num-val{height: 20px;line-height: 1.5}
+    .num-title{border-bottom: 1px solid #333}
+    .protocol-pre{
+        display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    padding: 5px;
+        margin-top: 67px;
+    margin-left: 100px;
+    }
+    .pre-title{
+        width: 100%;
+        height: 20px;
+        font-size: large;
+        margin-top: 10px;
+    }
+    /*end*/
+
 </style>
 <div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl">
 
@@ -149,9 +186,9 @@
 
         </div>
 
-        <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
+        <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;" ng-if ="!$last">
     </div>
-    <div class="u208 col-md-2 " style="margin-left: 100px" >
+    <div class="u208 col-md-2 " style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
         <select style="display: block;margin-top: 4px;height: 18px;width: 70px" name="checkout_algorithm" id="select_option">
             <option value="sum" selected="selected">SUM(加和效验)</option>
@@ -172,11 +209,20 @@
                            value="{[{ response.end_check_number}]}">
 
     </div>
+    <br>
+    <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
+        <p class="pre-title">协议格式预览</p>
+        <div class="num" ng-repeat="x in list_mode">
+          <div class="num-title">{[{x.title}]}</div>
+          <div class="num-val">{[{x.val}]}</div>
+        </div>
+    </div>
+
     <div style="margin-top: 60px">
         <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
                         </button>
         </span>
-     </div>
+    </div>
 </div>
 
 <script>

@@ -108,7 +108,7 @@ def get_app_default_logo(value):
 def gen_app_default_conf(val):
     smoke = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER','toSwitch':'0','isFunction':'1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '1档', 'data': '1'}, {'desc': '2档', 'data': '2'},
@@ -121,12 +121,12 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '4', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
         ]
     stove = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '风机', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '5', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '1档', 'data': '1'}, {'desc': '2档', 'data': '2'},
@@ -160,13 +160,13 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '11', 'Stream_ID': 'DELAY','toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '12', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
 
     oven = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 1,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
          'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '童锁', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
@@ -179,7 +179,7 @@ def gen_app_default_conf(val):
          'mxsLength': '1', 'id': '4', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
 
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 15,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '4', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:51:10', 'name': '模式', 'corpMark': '', 'widget': 'button', 'min': 0,
@@ -326,7 +326,7 @@ def gen_app_default_conf(val):
     ]
     steam = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 3,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '2', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:50:35', 'name': '童锁', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 1,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 1,
@@ -336,7 +336,7 @@ def gen_app_default_conf(val):
          'mxsLength': '1', 'id': '3', 'Stream_ID': 'LAMP', 'toSwitch': '0','isFunction': '1'},
 
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 15,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '4', 'id': '4', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:51:10', 'name': '模式', 'corpMark': '', 'widget': 'button', 'min': 0,
@@ -477,7 +477,7 @@ def gen_app_default_conf(val):
     ]
     fridge = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-07-27 16:52:12', 'name': '智能模式', 'corpMark': '', 'widget': 'button', 'min': 0,
          'max': 255, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
@@ -504,7 +504,7 @@ def gen_app_default_conf(val):
          'max': 255, 'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '',
          'paramType': 4, 'mxsLength': '8', 'id': '9', 'Stream_ID': 'FRE_POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '10', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
     small_oven = [
@@ -733,17 +733,17 @@ def gen_app_default_conf(val):
         'isFunction': '1'
     },
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '9', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
 ]
     mini_steam = [
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '1', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0', 'isFunction': '1'},
         {
         "name": "系统保留",
@@ -1226,11 +1226,11 @@ def gen_app_default_conf(val):
 }]
     other = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
-         'mxsLength': '1', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0','isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [{'desc': '开', 'data': '1'}, {'desc': '关', 'data': '0'}], 'corpName': '', 'paramType': 4,
-         'mxsLength': '1', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '8', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
     ]
 
     if val == 1:

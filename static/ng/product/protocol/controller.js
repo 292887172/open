@@ -10,6 +10,9 @@ angular.module('Product.protocol', ['ngRoute'])
     }])
     .controller('ProtocolCtrl', ['$scope', "$http", function ($scope, $http) {
         var xx = 0;
+        $scope.list_mode = [{"val":"A55A", "title": "帧头", "number": 1}, {"val":"00", "title": "流水号", "number": 2},{"val":"00", "title": "协议版本","number": 3},
+          {"val":"00", "title": "数据类型", "number": 4},{"val":"00", "title": "帧长", "number": 5}, {"val":"00x15", "title": "帧数据","number": 6},
+          {"val":"00", "title": "校验", "number": 7}];
         if( xx == 0) {
          $http({
                 method: "GET",
@@ -19,7 +22,26 @@ angular.module('Product.protocol', ['ngRoute'])
             })
                 .success(function (response) {
                     $scope.response = response;
+                    console.log($scope.response)
+                    $scope.list_mode = []
+                    for(var i=0;i<$scope.response.frame_content.length;i++){
+                     if($scope.response.frame_content[i]['code']){
+                         var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
+                     }else{
+                         if(parseInt($scope.response.frame_content[i]['length'])/8>1){
+                             var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+                         else{
+                             t_val = "00"
+                         }
+                         tmp = {"title": $scope.response.frame_content[i]['title'], "val": t_val, 'number': $scope.response.frame_content[i]['number']}
+                     }
+                     console.log(tmp)
+                    $scope.list_mode.push(tmp)
+
+                    }
                 })
+
         }
 
         $scope.SubmitProtocol = function (scope) {
