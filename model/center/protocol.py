@@ -3,7 +3,7 @@ import datetime
 __author__ = ''
 
 
-class Message(models.Model):
+class Protocol(models.Model):
     """
     ebt_factory_protocol表
     """

@@ -16,8 +16,10 @@
         -webkit-box-shadow: none;
         box-shadow: none;
     }
-    #input_1{
+
+    input {
         display: inline;
+        background-color: white !important;
         margin-top: 6px;
         margin-left: 10px;
         width: 44px;
@@ -25,12 +27,14 @@
         border-left-width: 0px;
         border-bottom-width: 0px;
         border-right-width: 0px;
-    }
 
+    }
 </style>
-<div class="box2 relative">
+<div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl">
+
     <div class="hl-help">
         <span class="linkBlue" style="font-size:20px">定义协议</span>
+
 
     </div>
     <hr style="height: 20px;margin-top: 17px;border-top-width: 3px;">
@@ -56,39 +60,40 @@
     <hr>
     <div style="margin-left: 100px">
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard">
+            <input type="checkbox" name="yy" checked value="standard" ng-if="response.is_single_instruction">
             <span class="linkBlue">是否支持单指令</span>
         </div>
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" name="yy" checked value="standard">
+            <input type="checkbox" name="yy" checked value="standard" ng-if="response.support_response_frame">
             <span class="linkBlue">是否控制端发送响应帧</span>
         </div>
         <div class="" style="display: inline">
-            <input type="checkbox" checked name="yy" value="custom">
+            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_serial">
             <span class="linkBlue">是否控制端为串口通讯</span>
         </div>
         <br>
         <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" name="yy" value="standard">
-            <span class="linkBlue">是否主动发起心跳查询</span>
+            <input type="checkbox" name="yy" value="standard" ng-if="response.active_heartbeat">
+            <span class="linkBlue">是否主发起心跳查询</span>
 
-            <div class="u208" >
+            <div class="u208">
                 <span style="display: block;margin-top: 11px;margin-left: 10px">心跳频率：</span>
-                <input id='input_1' placeholder="500ms" style="margin-left: 20px" value="">
+                <input id='input_01' class="bianji" placeholder="500ms" style="margin-left: 20px;" readonly="readonly" value="{[{ response.heart_rate}]}">
 
             </div>
         </div>
-        <div class="col-md-7" style="width: 300px;height: 60px;">
-            <input type="checkbox" checked name="yy" value="custom">
+        <div class=" col-md-7" style="width: 300px;height: 60px;">
+            <input type="checkbox" checked name="yy" value="custom" ng-if="response.support_repeat">
             <span class="linkBlue">是否支持重发</span>
             <div class="">
                 <div class="u208 col-md-4">
                     <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发间隔：</span>
-                    <input id='input_1' placeholder="100ms" value="">
+                    <input id='input_02' class="bianji" readonly="readonly" placeholder="100ms" value="{[{ response.repeat_rate}]}">
                 </div>
                 <div class="u208 col-md-4 col-md-offset-1">
                     <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发次数：</span>
-                    <input id='input_1' placeholder="5" style="margin-left: 27px" value="">
+                    <input id='input_03' class="bianji" readonly="readonly" placeholder="5" style="margin-left: 27px"
+                           value="{[{ response.repeat_count}]}">
                 </div>
             </div>
 
@@ -99,193 +104,92 @@
         协议帧定义:
     </div>
     <hr>
-    <div style="margin-top: 10px;margin-left: 100px;">
-        <span style="font-size: large">帧头</span>
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
+    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
+        <span style="font-size: large">{[{ x.title }]},{[{ x.is_enable }]}</span>
+
+        <input type="checkbox" class="ids" style="margin-left: 30px;display: none" ng-if="x.is_enable" checked><span
+            class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div>
             <div class="u208 col-md-2">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
+                <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 24px" value="{[{ x.number }]}">
             </div>
-            <div class="u208 col-md-2 col-md-offset-1">
+            <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
+                <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 24px" value="{[{ x.length }]}">
             </div>
-            <div class="u208 col-md-2 col-md-offset-1">
-                <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">发送代码</span>
-                <input id='input_1' placeholder="0" style="margin-left: 21px" value="">
-            </div>
-            <div class="u208 col-md-2 col-md-offset-1">
-                <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">响应代码</span>
-                <input id='input_1' placeholder="0" style="margin-left: 21px" value="">
+            <div ng-if="x.code">
+                <div class="u208 col-md-2" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+                     ng-repeat="c in x.code">
+                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
+                    <input id='input_1' class="bianji" readonly="readonly" placeholder="0" style="margin-left: 21px;text-align: center"
+                           value="{[{ c.value }]}">
+                </div>
+
             </div>
 
+
         </div>
+
         <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
     </div>
-    <div style="margin-top: 10px;margin-left: 100px;">
-        <span style="font-size: large">流水号</span>
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        <br>
-        <br>
-        <div>
-            <div class="u208 col-md-2">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-            <div class="u208 col-md-2 col-md-offset-1">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-        </div>
-        <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
-    </div>
-    <div style="margin-top: 10px;margin-left: 100px;" class="ids">
-        <span style="font-size: large">设备类型</span>
-        <input type="checkbox" class=ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        <br>
-        <br>
-        <div>
-            <div class="u208 col-md-2">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-               <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-            <div class="u208 col-md-2 col-md-offset-1">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-        </div>
-        <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;">
-    </div>
-    <div style="margin-top: 10px;margin-left: 100px;" class="ids">
-        <span style="font-size: large">协议版本</span>
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        <br>
-        <br>
-        <div>
-            <div class="u208 col-md-2">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-            <div class="u208 col-md-2 col-md-offset-1">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' placeholder="0" style="margin-left: 24px" value="">
-            </div>
-        </div>
-        <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;border-bottom-color: #0a001f">
-    </div>
-    <div style="margin-top: 10px;margin-left: 100px;">
-        <span style="font-size: large">帧数据类型</span>
-        <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        <br>
-        <br>
-        <div>
-            <div class="u208 col-md-2" style="height: 60px">
-                <span style="display: block;margin-top: 17px;margin-left: 15px;width: 74px">序号</span>
-
-                <input id='input_1' placeholder="0" style="margin-top: 23px;margin-left: 24px" value="">
-            </div>
-            <div class="u208 col-md-2" style="margin-left: 50px;height: 60px">
-                <span style="display: block;margin-top: 17px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' placeholder="0" style="margin-top: 23px;margin-left: 24px" value="">
-            </div>
-            <div class="u208 col-md-6 " style="width:550px;margin-left: 50px;height: 60px">
-                <span style="display: inline;margin-top: 11px;margin-left: 1px;width: 74px"><input type="checkbox" checked style="display: inline">心跳帧</span>
-                <span style="display: inline;margin-left: 11px;width: 74px"><input type="checkbox" checked style="display: inline">握手帧</span>
-                <span style="display: inline;margin-left: 11px;width: 74px"><input type="checkbox" checked style="display: inline">查询帧</span>
-                <span style="display: inline;margin-left: 11px;width: 94px"><input type="checkbox" checked style="display: inline">全指令控制帧</span>
-                <span style="display: inline;margin-left: 11px;width: 94px"><input type="checkbox" checked style="display: inline">单指令控制帧</span>
-                <span style="display: inline;margin-left: 11px;width: 94px"><input type="checkbox" checked style="display: inline">故障上报帧</span>
-                <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 1px;width: 50px" value="">
-                <input id='input_1' placeholder="代码:00" style="margin-top: 0px;margin-left: 17px;width: 50px" value="">
-                <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 17px;width: 50px" value="">
-                <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 42px;width: 50px" value="">
-                <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 51px;width: 50px" value="">
-                <input id='input_1' placeholder="代码:00" style="margin-top: 16px;margin-left: 46px;width: 50px" value="">
-            </div>
-        </div>
-        <div style="margin-top: 50px;display: none" class="ids">
-            <button style="width: 142px;height: 22px;background-color: #169bd5;color: white">自定义添加数据类型</button>
-        </div>
-        <div style="margin-top: 25px">
-            <span style="font-size: large">帧长</span>
-            <input type="checkbox" class=ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        </div>
-        <div class="u208 col-md-2">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2 col-md-offset-1">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div style="margin-top: 50px">
-            <span style="font-size: large">帧数据</span>
-            <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        </div>
-        <div class="u208 col-md-2">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2 col-md-offset-1">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div style="margin-top: 50px">
-            <span style="font-size: large">帧检验</span>
-            <input type="checkbox" class="ids" style="margin-left: 30px;display: none"><span class="ids" style="display: none">启用</span>
-        </div>
-        <div class="u208 col-md-2">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
-           <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2" style="margin-left: 50px">
-            <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2" style="width: 100px;margin-left: 50px">
-            <span style="display: block;margin-top: 11px;width: 74px">起始检验位</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2" style="width: 100px;margin-left: 50px">
-            <span style="display: block;margin-top: 11px;width: 74px">结束检验位</span>
-            <input id='input_1' placeholder="0" style="margin-top: 6px;margin-left: 24px;" value="">
-        </div>
-        <div class="u208 col-md-2" style="width: 200px;margin-left: 50px">
-            <span style="display: block;margin-top: 8px;margin-left: 50px;width: 74px">检验算法</span>
-            <select style="display: block;margin-top: 4px;margin-left: 24px;height: 18px;">
-                <option value="">SUM(加和效验)</option>
-                <option value="">CRC-8</option>
-                <option value="">CRC-16</option>
-            </select>
-        </div>
+    <div class="u208 col-md-2 " style="margin-left: 100px" >
+        <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
+        <select style="display: block;margin-top: 4px;height: 18px;width: 70px" name="checkout_algorithm" id="select_option">
+            <option value="SUM" selected="selected">SUM(加和效验)</option>
+            <option value="CRC-8">CRC-8</option>
+            <option value="CRC-16">CRC-16</option>
+        </select>
 
     </div>
-    <button style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 10px">save</button>
+    <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px" >
+        <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">起始检验位</span>
+        <input id='input_04' class="bianji" placeholder="0" style="margin-left: 21px;text-align: center"
+                           value="{[{ response.start_check_number}]}">
 
+    </div>
+    <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px" >
+        <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">结束检验位</span>
+        <input id='input_05' class="bianji" placeholder="0" style="margin-left: 21px;text-align: center"
+                           value="{[{ response.end_check_number}]}">
+
+    </div>
+    <div style="margin-top: 60px">
+        <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn btn-success btn-s-xs" ng-click="SubmitProtocol()">保存
+                        </button>
+        </span>
+     </div>
 </div>
 
 <script>
-    $(".custom").on('click',function () {
+
+    $(".custom").on('click', function () {
+        var r = document.getElementsByTagName("input");
+        r.readOnly="readonly";
         var list = document.getElementsByClassName("ids");
-        for (var i = 0,l = list.length; i<l;i++) {
+        for (var i = 0, l = list.length; i < l; i++) {
             var obj = list[i];
-            obj.style.display='';
+            obj.style.display = '';
+        }
+        var list1 = document.getElementsByClassName("bianji");
+        for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+            $('input[class=bianji]').removeAttr("readonly");
+        }
+    });
+    $(".standard").on('click', function () {
+
+        var lis = document.getElementsByClassName("ids");
+        for (var j = 0, l = lis.length; j < l; j++) {
+            var obj = lis[j];
+            obj.style.display = 'none';
+        }
+        var lis1 = document.getElementsByClassName("bianji");
+        for (var jj = 0, ll = lis1.length; jj < ll; jj++) {
+            $('input[class=bianji]').attr("readonly","readonly");
         }
 
     })
-    $(".standard").on('click',function () {
-        var list = document.getElementsByClassName("ids");
-        for (var i = 0,l = list.length; i<l;i++) {
-            var obj = list[i];
-            obj.style.display='none';
-        }
-
-    })
-
-
 
 </script>
