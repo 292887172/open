@@ -10,6 +10,9 @@ angular.module('Product.protocol', ['ngRoute'])
     }])
     .controller('ProtocolCtrl', ['$scope', "$http", function ($scope, $http) {
         var xx = 0;
+        $scope.list_mode = [{"val":"A55A", "title": "帧头", "number": 1}, {"val":"00", "title": "流水号", "number": 2},{"val":"00", "title": "协议版本","number": 3},
+          {"val":"00", "title": "数据类型", "number": 4},{"val":"00", "title": "帧长", "number": 5}, {"val":"00x15", "title": "帧数据","number": 6},
+          {"val":"00", "title": "校验", "number": 7}];
         if( xx == 0) {
          $http({
                 method: "GET",
