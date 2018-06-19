@@ -22,7 +22,26 @@ angular.module('Product.protocol', ['ngRoute'])
             })
                 .success(function (response) {
                     $scope.response = response;
+                    console.log($scope.response)
+                    $scope.list_mode = []
+                    for(var i=0;i<$scope.response.frame_content.length;i++){
+                     if($scope.response.frame_content[i]['code']){
+                         var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
+                     }else{
+                         if(parseInt($scope.response.frame_content[i]['length'])/8>1){
+                             var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+                         else{
+                             t_val = "00"
+                         }
+                         tmp = {"title": $scope.response.frame_content[i]['title'], "val": t_val, 'number': $scope.response.frame_content[i]['number']}
+                     }
+                     console.log(tmp)
+                    $scope.list_mode.push(tmp)
+
+                    }
                 })
+
         }
 
         $scope.SubmitProtocol = function (scope) {
