@@ -179,18 +179,18 @@ def get_factory_info(user_id):
 
 
 def select_protocol(key):
-    m = Protocol.objects.all().filter(protocol_device_key=key)
-    if m:
-        for i in m:
-            res_ = i.protocol_factory_content
-            res_ = json.loads(res_)
-            return res_
-    else:
-        mm = Protocol.objects.all().filter(protocol_device_key="biaozhun")
-        for i in mm:
-            res_ = i.protocol_factory_content
-            res_ = json.loads(res_)
-            return res_
+    # m = Protocol.objects.all().filter(protocol_device_key=key)
+    # if m:
+    #     for i in m:
+    #         res_ = i.protocol_factory_content
+    #         res_ = json.loads(res_)
+    #         return res_
+    # else:
+    mm = Protocol.objects.all().filter(protocol_device_key="biaozhun")
+    for i in mm:
+        res_ = i.protocol_factory_content
+        res_ = json.loads(res_)
+        return res_
 
 
 def update_protocol(list_key,data_sql_update):

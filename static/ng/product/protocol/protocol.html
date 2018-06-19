@@ -104,25 +104,25 @@
     <hr>
     <div style="margin-left: 100px">
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true">
-            <input type="checkbox" class="bblchk bianji"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false">
+            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true">
+            <input type="checkbox" class="bblchk"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false">
             <span class="linkBlue">是否支持单指令</span>
         </div>
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk bianji"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true">
-            <input type="checkbox" class="bblchk bianji"  disabled="disabled" value="false" ng-if="response.support_response_frame==false">
+            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true">
+            <input type="checkbox" class="bblchk"  disabled="disabled" value="false" ng-if="response.support_response_frame==false">
             <span class="linkBlue">是否控制端发送响应帧</span>
         </div>
         <div class="" style="display: inline">
-            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.support_serial==true">
-            <input type="checkbox"  class="bblchk bianji" disabled="disabled" value="false" ng-if="response.support_serial==false">
+            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.support_serial==true">
+            <input type="checkbox"  class="bblchk" disabled="disabled" value="false" ng-if="response.support_serial==false">
 
             <span class="linkBlue">是否控制端为串口通讯</span>
         </div>
         <br>
         <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" checked class="bblchk bianji" disabled="disabled" value="true" ng-if="response.active_heartbeat==true">
-            <input type="checkbox" class="bblchk bianji" disabled="disabled" value="false" ng-if="response.active_heartbeat==false">
+            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.active_heartbeat==true">
+            <input type="checkbox" class="bblchk " disabled="disabled" value="false" ng-if="response.active_heartbeat==false">
 
             <span class="linkBlue">是否主发起心跳查询</span>
 
@@ -155,9 +155,9 @@
         协议帧定义:
     </div>
     <hr>
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
-        <span style="font-size: large">{[{ x.title }]}</span>
 
+    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
+        <input style="margin-left: 0px" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
         <span
@@ -222,7 +222,7 @@
         <span style="margin-left:350px;width: 50px;height: 30px;background-color: #f35019;margin-top: 50px"><button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
                         </button>
         </span>
-    </div>
+     </div>
 </div>
 
 <script>
@@ -240,7 +240,8 @@
         }
         var list11 = document.getElementsByClassName("bblchk");
         for (var iii = 0, lll = list11.length; iii < lll; iii++) {
-            list11[iii].disabled='false';
+            console.log(list11[iii]);
+            list11[iii].disabled=false;
         }
         var list111 = document.getElementsByClassName("baf");
         for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {

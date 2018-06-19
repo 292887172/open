@@ -22,6 +22,7 @@ angular.module('Product.protocol', ['ngRoute'])
             })
                 .success(function (response) {
                     $scope.response = response;
+
                     console.log($scope.response)
                     $scope.list_mode = []
                     for(var i=0;i<$scope.response.frame_content.length;i++){
@@ -41,7 +42,6 @@ angular.module('Product.protocol', ['ngRoute'])
 
                     }
                 })
-
         }
 
         $scope.SubmitProtocol = function (scope) {
@@ -55,7 +55,7 @@ angular.module('Product.protocol', ['ngRoute'])
              var for1 = document.getElementsByClassName("bblchk");
              for (var u = 0, lll1 = for1.length; u < lll1; u++) {
                  var obj = for1[u].checked;
-                 console.log(obj);
+
                  list_0.push(obj)
             }
              $scope.response.fivechoose = list_0;
@@ -64,10 +64,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
              var list_1 = [];
              $(".x1x input[value]").each(function () {
-
                  var v = $(this).val();
-
-                 console.log(v);
                  list_1.push(v);
              });
 
@@ -75,12 +72,30 @@ angular.module('Product.protocol', ['ngRoute'])
              var for2 = document.getElementsByClassName("taf");
              for (var g = 0, lll2 = for2.length; g < lll2; g++) {
                  var obj1 = for2[g].checked;
-                 console.log(obj1);
                  list_2.push(obj1)
             }
-             console.log(list_2);
+            // 终极循环
+             var li = [];
+             var z1 = document.getElementsByClassName("x1x");
+             for (var z=0, list_z1 = z1.length; z < list_z1; z++ ){
+                var list_code = [];
+                var dict_1={"code":list_code};
+                var z2 = z1[z].getElementsByTagName("input");
+                console.log(z2)
+                dict_1["title"] = z2[0].value;
+                dict_1["is_enabled"] = z2[1].checked;
+                dict_1["number"] = z2[2].value;
+                dict_1["length"] = z2[3].value;
+                for (var zz=4,list_z2 = z2.length; zz<list_z2;zz=zz+2 ){
+                list_code.push({"value":z2[zz].value,"desc":z2[zz+1].value});
+                }
+                li.push(dict_1)
+            }
+            console.log(li);
+
+
              $scope.response.frame_taf =  list_2;
-             $scope.response.frame_content =  list_1;
+             $scope.response.frame_content =  li;
              $scope.response.start_check_number =  $("#input_04").val();
              $scope.response.end_check_number =  $("#input_05").val();
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
