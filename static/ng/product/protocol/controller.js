@@ -146,7 +146,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function (response) {$scope.response = response
 
-             });  console.log(response)
+             });
         }
 
     }]);
