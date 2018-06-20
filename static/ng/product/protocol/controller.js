@@ -24,11 +24,13 @@ angular.module('Product.protocol', ['ngRoute'])
 
                     if(response.code==1){
                         // 非标协议
-                        document.getElementById("custom-item").checked=true
+                        document.getElementById("custom-item").checked=true;
+
                     }
                     else{
                         // 标准协议
-                        document.getElementById("standard-item").checked=true
+                        document.getElementById("standard-item").checked=true;
+
                     }
                     $scope.response = response.data;
 
