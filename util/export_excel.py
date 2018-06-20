@@ -101,6 +101,7 @@ def deal_json(app):
         j['isFunction'] = data.get("isFunction", 1)
         j['toSwitch'] = data.get('toSwitch', 0)
 
+
         # 写入json的数据
         i = dict()
         i['value_des'] = data['mxs']
@@ -115,7 +116,7 @@ def deal_json(app):
         i["isCardShow"] = data.get('isShow', 0)
         i["isUiShow"] = data.get("isDisplay", 0)
         i["widget"] = data.get("widget", "button")
-
+        i['widgetId'] = ""
         i["value"] = 0
         i["values"] = [data.get("min",0), data.get("max")]
         if data['paramType'] == 1:
