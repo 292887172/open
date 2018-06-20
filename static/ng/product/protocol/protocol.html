@@ -98,7 +98,7 @@
     <hr>
     <div class="" style="margin-left: 50px">
         <div class="col-md-4" style="display: inline;width: 300px;margin-left: 50px;padding-left:0px">
-            <input type="radio" name="xx" class="standard" checked value="standard" id="standard-item">标准协议
+            <input type="radio" name="xx" class="standard"  value="standard" id="standard-item">标准协议
         </div>
         <div class="" style="display: inline;margin-left: 50px">
             <input type="radio" name="xx" class="custom" value="custom" id="custom-item">自定义协议
@@ -200,7 +200,7 @@
 
     <div class="u208 col-md-2" id="x2x" style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
-        <select style="display: block;margin-top: 7px;height: 25px;width: 70px" name="checkout_algorithm" id="select_option">
+        <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_algorithm" id="select_option">
             <option value="sum">SUM(加和效验)</option>
             <option value="crc-8" ng-selected="response.checkout_algorithm=='crc-8'">CRC-8</option>
             <option value="crc-16" ng-selected="response.checkout_algorithm=='crc-16'">CRC-16</option>
@@ -229,7 +229,8 @@
     </div>
     <div style="margin-top: 60px">
 
-        <button type="submit" id="newpro" class="btn-s-xs btnn" style="margin-left: 200px">新增协议</button>
+        <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="margin-left: 200px;display: none">新增协议
+                        </button>
 
         <button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存</button>
 
@@ -258,7 +259,8 @@
         for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
             list111[iiii].disabled='false';
         }
-
+        var select_option = document.getElementsByTagName("select")[0];
+        select_option.disabled=false;
     });
     $(".standard").on('click', function () {
 
@@ -311,5 +313,50 @@
         oldDiv.insertBefore(newDiv, ooDiv);
 
     })
+
+    function foo(){
+             if(document.getElementById("custom-item").checked) {
+
+                var list = document.getElementsByClassName("ids");
+                for (var i = 0, l = list.length; i < l; i++) {
+                    var obj = list[i];
+                    obj.style.display = '';
+                }
+                var list1 = document.getElementsByClassName("bianji");
+                for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                    $('input[class=bianji]').removeAttr("disabled");
+                }
+                var list11 = document.getElementsByClassName("bblchk");
+                for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+
+                    list11[iii].disabled=false;
+                }
+                var list111 = document.getElementsByClassName("baf");
+                for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
+                    list111[iiii].disabled='false';
+                }
+                var select_option = document.getElementsByTagName("select")[0];
+                select_option.disabled=false;
+
+            }else {
+
+                var lis = document.getElementsByClassName("ids");
+                for (var j = 0, lzz = lis.length; j < lzz; j++) {
+                    var obj3 = lis[j];
+                    obj3.style.display = 'none';
+                }
+                console.log('yy')
+                var lis1 = document.getElementsByClassName("bianji");
+                for (var jj = 0, llzz = lis1.length; jj < llzz; jj++) {
+                    $('input[class=bianji]').attr("disabled", "disabled");
+                }
+                var lis11 = document.getElementsByClassName("bblchk");
+                for (var jjj = 0, lllzz = lis11.length; jjj < lllzz; jjj++) {
+                    lis11[jjj].disabled = true;
+                }
+          }
+        }
+
+
 
 </script>

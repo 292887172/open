@@ -24,15 +24,16 @@ angular.module('Product.protocol', ['ngRoute'])
 
                     if(response.code==1){
                         // 非标协议
-                        document.getElementById("custom-item").checked=true
+                        document.getElementById("custom-item").checked=true;
+
                     }
                     else{
                         // 标准协议
-                        document.getElementById("standard-item").checked=true
+                        document.getElementById("standard-item").checked=true;
+
                     }
                     $scope.response = response.data;
-
-                    console.log($scope.response);
+                    console.log(response.data)
                     $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
                      if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
@@ -55,6 +56,10 @@ angular.module('Product.protocol', ['ngRoute'])
 
                     }
                 })
+            setTimeout(function () {
+                foo()
+            }, 100)
+
         }
 
         $scope.SubmitProtocol = function (scope) {
@@ -116,14 +121,17 @@ angular.module('Product.protocol', ['ngRoute'])
                 var zdy_input = zdy_data[i].getElementsByTagName("input");
                 var dict_2 = {"code":[]};
                 dict_2["title"]=zdy_input[0].value;
-                dict_2["is_enabled"] = "true";
+                dict_2["is_enable"] = "true";
                 dict_2["number"] = zdy_input[1].value;
                 dict_2["length"] = zdy_input[2].value;
                 dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
 
             }
-
-            li.push(dict_2);
+            if (dict_2){
+                li.push(dict_2)
+            }else {
+                console.log(dict_2)
+            }
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
              $scope.response.start_check_number =  $("#input_04").val();
@@ -137,7 +145,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function (response) {$scope.response = response
 
-             })
+             });  console.log(response)
         }
 
     }]);
