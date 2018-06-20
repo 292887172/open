@@ -164,7 +164,7 @@
     </div>
     <hr>
 
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content" id='div_add' ng-if="x.is_enable==true || x.is_enable=='true'">
+    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}" ng-if="x.is_enable==true || x.is_enable=='true'">
         <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
@@ -182,8 +182,8 @@
                 <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px" value="{[{ x.length }]}">
             </div>
             <div ng-if="x.code">
-                <div class="u208 col-md-2" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
-                     ng-repeat="c in x.code" ng-if="c.value">
+                <div class="u208 col-md-2 code-item" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+                     ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
                     <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 21px;text-align: center"
                            value="{[{ c.value }]}">
@@ -209,13 +209,13 @@
     </div>
     <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">起始检验位</span>
-        <input id='input_04' class="bianji" placeholder="0" style="margin-left: 21px;text-align: center"
+        <input id='input_04' class="bianji" placeholder="0" style="text-align: center"
                            value="{[{ response.start_check_number}]}">
 
     </div>
     <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">结束检验位</span>
-        <input id='input_05' class="bianji" placeholder="0" style="margin-left: 21px;text-align: center"
+        <input id='input_05' class="bianji" placeholder="0" style="text-align: center"
                            value="{[{ response.end_check_number}]}">
 
     </div>
@@ -229,11 +229,9 @@
     </div>
     <div style="margin-top: 60px">
 
-        <button type="submit" id="newpro" class="btn-s-xs btnn" style="margin-left: 200px">新增协议
-                        </button>
+        <button type="submit" id="newpro" class="btn-s-xs btnn" style="margin-left: 200px">新增协议</button>
 
-        <button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
-                        </button>
+        <button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存</button>
 
      </div>
 </div>

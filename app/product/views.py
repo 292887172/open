@@ -556,7 +556,6 @@ def protocol(request):
             data_sql = {}
             list_fivechoose = data_protocol_list.get('fivechoose','')
             list_t = data_protocol_list.get('frame_content', '')
-            print(list_t)
             list_key = data_protocol_list.get('key', '')
             data_sql['is_single_instruction'] = list_fivechoose[0]
             data_sql['support_response_frame'] = list_fivechoose[1]
