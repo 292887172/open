@@ -130,7 +130,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
             }
             if (dict_2){
-                li.push(dict_2);
+                li.push(dict_2)
             }else {
                 console.log(dict_2)
             }
