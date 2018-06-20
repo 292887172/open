@@ -186,14 +186,18 @@ def select_protocol(key):
     #         res_ = json.loads(res_)
     #         return res_
     # else:
-    mm = Protocol.objects.all().filter(protocol_device_key="biaozhun")
-    for i in mm:
-        res_ = i.protocol_factory_content
-        res_ = json.loads(res_)
-        return res_
+    mm = Protocol.objects.filter(protocol_device_key=key)
+    if mm.count() > 0:
+        for i in mm:
+            res_ = i.protocol_factory_content
+            res_ = json.loads(res_)
+            print(res_, '8888')
+            return res_
+    else:
+        return None
 
 
-def update_protocol(list_key,data_sql_update):
+def update_protocol(list_key, data_sql_update):
     t = Protocol.objects.filter(protocol_device_key=list_key)
     if not t:
         Protocol.objects.create(protocol_device_key=list_key,protocol_factory_content=data_sql_update,protocol_create_date=datetime.datetime.utcnow(),protocol_update_date=datetime.datetime.utcnow())

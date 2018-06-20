@@ -21,16 +21,29 @@ angular.module('Product.protocol', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
                 .success(function (response) {
-                    $scope.response = response;
 
-                    console.log($scope.response)
-                    $scope.list_mode = []
+                    if(response.code==1){
+                        // 非标协议
+                        document.getElementById("custom-item").checked=true
+                    }
+                    else{
+                        // 标准协议
+                        document.getElementById("standard-item").checked=true
+                    }
+                    $scope.response = response.data;
+
+                    console.log($scope.response);
+                    $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
-                     if($scope.response.frame_content[i]['code']){
+                     if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
                          var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
                      }else{
                          if(parseInt($scope.response.frame_content[i]['length'])/8>1){
                              var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+
+                         else if (String($scope.response.frame_content[i]['length']).indexOf("*")>0){
+                             t_val = "00*N"
                          }
                          else{
                              t_val = "00"
@@ -86,7 +99,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 var z2 = z1[z].getElementsByTagName("input");
                 var z22 = z1[z].getElementsByTagName("div");
                 dict_1["title"] = z2[0].value;
-                dict_1["is_enabled"] = z2[1].checked;
+                dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 dict_1["length"] = z2[3].value;
                 for (var zz=4,list_z2 = z2.length; zz<list_z2;zz++ ){
