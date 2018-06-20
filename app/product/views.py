@@ -555,7 +555,8 @@ def protocol(request):
 
             data_sql = {}
             list_fivechoose = data_protocol_list.get('fivechoose','')
-            list_t = json.dumps(data_protocol_list.get('frame_content', ''))
+            list_t = data_protocol_list.get('frame_content', '')
+            print(list_t)
             list_key = data_protocol_list.get('key', '')
 
             data_sql['is_single_instruction'] = list_fivechoose[0]
@@ -571,7 +572,9 @@ def protocol(request):
             data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
             data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
             data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-            data_sql_update = json.dumps(data_sql,ensure_ascii=False)
+            print(data_sql, '---')
+            data_sql_update = json.dumps(data_sql, ensure_ascii=False)
+            print(data_sql_update)
             update_protocol(list_key, data_sql_update)
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
             for ii in mlist:

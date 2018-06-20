@@ -35,7 +35,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     console.log($scope.response);
                     $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
-                     if($scope.response.frame_content[i]['code']){
+                     if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
                          var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
                      }else{
                          if(parseInt($scope.response.frame_content[i]['length'])/8>1){
@@ -96,7 +96,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 var z2 = z1[z].getElementsByTagName("input");
                 console.log(z2)
                 dict_1["title"] = z2[0].value;
-                dict_1["is_enabled"] = z2[1].checked;
+                dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 dict_1["length"] = z2[3].value;
                 for (var zz=4,list_z2 = z2.length; zz<list_z2;zz=zz+2 ){
