@@ -75,7 +75,7 @@ angular.module('Product.protocol', ['ngRoute'])
                  console.log(obj1);
                  list_2.push(obj1)
             }
-            console.log(list_2);
+
             // 终极循环
              var li = [];
              var z1 = document.getElementsByClassName("x1x");
@@ -94,7 +94,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 }
                 li.push(dict_1)
             }
-            console.log(li);
+
             var zdy_data = document.getElementsByClassName("x11x");
             for (var i = 0, list_zdy = zdy_data.length; i<list_zdy; i++){
                 var zdy_input = zdy_data[i].getElementsByTagName("input");
@@ -106,7 +106,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
 
             }
-            console.log(dict_2)
+
             li.push(dict_2);
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
