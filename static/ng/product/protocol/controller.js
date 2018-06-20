@@ -109,4 +109,5 @@ angular.module('Product.protocol', ['ngRoute'])
 
              })
         }
+
     }]);
