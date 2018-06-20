@@ -34,6 +34,8 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                     $scope.response = response.data;
 
+
+
                     console.log($scope.response);
                     $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
@@ -56,7 +58,13 @@ angular.module('Product.protocol', ['ngRoute'])
                     $scope.list_mode.push(tmp)
 
                     }
+
+
                 })
+            setTimeout(function () {
+                foo()
+            }, 100)
+
         }
 
         $scope.SubmitProtocol = function (scope) {
@@ -121,8 +129,13 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
 
             }
+            if (dict_2){
+                li.push(dict_2);
+            }else {
+                console.log(dict_2)
+            }
 
-            li.push(dict_2);
+
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
              $scope.response.start_check_number =  $("#input_04").val();

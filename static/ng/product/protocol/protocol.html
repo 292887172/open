@@ -239,45 +239,6 @@
 </div>
 
 <script>
-      if(document.getElementById("custom-item").checked="true") {
-            console.log('xxx')
-            var list = document.getElementsByClassName("ids");
-            for (var i = 0, l = list.length; i < l; i++) {
-                var obj = list[i];
-                obj.style.display = '';
-            }
-            var list1 = document.getElementsByClassName("bianji");
-            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
-                $('input[class=bianji]').removeAttr("disabled");
-            }
-            var list11 = document.getElementsByClassName("bblchk");
-            for (var iii = 0, lll = list11.length; iii < lll; iii++) {
-                console.log(list11[iii]);
-                list11[iii].disabled=false;
-            }
-            var list111 = document.getElementsByClassName("baf");
-            for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
-                list111[iiii].disabled='false';
-            }
-
-
-        }else {
-
-            var lis = document.getElementsByClassName("ids");
-            for (var j = 0, lzz = lis.length; j < lzz; j++) {
-                var obj3 = lis[j];
-                obj3.style.display = 'none';
-            }
-            console.log('yy')
-            var lis1 = document.getElementsByClassName("bianji");
-            for (var jj = 0, llzz = lis1.length; jj < llzz; jj++) {
-                $('input[class=bianji]').attr("disabled", "disabled");
-            }
-            var lis11 = document.getElementsByClassName("bblchk");
-            for (var jjj = 0, lllzz = lis11.length; jjj < lllzz; jjj++) {
-                lis11[jjj].disabled = true;
-            }
-      }
 
     $(".custom").on('click', function () {
 
@@ -352,5 +313,50 @@
         oldDiv.insertBefore(newDiv, ooDiv);
 
     })
+
+    function foo(){
+             if(document.getElementById("custom-item").checked) {
+                console.log(document.getElementById("custom-item").checked)
+                var list = document.getElementsByClassName("ids");
+                for (var i = 0, l = list.length; i < l; i++) {
+                    var obj = list[i];
+                    obj.style.display = '';
+                }
+                var list1 = document.getElementsByClassName("bianji");
+                for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                    $('input[class=bianji]').removeAttr("disabled");
+                }
+                var list11 = document.getElementsByClassName("bblchk");
+                for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+
+                    list11[iii].disabled=false;
+                }
+                var list111 = document.getElementsByClassName("baf");
+                for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
+                    list111[iiii].disabled='false';
+                }
+
+
+            }else {
+                console.log('xx')
+                console.log(document.getElementById("custom-item").checked)
+                var lis = document.getElementsByClassName("ids");
+                for (var j = 0, lzz = lis.length; j < lzz; j++) {
+                    var obj3 = lis[j];
+                    obj3.style.display = 'none';
+                }
+                console.log('yy')
+                var lis1 = document.getElementsByClassName("bianji");
+                for (var jj = 0, llzz = lis1.length; jj < llzz; jj++) {
+                    $('input[class=bianji]').attr("disabled", "disabled");
+                }
+                var lis11 = document.getElementsByClassName("bblchk");
+                for (var jjj = 0, lllzz = lis11.length; jjj < lllzz; jjj++) {
+                    lis11[jjj].disabled = true;
+                }
+          }
+        }
+
+
 
 </script>
