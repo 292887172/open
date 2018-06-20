@@ -19,7 +19,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
-from base.const import StatusCode
+from base.const import StatusCode, DefaultProtocol
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
@@ -540,20 +540,14 @@ def product_main(request):
 @csrf_exempt
 def protocol(request):
     if request.method == 'GET':
-        default_data = {"is_single_instruction": "true","support_response_frame": "true","support_serial": "true","active_heartbeat": "true","heart_rate": 500,"support_repeat":"true","repeat_rate": 500,"repeat_count": 3,"frame_content": [
-            {"name": "frame_head","title":"帧头","is_enable":"true","number": 1,"length": 16,"code":[{"value": "A55A", "desc": "发送码"},{"value":"5AA5", "desc": "响应码"}]},
-            {"name": "flow_number","title":"流水号","is_enable":"true","number": 2,"length":8},
-            {"name": "frame_type","title":"帧数据类型","is_enable":"true","number": 3,"length":8,"code":[{"value":"00", "desc":"心跳帧"},{"value":"01", "desc":"握手帧"},
-                {"value":"20", "desc":"查询帧"},{"value":"21", "desc":"全指令控制帧"},{"value":"31", "desc":"单指令控制帧"}, {"value":"FF", "desc":"故障报警帧"}]},
-            {"name": "frame_length","title":"帧长","is_enable":"true","number": 4,"length":8},
-            {"name": "data_domain","title":"数据域","is_enable":"true","number": 5,"length":"8*N"},
-            {"name": "check","title":"校验","is_enable":"true","number": 6,"length":8}
-            ],
-            "checkout_algorithm":"sum",
-            "start_check_number": 1,
-            "end_check_number": 7
-            }
-        return HttpResponse(json.dumps(default_data))
+        device_key = request.GET.get('key')
+        r = select_protocol(device_key)
+        if r is None:
+            r = DefaultProtocol().DEFAULT_DATA
+            data = {"code": 2, "data": r}
+        else:
+            data = {"code": 1, "data": r}
+        return HttpResponse(json.dumps(data))
     if request.method == "POST":
         t = select_protocol('biaozhun')
         data_protocol_list = json.loads(request.body.decode('utf-8'))

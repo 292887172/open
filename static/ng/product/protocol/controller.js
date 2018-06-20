@@ -21,16 +21,29 @@ angular.module('Product.protocol', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
                 .success(function (response) {
-                    $scope.response = response;
 
-                    console.log($scope.response)
-                    $scope.list_mode = []
+                    if(response.code==1){
+                        // 非标协议
+                        document.getElementById("custom-item").checked=true
+                    }
+                    else{
+                        // 标准协议
+                        document.getElementById("standard-item").checked=true
+                    }
+                    $scope.response = response.data;
+
+                    console.log($scope.response);
+                    $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
                      if($scope.response.frame_content[i]['code']){
                          var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
                      }else{
                          if(parseInt($scope.response.frame_content[i]['length'])/8>1){
                              var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+
+                         else if (String($scope.response.frame_content[i]['length']).indexOf("*")>0){
+                             t_val = "00*N"
                          }
                          else{
                              t_val = "00"
