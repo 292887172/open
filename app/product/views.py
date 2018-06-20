@@ -549,7 +549,7 @@ def protocol(request):
             data = {"code": 1, "data": r}
         return HttpResponse(json.dumps(data))
     if request.method == "POST":
-        t = select_protocol('biaozhun')
+        r = DefaultProtocol().DEFAULT_DATA
         data_protocol_list = json.loads(request.body.decode('utf-8'))
         if data_protocol_list.get('action', '') == 'update_protocol':
 
@@ -574,11 +574,9 @@ def protocol(request):
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
             for ii in mlist:
                 res_list_data = ii.protocol_factory_content
-
                 res_list_data1 = json.loads(res_list_data)
-
                 return HttpResponse(json.dumps(res_list_data1))
-        return HttpResponse(json.dumps(t))
+        return HttpResponse(json.dumps(r))
 
 
 @csrf_exempt
