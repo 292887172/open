@@ -55,8 +55,6 @@ angular.module('Product.protocol', ['ngRoute'])
                     $scope.list_mode.push(tmp)
 
                     }
-
-
                 })
             setTimeout(function () {
                 foo()
@@ -99,18 +97,22 @@ angular.module('Product.protocol', ['ngRoute'])
             // 终极循环
              var li = [];
              var z1 = document.getElementsByClassName("x1x");
-             for (var z=0, list_z1 = z1.length; z < list_z1; z++ ){
+             for (var z=0; z < z1.length; z++ ){
                 var list_code = [];
-                var dict_1={"code":list_code};
+                var dict_1={};
+
                 var z2 = z1[z].getElementsByTagName("input");
-                var z22 = z1[z].getElementsByTagName("div");
+                var codeItem = z1[z].getElementsByClassName("code-item");
+                dict_1["name"] = $(z1[z]).data("name");
                 dict_1["title"] = z2[0].value;
                 dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 dict_1["length"] = z2[3].value;
-                for (var zz=4,list_z2 = z2.length; zz<list_z2;zz++ ){
-                list_code.push({"value":z2[zz].value,"desc":z22[zz].innerText.split("\n")[0]});
+                for(var k=0; k<codeItem.length;k++){
+                    var tmp = {"type": $(codeItem[k]).data('type'), "value": $(codeItem[k]).children("input").val(), "desc": $(codeItem[k]).children("span").text()};
+                    list_code.push(tmp)
                 }
+                dict_1['code'] = list_code;
                 li.push(dict_1)
             }
 
