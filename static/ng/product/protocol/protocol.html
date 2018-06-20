@@ -104,25 +104,25 @@
     <hr>
     <div style="margin-left: 100px">
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true">
-            <input type="checkbox" class="bblchk"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false">
+            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true || response.is_single_instruction=='true'">
+            <input type="checkbox" class="bblchk"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false || response.is_single_instruction=='false'">
             <span class="linkBlue">是否支持单指令</span>
         </div>
         <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true">
-            <input type="checkbox" class="bblchk"  disabled="disabled" value="false" ng-if="response.support_response_frame==false">
+            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true || response.support_response_frame=='true'">
+            <input type="checkbox" class="bblchk"  disabled="disabled" value="false" ng-if="response.support_response_frame==false || response.support_response_frame=='false'">
             <span class="linkBlue">是否控制端发送响应帧</span>
         </div>
         <div class="" style="display: inline">
-            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.support_serial==true">
-            <input type="checkbox"  class="bblchk" disabled="disabled" value="false" ng-if="response.support_serial==false">
+            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.support_serial==true || response.support_serial=='true'">
+            <input type="checkbox"  class="bblchk" disabled="disabled" value="false" ng-if="response.support_serial==false || response.support_serial=='false'">
 
             <span class="linkBlue">是否控制端为串口通讯</span>
         </div>
         <br>
         <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.active_heartbeat==true">
-            <input type="checkbox" class="bblchk " disabled="disabled" value="false" ng-if="response.active_heartbeat==false">
+            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.active_heartbeat==true || response.active_heartbeat=='true'">
+            <input type="checkbox" class="bblchk " disabled="disabled" value="false" ng-if="response.active_heartbeat==false || response.active_heartbeat=='false'">
 
             <span class="linkBlue">是否主发起心跳查询</span>
 
@@ -133,8 +133,8 @@
             </div>
         </div>
         <div class=" col-md-7" style="width: 300px;height: 60px;">
-            <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true">
-            <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false">
+            <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true || response.support_repeat=='true'">
+            <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false || response.support_repeat=='false'">
             <span class="linkBlue">是否支持重发</span>
             <div class="">
                 <div class="u208 col-md-4">
@@ -147,7 +147,6 @@
                            value="{[{ response.repeat_count}]}">
                 </div>
             </div>
-
         </div>
     </div>
     <br>
@@ -156,7 +155,7 @@
     </div>
     <hr>
 
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content">
+    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content" id="xxx">
         <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
@@ -188,6 +187,8 @@
 
         <hr style="height: 20px;margin-top: 47px;border-top-width: 3px;" ng-if ="!$last">
     </div>
+
+    <div ng-include="xxx"></div>
     <div class="u208 col-md-2 " style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
         <select style="display: block;margin-top: 4px;height: 18px;width: 70px" name="checkout_algorithm" id="select_option">
@@ -247,6 +248,7 @@
         for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
             list111[iiii].disabled='false';
         }
+
     });
     $(".standard").on('click', function () {
 
