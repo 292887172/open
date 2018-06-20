@@ -103,7 +103,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_1["number"] = z2[2].value;
                 dict_1["length"] = z2[3].value;
                 for (var zz=4,list_z2 = z2.length; zz<list_z2;zz++ ){
-                list_code.push({"value":z2[zz].value,"desc":z22[zz].innerText});
+                list_code.push({"value":z2[zz].value,"desc":z22[zz].innerText.split("\n")[0]});
                 }
                 li.push(dict_1)
             }
