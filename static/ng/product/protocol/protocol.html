@@ -82,7 +82,7 @@
     /*end*/
 
 </style>
-<div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl">
+<div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl" id="mainDiv1">
 
     <div class="hl-help">
         <span class="linkBlue" style="font-size:20px">定义协议</span>
@@ -140,6 +140,7 @@
 
             </div>
         </div>
+
         <div class=" col-md-7" style="width: 300px;height: 60px;">
             <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true || response.support_repeat=='true'">
             <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false || response.support_repeat=='false'">
@@ -163,10 +164,10 @@
     </div>
     <hr>
 
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content" id="xxx" ng-if="x.is_enable==true || x.is_enable=='true'">
-        <input style="margin-left: 0px;font-size: 17px;width: 100px" readonly="readonly" value="{[{ x.title }]}">
-        <input type="checkbox" class="ids taf" checked style="margin-left: 30px;" ng-if="x.is_enable==true || x.is_enable=='true'" >
-        <input type="checkbox" class="ids taf" style="margin-left: 30px;" ng-if="x.is_enable==false || x.is_enable=='false'">
+    <div class="x1x" style="margin-top: 10px;margin-left: 100px;" ng-repeat="x in response.frame_content" id='div_add' ng-if="x.is_enable==true || x.is_enable=='true'">
+        <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
+        <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
+        <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
         <span
             class="ids" style="display: none">启用</span>
         <br>
@@ -196,8 +197,8 @@
         <hr style="height: 8px;margin-top: 60px;border-top-width: 3px;" ng-if ="!$last">
     </div>
 
-    <div ng-include="xxx"></div>
-    <div class="u208 col-md-2 " style="margin-left: 10px" >
+
+    <div class="u208 col-md-2" id="x2x" style="margin-left: 10px" >
         <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">算法校验</span>
         <select style="display: block;margin-top: 7px;height: 25px;width: 70px" name="checkout_algorithm" id="select_option">
             <option value="sum">SUM(加和效验)</option>
@@ -226,8 +227,11 @@
           <div class="num-val">{[{x.val}]}</div>
         </div>
     </div>
+    <div style="margin-top: 60px">
 
-    <div style="margin-top: 60px;text-align: center">
+        <button type="submit" id="newpro" class="btn-s-xs btnn" style="margin-left: 200px">新增协议
+                        </button>
+
         <button type="submit" class="btn-s-xs btnn" ng-click="SubmitProtocol()">保存
                         </button>
 
@@ -273,6 +277,40 @@
         for (var jjj = 0, lll = lis11.length; jjj < lll; jjj++) {
             lis11[jjj].disabled=true;
         }
+
+    });
+    $("#newpro").on('click',function () {
+
+        var newDiv = document.createElement("div");
+        newDiv.className="x11x";
+        newDiv.style="margin-top:50px;margin-left:100px";
+        newDiv.innerHTML=
+            '<input style="margin-left: 0px;font-size: larger;width: 100px" placeholder="自定义协议名称" value="">\n' +
+
+            '        <br>\n' +
+            '        <br>\n' +
+            '        <div>\n' +
+            '            <div class="u208 col-md-2">\n' +
+            '                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 24px" value="">\n' +
+            '            </div>\n' +
+            '            <div class="u208 col-md-2 " style="margin-left: 10px">\n' +
+            '                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 24px" value="">\n' +
+            '            </div>\n' +
+            '            <div class="u208 col-md-2 " style="margin-left: 10px">\n' +
+            '                <input style="display: block;width: 70px;margin-top:0px;margin-left:0px" placeholder="自定义参数">\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 20px;margin-top:0px" value="">\n' +
+            '            </div>\n' +
+
+            '\n' +
+
+            '    </div>';
+
+
+        var oldDiv = document.getElementById("mainDiv1");
+        var ooDiv = document.getElementById("x2x");
+        oldDiv.insertBefore(newDiv, ooDiv);
 
     })
 

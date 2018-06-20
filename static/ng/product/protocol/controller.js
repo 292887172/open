@@ -85,28 +85,42 @@ angular.module('Product.protocol', ['ngRoute'])
              var for2 = document.getElementsByClassName("taf");
              for (var g = 0, lll2 = for2.length; g < lll2; g++) {
                  var obj1 = for2[g].checked;
+                 console.log(obj1);
                  list_2.push(obj1)
             }
+
             // 终极循环
              var li = [];
              var z1 = document.getElementsByClassName("x1x");
              for (var z=0, list_z1 = z1.length; z < list_z1; z++ ){
                 var list_code = [];
                 var dict_1={"code":list_code};
+
                 var z2 = z1[z].getElementsByTagName("input");
-                console.log(z2)
+                var z22 = z1[z].getElementsByTagName("div");
                 dict_1["title"] = z2[0].value;
                 dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 dict_1["length"] = z2[3].value;
-                for (var zz=4,list_z2 = z2.length; zz<list_z2;zz=zz+2 ){
-                list_code.push({"value":z2[zz].value,"desc":z2[zz+1].value});
+                for (var zz=4,list_z2 = z2.length; zz<list_z2;zz++ ){
+                list_code.push({"value":z2[zz].value,"desc":z22[zz].innerText});
                 }
                 li.push(dict_1)
             }
-            console.log(li);
 
+            var zdy_data = document.getElementsByClassName("x11x");
+            for (var i = 0, list_zdy = zdy_data.length; i<list_zdy; i++){
+                var zdy_input = zdy_data[i].getElementsByTagName("input");
+                var dict_2 = {"code":[]};
+                dict_2["title"]=zdy_input[0].value;
+                dict_2["is_enabled"] = "true";
+                dict_2["number"] = zdy_input[1].value;
+                dict_2["length"] = zdy_input[2].value;
+                dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
 
+            }
+
+            li.push(dict_2);
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
              $scope.response.start_check_number =  $("#input_04").val();
