@@ -241,8 +241,7 @@ def product_add(request):
 
 @login_required
 @csrf_exempt
-
-def  product_main(request):
+def product_main(request):
     """
     应用详情
     :param request:
@@ -299,6 +298,7 @@ def  product_main(request):
                 if str(opera_data[i]['id']) == id:
                     return [i, opera_data[i]]
             return []
+
     def post():
         #data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
         #data_protocol_list = json.loads(request.body.decode('utf-8'))
@@ -310,8 +310,6 @@ def  product_main(request):
         # 根据ID获取到数据库中的设备配置信息
         app = App.objects.get(app_id=app_id)
         device_conf = gen_app_default_conf(app.app_device_type)
-
-
         opera_data = []
         try:
             if app.device_conf:
@@ -530,8 +528,6 @@ def  product_main(request):
                 ret = reset_app_secret(app_id)
                 res["data"] = ret
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
-
-
         return HttpResponse(json.dumps(res, separators=(",", ":")))
 
     if request.method == "GET":
@@ -539,6 +535,8 @@ def  product_main(request):
 
     elif request.method == "POST":
         return post()
+
+
 @csrf_exempt
 def protocol(request):
     if request.method == 'GET':
@@ -578,6 +576,7 @@ def protocol(request):
 
                 return HttpResponse(json.dumps(res_list_data1))
         return HttpResponse(json.dumps(t))
+
 
 @csrf_exempt
 def key_verify(request):
