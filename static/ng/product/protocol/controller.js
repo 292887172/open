@@ -104,6 +104,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
                 var z2 = z1[z].getElementsByTagName("input");
                 var codeItem = z1[z].getElementsByClassName("code-item");
+
                 dict_1["name"] = $(z1[z]).data("name");
                 dict_1["title"] = z2[0].value;
                 dict_1["is_enable"] = z2[1].checked;
@@ -114,7 +115,22 @@ angular.module('Product.protocol', ['ngRoute'])
                     list_code.push(tmp)
                 }
                 dict_1['code'] = list_code;
-                li.push(dict_1)
+                li.push(dict_1);
+                 // 获取新增code
+                var new_class_data = z1[z].getElementsByClassName("new_class");
+                if (new_class_data) {
+                    for (var v = 0, list_new_data=new_class_data.length; v< list_new_data; v++){
+                        var dict_class_list = {};
+                        var new_data_class = new_class_data[v].getElementsByTagName("input")
+                        dict_class_list["desc"] = new_data_class[0].value;
+                        dict_class_list["type"] = "new_data";
+                        dict_class_list["value"] =new_data_class[1].value;
+                        list_code.push(dict_class_list);
+                        console.log(list_code);
+                    }
+                }else {
+                    console.log('无新政家数据')
+                }
             }
 
             var zdy_data = document.getElementsByClassName("x11x");
