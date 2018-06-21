@@ -141,13 +141,13 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_2["is_enable"] = "true";
                 dict_2["number"] = zdy_input[1].value;
                 dict_2["length"] = zdy_input[2].value;
-                dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
-
-            }
-            if (dict_2 > 0  ){
-                li.push(dict_2)
-            }else {
-                console.log(dict_2)
+                dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value});
+                console.log(dict_2.length);
+                if (dict_2.length > 0 ){
+                    li.push(dict_2)
+                }else {
+                    console.log(dict_2)
+                }
             }
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
