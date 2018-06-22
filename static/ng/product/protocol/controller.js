@@ -144,7 +144,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
 
             }
-            if (dict_2){
+            if (dict_2.length>0){
                 li.push(dict_2)
             }else {
                 console.log(dict_2)
