@@ -186,7 +186,7 @@ def doc_device(request):
         return JsonResponse(ret_msg)
     if request.method == "GET":
         doc_device = DeviceMenu.objects.all()
-        r = RedisBaseHandler().client  # 调用redis存储
+        r = Redis3().client  # 调用redis存储
         r_key = _code.DEVICE_MENU_PREFIX
         r_value = r.get(r_key)
 
