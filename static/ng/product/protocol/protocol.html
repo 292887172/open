@@ -102,6 +102,9 @@
     .x11x{
         position: relative;
     }
+    .x11x:first-child{
+        margin-top: 0;
+    }
 
     #div_add{
         position: relative;
@@ -220,7 +223,7 @@
     </div>
     <hr>
 
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;height: 100px" ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}" ng-if="x.is_enable==true || x.is_enable=='true'">
+    <div class="x1x" style="margin-left: 100px;height: 100px" ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}" ng-if="x.is_enable==true || x.is_enable=='true'">
         <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
@@ -254,7 +257,7 @@
 
         </div>
 
-        <hr style="height: 8px;margin-top: 60px;border-top-width: 3px;" ng-if ="!$last">
+
     </div>
 
     <div style="margin-left: 90px;margin-top: 60px" id="x3x">
