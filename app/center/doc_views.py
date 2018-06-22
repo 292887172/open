@@ -4,7 +4,7 @@ import copy
 import logging
 import json
 
-from base.connection import RedisBaseHandler
+from base.connection import RedisBaseHandler, Redis3
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render
@@ -163,7 +163,7 @@ def doc_device(request):
         ret_msg = copy.deepcopy(DOC_RET_MSG)
         data = request.body.decode("utf-8")
         menu_data = json.loads(data)
-        r = RedisBaseHandler().client  # 调用redis存储
+        r = Redis3().client  # 调用redis存储
         r_key = _code.DEVICE_MENU_PREFIX
         # 处理菜单数据
         ret = save_device_menu(menu_data)
