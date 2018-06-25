@@ -543,6 +543,7 @@ def protocol(request):
         # 协议类型 1为下行 0为上行
         device_key = request.GET.get('key')
         r = select_protocol(device_key)
+
         if r is None:
             r = DefaultProtocol().DEFAULT_DATA
             data = {"code": 2, "data": r,"protocol_type":1}

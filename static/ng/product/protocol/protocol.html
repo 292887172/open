@@ -209,71 +209,16 @@
     <hr>
     <div class="" style="margin-left: 50px">
         <div class="col-md-4" style="display: inline;width: 300px;margin-left: 50px;padding-left:0px">
-            <input type="radio" name="xx" class="standard"  value="standard" id="standard-item">标准协议
+            <input type="radio" name="xx" class="standard"  value="standard" id="standard-item"><p style="font-size: 30px;margin-left: 25px">标准协议</p>
         </div>
         <div class="" style="display: inline;margin-left: 50px">
-            <input type="radio" name="xx" class="custom" value="custom" id="custom-item" >自定义协议
+            <input type="radio" name="xx" class="custom" value="custom" id="custom-item" ><p style="font-size: 30px;margin-left: 420px">自定义协议</p>
         </div>
 
     </div>
 
-    <div class="hl-help" style="margin-top: 5px;color: #333333">
-        协议配置参数:
-    </div>
-    <hr>
-    <div style="margin-left: 100px">
-        <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.is_single_instruction==true || response.is_single_instruction=='true'">
-            <input type="checkbox" class="bblchk"  disabled="disabled"  value="false" ng-if="response.is_single_instruction==false || response.is_single_instruction=='false'">
-            <span class="linkBlue">是否支持单指令</span>
-        </div>
-        <div class="" style="display: inline;width: 100px">
-            <input type="checkbox" class="bblchk"  disabled="disabled" checked value="true" ng-if="response.support_response_frame==true || response.support_response_frame=='true'">
-            <input type="checkbox" class="bblchk"  disabled="disabled" value="false" ng-if="response.support_response_frame==false || response.support_response_frame=='false'">
-            <span class="linkBlue">是否控制端发送响应帧</span>
-        </div>
-        <div class="" style="display: inline">
-            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.support_serial==true || response.support_serial=='true'">
-            <input type="checkbox"  class="bblchk" disabled="disabled" value="false" ng-if="response.support_serial==false || response.support_serial=='false'">
-
-            <span class="linkBlue">是否控制端为串口通讯</span>
-        </div>
-        <br>
-        <div class="col-md-4" style="width: 200px;height: 60px;padding-left: 0px">
-            <input type="checkbox" checked class="bblchk" disabled="disabled" value="true" ng-if="response.active_heartbeat==true || response.active_heartbeat=='true'">
-            <input type="checkbox" class="bblchk " disabled="disabled" value="false" ng-if="response.active_heartbeat==false || response.active_heartbeat=='false'">
-
-            <span class="linkBlue">是否主发起心跳查询</span>
-
-            <div class="u208">
-                <span style="display: block;margin-top: 11px;margin-left: 10px">心跳频率</span>
-                <input id='input_01' class="bianji" placeholder="500ms" style="margin-left: 20px;" disabled="disabled" value="{[{ response.heart_rate}]}">
-
-            </div>
-        </div>
-
-        <div class=" col-md-7" style="width: 300px;height: 60px;">
-            <input type="checkbox" checked class="bblchk" value="true" disabled="disabled" ng-if="response.support_repeat==true || response.support_repeat=='true'">
-            <input type="checkbox"  class="bblchk" value="false" disabled="disabled" ng-if="response.support_repeat==false || response.support_repeat=='false'">
-                 <div class="">
-                <div class="u208 col-md-4">
-                    <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发间隔</span>
-                    <input id='input_02' class="bianji" disabled="disabled" placeholder="100ms" value="{[{ response.repeat_rate}]}">
-                </div>
-                <div class="u208 col-md-4 col-md-offset-1" >
-
-                    <span style="display: block;margin-top: 11px;margin-left: 1px;width: 74px">重发次数</span>
-                    <input id='input_03' class="bianji" disabled="disabled" placeholder="5" style="margin-left: 27px"
-                           value="{[{ response.repeat_count}]}">
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
     <br>
-    <div class="hl-help" style="margin-top: 65px;color: #333333">
+    <div class="hl-help" style="margin-top: 20px;color: #333333">
         协议帧定义:
     </div>
     <hr>
@@ -300,7 +245,13 @@
             </div>
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px" value="{[{ x.length }]}">
+
+                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" class="bianji" name="checkout_length" id="select_length">
+                    <option value="1" selected ng-selected="x.length =='1'">1</option>
+                    <option value="2" ng-selected="x.length =='2'">2</option>
+                    <option value="3" ng-selected="x.length =='3'">3</option>
+                    <option value="4" ng-selected="x.length =='4'">4</option>
+                </select>
             </div>
             <div ng-if="x.code" >
                 <div class="u208 col-md-2 code-item"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
@@ -313,7 +264,7 @@
                 </div>
 
             </div>
-            <div ng-if="x.code.length > 0" class="ids" id="x4x">
+            <div ng-if="x.code.length > 2" class="ids" id="x4x">
                  <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">
             </div>
 
@@ -374,7 +325,7 @@
     </div>
     <button style="margin-top: 40px;margin-left: 40px" type="submit" class="btn-s-xs btnn" onclick="SubmitProtocol1('MyDiv','fade')" >确认</button>
     <button type="submit" class="btn-s-xs btnn" onclick="CloseDiv('MyDiv','fade')">取消</button>
-    <!--目前来说，我还是喜欢这个自己改造的弹出层。自己在项目中也用的是这个。-->
+
 </div>
 <script>
     $(document).ready(function () {
@@ -505,6 +456,17 @@
           }
         }
 
-
+    function f1() {
+        if (document.getElementById("x_x").selected){
+            var ttt = document.getElementsByClassName("code-item")[0].style;
+            ttt.display='none'
+            console.log(ttt)
+        }
+        if(document.getElementById("s_x").selected) {
+            var tt = document.getElementsByClassName("code-item")[1].style;
+            tt.display='none'
+            console,log(tt)
+        }
+    }
 
 </script>
