@@ -541,14 +541,20 @@ def product_main(request):
 def protocol(request):
     if request.method == 'GET':
         # 协议类型 1为下行 0为上行
-        device_key = request.GET.get('key')
+        device_key = request.GET.get('key','')
+        zdy = request.GET.get('zdy','')
+        p = DefaultProtocol().DEFAULT_DATA_ZDY
+        print(zdy)
+        if zdy:
+            data = {"code": 2, "data": p, "protocol_type": zdy}
+            return HttpResponse(json.dumps(data))
         r = select_protocol(device_key)
-
+        p = select_protocol(zdy)
         if r is None:
             r = DefaultProtocol().DEFAULT_DATA
             data = {"code": 2, "data": r,"protocol_type":1}
         else:
-            data = {"code": 1, "data": r,"protocol_type":1}
+            data = {"code": 1, "data": r,"protocol_type":p}
         return HttpResponse(json.dumps(data))
     if request.method == "POST":
         r = DefaultProtocol().DEFAULT_DATA

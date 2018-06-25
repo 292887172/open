@@ -186,14 +186,24 @@ def select_protocol(key):
     #         res_ = json.loads(res_)
     #         return res_
     # else:
-    mm = Protocol.objects.filter(protocol_device_key=key)
-    if mm.count() > 0:
-        for i in mm:
-            res_ = i.protocol_factory_content
-            res_ = json.loads(res_)
-            return res_
+    if key == 1 or key == 0:
+        mm = Protocol.objects.filter(protocol_device_type=int(key))
+        if mm.count() > 0:
+            for i in mm:
+                res_ = i.protocol_factory_type
+                res_ = json.loads(res_)
+                return res_
+            else:
+                return None
     else:
-        return None
+        mm = Protocol.objects.filter(protocol_device_key=key)
+        if mm.count() > 0:
+            for i in mm:
+                res_ = i.protocol_factory_content
+                res_ = json.loads(res_)
+                return res_
+        else:
+            return None
 
 
 def update_protocol(list_key, data_sql_update,protocol_type):
