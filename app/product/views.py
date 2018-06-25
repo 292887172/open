@@ -540,13 +540,15 @@ def product_main(request):
 @csrf_exempt
 def protocol(request):
     if request.method == 'GET':
+        # 协议类型 1为下行 0为上行
         device_key = request.GET.get('key')
         r = select_protocol(device_key)
+
         if r is None:
             r = DefaultProtocol().DEFAULT_DATA
-            data = {"code": 2, "data": r}
+            data = {"code": 2, "data": r,"protocol_type":1}
         else:
-            data = {"code": 1, "data": r}
+            data = {"code": 1, "data": r,"protocol_type":1}
         return HttpResponse(json.dumps(data))
     if request.method == "POST":
         r = DefaultProtocol().DEFAULT_DATA
@@ -554,6 +556,8 @@ def protocol(request):
         if data_protocol_list.get('action', '') == 'update_protocol':
 
             data_sql = {}
+            protocol_type = data_protocol_list.get('protocol_type',0)
+            print(protocol_type)
             list_fivechoose = data_protocol_list.get('fivechoose','')
             list_t = data_protocol_list.get('frame_content', '')
             list_key = data_protocol_list.get('key', '')
@@ -570,7 +574,7 @@ def protocol(request):
             data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
             data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
             data_sql_update = json.dumps(data_sql,ensure_ascii=False)
-            update_protocol(list_key, data_sql_update)
+            update_protocol(list_key, data_sql_update,protocol_type)
             mlist = Protocol.objects.all().filter(protocol_device_key=list_key)
             for ii in mlist:
                 res_list_data = ii.protocol_factory_content

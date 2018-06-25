@@ -22,19 +22,34 @@ angular.module('Product.protocol', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
                 .success(function (response) {
-
+                    // 获取前端接收到的数据
+                    $scope.response = response.data;
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
-
+                        $scope.response.frame_content[2]['code']=[{"type": "heart", "desc": "心跳帧", "value": "00"},
+                            {"type": "control_all", "desc": "全指令控制帧", "value": "21"}, {"type": "error", "desc": "故障报警帧", "value": "FF"}]
                     }
                     else{
                         // 标准协议
                         document.getElementById("standard-item").checked=true;
 
                     }
-                    $scope.response = response.data;
-                    console.log(response.data)
+
+
+                     //上下行判断
+                    console.log($scope.response.frame_content[0]);
+                    if (response.protocol_type==1) {
+                        // 下行被选中
+                        document.getElementById("x_x").selected=true;
+
+                    }
+                    else{
+                        //上行被选中
+                        document.getElementById("s_x").selected=true;
+
+                    }
+
                     $scope.list_mode = [];
                     for(var i=0;i<$scope.response.frame_content.length;i++){
                      if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
@@ -58,26 +73,20 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 })
             setTimeout(function () {
-                foo()
+                foo();
+                f1()
             }, 100)
+
 
         }
 
         $scope.SubmitProtocol = function (scope) {
              $scope.response.key = $scope.$parent.$parent.key;
              $scope.response.action = "update_protocol";
-             $scope.response.heart_rate =  $("#input_01").val();
-             $scope.response.repeat_rate =  $("#input_02").val();
-             $scope.response.repeat_count =  $("#input_03").val();
-             //input checked case
-             var list_0 = [];
-             var for1 = document.getElementsByClassName("bblchk");
-             for (var u = 0, lll1 = for1.length; u < lll1; u++) {
-                 var obj = for1[u].checked;
-
-                 list_0.push(obj)
-            }
-             $scope.response.fivechoose = list_0;
+             $scope.response.heart_rate =  "500";
+             $scope.response.repeat_rate =  "500";
+             $scope.response.repeat_count =  "3";
+             $scope.response.fivechoose = [true,true,true,true,true];
              // 获取循环体的value
              // 根据是否启用获取响应的value 启用则获取value 不启用这
 
@@ -86,7 +95,7 @@ angular.module('Product.protocol', ['ngRoute'])
                  var v = $(this).val();
                  list_1.push(v);
              });
-
+             console.log(list_1)
              var list_2 =[];
              var for2 = document.getElementsByClassName("taf");
              for (var g = 0, lll2 = for2.length; g < lll2; g++) {
@@ -94,22 +103,26 @@ angular.module('Product.protocol', ['ngRoute'])
                  console.log(obj1);
                  list_2.push(obj1)
             }
-
+            console.log(list_2)
             // 终极循环
              var li = [];
              var z1 = document.getElementsByClassName("x1x");
+             console.log(z1)
              for (var z=0; z < z1.length; z++ ){
                 var list_code = [];
                 var dict_1={};
 
                 var z2 = z1[z].getElementsByTagName("input");
                 var codeItem = z1[z].getElementsByClassName("code-item");
-
+                var select_1 = z1[z].getElementsByTagName("select");
                 dict_1["name"] = $(z1[z]).data("name");
                 dict_1["title"] = z2[0].value;
                 dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
-                dict_1["length"] = z2[3].value;
+                //$("#select_option option:selected").val()
+
+                dict_1["length"] = $(select_1).children("option:selected").val();
+                console.log(dict_1["length"]);
                 for(var k=0; k<codeItem.length;k++){
                     var tmp = {"type": $(codeItem[k]).data('type'), "value": $(codeItem[k]).children("input").val(), "desc": $(codeItem[k]).children("span").text()};
                     list_code.push(tmp)
@@ -141,20 +154,22 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_2["is_enable"] = "true";
                 dict_2["number"] = zdy_input[1].value;
                 dict_2["length"] = zdy_input[2].value;
-                dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value})
-
-            }
-            if (dict_2.length>0){
-                li.push(dict_2)
-            }else {
-                console.log(dict_2)
+                dict_2["code"].push({"desc":zdy_input[3].value,"value":zdy_input[4].value});
+                console.log(dict_2.length);
+                if (dict_2.length > 0 ){
+                    li.push(dict_2)
+                }else {
+                    console.log(dict_2)
+                }
             }
              $scope.response.frame_taf =  list_2;
              $scope.response.frame_content =  li;
              $scope.response.start_check_number =  $("#input_04").val();
              $scope.response.end_check_number =  $("#input_05").val();
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
-
+             //上下行传参
+             $scope.response.protocol_type= $("#select_id option:selected").val();
+             console.log($scope.response.protocol_type);
              $http({
                     method: "POST",
                     url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,
