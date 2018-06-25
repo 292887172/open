@@ -26,12 +26,21 @@ angular.module('Product.protocol', ['ngRoute'])
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
-
                     }
                     else{
                         // 标准协议
                         document.getElementById("standard-item").checked=true;
 
+                    }
+                    //上下行判断
+                    console.log(response.protocol_type);
+                    if (response.protocol_type==1) {
+                        // 下行被选中
+                        document.getElementById("x_x").selected=true;
+                    }
+                    else{
+                        //上行被选中
+                        document.getElementById("s_x").selected=true;
                     }
                     $scope.response = response.data;
                     console.log(response.data)
@@ -154,7 +163,9 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.start_check_number =  $("#input_04").val();
              $scope.response.end_check_number =  $("#input_05").val();
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
-
+             //上下行传参
+             $scope.response.protocol_type= $("#select_id option:selected").val();
+             console.log($scope.response.protocol_type);
              $http({
                     method: "POST",
                     url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,
