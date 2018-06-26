@@ -8,12 +8,46 @@ angular.module('Product.protocol', ['ngRoute'])
 
         })
     }])
-    .controller('ProtocolCtrl', ['$scope', "$http", function ($scope, $http) {
+    .controller('ProtocolCtrl', ['$scope', "$http", "$location", "$anchorScroll", function ($scope, $http, $location, $anchorScroll) {
         $scope.nav.selected("protocolMenu");
+        $scope.frame_length=0;
         var xx = 0;
         $scope.list_mode = [{"val":"A55A", "title": "帧头", "number": 1}, {"val":"00", "title": "流水号", "number": 2},{"val":"00", "title": "协议版本","number": 3},
           {"val":"00", "title": "数据类型", "number": 4},{"val":"00", "title": "帧长", "number": 5}, {"val":"00x15", "title": "帧数据","number": 6},
           {"val":"00", "title": "校验", "number": 7}];
+        $scope.data_menu = [{
+                'id': 1,
+                'title': 'power',
+                'length': 2
+            }, {
+                'id': 2,
+                'title': 'wind',
+                'length': 2
+            },{
+                'id': 3,
+                'title': 'light',
+                'length': 2
+            },{
+                'id': 4,
+                'title': 'dry',
+                'length': 2
+            },{
+                'id': 5,
+                'title': 'time',
+                'length': 8
+            },{
+                'id': 6,
+                'title': 'temp',
+                'length': 16
+            },{
+                'id': 7,
+                'title': 'wind_left',
+                'length': 8
+            }];
+
+        for(var j =0 ;j < $scope.data_menu.length;j++){
+            $scope.frame_length+=$scope.data_menu[j].length
+        }
         if( xx == 0) {
          $http({
                 method: "GET",
@@ -25,7 +59,6 @@ angular.module('Product.protocol', ['ngRoute'])
                     // 获取前端接收到的数据
                     $scope.response = response.data;
                     $scope.response.protocol_type = response.protocol_type;
-
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
@@ -75,13 +108,29 @@ angular.module('Product.protocol', ['ngRoute'])
                     $scope.list_mode.push(tmp)
 
                     }
-                })
+                });
                 setTimeout(function () {
-                foo();
-                show_or_hide()
-            }, 100)
+                    foo();
+                    show_or_hide()
+            }, 200)
 
+            $http({
+                method: "GET",
+                url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key+"&action=get_data_content",
+                data: {},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .success(function (response) {
 
+                     $scope.data_menu=response;
+                    console.log($scope.data_menu)
+                    $scope.frame_length=0;
+                    for(var j =0 ;j < $scope.data_menu.length;j++){
+                        console.log($scope.data_menu[j].length);
+                        $scope.frame_length+=parseInt($scope.data_menu[j].length)
+                    }
+                    console.log($scope.frame_length)
+                })
         }
         $scope.BzProtocol = function(scope){
             $http({
@@ -298,15 +347,21 @@ angular.module('Product.protocol', ['ngRoute'])
         }).success(function (response) {$scope.response = response
 
              });
-        }
-        // $scope.dropComplete = function(index,obj){
-        //     //重新排序
-        //     var idx = $scope.response.frame_content.indexOf(obj);
-        //     $scope.response.frame_content.splice(idx,1);
-        //     $scope.response.frame_content.splice(index,0,obj);
-        // }
+        };
+        $scope.gotoPosition = function(positionId) {
+            console.log(positionId)
 
+          // 将location.hash的值设置为
+          // 你想要滚动到的元素的id
+          $location.hash("protocolx"+positionId+"x");
 
+          // 调用 $anchorScroll()
+          $anchorScroll();
+          xx=1
 
-        
+        };
+        $scope.range = function(n) {
+            return new Array(n);
+        };
+
     }]);

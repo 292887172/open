@@ -541,11 +541,20 @@ def product_main(request):
 def protocol(request):
     if request.method == 'GET':
         # 协议类型 1为下行 0为上行
-        device_key = request.GET.get('key','')
-        zdy = request.GET.get('zdy')
+        device_key = request.GET.get('key', '')
+        zdy = request.GET.get('zdy', '')
+        action = request.GET.get('action', '')
+        if action == 'get_data_content':
+            app = App.objects.get(app_appid__endswith=device_key)
+            dc = json.loads(app.device_conf)
+            data = []
+            for i in dc:
+                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength']}
+                data.append(tmp)
+            return HttpResponse(json.dumps(data))
 
         p = DefaultProtocol().DEFAULT_DATA_ZDY
-        print(zdy)
+
         if zdy:
             data = {"code": 2, "data": p, "protocol_type": zdy}
             return HttpResponse(json.dumps(data))
@@ -553,11 +562,9 @@ def protocol(request):
         p = select_protocol(zdy)
         if r is None:
             r = DefaultProtocol().DEFAULT_DATA
-            print('biaozhun')
-            data = {"code": 2, "data": r,"protocol_type":1}
+            data = {"code": 2, "data": r, "protocol_type": 1}
         else:
-            print('feibiao')
-            data = {"code": 1, "data": r,"protocol_type":p}
+            data = {"code": 1, "data": r, "protocol_type": p}
         return HttpResponse(json.dumps(data))
     if request.method == "POST":
         r = DefaultProtocol().DEFAULT_DATA
@@ -566,7 +573,6 @@ def protocol(request):
 
             data_sql = {}
             protocol_type = data_protocol_list.get('protocol_type',0)
-            print(protocol_type)
             list_fivechoose = data_protocol_list.get('fivechoose','')
             list_t = data_protocol_list.get('frame_content', '')
             list_key = data_protocol_list.get('key', '')
