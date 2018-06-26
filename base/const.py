@@ -178,11 +178,11 @@ class DefaultProtocol(object):
     DEFAULT_DATA = {"is_single_instruction": "true", "support_response_frame": "true", "support_serial": "true",
                     "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
                     "repeat_count": 3, "frame_content":
-                        [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 16,
+                        [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
                           "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
                                    {"value": "5AA5", "desc": "响应码", "type": "response"}]},
-                         {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 8},
-                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 8,
+                         {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
+                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
                                    {"value": "01", "desc": "握手帧", "type": "handshake"},
                                    {"value": "20", "desc": "查询帧", "type": "query"},
@@ -190,35 +190,35 @@ class DefaultProtocol(object):
                                    {"value": "31", "desc": "单指令控制帧", "type": "control_single"},
                                    {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
                          {"name": "frame_length", "title": "帧长", "is_enable": "true",
-                          "number": 4, "length": 8},
+                          "number": 4, "length": 1},
                          {"name": "data_domain", "title": "数据域", "is_enable": "true",
                           "number": 5, "length": "8*N"},
                          {"name": "check", "title": "校验", "is_enable": "true",
-                          "number": 6, "length": 8}
+                          "number": 6, "length": 1}
                          ],
                     "checkout_algorithm": "sum",
                     "start_check_number": 1,
                     "end_check_number": 5
                     }
     DEFAULT_DATA_ZDY = {"is_single_instruction": "true", "support_response_frame": "true", "support_serial": "true",
-                        "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
-                        "repeat_count": 3, "frame_content":
-                            [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 16,
-                              "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
-                                       {"value": "5AA5", "desc": "响应码", "type": "response"}]},
-                             {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
-                             {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
-                              "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
-                                       {"value": "31", "desc": "单指令控制帧", "type": "control_single"},
-                                       {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
-                             {"name": "frame_length", "title": "帧长", "is_enable": "true",
-                              "number": 4, "length": 1},
-                             {"name": "data_domain", "title": "数据域", "is_enable": "true",
-                              "number": 5, "length": "8*N"},
-                             {"name": "check", "title": "校验", "is_enable": "true",
-                              "number": 6, "length": 1}
-                             ],
-                        "checkout_algorithm": "sum",
-                        "start_check_number": 1,
-                        "end_check_number": 5
-                        }
+                    "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
+                    "repeat_count": 3, "frame_content":
+                        [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
+                          "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
+                                   {"value": "5AA5", "desc": "发送码", "type": "response"}]},
+                         {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
+                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
+                          "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
+                                   {"value": "31", "desc": "单指令控制帧", "type": "control_single"},
+                                   {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
+                         {"name": "frame_length", "title": "帧长", "is_enable": "true",
+                          "number": 4, "length": 1},
+                         {"name": "data_domain", "title": "数据域", "is_enable": "true",
+                          "number": 5, "length": "8*N"},
+                         {"name": "check", "title": "校验", "is_enable": "true",
+                          "number": 6, "length": 1}
+                         ],
+                    "checkout_algorithm": "sum",
+                    "start_check_number": 1,
+                    "end_check_number": 5
+                    }
