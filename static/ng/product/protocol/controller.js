@@ -8,7 +8,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
         })
     }])
-    .controller('ProtocolCtrl', ['$scope', "$http", function ($scope, $http) {
+    .controller('ProtocolCtrl', ['$scope', "$http", "$location", "$anchorScroll", function ($scope, $http, $location, $anchorScroll) {
         $scope.nav.selected("protocolMenu");
         var xx = 0;
         $scope.list_mode = [{"val":"A55A", "title": "帧头", "number": 1}, {"val":"00", "title": "流水号", "number": 2},{"val":"00", "title": "协议版本","number": 3},
@@ -178,6 +178,18 @@ angular.module('Product.protocol', ['ngRoute'])
         }).success(function (response) {$scope.response = response
 
              });
-        }
+        };
+        $scope.gotoPosition = function(positionId) {
+            console.log(positionId)
+
+          // 将location.hash的值设置为
+          // 你想要滚动到的元素的id
+          $location.hash("protocolx"+positionId+"x");
+
+          // 调用 $anchorScroll()
+          $anchorScroll();
+          xx=1
+
+        };
 
     }]);

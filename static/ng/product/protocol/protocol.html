@@ -32,6 +32,12 @@
         border-right-width: 0px;
 
     }
+    .protocol-choose{
+        width: 16px;
+    height: 16px;
+    top: 9px;
+    position: relative;
+    }
     .btnn{
         width: 135px;
     height: 42px;
@@ -69,7 +75,7 @@
     flex-wrap: wrap;
     border: 1px solid #ccc;
     padding: 5px;
-        margin-top: 67px;
+        margin-top: 20px;
     margin-left: 100px;
     }
     .pre-title{
@@ -144,6 +150,44 @@
     z-index:1002;
     overflow: auto;
     }
+    /*数据域样式*/
+    .ui-data-domain{
+        border: 1px solid #ccc;
+        width: 430px;
+        height: 90px;
+        overflow-x: scroll;
+        top: -20px;
+        left: 50px;
+        position: relative;
+        padding: 0;
+    }
+    table{height: 60px;
+    width: 100%;
+    border: 1px solid #ccc;}
+    tr{ text-align: center;}
+    td{border: 1px solid #ccc;}
+    /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.ui-data-domain::-webkit-scrollbar
+{
+    width: 10px;
+    height: 10px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.ui-data-domain::-webkit-scrollbar-track
+{
+
+}
+
+/*定义滑块 内阴影+圆角*/
+.ui-data-domain::-webkit-scrollbar-thumb
+{
+
+    -webkit-box-shadow: inset 0 0 3px rgba(193,193,193,.3);
+    background-color: #ccc;
+}
+    /*end*/
 </style>
 <script>
     function Iclose(b){
@@ -201,36 +245,36 @@
 
     </div>
     <hr style="height: 20px;margin-top: 17px;border-top-width: 1px;">
-    <div class="hl-help">
-        <span class="linkBlue" style="color: #333333">协议选择:</span>
 
-    </div>
-
-    <hr>
     <div class="" style="margin-left: 50px">
-        <div class="col-md-4" style="display: inline;width: 300px;margin-left: 50px;padding-left:0px">
-            <input type="radio" name="xx" class="standard"  value="standard" id="standard-item"><p style="font-size: 30px;margin-left: 25px">标准协议</p>
+        <div class="col-md-4" style="display: inline;margin-left: 50px;padding-left:0px">
+            <input type="radio" name="xx" class="standard protocol-choose"  value="standard" id="standard-item"><p style="font-size: 20px;margin-left: 25px">标准协议</p>
         </div>
         <div class="" style="display: inline;margin-left: 50px">
-            <input type="radio" name="xx" class="custom" value="custom" id="custom-item" ><p style="font-size: 30px;margin-left: 420px">自定义协议</p>
+            <input type="radio" name="xx" class="custom protocol-choose" value="custom" id="custom-item" ><p style="font-size: 20px;margin-left: 420px">自定义协议</p>
         </div>
 
     </div>
 
     <br>
     <div class="hl-help" style="margin-top: 20px;color: #333333">
-        协议帧定义:
+        帧定义:
     </div>
     <hr>
-    <div class="hl-help" style="margin-top: 15px;color: #333333">
-        协议分类
-    </div>
      <select style="display: block;margin-top: 7px;margin-left:100px;height: 25px;width: 70px"  name="condition" id="select_id">
                 <option value="0" id="s_x" >上行</option>
                 <option value="1" id="x_x" ng-selected="response.checkout_algorithm=='crc-8'">下行</option>
      </select>
-    <hr>
-    <div class="x1x" style="margin-top: 10px;margin-left: 100px;height: 100px" ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}" ng-if="x.is_enable==true || x.is_enable=='true'">
+
+    <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
+        <p class="pre-title">协议格式预览</p>
+        <div class="num" ng-repeat="x in list_mode" ng-click="gotoPosition(x.number)">
+          <div class="num-title">{[{x.title}]}</div>
+          <div class="num-val">{[{x.val}]}</div>
+        </div>
+    </div>
+
+    <div class="x1x" id="protocolx{[{ x.number }]}x" style="margin-top: 10px;margin-left: 100px;height: 100px" ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}" ng-if="x.is_enable==true || x.is_enable=='true'">
         <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
@@ -246,12 +290,50 @@
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
 
-                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" class="bianji" name="checkout_length" id="select_length">
+                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" class="bianji" name="checkout_length_{[{ x.name }]}" id="select_length_{[{ x.name }]}">
                     <option value="1" selected ng-selected="x.length =='1'">1</option>
                     <option value="2" ng-selected="x.length =='2'">2</option>
                     <option value="3" ng-selected="x.length =='3'">3</option>
                     <option value="4" ng-selected="x.length =='4'">4</option>
                 </select>
+            </div>
+            <div ng-if="x.name=='data_domain'" class="ui-data-domain">
+                <table>
+                    <tr>
+                        <td colspan="8">1</td>
+                        <td colspan="8">2</td>
+                        <td colspan="8">3</td>
+                    </tr>
+                    <tr>
+                        <td>Bit7</td>
+                        <td>Bit6</td>
+                        <td>Bit5</td>
+                        <td>Bit4</td>
+                        <td>Bit3</td>
+                        <td>Bit2</td>
+                        <td>Bit1</td>
+                        <td>Bit0</td>
+                        <td>Bit7</td>
+                        <td>Bit6</td>
+                        <td>Bit5</td>
+                        <td>Bit4</td>
+                        <td>Bit3</td>
+                        <td>Bit2</td>
+                        <td>Bit1</td>
+                        <td>Bit0</td>
+                        <td>Bit7</td>
+                        <td>Bit6</td>
+                        <td>Bit5</td>
+                        <td>Bit4</td>
+                        <td>Bit3</td>
+                        <td>Bit2</td>
+                        <td>Bit1</td>
+                        <td>Bit0</td>
+                    </tr>
+                    <tr><td colspan="8">Power</td>
+                    <td colspan="8">Wind</td>
+                    <td colspan="8">Light</td></tr>
+                </table>
             </div>
             <div ng-if="x.code" >
                 <div class="u208 col-md-2 code-item"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
@@ -270,10 +352,10 @@
 
         </div>
 
-        <hr style="height: 8px;margin-top: 60px;border-top-width: 3px;" ng-if ="!$last">
+
     </div>
 
-    <div style="margin-left: 90px;margin-top: 60px" id="x3x">
+    <div style="margin-left: 90px;margin-top: 60px;height: 70px" id="x3x">
         <div class="u208 col-md-2" id="x2x" style="margin-left: 10px" >
             <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">校验算法</span>
             <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_algorithm" id="select_option">
@@ -296,15 +378,7 @@
 
         </div>
     </div>
-    <br>
-    <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
-        <p class="pre-title">协议格式预览</p>
-        <div class="num" ng-repeat="x in list_mode">
-          <div class="num-title">{[{x.title}]}</div>
-          <div class="num-val">{[{x.val}]}</div>
-        </div>
-    </div>
-    <div style="margin-top: 60px;text-align: center">
+    <div style="margin-top: 0px;text-align: center">
 
         <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="display: none">新增协议
                         </button>
@@ -333,7 +407,7 @@
             ShowDiv('MyDiv','fade');
 
         })
-    })
+    });
     $(".custom").on('click', function () {
 
         var list = document.getElementsByClassName("ids");
