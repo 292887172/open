@@ -187,8 +187,19 @@
     };
 
     function SubmitProtocol1(show_div,bg_div) {
+
         document.getElementById(show_div).style.display='none';
         document.getElementById(bg_div).style.display='none';
+        if (document.getElementById("x_x").selected) {
+            console.log('下行')
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
+            }
+        if (document.getElementById("s_x").selected) {
+            console.log('上行')
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
+        }
         angular.element("#sbt").click();
     }
 </script>
@@ -416,16 +427,7 @@
         oldDiv.insertBefore(newDiv, ooDiv);
 
     })
-    if (document.getElementById("x_x").selected) {
-        console.log('下行')
-        document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
-        document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
-        }
-    if (document.getElementById("s_x").selected) {
-        console.log('上行')
-        document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
-        document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
-    }
+
     function foo(){
              if(document.getElementById("custom-item").checked) {
                 console.log('zidingyi')
