@@ -153,10 +153,10 @@
     /*数据域样式*/
     .ui-data-domain{
         border: 1px solid #ccc;
-        width: 430px;
-        height: 90px;
+        width: 550px;
+        height: 72px;
         overflow-x: scroll;
-        top: -20px;
+        top: -8px;
         left: 50px;
         position: relative;
         padding: 0;
@@ -300,52 +300,34 @@
             </div>
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-
-                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_length" id="select_length">
-                    <option value="1" selected ng-selected="x.length =='1'">1bit</option>
-                    <option value="2" ng-selected="x.length =='2'">2bit</option>
-                    <option value="3" ng-selected="x.length =='3'">3bit</option>
-                    <option value="4" ng-selected="x.length =='4'">4bit</option>
+                <input ng-if="x.name=='data_domain'" disabled="" value="{[{ frame_length/8 }]}Byte">
+                <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_length" id="select_length">
+                    <option value="1" selected>1Byte</option>
+                    <option value="2" ng-selected="x.length =='2'">2Byte</option>
+                    <option value="3" ng-selected="x.length =='3'">3Byte</option>
+                    <option value="4" ng-selected="x.length =='4'">4Byte</option>
                 </select>
             </div>
+
+
             <div ng-if="x.name=='data_domain'" class="ui-data-domain">
-                <table>
+
+                <table border="1">
                     <tr>
-                        <td colspan="8">1</td>
-                        <td colspan="8">2</td>
-                        <td colspan="8">3</td>
+                        <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.id }]}</td>
+
                     </tr>
                     <tr>
-                        <td>Bit7</td>
-                        <td>Bit6</td>
-                        <td>Bit5</td>
-                        <td>Bit4</td>
-                        <td>Bit3</td>
-                        <td>Bit2</td>
-                        <td>Bit1</td>
-                        <td>Bit0</td>
-                        <td>Bit7</td>
-                        <td>Bit6</td>
-                        <td>Bit5</td>
-                        <td>Bit4</td>
-                        <td>Bit3</td>
-                        <td>Bit2</td>
-                        <td>Bit1</td>
-                        <td>Bit0</td>
-                        <td>Bit7</td>
-                        <td>Bit6</td>
-                        <td>Bit5</td>
-                        <td>Bit4</td>
-                        <td>Bit3</td>
-                        <td>Bit2</td>
-                        <td>Bit1</td>
-                        <td>Bit0</td>
+                        <td  ng-repeat="i in range(frame_length) track by $index" >bit{[{ 7-$index%8 }]}</td>
+
                     </tr>
-                    <tr><td colspan="8">Power</td>
-                    <td colspan="8">Wind</td>
-                    <td colspan="8">Light</td></tr>
+                    <tr><td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.title }]}</td>
+
+                    </tr>
+
                 </table>
             </div>
+            <span ng-if="x.name=='data_domain'" style="color: #f35019"> tips:数据域修改请到定义功能部分修改</span>
             <div ng-if="x.code" >
                 <div class="u208 col-md-2 code-item"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
