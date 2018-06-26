@@ -231,8 +231,19 @@
     };
 
     function SubmitProtocol1(show_div,bg_div) {
+
         document.getElementById(show_div).style.display='none';
         document.getElementById(bg_div).style.display='none';
+        if (document.getElementById("x_x").selected) {
+            console.log('下行')
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
+            }
+        if (document.getElementById("s_x").selected) {
+            console.log('上行')
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
+        }
         angular.element("#sbt").click();
     }
 </script>
@@ -248,10 +259,10 @@
 
     <div class="" style="margin-left: 50px">
         <div class="col-md-4" style="display: inline;margin-left: 50px;padding-left:0px">
-            <input type="radio" name="xx" class="standard protocol-choose"  value="standard" id="standard-item"><p style="font-size: 20px;margin-left: 25px">标准协议</p>
+            <input type="radio" name="xx" class="standard protocol-choose"  value="standard" id="standard-item" ng-click="BzProtocol()"><p style="font-size: 20px;margin-left: 25px">标准协议</p>
         </div>
         <div class="" style="display: inline;margin-left: 50px">
-            <input type="radio" name="xx" class="custom protocol-choose" value="custom" id="custom-item" ><p style="font-size: 20px;margin-left: 420px">自定义协议</p>
+            <input type="radio" name="xx" class="custom protocol-choose" value="custom" id="custom-item" ng-click="ZdyProtocol()"><p style="font-size: 20px;margin-left: 420px">自定义协议</p>
         </div>
 
     </div>
@@ -261,9 +272,9 @@
         帧定义:
     </div>
     <hr>
-     <select style="display: block;margin-top: 7px;margin-left:100px;height: 25px;width: 70px"  name="condition" id="select_id">
-                <option value="0" id="s_x" >上行</option>
-                <option value="1" id="x_x" ng-selected="response.checkout_algorithm=='crc-8'">下行</option>
+    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 25px;width: 103px"  name="condition" id="select_id" class="bianji">
+                <option value="0" id="s_x" ng-selected="response.protocol_type=='0'">MCU到云端</option>
+                <option value="1" id="x_x" ng-selected="response.protocol_type=='1'" selected>云端到MCU</option>
      </select>
 
     <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
@@ -290,11 +301,11 @@
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
 
-                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" class="bianji" name="checkout_length_{[{ x.name }]}" id="select_length_{[{ x.name }]}">
-                    <option value="1" selected ng-selected="x.length =='1'">1</option>
-                    <option value="2" ng-selected="x.length =='2'">2</option>
-                    <option value="3" ng-selected="x.length =='3'">3</option>
-                    <option value="4" ng-selected="x.length =='4'">4</option>
+                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_length" id="select_length">
+                    <option value="1" selected ng-selected="x.length =='1'">1bit</option>
+                    <option value="2" ng-selected="x.length =='2'">2bit</option>
+                    <option value="3" ng-selected="x.length =='3'">3bit</option>
+                    <option value="4" ng-selected="x.length =='4'">4bit</option>
                 </select>
             </div>
             <div ng-if="x.name=='data_domain'" class="ui-data-domain">
@@ -380,7 +391,7 @@
     </div>
     <div style="margin-top: 0px;text-align: center">
 
-        <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="display: none">新增协议
+        <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="display: none" >新增协议
                         </button>
 
         <button type="submit" class="btn-s-xs btnn ids" id="sbt" ng-click="SubmitProtocol()" >保存</button>
@@ -430,6 +441,8 @@
         }
         var select_option = document.getElementsByTagName("select")[0];
         select_option.disabled=false;
+        var select_option1 = document.getElementById("select_length");
+        select_option1.disabled=false;
     });
     $(".standard").on('click', function () {
 
@@ -448,6 +461,8 @@
         }
         var select_option = document.getElementsByTagName("select")[0];
         select_option.disabled=true;
+        var select_option1 = document.getElementById("select_length");
+        select_option1.disabled=true;
     });
     $("#newpro").on('click',function () {
 
@@ -489,7 +504,7 @@
 
     function foo(){
              if(document.getElementById("custom-item").checked) {
-
+                console.log('zidingyi')
                 var list = document.getElementsByClassName("ids");
                 for (var i = 0, l = list.length; i < l; i++) {
                     var obj = list[i];
@@ -508,11 +523,13 @@
                 for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
                     list111[iiii].disabled='false';
                 }
-                var select_option = document.getElementsByTagName("select")[0];
-                select_option.disabled=false;
+
+                var select_option = document.getElementsByTagName("select");
+                for (var y =0, ls =select_option.length; y<ls; y++ )
+                    select_option[y].disabled=false;
 
             }else {
-
+                console.log('biaozhun')
                 var lis = document.getElementsByClassName("ids");
                 for (var j = 0, lzz = lis.length; j < lzz; j++) {
                     var obj3 = lis[j];
@@ -529,17 +546,40 @@
                 }
           }
         }
-
     function f1() {
-        if (document.getElementById("x_x").selected){
-            var ttt = document.getElementsByClassName("code-item")[0].style;
-            ttt.display='none'
-            console.log(ttt)
+
+
+        if (document.getElementById("x_x").selected) {
+            var list = document.getElementsByClassName("ids");
+            for (var i = 0, l = list.length; i < l; i++) {
+                var obj = list[i];
+                obj.style.display = '';
+            }
+            var list1 = document.getElementsByClassName("bianji");
+            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                $('input[class=bianji]').removeAttr("disabled");
+            }
+            var select_option = document.getElementsByTagName("select");
+            for (var y = 0, ls = select_option.length; y < ls; y++)
+                select_option[y].disabled = false;
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
         }
-        if(document.getElementById("s_x").selected) {
-            var tt = document.getElementsByClassName("code-item")[1].style;
-            tt.display='none'
-            console,log(tt)
+        if (document.getElementById("s_x").selected) {
+            var list = document.getElementsByClassName("ids");
+            for (var i = 0, l = list.length; i < l; i++) {
+                var obj = list[i];
+                obj.style.display = '';
+            }
+            var list1 = document.getElementsByClassName("bianji");
+            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                $('input[class=bianji]').removeAttr("disabled");
+            }
+            var select_option = document.getElementsByTagName("select");
+            for (var y = 0, ls = select_option.length; y < ls; y++)
+                select_option[y].disabled = false;
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
         }
     }
 

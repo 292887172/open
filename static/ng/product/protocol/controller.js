@@ -24,6 +24,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 .success(function (response) {
                     // 获取前端接收到的数据
                     $scope.response = response.data;
+                    $scope.response.protocol_type = response.protocol_type;
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
@@ -38,15 +39,126 @@ angular.module('Product.protocol', ['ngRoute'])
 
 
                      //上下行判断
-                    console.log($scope.response.frame_content[0]);
+
                     if (response.protocol_type==1) {
                         // 下行被选中
                         document.getElementById("x_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
 
                     }
                     else{
                         //上行被选中
                         document.getElementById("s_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
+
+                    }
+
+                    $scope.list_mode = [];
+                    for(var i=0;i<$scope.response.frame_content.length;i++){
+                     if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
+                         var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
+                     }else{
+                         if(parseInt($scope.response.frame_content[i]['length'])/8>1){
+                             var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+
+                         else if (String($scope.response.frame_content[i]['length']).indexOf("*")>0){
+                             t_val = "00*N"
+                         }
+                         else{
+                             t_val = "00"
+                         }
+                         tmp = {"title": $scope.response.frame_content[i]['title'], "val": t_val, 'number': $scope.response.frame_content[i]['number']}
+                     }
+
+                    $scope.list_mode.push(tmp)
+
+                    }
+                })
+                setTimeout(function () {
+                foo();
+
+            }, 100)
+
+
+        }
+        $scope.BzProtocol = function(scope){
+            $http({
+                    method: "GET",
+                    url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,
+                    data: {'key': $scope.$parent.$parent.key},
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+             .success(function (response) {
+                    // 获取前端接收到的数据
+                    $scope.response = response.data;
+                    $scope.response.protocol_type = response.protocol_type;
+                     //上下行判断
+
+                    if (response.protocol_type==1) {
+                        // 下行被选中
+                        document.getElementById("x_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
+
+                    }
+                    else{
+                        //上行被选中
+                        document.getElementById("s_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
+
+                    }
+
+                    $scope.list_mode = [];
+                    for(var i=0;i<$scope.response.frame_content.length;i++){
+                     if($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0){
+                         var tmp = {"title": $scope.response.frame_content[i]['title'], "val": $scope.response.frame_content[i]['code'][0]['value'], 'number': $scope.response.frame_content[i]['number']}
+                     }else{
+                         if(parseInt($scope.response.frame_content[i]['length'])/8>1){
+                             var t_val = "00*"+parseInt($scope.response.frame_content[i]['length'])/8
+                         }
+
+                         else if (String($scope.response.frame_content[i]['length']).indexOf("*")>0){
+                             t_val = "00*N"
+                         }
+                         else{
+                             t_val = "00"
+                         }
+                         tmp = {"title": $scope.response.frame_content[i]['title'], "val": t_val, 'number': $scope.response.frame_content[i]['number']}
+                     }
+
+                    $scope.list_mode.push(tmp)
+
+                    }
+                setTimeout(function () {
+                    foo();
+
+                }, 100)
+                })
+        }
+        $scope.ZdyProtocol = function(scope){
+            $scope.response.protocol_type= $("#select_id option:selected").val();
+            $http({
+                    method: "GET",
+                    url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key+'&zdy='+$scope.response.protocol_type,
+                    data: {'key': $scope.$parent.$parent.key},
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .success(function (response) {
+                    // 获取前端接收到的数据
+                    $scope.response = response.data;
+                    $scope.response.protocol_type = response.protocol_type;
+                     //上下行判断
+                    console.log($scope.response.frame_content[0]);
+                    if (response.protocol_type==1) {
+                        // 下行被选中
+                        document.getElementById("x_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
+
+                    }
+                    else{
+                        //上行被选中
+                        document.getElementById("s_x").selected=true;
+                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
 
                     }
 
@@ -72,14 +184,11 @@ angular.module('Product.protocol', ['ngRoute'])
 
                     }
                 })
-            setTimeout(function () {
+             setTimeout(function () {
                 foo();
-                f1()
+
             }, 100)
-
-
-        }
-
+        };
         $scope.SubmitProtocol = function (scope) {
              $scope.response.key = $scope.$parent.$parent.key;
              $scope.response.action = "update_protocol";
