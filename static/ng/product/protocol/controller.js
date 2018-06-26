@@ -25,6 +25,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     // 获取前端接收到的数据
                     $scope.response = response.data;
                     $scope.response.protocol_type = response.protocol_type;
+
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
@@ -43,7 +44,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     if (response.protocol_type==1) {
                         // 下行被选中
                         document.getElementById("x_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
+                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "5AA5", "type": "response"}]
 
                     }
                     else{
@@ -77,7 +78,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 })
                 setTimeout(function () {
                 foo();
-
+                show_or_hide()
             }, 100)
 
 
@@ -131,7 +132,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 setTimeout(function () {
                     foo();
-
+                    show_or_hide()
                 }, 100)
                 })
         }
@@ -149,10 +150,13 @@ angular.module('Product.protocol', ['ngRoute'])
                     $scope.response.protocol_type = response.protocol_type;
                      //上下行判断
                     console.log($scope.response.frame_content[0]);
+                    //new add data list
+                    var new_data_list = response.data.frame_content[2]["code"];
+                    console.log(new_data_list)
                     if (response.protocol_type==1) {
                         // 下行被选中
                         document.getElementById("x_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
+                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "5AA5", "type": "response"}]
 
                     }
                     else{
@@ -186,7 +190,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 })
              setTimeout(function () {
                 foo();
-
+                show_or_hide()
             }, 100)
         };
         $scope.SubmitProtocol = function (scope) {
@@ -231,10 +235,17 @@ angular.module('Product.protocol', ['ngRoute'])
                 //$("#select_option option:selected").val()
 
                 dict_1["length"] = $(select_1).children("option:selected").val();
-                console.log(dict_1["length"]);
+
                 for(var k=0; k<codeItem.length;k++){
-                    var tmp = {"type": $(codeItem[k]).data('type'), "value": $(codeItem[k]).children("input").val(), "desc": $(codeItem[k]).children("span").text()};
-                    list_code.push(tmp)
+                    var tmp = {"type": $(codeItem[k]).data('type'),"desc": $(codeItem[k]).children("span").text()};
+                    var lengtt = $(codeItem[k].getElementsByTagName("input").length);
+                    var v_aa='';
+                    for (var zz=0; z<lengtt;z++){
+                        var v_z = codeItem[k].getElementsByTagName("input")[zz].value;
+                        v_aa += v_z
+                    }
+                   tmp['value']=v_aa
+                   list_code.push(tmp)
                 }
                 dict_1['code'] = list_code;
                 li.push(dict_1);
@@ -278,7 +289,7 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.checkout_algorithm = $("#select_option option:selected").val();
              //上下行传参
              $scope.response.protocol_type= $("#select_id option:selected").val();
-             console.log($scope.response.protocol_type);
+             console.log($scope.response)
              $http({
                     method: "POST",
                     url: "/product/protocol/" + '?' +"key=" + $scope.$parent.$parent.key,

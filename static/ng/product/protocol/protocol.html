@@ -16,6 +16,22 @@
         -webkit-box-shadow: none;
         box-shadow: none;
     }
+    .u209 {
+        margin-top: 7px;
+        width: 98px;
+        height: 48px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(121, 121, 121, 1);
+        border-radius: 0px;
+    }
+    .xinput{
+        margin-left: 0px;
+        padding: 0px;
+        width: 24px;
+        height: 24px;
+
+    }
     select{
         padding: 0 4px;
     }
@@ -114,7 +130,7 @@
     left: 0%;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #4c4c4c;
     z-index:1001;
     -moz-opacity: 0.8;
     opacity:.80;
@@ -146,6 +162,7 @@
     }
 </style>
 <script>
+
     function Iclose(b){
         var parentNode1 = b.parentNode.parentNode;
         parentNode1.remove()
@@ -157,7 +174,7 @@
     function New_add(c) {
         var t = c.parentNode;
         var tt = c.parentNode.parentNode;
-        console.log(t)
+
         var newDiv1 = document.createElement("div");
         newDiv1.className="u208 col-md-2 new_class";
         newDiv1.style="margin-left: 10px;padding-left: 0px;padding-right: 0px";
@@ -169,6 +186,46 @@
             '\n'
             ;
        tt.insertBefore(newDiv1, t);
+    }
+    //增加第二版
+    function New_add_title(c) {
+        var t = c.parentNode;
+        var tt = c.parentNode.parentNode;
+        var mak = {"故障报警帧": "FF", "全指令控制帧": "21", "心跳帧": "00"};
+
+        var new_data_list= [];
+        var ttt = document.getElementsByClassName("code-items")
+        for (var t_key=0, l = ttt.length; t_key<l; t_key++) {
+            var key = ttt[t_key].getElementsByTagName("span")[0].innerText;
+            var valuez = ttt[t_key].getElementsByTagName("input")[0].value;
+            console.log(mak[key])
+            delete mak[key]
+            new_data_list.push(valuez)
+        }
+        console.log(mak)
+        var keyss=[]
+        for (var p in mak){
+            keyss.push(p)
+        }
+        console.log(new_data_list.length)
+        if (new_data_list.length === 3){
+            alert('暂时无法添加功能')
+        }
+        else{
+
+            var newDiv1 = document.createElement("div");
+            newDiv1.className="u208 col-md-2 new_class";
+            newDiv1.style="margin-left: 10px;padding-left: 0px;padding-right: 0px";
+            newDiv1.innerHTML=
+                '                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
+                '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="'+ keyss[0] +'">\n' +
+                '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
+                '                           value="'+ mak[keyss[0]] +'">\n' +
+                '\n'
+                ;
+            tt.insertBefore(newDiv1, t);
+        }
+
     }
     //弹出隐藏层
     function ShowDiv(show_div,bg_div){
@@ -193,12 +250,12 @@
         if (document.getElementById("x_x").selected) {
             console.log('下行')
             document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
             }
         if (document.getElementById("s_x").selected) {
             console.log('上行')
             document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
         }
         angular.element("#sbt").click();
     }
@@ -208,8 +265,6 @@
 
     <div class="hl-help">
         <span class="linkBlue" style="font-size:13px">定义协议</span>
-
-
     </div>
     <hr style="height: 20px;margin-top: 17px;border-top-width: 1px;">
     <div class="hl-help">
@@ -257,15 +312,24 @@
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
 
-                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji" name="checkout_length" id="select_length">
+                <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji xlk" name="checkout_length" id="select_length" onchange="show_or_hide(this.value)">
                     <option value="1" selected ng-selected="x.length =='1'">1bit</option>
                     <option value="2" ng-selected="x.length =='2'">2bit</option>
                     <option value="3" ng-selected="x.length =='3'">3bit</option>
                     <option value="4" ng-selected="x.length =='4'">4bit</option>
                 </select>
             </div>
-            <div ng-if="x.code" >
-                <div class="u208 col-md-2 code-item"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+            <div ng-if="x.code.length < 2" >
+                <div class="u209 col-md-2 code-item "  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+                     ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
+                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>
+                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
+                    <input type="text" placeholder="1" disabled="disabled" class="xinput bblchk"><input type="text" placeholder="2" disabled="disabled" class="xinput bblchk"><input type="text" placeholder="3" disabled="disabled" class="xinput bblchk" style="display: none"><input type="text" placeholder="4" disabled="disabled" class="xinput bblchk" style="display: none">
+                </div>
+
+            </div>
+            <div ng-if="x.code.length > 2" >
+                <div class="u208 col-md-2 code-item code-items"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
@@ -275,8 +339,10 @@
                 </div>
 
             </div>
+
             <div ng-if="x.code.length > 2" class="ids" id="x4x">
-                 <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">
+                 <!--<img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">-->
+                 <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add_title(this)">
             </div>
 
         </div>
@@ -338,13 +404,17 @@
     <button type="submit" class="btn-s-xs btnn" onclick="CloseDiv('MyDiv','fade')">取消</button>
 
 </div>
+
 <script>
     $(document).ready(function () {
+
         $("#select_id").change(function () {
             ShowDiv('MyDiv','fade');
 
         })
+
     })
+
     $(".custom").on('click', function () {
 
         var list = document.getElementsByClassName("ids");
@@ -369,6 +439,7 @@
         select_option.disabled=false;
         var select_option1 = document.getElementById("select_length");
         select_option1.disabled=false;
+
     });
     $(".standard").on('click', function () {
 
@@ -489,7 +560,7 @@
             for (var y = 0, ls = select_option.length; y < ls; y++)
                 select_option[y].disabled = false;
             document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "响应码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
         }
         if (document.getElementById("s_x").selected) {
             var list = document.getElementsByClassName("ids");
@@ -505,8 +576,41 @@
             for (var y = 0, ls = select_option.length; y < ls; y++)
                 select_option[y].disabled = false;
             document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "状态码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
         }
     }
+    function show_or_hide(v) {
+        console.log(v)
+        if (v=="1") {
+                console.log('1')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display='';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display='none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display='none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display='none';
+            }
+        else if (v=="2") {
+            console.log('2')
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display='none';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display='none';
+        }
+        else if (v=="3") {
+            console.log('3')
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display='none';
+        }
+        else if (v=="4") {
+            console.log('4')
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display='';
+            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display='';
+        }
+    }
+
+
 
 </script>
