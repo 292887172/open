@@ -18,7 +18,7 @@
     }
     .u209 {
         margin-top: 7px;
-        width: 98px;
+        width: 196px;
         height: 48px;
         border-width: 1px;
         border-style: solid;
@@ -28,7 +28,7 @@
     .xinput{
         margin-left: 0px;
         padding: 0px;
-        width: 24px;
+        width: 48px;
         height: 24px;
 
     }
@@ -344,8 +344,7 @@
         <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none" ng-if="x.is_enable==true || x.is_enable=='true'" >
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none" ng-if="x.is_enable==false || x.is_enable=='false'">
-        <span
-            class="ids" style="display: none">启用</span>
+        <span class="ids" style="display: none">启用</span>
         <br>
         <br>
         <div id="x5x">
@@ -386,8 +385,8 @@
                 <div class="u209 col-md-2 code-item "  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>
-                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
-                    <input type="text" placeholder="1" disabled="disabled" class="xinput bblchk"><input type="text" placeholder="2" disabled="disabled" class="xinput bblchk"><input type="text" placeholder="3" disabled="disabled" class="xinput bblchk" style="display: none"><input type="text" placeholder="4" disabled="disabled" class="xinput bblchk" style="display: none">
+                    <span style="display: block;margin-top: 11px;width: 198px;text-align: center"> {[{ c.desc}]}</span>
+                    <input type="text" placeholder="1" disabled="disabled" class="xinput bblchk" value="{[{ c.value}]}"><input type="text" placeholder="2" disabled="disabled" class="xinput bblchk" value=""><input type="text" placeholder="3" disabled="disabled" class="xinput bblchk" style="display: none" value=""><input type="text" value="" placeholder="4" disabled="disabled" class="xinput bblchk" style="display: none">
                 </div>
 
             </div>

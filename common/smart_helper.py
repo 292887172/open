@@ -178,7 +178,7 @@ def get_factory_info(user_id):
     return ''
 
 
-def select_protocol(key):
+def select_protocol(device_key,zdy):
     # m = Protocol.objects.all().filter(protocol_device_key=key)
     # if m:
     #     for i in m:
@@ -186,8 +186,8 @@ def select_protocol(key):
     #         res_ = json.loads(res_)
     #         return res_
     # else:
-    if key == 1 or key == 0:
-        mm = Protocol.objects.filter(protocol_device_type=int(key))
+    if zdy == 1 or zdy == 0:
+        mm = Protocol.objects.filter(protocol_factory_type=zdy,protocol_device_key=device_key)
         if mm.count() > 0:
             for i in mm:
                 res_ = i.protocol_factory_type
@@ -196,7 +196,7 @@ def select_protocol(key):
             else:
                 return None
     else:
-        mm = Protocol.objects.filter(protocol_device_key=key)
+        mm = Protocol.objects.filter(protocol_factory_type=0,protocol_device_key=device_key)
         if mm.count() > 0:
             for i in mm:
                 res_ = i.protocol_factory_content

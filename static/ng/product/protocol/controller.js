@@ -62,8 +62,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
-                        $scope.response.frame_content[2]['code']=[{"type": "heart", "desc": "心跳帧", "value": "00"},
-                            {"type": "control_all", "desc": "全指令控制帧", "value": "21"}, {"type": "error", "desc": "故障报警帧", "value": "FF"}]
+
                     }
                     else{
                         // 标准协议
@@ -248,7 +247,7 @@ angular.module('Product.protocol', ['ngRoute'])
              $scope.response.heart_rate =  "500";
              $scope.response.repeat_rate =  "500";
              $scope.response.repeat_count =  "3";
-             $scope.response.fivechoose = [true,true,true,true,true];
+             $scope.response.fivechoose = ["true","true","true","true","true"];
              // 获取循环体的value
              // 根据是否启用获取响应的value 启用则获取value 不启用这
 
@@ -270,36 +269,42 @@ angular.module('Product.protocol', ['ngRoute'])
              var li = [];
              var z1 = document.getElementsByClassName("x1x");
              console.log(z1)
-             for (var z=0; z < z1.length; z++ ){
+             for (var ze=0; ze < z1.length; ze++ ){
+                console.log("循环开始");
                 var list_code = [];
                 var dict_1={};
 
-                var z2 = z1[z].getElementsByTagName("input");
-                var codeItem = z1[z].getElementsByClassName("code-item");
-                var select_1 = z1[z].getElementsByTagName("select");
-                dict_1["name"] = $(z1[z]).data("name");
+                var z2 = z1[ze].getElementsByTagName("input");
+                var codeItem = z1[ze].getElementsByClassName("code-item");
+                var select_1 = z1[ze].getElementsByTagName("select");
+                dict_1["name"] = $(z1[ze]).data("name");
                 dict_1["title"] = z2[0].value;
                 dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 //$("#select_option option:selected").val()
 
                 dict_1["length"] = $(select_1).children("option:selected").val();
-
+                console.log(dict_1)
                 for(var k=0; k<codeItem.length;k++){
                     var tmp = {"type": $(codeItem[k]).data('type'),"desc": $(codeItem[k]).children("span").text()};
-                    var lengtt = $(codeItem[k].getElementsByTagName("input").length);
+                    var lengtt = codeItem[k].getElementsByTagName("input").length;
+                    console.log(lengtt)
                     var v_aa='';
-                    for (var zz=0; z<lengtt;z++){
+                    for (var zz=0; zz<lengtt;zz++){
                         var v_z = codeItem[k].getElementsByTagName("input")[zz].value;
+                        console.log(v_z)
                         v_aa += v_z
                     }
                    tmp['value']=v_aa
+                    console.log(tmp)
                    list_code.push(tmp)
                 }
+                console.log(list_code)
                 dict_1['code'] = list_code;
+                console.log(dict_1)
                 li.push(dict_1);
                  // 获取新增code
-                var new_class_data = z1[z].getElementsByClassName("new_class");
+                var new_class_data = z1[ze].getElementsByClassName("new_class");
                 if (new_class_data) {
                     for (var v = 0, list_new_data=new_class_data.length; v< list_new_data; v++){
                         var dict_class_list = {};
@@ -345,7 +350,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     data: $scope.response,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function (response) {$scope.response = response
-
+                console.log($scope.response)
              });
         };
         $scope.gotoPosition = function(positionId) {
