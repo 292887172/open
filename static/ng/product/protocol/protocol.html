@@ -386,7 +386,7 @@
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 198px;text-align: center"> {[{ c.desc}]}</span>
-                    <input type="text" placeholder="1" disabled="disabled" class="xinput bblchk" value="{[{ c.value}]}"><input type="text" placeholder="2" disabled="disabled" class="xinput bblchk" value=""><input type="text" placeholder="3" disabled="disabled" class="xinput bblchk" style="display: none" value=""><input type="text" value="" placeholder="4" disabled="disabled" class="xinput bblchk" style="display: none">
+                    <input type="text" placeholder="1" disabled="disabled" class="xinput bblchk" value="{[{ c.value.split('')[0]+c.value.split('')[1]}]}"><input type="text" placeholder="2" disabled="disabled" class="xinput bblchk" value="{[{ c.value.split('')[2]+c.value.split('')[3]}]}"><input type="text" placeholder="3" disabled="disabled" class="xinput bblchk" style="display: none" value="{[{ c.value.split('')[4]+c.value.split('')[5]}]}"><input type="text" value="{[{ c.value.split('')[6]+c.value.split('')[7]}]}" placeholder="4" disabled="disabled" class="xinput bblchk" style="display: none">
                 </div>
 
             </div>

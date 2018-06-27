@@ -76,13 +76,13 @@ angular.module('Product.protocol', ['ngRoute'])
                     if (response.protocol_type==1) {
                         // 下行被选中
                         document.getElementById("x_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "5AA5", "type": "response"}]
+                        //$scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "5AA5", "type": "response"}]
 
                     }
                     else{
                         //上行被选中
                         document.getElementById("s_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
+                        //$scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
 
                     }
 
@@ -110,7 +110,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 });
                 setTimeout(function () {
                     foo();
-                    show_or_hide()
+                    show_or_hide($scope.response.frame_content[0]['length'])
             }, 200)
 
             $http({
@@ -289,12 +289,22 @@ angular.module('Product.protocol', ['ngRoute'])
                     var tmp = {"type": $(codeItem[k]).data('type'),"desc": $(codeItem[k]).children("span").text()};
                     var lengtt = codeItem[k].getElementsByTagName("input").length;
                     console.log(lengtt)
-                    var v_aa='';
-                    for (var zz=0; zz<lengtt;zz++){
-                        var v_z = codeItem[k].getElementsByTagName("input")[zz].value;
-                        console.log(v_z)
-                        v_aa += v_z
+                    if (lengtt) {
+                        var v_aa='';
+                        for (var zz=0; zz<parseInt($(select_1).children("option:selected").val());zz++){
+                            if (codeItem[k].getElementsByTagName("input").length>1) {
+                                var v_z = codeItem[k].getElementsByTagName("input")[zz].value;
+                                console.log(v_z)
+                                v_aa += v_z
+                            }else{
+                                var v_z = codeItem[k].getElementsByTagName("input")[0].value;
+                                console.log(v_z)
+
+                            }
+
+                        }
                     }
+
                    tmp['value']=v_aa
                     console.log(tmp)
                    list_code.push(tmp)
