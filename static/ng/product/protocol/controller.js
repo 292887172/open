@@ -58,11 +58,15 @@ angular.module('Product.protocol', ['ngRoute'])
                 .success(function (response) {
                     // 获取前端接收到的数据
                     $scope.response = response.data;
+                    console.log($scope.response.frame_content[0]['length'])
                     $scope.response.protocol_type = response.protocol_type;
                     if(response.code==1){
                         // 非标协议
                         document.getElementById("custom-item").checked=true;
-
+                        console.log('非标')
+                        setTimeout(function () {
+                            show_or_hide($scope.response.frame_content[0]['length'])
+                        }, 100)
                     }
                     else{
                         // 标准协议
@@ -110,7 +114,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 });
                 setTimeout(function () {
                     foo();
-                    show_or_hide($scope.response.frame_content[0]['length'])
+
             }, 200)
 
             $http({
@@ -128,8 +132,9 @@ angular.module('Product.protocol', ['ngRoute'])
                         console.log($scope.data_menu[j].length);
                         $scope.frame_length+=parseInt($scope.data_menu[j].length)
                     }
-                    console.log($scope.frame_length)
                 })
+
+
         }
         $scope.BzProtocol = function(scope){
             $http({
@@ -147,13 +152,12 @@ angular.module('Product.protocol', ['ngRoute'])
                     if (response.protocol_type==1) {
                         // 下行被选中
                         document.getElementById("x_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "响应码", "value": "5AA5", "type": "response"}]
+
 
                     }
                     else{
                         //上行被选中
                         document.getElementById("s_x").selected=true;
-                        $scope.response.frame_content[0]['code']=[{"desc": "发送码", "value": "A55A", "type": "send"}]
 
                     }
 
@@ -238,7 +242,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 })
              setTimeout(function () {
                 foo();
-                show_or_hide()
+                show_or_hide($scope.response.frame_content[0]['length'])
             }, 100)
         };
         $scope.SubmitProtocol = function (scope) {
@@ -299,6 +303,7 @@ angular.module('Product.protocol', ['ngRoute'])
                             }else{
                                 var v_z = codeItem[k].getElementsByTagName("input")[0].value;
                                 console.log(v_z)
+                                v_aa=v_z
 
                             }
 

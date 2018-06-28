@@ -399,7 +399,7 @@
                 </div>
 
             </div>
-            <div ng-if="x.code.length > 2" >
+            <div ng-if="x.code.length >= 2" >
                 <div class="u208 col-md-2 code-item code-items"  id="del_c" style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>
