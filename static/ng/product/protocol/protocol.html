@@ -182,6 +182,18 @@
     border: 1px solid #ccc;}
     tr{ text-align: center;}
     td{border: 1px solid #ccc;}
+
+    .modal-content{
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        width: 50%;
+        height: 30%;
+        border: 16px solid lightblue;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+    }
     /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 .ui-data-domain::-webkit-scrollbar
 {
@@ -216,6 +228,7 @@
         parentNode.remove()
     }
     function New_add(c) {
+
         var t = c.parentNode;
         var tt = c.parentNode.parentNode;
 
@@ -233,8 +246,6 @@
     }
     //增加第二版
     function New_add_title(c) {
-        var t = c.parentNode;
-        var tt = c.parentNode.parentNode;
         var mak = {"故障报警帧": "FF", "全指令控制帧": "21", "心跳帧": "00"};
 
         var new_data_list= [];
@@ -246,30 +257,29 @@
             delete mak[key]
             new_data_list.push(valuez)
         }
-        console.log(mak)
+
         var keyss=[]
         for (var p in mak){
             keyss.push(p)
         }
-        console.log(new_data_list.length)
-        if (new_data_list.length === 3){
-            alert('暂时无法添加功能')
-        }
-        else{
+        console.log(mak)
 
-            var newDiv1 = document.createElement("div");
-            newDiv1.className="u208 col-md-2 new_class";
-            newDiv1.style="margin-left: 10px;padding-left: 0px;padding-right: 0px";
-            newDiv1.innerHTML=
-                '                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
-                '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="'+ keyss[0] +'">\n' +
-                '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
-                '                           value="'+ mak[keyss[0]] +'">\n' +
-                '\n'
-                ;
-            tt.insertBefore(newDiv1, t);
-        }
+       document.getElementsByClassName("black_overlay")[0].style.display='block'
+       document.getElementsByClassName("modal-content")[0].style.display='block'
+    }
 
+    //新增协议关闭
+    function func11(d) {
+        document.getElementsByClassName("black_overlay")[0].style.display='none'
+        document.getElementsByClassName("modal-content")[0].style.display='none'
+    }
+    function func22(d) {
+        document.getElementsByClassName("black_overlay")[0].style.display='none'
+        document.getElementsByClassName("modal-content")[0].style.display='none'
+    }
+    function func33(d) {
+        document.getElementsByClassName("black_overlay")[0].style.display='none'
+        document.getElementsByClassName("modal-content")[0].style.display='none'
     }
     //弹出隐藏层
     function ShowDiv(show_div,bg_div){
@@ -286,7 +296,6 @@
     document.getElementById(show_div).style.display='none';
     document.getElementById(bg_div).style.display='none';
     };
-
     function SubmitProtocol1(show_div,bg_div) {
 
         document.getElementById(show_div).style.display='none';
@@ -404,7 +413,7 @@
 
             <div ng-if="x.code.length > 2" class="ids" id="x4x">
                  <!--<img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">-->
-                 <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add_title(this)">
+                 <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add_title(this)" >
             </div>
 
         </div>
@@ -459,14 +468,37 @@
 
 </div>
 
+<div class="modal-content" style="display: none">
+    <div class="modal-header">
+        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" onclick="func11(this)">×</button>
+        <h4 class="modal-title">选择帧数据类型</h4>
+    </div>
+    <div class="modal-body" style="height: auto;">
+        <div class="bootbox-body">
+            <div class="common_dp-btn" data-id="STATE">
+                <i class="fa fa-check"></i>
+                <span id="no_add">当前无可选择新增数据类型，试试自定义协议吧！</span>
+                <span class="new_add_data" data-id=""></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-bb-handler="success" type="button" style="outline:none" class="btn btn btn-primary" onclick="func22(this)"><i class="icon-ok"></i> 确定</button>
+        <button data-bb-handler="cancel" type="button" style="outline:none" class="btn btn btn-default" onclick="func33(this)"><i class="icon-info"></i> 取消</button>
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
-
+        console.log(document.getElementsByClassName("code-items"))
         $("#select_id").change(function () {
             ShowDiv('MyDiv','fade');
 
         })
+
     });
+
 
     $(".custom").on('click', function () {
 
