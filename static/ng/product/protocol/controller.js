@@ -73,8 +73,6 @@ angular.module('Product.protocol', ['ngRoute'])
                         document.getElementById("standard-item").checked=true;
 
                     }
-
-
                      //上下行判断
 
                     if (response.protocol_type==1) {
@@ -184,7 +182,13 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 setTimeout(function () {
                     foo();
-                    show_or_hide()
+                    console.log('标准点击')
+                    try {
+                         show_or_hide($scope.response.frame_content[0]['length'])
+                    }
+                   catch(err){
+                        console.log('错误pass')
+                   }
                 }, 100)
                 })
         }
