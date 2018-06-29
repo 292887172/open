@@ -552,15 +552,15 @@ def protocol(request):
                 tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength']}
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
-        print(device_key)
-        print(zdy)
+        #print(device_key)
+        #print(zdy)
         if zdy == "0" or zdy == "1":
-            print('1')
+            #print('1')
             mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
-            print(len(mlist))
+            #print(len(mlist))
             if len(mlist) == 0:
                 p = DefaultProtocol().DEFAULT_DATA_ZDY
-                print("p",p)
+                #print("p",p)
                 data = {"code": 2, "data": p, "protocol_type": zdy}
                 return HttpResponse(json.dumps(data))
             else:
@@ -576,12 +576,12 @@ def protocol(request):
         r = select_protocol(device_key,zdy)
 
         if r is None:
-            print('3')
+            #print('3')
             rr = DefaultProtocol().DEFAULT_DATA
             data = {"code": 2, "data": rr, "protocol_type": 0}
         else:
-            print('xxx')
-            print(r)
+            #print('xxx')
+            #print(r)
             data = {"code": 1, "data": r, "protocol_type": 0}
         return HttpResponse(json.dumps(data))
     if request.method == "POST":
@@ -593,8 +593,8 @@ def protocol(request):
             protocol_type = data_protocol_list.get('protocol_type',0)
             list_fivechoose = data_protocol_list.get('fivechoose','')
             list_t = data_protocol_list.get('frame_content', '')
-            print(list_t)
-            print(protocol_type)
+            #print(list_t)
+            #print(protocol_type)
             list_key = data_protocol_list.get('key', '')
             data_sql['is_single_instruction'] = list_fivechoose[0]
             data_sql['support_response_frame'] = list_fivechoose[1]
@@ -617,7 +617,7 @@ def protocol(request):
 
                 res_list_data1 = json.loads(res_list_data)
                 res_list_data1['protocol_type'] = protocol_type1
-                print(res_list_data1)
+                #print(res_list_data1)
                 return HttpResponse(json.dumps(res_list_data1))
         return HttpResponse(json.dumps(r))
 
