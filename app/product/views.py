@@ -560,13 +560,15 @@ def protocol(request):
                 p = DefaultProtocol().DEFAULT_DATA_ZDY
                 data = {"code": 2, "data": p, "protocol_type": zdy}
                 return HttpResponse(json.dumps(data))
-            for iii in mlist:
-                res_list_data = iii.protocol_factory_content
-                protocol_type1 = iii.protocol_factory_type
-                res_list_data1 = json.loads(res_list_data)
-                res_list_data1['protocol_type'] = protocol_type1
-                data = {"code": 2, "data": res_list_data1, "protocol_type": zdy}
-                return HttpResponse(json.dumps(data))
+            else:
+                for iii in mlist:
+                    res_list_data = iii.protocol_factory_content
+                    protocol_type1 = iii.protocol_factory_type
+                    res_list_data1 = json.loads(res_list_data)
+                    res_list_data1['protocol_type'] = protocol_type1
+                    print(res_list_data1)
+                    data = {"code": 2, "data": res_list_data1, "protocol_type": zdy}
+                    return HttpResponse(json.dumps(data))
 
         r = select_protocol(device_key,zdy)
 
