@@ -348,6 +348,8 @@
     // 被选中颜色
     function pitch(on) {
         on.style.color = "red";
+        on.style.backgroundColor="#efedda"
+
         console.log(on)
     }
 
@@ -675,9 +677,14 @@
             <div class="common_dp-btn" data-id="STATE">
 
                 <span id="no_add" style="display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
-                <span class="new_add_data" data-id="" onclick="pitch(this)"></span>
-                <span class="new_add_data" data-id="" onclick="pitch(this)"></span>
-                <span class="new_add_data" data-id="" onclick="pitch(this)"></span>
+
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px"></button>
+
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px"></button>
+
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;"></button>
+
+
             </div>
         </div>
     </div>
