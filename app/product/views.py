@@ -542,7 +542,7 @@ def protocol(request):
     if request.method == 'GET':
         # 协议类型 1为下行 0为上行
         device_key = request.GET.get('key', '')
-        zdy = request.GET.get('zdy', '1')
+        zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
@@ -553,13 +553,16 @@ def protocol(request):
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
         if zdy == "0" or zdy == "1":
+            print('xxx')
             mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
+            print(mlist)
             if len(mlist) == 0:
                 p = DefaultProtocol().DEFAULT_DATA_ZDY
                 #print("p",p)
                 data = {"code": 2, "data": p, "protocol_type": zdy}
                 return HttpResponse(json.dumps(data))
             else:
+                print('xxxxx')
                 for iii in mlist:
                     res_list_data = iii.protocol_factory_content
                     protocol_type1 = iii.protocol_factory_type
@@ -572,6 +575,7 @@ def protocol(request):
 
         if r is None:
             rr = DefaultProtocol().DEFAULT_DATA
+            print('eee')
             data = {"code": 2, "data": rr, "protocol_type": 0}
         else:
             data = {"code": 1, "data": r, "protocol_type": 0}

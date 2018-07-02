@@ -180,7 +180,7 @@ class DefaultProtocol(object):
                     "repeat_count": 3, "frame_content":
                         [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
                           "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
-                                   {"value": "5AA5", "desc": "响应码", "type": "response"}]},
+                                  ]},
                          {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
                          {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},

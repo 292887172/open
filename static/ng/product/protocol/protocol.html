@@ -261,24 +261,6 @@
         parentNode.remove()
     }
 
-    function New_add(c) {
-
-        var t = c.parentNode;
-        var tt = c.parentNode.parentNode;
-
-        var newDiv1 = document.createElement("div");
-        newDiv1.className = "u208 col-md-2 new_class";
-        newDiv1.style = "margin-left: 10px;padding-left: 0px;padding-right: 0px";
-        newDiv1.innerHTML =
-            '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
-            '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="">\n' +
-            '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
-            '                           value="">\n' +
-            '\n'
-        ;
-        tt.insertBefore(newDiv1, t);
-    }
-
     //增加第二版
     function New_add_title(c) {
         // 获取未删除之前的所有数据
@@ -581,20 +563,6 @@
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
-                         onclick="Iclose1(this)"/>
-                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
-                    <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
-                           style="margin-left: 21px;text-align: center"
-                           value="{[{ c.value }]}">
-
-                </div>
-
-            </div>
-            <div ng-if="x.code.length >= 2" class="hide_data" style="display: none">
-                <div class="u208 col-md-2 code-item1 code-items1" id="del_c1"
-                     style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
-                     ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
-                    <img src="" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
                     <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
