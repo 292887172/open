@@ -169,7 +169,7 @@
         position: absolute;
         top: 30%;
         left: 30%;
-        width: 50%;
+        width: 40%;
         height: 30%;
         border: 2px solid lightblue;
         background-color: white;
@@ -220,12 +220,17 @@
         position: absolute;
         top: 30%;
         left: 30%;
-        width: 50%;
+        width: 40%;
         height: 30%;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
         overflow: auto;
+    }
+    .bootbox-close-button{
+        font-size: 25px;
+        width: 30px;
+        margin-top: -5px;
     }
 
     /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
@@ -507,7 +512,7 @@
             </div>
             <div class="u208 col-md-2 " style="margin-left: 10px">
                 <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
-                <input ng-if="x.name=='data_domain'" disabled="" value="{[{ frame_length/8 }]}Byte">
+                <input ng-if="x.name=='data_domain'" disabled="" id="data_domain_length" data-length="{[{ frame_length/8 }]}" value="{[{ frame_length/8 }]}Byte">
                 <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px"
                         disabled="disabled" class="bianji" name="checkout_length" id="select_length"
                         onchange="show_or_hide(this.value)">

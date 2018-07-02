@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>示例</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .pre-item{
+            width: 70px;
+            border: 1px solid #ccc;
+            text-align: center;
+            float: left;
+        }
+        .pre-item p{
+            margin: 0;
+        }
+        .pre-item p:first-child{
+            border-bottom: 1px solid #ccc;
+        }
+        #frame-pre{
+            height: 90px;
+            border: 1px solid #ccc;
+        }
+        #submit{
+            width: 100px;
+
+            margin-top: 33px;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 3%">
+    <div class="row col-md-12" style="margin-bottom: 30px">
+        <select name="frame-item" id="frame-item" class="form-control" style="width: 15%">
+        <option value="downstream">云端到MCU</option>
+        <option value="upstream">MCU到云端</option>
+    </select>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+
+            <input type="text" class="form-control col-md-6" id="exampleInputName2" placeholder="请输入协议示例帧">
+        </div>
+        <div class="form-group col-md-2">
+
+            <select name="frame-type" id="frame-type" class="form-control">
+            <option value="frame-head">帧头</option>
+            <option value="frame-number">流水号</option>
+            <option value="frame-type">数据类型</option>
+            <option value="frame-length">帧长</option>
+            <option value="frame-data">数据域</option>
+            <option value="frame-check">校验</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+
+            <select name="frame-length" id="frame-length" class="form-control">
+            <option value="1">1Byte</option>
+            <option value="2">2Byte</option>
+            <option value="3">3Byte</option>
+            <option value="4">4Byte</option>
+            <option value="5">5Byte</option>
+            <option value="6">6Byte</option>
+            </select>
+        </div>
+
+        <button class="btn btn-default" id="Sure">确认</button>
+    </div>
+    <div class="row form-group col-md-9">
+        <div class="col-md-3">
+            <label for="">校验算法</label>
+            <select name="checkout-algorithm" id="checkout-algorithm" class="form-control">
+            <option value="sum">SUM(和校验)</option>
+            <option value="crc-8">CRC-8</option>
+            <option value="crc-16">CRC-16</option>
+
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="">校验起始位</label>
+            <input type="text" class="form-control col-md-3" id="checkStartNum" placeholder="校验开始位">
+
+        </div>
+        <div class="col-md-3">
+            <label for="">校验停止位</label>
+            <input type="text" class="form-control col-md-3" id="checkEndNum" placeholder="校验停止位">
+        </div>
+
+
+    </div>
+    <br><br><br><br><br>
+    <div id="frame-pre">
+        <p>预览</p>
+
+    </div>
+
+
+    <button class="btn btn-default" id="submit">提交</button>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $("#Sure").click(function () {
+        var frame = $("#exampleInputName2").val();
+        if (frame){
+            if(frame.length%2!=0){
+                alert('示例帧长度必须为偶数')
+            }
+            else{
+                frame_type = $("#frame-type").val();
+                frame_type_text = $("#frame-type").find("option:selected").text();
+                frame_length = parseInt($("#frame-length").val());
+                tmp1 = frame.substr(0, frame_length*2);
+                tmp2 = frame.slice(frame_length*2);
+                $("#exampleInputName2").val(tmp2);
+                html = '<div class="pre-item" id="'+frame_type+'"><p>'+frame_type_text+'</p><p>'+tmp1+'</p></div>'
+                $("#frame-pre").append(html);
+                $("#frame-type option[value="+frame_type+"]").remove();
+            }
+
+        }
+        else{
+            alert('请输入示例帧')
+        }
+    })
+</script>
+</body>
+</html>

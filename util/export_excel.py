@@ -137,41 +137,56 @@ def deal_json(app):
         temp1_data.append(i)
         temp2_data.append(j)
     try:
-        p = Protocol.objects.get(protocol_device_key=key[len_key:])
-        pc = json.loads(p.protocol_factory_content)
-        j_data["cmdconfig"] = {
-            "SendHeart": pc.get("active_heartbeat"),
-            "HeartFrequency": pc.get("heart_rate"),
-            "SupportSerial": pc.get("support_serial"),
-            "ResendInterval": pc.get("repeat_rate"),
-            "ResendTimes": pc.get("repeat_count"),
-            "SupportSingleContorl": pc.get("is_single_instruction"),
-            "SendResponse": pc.get("support_response_frame"),
-            "CheckoutAlgorithm": pc.get("checkout_algorithm"),
-            "StartCheckPid": pc.get("start_check_number"),
-            "EndCheckPid": pc.get("end_check_number"),
-            "AnalyzeData": True,
-            "isStandard": False,
-            "serial_name": "/dev/ttyS1",
-            "serial_baudrate": 9600,
-            "serial_csize": 8,
-            "serial_parity": -1,
-            "serial_stopbits": 1
+        p = Protocol.objects.filter(protocol_device_key=key[len_key:])
+        frame_content = []
+        for z in p:
+            pc = json.loads(z.protocol_factory_content)
+            j_data["cmdconfig"] = {
+                "SendHeart": pc.get("active_heartbeat"),
+                "HeartFrequency": pc.get("heart_rate"),
+                "SupportSerial": pc.get("support_serial"),
+                "ResendInterval": pc.get("repeat_rate"),
+                "ResendTimes": pc.get("repeat_count"),
+                "SupportSingleContorl": pc.get("is_single_instruction"),
+                "SendResponse": pc.get("support_response_frame"),
+                # "CheckoutAlgorithm": pc.get("checkout_algorithm"),
+                # "StartCheckPid": pc.get("start_check_number"),
+                # "EndCheckPid": pc.get("end_check_number"),
+                "AnalyzeData": True,
+                "isStandard": False,
+                "serial_name": "/dev/ttyS1",
+                "serial_baudrate": 9600,
+                "serial_csize": 8,
+                "serial_parity": -1,
+                "serial_stopbits": 1
 
-        }
-        frame = []
-        for i in pc.get('frame_content', []):
-            code = []
-            if i['code']:
-                for j in i['code']:
-                    c = {"value": j['value'], "type": j['type']}
-                    code.append(c)
-            if code:
-                tmp = {"pid": i['number'], "length": i['length'], "ptype": i['name'], "code": code}
+            }
+            frame = {
+                "CheckoutAlgorithm": pc.get("checkout_algorithm"),
+                "StartCheckPid": pc.get("start_check_number"),
+                "EndCheckPid": pc.get("end_check_number")
+            }
+            if z.protocol_factory_type == 1:
+                # xiaxing
+                frame["Type"] = "DownStream"
             else:
-                tmp = {"pid": i['number'], "length": i['length'], "ptype": i['name']}
-            frame.append(tmp)
-        j_data['frames'] = frame
+                # shangxing
+                frame["Type"] = "UpStream"
+            f_content = []
+            for i in pc.get('frame_content', []):
+                code = []
+                if i['code']:
+                    for j in i['code']:
+                        c = {"value": j['value'], "type": j['type']}
+                        code.append(c)
+                if code:
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "ptype": i['name'], "code": code}
+                else:
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "ptype": i['name']}
+                f_content.append(tmp)
+            frame['content'] = f_content
+            frame_content.append(frame)
+        j_data['frames'] = frame_content
     except Exception as e:
         print('处理自定义协议出错', e)
         logging.getLogger('').info("处理自定义协议出错:"+str(e))
