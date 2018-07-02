@@ -162,20 +162,21 @@
         z-index: 1001;
         -moz-opacity: 0.8;
         opacity: .80;
+        overflow:hidden
         filter: alpha(opacity=80);
     }
 
     .white_content {
         display: none;
         position: absolute;
-        top: 30%;
+        top: 20%;
         left: 30%;
-        width: 40%;
-        height: 30%;
+        width: 35%;
+        height: 20%;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
-        overflow: auto;
+        overflow:hidden
     }
 
     .white_content_small {
@@ -226,7 +227,7 @@
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
-        overflow: auto;
+        overflow: hidden;
     }
     .bootbox-close-button{
         font-size: 25px;
@@ -269,7 +270,7 @@
 
     //增加第二版
     function New_add_title(c) {
-
+        $("body").css("overflow", "hidden");
         // 获取未删除之前的所有数据
         var mak = {"心跳帧":"","控制帧":"","故障报警帧":""};
 
@@ -350,6 +351,7 @@
     function func11(d) {
         document.getElementsByClassName("black_overlay")[0].style.display = 'none'
         document.getElementsByClassName("modal-content")[0].style.display = 'none'
+        $('body').css('overflow', 'auto');
 
     }
 
@@ -416,11 +418,16 @@
         }
     document.getElementsByClassName("black_overlay")[0].style.display = 'none'
     document.getElementsByClassName("modal-content")[0].style.display = 'none'
+    $("#" + bg_div).height($(document).height());
+    document.body.style.overflow='hidden';
+    document.body.style.height='100%';
+    $('body').css('overflow', 'auto');
   }
 
     function func33(d) {
         document.getElementsByClassName("black_overlay")[0].style.display = 'none'
         document.getElementsByClassName("modal-content")[0].style.display = 'none'
+        $('body').css('overflow', 'auto');
 
     }
 
@@ -430,14 +437,17 @@
         document.getElementById(bg_div).style.display = 'block';
         var bgdiv = document.getElementById(bg_div);
         bgdiv.style.width = document.body.scrollWidth;
-        // bgdiv.style.height = $(document).height();
+        bgdiv.style.height = $(document).height();
         $("#" + bg_div).height($(document).height());
+        document.body.style.overflow='hidden';
+        document.body.style.height='100%';
     };
 
     //关闭弹出层
     function CloseDiv(show_div, bg_div) {
         document.getElementById(show_div).style.display = 'none';
         document.getElementById(bg_div).style.display = 'none';
+        $('body').css('overflow', 'auto');
     };
 
     function SubmitProtocol1(show_div, bg_div) {
@@ -634,7 +644,7 @@
 <div id="fade" class="black_overlay">
 </div>
 <div id="MyDiv" class="white_content" style="display: none">
-    <div class="modal-header">
+    <div class="modal-header" style="text-align: center">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
                 onclick="CloseDiv('MyDiv','fade')">×
         </button>
@@ -654,8 +664,8 @@
         </button>
     </div>
 </div>
-<div class="modal-content" style="display: none">
-    <div class="modal-header">
+<div class="modal-content " style="display: none">
+    <div class="modal-header" style="text-align: center">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
                 onclick="func11(this)">×
         </button>
@@ -696,7 +706,6 @@
             ShowDiv('MyDiv', 'fade');
 
         })
-        document
 
     });
     function custom(){
