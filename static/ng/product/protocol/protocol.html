@@ -269,6 +269,7 @@
 
     //增加第二版
     function New_add_title(c) {
+
         // 获取未删除之前的所有数据
         var mak = {"心跳帧":"","控制帧":"","故障报警帧":""};
 
@@ -326,7 +327,13 @@
 
         }
 
-
+        //先判断长度
+        var lengg = document.getElementsByClassName("code-items").length + document.getElementsByClassName("new_class").length
+        if (lengg >= 3){
+            console.log(lengg)
+            document.getElementsByClassName("new_add_data")[0].remove()
+            document.getElementById("no_add").style.display=''
+        }
         document.getElementsByClassName("black_overlay")[0].style.display = 'block'
         document.getElementsByClassName("modal-content")[0].style.display = 'block'
     }
@@ -689,6 +696,7 @@
             ShowDiv('MyDiv', 'fade');
 
         })
+        document
 
     });
     function custom(){
