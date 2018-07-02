@@ -270,7 +270,7 @@
         newDiv1.className = "u208 col-md-2 new_class";
         newDiv1.style = "margin-left: 10px;padding-left: 0px;padding-right: 0px";
         newDiv1.innerHTML =
-            '                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
+            '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
             '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="">\n' +
             '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
             '                           value="">\n' +
@@ -328,12 +328,14 @@
         } else {
             try {
                 for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
-                document.getElementById("no_add").style.display = 'none'
+                document.getElementById("no_add").style.display = 'none';
+                document.getElementsByClassName("new_add_data")[gg].style.display='';
                 document.getElementsByClassName("new_add_data")[gg].innerText = hide_key[gg]
+
                 }
             }catch (err) {
                     for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
-                document.getElementById("no_add").style.display = ''
+                    document.getElementById("no_add").style.display = ''
 
                 }
                 }
@@ -395,7 +397,7 @@
                     newDiv1.className = "u208 col-md-2 new_class ";
                     newDiv1.style = "margin-left: 10px;padding-left: 0px;padding-right: 0px";
                     newDiv1.innerHTML =
-                        '                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
+                        '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
                         '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="' + tr + '">\n' +
                         '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
                         '                           value="' + mak[tr] + '">\n' +
@@ -455,7 +457,10 @@
 
             document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
         }
-        angular.element("#sbt").click();
+       var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+
+       var $scope = angular.element(appElement).scope();
+        $scope.TypeProtocol()
     }
 </script>
 
@@ -522,7 +527,7 @@
                 <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px"
                         disabled="disabled" class="bianji" name="checkout_length" id="select_length"
                         onchange="show_or_hide(this.value)">
-                    <option value="1" selected>1Byte</option>
+                    <option value="1" ng-selected="x.length =='1'">1Byte</option>
                     <option value="2" ng-selected="x.length =='2'">2Byte</option>
                     <option value="3" ng-selected="x.length =='3'">3Byte</option>
                     <option value="4" ng-selected="x.length =='4'">4Byte</option>
@@ -552,7 +557,7 @@
                 <div class="u209 col-md-2 code-item " id="del_c"
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
-                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1"
+                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 198px;text-align: center"> {[{ c.desc}]}</span>
                     <input type="text" disabled="disabled" class="xinput bblchk"
@@ -573,7 +578,7 @@
                 <div class="u208 col-md-2 code-item code-items" id="del_c"
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
-                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1"
+                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
                     <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
@@ -587,7 +592,7 @@
                 <div class="u208 col-md-2 code-item1 code-items1" id="del_c1"
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
-                    <img src="http://www.iconpng.com/download/png/65501" class="delete1 ids" id="delete1"
+                    <img src="" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
                     <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
                     <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
@@ -645,26 +650,27 @@
 <!--弹出层时背景层DIV-->
 <div id="fade" class="black_overlay">
 </div>
-<div id="MyDiv" class="white_content">
-    <div style="text-align: right; cursor: default; height: 40px;padding-top: 10px">
-
+<div id="MyDiv" class="white_content" style="display: none">
+    <div class="modal-header">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
-               onclick="CloseDiv('MyDiv','fade')">×
+                onclick="CloseDiv('MyDiv','fade')">×
+        </button>
+        <h4 class="modal-title">上下行切换</h4>
+    </div>
+    <div class="modal-body" style="height: auto;text-align: center">
+        <div class="bootbox-body">
+             <h4 class="modal-title">是否对以编辑的内容进行保存</h4>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-bb-handler="success" type="button" style="outline:none" class="btn btn btn-primary"
+                onclick="SubmitProtocol1('MyDiv','fade')"></i> 确定
+        </button>
+        <button data-bb-handler="cancel" type="button" style="outline:none" class="btn btn btn-default"
+                onclick="CloseDiv('MyDiv','fade')"><i class="icon-info"></i> 取消
         </button>
     </div>
-    <div style="text-align: center;padding-top: 100px">
-        是否对以编辑对内容进行保存？
-    </div>
-    <div style="text-align: center">
-         <button style="margin-top: 40px;" type="submit" class="btn-s-xs btnn"
-            onclick="SubmitProtocol1('MyDiv','fade')">确认
-    </button>
-    <button type="submit" class="btn-s-xs btnn" onclick="CloseDiv('MyDiv','fade')">取消</button>
-    </div>
-
-
 </div>
-
 <div class="modal-content" style="display: none">
     <div class="modal-header">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
@@ -674,15 +680,15 @@
     </div>
     <div class="modal-body" style="height: auto;">
         <div class="bootbox-body">
-            <div class="common_dp-btn" data-id="STATE">
+            <div class="common_dp-btn" data-id="STATE" style="text-align: center">
 
-                <span id="no_add" style="display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
+                <span id="no_add" style="text-align: center;display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px"></button>
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px"></button>
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;"></button>
+                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
 
             </div>
@@ -709,10 +715,7 @@
         })
 
     });
-
-
-    $(".custom").on('click', function () {
-
+    function custom(){
         var list = document.getElementsByClassName("ids");
         for (var i = 0, l = list.length; i < l; i++) {
             var obj = list[i];
@@ -735,6 +738,11 @@
         select_option.disabled = false;
         var select_option1 = document.getElementById("select_length");
         select_option1.disabled = false;
+    }
+
+    $(".custom").on('click', function () {
+        custom()
+
 
     });
     $(".standard").on('click', function () {
@@ -778,7 +786,7 @@
             '                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>\n' +
             '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 24px" value="">\n' +
             '            </div>\n' +
-            '<img src="http://www.iconpng.com/download/png/65501" class="delete" id="delete" onclick="Iclose(this)"/>' +
+            '<img src="/static/image/product/delete.png" class="delete" id="delete" onclick="Iclose(this)"/>' +
             '            <div class="u208 col-md-2 " id="keyven" style="margin-left: 10px">\n' +
             '                <input style="display: block;width: 70px;margin-top:3px;margin-left:0px" placeholder="自定义参数">\n' +
             '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 20px;margin-top:0px" value="">\n' +
