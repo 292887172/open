@@ -41,6 +41,7 @@
 
     input {
         display: inline;
+        text-align: center;
         background-color: white !important;
         margin-top: 10px;
         margin-left: 10px;
@@ -544,7 +545,7 @@
             <span ng-if="x.name=='data_domain'" style="color: #f35019"> tips:数据域修改请到定义功能部分修改</span>
             <div ng-if="x.title == '帧头'">
                 <div class="u209 col-md-2 code-item " id="del_c"
-                     style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+                     style="margin-left: 10px;padding-left: 0px;padding-right: 0px;text-align: center"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>

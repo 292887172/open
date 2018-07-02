@@ -417,13 +417,13 @@ angular.module('Product.protocol', ['ngRoute'])
                 if (response1.protocol_type == 1) {
                     // 下行被选中
                     document.getElementById("x_x").selected = true;
-                    $scope.response.frame_content[0]['code'][0]['type'] =  "response"
+
 
                 }
                 else {
                     //上行被选中
                     document.getElementById("s_x").selected = true;
-                    $scope.response.frame_content[0]['code'][0]['type'] ="send"
+
 
                 }
 
@@ -600,13 +600,13 @@ angular.module('Product.protocol', ['ngRoute'])
                 if (response1.protocol_type == 1) {
                     // 下行被选中
                     document.getElementById("x_x").selected = true;
-                    $scope.response.frame_content[0]['code'][0]['type'] =  "response"
+
 
                 }
                 else {
                     //上行被选中
                     document.getElementById("s_x").selected = true;
-                    $scope.response.frame_content[0]['code'][0]['type'] ="send"
+
 
                 }
 
