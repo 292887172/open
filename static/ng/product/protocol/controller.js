@@ -635,7 +635,6 @@ angular.module('Product.protocol', ['ngRoute'])
                             'number': $scope.response.frame_content[i]['number']
                         }
                     }
-                    console.log(tmp)
                     $scope.list_mode.push(tmp)
 
                 }
