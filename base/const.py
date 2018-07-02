@@ -209,7 +209,7 @@ class DefaultProtocol(object):
                          {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
                          {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
-                                   {"value": "31", "desc": "单指令控制帧", "type": "control_single"},
+                                   {"value": "31", "desc": "控制帧", "type": "control_single"},
                                    {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
                          {"name": "frame_length", "title": "帧长", "is_enable": "true",
                           "number": 4, "length": 1},

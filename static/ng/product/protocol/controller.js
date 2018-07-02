@@ -459,11 +459,12 @@ angular.module('Product.protocol', ['ngRoute'])
 
                 }
             });
+        custom();
         setTimeout(function () {
                 foo();
-                custom();
+
                 show_or_hide($scope.response.frame_content[0]['length'])
-            }, 100);
+            }, 200);
         };
         $scope.SubmitProtocol = function (scope) {
             $scope.response.key = $scope.$parent.$parent.key;
@@ -636,12 +637,12 @@ angular.module('Product.protocol', ['ngRoute'])
                     $scope.list_mode.push(tmp)
 
                 }
-            })
+            });
+        custom();
         setTimeout(function () {
                 foo();
-                custom();
                 show_or_hide($scope.response.frame_content[0]['length'])
-            }, 100)
+            }, 200)
         };
 
 

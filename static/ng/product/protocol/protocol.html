@@ -282,12 +282,8 @@
     //增加第二版
     function New_add_title(c) {
         // 获取未删除之前的所有数据
-        var mak = {};
-        var hide_list = document.getElementsByClassName("code-items1");
-        for (var hi = 0, hide_length = hide_list.length; hi < hide_length; hi++) {
-            mak[$(hide_list[hi]).children("span").text().replace(/(^\s*)|(\s*$)/g, "")] = $(hide_list[hi]).children("input").val();
-        }
-        console.log("mak", mak)
+        var mak = {"心跳帧":"","控制帧":"","故障报警帧":""};
+
         // 获取被删除的数据
         var new_data_list = {};
         var ttt = document.getElementsByClassName("code-items")
@@ -392,6 +388,12 @@
                     var newDiv1 = document.createElement("div");
                     if (leg[0]){
                          var tr = leg[0].innerText
+                         var tr_value = mak[tr]
+                         if (tr_value){
+                            console.log('')
+                         }else {
+                             tr_value=''
+                         }
                     }
 
                     newDiv1.className = "u208 col-md-2 new_class ";
@@ -400,7 +402,7 @@
                         '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
                         '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="' + tr + '">\n' +
                         '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
-                        '                           value="' + mak[tr] + '">\n' +
+                        '                           value="' + tr_value + '">\n' +
                         '\n'
                     ;
                     tt.insertBefore(newDiv1, t);
@@ -553,7 +555,7 @@
                 </table>
             </div>
             <span ng-if="x.name=='data_domain'" style="color: #f35019"> tips:数据域修改请到定义功能部分修改</span>
-            <div ng-if="x.code.length < 2">
+            <div ng-if="x.title == '帧头'">
                 <div class="u209 col-md-2 code-item " id="del_c"
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
@@ -574,7 +576,7 @@
                 </div>
 
             </div>
-            <div ng-if="x.code.length >= 2" class="xxxxxx">
+            <div ng-if="x.title == '帧数据类型'" class="xxxxxx">
                 <div class="u208 col-md-2 code-item code-items" id="del_c"
                      style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
@@ -603,7 +605,7 @@
 
             </div>
 
-            <div ng-if="x.code.length > 2" class="ids" id="x4x">
+            <div ng-if="x.title == '帧数据类型' " class="ids" id="x4x">
                 <!--<img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">-->
                 <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;"
                      id="new_add" onclick="New_add_title(this)">
