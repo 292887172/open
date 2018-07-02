@@ -105,16 +105,14 @@ angular.module('Product.protocol', ['ngRoute'])
                                 'number': $scope.response.frame_content[i]['number']
                             }
                         } else {
-                            if (parseInt($scope.response.frame_content[i]['length']) / 8 > 1) {
-                                var t_val = "00*" + parseInt($scope.response.frame_content[i]['length']) / 8
+                            if (parseInt($scope.response.frame_content[i]['length']) > 1) {
+                                var t_val = "00*" + $scope.response.frame_content[i]['length']
                             }
 
-                            else if (String($scope.response.frame_content[i]['length']).indexOf("*") > 0) {
-                                t_val = "00*N"
-                            }
                             else {
                                 t_val = "00"
                             }
+
                             tmp = {
                                 "title": $scope.response.frame_content[i]['title'],
                                 "val": t_val,
@@ -506,8 +504,12 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_1["is_enable"] = z2[1].checked;
                 dict_1["number"] = z2[2].value;
                 //$("#select_option option:selected").val()
+                if(dict_1['name'] == 'data_domain'){
+                    dict_1["length"] = $("#data_domain_length").data("length")
+                }else{
+                    dict_1["length"] = $(select_1).children("option:selected").val();
+                }
 
-                dict_1["length"] = $(select_1).children("option:selected").val();
                 console.log(dict_1)
                 for (var k = 0; k < codeItem.length; k++) {
                     var tmp = {"type": $(codeItem[k]).data('type'), "desc": $(codeItem[k]).children("span").text()};

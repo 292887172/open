@@ -556,7 +556,6 @@ def protocol(request):
             mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
             if len(mlist) == 0:
                 p = DefaultProtocol().DEFAULT_DATA_ZDY
-                #print("p",p)
                 data = {"code": 2, "data": p, "protocol_type": zdy}
                 return HttpResponse(json.dumps(data))
             else:
@@ -620,7 +619,7 @@ def protocol(request):
 
                 res_list_data1 = json.loads(res_list_data)
                 res_list_data1['protocol_type'] = protocol_type1
-                print(res_list_data1)
+
                 return HttpResponse(json.dumps(res_list_data1))
         return HttpResponse(json.dumps(r))
 
