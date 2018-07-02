@@ -192,7 +192,7 @@ class DefaultProtocol(object):
                          {"name": "frame_length", "title": "帧长", "is_enable": "true",
                           "number": 4, "length": 1},
                          {"name": "data_domain", "title": "数据域", "is_enable": "true",
-                          "number": 5, "length": "8*N"},
+                          "number": 5, "length": "N"},
                          {"name": "check", "title": "校验", "is_enable": "true",
                           "number": 6, "length": 1}
                          ],
