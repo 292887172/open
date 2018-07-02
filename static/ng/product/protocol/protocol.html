@@ -196,7 +196,7 @@
     .ui-data-domain {
         border: 1px solid #ccc;
         width: 550px;
-        height: 72px;
+        height: 77px;
         overflow-x: scroll;
         top: -8px;
         left: 50px;
@@ -213,7 +213,15 @@
     tr {
         text-align: center;
     }
-
+    th{
+        width: 30px;
+        display: inline-block;
+        line-height: 20px;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        top: 1px;
+    }
     td {
         border: 1px solid #ccc;
     }
@@ -504,7 +512,7 @@
         帧定义:
     </div>
     <hr>
-    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 25px;width: 103px"
+    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 103px;border-color:#333"
             name="condition" id="select_id" class="bianji">
         <option value="0" id="s_x" ng-selected="response.protocol_type=='0'">MCU到云端</option>
         <option value="1" id="x_x" ng-selected="response.protocol_type=='1'">云端到MCU</option>
@@ -552,17 +560,22 @@
 
                 <table border="1">
                     <tr>
+                        <th  width="30px">编号</th>
                         <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.id }]}</td>
 
                     </tr>
                     <tr>
+                        <th width="30px">字节</th>
+
                         <td ng-repeat="i in range(frame_length) track by $index">bit{[{ 7-$index%8 }]}</td>
 
                     </tr>
                     <tr>
+                        <th  width="30px">功能</th>
                         <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.title }]}</td>
 
                     </tr>
+
 
                 </table>
             </div>

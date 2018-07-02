@@ -167,10 +167,10 @@ def deal_json(app):
                 "EndCheckPid": pc.get("end_check_number")
             }
             if z.protocol_factory_type == 1:
-                # xiaxing
+                # 下行数据
                 frame["Type"] = "DownStream"
             else:
-                # shangxing
+                # 上行数据
                 frame["Type"] = "UpStream"
             f_content = []
             for i in pc.get('frame_content', []):
