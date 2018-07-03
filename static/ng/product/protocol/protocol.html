@@ -169,14 +169,15 @@
     .white_content {
         display: none;
         position: absolute;
-        top: 20%;
+        top: 25%;
         left: 30%;
         width: 35%;
         height: 20%;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
-        overflow:hidden
+        overflow:hidden;
+
     }
 
     .white_content_small {
@@ -228,10 +229,10 @@
 
     .modal-content {
         position: absolute;
-        top: 30%;
+        top: 28%;
         left: 30%;
         width: 40%;
-        height: 30%;
+        height: 20%;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
@@ -278,7 +279,14 @@
 
     //增加第二版
     function New_add_title(c) {
-        $("body").css("overflow", "hidden");
+
+         var bgdiv = document.getElementById("fade");
+        bgdiv.style.width = document.body.scrollWidth;
+        bgdiv.style.height = $(document).height();
+
+        document.body.style.overflow='hidden';
+        document.body.style.height='100%';
+        $('body').css('overflow', 'hidden');
         // 获取未删除之前的所有数据
         var mak = {"心跳帧":"","控制帧":"","故障报警帧":""};
 
@@ -318,14 +326,14 @@
         if (hide_key.length == 0) {
             console.log('走这里')
             document.getElementById("no_add").style.display = ''
-            $('body').css('overflow', 'auto');
+
 
 
         } else {
             try {
                 for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
                 document.getElementById("no_add").style.display = 'none';
-                $('body').css('overflow', 'auto');
+
                 document.getElementsByClassName("new_add_data")[gg].style.display='';
                 document.getElementsByClassName("new_add_data")[gg].innerText = hide_key[gg]
 
@@ -333,7 +341,7 @@
             }catch (err) {
                     for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
                     document.getElementById("no_add").style.display = ''
-                        $('body').css('overflow', 'auto');
+
 
                 }
                 }
@@ -431,9 +439,7 @@
         }
         document.getElementsByClassName("black_overlay")[0].style.display = 'none'
         document.getElementsByClassName("modal-content")[0].style.display = 'none'
-        $("#" + bg_div).height($(document).height());
-        document.body.style.overflow='hidden';
-        document.body.style.height='100%';
+
         $('body').css('overflow', 'auto');
     }
 
@@ -663,7 +669,7 @@
 <!--弹出层时背景层DIV-->
 <div id="fade" class="black_overlay">
 </div>
-<div id="MyDiv" class="white_content" style="display: none">
+<div id="MyDiv" class="white_content" style="display: none;text-align: center">
     <div class="modal-header" style="text-align: center">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
                 onclick="CloseDiv('MyDiv','fade')">×
@@ -684,7 +690,7 @@
         </button>
     </div>
 </div>
-<div class="modal-content " style="display: none">
+<div class="modal-content " style="display: none;text-align: center;">
     <div class="modal-header" style="text-align: center">
         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
                 onclick="func11(this)">×
