@@ -72,7 +72,27 @@
     .btnn:active, .btnn:hover {
         opacity: 0.65;
     }
-
+    .common_dp-btn{
+        display: inline-block;
+        height: 36px;
+        line-height: 33px;
+        color: #666;
+        border: 1px solid silver;
+        border-radius: 2px;
+        font-size: 12px;
+        padding: 0 15px 0 15px;
+        margin: 5px 7px 5px 0;
+        box-sizing: content-box;
+    }
+    .common_dp-btn:hover{
+        border-color: #2fa666;
+        cursor: pointer;
+    }
+    .common_dp-checked{
+        color: #2fa666;
+        border-color: #2fa666;
+        background: #f2f0e1;
+    }
     /*预览帧样式*/
     .num {
         width: 76px;
@@ -171,7 +191,7 @@
         position: fixed;
         top: 35%;
         left: 30%;
-        width: 39%;
+        width:600px;
         height: 25%;
         border: 2px solid lightblue;
         background-color: white;
@@ -230,13 +250,15 @@
        background:#fff;
         }
     button.active{
-       background:red;
+        color: #2fa666;
+        border-color: green;
+        background: #f2f0e1;
     }
     .modal-content {
         position: fixed;
         top: 30%;
         left: 30%;
-        width: 39%;
+        width: 600px;
         height: 28%;
         border: 2px solid lightblue;
         background-color: white;
@@ -284,7 +306,12 @@
 
     //增加第二版
     function New_add_title(c) {
-
+        var color1 = document.getElementsByClassName("new_add_data");
+        for (var zpz=0, l_c = color1.length; zpz<l_c;zpz++) {
+            color1[zpz].classList.remove("active");
+            color1[zpz].style.color='black'
+            color1[zpz].style.backgroundColor='white'
+        }
          var bgdiv = document.getElementById("fade");
         bgdiv.style.width = document.body.scrollWidth;
         bgdiv.style.height = $(document).height();
@@ -367,7 +394,7 @@
 
     // 被选中颜色
     function pitch(on) {
-        on.style.color = "red";
+        on.style.color = "green";
         on.style.backgroundColor="#efedda"
 
         console.log(on)
@@ -404,7 +431,7 @@
                     console.log('错误pass')
                 }
 
-                if (tttt.color == "red") {
+                if (tttt.color == "green") {
 
                     var t = document.getElementsByClassName("code-items").lastChild
                     var tt = document.getElementsByClassName("xxxxxx")[0]
@@ -705,15 +732,16 @@
     </div>
     <div class="modal-body" style="height: auto;">
         <div class="bootbox-body">
-            <div class="common_dp-btn" data-id="STATE" style="text-align: center">
+
+            <div class="common_dp-btn1" data-id="STATE" style="text-align: center">
 
                 <span id="no_add" style="text-align: center;display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
 
-                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data  common_dp-btn  btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data  common_dp-btn btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data  common_dp-btn  btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
 
             </div>
