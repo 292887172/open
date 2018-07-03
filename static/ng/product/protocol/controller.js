@@ -110,7 +110,7 @@ angular.module('Product.protocol', ['ngRoute'])
                             }
 
                             else {
-                                t_val = "00"
+                                t_val = "00*N"
                             }
 
                             tmp = {
