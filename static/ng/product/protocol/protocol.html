@@ -171,7 +171,7 @@
         position: fixed;
         top: 35%;
         left: 30%;
-        width: 35%;
+        width: 39%;
         height: 25%;
         border: 2px solid lightblue;
         background-color: white;
@@ -226,12 +226,17 @@
     td {
         border: 1px solid #ccc;
     }
-
+    button{
+       background:#fff;
+        }
+    button.active{
+       background:red;
+    }
     .modal-content {
         position: fixed;
         top: 30%;
         left: 30%;
-        width: 40%;
+        width: 39%;
         height: 28%;
         border: 2px solid lightblue;
         background-color: white;
@@ -535,7 +540,8 @@
     <div class="x1x" id="protocolx{[{ x.number }]}x" style="margin-top: 10px;margin-left: 100px;height: 100px"
          ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}"
          ng-if="x.is_enable==true || x.is_enable=='true'">
-        <input style="margin-left: 0px;font-size: larger;width: 100px" readonly="readonly" value="{[{ x.title }]}">
+        <input style="margin-left: 0px;font-size: larger;width: 100px;display: none" readonly="readonly" value="{[{ x.title }]}">
+         <span class="xrx" style="margin-left: 0px;font-size: larger;width: 100px">{[{ x.title }]}</span>
         <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none"
                ng-if="x.is_enable==true || x.is_enable=='true'">
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none"
@@ -554,7 +560,7 @@
                 <input ng-if="x.name=='data_domain'" disabled="" id="data_domain_length" data-length="{[{ frame_length/8 }]}" value="{[{ frame_length/8 }]}Byte">
                 <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px"
                         disabled="disabled" class="bianji" name="checkout_length" id="select_length"
-                        onchange="show_or_hide(this.value)">
+                        onchange="show_or_hide1(this)">
                     <option value="1" ng-selected="x.length =='1'">1Byte</option>
                     <option value="2" ng-selected="x.length =='2'">2Byte</option>
                     <option value="3" ng-selected="x.length =='3'">3Byte</option>
@@ -703,11 +709,11 @@
 
                 <span id="no_add" style="text-align: center;display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
-                    <button class="new_add_data btn btn-default" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+                    <button class="new_add_data btn btn-success btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
 
 
             </div>
@@ -725,7 +731,10 @@
 
 
 <script>
-
+    $('.btnxx').click(function(){//给id为btn的元素添加点击事件
+        $(this).toggleClass('active');//每次点击的时候，将当前的元素切换active样式
+                                      //如果有，则去掉，否则添加
+        });
     $(document).ready(function () {
         console.log(document.getElementsByClassName("code-items"))
         $("#select_id").change(function () {
@@ -904,36 +913,74 @@
         }
     }
 
-    function show_or_hide(v) {
-        console.log(v)
-        if (v == "1") {
+    function show_or_hide1(v) {
+
+      if ($(v).parent().parent().parent().find("span").html()=="帧头") {
+           if (v.value == "1") {
             console.log('1')
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = 'none';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
-        }
-        else if (v == "2") {
-            console.log('2')
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
-        }
-        else if (v == "3") {
-            console.log('3')
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
-        }
-        else if (v == "4") {
-            console.log('4')
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
-            document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = '';
-        }
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "2") {
+                console.log('2')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "3") {
+                console.log('3')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "4") {
+                console.log('4')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = '';
+            }
+      }
+
+
+    }
+    function show_or_hide(v) {
+
+           if (v== "1") {
+            console.log('1')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "2") {
+                console.log('2')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "3") {
+                console.log('3')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "4") {
+                console.log('4')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = '';
+            }
+
+
+
     }
 
 
