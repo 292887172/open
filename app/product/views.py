@@ -539,6 +539,7 @@ def product_main(request):
 
 @csrf_exempt
 def protocol(request):
+    # code说明 1 非表 2 标准 3 错误
     if request.method == 'GET':
         # 协议类型 1为下行 0为上行
         device_key = request.GET.get('key', '')
@@ -552,24 +553,29 @@ def protocol(request):
                 tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength']}
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
-        if zdy == "0" or zdy == "1":
-            print('xxx')
-            mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
-            print(mlist)
-            if len(mlist) == 0:
-                p = DefaultProtocol().DEFAULT_DATA_ZDY
-                data = {"code": 2, "data": p, "protocol_type": zdy}
-                return HttpResponse(json.dumps(data))
-            else:
-                print('xxxxx')
-                for iii in mlist:
-                    res_list_data = iii.protocol_factory_content
-                    protocol_type1 = iii.protocol_factory_type
-                    res_list_data1 = json.loads(res_list_data)
-                    res_list_data1['protocol_type'] = protocol_type1
-                    data = {"code": 1, "data": res_list_data1, "protocol_type": zdy}
+        try:
+            if zdy == "0" or zdy == "1":
+                print('xxx')
+                mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
+                print(mlist)
+                if len(mlist) == 0:
+                    p = DefaultProtocol().DEFAULT_DATA_ZDY
+                    data = {"code": 2, "data": p, "protocol_type": zdy}
                     return HttpResponse(json.dumps(data))
-
+                else:
+                    print('xxxxx')
+                    for iii in mlist:
+                        res_list_data = iii.protocol_factory_content
+                        protocol_type1 = iii.protocol_factory_type
+                        res_list_data1 = json.loads(res_list_data)
+                        res_list_data1['protocol_type'] = protocol_type1
+                        data = {"code": 1, "data": res_list_data1, "protocol_type": zdy}
+                        return HttpResponse(json.dumps(data))
+        except Exception as e:
+            print(e)
+            logging.getLogger('').info("传入的参数zdy出错", str(e))
+            data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
+            return HttpResponse(json.dumps(data))
         r = select_protocol(device_key,zdy)
 
         if r is None:
@@ -583,48 +589,55 @@ def protocol(request):
         r = DefaultProtocol().DEFAULT_DATA_ZDY
 
         data_protocol_list = json.loads(request.body.decode('utf-8'))
-        if data_protocol_list.get('action', '') == 'update_protocol':
+        try:
+            if data_protocol_list.get('action', '') == 'update_protocol':
+                data_sql = {}
+                protocol_type = data_protocol_list.get('protocol_type',0)
+                list_fivechoose = data_protocol_list.get('fivechoose','')
+                list_t = data_protocol_list.get('frame_content', '')
+                list_key = data_protocol_list.get('key', '')
+                data_sql['is_single_instruction'] = list_fivechoose[0]
+                data_sql['support_response_frame'] = list_fivechoose[1]
+                data_sql['support_serial'] = list_fivechoose[2]
+                data_sql['active_heartbeat'] = list_fivechoose[3]
+                data_sql['support_repeat'] = list_fivechoose[4]
+                data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
+                data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
+                data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
+                data_sql['frame_content'] = list_t
+                data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
+                data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
+                data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+                data_sql_update = json.dumps(data_sql,ensure_ascii=False)
 
-            data_sql = {}
-            protocol_type = data_protocol_list.get('protocol_type',0)
-            list_fivechoose = data_protocol_list.get('fivechoose','')
-            list_t = data_protocol_list.get('frame_content', '')
-            list_key = data_protocol_list.get('key', '')
-            data_sql['is_single_instruction'] = list_fivechoose[0]
-            data_sql['support_response_frame'] = list_fivechoose[1]
-            data_sql['support_serial'] = list_fivechoose[2]
-            data_sql['active_heartbeat'] = list_fivechoose[3]
-            data_sql['support_repeat'] = list_fivechoose[4]
-            data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
-            data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
-            data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
-            data_sql['frame_content'] = list_t
-            data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
-            data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
-            data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-            data_sql_update = json.dumps(data_sql,ensure_ascii=False)
+                types = data_protocol_list.get('typesss', '')
 
-            types = data_protocol_list.get('typesss', '')
-            if types == "change":
-                if protocol_type == "0":
-                    update_protocol(list_key, data_sql_update, 1)
-                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
-                                                          protocol_factory_type=0)
+                if types == "change":
+                    ## 上下行  切换
+                    if protocol_type == "0":
+                        update_protocol(list_key, data_sql_update, 1)
+                        mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
+                                                              protocol_factory_type=0)
+                    else:
+                        update_protocol(list_key, data_sql_update, 0)
+                        mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
+                                                              protocol_factory_type=1)
                 else:
-                    update_protocol(list_key, data_sql_update, 0)
-                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
-                                                          protocol_factory_type=1)
-            else:
-                update_protocol(list_key, data_sql_update, protocol_type)
-                mlist = Protocol.objects.all().filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
-            for ii in mlist:
-                res_list_data = ii.protocol_factory_content
-                protocol_type1 = ii.protocol_factory_type
+                    update_protocol(list_key, data_sql_update, protocol_type)
+                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
+                for ii in mlist:
+                    res_list_data = ii.protocol_factory_content
+                    protocol_type1 = ii.protocol_factory_type
 
-                res_list_data1 = json.loads(res_list_data)
-                res_list_data1['protocol_type'] = protocol_type1
+                    res_list_data1 = json.loads(res_list_data)
+                    res_list_data1['protocol_type'] = protocol_type1
 
-                return HttpResponse(json.dumps(res_list_data1))
+                    return HttpResponse(json.dumps(res_list_data1))
+        except Exception as e:
+            print(e)
+            logging.getLogger('').info("非保存操作", str(e))
+            data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
+            return HttpResponse(json.dumps(data))
         return HttpResponse(json.dumps(r))
 
 
