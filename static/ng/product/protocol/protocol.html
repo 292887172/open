@@ -173,7 +173,7 @@
     /* 遮罩层*/
     .black_overlay {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 0%;
         left: 0%;
         width: 100%;
@@ -190,9 +190,11 @@
         display: none;
         position: fixed;
         top: 35%;
-        left: 30%;
+        margin-left: -300px;
+        left: 50%;
+        margin-top: -120px;
         width:600px;
-        height: 25%;
+        height: 240px;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
@@ -203,10 +205,12 @@
     .white_content_small {
         display: none;
         position: absolute;
-        top: 20%;
-        left: 30%;
-        width: 40%;
-        height: 50%;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        margin-left: -300px;
+        margin-top: -135px;
+        height: 270px;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
