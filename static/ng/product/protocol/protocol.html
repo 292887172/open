@@ -381,12 +381,18 @@
         }
 
         //先判断长度
-        var lengg = document.getElementsByClassName("code-items").length + document.getElementsByClassName("new_class").length
-        if (lengg >= 3){
+        var lengg = document.getElementsByClassName("code-items").length + document.getElementsByClassName("new_class").length;
+        try {
+
+            if (lengg >= 3){
             console.log(lengg)
             document.getElementsByClassName("new_add_data")[0].remove()
             document.getElementById("no_add").style.display=''
+            }
+        }catch(err){
+            document.getElementById("no_add").style.display=''
         }
+
         document.getElementsByClassName("black_overlay")[0].style.display = 'block'
         document.getElementsByClassName("modal-content")[0].style.display = 'block'
 
@@ -451,7 +457,7 @@
                     newDiv1.innerHTML =
                         '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
                         '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="' + tr + '">\n' +
-                        '                    <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
+                        '                    <input id=\'input_1\' class="bianji" placeholder="请输入" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
                         '                           value="' + tr_value + '">\n' +
                         '\n'
                     ;
