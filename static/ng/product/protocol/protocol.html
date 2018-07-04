@@ -189,7 +189,7 @@
     .white_content {
         display: none;
         position: fixed;
-        top: 35%;
+        top: 50%;
         margin-left: -300px;
         left: 50%;
         margin-top: -120px;
@@ -260,10 +260,12 @@
     }
     .modal-content {
         position: fixed;
-        top: 30%;
-        left: 30%;
+        top: 50%;
+        left: 50%;
+        margin-top: -135px;
+        margin-left: -300px;
         width: 600px;
-        height: 28%;
+        height: 270px;
         border: 2px solid lightblue;
         background-color: white;
         z-index: 1002;
@@ -425,7 +427,14 @@
             mak[$(hide_list[hi]).children("span").text().replace(/(^\s*)|(\s*$)/g, "")] = $(hide_list[hi]).children("input").val();
         }
         console.log("mak", mak);
+        var zzrr = []
         var leg = document.getElementsByClassName("new_add_data");
+        for (var xzxc =0,xlen = leg.length;xzxc<xlen;xzxc++) {
+            if (leg[xzxc].style.display==''){
+                zzrr.push('x')
+            }
+        }
+        console.log('长度',zzrr)
         if (leg.length == 0) {
             console.log("0")
             document.getElementsByClassName("black_overlay")[0].style.display = 'none'
