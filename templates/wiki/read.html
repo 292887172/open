@@ -150,63 +150,8 @@
 
         </div>
         <div class="w">
-            <ul class="protocol-info-main">
-                <li class="item">
-                    <h4 class="title">开发指南</h4>
-                    <div class="info-list">
-                        {% for m in menus1 %}
-                            {% if forloop.counter != 1%}
-                                <p class="info">
-                                {% if m.menu_name == "开发指南" %}
-                                    <b><a href="/wiki/doc_wiki?view=Navicat1{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a></b>
-                                {% else %}
-                                    <a href="/wiki/doc_wiki?view=Navicat1{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
-                                {% endif %}
-                                </p>
-                            {% endif %}
-
-                        {% endfor %}
-
-                    </div>
-                </li>
-                <li class="item">
-                        <h4 class="title">开发者工具</h4>
-                        <div class="info-list">
-                            <p class="info">
-                                <b>
-                                    <a href="/wiki/doc_wiki?view=Navicat21000#10000" target="_self">下载中心</a>
-                                </b>
-                            </p>
-                            <p class="info">
-                                <b>
-                                    <a href="/wiki/doc_read?view=Navicat21000#10000" target="_self" >快速了解</a>
-                                </b>
-                            </p>
-                           {% for m in menus2 %}
-                                {% if m.menu_parent_id > 0 %}
-                                    <p class="info">
-                                        <a href="/wiki/doc_wiki?view=Navicat2{{ m.menu_id }}#{{ m.menu_id }}" target="_self">{{ m.menu_name }}</a>
-                                </p>
-                                {% endif %}
-
-                            {% endfor %}
-
-                        </div>
-                </li>
-                <li class="item">
-                    <h4 class="title">接口文档</h4>
-
-                    <div class="info-list">
-                       {% for m in menus3 %}
-                            {% if m.menu_is_parent%}
-                                <p class="info">
-                                    <a href="/wiki/doc_wiki?view=Navicat3{{ m.menu_id }}#{{ menus3|check_first_child:m.menu_id}}" target="_self">{{ m.menu_name }}</a>
-                                </p>
-                            {% endif %}
-
-                        {% endfor %}
-                    </div>
-                </li>
+            <ul class="protocol-info-main" style="text-align: center">
+                <img src="/static/image/wiki/read.jpg" alt="">
             </ul>
         </div>
     </body>

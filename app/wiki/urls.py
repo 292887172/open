@@ -5,6 +5,7 @@ wiki_patterns = patterns(
     'app.wiki.views',
     url(r"^$", "wiki", name='wiki'),
     url(r"^doc_wiki$", "doc_wiki", name='doc_wiki'),
+    url(r"^doc_read", "doc_read", name='doc_read'),
     url(r"^new_wiki$", "new_wiki"),
     # web 调试工具
     url(r"^webtools$", "wiki_webtools"),
