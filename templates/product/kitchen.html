@@ -373,7 +373,7 @@
             </div>
             </div>
          <div id="template" style="height:340px;margin:0 auto;">
-            <h3>如何进行WiFi智能厨电开发？</h3>
+            <h3>如何进行WiFi屏智能厨电开发？</h3>
             <ul>
                 <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onmouseover="toggleTab('new')">1.新建厨电品类</li>
                 <li onmouseover="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
@@ -381,8 +381,8 @@
                 <li onmouseover="toggleTab('debug')" style="color:#fff;">4.调试</li>
             </ul>
             <p id="new">
-                推荐品类：燃气灶、油烟机、蒸烤箱、电饭煲、炒菜机、洗碗机等。<br>
-                帮助低成本快速实现厨电智能化，免费拥有品牌专属厨房APP，包括厨电智能互动、安全提醒，成熟的厨房社区，海量智能云菜谱等。<br>
+                推荐品类：蒸烤箱、洗碗机、燃气灶、油烟机、电饭煲、炒菜机等。<br>
+                帮助低成本快速实现厨电智能化，免费拥有品牌专属UI定制和品牌专属厨房App，包括厨电智能互动、安全提醒，成熟的厨房社区，海量智能云菜谱，品牌报修服务等。<br>
                 {% if user.developer.developer_id %}
                     <a href="{% url "product/add" %}" style="color:#ff6202;">快速创建 ></a>
                 {% else %}
@@ -393,23 +393,24 @@
                 <i></i>
                  {% if user.developer.developer_id %}
                     <span style="color:#ff6202;cursor:pointer;" data-toggle="modal"
-                             data-target="#user_address">申请53iq标准协议WiFi模块 ></span>
+                             data-target="#user_address">申请53iq标准协议WiFi屏套件 ></span>
                 {% else %}
                      <span style="color:#ff6202;cursor:pointer;"
-                             onclick="javascript:void(dont_develop())">申请53iq标准协议WiFi模块 ></span>
+                             onclick="javascript:void(dont_develop())">申请53iq标准协议WiFi屏套件 ></span>
 
                 {% endif %}
                 <br>
-                <i></i>检查按键板状态 ，确认改造方案。示例1
+                <i></i>检查电控板 5V 2A供电和串口 ，确认改造方案。示例1
             </p>
             <p id="define" style="display:none;">
                 根据实际接入厨电定义标准产品功能<br>
                 <a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx"
-                   style="color:#ff6202;">WiFi厨电与53iq智能云通信协议 下载></a>
+                   style="color:#ff6202;">WiFi屏厨电与53iq智能云通信协议 下载></a>
             </p>
             <p id="debug" style="display:none;">
                 <i></i><a href="http://www.53iq.com/smart/" style="color:#ff6202;">下载安卓通用版APP
                 ></a><br>
+
                 <i></i>对接通讯协议， 远程支持QQ 253317348；<br>
                 <i></i>使用53iq厨电开发平台调试通信协议；<br>
                 <i></i>手机APP UI编辑，提供品牌专属厨房APP。
