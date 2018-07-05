@@ -100,26 +100,6 @@ def doc_wiki(request):
     default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     return render(request, "wiki/doc.html", locals())
 
-def doc_read(request):
-    """
-    文档页面
-    :param request:
-    :return:
-    """
-    view = request.GET.get("view", '')
-    view = view.split("Navicat")
-    name = "Navicat" + view[1][0]
-    dm_id = int(view[1][1:])
-    try:
-        doc = DocMenu.objects.get(dm_id=dm_id)
-        isParent = doc.dm_is_parent
-    except Exception as e:
-        pass
-    menus = nav_content(name)
-    # 保存菜单到session中
-    request.session['menus'] = json.dumps(menus)
-    default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
-    return render(request,"wiki/read.html",locals())
 
 def new_wiki(request):
     """
