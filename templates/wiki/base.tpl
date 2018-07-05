@@ -240,7 +240,7 @@
         <li><a href="/contact" target="" rel="nofollow">联系我们</a></li>
 
     </ul>
-    <p>Copyright©2015 53iq 版权所有</p><a name="chaper" class="ui-scroll-top"
+    <p>Copyright©{% now 'Y' %} 53iq 版权所有</p><a name="chaper" class="ui-scroll-top"
                                       href="javascript:scroll(0,0);"><img src="{% static 'image/wiki/zhid2.png' %}"
                                                                           title="回到顶部"/></a>
 </div>
