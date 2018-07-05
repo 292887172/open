@@ -11,6 +11,7 @@ from django.core.urlresolvers import reverse
 #import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
 from conf.message import *
+from model.center.doc_menu import DocMenu
 
 from open import settings
 _convention = ConventionValue()
