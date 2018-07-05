@@ -481,7 +481,7 @@
         </div>
     </div>
 
-    <div class="wrapper mt20">
+    <div class="wrapper mt20" style="margin-left: 271px">
         <div class="popBox" id="newHtmlBox" style="display: none;">
             <a href="javascript:" onclick="new_close()" class="close">关闭</a>
             <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
@@ -541,37 +541,44 @@
               </span>
             </div>
         </div>
-        <div class="title-sub"><span class="old">我的控制台</span>
-            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: 37px;background-color: white;height: 210px;width: 1200px">
+        <div class="title-sub">
+            <div class="col-lg-9 col-md-9 col-sm-9" style="background-color: white;height: 210px;width: 1110px">
                     <div class="www">
-                        <div class="protocol-info-main col-md-4" style="background-color: white">
+                        <div class="protocol-info-main col-md-3" style="background-color: white">
                             <li class="item">
                                 <p style="height: 30px;margin-top: 30px;font-size: 18px">资源工具</p>
                                 <div class="info-list" style="margin-top: 15px">
-                                    <p class="info" style="font-size: 16px"><b><a href="/wiki/doc_wiki?view=Navicat1100#100" target="_self">快速入门指南</a></b></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/ComMonitor.exe" >串口调试工具</a></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">wifi屏示例工程</a></b></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_self">常见问题</a></p>
+                                    <p class="info" style="font-size: 16px;color: black"><a href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf" target="_self">WiFi屏开发手册</a></p>
+                                     <p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="javascript:void(alert('暂未开放'))">开发调试技巧</a></p>
+                                </div>
                                 </div>
                             </li>
 
                         </div>
-                        <div class="protocol-info-main col-md-4 col-md-offset-1" style="background-color: white">
+                        <div class="protocol-info-main col-md-3 col-md-offset-1" style="background-color: white">
                             <li class="item">
                                 <p style="height: 30px;margin-top: 30px;font-size: 18px">文档</p>
                                 <div class="info-list" style="margin-top: 15px">
-                                    <p class="info" style="font-size: 16px;color: black"><a href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf" target="_self">Wifi屏开发手册</a></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx" target="_self">Wifi屏与53iq智能云通信协议</a></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="javascript:void(alert('暂未开放'))">开发调试技巧</a></p>
-                                </div>
+                                    <p class="info" style="font-size: 16px"><b><a href="/wiki/doc_wiki?view=Navicat1100#100" target="_self">快速入门指南</a></b></p>
+                                     <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx" target="_self">WiFi屏与53iq智能云通信协议</a></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_self">常见问题</a></p>
+                            </li>
+
+                        </div>
+                        <div class="protocol-info-main col-md-3" style="background-color: white">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 30px;font-size: 18px"></p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/ComMonitor.exe" >串口调试工具 <img src="/static/image/wiki/download.png"></a></p>
                             </li>
 
                         </div>
                     </div>
             </div>
         </div>
-        <div class="title-sub" style="margin-top: 220px"><span class="old">我的产品</span>
-            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
+        <div class="title-sub" style="margin-top: 220px;margin-left: 175px"><span class="old">我的产品</span>
+            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right;width: 1110px">
                 {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
                     <a href="
                             {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
@@ -589,7 +596,7 @@
             </div>
         </div>
 
-        <div class="goodsBox" style=" margin-top: 30px;">
+        <div class="goodsBox" style=" margin-top: 30px;margin-left: 273px">
             {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
                 <div style="text-align: center">
                     <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
