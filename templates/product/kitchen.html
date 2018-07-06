@@ -154,7 +154,7 @@
         }
 
         .title {
-            margin-top: 90px;
+            margin-top:0px;
             width: 100%;
             z-index: 1;
             height: 61px;
@@ -213,6 +213,7 @@
 
         #template h3 {
             margin: 40px auto 0;
+            border-top-width: 5px;
             color: #fff;
             width: 800px;
             font: 30px/54px "microsoft yahei";
@@ -334,10 +335,10 @@
          <div id="template" style="height:340px;margin:0 auto;">
             <h3>如何进行WiFi屏智能厨电开发？</h3>
             <ul>
-                <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onmouseover="toggleTab('new')">1.新建厨电品类</li>
-                <li onmouseover="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
-                <li onmouseover="toggleTab('define')" style="color:#fff;">3.定义功能</li>
-                <li onmouseover="toggleTab('debug')" style="color:#fff;">4.调试</li>
+                <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onclick="toggleTab('new')">1.新建厨电品类</li>
+                <li onclick="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
+                <li onclick="toggleTab('define')" style="color:#fff;">3.定义功能</li>
+                <li onclick="toggleTab('debug')" style="color:#fff;">4.调试</li>
             </ul>
             <p id="new">
                 推荐品类：蒸烤箱、洗碗机、燃气灶、油烟机、电饭煲、炒菜机等。<br>
