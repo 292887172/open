@@ -1,0 +1,878 @@
+{% extends "home/base.tpl" %}
+{% load filter %}
+{% load staticfiles %}
+
+{% block title %}
+    产品管理
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'common/css/app.css' %}" xmlns="http://www.w3.org/1999/html"/>
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
+    <link rel="stylesheet" href="/static/css/product/bootbox.css">
+    <style>
+        .wrapper {
+            padding: 0;
+            margin: 0 auto;
+
+        }
+
+        .wrapper2 {
+            max-width: 1300px;
+        }
+
+        .mt20 {
+            margin-top: 5px;
+        }
+
+        .goods span {
+            height: 30px;
+        }
+
+        .nav > li > a:hover {
+            background: transparent;
+        }
+
+        .footer {
+            margin: 100px auto 0;
+
+        }
+
+        .title-sub {
+            height: 0px;
+        }
+
+        .title-sub {
+            padding: 36px 0;
+        }
+
+        .set-radius {
+            background-color: #333;
+            border: 1px solid #333;
+            text-align: center;
+            height: 30px;
+            width: 30px;
+            float: left;
+            margin: 9px 18px;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            line-height: 28px;
+        }
+
+        .set-create {
+            background-color: #ff6202;
+            border: 1px solid #ff6202;
+            text-align: center;
+            margin: 18px;
+            height: 31px;
+            width: 85px;
+            color: #fff;
+            border-radius: 12px;
+
+        }
+
+        .set-create:active {
+            opacity: 0.85;
+        }
+
+        .set-float {
+            top: 32px;
+            position: relative;
+            float: left;
+            color: #fff;
+        }
+
+        .right {
+            float: right;
+            width: 33%;
+            height: 300px;
+            padding-top: 4%;
+            padding-left: 2%;
+        }
+
+        .left div {
+            float: right;
+            padding: 3px;
+            width: 218px;
+            height: 254px;
+
+        }
+
+        .left-dv1 {
+            background: rgba(47, 170, 116, .7);
+            transform: skewX(-1deg);
+            margin-top: 35px;
+            margin-left: -2px;
+        }
+
+        .left-dv2 {
+            background: rgba(255, 98, 2, .7);
+            transform: skewX(-1deg);
+            margin-top: 20px;
+            margin-left: -2px;
+        }
+
+        .left-dv3 {
+            background: rgba(110, 169, 248, .7);
+            transform: skewX(-1deg);
+            margin-top: 35px;
+        }
+
+        .left div.left-dv4 {
+            width: 110px;
+            background: rgba(110, 169, 248, .7);
+            transform: skewX(-1deg);
+            margin-top: 179px;
+            height: 110px;
+            cursor: pointer;
+        }
+
+        .left-dv4:hover {
+            opacity: 0.85;
+        }
+
+        .left div img {
+            top: 14px;
+            position: relative;
+            left: 29%;
+        }
+
+        .set-sample {
+            border: 1px solid #999;
+            height: 30px;
+            width: 100px;
+            top: 31px;
+            left: 20%;
+        }
+
+        .set-sample span {
+            margin: 25px;
+            font-size: 16px;
+        }
+
+        .nav-current {
+            text-decoration: none;
+            border-bottom: 3px solid #ff6202;
+            height: 35px;
+        }
+
+        .index-banner {
+            min-width: 1200px;
+            margin-top: 90px;
+        }
+
+        .left {
+            float: left;
+            width: 66%;
+            margin-left: 10px;
+            height: 300px;
+            min-width: 810px;
+            max-width: 1050px;
+
+        }
+
+        .left h4 {
+            text-align: center;
+            margin-top: 12px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .left p {
+            color: #fff;
+            padding: 10px;
+            font-size: 12px;
+        }
+
+        .goods-list {
+            width: 1346px;
+            height: 86px;
+            padding: 14px;
+            margin-right: 36px;
+        }
+
+        .goods-list dl dt {
+            width: auto;
+            height: auto;
+            top: 10px;
+            border: 1px solid #c9c9c9;
+            border-radius: 4px;
+
+        }
+
+        .goods-list dl dd {
+            margin-left: 96px;
+            padding-top: 6px;
+        }
+
+        .goods-list dl dt img {
+            width: 70px;
+            height: 75px;
+        }
+
+        .goods-list dl dd .goods-title {
+            margin: 0;
+        }
+
+        .self-button {
+            float: left;
+            margin-left: -43%;
+            margin-top: 20%;
+        }
+
+        .product-info-p {
+            float: left;
+            width: 81%;
+        }
+
+        .goods-list dl dd.ui-control {
+            padding-top: 97px;
+            margin-left: 0;
+        }
+
+        .ui-product-action {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        .product-info-div {
+            margin-top: 5px;
+        }
+
+        .left div.ui-demo {
+            cursor: pointer;
+            border: 1px solid #fff;
+            color: #fff;
+            height: 30px;
+            width: 100px;
+            margin-top: 22px;
+            margin-left: 55px;
+            float: left;
+            text-align: center;
+            line-height: 22px
+        }
+
+        .ui-demo:hover {
+            background-color: #c3c8d1;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+                background-size: 100% 100%;
+                height: 300px;
+            }
+
+            .right {
+                max-width: 300px;
+                min-width: 330px;
+            }
+        }
+
+        @media screen and (min-width: 1201px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+
+                background-size: 100% 100%;
+                height: 300px;
+            }
+        }
+
+        @media screen and (min-width: 1800px) {
+            .index-banner {
+                background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
+
+                background-size: 100% 100%;
+                height: 300px;
+            }
+        }
+
+        .btn-blue {
+            background: #2faa74;
+        }
+
+        .btn-blue:hover {
+            background: #59B784;
+        }
+
+        .progress {
+            width: 350px;
+
+            margin: auto;
+            height: 43px;
+            overflow: visible;
+            background-color: #fff;
+            border-radius: 0;
+            position: relative;
+
+        }
+
+        .progress li {
+            text-align: center;
+            font-size: 14px;
+            color: #B6B6B6;
+            float: left;
+            width: 75px;
+        }
+
+        .progress li a:hover {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        .progress li.cur {
+            color: #626262;
+        }
+
+        .progress li span {
+            display: block;
+            margin: auto;
+            padding-top: 12px;
+            margin-bottom: 10px;
+            width: 25px;
+            height: 25px;
+            background: #d6dae0;
+            border-radius: 50%;
+
+            margin-top: -23px;
+            margin-left: -3px;
+        }
+
+        .progress li.cur span {
+            background: rgba(75, 141, 229, 0.3);
+        }
+
+        .progress li span i {
+            display: block;
+            margin: auto;
+            width: 25px;
+            height: 25px;
+            color: white;
+            font-size: 15px;
+            line-height: 1px;
+            border-radius: 50%;
+        }
+
+        .progress li.cur span i {
+            background: #4b8de5;
+        }
+
+        .progress li.prog_a {
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+
+        .progress li.prog_c {
+            position: relative;
+            left: 14px;
+            top: 0;
+        }
+
+        .progress li.prog_d {
+            position: relative;
+            left: -45px;
+            top: 0;
+            float: right;
+        }
+
+        .goods-title a:hover {
+            text-decoration: none;
+        }
+
+        .goods-list dl dd p {
+            width: 100%;
+        }
+
+        .arrow {
+            transform: rotate(45deg);
+            background: #fff;
+            left: 56%;
+            margin-top: -5px;
+            border-top: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .parcode {
+            top: 56%;
+            border: 1px solid #ccc;
+            width: 168px;
+            height: 184px;
+            margin-left: 37px;
+            z-index: 1000;
+            background-color: #fff;
+            border-radius: 4px;
+            display: none;
+            position: absolute;
+
+        }
+
+        .title {
+            margin-top: 90px;
+            width: 100%;
+            z-index: 1;
+            height: 61px;
+        }
+
+        .breadcrumb {
+            margin: 6px 0 1px;
+            padding: 0;
+            font-size: 16px;
+            border: none;
+        }
+
+        .breadcrumb > li > a {
+            color: #333;
+            cursor: pointer;
+        }
+
+        .breadcrumb > li > a:hover {
+            color: #ff6202;
+        }
+
+        .breadcrumb > li + li:before {
+            font-family: FontAwesome;
+            content: "\f105";
+        }
+
+        .new-app li {
+            display: inline;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+
+        li a:hover {
+            color: #ff6202;
+            text-decoration: underline;
+        }
+
+    </style>
+{% endblock %}
+{% block menu %}
+    {% create_menu 1 user.account_id %}
+
+{% endblock %}
+{% block content %}
+    <div class="title">
+        <div class="wrapper">
+            <ol class="breadcrumb" style="width: 36%;float: left">
+                <li><a href="/product/list">产品管理</a></li>
+                <li style="color: #ff6202">控制台</li>
+            </ol>
+            <ol style="width: 50%;float: left;margin: 6px 0 1px;" class="new-app">
+                <li style="color: #c6c6c6;">模板创建：</li>
+                {% for app in default_apps %}
+                    <li>
+                        <a href="javascript:{% if user.developer.developer_id %}void(create_procuct('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
+
+                    </li>
+                    {% if forloop.counter == 3 %}
+                        <li><a style="color: #ff6202"
+                               href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}">WiFi烤箱</a>
+                        </li>
+                        <li style="padding-left: 84px"><a
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <div class="wrapper mt20" style="margin-left: 271px">
+        <div class="popBox" id="newHtmlBox" style="display: none;">
+            <a href="javascript:" onclick="new_close()" class="close">关闭</a>
+            <h3 style="text-align: center;">创建<span id="productType"></span>类产品</h3>
+            <div class="cont mt20" style="margin-top: -15px;">
+                <div style="float:left;">
+                    <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
+                         src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+                </div>
+                <div class="warnCont" style="width: 76%">
+                    <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
+                        <div class="ant-row ant-form-item">
+                            <label for="product_name" class="">产品名称:</label>
+                            <span class="ant-input-wrapper">
+                            <input type="text" value="" id="product_name" onblur="check_name()" name="product_name"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                            <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
+                        </div>
+                        <div class="ant-row ant-form-item" id="com_type">
+                            <label class="dtbox">技术方案:</label>
+
+                            <p class="technology" style="float: right;width: 75%"><input class="magic-radio"
+                                                                                         type="radio"
+                                                                                         onclick="select_progm(2)"
+                                                                                         name="select_group" id="c1"
+                                                                                         checked>
+                                <label for="c1">WiFi</label>
+                                <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
+                                       id="c2">
+                                <label for="c2">Android屏<span id="ScreenSize"></span></label>
+                            </p>
+
+                            <div class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求电控板支持5V供电，两路串口
+                            </div>
+                        </div>
+
+                        <div class="ant-row ant-form-item">
+                            <label for="product_name" class="">产品类型:</label>
+                            <span class="ant-input-wrapper">厨房类
+                            <input type="hidden" value="厨房类" readonly="readonly" name="product_category"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                        </div>
+                        <input type="hidden" value="" id="product_category_detail" name="product_category_detail"
+                               class="">
+                        <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
+                        <input type="hidden" value="2" name="product_group" class="product_group">
+                        <input type="hidden" value="是" name="product_command">
+
+                    </form>
+                </div>
+            </div>
+            <div class="btnBar" style="background: none;height: 85px;">
+              <span>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">提交</a>
+              </span>
+            </div>
+        </div>
+        <div class="title-sub">
+            <div class="col-lg-9 col-md-9 col-sm-9" style="background-color: white;height: 210px;width: 1110px;padding-left: 0px">
+                    <div class="www">
+                        <div class="protocol-info-main col-md-2" style="background-color: white">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 30px;font-size: 18px">开发平台使用</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 16px"><b><a href="/wiki/doc_wiki?view=Navicat1100#100" target="_self"> <b>- </b> 快速入门指南</a></b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_self"> <b>- </b> 常见问题</a></p>
+                                </div>
+                                </div>
+                            </li>
+
+                        </div>
+                        <div class="protocol-info-main col-md-2 col-md-offset-1" style="background-color: white">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 30px;font-size: 18px">WiFi屏开发</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                     <p class="info" style="font-size: 16px;color: black"><a href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf" target="_self"><b>- </b> WiFi屏开发手册</a></p>
+                                     <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
+                                     <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx" target="_self"><b>- </b> WiFi屏与53iq智能云通信协议</a></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="javascript:void(alert('暂未开放'))"><b>- </b> 开发调试技巧</a></p>
+
+
+                            </li>
+
+                        </div>
+                        <div class="protocol-info-main col-md-2 col-md-offset-1" style="background-color: white">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 30px;font-size: 18px">开发示例</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/COOKEING-Hood.rar" > <b>- </b> 下载WiFi屏开发示例（智能油烟机）</a></p>
+
+                            </li>
+
+                        </div>
+                        <div class="protocol-info-main col-md-2 col-md-offset-1" style="background-color: white">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 30px;font-size: 18px">资源工具</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 16px"><a href="/static/sdk/ComMonitor.exe" ><b>- </b> 串口调试工具 <img src="/static/image/wiki/download.png"></a></p>
+
+                            </li>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="title-sub" style="margin-top: 190px;margin-left: 175px"><span class="old">最新编辑产品</span>
+            <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: 0px;margin-left:10px;text-align: left;width:88px;padding-left:0px">
+                {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
+                    <a href="
+                            {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
+                       class="">
+                        <i class="fa fa-plus"></i>
+                        <span >创建产品</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div id="loadingDiv"
+             style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none">
+            <div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">
+                页面加载中，请等待...
+            </div>
+        </div>
+
+        <div class="goodsBox" style=" margin-top: 30px;margin-left: 273px;width: 1110px">
+            {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
+                <div style="text-align: center">
+                    <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
+                    <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
+                    <a href="
+                            {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
+                       class="btn btn-s-lg btn-success">
+                        <i class="fa fa-plus"></i>
+                        <span class="text">创建产品</span>
+                    </a>
+                </div>
+            {% endif %}
+            {% for app in published_apps %}
+               <div class="goods-list" style="text-align: center">
+                    <dl>
+                        <dt>
+                            <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
+                                <img src="{{ app.app_logo }}"
+                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                            </a>
+                            <a style="display: none" class="del" href="javascript:" id="delProLink"
+                               data-id="{{ app.app_id }}"><i></i></a>-->
+                        </dt>
+                        <dd style="width: 1000px">
+                            <div class="goods-title">{{ app.app_name }}
+                                <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
+                                    {{ app.app_model }}{% endif %}</span>-->
+
+
+                            </div>
+                            <div class="product-info-div">
+                                <div class="parcode">
+                                    <div class="arrow"></div>
+                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                                </div>
+                                <div>
+                                    <p >
+                                    分类:{{ app.app_device_type| category_detail }}    最后编辑时间：{{ app.app_update_date| utc2local }}   未发布  <a
+                                    href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">  编辑</a>
+                                </p>
+
+                                </div>
+
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+            {% for app in publishing_apps %}
+               <div class="goods-list" style="text-align:left ">
+                    <dl>
+                        <dt>
+                            <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
+                                <img src="{{ app.app_logo }}"
+                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                            </a>
+                            <a style="display: none" class="del" href="javascript:" id="delProLink"
+                               data-id="{{ app.app_id }}"><i></i></a>-->
+                        </dt>
+                        <dd style="width: 1000px;margin-left: 0px">
+                            <div class="goods-title">{{ app.app_name }}
+                                <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
+                                    {{ app.app_model }}{% endif %}</span>-->
+
+
+                            </div>
+                            <div class="product-info-div">
+                                <div class="parcode">
+                                    <div class="arrow"></div>
+                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                                </div>
+                                <div>
+                                    <p >
+                                    分类:{{ app.app_device_type| category_detail }}    最后编辑时间：{{ app.app_update_date| utc2local }}   未发布  <a
+                                    href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">  编辑</a>
+                                </p>
+
+                                </div>
+
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+            {% for app in unpublished_apps %}
+                <div class="goods-list" style="text-align:left ">
+                    <dl>
+                        <dt>
+                            <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
+                                <img src="{{ app.app_logo }}"
+                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                            </a>
+                            <a style="display: none" class="del" href="javascript:" id="delProLink"
+                               data-id="{{ app.app_id }}"><i></i></a>-->
+                        </dt>
+                        <dd style="width: 1000px;margin-left: 0px">
+                            <div class="goods-title">{{ app.app_name }}
+                                <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
+                                    {{ app.app_model }}{% endif %}</span>-->
+
+
+                            </div>
+                            <div class="product-info-div">
+                                <div class="parcode">
+                                    <div class="arrow"></div>
+                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                                </div>
+                                <div>
+                                    <p >
+                                    分类:{{ app.app_device_type| category_detail }}    最后编辑时间：{{ app.app_update_date| utc2local }}   未发布  <a
+                                    href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">  编辑</a>
+                                </p>
+
+                                </div>
+
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+            {% for app in failed_apps %}
+                <div class="goods-list" style="text-align:left ">
+                    <dl>
+                        <dt>
+                            <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
+                                <img src="{{ app.app_logo }}"
+                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                            </a>
+                            <a style="display: none" class="del" href="javascript:" id="delProLink"
+                               data-id="{{ app.app_id }}"><i></i></a>-->
+                        </dt>
+                        <dd style="width: 1000px;margin-left: 0px">
+                            <div class="goods-title">{{ app.app_name }}
+                                <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
+                                    {{ app.app_model }}{% endif %}</span>-->
+
+
+                            </div>
+                            <div class="product-info-div">
+                                <div class="parcode">
+                                    <div class="arrow"></div>
+                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                                </div>
+                                <div>
+                                    <p >
+                                    分类:{{ app.app_device_type| category_detail }}    最后编辑时间：{{ app.app_update_date| utc2local }}   未发布  <a
+                                    href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">  编辑</a>
+                                </p>
+
+                                </div>
+
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="ie-form"></div>
+
+    <!-- 未发布的产品 -->
+    <div class="markLayout"></div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="/static/js/product/bootbox.js"></script>
+    <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+    <script src="/static/js/check-ie.js"></script>
+    <script src="/static/js/product/fast_create.js"></script>
+    <script>
+        //判断ie浏览器版本是否低于9
+        if (lessIE9()) {
+            $.ajax({
+                type: "get",
+                url: '/error',
+                data: "",
+                success: function (msg) {
+                    $("body").html(msg)
+                },
+                error: function () {
+                }
+            })
+        }
+        $('[data-rel=popover]').popover({container: 'body'});
+        var checkSubmitFlg = false;
+        $(".goodsBox").height($(".goodsBox").height() + 110);
+
+        function utf16to8(str) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for (i = 0; i < len; i++) {
+                c = str.charCodeAt(i);
+                if ((c >= 0x0001) && (c <= 0x007F)) {
+                    out += str.charAt(i);
+                } else if (c > 0x07FF) {
+                    out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                    out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                    out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+                } else {
+                    out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                    out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+                }
+            }
+            return out;
+        }
+
+        function show_qrcode(obj) {
+
+            key = "key=" + $(obj).attr('data-id');
+            parcode = $(obj).parent('p').parent('div').children('div');
+            code = parcode.children('div#code');
+            parcode.css('display', 'block');
+            url = location.href.split(':')[0] + "://" + location.host + "/product/wx_code?" + key;
+            // url = "http://192.168.191.1:8000/product/wx_code?"+name+key+date;
+            // url 包括中文字符编码转换
+            url = utf16to8(url);
+            //$(".markLayout").show();
+
+            if (code.children().length < 1) {
+                code.qrcode({
+                    width: 120, //宽度
+                    height: 120, //高度
+                    text: url
+                });
+            }
+            else {
+                parcode.show();
+            }
+        }
+
+        function hide_qrcode(obj) {
+            parcode = $(obj).parent('p').parent('div').children('div');
+            parcode.hide()
+        }
+
+        function export_protocol(id) {
+            bootbox.confirm("确定导出控制协议参数吗?", function (result) {
+                if (result) {
+                    var form = document.createElement('form');
+                    form.action = '#';
+                    form.method = 'post';
+                    form.style = "display: none";
+                    var input = document.createElement("input");
+                    input.name = "name";
+                    input.type = "text";
+                    input.value = "export";
+                    var input1 = document.createElement("input");
+                    input1.name = "app_id";
+                    input1.type = "text";
+                    input1.value = id;
+                    form.appendChild(input);
+                    form.appendChild(input1);
+                    $("#ie-form").html(form);
+                    form.submit();
+                }
+            });
+        }
+    </script>
+{% endblock %}

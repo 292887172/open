@@ -154,6 +154,103 @@ def product_list(request):
         return post()
 
 
+def product_controldown(request):
+    """
+    应用列表
+    :param request:
+    :return:
+    """
+    def get():
+        # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
+        tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        app_names = []
+        for tmp_app in tmp_apps:
+            app_names.append(tmp_app.app_name)
+        if len(app_names) < 3:
+            for i in range(len(APP_NAME)):
+                if APP_NAME[i] not in app_names:
+                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
+                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
+                    if result:
+                        result.app_logo = APP_LOGO[i]
+                        result.save()
+        try:
+            if request.user.developer:  # 获取验证信息
+                developer = request.user.developer
+            else:
+                developer = ''
+            keyword = request.GET.get("search", "")  # 后续搜索操作
+            if keyword:
+                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
+            else:
+                user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+        except Exception as e:
+            user_apps=[]
+            developer = ''
+            keyword = ''
+            print(e)
+        # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
+        published_apps = []
+        unpublished_apps = []
+        publishing_apps = []
+        failed_apps = []
+        #  默认三款产品类型 unpublished_apps
+        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        for app in user_apps:
+            # 已经发布
+            if app.check_status == _convention.APP_CHECKED:
+                published_apps.append(app)
+            elif app.check_status == _convention.APP_CHECKING:
+                publishing_apps.append(app)
+            # 未发布
+            elif app.check_status == _convention.APP_UN_CHECK:
+                unpublished_apps.append(app)
+            # 未通过审核
+            elif app.check_status == _convention.APP_CHECK_FAILED:
+                failed_apps.append(app)
+        template = "product/controldown.html"
+        content = dict(
+            keyword=keyword,
+            developer=developer,
+            published_apps=published_apps,
+            publishing_apps=publishing_apps,
+            unpublished_apps=unpublished_apps,
+            failed_apps=failed_apps,
+            default_apps=default_apps,
+        )
+        return render(request, template, content)
+
+    def post():
+        res = dict(
+            code=10000
+        )
+        app_id = request.POST.get("app_id", "")
+        action = request.POST.get("action", "")
+        export = request.POST.get("name", "")
+        # ui = request.POST.get("ui", "")
+        if export == "export":
+            ret = date_deal(app_id)
+            return ret
+        if app_id and action in ("del", "del"):
+
+            if action == "del":
+                app = App.objects.get(app_id=int(app_id))
+                key = app.app_appid[-8:]
+                del_protocol_conf(key)
+                ret = del_app(app_id)
+                res["data"] = ret
+                r = Redis3(rdb=6).client
+                r.delete("product_funs"+app_id)
+                return HttpResponse(json.dumps(res, separators=(",", ":")))
+        else:
+            res["code"] = 10002
+        return HttpResponse(json.dumps(res, separators=(",", ":")))
+    if request.method == "GET":
+        return get()
+    elif request.method == "POST":
+        return post()
+
+
 @csrf_exempt
 @login_required
 def product_add(request):

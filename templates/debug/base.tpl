@@ -89,14 +89,14 @@ var _hmt = _hmt || [];
     <div class="wrapper">
         <h1 class="logo"><a href="{% if user.account_id %}/product/list{% else %}/{% endif %}"><img src="{% static 'image/home/logo-dev1.png' %}" height="40"/></a></h1>
          <ul class="nav">
-
+             <li><a href="/product/controldown">控制台</a></li>
             {% if user.account_id or user.developer.developer_from == 3%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% else %}
                 <li><a href="{% url 'home' %}">首页</a></li>
             {% endif %}
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
-            <li><a href="{% url 'wiki' %}">开发指南</a></li>
+            <!--<li><a href="{% url 'wiki' %}">开发指南</a></li>-->
             <li><a href="/smartmenu">智能菜谱</a></li>
 
         </ul>
