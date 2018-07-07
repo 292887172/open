@@ -649,7 +649,7 @@
                     <div class="goods-list" style="text-align:left ">
                         <dl>
                             <dt>
-                                <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
+                                <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">
                                 <img src="{{ app.app_logo }}"
                                      onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
                             </a>
@@ -660,7 +660,7 @@
 
                                 {% if forloop.counter <= 5 %}
                                     <div class="goods-title">
-                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
+                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
                                      <div class="product-info-div">
                                     <div class="parcode">
@@ -683,7 +683,7 @@
                                 {% else %}
 
                                     <div class="goods-title xxx" style="display: none">
-                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
+                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
                                      <div class="product-info-div xxx" style="display: none">
                                         <div class="parcode">
