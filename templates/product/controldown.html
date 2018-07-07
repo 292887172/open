@@ -617,7 +617,7 @@
                        class="">
                         <i class="fa fa-plus"></i>
                         <span>创建产品 </span>
-                    </a><span id="del_more" onclick="show_all(this)"> 加载更多...</span>
+                    </a>
                 {% endif %}
             </div>
 
@@ -682,10 +682,10 @@
                                 </div>
                                 {% else %}
 
-                                    <div class="goods-title xxx" style="display: none">
+                                    <div class="goods-title xxx" style="display: none;background-color: #eff1f6">
                                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
-                                     <div class="product-info-div xxx" style="display: none">
+                                     <div class="product-info-div xxx" style="display: none;background-color: #eff1f6">
                                         <div class="parcode">
                                         <div class="arrow"></div>
                                         <div id="code" style="padding-top: 25px;text-align: center;"></div>
@@ -711,7 +711,7 @@
                     </div>
 
                 {% endfor %}
-
+                <span id="del_more" onclick="show_all(this)"> 加载更多...</span>
             </div>
         </div>
         <div id="ie-form"></div>
