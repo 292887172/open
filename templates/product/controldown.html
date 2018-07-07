@@ -617,7 +617,7 @@
                        class="">
                         <i class="fa fa-plus"></i>
                         <span>创建产品 </span>
-                    </a><span id="del_more" onclick="show_all(this)"> 加载更多...</span>
+                    </a>
                 {% endif %}
             </div>
 
@@ -644,7 +644,7 @@
                         </a>
                     </div>
                 {% endif %}
-
+                <span id="del_more" onclick="show_all(this)" style="text-align: right;margin-left: 950px"> 加载更多...</span>
                 {% for app in unpublished_apps %}
                     <div class="goods-list" style="text-align:left ">
                         <dl>
@@ -656,6 +656,7 @@
                             <a style="display: none" class="del" href="javascript:" id="delProLink"
                                data-id="{{ app.app_id }}"><i></i></a>-->
                             </dt>
+
                             <dd style="width: 1000px;margin-left: 0px">
 
                                 {% if forloop.counter <= 5 %}
