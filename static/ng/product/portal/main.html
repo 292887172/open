@@ -1,0 +1,164 @@
+<style>
+
+    .goods-list{
+        width: 100%;
+    height: 220px;
+    padding: 14px;
+    margin-right: 36px;
+        float: initial;
+    }
+    .goods-list dl dt {
+    width: auto;
+    height: auto;
+    top: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+}
+    .goods-list dl dd {
+    margin-left: 96px;
+    padding-top: 6px;
+}
+    .goods-list dl{
+        overflow: visible;
+    }
+    .ui-control{
+        padding-top: 18px!important;
+    margin-left: 0!important;
+    }
+    .progress{
+            width: 350px;
+    margin: auto;
+    height: 43px;
+    overflow: visible;
+    background-color: #fff;
+    border-radius: 0;
+    position: relative;
+        margin-left: -24px;
+    }
+    .progress li{
+        text-align: center;
+    font-size: 14px;
+    color: #B6B6B6;
+    float: left;
+    width: 85px;
+    }
+    .progress li.prog_a {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+    .progress li.prog_c {
+    position: relative;
+    left: 14px;
+    top: 0;
+}
+    .progress li a{
+        color: #545a5f;
+    }
+    .progress li span {
+    display: block;
+    margin: auto;
+    padding-top: 3px;
+        padding-right: 4px;
+    margin-bottom: 10px;
+    width: 25px;
+    height: 25px;
+    background: #d6dae0;
+    border-radius: 50%;
+    margin-top: -23px;
+    margin-left: -3px;
+}
+
+    .progress li.prog_d {
+    position: relative;
+
+    top: 0;
+    float: right;
+}
+    .goods-list dl dt img {
+    width: 70px;
+    height: 75px;
+}
+    .mt20{
+        padding-bottom: 20px;
+    }
+    .box2{
+        min-height: 500px;
+    }
+    .footer{
+        z-index: 1;
+    }
+    .bg-white {
+    background-color: #fff;
+    color: #788188;
+        font-weight: bold;
+}
+    .ui-edit-item a{
+        color: #4395FF;
+    }
+</style>
+<div class="box2 relative">
+    <div class="hl-help">
+        <span class="linkBlue">产品控制台</span>
+
+    </div>
+    <div class="mt20">
+
+        <div class="goods-list">
+                <dl>
+                    <dt>
+                        <a href="/info">
+                            <img src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'" title="产品图标">
+                        </a>
+                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="607"><i></i></a>
+                    </dt>
+                    <dd>
+                        <div class="goods-title"><a href="#/info">{[{ infoFormData.app_name }]}</a>
+                            <span class="label bg-white" style="font-size: 100%;">
+                                {[{ infoFormData.app_model }]}</span>
+
+
+                        </div>
+                        <div class="product-info-div">
+
+                            <p class="product-info-p">
+                                分类： {[{app_device_name}]}
+                            </p>
+                            <p class="product-info-p">Key：<label>{[{key}]}</label>
+                               <label style="margin-left: 18px" class="fa fa-android"></label>
+
+                            </p>
+
+                            <p class="product-info-p">更新于：{[{ infoFormData.app_update_time }]}<label style="margin-left: 3%;color: #333">未发布</label></p>
+                        </div>
+                    </dd>
+                    <dd class="ui-control">
+                        <ul class="progress">
+                            <li class="prog_a "><a href="#/argue">功能</a>
+                            </li>
+                            <li class="prog_b"><a href="#/device">协议</a>
+                            </li>
+                            <li class="prog_c"><a onclick="export_protocol(607)" href="#">下载
+                            <span><i class="fa fa-download"></i></span></a>
+                                </li>
+                            <li class="prog_d "><a href="#/app">UI编辑</a></li>
+
+                        </ul>
+                    </dd>
+                </dl>
+        </div>
+
+        <br>
+         <p style="padding-left: 20px" class="ui-edit-item"><a href="/product/main/?ID=607#/info">产品信息编辑</a></p>
+
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+</script>
+
