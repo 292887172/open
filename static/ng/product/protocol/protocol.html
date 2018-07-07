@@ -441,10 +441,10 @@
             document.getElementsByClassName("modal-content")[0].style.display = 'none'
             location.reload()
         } else {
-
-                // 一系列神操作
+            // 循环操作
+            for (var nd=0,zzxx = zzrr.length;nd<zzxx;nd++){
                 try {
-                    var tttt = leg[0].style;
+                var tttt = leg[nd].style;
                 }
                 catch (err) {
                     console.log('错误pass')
@@ -455,8 +455,8 @@
                     var t = document.getElementsByClassName("code-items").lastChild
                     var tt = document.getElementsByClassName("xxxxxx")[0]
                     var newDiv1 = document.createElement("div");
-                    if (leg[0]){
-                         var tr = leg[0].innerText
+                    if (leg[nd]){
+                         var tr = leg[nd].innerText
                          var tr_value = mak[tr]
                          if (tr_value){
                             console.log('')
@@ -478,13 +478,16 @@
 
                     document.getElementsByClassName("black_overlay")[0].style.display = 'none'
                     document.getElementsByClassName("modal-content")[0].style.display = 'none'
-                    console.log('beisc',leg[0])
-                    leg[0].remove()
+                    console.log('beisc',leg[nd])
+                    leg[nd].remove()
 
                 } else {
                     console.log('cw')
                 }
-                console.log(leg[0])
+                console.log(leg[nd])
+
+            }
+            // 一系列神操作
 
 
         }
