@@ -629,7 +629,7 @@
                 </div>
             </div>
 
-            <div class="goodsBox" style=" margin-top: 50px;text-align: center;width: 1024px;">
+            <div class="goodsBox" style=" margin-top: 10px;text-align: center;width: 1024px;">
                 {% if  not unpublished_apps and not keyword %}
                     <div style="text-align: center">
                         <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
@@ -644,7 +644,7 @@
                         </a>
                     </div>
                 {% endif %}
-                <span id="del_more" onclick="show_all(this)" style="text-align: right;margin-left: 950px"> 加载更多...</span>
+
                 {% for app in unpublished_apps %}
                     <div class="goods-list" style="text-align:left ">
                         <dl>
@@ -659,7 +659,7 @@
 
                             <dd style="width: 1000px;margin-left: 0px">
 
-                                {% if forloop.counter <= 5 %}
+
                                     <div class="goods-title">
                                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
@@ -681,30 +681,13 @@
                                     </div>
 
                                 </div>
-                                {% else %}
 
-                                    <div class="goods-title xxx" style="display: none">
-                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
-                                    </div>
-                                     <div class="product-info-div xxx" style="display: none">
-                                        <div class="parcode">
-                                        <div class="arrow"></div>
-                                        <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                        <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            分类:{{ app.app_device_type| category_detail }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a>
-                                        </p>
 
-                                    </div>
 
-                                </div>
-                                {% endif %}
+
+
+
+
 
 
                             </dd>
