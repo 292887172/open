@@ -514,7 +514,7 @@
         </div>
     </div>
     <div class="title-sub"><span class="old">我的产品</span>
-        <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
+        <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: left">
         {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
             <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
                 <i class="fa fa-plus"></i>

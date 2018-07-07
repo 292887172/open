@@ -108,7 +108,7 @@ def create_menu(context, cur=0, username=None):
                     {"url": "/product/controldown", "title": "控制台"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
+                    {"url": "/SmartRecipe", "title": "智能菜谱"},
 
                     ]
 
@@ -117,7 +117,7 @@ def create_menu(context, cur=0, username=None):
                     {"url": "/", "title": "首页"},
                     {"url": "/product/controldown", "title": "控制台"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
+                    {"url": "/SmartRecipe", "title": "智能菜谱"},
 
                     ]
         ret["menu"] = menu
