@@ -616,8 +616,8 @@
                             {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
                        class="">
                         <i class="fa fa-plus"></i>
-                        <span>创建产品</span>
-                    </a>
+                        <span>创建产品 </span>
+                    </a><span id="del_more" onclick="show_all(this)"> 加载更多...</span>
                 {% endif %}
             </div>
 
@@ -657,6 +657,7 @@
                                data-id="{{ app.app_id }}"><i></i></a>-->
                             </dt>
                             <dd style="width: 1000px;margin-left: 0px">
+
                                 {% if forloop.counter <= 5 %}
                                     <div class="goods-title">
                                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
@@ -680,7 +681,7 @@
 
                                 </div>
                                 {% else %}
-                                    <p id="del_more" onclick="show_all(this)">更多</p>
+
                                     <div class="goods-title xxx" style="display: none">
                                         <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
@@ -720,7 +721,17 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        function show_all(x){
 
+            var xxxx = document.getElementsByClassName("xxx");
+             console.log(xxxx)
+            for (var i =0,lengx=xxxx.length;i<lengx;i++) {
+                xxxx[i].style.display=''
+            }
+        }
+
+    </script>
     <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
@@ -817,15 +828,5 @@
             });
         }
     </script>
-    <script>
-        function show_all(x){
-            var rr = document.getElementById("del_more");
-                rr[0].style.display='none'
-            var xxxx = document.getElementsByClassName("xxx");
-            for (var i =0,lengx=xxxx.length;i<lengx;i++) {
-                xxxx[i].style.display=''
-            }
-        }
 
-    </script>
 {% endblock %}
