@@ -630,7 +630,7 @@
             </div>
 
             <div class="goodsBox" style=" margin-top: 50px;text-align: center;width: 1024px;">
-                {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
+                {% if  not unpublished_apps and not keyword %}
                     <div style="text-align: center">
                         <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
                         <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
@@ -644,89 +644,7 @@
                         </a>
                     </div>
                 {% endif %}
-                {% for app in published_apps %}
-                    <div class="goods-list" style="text-align: center;width: 1200px">
-                        <dl>
-                            <dt>
-                                <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
-                                <img src="{{ app.app_logo }}"
-                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
-                            </a>
-                            <a style="display: none" class="del" href="javascript:" id="delProLink"
-                               data-id="{{ app.app_id }}"><i></i></a>-->
-                            </dt>
-                            <dd style="width: 1000px">
-                                <div class="goods-title">{{ app.app_name }}
-                                    <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                    {{ app.app_model }}{% endif %}</span>-->
 
-
-                                </div>
-                                <div class="product-info-div">
-                                    <div class="parcode">
-                                        <div class="arrow"></div>
-                                        <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                        <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            分类:{{ app.app_device_type| category_detail }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
-                                        <p style="color:#2980b9">编辑</p></a>
-                                        </p>
-                                        <hr style="height:1px;border:none;border-top:1px solid #e6e6e6;"/>
-                                    </div>
-
-                                </div>
-                            </dd>
-
-                        </dl>
-
-                    </div>
-
-
-                {% endfor %}
-
-                {% for app in publishing_apps %}
-                    <div class="goods-list"
-                         style="text-align:left;padding-top: 0px;padding-bottom: 0px;height: 59px;margin-bottom: 0px; ">
-                        <dl>
-                            <dt>
-                                <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
-                                <img src="{{ app.app_logo }}"
-                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
-                            </a>
-                            <a style="display: none" class="del" href="javascript:" id="delProLink"
-                               data-id="{{ app.app_id }}"><i></i></a>-->
-                            </dt>
-                            <dd style="width: 1000px;margin-left: 0px">
-                                <div class="goods-title">{{ app.app_name }}
-                                    <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                    {{ app.app_model }}{% endif %}</span>-->
-
-
-                                </div>
-                                <div class="product-info-div">
-                                    <div class="parcode">
-                                        <div class="arrow"></div>
-                                        <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                        <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            分类:{{ app.app_device_type| category_detail }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/product"> 编辑</a>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-                            </dd>
-                        </dl>
-                    </div>
-                {% endfor %}
                 {% for app in unpublished_apps %}
                     <div class="goods-list" style="text-align:left ">
                         <dl>
@@ -739,10 +657,11 @@
                                data-id="{{ app.app_id }}"><i></i></a>-->
                             </dt>
                             <dd style="width: 1000px;margin-left: 0px">
-                                <div class="goods-title">
-                                    <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
-                                </div>
-                                <div class="product-info-div">
+                                {% if forloop.counter <= 5 %}
+                                    <div class="goods-title">
+                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
+                                    </div>
+                                     <div class="product-info-div">
                                     <div class="parcode">
                                         <div class="arrow"></div>
                                         <div id="code" style="padding-top: 25px;text-align: center;"></div>
@@ -760,30 +679,13 @@
                                     </div>
 
                                 </div>
-                            </dd>
-                        </dl>
-                    </div>
-                {% endfor %}
-                {% for app in failed_apps %}
-                    <div class="goods-list" style="text-align:left ">
-                        <dl>
-                            <dt>
-                                <!--<a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
-                                <img src="{{ app.app_logo }}"
-                                     onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
-                            </a>
-                            <a style="display: none" class="del" href="javascript:" id="delProLink"
-                               data-id="{{ app.app_id }}"><i></i></a>-->
-                            </dt>
-                            <dd style="width: 1000px;margin-left: 0px">
-                                <div class="goods-title">{{ app.app_name }}
-                                    <!--<span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                    {{ app.app_model }}{% endif %}</span>-->
-
-
-                                </div>
-                                <div class="product-info-div">
-                                    <div class="parcode">
+                                {% else %}
+                                    <p id="del_more" onclick="show_all(this)">更多</p>
+                                    <div class="goods-title xxx" style="display: none">
+                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ forloop.counter }}. {{ app.app_name }}</a>
+                                    </div>
+                                     <div class="product-info-div xxx" style="display: none">
+                                        <div class="parcode">
                                         <div class="arrow"></div>
                                         <div id="code" style="padding-top: 25px;text-align: center;"></div>
                                         <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
@@ -792,16 +694,23 @@
                                         <p>
                                             分类:{{ app.app_device_type| category_detail }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"> 编辑</a>
+                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"
+                                                style="color:#2980b9">
+                                            编辑</a>
                                         </p>
 
                                     </div>
 
                                 </div>
+                                {% endif %}
+
+
                             </dd>
                         </dl>
                     </div>
+
                 {% endfor %}
+
             </div>
         </div>
         <div id="ie-form"></div>
@@ -907,5 +816,16 @@
                 }
             });
         }
+    </script>
+    <script>
+        function show_all(x){
+            var rr = document.getElementById("del_more");
+                rr[0].style.display='none'
+            var xxxx = document.getElementsByClassName("xxx");
+            for (var i =0,lengx=xxxx.length;i<lengx;i++) {
+                xxxx[i].style.display=''
+            }
+        }
+
     </script>
 {% endblock %}

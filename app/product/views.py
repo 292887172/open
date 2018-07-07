@@ -190,32 +190,31 @@ def product_controldown(request):
             keyword = ''
             print(e)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        published_apps = []
+        #published_apps = []
         unpublished_apps = []
-        publishing_apps = []
-        failed_apps = []
+        #publishing_apps = []
+        #failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
-                published_apps.append(app)
+                unpublished_apps.append(app)
             elif app.check_status == _convention.APP_CHECKING:
-                publishing_apps.append(app)
+                unpublished_apps.append(app)
             # 未发布
             elif app.check_status == _convention.APP_UN_CHECK:
                 unpublished_apps.append(app)
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
-                failed_apps.append(app)
+                unpublished_apps.append(app)
         template = "product/controldown.html"
         content = dict(
             keyword=keyword,
             developer=developer,
-            published_apps=published_apps,
-            publishing_apps=publishing_apps,
+
             unpublished_apps=unpublished_apps,
-            failed_apps=failed_apps,
+
             default_apps=default_apps,
         )
         return render(request, template, content)
