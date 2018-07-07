@@ -1,8 +1,9 @@
 <ul class="nav">
     {% for m in menu %}
 
-        {% if forloop.counter == cur %}
+        {% if forloop.counter0 == cur %}
             <li ><a class="nav-current" href="{{ m.url }}">{{ m.title }}</a></li>
+
         {% else %}
             <li><a href="{{ m.url }}">{{ m.title }}</a></li>
         {% endif %}
