@@ -161,6 +161,7 @@ def product_controldown(request):
     :return:
     """
     def get():
+        more_product = request.GET.get("more",'')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         app_names = []
@@ -183,7 +184,10 @@ def product_controldown(request):
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
             else:
-                user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+                if more_product == '1':
+                    user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+                else:
+                    user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:5]
         except Exception as e:
             user_apps=[]
             developer = ''
@@ -217,6 +221,8 @@ def product_controldown(request):
 
             default_apps=default_apps,
         )
+
+
         return render(request, template, content)
 
     def post():

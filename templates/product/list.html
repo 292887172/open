@@ -541,13 +541,13 @@
 
                 <dl>
                     <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"><img src="{{ app.app_logo }}"
+                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
                                                                                     onerror="this.src='{% static "image/global/default.png" %}'"
                                                                                     title="产品图标"></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
 
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
@@ -596,13 +596,13 @@
             <div class="goods-list">
                 <dl>
                     <dt>
-                        <a href="/product/main?ID={{ app.app_id }}#/portal"><img src="{{ app.app_logo }}"
+                        <a href="/product/main?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
                                                                          onerror="this.src='{% static "image/global/default.png" %}'"
                                                                          title="产品图标"></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
                         </div>
@@ -647,14 +647,14 @@
             <div class="goods-list">
                 <dl>
                     <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">
+                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
                             <img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
                         </a>
                         <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
 
@@ -705,14 +705,14 @@
 
                 <dl>
                     <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"><img src="{{ app.app_logo }}"
+                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
                                                                                     onerror="this.src='{% static "image/global/default.png" %}'"
                                                                                     title="产品图标"></a>
                         <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
                         <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
                         </div>

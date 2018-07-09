@@ -34,7 +34,13 @@
         }
 
         .footer {
-            margin: 1000px auto 0;
+            margin: 100px auto 0;
+            right: 0;
+            bottom:0;
+            top: 100%;
+            position:absolute !important;
+            left:0;
+            bottom:0;
 
         }
 
@@ -682,14 +688,6 @@
 
                                 </div>
 
-
-
-
-
-
-
-
-
                             </dd>
                         </dl>
                     </div>
@@ -697,23 +695,35 @@
                 {% endfor %}
 
             </div>
+            <div class="more1 " style="display: none">加载更多</div>
+             <div id="ie-form"></div>
+              <!-- 未发布的产品 -->
+            <div class="markLayout"></div>
         </div>
-        <div id="ie-form"></div>
+
+
     </div>
-    <!-- 未发布的产品 -->
-    <div class="markLayout"></div>
+
+
 {% endblock %}
 
 {% block script %}
     <script>
-        function show_all(x){
+        $(".more1").click(function () {
+            $.ajax({
+                method:"GET",
 
-            var xxxx = document.getElementsByClassName("xxx");
-             console.log(xxxx)
-            for (var i =0,lengx=xxxx.length;i<lengx;i++) {
-                xxxx[i].style.display=''
-            }
-        }
+                data:{'more':'1'}
+
+            }).success(function (data) {
+               console.log(location.href+'?=menu1')
+                 location.replace(location.href+'?more=1')
+                var my = document.getElementsByClassName('more1')[0]
+                my.remove()
+
+            })
+        })
+
 
     </script>
     <script src="/static/js/product/bootbox.js"></script>
