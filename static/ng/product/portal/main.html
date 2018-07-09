@@ -1,103 +1,126 @@
 <style>
-
-    .goods-list{
+    .boxInfo {
+        padding-bottom: 0;
+    }
+    .fmInfo1 {
+        padding: 8px 0;
+        height: 66px;
+    }
+    .goods-list {
         width: 100%;
-    height: 220px;
-    padding: 14px;
-    margin-right: 36px;
+        height: 145px;
+        padding: 14px;
+        margin-right: 36px;
         float: initial;
     }
+
     .goods-list dl dt {
-    width: auto;
-    height: auto;
-    top: 10px;
-    border: 1px solid #c9c9c9;
-    border-radius: 4px;
-}
+        width: auto;
+        height: auto;
+        top: 10px;
+        border: 1px solid #c9c9c9;
+        border-radius: 4px;
+    }
+
     .goods-list dl dd {
-    margin-left: 96px;
-    padding-top: 6px;
-}
-    .goods-list dl{
+        margin-left: 96px;
+        padding-top: 6px;
+    }
+
+    .goods-list dl {
         overflow: visible;
     }
-    .ui-control{
-        padding-top: 18px!important;
-    margin-left: 0!important;
+
+    .ui-control {
+        padding-top: 18px !important;
+        margin-left: 0 !important;
     }
-    .progress{
-            width: 350px;
-    margin: auto;
-    height: 43px;
-    overflow: visible;
-    background-color: #fff;
-    border-radius: 0;
-    position: relative;
+
+    .progress {
+        width: 350px;
+        margin: auto;
+        height: 43px;
+        overflow: visible;
+        background-color: #fff;
+        border-radius: 0;
+        position: relative;
         margin-left: -24px;
     }
-    .progress li{
+
+    .progress li {
         text-align: center;
-    font-size: 14px;
-    color: #B6B6B6;
-    float: left;
-    width: 85px;
+        font-size: 14px;
+        color: #B6B6B6;
+        float: left;
+        width: 85px;
     }
+
     .progress li.prog_a {
-    position: relative;
-    left: 0;
-    top: 0;
-}
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
     .progress li.prog_c {
-    position: relative;
-    left: 4px;
-    top: 0;
-}
-    .progress li a{
+        position: relative;
+        left: 4px;
+        top: 0;
+    }
+
+    .progress li a {
         color: #545a5f;
         font-weight: bold;
     }
+
     .progress li span {
-    display: block;
-    margin: auto;
-    padding-top: 3px;
+        display: block;
+        margin: auto;
+        padding-top: 3px;
         padding-right: 4px;
-    margin-bottom: 10px;
-    width: 25px;
-    height: 25px;
-    background: #d6dae0;
-    border-radius: 50%;
-    margin-top: -23px;
-    margin-left: -3px;
-}
+        margin-bottom: 10px;
+        width: 25px;
+        height: 25px;
+        background: #d6dae0;
+        border-radius: 50%;
+        margin-top: -23px;
+        margin-left: -3px;
+    }
 
     .progress li.prog_d {
-    position: relative;
+        position: relative;
 
-    top: 0;
-    float: right;
-}
+        top: 0;
+        float: right;
+    }
+
     .goods-list dl dt img {
-    width: 70px;
-    height: 75px;
-}
-    .mt20{
+        width: 70px;
+        height: 75px;
+    }
+
+    .mt20 {
         padding-bottom: 20px;
     }
-    .box2{
+
+    .box2 {
         min-height: 500px;
     }
-    .footer{
+
+    .footer {
         z-index: 1;
     }
+
     .bg-white {
-    background-color: #fff;
-    color: #788188;
+        background-color: #fff;
+        color: #788188;
         font-weight: bold;
-}
-    .ui-edit-item a{
+    }
+
+    .ui-edit-item a {
         color: #4395FF;
     }
-    .goods-list dl dd .goods-title{
+
+    .goods-list dl dd .goods-title {
         height: 25px;
     }
 </style>
@@ -106,59 +129,118 @@
         <span class="linkBlue">产品控制台</span>
 
     </div>
-    <div class="mt20">
+    <div class="mt20" style="height: 190px">
 
         <div class="goods-list">
-                <dl>
-                    <dt>
-                        <a href="/info">
-                            <img src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'" title="产品图标">
-                        </a>
-                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="607"><i></i></a>
-                    </dt>
-                    <dd>
-                        <div class="goods-title"><a href="#/info">{[{ infoFormData.app_name }]}</a>
-                            <span class="label bg-white" style="font-size: 100%;">
+            <dl class="col-md-6">
+                <dt>
+                    <a href="/info">
+                        <img src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'"
+                             title="产品图标">
+                    </a>
+                    <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="607"><i></i></a>
+                </dt>
+                <dd>
+                    <div class="goods-title"><a href="#/info">{[{ infoFormData.app_name }]}</a>
+                        <span class="label bg-white" style="font-size: 100%;">
                                 {[{ infoFormData.app_model }]}</span>
 
 
-                        </div>
-                        <div class="product-info-div">
+                    </div>
+                    <div class="product-info-div">
 
-                            <p class="product-info-p">
-                                分类： {[{app_device_name}]}
-                            </p>
-                            <p class="product-info-p">Key：<label>{[{key}]}</label>
-                               <label style="margin-left: 18px" class="fa fa-android"></label>
+                        <p class="product-info-p">
+                            分类： {[{app_device_name}]}
+                        </p>
+                        <p class="product-info-p">Key：<label>{[{key}]}</label>
+                            <label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
 
-                            </p>
+                        </p>
 
-                            <p class="product-info-p">更新于：{[{ infoFormData.app_update_time }]}<label style="margin-left: 3%;color: #333">未发布</label></p>
-                        </div>
-                    </dd>
-                    <dd class="ui-control">
-                        <ul class="progress">
-                            <li class="prog_a "><a href="#/argue">功能</a>
-                            </li>
-                            <li class="prog_b"><a href="#/device">协议</a>
-                            </li>
-                            <li class="prog_c"><a onclick="export_protocol(607)" href="#">下载
+                        <p class="product-info-p">更新于：{[{ infoFormData.app_update_time }]}<label
+                                style="margin-left: 3%;color: #333">未发布</label></p>
+                        <p class="xxx" style="display: none">{[{infoFormData.app_id}]}</p>
+                    </div>
+                </dd>
 
-                            <li class="prog_d "><a href="#/app">UI编辑</a></li>
-
-                        </ul>
-                    </dd>
-                </dl>
+            </dl>
+            <dl class="col-md-6">
+                <div class="title1" style="height: 30px;margin-top: 20px">
+                    <span>FAQ</span> <span style="margin-left: 200px"><a href="https://open.53iq.com/wiki/" >更多></a></span>
+                </div>
+                <div style="background-color: blue" class="protocol-info-main">
+                    xxx
+                </div>
+            </dl>
         </div>
 
-        <br>
-         <p style="padding-left: 20px" class="ui-edit-item"><a href="#/info">产品信息编辑</a></p>
 
+        <br>
+        <p style="padding-left: 20px" class="ui-edit-item"></p>
 
 
     </div>
+    <div class="hl-help">
+        <span class="linkBlue">资源下载</span>
+    </div>
+    <div class="mt20">
 
+        <div class="goods-list">
+           <div class="info-list col-md-6" style="margin-top: 15px">
+                <p class="info" style="margin-top: 10px;font-size: 14px"><a href="/static/sdk/COOKEING-Hood.rar" target="_self" style="color: #0a001f"><b>-  WiFi屏示例工程（ {[{app_device_name}]}）</b></a></p>
+                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx" style="color: #0a001f" target="_self"><b>- </b> WiFi屏与53iq智能云通信协议</a></p>
+                <p class="info" style="margin-top: 30px;font-size: 14px;color: black"><a href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf" style="color: #0a001f" target="_self"><b>- </b> WiFi屏开发包</a></p>
+                <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
+
+
+           </div>
+           <div class="info-list col-md-6" style="margin-top: 15px">
+                <p class="info" style="margin-top: 10px;font-size: 14px"><a href="/static/sdk/ComMonitor.exe" style="color: #0a001f"><b>- </b> WiFi屏界面编辑工具 </a></p>
+                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="/static/sdk/ComMonitor.exe" style="color: #0a001f"><b>- </b> 串口调试工具 </a></p>
+                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="/static/sdk/ComMonitor.exe" style="color: #0a001f"><b>- </b> WiFi屏开发基础Lua文档 </a></p>
+           </div>
+    </div>
+    <div class="hl-help">
+        <span class="linkBlue">基本信息</span>
+        <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
+
+    </div>
+        <div class="mt20" style="height: 300px">
+
+        <div class="goods-list">
+             <div class="boxInfo" style="border-top: none;">
+                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>产品名称:
+                    <span style="color: black;">{[{infoFormData.app_name}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>品牌/型号:
+                    <span style="color:black;">{[{infoFormData.app_model}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>分类:
+                    <span style="color: black;">{[{app_device_name}]}</span>
+                </dl>
+                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>创建时间</span>:
+                    <span style="color: black;">{[{ infoFormData.app_create_time }]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>APPID:
+                    <span style="color: black;">{[{infoFormData.app_id}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>secret:
+                    <span style="color: black;">{[{app_secret}]}</span>
+                </dl>
+
+             </div>
+        </div>
+    </div>
 </div>
+
+
+
 
 
 <script>
