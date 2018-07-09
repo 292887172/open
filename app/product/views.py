@@ -185,9 +185,9 @@ def product_controldown(request):
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
             else:
                 if more_product == '1':
-                    user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")
                 else:
-                    user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:5]
+                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
         except Exception as e:
             user_apps=[]
             developer = ''
