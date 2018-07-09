@@ -683,13 +683,37 @@
                                         <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                                     </div>
                                     <div>
-                                        <p>
-                                            分类:{{ app.app_device_type| category_detail }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+
+                                        {% if app.check_status == 0 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
-                                            编辑</a>
-                                        </p>
+                                            编辑</a></p>
+                                        {% elif app.check_status == 1 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核中 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% elif app.check_status == 2 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核通过 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% elif app.check_status == -1 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核未通过 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% else %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% endif %}
+
+
+
+
 
                                     </div>
 
