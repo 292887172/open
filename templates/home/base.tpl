@@ -156,7 +156,14 @@
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
-
+<script>
+    window.onload=function () {
+            var height1 = document.body.scrollHeight;
+            console.log(document.getElementsByClassName("footer")[0].style.marginTop)
+            document.getElementsByClassName("footer")[0].style.marginTop=height1-440+"px"
+            console.log(document.body.scrollHeight)
+        }
+</script>
 {% block script %}
 
 {% endblock %}
