@@ -330,7 +330,10 @@
             color: #2980b9;
             text-decoration: none;
         }
+        a:hover{
 
+            text-decoration: none;
+        }
         .progress li.cur {
             color: #626262;
         }
@@ -667,7 +670,7 @@
 
 
                                     <div class="goods-title">
-                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ forloop.counter }}. {{ app.app_name }}</a>
+                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal" style="text-decoration: none">{{ forloop.counter }}. {{ app.app_name }}</a>
                                     </div>
                                      <div class="product-info-div">
                                     <div class="parcode">
