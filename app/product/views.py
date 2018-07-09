@@ -153,7 +153,8 @@ def product_list(request):
     elif request.method == "POST":
         return post()
 
-
+@login_required
+@csrf_exempt
 def product_controldown(request):
     """
     应用列表

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <style>
+
         .wrapper {
             padding: 0;
             margin: 0 auto;
@@ -34,7 +35,7 @@
         }
 
         .footer {
-            margin: 100px auto 0;
+
             right: 0;
             bottom:0;
             top: 100%;
@@ -467,6 +468,9 @@
 
 {% endblock %}
 {% block content %}
+<div>
+
+
     <div class="title">
         <div class="wrapper">
             <ol class="breadcrumb" style="width: 36%;float: left;margin-left: 90px">
@@ -600,8 +604,8 @@
             </div>
         </div>
 
-        <div class="title-sub" style="margin-top: 190px;padding-bottom: 10px"><span
-                class="old">最新编辑产品</span>
+        <div class="title-sub" style="margin-top: 190px;padding-bottom: 10px">
+            <span class="old">最新编辑产品</span>
 
             <ol style="width: 550px;float: right;" class="new-app">
                 <li style="color: #c6c6c6;">模板创建：</li>
@@ -706,35 +710,37 @@
 
 
     </div>
-
+</div>
 
 {% endblock %}
 
 {% block script %}
     <script>
-        $(".more1").click(function () {
-            $.ajax({
-                method:"GET",
 
-                data:{'more':'1'}
 
-            }).success(function (data) {
-               console.log(location.href+'?=menu1')
-                 location.replace(location.href+'?more=1')
-                var my = document.getElementsByClassName('more1')[0]
-                my.remove()
+    $(".more1").click(function () {
+        $.ajax({
+            method:"GET",
 
-            })
+            data:{'more':'1'}
+
+        }).success(function (data) {
+           console.log(location.href+'?=menu1')
+             location.replace(location.href+'?more=1')
+            var my = document.getElementsByClassName('more1')[0]
+            my.remove()
+
         })
+    })
 
 
     </script>
-    <script src="/static/js/product/bootbox.js"></script>
+
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+
     <script src="/static/js/check-ie.js"></script>
-    <script src="/static/js/product/fast_create.js"></script>
+
     <script>
         //判断ie浏览器版本是否低于9
         if (lessIE9()) {
