@@ -504,12 +504,12 @@
                             <label class="dtbox">技术方案:</label>
 
                             <p class="technology" style="float: right;width: 75%"><input class="magic-radio"
-                                                                                         type="radio"
+                                                                                         type="radio" disabled="disabled"
                                                                                          onclick="select_progm(2)"
                                                                                          name="select_group" id="c1"
                                                                                          checked>
                                 <label for="c1">WiFi</label>
-                                <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
+                                <input class="magic-radio" type="radio" name="select_group" disabled onclick="select_progm(1)"
                                        id="c2">
                                 <label for="c2">Android屏<span id="ScreenSize"></span></label>
                             </p>
@@ -566,8 +566,8 @@
                             <p class="info" style="font-size: 14px"><b><a href="/wiki/doc_wiki?view=Navicat2112#112"
                                                                           target="_self"> <b>- </b> 快速入门指南</a></b></p>
                             <p class="info" style="margin-top: 10px;font-size: 14px;color: black"><a
-                                    href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf"
-                                    target="_self"><b>- </b> WiFi屏开发手册</a></p>
+                                    href="http://doc.53iq.com/#/"
+                                    target="_blank"><b>- </b> WiFi屏开发手册</a></p>
                             <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
                                     href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx"
@@ -749,10 +749,10 @@
             data:{'more':'1'}
 
         }).success(function (data) {
-           console.log(location.href+'?=menu1')
-             location.replace(location.href+'?more=1')
-            var my = document.getElementsByClassName('more1')[0]
-            my.remove()
+
+           console.log(typeof(data))
+
+
 
         })
     })
@@ -764,7 +764,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
     <script src="/static/js/check-ie.js"></script>
-
+    <script src="/static/js/product/fast_create.js"> </script>
     <script>
         //判断ie浏览器版本是否低于9
         if (lessIE9()) {

@@ -242,7 +242,10 @@ def product_controldown(request):
 
             default_apps=default_apps,
         )
-
+        if more_product == '1':
+            for i in unpublished_apps:
+                print(i)
+            return HttpResponse(unpublished_apps)
 
         return render(request, template, content)
 
@@ -320,6 +323,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
+        print(app_group)
         device_conf = gen_app_default_conf(app_category_detail)
 
         app_logo = get_app_default_logo(app_category_detail)
@@ -714,6 +718,7 @@ def protocol(request):
         r = DefaultProtocol().DEFAULT_DATA_ZDY
 
         data_protocol_list = json.loads(request.body.decode('utf-8'))
+        print('11',data_protocol_list)
         try:
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
@@ -729,10 +734,13 @@ def protocol(request):
                 data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
                 data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
                 data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
+                data_sql['endian_type'] = data_protocol_list.get('endian_type')
+                print("data_sql",data_protocol_list.get('endian_type'))
                 data_sql['frame_content'] = list_t
                 data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
                 data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
                 data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+                print("data_sql", data_sql)
                 data_sql_update = json.dumps(data_sql,ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
@@ -756,7 +764,7 @@ def protocol(request):
 
                     res_list_data1 = json.loads(res_list_data)
                     res_list_data1['protocol_type'] = protocol_type1
-
+                    print(res_list_data1)
                     return HttpResponse(json.dumps(res_list_data1))
         except Exception as e:
             print(e)
