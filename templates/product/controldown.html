@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <style>
+
         .wrapper {
             padding: 0;
             margin: 0 auto;
@@ -34,7 +35,7 @@
         }
 
         .footer {
-            margin: 100px auto 0;
+
             right: 0;
             bottom:0;
             top: 100%;
@@ -467,6 +468,9 @@
 
 {% endblock %}
 {% block content %}
+<div>
+
+
     <div class="title">
         <div class="wrapper">
             <ol class="breadcrumb" style="width: 36%;float: left;margin-left: 90px">
@@ -499,18 +503,18 @@
                         <div class="ant-row ant-form-item" id="com_type">
                             <label class="dtbox">技术方案:</label>
 
-                            <p class="technology" style="float: right;width: 75%"><input class="magic-radio"
-                                                                                         type="radio"
-                                                                                         onclick="select_progm(2)"
-                                                                                         name="select_group" id="c1"
-                                                                                         checked>
-                                <label for="c1">WiFi</label>
-                                <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
-                                       id="c2">
-                                <label for="c2">Android屏<span id="ScreenSize"></span></label>
+                            <p class="technology" style="float: right;width: 75%">
+                               <input class="magic-radio" type="radio" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
+                                                                  checked>
+                            <label for="c3">WiFi</label>
+                            <input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" >
+                            <label for="c1">WiFi</label>
+                            <input class="magic-radio" type="radio" name="select_group" disabled="disabled" onclick="select_progm(1)" id="c2" >
+                            <label for="c2">Android屏<span id="ScreenSize"></span></label>
                             </p>
 
-                            <div class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求电控板支持5V供电，两路串口
+                            <div class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机
                             </div>
                         </div>
 
@@ -562,8 +566,8 @@
                             <p class="info" style="font-size: 14px"><b><a href="/wiki/doc_wiki?view=Navicat2112#112"
                                                                           target="_self"> <b>- </b> 快速入门指南</a></b></p>
                             <p class="info" style="margin-top: 10px;font-size: 14px;color: black"><a
-                                    href="/static/sdk/53iq%20WiFi%E5%B1%8F%E5%BC%80%E5%8F%91%E5%8C%85DC%E7%89%88.pdf"
-                                    target="_self"><b>- </b> WiFi屏开发手册</a></p>
+                                    href="http://doc.53iq.com/#/"
+                                    target="_blank"><b>- </b> WiFi屏开发手册</a></p>
                             <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
                                     href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx"
@@ -600,8 +604,8 @@
             </div>
         </div>
 
-        <div class="title-sub" style="margin-top: 190px;padding-bottom: 10px"><span
-                class="old">最新编辑产品</span>
+        <div class="title-sub" style="margin-top: 190px;padding-bottom: 10px">
+            <span class="old">最新编辑产品</span>
 
             <ol style="width: 550px;float: right;" class="new-app">
                 <li style="color: #c6c6c6;">模板创建：</li>
@@ -679,13 +683,37 @@
                                         <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                                     </div>
                                     <div>
-                                        <p>
-                                            分类:{{ app.app_device_type| category_detail }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a
-                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+
+                                        {% if app.check_status == 0 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
-                                            编辑</a>
-                                        </p>
+                                            编辑</a></p>
+                                        {% elif app.check_status == 1 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核中 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% elif app.check_status == 2 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核通过 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% elif app.check_status == -1 %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核未通过 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% else %}
+                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                style="color:#2980b9">
+                                            编辑</a></p>
+                                        {% endif %}
+
+
+
+
 
                                     </div>
 
@@ -706,35 +734,37 @@
 
 
     </div>
-
+</div>
 
 {% endblock %}
 
 {% block script %}
     <script>
-        $(".more1").click(function () {
-            $.ajax({
-                method:"GET",
 
-                data:{'more':'1'}
 
-            }).success(function (data) {
-               console.log(location.href+'?=menu1')
-                 location.replace(location.href+'?more=1')
-                var my = document.getElementsByClassName('more1')[0]
-                my.remove()
+    $(".more1").click(function () {
+        $.ajax({
+            method:"GET",
 
-            })
+            data:{'more':'1'}
+
+        }).success(function (data) {
+
+           console.log(typeof(data))
+
+
+
         })
+    })
 
 
     </script>
-    <script src="/static/js/product/bootbox.js"></script>
+
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
+
     <script src="/static/js/check-ie.js"></script>
-    <script src="/static/js/product/fast_create.js"></script>
+    <script src="/static/js/product/fast_create.js"> </script>
     <script>
         //判断ie浏览器版本是否低于9
         if (lessIE9()) {

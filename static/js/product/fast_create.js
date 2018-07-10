@@ -69,15 +69,6 @@ function check_name() {
     }
 }
 
-function select_progm(val) {
-    $(".product_group").val(val);
-    if (document.getElementsByName('select_group')[0].checked) {
-        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
-    }
-    else {
-        $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
-    }
-}
 
 function check_name() {
     if ($("#product_name").val() == '') {
@@ -93,7 +84,11 @@ function check_name() {
 function select_progm(val) {
     $(".product_group").val(val);
     if (document.getElementsByName('select_group')[0].checked) {
-        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
+
+        $(".select-progm1").html("WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机");
+    }
+    else if (document.getElementsByName('select_group')[1].checked){
+        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口")
     }
     else {
         $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
@@ -134,8 +129,10 @@ function dont_develop() {
 
 function toggleTab(text) {
     var ps = document.querySelector("#template").querySelectorAll("p");
+    console.log(ps)
     ps = Array.prototype.slice.call(ps);
     var lis = document.querySelector("#template").querySelectorAll("li");
+    console.log(lis)
     ps.forEach(function (item, index) {
         if (item.id == text) {
             item.style.display = "block";
