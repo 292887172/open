@@ -134,10 +134,7 @@ def product_list(request):
         content = dict(
             keyword=keyword,
             developer=developer,
-
-
             unpublished_apps=unpublished_apps,
-
             published_apps= published_apps,
             default_apps=default_apps,
         )
