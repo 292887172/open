@@ -359,11 +359,11 @@ def add_fun_id(opera_data, indata):
     indata['standa_or_define'] = str(is_define)
     if opera_data:
         id = int(opera_data[-1].get("id"))
-        if is_define == 1:
-            if id < 101:
-                indata["id"] = '101'
-            else:
-                indata["id"] = str(id + 1)
+        # if is_define == 1:
+        #     if id < 101:
+        #         indata["id"] = '101'
+        #     else:
+        indata["id"] = str(id + 1)
     else:
         indata["id"] = '101'
     return indata
