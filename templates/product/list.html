@@ -484,13 +484,18 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p class="technology" style="float: right;width: 75%"><input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                        <p class="technology" style="float: right;width: 75%">
+                            <input class="magic-radio" type="radio" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
+                                                                  checked>
+                            <label for="c3">WiFi</label>
+                            <input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" >
                             <label for="c1">WiFi</label>
                             <input class="magic-radio" type="radio" name="select_group" disabled="disabled" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求电控板支持5V供电，两路串口</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
