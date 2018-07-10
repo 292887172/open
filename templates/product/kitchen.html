@@ -123,6 +123,7 @@
         }
 
         .index-banner {
+            margin-top: -15px;
             min-width: 1200px;
             background: url(/static/image/product/banner_bg.jpg) no-repeat center #0D0F28;
             background-size: 100% 130%;
@@ -292,6 +293,9 @@
         }
         label{
             font-weight:inherit;
+        }
+        .header{
+            height: 75px;
         }
     </style>
 {% endblock %}
@@ -478,29 +482,29 @@
               </span>
         </div>
     </div>
-     <div style="height: 500px;background-color: white">
+     <div id="nb" style="height: 500px;background-color: white">
           <div class="col-md-1"></div>
           <div class="col-md-4 " style="height: 487px;text-align: left">
             <div style="margin-top: 100px;">
                 <div style="margin-top: 50px">
-                    <span style="font-size: 16px" >4.3寸WiFi屏</span>
-                    <hr>
-                    <span style="font-size: 16px" >应用于油烟机、洗碗机</span>
+                    <span style="font-size: 48px;color: black" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span>
+                    <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于油烟机、洗碗机</p>
                 </div>
                 <div style="margin-top: 35px">
-                    <span style="font-size: 16px" >5寸WiFi屏</span>
-                    <hr>
-                    <span style="font-size: 16px" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</span>
+                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx2)">5寸WiFi屏</span>
+                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
                 </div>
                 <div style="margin-top: 35px">
-                    <span style="font-size: 16px" >6.8寸WiFi屏</span>
-                    <hr>
-                    <span style="font-size: 16px" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</span>
+                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx3)">6.8寸WiFi屏</span>
+                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
                 </div>
                 <div style="margin-top: 35px">
-                    <span style="font-size: 16px" >7寸WiFi屏</span>
-                    <hr>
-                    <span style="font-size: 16px" >应用于集成灶、冰箱</span>
+                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx4)">7寸WiFi屏</span>
+                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于集成灶、冰箱</p>
                 </div>
 
 
@@ -508,7 +512,10 @@
 
         </div>
         <div class="col-md-6 col-md-offset-1" style="padding-left: 0px;margin-top: 60px">
-            <img src="/static/image/product/43cun.jpg" alt="">
+            <img id="xx1" src="/static/image/product/43cun.jpg" alt="">
+            <img id="xx2" style="display:none" src="/static/image/product/5cun.jpg" alt="">
+            <img id="xx3" style="display:none" src="/static/image/product/68cun.jpg" alt="">
+            <img id="xx4" style="display:none" src="/static/image/product/7cun.jpg" alt="">
         </div>
     </div>
     <div class="markLayout"></div>
@@ -536,5 +543,29 @@
 {% block script %}
     <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/js/product/fast_create.js"></script>
+    <script>
+        function toggleTab1(text) {
+            var ps = document.querySelector("#nb").querySelectorAll("img");
 
+            var lspan = document.querySelector("#nb").querySelectorAll("span");
+
+            for (var i=0,t=lspan.length;i<t;i++){
+                console.log(lspan[i])
+
+                if (ps[i].id == text.id) {
+                    console.log(ps[i])
+                    ps[i].style.display=''
+                    lspan[i].style.fontSize='48px'
+                    lspan[i].style.color="black"
+                }else{
+                    ps[i].style.display='none'
+                    lspan[i].style.fontSize='20px'
+                    lspan[i].style.color="#6B6B6B"
+                }
+
+            }
+
+
+        }
+    </script>
 {% endblock %}

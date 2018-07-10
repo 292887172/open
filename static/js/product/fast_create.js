@@ -134,8 +134,10 @@ function dont_develop() {
 
 function toggleTab(text) {
     var ps = document.querySelector("#template").querySelectorAll("p");
+    console.log(ps)
     ps = Array.prototype.slice.call(ps);
     var lis = document.querySelector("#template").querySelectorAll("li");
+    console.log(lis)
     ps.forEach(function (item, index) {
         if (item.id == text) {
             item.style.display = "block";
