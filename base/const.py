@@ -198,7 +198,8 @@ class DefaultProtocol(object):
                          ],
                     "checkout_algorithm": "sum",
                     "start_check_number": 1,
-                    "end_check_number": 5
+                    "end_check_number": 5,
+                    "endian_type":1
                     }
     DEFAULT_DATA_ZDY = {"is_single_instruction": "true", "support_response_frame": "true", "support_serial": "true",
                     "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
@@ -220,5 +221,6 @@ class DefaultProtocol(object):
                          ],
                     "checkout_algorithm": "sum",
                     "start_check_number": 1,
-                    "end_check_number": 5
+                    "end_check_number": 5,
+                    "endian_type":1
                     }

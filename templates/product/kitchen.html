@@ -94,7 +94,7 @@
 
         .left h4 {
             text-align: center;
-            margin-top: 12px;
+            margin-top: 35px;
 
             color: #fff;
         }
@@ -111,7 +111,7 @@
             color: #fff;
             height: 30px;
             width: 100px;
-            margin-top: 22px;
+            margin-top: 5px;
             margin-left: 55px;
             float: left;
             text-align: center;
@@ -336,8 +336,8 @@
         </div>
 
 
-         <div id="template" style="height:340px;margin:0 auto;">
-            <h3>如何进行WiFi屏智能厨电开发？</h3>
+         <div id="template" style="height:340px;">
+            <h3 style="padding-top: 50px;padding-bottom: 20px">如何进行WiFi屏智能厨电开发？</h3>
             <ul>
                 <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onclick="toggleTab('new')">1.新建厨电品类</li>
                 <li onclick="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
@@ -400,9 +400,9 @@
             <img src="{{ app.app_logo }}">
             <h4>{{ app.app_name }}</h4>
             {% if app.app_device_type == 1 %}
-                <p>智能显示，多档控制，强劲风力，多屏互动体验</p>
+                <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
             {% elif app.app_device_type == 2 %}
-                <p>WiFi/Android屏集成灶，远程监控灶状态，厨房风险指数模板快速接入</p>
+                <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
             {% elif app.app_device_type == 11 %}
                 <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
             {% endif %}
@@ -485,9 +485,9 @@
      <div id="nb" style="height: 500px;background-color: white">
           <div class="col-md-1"></div>
           <div class="col-md-4 " style="height: 487px;text-align: left">
-            <div style="margin-top: 100px;">
+            <div style="margin-top: 50px;">
                 <div style="margin-top: 50px">
-                    <span style="font-size: 48px;color: black" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span>
+                    <span style="font-size: 32px;color: black" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span>
                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于油烟机、洗碗机</p>
                 </div>
@@ -555,7 +555,7 @@
                 if (ps[i].id == text.id) {
                     console.log(ps[i])
                     ps[i].style.display=''
-                    lspan[i].style.fontSize='48px'
+                    lspan[i].style.fontSize='32px'
                     lspan[i].style.color="black"
                 }else{
                     ps[i].style.display='none'
