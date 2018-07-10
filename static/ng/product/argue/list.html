@@ -149,6 +149,15 @@
         display: inline-block;
         content: "\E91A";
     }
+    .self-define{
+        display: inline-block;
+    background-color: #4cd964;
+    color: #fff;
+    border-radius: 100px;
+    padding: 2px 4px;
+    margin-left: 2px;
+    font-size: 12px;
+    }
     </style>
     <link rel="stylesheet" href="/static/css/product/jquery-ui-1.8.16.custom.css">
     <div class="main-container box2">
@@ -169,6 +178,7 @@
         </div>
         <table id="grid-table" >
         </table>
+        <!--
         <div id="gridpager"></div><div class="mt20"></div>
 
         <table id="grid-table-new" ></table>
@@ -181,6 +191,7 @@
             <span id="advice-content"></span>
 
         </div>
+        -->
         <div style="margin-top: 20px">
             <a class="headerH1" onmouseover="show_tips(this)" style="text-decoration: none;">
              <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则
@@ -343,8 +354,8 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>标准功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton'>管理</a>","gridpager");
-        select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
+        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager");
+        //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
                 url: location.href,
@@ -354,7 +365,16 @@
                 colNames: ['功能序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '卡片显示', '显示到UI', '云菜谱可控', '操作'],
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
-                    {name: 'Stream_ID', width: 143},
+                    {name: 'Stream_ID', width: 143, formatter: function (cellvalue, options,rowObject) {
+                        if(rowObject.standa_or_define=='1'){
+                            return cellvalue+"<span class='self-define'>自定义</span>"
+                        }
+                        else{
+                            return cellvalue
+                        }
+
+
+                        }},
                     {name: 'mxsLength', width: 100, align: 'center'},
                     {name: 'name', width: 127, align: 'center'},
                     {name: 'mxsNum', width: 120, align: 'center', title: false,

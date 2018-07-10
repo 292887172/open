@@ -436,8 +436,8 @@ def product_main(request):
                 data = json.loads(data.decode())
                 opera_data = data["rows"]
             for line in opera_data:
-                if str(line.get("standa_or_define")) == str(standa):
-                    temp.append(line)
+                # if str(line.get("standa_or_define")) == str(standa):
+                temp.append(line)
             data = {'rows': opera_data, 'check_state': app.check_status}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page-1)*rows:page*rows]
