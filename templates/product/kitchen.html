@@ -308,7 +308,7 @@
             </ol>
         </div>
     </div>
-    <div class="index-banner" style="height:640px;">
+    <div class="index-banner" style="height:670px;">
         {#        模态框#}
         <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -336,8 +336,52 @@
         </div>
 
 
-         <div id="template" style="height:340px;">
-            <h3 style="padding-top: 50px;padding-bottom: 20px">如何进行WiFi屏智能厨电开发？</h3>
+
+        <div class="left" style="margin-top: 30px;float:none;padding-right:20px;padding-top: 20px">
+             <div class="left-dv4" id="WiFi-oven-demo" style="margin-top: 27px">
+                <img src="/static/image/product/ico-video.png"/>
+                <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
+            </div>
+            {% for app in default_apps %}
+
+                {% if  forloop.counter == 1 %}
+
+                    <div class="">
+                {% elif forloop.counter == 2 %}
+                    <div class="">
+                {% else %}
+                    <div class="">
+                {% endif %}
+
+            <img src="{{ app.app_logo }}">
+            <h4>{{ app.app_name }}</h4>
+            {% if app.app_device_type == 1 %}
+                <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
+            {% elif app.app_device_type == 2 %}
+                <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
+            {% elif app.app_device_type == 11 %}
+                <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
+            {% endif %}
+            <div class="ui-demo">
+                {% if user.developer.developer_id %}
+                    <a style="display:block;color:#fff"
+                       href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
+                {% else %}
+                    <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+                {% endif %}
+
+            </div>
+            </div>
+            {% endfor %}
+
+            </div>
+            </div>
+        </div>
+
+
+        <div id="template" style="height:340px;margin-top: -440px">
+
+            <h3 style="padding-top: 50px;padding-bottom: 10px">如何进行WiFi屏智能厨电开发？</h3>
             <ul>
                 <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onclick="toggleTab('new')">1.新建厨电品类</li>
                 <li onclick="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
@@ -379,50 +423,6 @@
                 <i></i>使用53iq厨电开发平台调试通信协议；<br>
                 <i></i>手机APP UI编辑，提供品牌专属厨房APP。
             </p>
-        </div>
-                 <div class="left" style="margin:0 auto;float:none;padding-right:70px;">
-            {% for app in default_apps %}
-
-                {% if  forloop.counter == 1 %}
-                    <!-- <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}"><div class="left-dv4">
-                        <img style="width: 45px" src="{% static 'image/product/demo.png' %}">
-                        <h4 id="dev-demo" style="margin-top: 28px">开发示例</h4>
-
-                    </div>
-                    </a>-->
-                    <div class="">
-                {% elif forloop.counter == 2 %}
-                    <div class="">
-                {% else %}
-                    <div class="">
-                {% endif %}
-
-            <img src="{{ app.app_logo }}">
-            <h4>{{ app.app_name }}</h4>
-            {% if app.app_device_type == 1 %}
-                <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
-            {% elif app.app_device_type == 2 %}
-                <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
-            {% elif app.app_device_type == 11 %}
-                <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
-            {% endif %}
-            <div class="ui-demo">
-                {% if user.developer.developer_id %}
-                    <a style="display:block;color:#fff"
-                       href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
-                {% else %}
-                    <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
-                {% endif %}
-
-            </div>
-            </div>
-            {% endfor %}
-            <div class="left-dv4" id="WiFi-oven-demo" style="margin-top: 27px">
-                <img src="/static/image/product/ico-video.png"/>
-                <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
-            </div>
-            </div>
-            </div>
         </div>
     </div>
     <div class="popBox" id="newHtmlBox" style="display: none;">

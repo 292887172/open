@@ -159,8 +159,9 @@
 <script>
     window.onload=function () {
             var height1 = document.body.scrollHeight;
+
             console.log(document.getElementsByClassName("footer")[0].style.marginTop)
-            document.getElementsByClassName("footer")[0].style.marginTop=height1-440+"px"
+            //document.getElementsByClassName("footer")[0].style.marginTop=(height1 / 2)-440+"px"
             console.log(document.body.scrollHeight)
         }
 </script>
