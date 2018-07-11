@@ -31,31 +31,9 @@
         }
 
         .left div {
-            float: right;
-            padding: 3px;
-            width: 218px;
+
             height: 254px;
 
-        }
-
-        .left-dv1 {
-            background: rgba(47, 170, 116, .7);
-            transform: skewX(-1deg);
-            margin-top: 35px;
-            margin-left: -2px;
-        }
-
-        .left-dv2 {
-            background: rgba(255, 98, 2, .7);
-            transform: skewX(-1deg);
-            margin-top: 20px;
-            margin-left: -2px;
-        }
-
-        .left-dv3 {
-            background: rgba(110, 169, 248, .7);
-            transform: skewX(-1deg);
-            margin-top: 35px;
         }
 
         .left div.left-dv4 {
@@ -73,22 +51,22 @@
         }
 
         .left div img {
-            top: 14px;
-            position: relative;
-            left: 29%;
+
+            text-align: center;
         }
 
         .set-sample span {
             margin: 25px;
+
             font-size: 16px;
         }
 
         .left {
-            float: left;
-            margin-left: 13%;
-            height: 300px;
-            min-width:650px;
-            max-width:890px;
+
+
+            height: 500px;
+
+
 
         }
 
@@ -112,7 +90,7 @@
             height: 30px;
             width: 100px;
             margin-top: 5px;
-            margin-left: 55px;
+            margin-left: 100px;
             float: left;
             text-align: center;
             line-height: 22px
@@ -130,29 +108,6 @@
             height: 300px;
         }
 
-        @media screen and (max-width: 1920px) {
-            .left {
-                margin-left: 24%;
-            }
-        }
-
-        @media screen and (max-width: 1440px) {
-            .left {
-                margin-left: 18%;
-            }
-        }
-
-        @media screen and (max-width: 1280px) {
-            .left {
-                margin-left: 12%;
-            }
-        }
-
-        @media screen and (max-width: 1080px) {
-            .left {
-                margin-left: 6%;
-            }
-        }
 
         .title {
             margin-top:0px;
@@ -308,7 +263,7 @@
             </ol>
         </div>
     </div>
-    <div class="index-banner" style="height:670px;">
+    <div class="index-banner" style="height:330px;">
         {#        模态框#}
         <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -336,19 +291,18 @@
         </div>
 
 
+        <div>
 
-        <div class="left" style="margin-top: 30px;float:none;padding-right:20px;padding-top: 20px">
-             <div class="left-dv4" id="WiFi-oven-demo" style="margin-top: 27px">
-                <img src="/static/image/product/ico-video.png"/>
-                <p style="text-align: center;padding-top: 35px;">如何开发智能厨电</p>
-            </div>
+
+            <div class="left col-md-12" style="margin-top: 30px;float:none;padding-right:20px;padding-top: 30px;text-align: center">
+                <div class="col-md-2">xx</div>
             {% for app in default_apps %}
 
                 {% if  app.app_name == "智能油烟机" %}
 
-                    <div class="">
+                    <div class="col-md-2" >
                         <img src="{{ app.app_logo }}">
-                        <h4>WiFi洗碗机</h4>
+                        <h4>WiFi屏洗碗机</h4>
                         {% if app.app_device_type == 1 %}
                             <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
                         {% elif app.app_device_type == 2 %}
@@ -368,7 +322,7 @@
                     </div>
 
                 {% else %}
-                    <div class="">
+                    <div class="col-md-2">
                         <img src="{{ app.app_logo }}">
                         <h4>{{ app.app_name }}</h4>
                         {% if app.app_device_type == 1 %}
@@ -392,57 +346,23 @@
 
 
             {% endfor %}
+                <div class="col-md-2" id="WiFi-oven-demo" style="float: right;margin-right: 300px">
+                    <p style="text-align: center;padding-top: 5px;margin-left: 20px">如何进行WiFi屏智能厨电开发？</p>
+                <img src="/static/image/product/ico-video.png"/>
+                <p style="display: block;width: 254px;text-align: left;margin-left: 100px">1 新建厨电品类</p>
+                <p style="display: block;width: 254px;text-align: left;margin-left: 100px">2 硬件状况检查</p>
+                <p style="display: block;width: 254px;text-align: left;margin-left: 100px">3 定义功能</p>
+                <p style="display: block;width: 254px;text-align: left;margin-left: 100px">4 调试</p>
+            </div>
+            </div>
 
-            </div>
-            </div>
+        </div>
+
+        </div>
         </div>
 
 
-        <div id="template" style="height:340px;margin-top: -440px">
 
-            <h3 style="padding-top: 50px;padding-bottom: 10px">如何进行WiFi屏智能厨电开发？</h3>
-            <ul>
-                <li style="color: rgb(255, 98, 2);border-color: rgb(255, 98, 2);" onclick="toggleTab('new')">1.新建厨电品类</li>
-                <li onclick="toggleTab('hardware')" style="color:#fff;">2.硬件状况检查</li>
-                <li onclick="toggleTab('define')" style="color:#fff;">3.定义功能</li>
-                <li onclick="toggleTab('debug')" style="color:#fff;">4.调试</li>
-            </ul>
-            <p id="new">
-                推荐品类：蒸烤箱、洗碗机、燃气灶、油烟机、电饭煲、炒菜机等。<br>
-                帮助低成本快速实现厨电智能化，免费拥有品牌专属UI定制和品牌专属厨房App，包括厨电智能互动、安全提醒，成熟的厨房社区，海量智能云菜谱，品牌报修服务等。<br>
-                {% if user.developer.developer_id %}
-                    <a href="{% url "product/add" %}" style="color:#ff6202;">快速创建 ></a>
-                {% else %}
-                    <a href="javascript:void(dont_develop())" style="color:#ff6202;">快速创建 ></a>
-                {% endif %}
-            </p>
-            <p id="hardware" style="display:none;">
-                <i></i>
-                 {% if user.developer.developer_id %}
-                    <span style="color:#ff6202;cursor:pointer;" data-toggle="modal"
-                             data-target="#user_address">申请53iq标准协议WiFi屏套件 ></span>
-                {% else %}
-                     <span style="color:#ff6202;cursor:pointer;"
-                             onclick="javascript:void(dont_develop())">申请53iq标准协议WiFi屏套件 ></span>
-
-                {% endif %}
-                <br>
-                <i></i>检查电控板 5V 2A供电和串口 ，确认改造方案。示例1
-            </p>
-            <p id="define" style="display:none;">
-                根据实际接入厨电定义标准产品功能<br>
-                <a href="/static/sdk/53IQ%E7%94%B5%E6%8E%A7%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEV1.1.docx"
-                   style="color:#ff6202;">WiFi屏厨电与53iq智能云通信协议 下载></a>
-            </p>
-            <p id="debug" style="display:none;">
-                <i></i><a href="http://www.53iq.com/smart/" style="color:#ff6202;">下载手机APP
-                ></a><br>
-
-                <i></i>对接通讯协议， 远程支持QQ 253317348；<br>
-                <i></i>使用53iq厨电开发平台调试通信协议；<br>
-                <i></i>手机APP UI编辑，提供品牌专属厨房APP。
-            </p>
-        </div>
     </div>
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
