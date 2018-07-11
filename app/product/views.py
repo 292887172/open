@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
 from common.app_helper import del_app, save_app, check_cloud
@@ -381,6 +381,11 @@ def product_main(request):
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
+        data = request.GET.get("data",'')
+        print(data)
+        if data:
+            print(data)
+            return JsonResponse({"xx":"xxx"})
         if res:
             return HttpResponse(res)
         if not request.user.developer:
@@ -804,7 +809,28 @@ def control(request):
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
 
+def portal(request):
+    if request.method == 'GET':
+        date1 = request.GET.get('num','')
 
+        print(date1)
+        data1 = int(date1)
+        # 根据id获取各个时间
+        t = App.objects.filter(app_id=data1)
+        times = []
+        for i in t:
+            print(i.app_appid[-8:])
+            res = search_time(i.app_appid[-8:])
+            ress = search_time1(i.app_appid[-8:])
+            resss = search_time11(i.app_appid[-8:])
+            print(res['ebf_pc_create_date'])
+            print(ress['ebf_ui_update_date'])
+            print('yy',resss)
+            times.append(str(res['ebf_pc_create_date']))
+            times.append(str(ress['ebf_ui_update_date']))
+            times.append(str(resss))
+            print(times)
+        return HttpResponse(json.dumps(times))
 @csrf_exempt
 def upload_file(request):
     try:
