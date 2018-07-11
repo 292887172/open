@@ -103,7 +103,7 @@
     }
 
     .box2 {
-        min-height: 500px;
+        min-height: 503px;
     }
 
     .footer {
@@ -124,7 +124,7 @@
         height: 25px;
     }
 </style>
-<div class="box2 relative">
+<div class="box2 relative" style="padding-bottom: 1px">
     <div class="hl-help">
         <span class="linkBlue">产品控制台</span>
 
@@ -183,23 +183,19 @@
 
     </div>
     <div class="hl-help">
-        <span class="linkBlue">资源下载</span>
+        <span class="linkBlue">动态参数</span>
     </div>
     <div class="mt20">
 
         <div class="goods-list">
            <div class="info-list col-md-6" style="margin-top: 15px">
-                <p class="info" style="margin-top: 10px;font-size: 14px"><a href="/static/sdk/COOKEING-Hood.rar" target="_self" style="color: #0a001f"><b>-  WiFi屏示例工程（ {[{app_device_name}]}）</b></a></p>
-                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="http://doc.53iq.com/#/Protocol/README" style="color: #0a001f" target="_self"><b>- </b> WiFi屏与53iq智能云通信协议</a></p>
-                <p class="info" style="margin-top: 30px;font-size: 14px;color: black"><a href="http://doc.53iq.com/#/SDK/README" style="color: #0a001f" target="_blank"><b>- </b> WiFi屏开发手册</a></p>
-                <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
 
-
+                <span>功能更新时间:</span><p id="p1" style="display:block;height: 30px;margin-left: 150px"></p>
+                <span>UI更新时间:</span><p id="p2" style="display:block;height: 30px;margin-left: 150px"></p>
+                <span>协议更新时间:</span><p id="p3" style="display:block;height: 30px;margin-left: 150px"></p>
            </div>
            <div class="info-list col-md-6" style="margin-top: 15px">
-                <p class="info" style="margin-top: 10px;font-size: 14px"><a href="https://pan.baidu.com/s/1h5naxqP5PfxlUy0ya48oUw" style="color: #0a001f"><b>- </b> WiFi屏界面编辑工具 </a></p>
-                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="/static/sdk/ComMonitor.exe" style="color: #0a001f"><b>- </b> 串口调试工具 </a></p>
-                <p class="info" style="margin-top: 30px;font-size: 14px"><a href="/static/sdk/LuaAPI.pdf" style="color: #0a001f"><b>- </b> WiFi屏开发基础Lua文档 </a></p>
+
            </div>
     </div>
     <div class="hl-help">
@@ -246,6 +242,19 @@
 
 
 <script>
+    console.log(location.href.split("#")[0].split("=")[1])
+    var num = location.href.split("#")[0].split("=")[1]
+    $.ajax({
+        method:"GET",
+        data:{'num':num},
+        url:"/product/portal/"
+    }).success(function (da) {
+        data11 = JSON.parse(da)
 
+        document.getElementById("p1").innerText=data11[0];
+        document.getElementById("p2").innerText=data11[1];
+        document.getElementById("p3").innerText=data11[2];
+
+    })
 </script>
 
