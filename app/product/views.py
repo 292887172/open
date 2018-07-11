@@ -312,6 +312,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", 0)
+        print('xxxxxxx',app_category_detail)
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)

@@ -2,7 +2,7 @@ var checkSubmitFlg = false;
 
 function create_procuct(type, type1) {
     $("#ScreenSize").text("(7寸)");
-    if (type1 == "wifi") {
+    if (type1 == "wifi1") {
         // $(".dtbox").hide();
         $(".technology").hide();
     }
@@ -23,12 +23,12 @@ function create_procuct(type, type1) {
         $("#product_name").val("集成灶");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
     }
-    else if (type == '11') {
+    else if (type == '31') {
         $("#ScreenSize").text("(5寸)");
-        $("#product_category_detail").val(11);
-        $("#productType").html("烤箱");
-        $("#product_name").val("烤箱");
-        $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
+        $("#product_category_detail").val(31);
+        $("#productType").html("洗碗机");
+        $("#product_name").val("洗碗机");
+        $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/44/79/CgoKQ1tEjDCAFxfRAAAHGI3eiDc451.png");
     }
     $("#newHtmlBox").css('display', 'block');
     $(document).ready(function () {
