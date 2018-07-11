@@ -823,12 +823,19 @@ def portal(request):
             res = search_time(i.app_appid[-8:])
             ress = search_time1(i.app_appid[-8:])
             resss = search_time11(i.app_appid[-8:])
-            print(res['ebf_pc_create_date'])
-            print(ress['ebf_ui_update_date'])
-            print('yy',resss)
-            times.append(str(res['ebf_pc_create_date']))
-            times.append(str(ress['ebf_ui_update_date']))
-            times.append(str(resss))
+            if res:
+                times.append(str(res['ebf_pc_create_date']))
+            else:
+                times.append('暂无数据')
+            if ress:
+                times.append(str(ress['ebf_ui_update_date']))
+            else:
+                times.append('暂无数据')
+            if resss:
+
+                times.append(str(resss))
+            else:
+                times.append('暂无数据')
             print(times)
         return HttpResponse(json.dumps(times))
 @csrf_exempt
