@@ -344,34 +344,53 @@
             </div>
             {% for app in default_apps %}
 
-                {% if  forloop.counter == 1 %}
+                {% if  app.app_name == "智能油烟机" %}
 
                     <div class="">
-                {% elif forloop.counter == 2 %}
-                    <div class="">
+                        <img src="{{ app.app_logo }}">
+                        <h4>WiFi洗碗机</h4>
+                        {% if app.app_device_type == 1 %}
+                            <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
+                        {% elif app.app_device_type == 2 %}
+                            <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
+                        {% elif app.app_device_type == 11 %}
+                            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
+                        {% endif %}
+                        <div class="ui-demo">
+                            {% if user.developer.developer_id %}
+                                <a style="display:block;color:#fff"
+                                   href="javascript:void(create_procuct('{{ 31 }}'))">快速创建</a>
+                            {% else %}
+                                <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
                 {% else %}
                     <div class="">
+                        <img src="{{ app.app_logo }}">
+                        <h4>{{ app.app_name }}</h4>
+                        {% if app.app_device_type == 1 %}
+                            <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
+                        {% elif app.app_device_type == 2 %}
+                            <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
+                        {% elif app.app_device_type == 11 %}
+                            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
+                        {% endif %}
+                        <div class="ui-demo">
+                            {% if user.developer.developer_id %}
+                                <a style="display:block;color:#fff"
+                                   href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
+                            {% else %}
+                                <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
                 {% endif %}
 
-            <img src="{{ app.app_logo }}">
-            <h4>{{ app.app_name }}</h4>
-            {% if app.app_device_type == 1 %}
-                <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
-            {% elif app.app_device_type == 2 %}
-                <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
-            {% elif app.app_device_type == 11 %}
-                <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
-            {% endif %}
-            <div class="ui-demo">
-                {% if user.developer.developer_id %}
-                    <a style="display:block;color:#fff"
-                       href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
-                {% else %}
-                    <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
-                {% endif %}
 
-            </div>
-            </div>
             {% endfor %}
 
             </div>
@@ -416,7 +435,7 @@
                    style="color:#ff6202;">WiFi屏厨电与53iq智能云通信协议 下载></a>
             </p>
             <p id="debug" style="display:none;">
-                <i></i><a href="http://www.53iq.com/smart/" style="color:#ff6202;">下载安卓通用版APP
+                <i></i><a href="http://www.53iq.com/smart/" style="color:#ff6202;">下载手机APP
                 ></a><br>
 
                 <i></i>对接通讯协议， 远程支持QQ 253317348；<br>
@@ -446,18 +465,18 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio"
-                                                                  onclick="select_progm(2)" name="select_group" id="c1"
+                        <p class="technology" style="float: right;width: 75%">
+                            <input class="magic-radio" type="radio" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
                                                                   checked>
+                            <label for="c3">WiFi屏</label>
+                            <input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" >
                             <label for="c1">WiFi</label>
-                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
-                                   id="c2">
+                            <input class="magic-radio" type="radio" name="select_group" disabled="disabled" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div class="select-progm1" style="font-size: 12px;color: #2980b9;">
-                            WiFi方案要求设备支持5V供电，两路串口
-                        </div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
