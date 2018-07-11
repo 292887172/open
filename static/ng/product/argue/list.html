@@ -362,10 +362,10 @@
                 postData: data,
                 datatype: "json",
                 mtype: "POST",
-                colNames: ['功能序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '卡片显示', '显示到UI', '云菜谱可控', '操作'],
+                colNames: ['序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '云菜谱可控', '操作'],
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
-                    {name: 'Stream_ID', width: 143, formatter: function (cellvalue, options,rowObject) {
+                    {name: 'Stream_ID', align: 'center', width: 143, formatter: function (cellvalue, options,rowObject) {
                         if(rowObject.standa_or_define=='1'){
                             return cellvalue+"<span class='self-define'>自定义</span>"
                         }
@@ -414,27 +414,8 @@
                             }
                         }
                     },
-                    {name: 'isShow', width: 131, align: 'center',
-                        formatter: function (cellvalue) {
-                            if (cellvalue == "1") {
-                                return '<input name="isShow" onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
 
-                            } else {
-                                return '<input name="isShow"  onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
-                            }
-                        }
-                    },
-                    {name: 'isDisplay', width: 131, align: 'center',
-                        formatter: function (cellvalue) {
-                            if (cellvalue == "1") {
-                                return '<input name="isDisplay" onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
-
-                            } else {
-                                return '<input name="isDisplay"  onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                            }
-                        }
-                    },
-                    {name: 'isCloudMenu', width: 108, algin: 'center',
+                    {name: 'isCloudMenu', width: 108, align: 'center',
                         formatter: function (cellvalue) {
                             if (cellvalue == "1") {
                                 return '<input name="isCloud" onclick="checkToCloud(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
