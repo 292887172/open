@@ -432,7 +432,6 @@ def product_main(request):
         app_id = request.GET.get("ID", "")
         post_data = request.POST.get("name")
         id = request.POST.get("id")
-        print('post_data',post_data,'id',id)
         r = Redis3(rdb=6).client
         standa = request.POST.get("is_standa", None)  # 标准、自定义
         # 根据ID获取到数据库中的设备配置信息
@@ -539,7 +538,7 @@ def product_main(request):
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
-            print(type(res),res)
+            # print(type(res),res)
             return res
         elif post_data == "save_conf":
             if str(app.app_group) == '2':
