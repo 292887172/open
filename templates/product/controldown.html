@@ -464,7 +464,11 @@
     </style>
 {% endblock %}
 {% block menu %}
-    {% create_menu 1 user.account_id %}
+    {% if user.account_id %}
+    {% create_menu 0 user.account_id %}
+    {% else %}
+        {% create_menu 1 user.account_id %}
+    {% endif %}
 
 {% endblock %}
 {% block content %}
@@ -474,7 +478,7 @@
     <div class="title">
         <div class="wrapper">
             <ol class="breadcrumb" style="width: 36%;float: left;margin-left: 90px">
-                <li><a href="/product/list"></a></li>
+
                 <li style="color: #ff6202">控制台</li>
             </ol>
 
