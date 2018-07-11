@@ -23,8 +23,15 @@ function create_procuct(type, type1) {
         $("#product_name").val("集成灶");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
     }
-    else if (type == '31') {
+    else if (type == '11') {
         $("#ScreenSize").text("(5寸)");
+        $("#product_category_detail").val(11);
+        $("#productType").html("烤箱");
+        $("#product_name").val("烤箱");
+        $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
+    }
+    else if (type == '31') {
+
         $("#product_category_detail").val(31);
         $("#productType").html("洗碗机");
         $("#product_name").val("洗碗机");

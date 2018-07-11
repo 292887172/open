@@ -218,6 +218,9 @@ def product_controldown(request):
         #failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        for i in default_apps:
+            print(i.app_device_type)
+            print(i.app_name)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -312,7 +315,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", 0)
-        print('xxxxxxx',app_category_detail)
+
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)
