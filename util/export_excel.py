@@ -87,8 +87,7 @@ def deal_json(app):
         print("json loads error in :", e)
     for data in config_data:
         # 写入Excel的数据
-        j = {}
-        j["remarks"] = ""
+        j = {"remarks": ""}
         for l in range(len(data["mxs"])):
             j["remarks"] += data["mxs"][l]["data"] + ' '
             j["remarks"] += data["mxs"][l]["desc"] + ' '
@@ -96,11 +95,10 @@ def deal_json(app):
         j["name"] = data["name"]
         j["Stream_ID"] = data["Stream_ID"]
         j["mxsLength"] = data["mxsLength"]
-        j["values"] = json.dumps([data.get("min",0), data.get("max")])
-        j['widget'] = data['widget']
+        j["values"] = json.dumps([data.get("min", 0), data.get("max")])
+        j['widget'] = data.get('widget', 'button')
         j['isFunction'] = data.get("isFunction", 1)
         j['toSwitch'] = data.get('toSwitch', 0)
-
 
         # 写入json的数据
         i = dict()
@@ -118,7 +116,7 @@ def deal_json(app):
         i["widget"] = data.get("widget", "button")
         i['widgetId'] = ""
         i["value"] = 0
-        i["values"] = [data.get("min",0), data.get("max")]
+        i["values"] = [data.get("min", 0), data.get("max")]
         if data['paramType'] == 1:
             i['type'] = 'bool'
         elif data['paramType'] == 3:
@@ -162,9 +160,14 @@ def deal_json(app):
 
             }
             frame = {
-                "CheckoutAlgorithm": pc.get("checkout_algorithm"),
-                "StartCheckPid": pc.get("start_check_number"),
-                "EndCheckPid": pc.get("end_check_number")
+                "check_type": pc.get("checkout_algorithm"),
+                "check_data_start": pc.get("start_check_number"),
+                "check_data_end": pc.get("end_check_number"),
+                "endian_type": pc.get("endian_type", "0"),
+                "length": "",
+                "length_start": "",
+                "length_end": "",
+                "length_offset": "",
             }
             if z.protocol_factory_type == 1:
                 # 下行数据
@@ -180,11 +183,11 @@ def deal_json(app):
                         c = {"value": j['value'], "type": j['type']}
                         code.append(c)
                 if code:
-                    tmp = {"pid": i['number'], "length": i.get('length', 0), "ptype": i['name'], "code": code}
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "name": i['name'], "value": code}
                 else:
-                    tmp = {"pid": i['number'], "length": i.get('length', 0), "ptype": i['name']}
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "name": i['name']}
                 f_content.append(tmp)
-            frame['content'] = f_content
+            frame['structs'] = f_content
             frame_content.append(frame)
         j_data['frames'] = frame_content
     except Exception as e:
