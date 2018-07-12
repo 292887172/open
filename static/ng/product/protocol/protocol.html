@@ -1,4 +1,12 @@
 <style>
+
+    #successImg{
+        width: 58px;
+        height: 58px;
+        margin: 0px auto;
+        background: url("/static/image/success1.png") no-repeat ;
+        border:none;
+    }
     .u208 {
         margin-top: 7px;
         left: 0px;
@@ -253,11 +261,7 @@
     button{
        background:#fff;
         }
-    button.active{
-        color: #2fa666;
-        border-color: green;
-        background: #f2f0e1;
-    }
+
     .modal-content {
         position: fixed;
         top: 50%;
@@ -406,8 +410,21 @@
 
     // 被选中颜色
     function pitch(on) {
-        on.style.color = "green";
-        on.style.backgroundColor="#efedda"
+        var t =0;
+        if(t %2==0){
+            t++
+            console.log(t)
+             //放大代码
+            on.style.color = "green";
+            on.style.backgroundColor="#efedda"
+        }else{
+        //缩小代码
+            t++
+            on.style.color = "black";
+            on.style.backgroundColor="white"
+        }
+
+
 
         console.log(on)
     }
@@ -783,6 +800,7 @@
         </button>
     </div>
 </div>
+
 
 
 <script>

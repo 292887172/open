@@ -38,12 +38,11 @@
 
         .left div.left-dv4 {
             width: 100px;
-            margin-left: 100px;
+            text-align: center;
             background: rgba(110, 169, 248, .7);
             transform: skewX(-1deg);
-            margin-top: 0px;
+            margin: 0 auto;
             height: 54px;
-            margin-right: 2px;
         }
 
         .left-dv4:hover {
@@ -90,9 +89,7 @@
             color: #fff;
             height: 30px;
             width: 100px;
-            margin-top: 5px;
-            margin-left: 100px;
-            float: left;
+            margin: 5px auto 0;
             text-align: center;
             line-height: 22px
         }
@@ -426,40 +423,41 @@
         </div>
     </div>
      <div id="nb" style="height: 500px;background-color: white">
-          <div class="col-md-1"></div>
-          <div class="col-md-4 " style="height: 487px;text-align: left">
+         <div class="nb_main">
+            <div class="col-md-4 " style="height: 487px;text-align: left">
             <div style="margin-top: 50px;">
-                <div style="margin-top: 50px">
-                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span><img style="margin-left: 50px;width: 80px;display: none " src="/static/image/product/4.3.jpg" alt="">
+                <div style="margin-top: 50px" class="hover_text">
+                    <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span><img style="margin-left: 50px;width: 80px;display: none " src="/static/image/product/4.3.jpg" alt="">
                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于油烟机、洗碗机</p>
                 </div>
-                <div style="margin-top: 35px">
-                    <span style="font-size: 32px;color: black" onclick="toggleTab1(xx2)">5寸WiFi屏</span><img style="margin-left: 50px;width: 100px; " src="/static/image/product/5.jpg" alt="">
+                <div style="margin-top: 35px" class="hover_text">
+                    <span style="font-size: 32px;color: #000" onclick="toggleTab1(xx2)">5寸WiFi屏</span><img style="margin-left: 50px;width: 100px; " src="/static/image/product/5.jpg" alt="">
                      <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合新款智能厨电，应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
                 </div>
                 <div style="margin-top: 35px">
-                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx3)">6.8寸长条屏</span><img style="margin-left: 50px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
+                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx3)">6.8寸WiFi屏</span><img style="margin-left: 50px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
                      <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合广泛的传统厨电结构，快速出智能厨电，应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
                 </div>
-                <div style="margin-top: 35px">
-                    <span style="font-size: 20px;color: #6B6B6B" onclick="toggleTab1(xx4)">7寸WiFi屏</span><img style="margin-left: 50px;width: 120px;display: none " src="/static/image/product/7.jpg" alt="">
+                <div style="margin-top: 35px" class="hover_text">
+                    <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx4)">7寸WiFi屏</span><img style="margin-left: 50px;width: 120px;display: none " src="/static/image/product/7.jpg" alt="">
                      <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合现代主流的内容、格式，应用于集成灶、冰箱</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于集成灶、冰箱</p>
                 </div>
 
 
             </div>
 
-        </div>
-        <div class="col-md-6 col-md-offset-1" id="nb2" style="padding-left: 0px;margin-top: 60px">
-            <img id="xx1" src="/static/image/product/43cun.jpg" alt="">
-            <img id="xx2" style="display:none" src="/static/image/product/5cun.jpg" alt="">
-            <img id="xx3" style="display:none" src="/static/image/product/68cun.jpg" alt="">
-            <img id="xx4" style="display:none" src="/static/image/product/7cun.jpg" alt="">
-        </div>
+            </div>
+            <div class="col-md-5" id="nb2" style="padding-left: 0px;margin-top: 60px">
+                <img id="xx1" src="/static/image/product/43cun.jpg" alt="">
+                <img id="xx2" style="display:none" src="/static/image/product/5cun.jpg" alt="">
+                <img id="xx3" style="display:none" src="/static/image/product/68cun.jpg" alt="">
+                <img id="xx4" style="display:none" src="/static/image/product/7cun.jpg" alt="">
+            </div>
+         </div>
     </div>
     <div class="markLayout"></div>
     <div class="m" style="display: none">
