@@ -77,6 +77,16 @@ def category_detail(obj):
 
 
 register.filter(category_detail)
+def category_detail1(obj):
+    try:
+        type = str(obj)
+        category = {'0':'','1':'（标准产品）'}
+        return category[type]
+    except Exception as e:
+        print(e)
+
+
+register.filter(category_detail1)
 
 
 def is_none(value):

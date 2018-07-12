@@ -182,6 +182,7 @@
         <div class="hl-help" style="display: none">
             <span class="linkBlue">定义产品功能</span>&nbsp;&nbsp;&nbsp;
             <input type="hidden" id="device_type" ng-value="{[{ app_device_type }]}">
+            <span style="margin-left: 300px">已为您定制标准参数，如果标准参数不能满足需求，请通过【+定义新功能】添加。</span>
         </div>
 
         <div class="mt20" style="display: none"></div>
@@ -243,22 +244,7 @@
         <div id="ie-form"></div>
     </div>
 
-    <div class="popBox" id="newHtmlBox" style="display: block;z-index: 111111;text-align: center">
-        <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
-        <h3 style="text-align: center">温馨提示</h3>
-        <div class="cont mt20" style="margin-top: 20px;">
-            <div class="warnCont">
-                <p class="mt6">已为您定制标准参数，如果标准参数不能满足需</p>
-                <p class="mt6">求，请通过【+定义新功能】添加。申请发布需等待审核</p>
-            </div>
-        </div>
-        <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
-        <span >
-            <a  href="" onclick="new_close()"  class="btn-blue" style="margin-top: 46px;">知道了</a>
-        </span>
-
-    </div>
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -267,25 +253,8 @@
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
-        var flag = getCookie('cookie_prompt');
 
-        $('[data-rel=popover]').popover({container:'body'});
-        if(flag){
-            $("#newHtmlBox").css('display','none');
-            $(".markLayout").hide();
-        }
-        else{
-            $(".markLayout").show();
-        }
-        function new_close() {
-            var check_prompt = $("#check_continueShowTips").is(':checked');
-            // 关闭的情况下，选中不再提醒
-            if (check_prompt){
-                setCookie('cookie_prompt', check_prompt);
-            }
-            $("#newHtmlBox").css('display','none');
-            $(".markLayout").hide();
-        }
+
         function setCookie(name, value) {
             var Days = 30;
             var exp = new Date();

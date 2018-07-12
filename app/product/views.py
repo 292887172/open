@@ -317,19 +317,26 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", 0)
-
+        app_product_fast = request.POST.get("product_fast",0)
+        print(app_product_fast)
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)
             except Exception as e:
                 app_category_detail = 0
                 print(e)
+        if app_product_fast:
+            try:
+                app_product_fast = int(app_product_fast)
+            except Exception as e:
+                app_product_fast = 0
+                print(e)
         factory_name = request.POST.get("brandName", "")
         app_factory_id = get_factory_id(factory_name)
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-        print(app_group)
+
         device_conf = gen_app_default_conf(app_category_detail)
 
         app_logo = get_app_default_logo(app_category_detail)
@@ -349,7 +356,7 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                        device_conf, app_factory_id, app_group, app_logo)
+                        device_conf, app_factory_id, app_group, app_logo,app_product_fast)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
@@ -441,6 +448,8 @@ def product_main(request):
         #data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
         #data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
+        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+
         post_data = request.POST.get("name")
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
@@ -536,6 +545,7 @@ def product_main(request):
                     switch["toSwitch"] = 0
             save_app(app, opera_data)
             update_app_protocol(app)
+
             return HttpResponse('select_success')
         elif post_data in ['isShow', 'isControl', 'isDisplay', "isCloudMenu"]:
             val = request.POST.get("dd")
@@ -544,7 +554,7 @@ def product_main(request):
                 data[1][post_data] = val
                 if post_data == "isCloudMenu":
                     app.app_is_cloudmenu_device = check_cloud(opera_data)
-                save_app(app, opera_data)
+                save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 return HttpResponse('change_success')
         elif post_data == "export":
@@ -694,9 +704,9 @@ def protocol(request):
             return HttpResponse(json.dumps(data))
         try:
             if zdy == "0" or zdy == "1":
-                print('xxx')
+
                 mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
-                print(mlist)
+
                 if len(mlist) == 0:
                     p = DefaultProtocol().DEFAULT_DATA_ZDY
                     data = {"code": 2, "data": p, "protocol_type": zdy}
@@ -728,7 +738,8 @@ def protocol(request):
         r = DefaultProtocol().DEFAULT_DATA_ZDY
 
         data_protocol_list = json.loads(request.body.decode('utf-8'))
-        print('11',data_protocol_list)
+        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+
         try:
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
@@ -758,15 +769,15 @@ def protocol(request):
                 if types == "change":
                     ## 上下行  切换
                     if protocol_type == "0":
-                        update_protocol(list_key, data_sql_update, 1)
+                        update_protocol(list_key, data_sql_update, 1,cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=0)
                     else:
-                        update_protocol(list_key, data_sql_update, 0)
+                        update_protocol(list_key, data_sql_update, 0,cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=1)
                 else:
-                    update_protocol(list_key, data_sql_update, protocol_type)
+                    update_protocol(list_key, data_sql_update, protocol_type,cook_ies)
                     mlist = Protocol.objects.all().filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
                 for ii in mlist:
                     res_list_data = ii.protocol_factory_content
@@ -817,28 +828,22 @@ def portal(request):
 
         print(date1)
         data1 = int(date1)
-        # 根据id获取各个时间
+        # 根据id获取各个时间message_content
+
         t = App.objects.filter(app_id=data1)
         times = []
         for i in t:
-            print(i.app_appid[-8:])
-            res = search_time(i.app_appid[-8:])
-            ress = search_time1(i.app_appid[-8:])
-            resss = search_time11(i.app_appid[-8:])
-            if res:
-                times.append(str(res['ebf_pc_create_date']))
-            else:
-                times.append('暂无数据')
-            if ress:
-                times.append(str(ress['ebf_ui_update_date']))
-            else:
-                times.append('暂无数据')
-            if resss:
+            zy = i.app_appid[-8:]
+            timess = Message.objects.filter(device_key=zy)
+            for i in timess:
+                i.update_date = i.update_date + datetime.timedelta(hours=8)
+                tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
+                times.append({"time":tis,"message":i.message_content})
 
-                times.append(str(resss))
-            else:
-                times.append('暂无数据')
-            print(times)
+
+
+
+        print(times)
         return HttpResponse(json.dumps(times))
 @csrf_exempt
 def upload_file(request):
