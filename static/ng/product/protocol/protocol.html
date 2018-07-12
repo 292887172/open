@@ -299,6 +299,10 @@
         -webkit-box-shadow: inset 0 0 3px rgba(193, 193, 193, .3);
         background-color: #ccc;
     }
+    .xrx{
+        display: block;
+        margin: 10px 0;
+    }
 
     /*end*/
 </style>
@@ -589,7 +593,7 @@
         帧定义:
     </div>
     <hr>
-    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 103px;border-color:#333"
+    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
             name="condition" id="select_id" class="bianji">
         <option value="0" id="s_x" ng-selected="response.protocol_type=='0'">MCU到云端</option>
         <option value="1" id="x_x" ng-selected="response.protocol_type=='1'">云端到MCU</option>
@@ -602,7 +606,7 @@
             <div class="num-val">{[{x.val}]}</div>
         </div>
     </div>
-    <select disabled="disabled" style="display: block;margin-top: 12px;margin-left:100px;height: 40px;color: #333;width: 103px;border-color:#333"
+    <select disabled="disabled" style="display: block;margin-top: 12px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
             name="condition" id="select_id_1" class="bianji">
         <option value="0" id="s_x_e" ng-selected="response.endian_type=='0'">小端</option>
         <option value="1" id="x_x_e" ng-selected="response.endian_type=='1'">大端</option>
