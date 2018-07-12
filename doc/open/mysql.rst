@@ -129,6 +129,7 @@
       `ebf_app_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       `ebf_app_update_date` datetime NOT NULL COMMENT '更新时间',
       `ebf_app_is_cloudmenu_device` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是云菜谱产品（0：否，1：是）',
+      `ebf_app_create_source` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'App创建来源（0：手动创建，1：模板创建）',
       PRIMARY KEY (`ebf_app_id`),
       KEY `Index_1` (`ebf_developer_id`),
       CONSTRAINT `FK_Reference_6` FOREIGN KEY (`ebf_developer_id`) REFERENCES `ebt_developer` (`ebf_developer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -284,6 +285,8 @@
       `ebf_message_sender` varchar(64) NOT NULL COMMENT '消息发送者id',
       `ebf_message_target` varchar(64) NOT NULL COMMENT '消息目标接受者id',
       `ebf_message_is_read` int(2) NOT NULL DEFAULT '0' COMMENT '是否阅读（1：已读，0：未读）',
+      `ebf_message_handler_type` int(2) NOT NULL DEFAULT '0' COMMENT '操作类型（0：无， 1：功能编辑， 2：协议编辑，3：UI编辑）',
+      `ebf_device_key` varchar(8)  COMMENT '设备产品key',
       `ebf_message_update_date` datetime NOT NULL COMMENT '更新时间',
       `ebf_message_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       PRIMARY KEY (`ebf_message_id`)

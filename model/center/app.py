@@ -72,6 +72,9 @@ class App(models.Model):
     app_factory_uid = models.CharField(max_length=64, null=True, db_column='ebf_app_factory_uid')
     # 云菜谱可控
     app_is_cloudmenu_device = models.IntegerField(default=0, db_column='ebf_app_is_cloudmenu_device')
+    # app创建来源,0：默认创建，1：模板创建
+    app_create_source = models.IntegerField(default=0, db_column='ebf_app_create_source')
+
     class Meta:
         app_label = 'center'
         db_table = 'ebt_app'
