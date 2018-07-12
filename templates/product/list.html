@@ -17,7 +17,12 @@
 
         }
         .goodsBox{
+            display: flex;
+            display: -webkit-flex;
+            flex-wrap:wrap;
+            width:1200px;
             height: auto;
+            padding: 0 3.2%;
         }
         .wrapper2 {
             max-width: 1300px;
@@ -39,6 +44,8 @@
 
         }
         .title-sub {
+            padding: 0 3.2%;
+            margin-left: 10px;
             height: 0px;
         }
 
@@ -186,10 +193,11 @@
             font-size: 12px;
         }
         .goods-list{
+            float: none;
             width: 346px;
             height: 156px;
             padding: 14px;
-            margin-right: 36px;
+            margin: 8px 10px 8px;
         }
         .goods-list dl dt {
             width: auto;
@@ -441,10 +449,15 @@
         display: inline;
         font-size: 16px;
         padding-left: 10px;
+
     }
     li a:hover{
         color: #ff6202;
         text-decoration: underline;
+    }
+    .old{
+        color: #000 !important;
+        border-left:3px solid #000 !important;
     }
 
     </style>

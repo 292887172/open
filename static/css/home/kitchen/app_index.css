@@ -1,0 +1,323 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+}
+fieldset,
+img,
+input,
+button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline-style: none;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-decoration: none;
+  font-weight: normal;
+}
+select,
+input,
+textarea {
+  font-size: 12px;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  min-width: 1200px;
+  position: relative;
+}
+.main {
+  width: 1000px;
+  margin: 0 auto;
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  z-index: 1;
+}
+.header .logo {
+  float: left;
+}
+.header .logo a {
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin: 25px 0;
+}
+.header .logo a img {
+  width: 100%;
+}
+.header .logo-title {
+  float: left;
+  padding-left: 16px;
+}
+.header .logo-title a {
+  color: #fff;
+  font-size: 20px;
+  line-height: 95px;
+}
+.container {
+  overflow: hidden;
+}
+#content {
+  position: relative;
+  width: 100%;
+  height: 426px;
+  background: url("https://storage.53iq.com/group1/M00/35/1A/CgoKQ1qqJl-ANHTMAAKCwlCOKAE594.jpg") top center no-repeat;
+}
+#content .content-left {
+  width: 45%;
+  height: 440px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#content .content-right {
+  width: 55%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#content .content-right .content-box {
+  width: 500px;
+  position: absolute;
+  top: 100px;
+  left: 0;
+}
+#content .content-title {
+  width: 500px;
+  text-align: center;
+  color: #fff;
+}
+#content .content-title h3 {
+  font-size: 30px;
+}
+#content .content-title .slogan {
+  font-size: 20px;
+  color: #bdbcba;
+  letter-spacing: 11px;
+  margin-top: 10px;
+}
+#content .content-footer {
+  width: 500px;
+  text-align: center;
+  margin-top: 40px;
+}
+#content .content-footer .btn-a {
+  display: inline-block;
+  width: 180px;
+  height: 60px;
+  line-height: 56px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#content .content-footer .download-ios-btn {
+  background-color: #fff;
+  margin-right: 5px;
+}
+#content .content-footer .download-ios-btn:hover {
+  box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+  -o-box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+  -ms-box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+}
+#content .content-footer .download-ios-btn .download-ios-icon {
+  background: url("https://storage.53iq.com/group1/M00/35/19/CgoKQ1qqEwCARID7AAACf7PdJNk123.png") left center no-repeat;
+  background-size: 19px 23px;
+  padding-left: 35px;
+  font-size: 23px;
+  opacity: 0.9;
+}
+#content .content-footer .download-ios-btn .download-ios-text {
+  font-size: 18px;
+  color: #161823;
+  opacity: 0.9;
+}
+#content .content-footer .download-android-btn {
+  background-color: #f23d00;
+  margin-left: 5px;
+}
+#content .content-footer .download-android-btn:hover {
+  box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+  -o-box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+  -ms-box-shadow: 0 6px 18px 0 rgba(255,255,255,0.3);
+}
+#content .content-footer .download-android-btn .download-android-icon {
+  background: url("http://storage.56iq.net/group1/M00/35/32/CgoKQ1qrOkqAWxkLAAACOPeN9Ac332.png") left center no-repeat;
+  background-size: 21px 24px;
+  padding-left: 37px;
+  font-size: 24px;
+  opacity: 0.9;
+}
+#content .content-footer .download-android-btn .download-android-text {
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.9;
+}
+#content .content-footer .content-or {
+  position: relative;
+  width: 370px;
+  height: 15px;
+  line-height: 15px;
+  font-size: 14px;
+  margin: 30px auto 0;
+  color: #aeaeae;
+  overflow: hidden;
+}
+#content .content-footer .content-or .line {
+  width: 120px;
+  height: 1px;
+  position: absolute;
+  background-color: #515151;
+}
+#content .content-footer .content-or .line-l {
+  top: 7px;
+  left: 0;
+}
+#content .content-footer .content-or .line-r {
+  top: 7px;
+  right: 0;
+}
+#content .content-footer .qrcode {
+  margin-top: 20px;
+}
+#content .content-footer .qrcode .qrcode-box {
+  width: 165px;
+  margin: 0 auto;
+  text-align: center;
+}
+#content .content-footer .qrcode .qrcode-box img {
+  width: 100%;
+}
+#content .phone-android {
+  position: absolute;
+  top: 26%;
+  left: 36%;
+  width: 257px;
+  height: 430px;
+  background: url("http://storage.56iq.net/group1/M00/35/34/CgoKQ1qrWdSABRpGAAB3UKdtADg079.png") center center no-repeat;
+  background-size: cover;
+  opacity: 0;
+  -webkit-transition: 1.4s;
+  -moz-transition: 1.4s;
+  transition: 1.4s;
+}
+#content .phone-ios {
+  position: absolute;
+  top: 26%;
+  left: 36%;
+  width: 257px;
+  height: 430px;
+  background: url("https://storage.53iq.com/group1/M00/35/1A/CgoKQ1qqJ0qAQE90AABYJ3THtk0764.png") center center no-repeat;
+  background-size: cover;
+  opacity: 0;
+  -webkit-transition: 1.2s;
+  -moz-transition: 1.2s;
+  transition: 1.2s;
+}
+#content .animate {
+  left: 30%;
+  opacity: 1;
+  z-index: 5;
+}
+.contact {
+  margin-top: 200px;
+}
+.contact .contact-title {
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+}
+.contact .contact-info {
+  margin-top: 70px;
+  text-align: center;
+}
+.contact .contact-info .email,
+.contact .contact-info .telinfo {
+  display: inline-block;
+  overflow: hidden;
+  text-align: left;
+  margin: 0 100px;
+}
+.contact .contact-info .email .im,
+.contact .contact-info .telinfo .im {
+  float: left;
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #e0d9d9;
+}
+.contact .contact-info .email .im img,
+.contact .contact-info .telinfo .im img {
+  width: 42px;
+  height: 40px;
+}
+.contact .contact-info .email .text,
+.contact .contact-info .telinfo .text,
+.contact .contact-info .email .tel,
+.contact .contact-info .telinfo .tel {
+  float: left;
+}
+.contact .contact-info .email .text p,
+.contact .contact-info .telinfo .text p,
+.contact .contact-info .email .tel p,
+.contact .contact-info .telinfo .tel p {
+  width: 140px;
+}
+.footer {
+  margin-top: 60px;
+  text-align: center;
+  padding: 20px 0;
+  color: #999;
+  font-size: 14px;
+}
+.footer p {
+  margin-bottom: 10px;
+}
+.footer a {
+  margin: 0 5px;
+  color: #999;
+}
+.footer .copyright {
+  margin-top: 10px;
+}
