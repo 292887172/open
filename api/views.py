@@ -43,10 +43,13 @@ def pull_ui_conf(request):
 def upload_ui_conf(request):
     if request.method == 'POST':
         device_id = request.POST.get('key')
+
         device_conf = request.POST.get('ui_conf')
+        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+
         if device_id:
             if device_conf:
-                back_data = get_ui_base_conf(device_id, device_conf)
+                back_data = get_ui_base_conf(device_id, device_conf,cook_ies)
                 if back_data == 'ok':
                     data = {'code': 0, 'msg': 'ok'}
                     return HttpResponse(json.dumps(data), content_type="application/json")

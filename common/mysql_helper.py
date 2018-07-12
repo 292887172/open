@@ -4,6 +4,7 @@ import pymysql
 
 from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL_PWD_SYS, MYSQL_DB_SYS
 from base.crypto import md5_en
+from model.center.message import Message
 import datetime
 
 
@@ -182,7 +183,7 @@ def query_ui_conf(key):
         close_connection(conn)
 
 
-def get_ui_base_conf(key, conf):
+def get_ui_base_conf(key, conf,cook_ies):
     """
     获取自定义ui配置并且保存
     :param key: 
@@ -192,11 +193,17 @@ def get_ui_base_conf(key, conf):
     conn = get_main_connection()
     isExit = query_ui_conf(key)
     if isExit:
-        back_data = modify_ui_conf(key, conf, conn)
+        back_data = modify_ui_conf(key, conf, conn,cook_ies)
         if back_data == 'ok':
+
             return 'ok'
     else:
         try:
+
+            Message.objects.create(message_content='UI更新', message_type=int(3), message_handler_type=int(3),
+                                   device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                   create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+
             cursor = conn.cursor()
             sql = '''insert into ebt_device_page_conf(ebf_device_key,ebf_page_conf,ebf_ui_create_date) values(%s,%s,%s)'''
             l = [[key, conf, datetime.datetime.utcnow()]]
@@ -209,7 +216,7 @@ def get_ui_base_conf(key, conf):
             close_connection(conn)
 
 
-def modify_ui_conf(key, conf, conn):
+def modify_ui_conf(key, conf, conn,cook_ies):
     """
     通过key查询是否存在配置，存在时修改配置
     :param key: 
@@ -217,11 +224,16 @@ def modify_ui_conf(key, conf, conn):
     :param conn    
     :return: 
     """
+
+
     sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s', ebf_ui_update_date = '%s' WHERE ebf_device_key = '%s'" % (conf, datetime.datetime.utcnow(), key)
     try:
+        Message.objects.create(message_content='UI更新',message_type=int(3),message_handler_type=int(3),device_key=key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
+
         return 'ok'
     except Exception as e:
         print(e)

@@ -7,6 +7,7 @@ from model.center.app import App
 from model.center.app_history import AppHistory
 from model.center.developer import Developer
 from model.center.account import Account
+from model.center.message import Message
 from model.center.device_fun import Device_Fun
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
@@ -32,7 +33,7 @@ _convention = ConventionValue()
 
 
 def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
-               app_factory_id, app_group, app_logo, check_status=0):
+               app_factory_id, app_group, app_logo,app_product_fast, check_status=0):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -45,6 +46,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     :param app_factory_id: app品牌id
     :param app_group: 设备类型
     :param check_status: 产品审核状态
+    :param app_product_fast: 是否快速创建
     :return:
     """
     try:
@@ -73,11 +75,13 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
                           app_logo=app_logo,
+                          app_create_source=app_product_fast,
                           check_status=check_status,
                           app_create_date=datetime.datetime.utcnow(),
                           app_update_date=datetime.datetime.utcnow()
                           )
                 app.save()
+                print('保存成功')
                 message_content = '"'+ app_name + '"' + CREATE_APP
                 save_user_message(developer_id, message_content, USER_TYPE, developer_id)
                 break
@@ -127,6 +131,7 @@ def del_app(app_id):
                                      app_model=app.app_model,
                                      app_level=app.app_level,
                                      app_group=app.app_group,
+
                                      app_push_url=app.app_push_url,
                                      app_push_token=app.app_push_token,
                                      app_device_type=app.app_device_type,
@@ -575,11 +580,17 @@ def fetch_one_app_data(serach,page, limit, order_by_names):
         logging.getLogger("").error(e)
         return ""
 
-def save_app(app, opera_data):
+def save_app(app, opera_data,cook_ies):
     # 保存修改后的device_config
     r = Redis3(rdb=6).client
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
+    try:
+        Message.objects.create(message_content='功能更新',message_type=int(1),message_handler_type=int(1),device_key=key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+
+    except Exception as e:
+        print(e)
+        logging.getLogger("").error(e)
     remove_conf_prefix(key)
     app.app_update_date = datetime.datetime.utcnow()
     app.save()
