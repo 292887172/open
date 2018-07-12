@@ -5,7 +5,7 @@ import logging
 import pymysql
 import json
 import datetime
-from base.connection import SysMysqlHandler
+from base.connection import SysMysqlHandler,MysqlHandler
 from base.crypto import md5_en
 from util.export_excel import deal_json
 from model.center.protocol import Protocol
@@ -56,10 +56,11 @@ def search_time(key):
         sqlOne = "SELECT ebf_pc_create_date FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
-        print(test)
+
         return test
     except Exception as e:
         print(e)
+        return ''
     finally:
         conn.close()
 def search_time1(key):
@@ -73,6 +74,7 @@ def search_time1(key):
         return test
     except Exception as e:
         print(e)
+        return ''
     finally:
         conn.close()
 def search_time11(key):

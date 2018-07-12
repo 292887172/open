@@ -825,17 +825,18 @@ def portal(request):
             res = search_time(i.app_appid[-8:])
             ress = search_time1(i.app_appid[-8:])
             resss = search_time11(i.app_appid[-8:])
-            if res:
-                times.append(str(res['ebf_pc_create_date']))
+
+            if res['ebf_pc_create_date']:
+                times.append(str(res['ebf_pc_create_date'] + datetime.timedelta(hours=8)))
             else:
                 times.append('暂无数据')
-            if ress:
-                times.append(str(ress['ebf_ui_update_date']))
+            if ress['ebf_ui_update_date']:
+                times.append(str(ress['ebf_ui_update_date'] + datetime.timedelta(hours=8)))
             else:
                 times.append('暂无数据')
             if resss:
 
-                times.append(str(resss))
+                times.append(str(resss + datetime.timedelta(hours=8)))
             else:
                 times.append('暂无数据')
             print(times)
