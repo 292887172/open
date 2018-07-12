@@ -53,9 +53,9 @@
         }
 
         .menuBox ul {
-            padding-left: 0px;
+
             border-top: 1px solid #f5f5f5;
-            padding-top: 7px;
+            padding-top: 0px;
         }
 
         .menuBox ul li{
@@ -83,7 +83,7 @@
 
         h5 {
             padding-left: 15px;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             cursor: pointer;
             position: relative;
         }

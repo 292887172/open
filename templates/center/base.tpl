@@ -64,7 +64,7 @@ var _hmt = _hmt || [];
                                             title="53iq云智能云"></a>
         </h1>
         <ul class="nav">
-            <li><a href="/product/controldown">控制台</a></li>
+            <li><a href="/product/controldown/">控制台</a></li>
             {% if user.account_id or user.developer.developer_from == 3%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% else %}
@@ -72,7 +72,8 @@ var _hmt = _hmt || [];
             {% endif %}
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
             <!--<li><a href="{% url 'wiki' %}">开发指南</a></li>-->
-            <li><a href="/smartmenu">智能菜谱</a></li>
+            <li><a href="/SmartRecipe">智能菜谱</a></li>
+            <li><a href="/community">厨房社区</a></li>
 
         </ul>
         <div class="sign_out">

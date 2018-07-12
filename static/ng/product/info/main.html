@@ -48,81 +48,132 @@
         color: #fff;
         background: #c6c6c6;
     }
-
-    .goods-list {
-        width: 1346px;
-        height: 186px;
-        padding: 14px;
-        margin-right: 36px;
-    }
-    .goods-list dl dt {
-            width: auto;
-            height: auto;
-            top: 10px;
-            border: 1px solid #c9c9c9;
-            border-radius: 4px;
-
-        }
-
-        .goods-list dl dd {
-            margin-left: 96px;
-            padding-top: 6px;
-        }
-
-        .goods-list dl dt img {
-            width: 70px;
-            height: 75px;
-        }
-
-        .goods-list dl dd .goods-title {
-            margin: 0;
-        }
-
-        .self-button {
-            float: left;
-            margin-left: -43%;
-            margin-top: 20%;
-        }
-
-        .product-info-p {
-            float: left;
-            width: 81%;
-        }
-
-        .goods-list dl dd.ui-control {
-            padding-top: 97px;
-            margin-left: 0;
-        }
 </style>
 <div class="box2 relative">
     <div class="hl-help">
         <span class="linkBlue">产品基本信息</span>
 
     </div>
-    <div class="goods-list" style="background-color: #0e84b5">
-        <dl>
-            <dt>
-                <a href="/product/main/?ID=513#/info">
-                            <img src="http://storage.56iq.net/group1/M00/27/79/CgoKQ1ok6-KAJ2WKAAAHByAZqnw209.png" onerror="this.src='/static/image/global/default.png'" title="产品图标">
-                        </a>
-            </dt>
-           <dd>
-
-                <span>{[{infoFormData.app_name}]}</span>
-                <span>{[{infoFormData.app_model}]}</span>
-                <span>分类:{[{app_category}]} / {[{app_device_name}]}</span>
-               <span>{[{ infoFormData.app_update_time }]}</span>
-               <span>{[{ infoFormData.key }]}</span>
-
-                <span >跳转id：{[{ infoFormData.app_id }]}
-                </span>
-               <a href=""></a>
-           </dd>
-        </dl>
-    </div>
     <div class="mt20">
 
+        <form action="" name="ProductInfoForm" method="post">
+            <input type='hidden' name='csrfmiddlewaretoken' ng-model="infoFormData.csrfmiddlewaretoken"/>
+            <input type="hidden" name="app_id" ng-model="infoFormData.app_id"/>
+            <div class="boxInfo" style="border-top: none">
 
+                <dl class="fmInfo">
+                    <dt><span style="color: #d43f3a;">*</span>产品名称</dt>
+                    <dd>
+                        <input type="text" id="productNameText" ng-disabled="{[{ disabled }]}" onblur="checkProductName()" ng-model="infoFormData.app_name" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="productNameTips"></span>
+                    </dd>
+                     <dd id="checkProduct" style="color:red;display:none;left: 20px;position: relative;"></dd>
+                </dl>
+
+                <dl class="fmInfo">
+                    <dt>品牌</dt>
+                    <dd>
+                        <input type="hidden" name="brand_id" id="brand_id" value="{[{ infoFormData.app_factory_uid }]}" ng-model="infoFormData.app_factory_uid" >
+                        <input type="text" id="brandNameText" maxlength="18" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.band_name" onclick="showBrandList('brandAddUl');" onkeyup="showBrandList('brandAddUl',this.value)" class="w400 form-control" maxlength="18">
+                        <span class="tips-error hiden" id="brandNameTips"></span>
+                        <ul id="brandAddUl" class="vague" onmouseover="this.style.display='';" onmouseout="this.style.display='none';" style="display: none;"></ul>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>型号</dt>
+                    <dd>
+                        <input type="text" id="productModelText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_model" class="w400 form-control" maxlength="48">
+                        <span class="st" style="color:#999">可选</span>
+                        <span class="tips-error hiden" id="productModelTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>分类</dt>
+                    <dd style="padding-top: 5px;">
+                        {[{app_category}]} / {[{app_device_name}]}
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>创建时间</dt>
+                    <dd style="padding-top: 5px;">
+                        {[{ infoFormData.app_create_time }]}
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>更新时间</dt>
+                    <dd style="padding-top: 5px;">
+                        {[{ infoFormData.app_update_time }]}
+                    </dd>
+                </dl>
+                <dl class="fmInfo" id="appid" style="display: none">
+                    <dt>Appid</dt>
+                    <input type="hidden" id="app_group" value="{[{infoFormData.app_group}]}">
+                    <dd style="padding-top: 5px;">
+                        {[{appid}]}
+                    </dd>
+                </dl>
+                <dl class="fmInfo" id="secret" style="display: none">
+                    <dt>Secret</dt>
+                    <input type="hidden" id="app_group" value="{[{infoFormData.app_group}]}">
+                    <dd style="padding-top: 5px;">
+                        {[{app_secret}]}
+                    </dd>
+                </dl>
+
+                <dl class="fmInfo" id="command-type" >
+                    <dt>指令类型</dt>
+                    <dd>
+                        <select name="app_command" id="selectCommand"  ng-disabled="{[{ disabled }]}" ng-click="showHide()" class="sel2" ng-model="infoFormData.app_command" style="width:96px;">
+                            <option value="是" selected="selected">全指令</option>
+                            <option value="否" >单指令</option>
+                        </select>
+
+                        <label id="my-label-1"  class="label-command" >&nbsp;单指令数据部分添加功能序号和对应状态，每次只能传递一个功能状态</label>
+                        <label id="my-label-2"  class="label-command" > &nbsp;全指令数据部分传输的功能状态必须和功能列表顺序保持一致，不可交叉和漏传</label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="boxInfo">
+                <dl class="fmInfo">
+                    <dt>产品描述</dt>
+                    <dd>
+                        <textarea rows="3"  id="productDescriptionlText" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_describe"
+                               maxlength="256" class="w400 form-control" placeholder="请填写产品可实现的功能等整体描述"></textarea>
+                        <span class="tips-error hiden" id="productDescriptionlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品网址</dt>
+                    <dd>
+                        <input  type="text" id="productDescriptionlUrl" ng-disabled="{[{ disabled }]}" ng-model="infoFormData.app_site"
+                               maxlength="512" class="w400 form-control" placeholder="请填写产品简介的url地址，以http://开头">
+                        <span class="tips-error hiden" id="productDescriptionlUrlTips"></span>
+                    </dd>
+                </dl>
+                <dl class="fmInfo">
+                    <dt>产品图片</dt>
+                    <dd>
+                        <p class="iptTxt ft9">(建议尺寸为200像素×200像素的PNG图片，大小不超过1M)</p>
+                        <div class="upload" id="productImgDiv" style="float:left; width:100px;height:100px;">
+                            <img id="productImg" name="app_logo" class="upload-photo" src="{[{ productImgSrc }]}" ng-src="{[{ infoFormData.app_logo }]}" onerror="this.src=''" width="100" height="100" style="display: block; vertical-align: top;">
+                            <span class="tips-error hiden" id="productImgTips" ng-model="productImgTips"></span>
+                            <div id="" class="moxie-shim moxie-shim-html5"
+                                 style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; overflow: hidden; z-index: 0;">
+                                <input id="productImgFile" name="productImgFile" fileread="productImgSrc" ng-hide="{[{ visible }]}" type="file"
+                                       style="font-size: 999px; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                       multiple="" accept="image/jpeg,image/gif,image/png">
+                            </div>
+                        </div>
+                        <input id="upload-input-id" type="hidden" name="product.app_logo" value="">
+                    </dd>
+                </dl>
+            </div>
+        </form>
+
+        <div class="ml100 mt10 mb20" ng-hide="{[{ visible }]}" id="butActDiv">
+            <span class="pr20"><a href="javascript:void(0)" class="btn-blue" ng-click="SubmitInfoForm()">保存</a></span>
+            <span><a href="javascript:" ng-click="resetInfo()" class="btn-gray">重置</a></span>
+        </div>
     </div>
 </div>
 <script src="/static/js/common/ajaxfileupload.min.js"></script>

@@ -158,8 +158,8 @@
 
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
-                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
+                        <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
             </ol>
@@ -174,7 +174,7 @@
                     <div>
                         <form action="" method="POST" name="productAddForm">
                             {% csrf_token %}
-                            <div style="float: left;width: 53%">
+                            <div style="float: left;width: 48%">
                                 <input type="hidden" name="developer_id" value="{{ developer.developer_id }}"/>
                                 <input type="hidden" name="product_describe" value="hello world"/>
                                 <h4 class="infoTit">填写基本信息</h4>
@@ -191,11 +191,13 @@
                                             <option value="6">冰箱</option>
                                             <option value="11">烤箱</option>
                                             <option value="20">蒸箱</option>
+                                            <option value="21">蒸烤箱</option>
                                             <option value="25">电压力锅</option>
                                             <option value="26">电饭煲</option>
                                             <option value="27">台式小烤箱</option>
                                             <option value="30">微蒸烤一体</option>
-                                            <option value="0">其他</option>
+                                            <option value="31">洗碗机</option>
+                                            <option value="">其他</option>
                                         </select>
                                     </dd>
                                     <span style="color: red;display: none;padding-left: 20px;" class="check-sel">请选择产品分类</span>
@@ -236,7 +238,7 @@
                                     <dt>指令类型</dt>
                                     <dd>
                                         <input type="text" name="product_group" id="product_group" maxlength="48"
-                                               class="w280 form-control hidden" placeholder="产品类型" value="2">
+                                               class="w280 form-control hidden" placeholder="产品类型" value="3">
                                         <select name="product_command" onclick="showHide()" id="product_command"
                                                 ng-disabled="{[{ disabled }]}" class="sel2" style="width:96px;">
                                             <option value="是" selected="selected">全指令</option>
@@ -248,20 +250,25 @@
                                     </dd>
                                 </dl>
                             </div>
-                            <div style="float: right;width: 47%">
+                            <div style="float: right;width: 52%">
                                 <h4 class="infoTit02">
                                     选择技术方案 <span class="f12">（后期可进行WiFi/Android方案的自由切换）</span>
                                 </h4>
                                 <div class="scheme">
-                                    <dl class="cur plan" onclick="selectScheme(this, 2)" id="f1">
-                                        <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
-                                        <dd>WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</dd>
+                                    <dl class="cur plan" onclick="selectScheme(this, 3)" id="f2">
+                                        <dt><img src="{% static 'image/product/wifiscreen.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</dd>
                                     </dl>
-
                                     <dl onclick="selectScheme(this, 1)" id="f3" class="plan">
                                         <dt><img src="{% static 'image/product/android.png' %}"><i class="icon-selected"></i></dt>
                                         <dd>Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱</dd>
                                     </dl>
+                                    <dl onclick="selectScheme(this, 2)" id="f1" class="plan">
+                                        <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</dd>
+                                    </dl>
+
+
                                 </div>
                                 <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
 
@@ -304,21 +311,21 @@
                         </span>
                         <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
                     </div>
-                    <div class="ant-row ant-form-item" id="com_type">
+                   <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p style="float: right;width: 75%"><input class="magic-radio" type="radio"
-                                                                  onclick="select_progm(2)" name="select_group" id="c1"
+                        <p class="technology" style="float: right;width: 75%">
+                            <input class="magic-radio" type="radio" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
                                                                   checked>
+                            <label for="c3">WiFi屏</label>
+                            <input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" >
                             <label for="c1">WiFi</label>
-                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)"
-                                   id="c2">
+                            <input class="magic-radio" type="radio" name="select_group" disabled="disabled" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div class="select-progm1" style="font-size: 12px;color: #2980b9;">
-                            WiFi方案要求设备支持5V供电，两路串口
-                        </div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -330,7 +337,7 @@
                     </div>
                     <input type="hidden" value=0 id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
-                    <input type="hidden" value=2 name="product_group" class="product_group">
+                    <input type="hidden" value=3 name="product_group" class="product_group">
                     <input type="hidden" value="是" name="product_command">
 
                 </form>

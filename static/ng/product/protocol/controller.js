@@ -67,6 +67,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     // 获取前端接收到的数据
                     $scope.response = response.data;
                     console.log($scope.response.frame_content[0]['length'])
+                    console.log($scope.response.endian_type,'11')
                     $scope.response.protocol_type = response.protocol_type;
                     if (response.code == 1) {
                         // 非标协议
@@ -574,6 +575,10 @@ angular.module('Product.protocol', ['ngRoute'])
                     console.log(dict_2)
                 }
             }
+            //大小端判定
+            console.log('11111111')
+            console.log('端',$("#select_id_1 option:selected").val())
+            $scope.response.endian_type = $("#select_id_1 option:selected").val();
             $scope.response.frame_taf = list_2;
             $scope.response.frame_content = li;
             $scope.response.start_check_number = $("#input_04").val();

@@ -16,7 +16,9 @@
             margin: 0 auto;
 
         }
-
+        .goodsBox{
+            height: auto;
+        }
         .wrapper2 {
             max-width: 1300px;
         }
@@ -41,7 +43,8 @@
         }
 
         .title-sub {
-            padding: 36px 0;
+            padding-top: 16px;
+            padding-bottom: 36px;
         }
 
         .set-radius {
@@ -184,7 +187,7 @@
         }
         .goods-list{
             width: 346px;
-            height: 186px;
+            height: 156px;
             padding: 14px;
             margin-right: 36px;
         }
@@ -220,10 +223,12 @@
         .product-info-p {
             float: left;
             width: 81%;
+            margin-left: -45px;
+            display: block;
         }
 
         .goods-list dl dd.ui-control {
-            padding-top: 97px;
+            padding-top: 73px;
             margin-left: 0;
         }
 
@@ -297,9 +302,9 @@
             width: 350px;
 
             margin: auto;
-            height: 43px;
+            height: 23px;
             overflow: visible;
-            background-color: #fff;
+            background-color: initial;
             border-radius: 0;
             position: relative;
 
@@ -356,12 +361,23 @@
         .progress li.prog_a {
             position: relative;
             left: 0;
+            width: 50px;
+            text-align: left;
+            top: 0;
+        }
+        .progress li.prog_b {
+            position: relative;
+            left: 0;
+            width: 50px;
+            text-align: left;
             top: 0;
         }
 
         .progress li.prog_c {
             position: relative;
-            left: 14px;
+            left: 0;
+            width: 50px;
+            text-align: left;
             top: 0;
         }
 
@@ -386,7 +402,7 @@
         border-left: 1px solid;
     }
     .parcode{
-        top: 56%;
+        top: 50%;
         border: 1px solid #ccc;
         width: 168px;
         height: 184px;
@@ -444,7 +460,7 @@
                 <li><a href="/product/list">产品管理</a>  </li>
                  <li style="color: #ff6202">我的产品</li>
             </ol>
-            <ol style="width: 50%;float: left;margin: 6px 0 1px;" class="new-app">
+            <ol style="width: 60%;float: left;margin: 6px 0 1px;" class="new-app">
                 <li style="color: #c6c6c6;">模板创建：</li>
                 {% for app in default_apps %}
                     <li>
@@ -452,8 +468,8 @@
 
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
-                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
+                        <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
             </ol>
@@ -482,13 +498,18 @@
                     <div class="ant-row ant-form-item" id="com_type">
                         <label class="dtbox">技术方案:</label>
 
-                        <p class="technology" style="float: right;width: 75%"><input class="magic-radio" type="radio" onclick="select_progm(2)" name="select_group" id="c1" checked>
+                        <p class="technology" style="float: right;width: 75%">
+                            <input class="magic-radio" type="radio" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
+                                                                  checked>
+                            <label for="c3">WiFi屏</label>
+                            <input class="magic-radio" disabled="disabled" type="radio" onclick="select_progm(2)" name="select_group" id="c1" >
                             <label for="c1">WiFi</label>
-                            <input class="magic-radio" type="radio" name="select_group" onclick="select_progm(1)" id="c2" >
+                            <input class="magic-radio" type="radio" name="select_group" disabled="disabled" onclick="select_progm(1)" id="c2" >
                             <label for="c2">Android屏<span id="ScreenSize"></span></label>
                         </p>
 
-                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi方案要求电控板支持5V供电，两路串口</div>
+                        <div  class="select-progm1" style="font-size: 12px;color: #2980b9;">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</div>
                     </div>
 
                     <div class="ant-row ant-form-item">
@@ -513,9 +534,9 @@
               </span>
         </div>
     </div>
-    <div class="title-sub"><span class="old">我的产品</span>
-        <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: right">
-        {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
+    <div class="title-sub"><span class="old">最新编辑</span>
+        <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: left">
+        {% if unpublished_apps %}
             <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
                 <i class="fa fa-plus"></i>
                 <span class="text">创建产品</span>
@@ -523,10 +544,11 @@
         {% endif %}
         </div>
     </div>
+
     <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
 
-    <div class="goodsBox" style=" margin-top: 30px;">
-        {% if not  published_apps and not publishing_apps and not failed_apps and not unpublished_apps and not keyword %}
+    <div class="goodsBox" style=" margin-top: 8px;height: 180px">
+        {% if not unpublished_apps and not keyword %}
             <div style="text-align: center">
                 <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
                 <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
@@ -536,125 +558,18 @@
                 </a>
             </div>
         {% endif %}
-        {% for app in published_apps %}
-            <div class="goods-list">
-
-                <dl>
-                    <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
-                                                                                    onerror="this.src='{% static "image/global/default.png" %}'"
-                                                                                    title="产品图标"></a>
-                    </dt>
-                    <dd>
-                        <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
-
-                            <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                {{ app.app_model }}{% endif %}</span>
-
-
-                        </div>
-                        <div class="product-info-div">
-                            <div class="parcode">
-                                <div class="arrow"></div>
-                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #717375;">扫码发送到屏端快速验证</p>
-                            </div>
-                            <p class="product-info-p" >
-                                分类：{{ app.app_device_type| category_detail}}
-                            </p>
-                            <p class="product-info-p">Key：<label >{{ app.app_appid| cover_str8 }}</label>
-                                <a role="button" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 46%;" class="fa fa-qrcode" ></label>
-                                </a>
-                                {% if app.app_group == 1 %}
-                                    <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
-                                    <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}
-                            </p>
-
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style=" margin-left: 8%;color: #1ab667">已发布</label></p>
-                        </div>
-                    </dd>
-                    <dd class="ui-control">
-                        <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
-                            </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
-                            </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
-                            <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
-        {% endfor %}
-
-        {% for app in publishing_apps %}
-            <div class="goods-list">
-                <dl>
-                    <dt>
-                        <a href="/product/main?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
-                                                                         onerror="this.src='{% static "image/global/default.png" %}'"
-                                                                         title="产品图标"></a>
-                    </dt>
-                    <dd>
-                        <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
-                            <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                {{ app.app_model }}{% endif %}</span>
-                        </div>
-                        <div class="product-info-div">
-                            <div class="parcode">
-                                <div class="arrow"></div>
-                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                            </div>
-                            <p class="product-info-p" >
-                                分类：{{ app.app_device_type| category_detail}}
-                            </p>
-                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
-                                {% if app.app_group == 1 %}
-                                    <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
-                                    <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}
-                            </p>
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style=" margin-left: 8%;color: #f39800">审核中</label></p>
-                        </div>
-                    </dd>
-                    <dd class="ui-control">
-                        <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
-                            </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
-                            </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
-                            <span><i class="fa fa-download"></i></span></a></li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
-
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
-        {% endfor %}
         {% for app in unpublished_apps %}
             <div class="goods-list">
-                <dl>
-                    <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">
-                            <img src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                <dl style="height: 156px">
+                    <dt style="margin-top: 30px">
+                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">
+                            <img style="width: 40px;height: 40px" src="{{ app.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
                         </a>
                         <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
                     </dt>
                     <dd>
-                        <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
+                        <div class="goods-title" style="margin-left: -95px"><a
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
 
@@ -663,99 +578,213 @@
                         <div class="product-info-div">
                             <div class="parcode">
                                 <div class="arrow"></div>
-                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                <div id="code" style="padding-top: 5px;text-align: center;"></div>
                                 <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                             </div>
-                            <p class="product-info-p">
+                            <p class="product-info-p" style="margin-left: -45px;display: block">
                                 分类：{{ app.app_device_type| category_detail}}
-                            </p>
-                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
+
+                                <!--<a style="color: #428bca;" onclick="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
                                     <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
+                                </a>-->
                                 {% if app.app_group == 1 %}
-                                    <label style="margin-left: 18px" class="fa fa-android"></label>{% else %}
-                                    <label style="margin-left:15px;transform: rotate(-43deg);"
+                                    <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
+                                    <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
                                            class="fa fa-rss"></label>{% endif %}
 
-                            </p>
-
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
+                            </p >
+                                    {% if app.check_status == 0 %}
+                                            <p class="product-info-p" >更新于：{{ app.app_update_date| utc2local }}<label
                                     style="margin-left: 8%;color: #333">未发布</label></p>
+                                        {% elif app.check_status == 1 %}
+                                            <p class="product-info-p" style="margin-left: -45px;display: block">更新于：{{ app.app_update_date| utc2local }}<label
+                                    style="margin-left: 8%;color: #333">待审核</label></p>
+                                        {% elif app.check_status == 2 %}
+                                            <p class="product-info-p" style="margin-left: -45px;display: block">更新于：{{ app.app_update_date| utc2local }}<label
+                                    style="margin-left: 8%;color: #333">已发布</label></p>
+                                        {% elif app.check_status == -1 %}
+                                            <p class="product-info-p" style="margin-left: -45px;display: block">更新于：{{ app.app_update_date| utc2local }}<label
+                                    style="margin-left: 8%;color: #333">审核失败</label></p>
+                                        {% else %}
+                                            <p class="product-info-p" style="margin-left: -45px;display: block">更新于：{{ app.app_update_date| utc2local }}<label
+                                    style="margin-left: 8%;color: #333">未知</label></p>
+                                        {% endif %}
+
                         </div>
                     </dd>
                     <dd class="ui-control">
                         <ul class="progress">
                             <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
                             </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/protocol">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
-                            <span><i class="fa fa-download"></i></span></a>
+                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app.app_id }})" href="#">导出
+                            </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
+                            <li style="text-align: left">|</li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
 
                         </ul>
                     </dd>
                 </dl>
             </div>
         {% endfor %}
-        {% for app in failed_apps %}
-            <div class="goods-list" style="">
 
-                <dl>
-                    <dt>
-                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/info"><img src="{{ app.app_logo }}"
-                                                                                    onerror="this.src='{% static "image/global/default.png" %}'"
-                                                                                    title="产品图标"></a>
-                        <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app.app_id }}"><i></i></a>
-                    </dt>
-                    <dd>
-                        <div class="goods-title"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/info">{{ app.app_name }}</a>
-                            <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
-                                {{ app.app_model }}{% endif %}</span>
+
+    </div>
+    {% if published_apps %}
+        <div class="title-sub"><span class="old">标准产品</span></div>
+        <div class="goodsBox" style=" margin-top: 8px;">
+            {% for app1 in  published_apps %}
+                {% if app1.app_device_type == 1 or app1.app_device_type == 2 or app1.app_device_type == 21 or app1.app_device_type == 31 %}
+
+
+                    <div class="goods-list" >
+                        <dl style="height: 156px">
+                <dt style="margin-top: 30px">
+                    <a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">
+                        <img style="width: 40px;height: 40px" src="{{ app1.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                    </a>
+                    <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app1.app_id }}"><i></i></a>
+                </dt>
+                <dd>
+                    <div class="goods-title" style="margin-left: -95px"><a
+                            href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}</a>
+                        <span class="label bg-white" style="font-size: 100%;">{% if app1.app_model %}
+                            {{ app1.app_model }}{% endif %}</span>
+
+
+                    </div>
+                    <div class="product-info-div" >
+                        <div class="parcode">
+                            <div class="arrow"></div>
+                            <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                            <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                         </div>
-                        <div class="product-info-div">
-                            <div class="parcode">
-                                <div class="arrow"></div>
-                                <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                        <p class="product-info-p" >
+                            分类：{{ app1.app_device_type| category_detail}}
+
+                            {% if app1.app_group == 1 %}
+                                <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
+                                <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
+                                       class="fa fa-rss"></label>{% endif %}
+
+                        </p>
+                                {% if app1.check_status == 0 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">未发布</label></p>
+                                    {% elif app1.check_status == 1 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">待审核</label></p>
+                                    {% elif app1.check_status == 2 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">已发布</label></p>
+                                    {% elif app1.check_status == -1 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">审核失败</label></p>
+                                    {% else %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">未知</label></p>
+                                    {% endif %}
+
+                    </div>
+                </dd>
+                <dd class="ui-control">
+                    <ul class="progress">
+                        <ul class="progress">
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
+                            </li>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/protocol">协议</a>
+                            </li>
+                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app.app_id }})" href="#">导出
+                            </a>
+                                </li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
+
+                        </ul>
+
+                    </ul>
+                </dd>
+            </dl>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="title-sub"><span class="old">其他</span></div>
+        <div class="goodsBox" style=" margin-top: 8px;">
+            {% for app1 in  published_apps %}
+                {% if app1.app_device_type != 1 or app1.app_device_type != 2 or app1.app_device_type != 21 or app1.app_device_type != 31 %}
+                     <div class="goods-list" >
+                        <dl style="height: 156px">
+                        <dt style="margin-top: 30px">
+                            <a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">
+                                <img style="width: 40px;height: 40px" src="{{ app1.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                            </a>
+                            <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app1.app_id }}"><i></i></a>
+                        </dt>
+                        <dd>
+                            <div class="goods-title" style="margin-left: -95px"><a
+                                    href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}</a>
+                                <span class="label bg-white" style="font-size: 100%;">{% if app1.app_model %}
+                                    {{ app1.app_model }}{% endif %}</span>
                             </div>
-                            <p class="product-info-p" >
-                                    分类：{{ app.app_device_type| category_detail}}
-                            </p>
-                            <p class="product-info-p">Key：<label>{{ app.app_appid| cover_str8 }}</label>
-                                <a style="color: #428bca;" onmouseover="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>
-                                {% if app.app_group == 1 %}
-                                    <label style="margin-left: 15px" class="fa fa-android"></label>{% else %}
-                                    <label style="margin-left:15px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}
-                            </p>
+                            <div class="product-info-div">
+                                <div class="parcode">
+                                    <div class="arrow"></div>
+                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
+                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
+                                </div>
+                                <p class="product-info-p">
+                                    分类：{{ app1.app_device_type| category_detail}}
 
-                            <p class="product-info-p">更新于：{{ app.app_update_date| utc2local }}<label
-                                    style=" margin-left: 8%;color: #c91423">未通过</label></p>
-                        </div>
-                    </dd>
-                    <dd class="ui-control">
-                        <ul class="progress">
+
+                                    {% if app1.app_group == 1 %}
+                                        <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
+                                        <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
+                                               class="fa fa-rss"></label>{% endif %}
+
+                                </p>
+                                {% if app1.check_status == 0 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">未发布</label></p>
+                                    {% elif app1.check_status == 1 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">待审核</label></p>
+                                    {% elif app1.check_status == 2 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">已发布</label></p>
+                                    {% elif app1.check_status == -1 %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">审核失败</label></p>
+                                    {% else %}
+                                        <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
+                                style="margin-left: 8%;color: #333">未知</label></p>
+                                    {% endif %}
+                            </div>
+                        </dd>
+                        <dd class="ui-control">
+                            <ul class="progress">
+                                <ul class="progress">
                             <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
                             </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/device">协议</a>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/protocol">协议</a>
                             </li>
-                            <li class="prog_c"><a onclick="export_protocol({{ app.app_id }})" href="#">下载
-                                <span><i class="fa fa-download"></i></span></a>
+                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app.app_id }})" href="#">导出
+                            </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI编辑</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
+
                         </ul>
-                    </dd>
-                </dl>
-            </div>
-        {% endfor %}
-    </div>
-    </div>
+
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    {% endif %}
     <div id="ie-form"></div>
 
     <!-- 未发布的产品 -->
@@ -786,7 +815,7 @@
         }
         $('[data-rel=popover]').popover({container:'body'});
         var checkSubmitFlg = false;
-        $(".goodsBox").height($(".goodsBox").height()+110);
+
         function utf16to8(str) {
             var out, i, len, c;
             out = "";
@@ -820,8 +849,8 @@
 
             if(code.children().length<1) {
                 code.qrcode({
-                    width: 120, //宽度
-                    height:120, //高度
+                    width: 80, //宽度
+                    height:80, //高度
                     text: url});
             }
             else {

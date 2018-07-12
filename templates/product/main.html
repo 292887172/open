@@ -142,11 +142,11 @@
         color: #fff;
     }
     .fa-file-text-o:before {
-        content: "4";
+        content: "5";
         color: #fff;
     }
     .fa-desktop:before {
-        content: "5";
+        content: "4";
         color: #fff;
     }
     .fa-text:before{
@@ -167,7 +167,7 @@
     </style>
 {% endblock %}
 {% block menu %}
-    {% create_menu 1 user.account_id %}
+    {% create_menu 0 user.account_id %}
 
 {% endblock %}
 
@@ -268,9 +268,9 @@
                     <div class="menuBox">
 
                         <ul>
-                            <li id="infoMenu" class="jsNavItem" data-id="infoMenu" ng-click="nav.selected('infoMenu')">
-                                <a href="#/info">
-                                    <i class="fa fa-sliders "></i>产品
+                            <li id="infoMenu" class="jsNavItem" data-id="portalMenu" ng-click="nav.selected('portalMenu')">
+                                <a href="#/portal">
+                                    <i class="fa fa-sliders "></i>产品控制台
                                 </a>
                             </li>
                         </ul>
@@ -296,21 +296,22 @@
                         </ul>
                     </div>
 
-                    <div class="menuBox">
-                        <ul>
-                            <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
-                                <a href="#/device">
-                                    <i class="fa fa-file-text-o "></i>设备调试
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
                     {% if app.check_status == 3 %}
                     <div class="menuBox">
                         <ul>
                             <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
                                 <a href="#/demo/{{ app.app_name}}">
                                     <i class="fa fa-desktop " ></i>开发示例
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menuBox">
+                        <ul>
+                            <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
+                                <a href="#/device">
+                                    <i class="fa fa-file-text-o "></i>设备调试
                                 </a>
                             </li>
                         </ul>
@@ -325,6 +326,15 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="menuBox">
+                        <ul>
+                            <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
+                                <a href="#/device">
+                                    <i class="fa fa-file-text-o "></i>设备调试
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                         <div class="menuBox">
                         <div class="gd-opt" style="margin-top: 12px;margin-left: 29px;float: initial">
                         <div class="apply" ng-controller="ContentCtrl">
@@ -357,6 +367,7 @@
     <script src="//apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="{% static "ng/product/app.js" %}"></script>
     <script src="{% static "ng/product/controller.js" %}"></script>
+    <script src="{% static "ng/product/portal/controller.js" %}"></script>
     <script src="{% static "ng/product/info/controller.js" %}"></script>
     <script src="{% static "ng/product/app/controller.js" %}"></script>
     <script src="{% static "ng/product/argue/controller.js" %}"></script>
@@ -439,7 +450,7 @@
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
                     $scope.create_time = "{{ app.app_create_date|utc2local  }}";
                     $scope.update_time = "{{ app.app_update_date|utc2local  }}";
-                    $scope.apply_status = "{% if app.check_status == 0%} 申请发布 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
+                    $scope.apply_status = "{% if app.check_status == 0%} 定稿 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
                     $scope.secondProType = [
                         {

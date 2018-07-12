@@ -70,7 +70,7 @@ register.filter(num_app)
 def category_detail(obj):
     try:
         type = str(obj)
-        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '0': '其他'}
+        category = {'31':'洗碗机','1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱','21':"蒸烤箱", '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '30':'微蒸烤','0': '其他'}
         return category[type]
     except Exception as e:
         print(e)
@@ -105,19 +105,22 @@ def create_menu(context, cur=0, username=None):
     else:
         if username:
             menu = [
-                    {"url": "/product/controldown", "title": "控制台"},
+
+                    {"url": "/product/controldown/", "title": "控制台"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
+                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                    {"url": "/product/community/", "title": "厨房社区"},
 
                     ]
 
         else:
             menu = [
                     {"url": "/", "title": "首页"},
-                    {"url": "/product/controldown", "title": "控制台"},
+                    {"url": "/product/controldown/", "title": "控制台"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
+                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                    {"url": "/product/community/", "title": "厨房社区"},
 
                     ]
         ret["menu"] = menu

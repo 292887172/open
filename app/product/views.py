@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
 from common.app_helper import del_app, save_app, check_cloud
@@ -55,6 +55,8 @@ def product_kitchen(request):
     default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     return render(request, "product/kitchen.html", locals())
 
+def product_community(request):
+    return render(request, "product/community.html", locals())
 @login_required
 @csrf_exempt
 def product_list(request):
@@ -85,40 +87,57 @@ def product_list(request):
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
+                user_apps1 = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
             else:
-                user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+                user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:3]
+                user_apps1 = developer.developer_related_app.all().order_by("-app_create_date")[3:]
         except Exception as e:
             user_apps=[]
+            user_apps1=[]
             developer = ''
             keyword = ''
             print(e)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         published_apps = []
         unpublished_apps = []
+        unpublished_apps1 = []
         publishing_apps = []
         failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        # 标准
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
-                published_apps.append(app)
+                unpublished_apps.append(app)
             elif app.check_status == _convention.APP_CHECKING:
-                publishing_apps.append(app)
+                unpublished_apps.append(app)
             # 未发布
             elif app.check_status == _convention.APP_UN_CHECK:
                 unpublished_apps.append(app)
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
-                failed_apps.append(app)
+                unpublished_apps.append(app)
+        for app1 in user_apps1:
+            # 已经发布
+            print('app1',app1)
+            if app1.check_status == _convention.APP_CHECKED:
+                published_apps.append(app1)
+            elif app1.check_status == _convention.APP_CHECKING:
+                published_apps.append(app1)
+            # 未发布
+            elif app1.check_status == _convention.APP_UN_CHECK:
+                published_apps.append(app1)
+            # 未通过审核
+            elif app1.check_status == _convention.APP_CHECK_FAILED:
+                published_apps.append(app1)
+
         template = "product/list.html"
         content = dict(
             keyword=keyword,
             developer=developer,
-            published_apps=published_apps,
-            publishing_apps=publishing_apps,
             unpublished_apps=unpublished_apps,
-            failed_apps=failed_apps,
+            published_apps= published_apps,
             default_apps=default_apps,
         )
         return render(request, template, content)
@@ -153,7 +172,8 @@ def product_list(request):
     elif request.method == "POST":
         return post()
 
-
+@login_required
+@csrf_exempt
 def product_controldown(request):
     """
     应用列表
@@ -161,6 +181,7 @@ def product_controldown(request):
     :return:
     """
     def get():
+        more_product = request.GET.get("more",'')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         app_names = []
@@ -183,41 +204,54 @@ def product_controldown(request):
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
             else:
-                user_apps = developer.developer_related_app.all().order_by("-app_create_date")
+                if more_product == '1':
+                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")
+                else:
+                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
         except Exception as e:
             user_apps=[]
             developer = ''
             keyword = ''
             print(e)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        published_apps = []
+        #published_apps = []
         unpublished_apps = []
-        publishing_apps = []
-        failed_apps = []
+        #publishing_apps = []
+        #failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        for i in default_apps:
+            print(i.app_device_type)
+            print(i.app_name)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
-                published_apps.append(app)
+
+                unpublished_apps.append(app)
             elif app.check_status == _convention.APP_CHECKING:
-                publishing_apps.append(app)
+                unpublished_apps.append(app)
             # 未发布
             elif app.check_status == _convention.APP_UN_CHECK:
+                print('我是app',app)
+
                 unpublished_apps.append(app)
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
-                failed_apps.append(app)
+                unpublished_apps.append(app)
         template = "product/controldown.html"
         content = dict(
             keyword=keyword,
             developer=developer,
-            published_apps=published_apps,
-            publishing_apps=publishing_apps,
+
             unpublished_apps=unpublished_apps,
-            failed_apps=failed_apps,
+
             default_apps=default_apps,
         )
+        if more_product == '1':
+            for i in unpublished_apps:
+                print(i)
+            return HttpResponse(unpublished_apps)
+
         return render(request, template, content)
 
     def post():
@@ -283,6 +317,7 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "")
         app_category_detail = request.POST.get("product_category_detail", 0)
+
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)
@@ -294,6 +329,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
+        print(app_group)
         device_conf = gen_app_default_conf(app_category_detail)
 
         app_logo = get_app_default_logo(app_category_detail)
@@ -347,6 +383,11 @@ def product_main(request):
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
+        data = request.GET.get("data",'')
+        print(data)
+        if data:
+            print(data)
+            return JsonResponse({"xx":"xxx"})
         if res:
             return HttpResponse(res)
         if not request.user.developer:
@@ -427,8 +468,8 @@ def product_main(request):
                 data = json.loads(data.decode())
                 opera_data = data["rows"]
             for line in opera_data:
-                if str(line.get("standa_or_define")) == str(standa):
-                    temp.append(line)
+                # if str(line.get("standa_or_define")) == str(standa):
+                temp.append(line)
             data = {'rows': opera_data, 'check_state': app.check_status}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page-1)*rows:page*rows]
@@ -508,6 +549,7 @@ def product_main(request):
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
+            # print(type(res),res)
             return res
         elif post_data == "save_conf":
             if str(app.app_group) == '2':
@@ -686,6 +728,7 @@ def protocol(request):
         r = DefaultProtocol().DEFAULT_DATA_ZDY
 
         data_protocol_list = json.loads(request.body.decode('utf-8'))
+        print('11',data_protocol_list)
         try:
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
@@ -701,10 +744,13 @@ def protocol(request):
                 data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
                 data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
                 data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
+                data_sql['endian_type'] = data_protocol_list.get('endian_type')
+                print("data_sql",data_protocol_list.get('endian_type'))
                 data_sql['frame_content'] = list_t
                 data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
                 data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
                 data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+                print("data_sql", data_sql)
                 data_sql_update = json.dumps(data_sql,ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
@@ -728,7 +774,7 @@ def protocol(request):
 
                     res_list_data1 = json.loads(res_list_data)
                     res_list_data1['protocol_type'] = protocol_type1
-
+                    print(res_list_data1)
                     return HttpResponse(json.dumps(res_list_data1))
         except Exception as e:
             print(e)
@@ -765,7 +811,35 @@ def control(request):
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
 
+def portal(request):
+    if request.method == 'GET':
+        date1 = request.GET.get('num','')
 
+        print(date1)
+        data1 = int(date1)
+        # 根据id获取各个时间
+        t = App.objects.filter(app_id=data1)
+        times = []
+        for i in t:
+            print(i.app_appid[-8:])
+            res = search_time(i.app_appid[-8:])
+            ress = search_time1(i.app_appid[-8:])
+            resss = search_time11(i.app_appid[-8:])
+            if res:
+                times.append(str(res['ebf_pc_create_date']))
+            else:
+                times.append('暂无数据')
+            if ress:
+                times.append(str(ress['ebf_ui_update_date']))
+            else:
+                times.append('暂无数据')
+            if resss:
+
+                times.append(str(resss))
+            else:
+                times.append('暂无数据')
+            print(times)
+        return HttpResponse(json.dumps(times))
 @csrf_exempt
 def upload_file(request):
     try:

@@ -2,7 +2,7 @@ var checkSubmitFlg = false;
 
 function create_procuct(type, type1) {
     $("#ScreenSize").text("(7寸)");
-    if (type1 == "wifi") {
+    if (type1 == "wifi1") {
         // $(".dtbox").hide();
         $(".technology").hide();
     }
@@ -29,6 +29,13 @@ function create_procuct(type, type1) {
         $("#productType").html("烤箱");
         $("#product_name").val("烤箱");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
+    }
+    else if (type == '31') {
+
+        $("#product_category_detail").val(31);
+        $("#productType").html("洗碗机");
+        $("#product_name").val("洗碗机");
+        $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/44/79/CgoKQ1tEjDCAFxfRAAAHGI3eiDc451.png");
     }
     $("#newHtmlBox").css('display', 'block');
     $(document).ready(function () {
@@ -69,15 +76,6 @@ function check_name() {
     }
 }
 
-function select_progm(val) {
-    $(".product_group").val(val);
-    if (document.getElementsByName('select_group')[0].checked) {
-        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
-    }
-    else {
-        $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
-    }
-}
 
 function check_name() {
     if ($("#product_name").val() == '') {
@@ -93,7 +91,11 @@ function check_name() {
 function select_progm(val) {
     $(".product_group").val(val);
     if (document.getElementsByName('select_group')[0].checked) {
-        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口");
+
+        $(".select-progm1").html("WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机");
+    }
+    else if (document.getElementsByName('select_group')[1].checked){
+        $(".select-progm1").html("WiFi方案要求设备支持5V供电，两路串口")
     }
     else {
         $(".select-progm1").html("Android屏方案要求设备支持5V供电，一路串口");
@@ -134,8 +136,10 @@ function dont_develop() {
 
 function toggleTab(text) {
     var ps = document.querySelector("#template").querySelectorAll("p");
+    console.log(ps)
     ps = Array.prototype.slice.call(ps);
     var lis = document.querySelector("#template").querySelectorAll("li");
+    console.log(lis)
     ps.forEach(function (item, index) {
         if (item.id == text) {
             item.style.display = "block";
