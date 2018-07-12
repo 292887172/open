@@ -834,7 +834,7 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy)
+            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:5]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
