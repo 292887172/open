@@ -73,6 +73,7 @@ var _hmt = _hmt || [];
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
             <!--<li><a href="{% url 'wiki' %}">开发指南</a></li>-->
             <li><a href="/SmartRecipe">智能菜谱</a></li>
+            <li><a href="/community">厨房社区</a></li>
 
         </ul>
         <div class="sign_out">

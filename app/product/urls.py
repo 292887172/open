@@ -9,6 +9,7 @@ urlpatterns = patterns(
     url(r"^controldown/$", "product_controldown", name="product/controldown"),
     url(r"^protocol/$", "protocol", name="product/protocol"),
     url(r"^kitchen/$", "product_kitchen", name="product/kitchen"),
+    url(r"^community/$", "product_community", name="product/community"),
     url(r"^add/$", "product_add", name="product/add"),
     url(r"^main/$", "product_main", name="product/main"),
     url(r"^verify$", "key_verify", name="product/key_verify"),
