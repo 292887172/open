@@ -9,13 +9,14 @@
       }
 
       .addButton{
-            padding: 4px;
-          background: #327AB7;
+            padding: 4px 6px;
+          background: #ff6202;
           color:#fff;
             font-weight: 500;
             text-decoration:none;
             cursor:pointer;
             border-radius: 4px;
+          font-size: 14px;
       }
       .addButton:hover{
           color: #fff;
@@ -158,22 +159,39 @@
     margin-left: 2px;
     font-size: 12px;
     }
+    .off-btn{
+        position: absolute;
+        right: 65px;
+        bottom: -55px;
+        z-index: 99;
+    }
+    .guanli{
+        background-color: #327AB7;
+        position: absolute;
+        top: 6px;
+        right: 36px;
+        height: 27px;
+        line-height: 20px;
+    }
+    .add_btn{
+        margin-left: 5px;
+    }
     </style>
     <link rel="stylesheet" href="/static/css/product/jquery-ui-1.8.16.custom.css">
     <div class="main-container box2">
-        <div class="hl-help">
+        <div class="hl-help" style="display: none">
             <span class="linkBlue">定义产品功能</span>&nbsp;&nbsp;&nbsp;
             <input type="hidden" id="device_type" ng-value="{[{ app_device_type }]}">
         </div>
 
-        <div class="mt20"></div>
-        <div class="headerH1">
-            <a onclick='export_parameter()' style="cursor:pointer;" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>
-            <div style="float: right;">
+        <div class="mt20" style="display: none"></div>
+        <div class="headerH1" style="position: relative;">
+            <a onclick='export_parameter()' style="cursor:pointer;" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 20px;margin-left: 5px;">导出控制协议</span></a>
+            <div style="float: right;" class="off-btn">
                 <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
                     <option value=0>选择总开关</option>
                 </select>
-                <span class='help-button' data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
+                <span class='help-button' style="display: none;" data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
             </div>
         </div>
         <table id="grid-table" >
@@ -354,7 +372,7 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager");
+        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a>","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
