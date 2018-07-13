@@ -165,14 +165,7 @@
 
             </dl>
             <dl class="col-md-6">
-                <div class="title1" style="height: 30px;margin-top: 20px">
-                    <span>常见问题</span> <span style="margin-left: 200px"><a href="/wiki/doc_wiki?view=Navicat2111#111" >更多></a></span>
-                </div>
-                <div  class="protocol-info-main">
-                    <p style="margin-top: 10px;font-size: 14px">1.设备之间怎样进行连线与测试?</p>
-                    <p style="margin-top: 30px;font-size: 14px">2.设备通信故障如何使用串口调试？</p>
-                    <p style="margin-top: 30px;font-size: 14px">3.串口工具与设备之间的如何通信？</p>
-                </div>
+                <a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i><span style="font-size: 20px;margin-left: 5px;">导出{[{ infoFormData.app_name }]}控制协议</span></a>
             </dl>
         </div>
 
@@ -183,23 +176,23 @@
 
     </div>
     <div class="hl-help">
-        <span class="linkBlue">动态参数</span>
-    </div>
-    <div class="mt20" style="margin-top: 5px">
 
-        <div class="goods-list">
+    </div>
+    <div class="mt20" style="margin-top: 5px;height: 250px">
+        <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 16px">产品动态</span>
+        <div class="goods-list" style="padding-top: 0px">
            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
                 <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p1"  style="width: 200px;display: inline-block;display:none ">暂无数据</span><span style="margin-left: 150px;display:none;color: #ccc" id="p2"></span>
+                    <span></span><span id="p1"  style="width: 200px;display: inline-block;display:none;font-size: 14px ">暂无数据</span><span style="margin-left: 150px;display:none;color: #ccc" id="p2"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p3" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p4"></span>
+                    <span></span><span id="p3" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p4"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p5" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p6"></span>
+                    <span></span><span id="p5" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p6"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p7" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p8"></span>
+                    <span></span><span id="p7" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p8"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
                     <span></span><span id="p9" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p10"></span>
@@ -207,10 +200,21 @@
 
 
            </div>
+           <div class="col-md-6">
+                <div class="title1" style="height: 30px;margin-top: -20px">
+                    <span style="font-size: 16px">常见问题</span> <span style="margin-left: 200px"><a href="/wiki/doc_wiki?view=Navicat2111#111" >更多></a></span>
+                </div>
+                <div  class="protocol-info-main">
+                    <p style="margin-top: 10px;font-size: 14px">1.设备之间怎样进行连线与测试?</p>
+                    <p style="margin-top: 30px;font-size: 14px">2.设备通信故障如何使用串口调试？</p>
+                    <p style="margin-top: 30px;font-size: 14px">3.串口工具与设备之间的如何通信？</p>
+                </div>
+           </div>
 
     </div>
-    <div class="hl-help" style="margin-top: 40px">
-        <span class="linkBlue">基本信息</span>
+    <div class="mt20" style="margin-top: 20px">
+                <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 14px">基本信息</span>
+
         <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
 
     </div>
@@ -246,6 +250,7 @@
              </div>
         </div>
     </div>-->
+    <div id="ie-form"></div>
 </div>
 
 
@@ -253,7 +258,28 @@
 
 
 <script>
+    function export_parameter(){
 
+            if('' == '1' && '' == ''){
+                bootbox.alert("暂无参数信息！");
+                return;
+            }
+            bootbox.confirm("确定导出控制协议参数吗?", function (result) {
+                if (result) {
+                    var form = document.createElement('form');
+                    form.action = '#/argue';
+                    form.method = 'post';
+                    form.style = "display: none";
+                    var input = document.createElement("input");
+                    input.name = "name";
+                    input.type = "text";
+                    input.value = "export";
+                    form.appendChild(input);
+                    $("#ie-form").html(form);
+                    form.submit();
+                }
+            });
+        }
     var num = location.href.split("#")[0].split("=")[1]
     $.ajax({
         method:"GET",
@@ -270,30 +296,30 @@
 
             }
         }
-    if (ttt[0]) {
-        document.getElementById("p1").innerText=ttt[0]
+    if (ttt[0].length>10) {
+        document.getElementById("p1").innerText=ttt[1]
         document.getElementById("p1").style.display='block'
-        document.getElementById("p2").innerText=ttt[1]
+        document.getElementById("p2").innerText=ttt[0]
         document.getElementById("p2").style.display='block'
-    }if (ttt[2]) {
-        document.getElementById("p3").innerText=ttt[2]
+    }if (ttt[2].length>10) {
+        document.getElementById("p3").innerText=ttt[3]
         document.getElementById("p3").style.display='block'
-        document.getElementById("p4").innerText=ttt[3]
+        document.getElementById("p4").innerText=ttt[2]
         document.getElementById("p4").style.display='block'
-    }if (ttt[4]) {
-        document.getElementById("p5").innerText=ttt[4]
+    }if (ttt[4].length>10) {
+        document.getElementById("p5").innerText=ttt[5]
         document.getElementById("p5").style.display='block'
-        document.getElementById("p6").innerText=ttt[5]
+        document.getElementById("p6").innerText=ttt[4]
         document.getElementById("p6").style.display='block'
-    }if (ttt[6]) {
-        document.getElementById("p7").innerText=ttt[6]
+    }if (ttt[6].length>10) {
+        document.getElementById("p7").innerText=ttt[7]
         document.getElementById("p7").style.display='block'
-        document.getElementById("p8").innerText=ttt[7]
+        document.getElementById("p8").innerText=ttt[6]
         document.getElementById("p8").style.display='block'
-    }if (ttt[8]) {
-        document.getElementById("p9").innerText=ttt[8]
+    }if (ttt[8].length>10) {
+        document.getElementById("p9").innerText=ttt[9]
         document.getElementById("p9").style.display='block'
-        document.getElementById("p10").innerText=ttt[9]
+        document.getElementById("p10").innerText=ttt[8]
         document.getElementById("p10").style.display='block'
     }
 
