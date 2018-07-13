@@ -493,7 +493,7 @@ def product_main(request):
             elif post_data == "add_mod":
                 funs = request.POST.get("funs")
                 add_mod_funs(opera_data, device_conf, funs)
-                save_app(app, opera_data)
+                save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
@@ -519,7 +519,7 @@ def product_main(request):
                 is_standa = data[1].get("standa_or_define", None)
                 opera_data.pop(i)
                 replace_fun_id(opera_data, id, is_standa)
-                save_app(app, opera_data)
+                save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
@@ -534,7 +534,7 @@ def product_main(request):
             c_data = opera_data[:len(funs)]
             c_data.sort(key=lambda x: int(x.get("id")))
             c_data.extend(opera_data[len(funs):])
-            save_app(app, c_data)
+            save_app(app, c_data,cook_ies)
             update_app_protocol(app)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
@@ -543,7 +543,7 @@ def product_main(request):
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
-            save_app(app, opera_data)
+            save_app(app, opera_data,cook_ies)
             update_app_protocol(app)
 
             return HttpResponse('select_success')
@@ -596,7 +596,7 @@ def product_main(request):
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
-            save_app(app, opera_data)
+            save_app(app, opera_data,cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)
 
