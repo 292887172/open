@@ -49,7 +49,7 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
-
+@login_required
 @csrf_exempt
 def product_kitchen(request):
     default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
@@ -821,7 +821,7 @@ def control(request):
         data = json.loads(data.decode('utf-8'))
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
-
+@csrf_exempt
 def portal(request):
     if request.method == 'GET':
         date1 = request.GET.get('num','')

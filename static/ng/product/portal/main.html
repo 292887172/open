@@ -190,28 +190,26 @@
         <div class="goods-list">
            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
                 <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p1"  style="width: 100px;display: inline-block">1</span><span style="margin-left: 50px" id="p2">2</span>
+                    <span></span><span id="p1"  style="width: 200px;display: inline-block;display:none ">暂无数据</span><span style="margin-left: 150px;display:none;color: #ccc" id="p2"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p3" style="width: 100px;display: inline-block">1</span><span style="margin-left: 50px" id="p4">2</span>
+                    <span></span><span id="p3" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p4"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p5" style="width: 100px;display: inline-block">1</span><span style="margin-left: 50px" id="p6">2</span>
+                    <span></span><span id="p5" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p6"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p7" style="width: 100px;display: inline-block">1</span><span style="margin-left: 50px" id="p8">2</span>
+                    <span></span><span id="p7" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p8"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p9" style="width: 100px;display: inline-block">1</span><span style="margin-left: 50px" id="p10">2</span>
+                    <span></span><span id="p9" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p10"></span>
                 </div>
 
 
            </div>
-           <div class="info-list col-md-6" style="margin-top: 15px">
 
-           </div>
     </div>
-    <div class="hl-help">
+    <div class="hl-help" style="margin-top: 40px">
         <span class="linkBlue">基本信息</span>
         <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
 
@@ -272,16 +270,34 @@
 
             }
         }
-    document.getElementById("p2").innerText=ttt[0]
-    document.getElementById("p1").innerText=ttt[1]
-    document.getElementById("p4").innerText=ttt[2]
-    document.getElementById("p3").innerText=ttt[3]
-    document.getElementById("p6").innerText=ttt[4]
-    document.getElementById("p5").innerText=ttt[5]
-    document.getElementById("p8").innerText=ttt[6]
-    document.getElementById("p7").innerText=ttt[7]
-    document.getElementById("p10").innerText=ttt[8]
-    document.getElementById("p9").innerText=ttt[9]
+    if (ttt[0]) {
+        document.getElementById("p1").innerText=ttt[0]
+        document.getElementById("p1").style.display='block'
+        document.getElementById("p2").innerText=ttt[1]
+        document.getElementById("p2").style.display='block'
+    }if (ttt[2]) {
+        document.getElementById("p3").innerText=ttt[2]
+        document.getElementById("p3").style.display='block'
+        document.getElementById("p4").innerText=ttt[3]
+        document.getElementById("p4").style.display='block'
+    }if (ttt[4]) {
+        document.getElementById("p5").innerText=ttt[4]
+        document.getElementById("p5").style.display='block'
+        document.getElementById("p6").innerText=ttt[5]
+        document.getElementById("p6").style.display='block'
+    }if (ttt[6]) {
+        document.getElementById("p7").innerText=ttt[6]
+        document.getElementById("p7").style.display='block'
+        document.getElementById("p8").innerText=ttt[7]
+        document.getElementById("p8").style.display='block'
+    }if (ttt[8]) {
+        document.getElementById("p9").innerText=ttt[8]
+        document.getElementById("p9").style.display='block'
+        document.getElementById("p10").innerText=ttt[9]
+        document.getElementById("p10").style.display='block'
+    }
+
+
 
     })
 </script>
