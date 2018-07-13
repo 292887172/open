@@ -401,6 +401,36 @@
         .goods-list dl dd p{
             width: 100%;
         }
+         #user_address .modal-header {
+            background: #dfe6eb;
+        }
+
+        #user_address .modal-footer {
+            border-radius: 0;
+        }
+
+        #user_address .modal-content {
+            width: 500px;
+        }
+
+        #user_address .modal-body {
+            height: 165px;
+            text-align: center;
+        }
+
+        #user_address .modal-body p {
+            font: 16px/45px "microsoft yahei";
+        }
+        #user_address .modal-body p span{
+            margin-left:5px;
+        }
+        #user_address .modal-body p input {
+            text-indent: 10px;
+            border-radius: 3px;
+            border: 1px solid #d9d9d9;
+            width: 350px;
+            line-height: 32px;
+        }
     .arrow{
         transform: rotate(45deg);
         background: #fff;
@@ -473,6 +503,7 @@
                 <li><a href="/product/list">产品管理</a>  </li>
                  <li style="color: #ff6202">我的产品</li>
             </ol>
+
             <ol style="width: 60%;float: left;margin: 6px 0 1px;" class="new-app">
                 <li style="color: #c6c6c6;">模板创建：</li>
                 {% for app in default_apps %}
@@ -483,12 +514,44 @@
                     {% if forloop.counter == 3 %}
                         <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
                         <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+                        {% if user.developer.developer_id %}
+                    <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"
+                             data-target="#user_address">申请样品 </span>
+            {% else %}
+                 <span style="color:#ff6202;cursor:pointer;font-size: 16px"
+                         onclick="javascript:void(dont_develop())">申请样品 </span>
+
+            {% endif %}
+
                     {% endif %}
                 {% endfor %}
             </ol>
         </div>
     </div>
-
+    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            请填写收件信息
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip">&emsp;</span></p>
+                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip">&emsp;</span></p>
+                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip">&emsp;</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
+                            提交
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="wrapper mt20">
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
@@ -798,6 +861,28 @@
 
     <!-- 未发布的产品 -->
     <div class="markLayout"></div>
+    <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            请填写收件信息
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>  姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip"> </span></p>
+                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip"> </span></p>
+                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip"> </span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
+                            提交
+                        </button>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
 
 {% block script %}

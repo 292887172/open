@@ -394,10 +394,16 @@ def add_mod_funs(opera_data, device_conf, funs):
 
 def get_mod_funs(opera_data, device_conf):
     mod = []
+    modd = []
     fun_name = list(map(lambda x: x["Stream_ID"], opera_data))
+
     for device in device_conf:
+
+        if device.get("Stream_ID") in fun_name:
+            modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
         if device.get("Stream_ID") not in fun_name:
             mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+    print(modd)
     return mod
 
 
