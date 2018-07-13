@@ -722,7 +722,7 @@
         <div class="title-sub"><span class="old">其他</span></div>
         <div class="goodsBox" style=" margin-top: 8px;">
             {% for app1 in  published_apps %}
-                {% if app1.app_device_type != 1 or app1.app_device_type != 2 or app1.app_device_type != 21 or app1.app_device_type != 31 %}
+                {% if not app1.app_device_type  == 1 and not app1.app_device_type == 2 and not app1.app_device_type == 21 and not app1.app_device_type == 31 %}
                      <div class="goods-list" >
                         <dl style="height: 156px">
                         <dt style="margin-top: 30px">
