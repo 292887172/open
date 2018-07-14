@@ -153,7 +153,7 @@
                     <div class="product-info-div" style="">
 
                         <p class="product-info-p">
-                            分类： {[{app_device_name}]} <label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
+                            分类： {[{app_device_name}]} {[{ app_create_source }]}<label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
                         </p>
                         <p class="product-info-p">Key：<label>{[{key}]}</label>
 
@@ -201,26 +201,30 @@
         <div class="goods-list" style="padding-top: 0px;height: 145px">
            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
                 <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p1"  style="width: 200px;display: inline-block;display:none;font-size: 14px ">暂无数据</span><span style="margin-left: 150px;display:none;color: #ccc" id="p2"></span>
+
+
+
+
+                    <span></span><span id="p0"  style="width: 200px;display: inline-block;font-size: 14px ">暂无数据</span><span style="color: #ccc" id="0p0"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p3" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p4"></span>
+                    <span></span><span id="p1" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="1p1"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p5" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p6"></span>
+                    <span></span><span id="p2" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="2p2"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p7" style="width: 200px;display: inline-block;display:none;font-size: 14px"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p8"></span>
+                    <span></span><span id="p3" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="3p3"></span>
                 </div>
                <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p9" style="width: 200px;display: inline-block;display:none"></span><span style="margin-left: 150px;display:none;color: #ccc" id="p10"></span>
+                    <span></span><span id="p4" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="4p4"></span>
                 </div>
 
 
            </div>
            <div class="col-md-6">
                 <div class="title1" style="height: 30px;margin-top: -20px">
-                    <span style="font-size: 16px">常见问题</span> <span style="margin-left: 200px"><a href="/wiki/doc_wiki?view=Navicat2111#111" >更多></a></span>
+                    <span style="font-size: 16px">常见问题</span> <span style="margin-left: 200px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_blank">更多></a></span>
                 </div>
                 <div  class="protocol-info-main">
                     <p style="margin-top: 10px;font-size: 14px">1.设备之间怎样进行连线与测试?</p>
@@ -276,6 +280,14 @@
 
 
 <script>
+    function ppp(rr) {
+        console.log(rr)
+        document.getElementById(rr).style.opacity=1
+    }
+    function ddd(rr) {
+        console.log(rr)
+        document.getElementById(rr).style.opacity=0
+    }
     function export_parameter(){
 
             if('' == '1' && '' == ''){
@@ -305,42 +317,33 @@
         url:"/product/portal/"
     }).success(function (da) {
         data11 = JSON.parse(da);
-        ttt = []
+        console.log(data11)
+        ttt_key = []
+        ttt_value = []
         for (var i = 0, le = data11.length;i<le;i++){
+            try {
+                for (var k in data11[i]){
+                if (k == 'message') {
+                    ttt_key.push(data11[i][k])
 
-            for (var k in data11[i]){
-                ttt.push(data11[i][k])
+                }else if (k == 'time') {
+                    ttt_value.push(data11[i][k])
 
-
+                }
             }
-        }
-    if (ttt[0].length>10) {
-        document.getElementById("p1").innerText=ttt[1]
-        document.getElementById("p1").style.display='block'
-        document.getElementById("p2").innerText=ttt[0]
-        document.getElementById("p2").style.display='block'
-    }if (ttt[2].length>10) {
-        document.getElementById("p3").innerText=ttt[3]
-        document.getElementById("p3").style.display='block'
-        document.getElementById("p4").innerText=ttt[2]
-        document.getElementById("p4").style.display='block'
-    }if (ttt[4].length>10) {
-        document.getElementById("p5").innerText=ttt[5]
-        document.getElementById("p5").style.display='block'
-        document.getElementById("p6").innerText=ttt[4]
-        document.getElementById("p6").style.display='block'
-    }if (ttt[6].length>10) {
-        document.getElementById("p7").innerText=ttt[7]
-        document.getElementById("p7").style.display='block'
-        document.getElementById("p8").innerText=ttt[6]
-        document.getElementById("p8").style.display='block'
-    }if (ttt[8].length>10) {
-        document.getElementById("p9").innerText=ttt[9]
-        document.getElementById("p9").style.display='block'
-        document.getElementById("p10").innerText=ttt[8]
-        document.getElementById("p10").style.display='block'
-    }
+            }
+            catch (err) {
+                console.log('err')
+            }
 
+        }
+
+       console.log(ttt_key,ttt_value)
+       for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
+            console.log("p"+rr)
+            document.getElementById("p"+rr).innerText=ttt_key[rr]
+            document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
+       }
 
 
     })

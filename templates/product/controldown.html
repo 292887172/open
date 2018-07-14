@@ -688,27 +688,27 @@
                                     <div>
 
                                         {% if app.check_status == 0 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == 1 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == 2 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == -1 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% else %}
-                                            <p>分类:{{ app.app_device_type| category_detail }}
+                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
                                             最后编辑时间：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
