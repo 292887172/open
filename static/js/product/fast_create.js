@@ -1,6 +1,8 @@
 var checkSubmitFlg = false;
 
-function create_procuct(type, type1) {
+function create_product(type, type1) {
+    // 重置面板
+    resetItem();
     $("#ScreenSize").text("(7寸)");
     if (type1 == "wifi1") {
         // $(".dtbox").hide();
@@ -48,10 +50,21 @@ function create_procuct(type, type1) {
         });
     });
 }
+function show_detail() {
+    if(app_id){
+        window.location.href="/product/main/?ID="+app_id+"#/portal"
+    }
 
+}
 function submit_product() {
     var form = $("form[name=formProduct]");
     var product_name = $("#product_name").val();
+
+    try{
+        // 更新标记，回调ifram获取返回值,部分页面有，目前只有快速创建模块有
+        handlerFlag=1;
+    }catch (e){}
+
     if (product_name == '') {
         check_name();
         return;
@@ -59,6 +72,10 @@ function submit_product() {
     if (!checkSubmitFlg) {
         checkSubmitFlg = true;
         form.submit();
+        try{
+            showProcess('one');
+        }catch (e){}
+
 
     }
     else {

@@ -49,14 +49,18 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
+
 @login_required
 @csrf_exempt
 def product_kitchen(request):
     default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     return render(request, "product/kitchen.html", locals())
 
+
 def product_community(request):
     return render(request, "product/community.html", locals())
+
+
 @login_required
 @csrf_exempt
 def product_list(request):
@@ -181,7 +185,7 @@ def product_controldown(request):
     :return:
     """
     def get():
-        more_product = request.GET.get("more",'')
+        more_product = request.GET.get("more", '')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         app_names = []
@@ -220,9 +224,6 @@ def product_controldown(request):
         #failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
-        for i in default_apps:
-            print(i.app_device_type)
-            print(i.app_name)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -232,8 +233,6 @@ def product_controldown(request):
                 unpublished_apps.append(app)
             # 未发布
             elif app.check_status == _convention.APP_UN_CHECK:
-                print('我是app',app)
-
                 unpublished_apps.append(app)
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
@@ -315,10 +314,10 @@ def product_add(request):
 
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
-        app_category = request.POST.get("product_category", "")
+        app_category = request.POST.get("product_category", "厨房类")
         app_category_detail = request.POST.get("product_category_detail", 0)
-        app_product_fast = request.POST.get("product_fast",0)
-        print(app_product_fast)
+        app_product_fast = request.POST.get("product_fast", 0)
+
         if app_category_detail:
             try:
                 app_category_detail = int(app_category_detail)
@@ -349,22 +348,25 @@ def product_add(request):
             return HttpResponseRedirect(url)
         # 创建一个app
         try:
-            if not developer_id or not app_name or not app_category or not app_command \
+            if not developer_id or not app_name or not app_category_detail or not app_command \
                     or not app_group:
                 ret["code"] = 100002
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                        device_conf, app_factory_id, app_group, app_logo,app_product_fast)
+                                device_conf, app_factory_id, app_group, app_logo,app_product_fast)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
             app = App.objects.get(app_id=app_id)
             update_app_protocol(app)
-            url = '/product/main/?ID=' + str(app_id) + '#/argue'
+            if app_product_fast:
+                return HttpResponse(json.dumps({"code": 0, "appid": app_id}, separators=(",", ':')))
+            url = '/product/main/?ID=' + str(app_id) + '#/portal'
             return HttpResponseRedirect(url)
         except Exception as e:
+            print(e)
             logging.getLogger("root").error(e)
             logging.getLogger("root").error("创建应用失败")
             ret["code"] = 100004

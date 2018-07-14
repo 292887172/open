@@ -250,6 +250,19 @@
         .header{
             height: 75px;
         }
+    .ui-item-explain p{
+        padding: 2px 0px;
+        font-size: 16px;
+    }
+    .color-red{
+        color: red;
+    }
+    .fa-check-circle-o{
+        color: #42b983;
+    }
+    .tips{
+        font-size: 15px;
+    }
     </style>
 {% endblock %}
 {% block content %}
@@ -311,7 +324,7 @@
                         <div class="ui-demo">
                             {% if user.developer.developer_id %}
                                 <a style="display:block;color:#fff"
-                                   href="javascript:void(create_procuct('{{ 31 }}'))">快速创建</a>
+                                   href="javascript:void(create_product('{{ 31 }}'))">快速创建</a>
                             {% else %}
                                 <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
                             {% endif %}
@@ -333,7 +346,7 @@
                         <div class="ui-demo">
                             {% if user.developer.developer_id %}
                                 <a style="display:block;color:#fff"
-                                   href="javascript:void(create_procuct('{{ app.app_device_type }}'))">快速创建</a>
+                                   href="javascript:void(create_product('{{ app.app_device_type }}'))">快速创建</a>
                             {% else %}
                                 <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
                             {% endif %}
@@ -344,9 +357,9 @@
 
 
             {% endfor %}
-                <div class="col-md-2" id="WiFi-oven-demo" style="width: 230px">
+                <div class="col-md-2"  style="width: 230px">
                     <p style="text-align: left;padding-top: 5px;margin-left: 30px;font-size: 16px;padding-right: 0px;width: 200px">如何开发WiFi屏厨电？</p>
-                    <div class="left-dv4">
+                    <div class="left-dv4" id="WiFi-oven-demo">
                          <img src="/static/image/product/ico-video.png"/>
                     </div>
 
@@ -374,7 +387,7 @@
                      src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
             </div>
             <div class="warnCont" style="width: 76%">
-                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
+                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/" target="nm_iframe">
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
                         <span class="ant-input-wrapper">
@@ -396,16 +409,20 @@
 
                         </p>
 
+                    </div>
+                    <br>
+                    <br>
+                    <div class="ui-item-explain">
+{#                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>#}
+                        <p id="ui-item-explain-one" class="hide">正在生成标准协议&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tips hide"
+                                href="http://doc.53iq.com/#/Protocol/README">查看协议构成</a></p>
+                        <p id="ui-item-explain-two" class="hide">正在继成标准功能&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tips hide"
+                                href="">查看功能说明</a></p>
+                        <p id="ui-item-explain-three" class="hide">正在创建标准工程&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tips hide"
+                                href="http://doc.53iq.com/#/debug_helper">查看使用说明</a></p>
 
                     </div>
 
-                    <div class="ant-row ant-form-item" style="display: none">
-                        <label for="product_name" class="">产品类型:</label>
-                        <span class="ant-input-wrapper">厨房类
-                            <input type="hidden" value="厨房类" readonly="readonly" name="product_category"
-                                   class="ant-input ant-input-lg">
-                        </span>
-                    </div>
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
                     <input type="hidden" value="2" name="product_group" class="product_group">
@@ -413,12 +430,15 @@
                     <input type="hidden" value="1" name="product_fast">
 
                 </form>
+                <iframe id="ifActionResult" name="nm_iframe" style="display:none;"></iframe>
             </div>
         </div>
         <div class="btnBar" style="background: none;height: 85px;">
               <span>
                 <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
                    style="background: #ff6202;">创建</a>
+                <a href="javascript:" onclick="show_detail()" id="productShow" class="btn-blue"
+                   style="background: #ff6202;display: none">查看详情</a>
               </span>
         </div>
     </div>
@@ -428,22 +448,22 @@
             <div style="margin-top: 50px;">
                 <div style="margin-top: 50px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span><img style="margin-left: 50px;width: 80px;display: none " src="/static/image/product/4.3.jpg" alt="">
-                    <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于油烟机、洗碗机</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 32px;color: #000" onclick="toggleTab1(xx2)">5寸WiFi屏</span><img style="margin-left: 50px;width: 100px; " src="/static/image/product/5.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx3)">6.8寸WiFi屏</span><img style="margin-left: 30px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx4)">7寸WiFi屏</span><img style="margin-left: 50px;width: 120px;display: none " src="/static/image/product/7.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于集成灶、冰箱</p>
                 </div>
 
@@ -485,6 +505,7 @@
     <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/js/product/fast_create.js"></script>
     <script>
+        var app_id="";
         function toggleTab1(text) {
             var ps = document.querySelector("#nb2").querySelectorAll("img");
             var ps1 = document.querySelector("#nb").querySelectorAll("img");
@@ -507,8 +528,108 @@
                 }
 
             }
+        }
+        function RandomNum(Min, Max) {
+            // 生成指定区间的随机数
+          var Range = Max - Min;
+          var Rand = Math.random();
+          if(Math.round(Rand * Range)==0){
+            return Min + 1;
+          }else if(Math.round(Rand * Max)==Max)
+          {
+            index++;
+            return Max - 1;
+          }else{
+            var num = Min + Math.round(Rand * Range) - 1;
+            return num;
+          }
+     }
 
+        function showProcess(step) {
+            console.log(step);
+            $(".popBox").css("height", '380px');
+            $("#productSubmit").hide();
+            setTimeout(function () {
+                $("#ui-item-explain-"+step).removeClass('hide');
+                $("#ui-item-explain-"+step).addClass('color-red');
+                showSuccess(step);
+
+            }, 500)
+        }
+        function showSuccess(step) {
+            setTimeout(function () {
+                $("#ui-item-explain-"+step+" i").removeClass('fa-spinner').removeClass("fa-spin").addClass("fa-check-circle-o");
+                $("#ui-item-explain-"+step).removeClass('color-red');
+                $("#ui-item-explain-"+step+" .tips").removeClass('hide');
+                if(step=='one'){
+                    showProcess('two')
+                }
+                else if(step=='two'){
+                    showProcess('three')
+                }
+                else if(step=='three'){
+                    console.log('ok');
+                    $("#productShow").show();
+                }
+            }, RandomNum(1000, 2200))
+        }
+        function resetItem() {
+            var item = ['one', 'two', 'three'];
+            for(var i=0;i<3;i++){
+                var s = item[i];
+                $("#ui-item-explain-"+s).addClass('hide');
+                $("#ui-item-explain-"+s+" i").removeClass("fa-check-circle-o").addClass('fa-spinner').addClass("fa-spin");
+                $("#ui-item-explain-"+s+" .tips").addClass('hide');
+            }
+            $(".popBox").css("height", '340px');
+            $("#productShow").hide();
+            $("#productSubmit").show();
 
         }
+                var handlerFlag = 0;
+                function setOnloadCallBask(obj, event, handler) {
+                    //for most explores
+                    if (null != obj && null != obj.addEventListener) {
+                        obj.addEventListener(event, handler, false);
+                    }
+                    //for IE
+                    else if (null != obj && null != obj.attachEvent) {
+                        obj.attachEvent('on'+event, handler);
+                    }
+                    //not support
+                    else {
+                        //选择dom元素错误
+                        throw new Error('不支持该dom元素');
+                    }
+                }
+                /*
+                *call back.
+                */
+                function ActionHandler()  {
+                     //alert("call");
+                     //文档加载或刷新时也会调用，因此需要通过标志位控制，提交时将标志位置为1，在这里处理之后修改标志位为0
+                    if(0 != handlerFlag)  {
+                        //do action
+                        var value = document.getElementById("ifActionResult").contentWindow.document.body.innerHTML;
+                        if(null!=value)  {
+                             var obj = eval("("+value+")");
+                             console.log(obj);
+
+                             if(obj.code==0){
+                                 app_id = obj.appid
+
+                             }
+                             console.log(app_id)
+
+                        }
+                        //update flag.
+                        handlerFlag = 0;
+                    }
+                }
+                $(document).ready(function()  {
+                    //注意这里最好在文档加载完成的时候再获取元素，否则可能获取到的一直是null
+                    setOnloadCallBask(document.getElementById("ifActionResult"),'load',ActionHandler);
+                });
+
     </script>
 {% endblock %}
