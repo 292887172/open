@@ -8,7 +8,7 @@
     }
     .goods-list {
         width: 100%;
-        height: 145px;
+
         padding: 14px;
         margin-right: 36px;
         float: initial;
@@ -123,6 +123,9 @@
     .goods-list dl dd .goods-title {
         height: 25px;
     }
+    .fa-question-circle{
+        color: #ccc;
+    }
 </style>
 <div class="box2 relative" style="padding-bottom: 1px">
     <div class="hl-help" style="display: none;">
@@ -132,7 +135,7 @@
     <div class="mt20" style="height: 190px;margin-top: 0;border-top: none;">
 
         <div class="goods-list">
-            <dl class="col-md-6" >
+            <dl class="col-md-4" >
                 <dt style="margin-top: 42px">
                     <a href="/info">
                         <img style="width: 40px;height: 40px" src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'"
@@ -164,29 +167,23 @@
                 </dd>
 
             </dl>
-            <dl class="col-md-6">
-                <div  class="-info-main">
-                    <div>
+            <dl class="col-md-8" style="padding-top: 45px">
+                <dd>
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 17px;margin-left: 5px;">1. 导出"{[{ infoFormData.app_name }]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                </dd>
+                <dd>
+                    <div><a href="http://doc.53iq.com/#/function"  style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">2. "{[{ infoFormData.app_name }]}"标准功能定义</span></a> <a href="http://doc.53iq.com/#/function"> <i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                </dd>
+                <dd>
+                    <div><a href="http://doc.53iq.com/#/Protocol/README" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;color: #333">3. 电控对接标准协议</span></a></div>
+                </dd>
+                <dd>
+                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">4. "{[{ infoFormData.app_name }]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/static/sdk/DCIOT.PKG" style="cursor:pointer;" class=""></i><span style="font-size: 17px;margin-left: 5px; color: red">屏端软件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>
+                        <a href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"><i class="ace-icon fa fa-question-circle bigger-120"></i></a>
+                        </div>
+                </dd>
 
-
-                    <span style="margin-top: 10px;font-size: 14px;width: 150px;" onclick="export_parameter()">1.导出{[{app_device_name}]}控制协议</span><img style="margin-left: 5px" src="/static/image/product/warn.png" alt="" onmouseover="ppp('x1')" onmouseleave="ddd('x1')"> <span style="opacity: 0" id="x1">协议说明</span>
-                    </div>
-                    <div>
-                        <a href="http://doc.53iq.com/#/Protocol/README"><span style="margin-top: 30px;font-size: 14px;display: inline-block">2.{[{app_device_name}]}标准功能定义</span></a><img style="margin-left: 5px" src="/static/image/product/warn.png" onmouseover="ppp('x2')" onmouseleave="ddd('x2')" alt=""> <span style="opacity: 0" id="x2">功能定义</span>
-                    </div>
-                    <div>
-                        <a href="http://test.open.53iq.com/wiki/doc_wiki?view=Navicat2112#113"><span style="margin-top: 30px;font-size: 14px;display: inline-block">2.电控对接标准协议</span></a><img style="margin-left: 5px" src="/static/image/product/warn.png" onmouseover="ppp('x3')" onmouseleave="ddd('x3')" alt=""><span style="opacity: 0" id="x3">WiFi屏开发包说明</span>
-                    </div>
-                    <div>
-                        <a href="http://doc.53iq.com/#/SDK/README"><span style="margin-top: 30px;font-size: 14px;display: inline-block">3.{[{app_device_name}]}标准工程文件下载</span></a><img style="margin-left: 5px" src="/static/image/product/warn.png" onmouseover="ppp('x4')" onmouseleave="ddd('x4')" alt="">
-                        <a href="http://doc.53iq.com/#/debug_helper?id=%E5%A4%A7%E5%BD%A9ide"><span style="font-size: 14px;display: inline-block">屏端软件下载</span></a><img style="margin-left: 5px" src="/static/image/product/warn.png" onmouseover="ppp('x5')" onmouseleave="ddd('x5')" alt="">
-
-                    </div>
-                    <div>
-                        <div style="margin-top: 20px;opacity: 0" id="x4">工程操作说明</div>
-                        <div style="margin-top: 0px;opacity: 0;font-size: 14px;margin-left: 150px;width: 100px;" id="x5">软件安装说明</div>
-                    </div>
-                </div>
             </dl>
         </div>
 
@@ -201,7 +198,7 @@
     </div>
     <div class="mt20" style="margin-top: 5px;height: 250px">
         <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 16px">产品动态</span>
-        <div class="goods-list" style="padding-top: 0px">
+        <div class="goods-list" style="padding-top: 0px;height: 145px">
            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
                 <div class="xxxxx" style="height: 30px">
 
@@ -277,7 +274,7 @@
     </div>-->
     <div id="ie-form"></div>
 </div>
-
+</div>
 
 
 
