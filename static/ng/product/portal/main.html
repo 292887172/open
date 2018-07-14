@@ -126,11 +126,45 @@
     .fa-question-circle{
         color: #ccc;
     }
+    .dev-guide-bar {
+        height: 40px;
+        line-height: 40px;
+        background: lightyellow;
+    }
+    .dev-guide-bar div {
+        display: inline-block;
+        padding-left: 30px;
+    }
+    .new_time div {
+        height: 30px;
+    }
+    .new_time span {
+        color: lightgray;
+        float: right;
+        margin-right: 20%;
+    }
+    .guide {
+        line-height: 40px;
+    }
+    .guide ul {
+        font-size: 16px;
+    }
+    .guide span {
+        font-size: 14px;
+    }
+    .guide .aw {
+        color:#333;
+    }
 </style>
+<!--开发引导bar-->
+<div class="dev-guide-bar">
+    <div>开发引导</div>
+    <div>WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
+    <div><a href="#portal?type=guide">正式开发查看下一步></a></div>
+</div>
 <div class="box2 relative" style="padding-bottom: 1px">
     <div class="hl-help" style="display: none;">
         <span class="linkBlue">产品控制台</span>
-
     </div>
     <div class="mt20" style="height: 190px;margin-top: 0;border-top: none;">
 
@@ -169,13 +203,13 @@
             </dl>
             <dl class="col-md-8" style="padding-top: 45px">
                 <dd>
-                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 17px;margin-left: 5px;">1. 导出"{[{ infoFormData.app_name }]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 17px;margin-left: 5px;">1. 导出"{[{ infoFormData.app_name }]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
                 <dd>
-                    <div><a href="http://doc.53iq.com/#/function"  style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">2. "{[{ infoFormData.app_name }]}"标准功能定义</span></a> <a href="http://doc.53iq.com/#/function"> <i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div><a href="http://doc.53iq.com/#/function" target="_blank" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">2. "{[{ infoFormData.app_name }]}"标准功能定义</span></a> <a href="http://doc.53iq.com/#/function" target="_blank"> <i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
                 <dd>
-                    <div><a href="http://doc.53iq.com/#/Protocol/README" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;color: #333">3. 电控对接标准协议</span></a></div>
+                    <div><a href="http://doc.53iq.com/#/Protocol/README" target="_blank" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;color: #333">3. 电控对接标准协议</span></a></div>
                 </dd>
                 <dd>
                     <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">4. "{[{ infoFormData.app_name }]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -199,29 +233,11 @@
     <div class="mt20" style="margin-top: 5px;height: 250px">
         <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 16px">产品动态</span>
         <div class="goods-list" style="padding-top: 0px;height: 145px">
-           <div class="info-list col-md-6 new_time" style="margin-top: 15px">
-                <div class="xxxxx" style="height: 30px">
-
-
-
-
-                    <span></span><span id="p0"  style="width: 200px;display: inline-block;font-size: 14px ">暂无数据</span><span style="color: #ccc" id="0p0"></span>
-                </div>
-               <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p1" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="1p1"></span>
-                </div>
-               <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p2" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="2p2"></span>
-                </div>
-               <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p3" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="3p3"></span>
-                </div>
-               <div class="xxxxx" style="height: 30px">
-                    <span></span><span id="p4" style="width: 200px;display: inline-block;font-size: 14px"></span><span style="color: #ccc" id="4p4"></span>
-                </div>
-
-
-           </div>
+            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
+                <div>生成标准屏端工程软件 <span>{[{ create_time_detail }]}</span></div>
+                <div>生成标准工程文件 <span>{[{ create_time_detail }]}</span></div>
+                <div>生成{[{ app_device_name }]}标准控制协议 <span>{[{ create_time_detail }]}</span></div>
+            </div>
            <div class="col-md-6">
                 <div class="title1" style="height: 30px;margin-top: -20px">
                     <span style="font-size: 16px">常见问题</span> <span style="margin-left: 200px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_blank">更多></a></span>
@@ -274,18 +290,39 @@
     </div>-->
     <div id="ie-form"></div>
 </div>
+<div class="guide" style="display: none">
+    <div><span style="font-size: 18px">开发引导</span> <span style="margin-left: 20px;color: grey">按标准功能开发</span></div>
+    <ul style="margin-left: 5px">
+        <li>1 初步了解WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"> 查看安装标准软件方法 ></a><br><span>软件效果为准备功能和协议对应的界面，可手机进行操控。</span></li>
+        <li>2 导出标准协议，电控开始对接。<a href="javascript:void(0)" onclick="export_parameter()">导出{[{app_device_name}]}标准控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/Protocol/README">查看对接开发帮助 ></a><br><span>按标准功能和协议进行电控对接, 详细功能请查看定义功能和协议区域</span></li>
+        <li>3 替换产品Key。<a href="/static/sdk/COOKEING-Hood.rar">下载{[{app_device_name}]}标准工程<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://test.open.53iq.com/wiki/doc_wiki?view=Navicat310#130">查看更换Key方法></a></li>
+        <li>4 调试，连接电控和WiFi屏进行调试。    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper">查看调试方法></a></li>
+        <li>5 整机测试。</li>
+    </ul>
+</div>
 </div>
 
 
-
-
 <script>
+    // 如果参数中有type=guide，则显示新的引导页面
+    let list = location.href.split("?");
+    let guide = false;
+    for (let i = 0; i < list.length; ++i) {
+        if (list[i] === "type=guide") {
+            guide = true;
+        }
+    }
+    if (guide) {
+        $(".dev-guide-bar").remove();
+        $(".box2").children(":not('.guide')").remove();
+        $(".guide").show();
+    }
+
+
     function ppp(rr) {
-        console.log(rr)
         document.getElementById(rr).style.opacity=1
     }
     function ddd(rr) {
-        console.log(rr)
         document.getElementById(rr).style.opacity=0
     }
     function export_parameter(){
@@ -317,7 +354,6 @@
         url:"/product/portal/"
     }).success(function (da) {
         data11 = JSON.parse(da);
-        console.log(data11)
         ttt_key = []
         ttt_value = []
         for (var i = 0, le = data11.length;i<le;i++){
@@ -338,9 +374,7 @@
 
         }
 
-       console.log(ttt_key,ttt_value)
        for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
-            console.log("p"+rr)
             document.getElementById("p"+rr).innerText=ttt_key[rr]
             document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
        }

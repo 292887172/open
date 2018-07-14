@@ -448,6 +448,7 @@
                     keysss = "{{ key }}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
                     $scope.create_time = "{{ app.app_create_date|utc2local  }}";
+                    $scope.create_time_detail = "{{ app.app_create_date|utc2local2 }}"; // 详细的时间信息
                     $scope.update_time = "{{ app.app_update_date|utc2local  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 定稿 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
                     // 应用类目
