@@ -250,6 +250,10 @@
         .header{
             height: 75px;
         }
+    .ui-item-explain p{
+        padding: 2px 0px;
+        font-size: 16px;
+    }
     </style>
 {% endblock %}
 {% block content %}
@@ -396,16 +400,16 @@
 
                         </p>
 
+                    </div>
+                    <br>
+                    <br>
+                    <div class="ui-item-explain">
+                        <p>正在生成标准协议...<i class="fa fa-check-circle-o" aria-hidden="true"></i></p>
+                        <p>正在集成标准功能...</p>
+                        <p>正在创建标准工程...</p>
 
                     </div>
 
-                    <div class="ant-row ant-form-item" style="display: none">
-                        <label for="product_name" class="">产品类型:</label>
-                        <span class="ant-input-wrapper">厨房类
-                            <input type="hidden" value="厨房类" readonly="readonly" name="product_category"
-                                   class="ant-input ant-input-lg">
-                        </span>
-                    </div>
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
                     <input type="hidden" value="2" name="product_group" class="product_group">
@@ -428,22 +432,22 @@
             <div style="margin-top: 50px;">
                 <div style="margin-top: 50px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx1)">4.3寸WiFi屏</span><img style="margin-left: 50px;width: 80px;display: none " src="/static/image/product/4.3.jpg" alt="">
-                    <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                    <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于油烟机、洗碗机</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 32px;color: #000" onclick="toggleTab1(xx2)">5寸WiFi屏</span><img style="margin-left: 50px;width: 100px; " src="/static/image/product/5.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx3)">6.8寸WiFi屏</span><img style="margin-left: 30px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx4)">7寸WiFi屏</span><img style="margin-left: 50px;width: 120px;display: none " src="/static/image/product/7.jpg" alt="">
-                     <hr style="color: #D7D7D7；border-top:1px solid #e6e6e6;margin-top: 1px;">
+                     <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
                     <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于集成灶、冰箱</p>
                 </div>
 

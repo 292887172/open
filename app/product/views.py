@@ -49,14 +49,18 @@ from util.netutil import verify_push_url
 _code = StatusCode()
 _convention = ConventionValue()
 
+
 @login_required
 @csrf_exempt
 def product_kitchen(request):
     default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
     return render(request, "product/kitchen.html", locals())
 
+
 def product_community(request):
     return render(request, "product/community.html", locals())
+
+
 @login_required
 @csrf_exempt
 def product_list(request):
