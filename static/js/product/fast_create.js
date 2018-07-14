@@ -11,6 +11,7 @@ function create_procuct(type, type1) {
         $(".technology").show();
     }
     $(".markLayout").show();
+
     if (type == '1') {
         $("#product_category_detail").val(1);
         $("#productType").html("油烟机");

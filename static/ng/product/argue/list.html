@@ -341,7 +341,7 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添1加</span></a> <a src='http://doc.53iq.com/#/Protocol/READMEx'><span>53IQ电控通信协议说明</span></a></a>","gridpager");
+        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/READMEx' style='margin-left:100px' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
