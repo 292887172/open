@@ -528,30 +528,7 @@
             </ol>
         </div>
     </div>
-    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            请填写收件信息
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip">&emsp;</span></p>
-                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip">&emsp;</span></p>
-                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip">&emsp;</span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
-                            提交
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     <div class="wrapper mt20">
     <div class="popBox" id="newHtmlBox" style="display: none;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
@@ -861,28 +838,7 @@
 
     <!-- 未发布的产品 -->
     <div class="markLayout"></div>
-    <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            请填写收件信息
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>  姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip"> </span></p>
-                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip"> </span></p>
-                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip"> </span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
-                            提交
-                        </button>
-                    </div>
-                </div>
-            </div>
+
 {% endblock %}
 
 {% block script %}
