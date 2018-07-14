@@ -1,8 +1,11 @@
 var checkSubmitFlg = false;
-
+var app_id="";
 function create_product(type, type1) {
-    // 重置面板
+    try{
+        // 重置面板
     resetItem();
+    }catch (e){}
+
     $("#ScreenSize").text("(7寸)");
     if (type1 == "wifi1") {
         // $(".dtbox").hide();
@@ -252,6 +255,109 @@ function validateAddress(that) {
         document.querySelector(".address_tooltip").style.color = "#666";
     }
 }
+
+        function RandomNum(Min, Max) {
+            // 生成指定区间的随机数
+          var Range = Max - Min;
+          var Rand = Math.random();
+          if(Math.round(Rand * Range)==0){
+            return Min + 1;
+          }else if(Math.round(Rand * Max)==Max)
+          {
+            index++;
+            return Max - 1;
+          }else{
+            var num = Min + Math.round(Rand * Range) - 1;
+            return num;
+          }
+     }
+
+        function showProcess(step) {
+            console.log(step);
+            $(".popBox").css("height", '380px');
+            $("#productSubmit").hide();
+            setTimeout(function () {
+                $("#ui-item-explain-"+step).removeClass('hide');
+                $("#ui-item-explain-"+step).addClass('color-red');
+                showSuccess(step);
+
+            }, 500)
+        }
+        function showSuccess(step) {
+            setTimeout(function () {
+                $("#ui-item-explain-"+step+" i").removeClass('fa-spinner').removeClass("fa-spin").addClass("fa-check-circle-o");
+                $("#ui-item-explain-"+step).removeClass('color-red');
+                $("#ui-item-explain-"+step+" .tips").removeClass('hide');
+                if(step=='one'){
+                    showProcess('two')
+                }
+                else if(step=='two'){
+                    showProcess('three')
+                }
+                else if(step=='three'){
+                    console.log('ok');
+                    $("#productShow").show();
+                }
+            }, RandomNum(1000, 2200))
+        }
+        function resetItem() {
+            var item = ['one', 'two', 'three'];
+            for(var i=0;i<3;i++){
+                var s = item[i];
+                $("#ui-item-explain-"+s).addClass('hide');
+                $("#ui-item-explain-"+s+" i").removeClass("fa-check-circle-o").addClass('fa-spinner').addClass("fa-spin");
+                $("#ui-item-explain-"+s+" .tips").addClass('hide');
+            }
+            $(".popBox").css("height", '340px');
+            $("#productShow").hide();
+            $("#productSubmit").show();
+
+        }
+                var handlerFlag = 0;
+                function setOnloadCallBask(obj, event, handler) {
+                    //for most explores
+                    if (null != obj && null != obj.addEventListener) {
+                        obj.addEventListener(event, handler, false);
+                    }
+                    //for IE
+                    else if (null != obj && null != obj.attachEvent) {
+                        obj.attachEvent('on'+event, handler);
+                    }
+                    //not support
+                    else {
+                        //选择dom元素错误
+                        throw new Error('不支持该dom元素');
+                    }
+                }
+                /*
+                *call back.
+                */
+                function ActionHandler()  {
+                     //alert("call");
+                     //文档加载或刷新时也会调用，因此需要通过标志位控制，提交时将标志位置为1，在这里处理之后修改标志位为0
+                    if(0 != handlerFlag)  {
+                        //do action
+                        var value = document.getElementById("ifActionResult").contentWindow.document.body.innerHTML;
+                        if(null!=value)  {
+                             var obj = eval("("+value+")");
+                             console.log(obj);
+
+                             if(obj.code==0){
+                                 app_id = obj.appid
+
+                             }
+                             console.log(app_id)
+
+                        }
+                        //update flag.
+                        handlerFlag = 0;
+                    }
+                }
+                $(document).ready(function()  {
+                    //注意这里最好在文档加载完成的时候再获取元素，否则可能获取到的一直是null
+                    setOnloadCallBask(document.getElementById("ifActionResult"),'load',ActionHandler);
+                });
+
 
 /**
  * Created by Administrator on 2018/2/2.

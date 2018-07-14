@@ -508,11 +508,11 @@
                 <li style="color: #c6c6c6;">模板创建：</li>
                 {% for app in default_apps %}
                     <li>
-                        <a href="javascript:{% if user.developer.developer_id %}void(create_procuct('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
+                        <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
 
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
                         <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
 {#                        {% if user.developer.developer_id %}#}
 {#                            <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"#}
@@ -539,7 +539,7 @@
                      src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
             </div>
             <div class="warnCont" style="width: 76%">
-                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/">
+                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/" target="nm_iframe">
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
                         <span class="ant-input-wrapper">
@@ -568,18 +568,33 @@
                                    class="ant-input ant-input-lg">
                         </span>
                     </div>
+                    <br>
+                    <br>
+                    <div class="ui-item-explain">
+{#                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>#}
+                        <p id="ui-item-explain-one" class="hide">正在生成标准协议&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="http://doc.53iq.com/#/Protocol/README">查看协议构成</a></p>
+                        <p id="ui-item-explain-two" class="hide">正在继成标准功能&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="">查看功能说明</a></p>
+                        <p id="ui-item-explain-three" class="hide">正在创建标准工程&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="http://doc.53iq.com/#/debug_helper">查看使用说明</a></p>
+
+                    </div>
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
                     <input type="hidden" value="{{ user.developer.developer_id }}" name="developer_id">
                     <input type="hidden" value="2" name="product_group" class="product_group">
                     <input type="hidden" value="是" name="product_command">
                     <input type="hidden" value="1" name="product_fast">
                 </form>
+                <iframe id="ifActionResult" name="nm_iframe" style="display:none;"></iframe>
             </div>
         </div>
         <div class="btnBar" style="background: none;height: 85px;">
               <span>
                 <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
-                   style="background: #ff6202;">提交</a>
+                   style="background: #ff6202;">创建</a>
+                  <a href="javascript:" onclick="show_detail()" id="productShow" class="btn-blue"
+                   style="background: #ff6202;display: none">查看详情</a>
               </span>
         </div>
     </div>
