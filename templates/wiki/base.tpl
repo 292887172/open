@@ -208,13 +208,13 @@
                 {% for app in default_apps %}
                     <li>
                         {% if user.developer.developer_id%}
-                            <a href="javascript:void(create_procuct('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
+                            <a href="javascript:void(create_product('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
                         {% else %}
                             <a href="javascript:void(dont_develop())">{{ app.app_name }}</a>
                         {% endif %}
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
                         <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}

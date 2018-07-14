@@ -233,3 +233,20 @@
     border-radius: 4px;
     transition: border .2s cubic-bezier(.645,.045,.355,1),background .2s cubic-bezier(.645,.045,.355,1),box-shadow .2s cubic-bezier(.645,.045,.355,1);
 }
+
+.ui-item-explain p{
+        padding: 2px 0px;
+        font-size: 16px;
+    }
+.ui-item-explain a{
+    color: #428bca;
+}
+    .color-red{
+        color: red;
+    }
+    .fa-check-circle-o{
+        color: #42b983;
+    }
+    .tips{
+        font-size: 15px;
+    }
