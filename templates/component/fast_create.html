@@ -1,0 +1,64 @@
+<!--和fast_create.js以及list.css一起才能实现快速创建的效果，这里只是一个模态框，js方法实现还是在js文件里，-->
+<div class="popBox" id="newHtmlBox" style="display: none;">
+        <a href="javascript:" onclick="new_close()" class="close">关闭</a>
+        <h3 style="text-align: center;">标准<span id="productType"></span>创建</h3>
+        <div class="cont mt20" style="margin-top: -15px;">
+            <div style="float:left;">
+                <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
+                     src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
+            </div>
+            <div class="warnCont" style="width: 76%">
+                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/" target="nm_iframe">
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name" class="">产品名称:</label>
+                        <span class="ant-input-wrapper">
+                            <input type="text" value="" id="product_name" onblur="check_name()" name="product_name"
+                                   class="ant-input ant-input-lg">
+                        </span>
+                        <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
+                    </div>
+                    <div class="ant-row ant-form-item" id="com_type">
+                        <label class="dtbox">硬件条件:</label>
+
+                        <p class="technology" style="float: right;width: 75%">
+                            <input class="magic-radio" type="radio" style="display: none" disabled="disabled"
+                                                                  onclick="select_progm(3)" name="select_group" id="c3"
+                                                                  checked>
+                            <label for="c3" style="display: block;font-size: 14px;margin-top:2px">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</label>
+                            <label style="color:#ff6202;font-size: 14px">默认按标准功能和协议创建</label>
+
+
+                        </p>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div class="ui-item-explain">
+                        <p id="ui-item-explain-one" class="hide">正在生成标准协议&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="http://doc.53iq.com/#/Protocol/README">查看协议构成</a></p>
+                        <p id="ui-item-explain-two" class="hide">正在继成标准功能&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="">查看功能说明</a></p>
+                        <p id="ui-item-explain-three" class="hide">正在创建标准工程&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" class="tips hide"
+                                href="http://doc.53iq.com/#/debug_helper">查看使用说明</a></p>
+
+                    </div>
+
+                    <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
+                    <input type="hidden" value="{{ developer_id }}" name="developer_id">
+                    <input type="hidden" value="2" name="product_group" class="product_group">
+                    <input type="hidden" value="是" name="product_command">
+                    <input type="hidden" value="1" name="product_fast">
+
+                </form>
+                <iframe id="ifActionResult" name="nm_iframe" style="display:none;"></iframe>
+            </div>
+        </div>
+        <div class="btnBar" style="background: none;height: 85px;">
+              <span>
+                <a href="javascript:" onclick="submit_product()" id="productSubmit" class="btn-blue"
+                   style="background: #ff6202;">创建</a>
+                <a href="javascript:" onclick="show_detail()" id="productShow" class="btn-blue"
+                   style="background: #ff6202;display: none">查看详情</a>
+              </span>
+        </div>
+</div>

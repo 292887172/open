@@ -341,7 +341,7 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/READMEx' style='margin-left:100px' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
+        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/README' style='margin-left:100px' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
@@ -444,7 +444,7 @@
                         $("#"+page).css("display","none");
                         if(table=="grid-table-new"){
                             $("#show-no-data").css('display', 'block');
-                            $("#advice-content").text("标准功能无法满足，可创建自定义功能");
+                            $("#advice-content").text("标准功能无法满足，可添加产品功能");
                         }
                     }
                     if (rows.check_state >= 1) {
