@@ -491,7 +491,8 @@ def product_main(request):
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
                 print('数据',opera_data)
-                mod = get_mod_funs(opera_data, device_conf)
+                app_device_type = app.app_device_type
+                mod = get_mod_funs(opera_data, device_conf,app_device_type)
                 return JsonResponse({"data": mod})
             elif post_data == "add_mod":
                 funs = request.POST.get("funs")
