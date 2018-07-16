@@ -528,7 +528,30 @@
             </ol>
         </div>
     </div>
-
+    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            请填写收件信息
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>&emsp;&emsp;姓名：<input type="text" class="name" placeholder="请输入姓名" oninput="validateName(this)"><span class="name_tooltip">&emsp;</span></p>
+                        <p>联系电话：<input maxlength="11" type="text" class="phone" placeholder="请输入电话号码" oninput="validatePhone(this)"><span class="phone_tooltip">&emsp;</span></p>
+                        <p>收件地址：<input type="text" class="address" placeholder="请输入收件地址" oninput="validateAddress(this)"><span class="address_tooltip">&emsp;</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="uploadInfo()" style="width:112px;height:40px;border-radius:3px;">
+                            提交
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="wrapper mt20">
     {% fast_create_product  user.developer.developer_id  %}
     <div class="title-sub"><span class="old">最新编辑</span>
@@ -689,14 +712,14 @@
                 <dd class="ui-control">
                     <ul class="progress">
                         <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/argue">功能</a>
                             </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/protocol">协议</a>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/protocol">协议</a>
                             </li>
-                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app.app_id }})" href="#">导出
+                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app1.app_id }})" href="#">导出
                             </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">UI</a></li>
 
                         </ul>
 
@@ -762,14 +785,14 @@
                         <dd class="ui-control">
                             <ul class="progress">
                                 <ul class="progress">
-                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/argue">功能</a>
+                            <li class="prog_a "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/argue">功能</a>
                             </li>
-                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/protocol">协议</a>
+                            <li class="prog_b"><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/protocol">协议</a>
                             </li>
-                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app.app_id }})" href="#">导出
+                            <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app1.app_id }})" href="#">导出
                             </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">UI</a></li>
 
                         </ul>
 
