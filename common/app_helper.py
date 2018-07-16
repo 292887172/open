@@ -374,7 +374,7 @@ def add_fun_id(opera_data, indata):
     return indata
 
 
-def add_mod_funs(opera_data, device_conf, funs):
+def add_mod_funs(opera_data, device_conf, funs,app_device_type):
     funs = json.loads(funs)
     add_funs = []
     max_num = 0
@@ -383,27 +383,45 @@ def add_mod_funs(opera_data, device_conf, funs):
         temp = int(data.get("id"))
         if temp < 101 and temp > max_num:
             max_num = temp
-    for device in device_conf:
-        if device.get("Stream_ID") in funs:
-            k += 1
-            device["id"] = max_num + k
-            add_funs.append(device)
-    opera_data.extend(add_funs)
+    if int(app_device_type) == 0:
+        for device in PROTOCOL_KU:
+            if device.get("Stream_ID") in funs:
+                k += 1
+                device["id"] = max_num + k
+                add_funs.append(device)
+        opera_data.extend(add_funs)
+    else:
+        for device in device_conf:
+            if device.get("Stream_ID") in funs:
+                k += 1
+                device["id"] = max_num + k
+                add_funs.append(device)
+        opera_data.extend(add_funs)
     opera_data.sort(key=lambda x: int(x.get("id")))
 
 
-def get_mod_funs(opera_data, device_conf):
+def get_mod_funs(opera_data, device_conf,app_device_type):
     mod = []
     modd = []
     fun_name = list(map(lambda x: x["Stream_ID"], opera_data))
+    print('data',device_conf)
+    if int(app_device_type) == 0:
 
-    for device in device_conf:
+        for device in PROTOCOL_KU:
 
-        if device.get("Stream_ID") in fun_name:
-            modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
-        if device.get("Stream_ID") not in fun_name:
-            mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
-    print(modd)
+            if device.get("Stream_ID") in fun_name:
+                modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+            if device.get("Stream_ID") not in fun_name:
+                mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+        print(modd)
+    else:
+        for device in device_conf:
+
+            if device.get("Stream_ID") in fun_name:
+                modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+            if device.get("Stream_ID") not in fun_name:
+                mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+        print(modd)
     return mod
 
 

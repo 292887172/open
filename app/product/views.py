@@ -124,7 +124,7 @@ def product_list(request):
                 unpublished_apps.append(app)
         for app1 in user_apps1:
             # 已经发布
-            print('app1',app1)
+
             if app1.check_status == _convention.APP_CHECKED:
                 published_apps.append(app1)
             elif app1.check_status == _convention.APP_CHECKING:
@@ -490,12 +490,14 @@ def product_main(request):
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-                print('数据',opera_data)
-                mod = get_mod_funs(opera_data, device_conf)
+                app_device_type = app.app_device_type
+                print('数据',opera_data,app_device_type)
+                mod = get_mod_funs(opera_data, device_conf,app_device_type)
                 return JsonResponse({"data": mod})
             elif post_data == "add_mod":
                 funs = request.POST.get("funs")
-                add_mod_funs(opera_data, device_conf, funs)
+                app_device_type = app.app_device_type
+                add_mod_funs(opera_data, device_conf, funs,app_device_type)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 return HttpResponse('add_mod_success')
@@ -512,7 +514,6 @@ def product_main(request):
             else:
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
-
         elif post_data == 'del':
             # 删除信息
             data = find(id, opera_data)
@@ -842,12 +843,7 @@ def portal(request):
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
                 times.append({"time":tis,"message":i.message_content})
-
-
-
-
-
-        return HttpResponse(json.dumps(times))
+    return HttpResponse(json.dumps(times))
 @csrf_exempt
 def upload_file(request):
     try:

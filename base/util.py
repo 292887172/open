@@ -1269,11 +1269,11 @@ def gen_app_default_conf(val):
          'mxsNum': '2', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '11', 'Stream_ID': 'SAVE', 'toSwitch': '0', 'isFunction': '1'},
-        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
-         'name': '当前温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
-         'mxs': [],
-         'mxsLength': '8', 'id': '12', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
+            {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+             'name': '当前温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
+             'mxsNum': '2', 'corpName': '', 'paramType': 4,
+             'mxs': [],
+             'mxsLength': '8', 'id': '12', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '设定烘干时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
          'mxsNum': '2', 'corpName': '', 'paramType': 4,
@@ -1297,7 +1297,8 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '状态反馈', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'corpName': '', 'paramType': 4,
-         'mxs': [{
+         'mxs': [
+             {
                     "desc":"门关",
                     "trigger":[
 
@@ -1343,7 +1344,8 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '故障', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'corpName': '', 'paramType': 4,
-         'mxs': [{
+         'mxs': [
+             {
                     "desc":"无",
                     "trigger":[
 
