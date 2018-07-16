@@ -829,7 +829,7 @@ def portal(request):
     if request.method == 'GET':
         date1 = request.GET.get('num','')
 
-        print(date1)
+
         data1 = int(date1)
         # 根据id获取各个时间message_content
 
@@ -846,7 +846,7 @@ def portal(request):
 
 
 
-        print(times)
+
         return HttpResponse(json.dumps(times))
 @csrf_exempt
 def upload_file(request):
