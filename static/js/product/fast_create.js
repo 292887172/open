@@ -324,10 +324,7 @@ function validateAddress(that) {
                         obj.attachEvent('on'+event, handler);
                     }
                     //not support
-                    else {
-                        //选择dom元素错误
-                        throw new Error('不支持该dom元素');
-                    }
+
                 }
                 /*
                 *call back.

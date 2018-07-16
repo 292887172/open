@@ -220,3 +220,10 @@ def cover_product_key(val):
     except:
         return ""
 register.filter(cover_product_key)
+
+
+@register.inclusion_tag('component/fast_create.html')
+def fast_create_product(developer_id):
+    # 暂时没有用到的参数
+    ret = {"developer_id": developer_id}
+    return ret
