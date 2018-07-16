@@ -158,15 +158,15 @@
 </style>
 <!--开发引导bar-->
 <div class="dev-guide-bar">
-    <div>开发引导</div>
-    <div>WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
-    <div><a href="#portal?type=guide">正式开发查看下一步></a></div>
+    <div style="font-size: 16px">新手引导</div>
+    <div style="font-size: 16px">WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
+    <div><a href="#portal?type=guide" style="font-size: 16px">下一步></a></div>
 </div>
 <div class="box2 relative" style="padding-bottom: 1px">
     <div class="hl-help" style="display: none;">
         <span class="linkBlue">产品控制台</span>
     </div>
-    <div class="mt20" style="height: 190px;margin-top: 0;border-top: none;">
+    <div class="mt20" style="height: auto;margin-top: 0;border-top: none;">
 
         <div class="goods-list">
             <dl class="col-md-4" >
@@ -201,12 +201,12 @@
             </dl>
             <dl class="col-md-8" style="padding-top: 45px">
                 <dd>
-                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 17px;margin-left: 5px;">导出"{[{app_device_name}]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 16px;margin-left: 5px;">导出"{[{app_device_name}]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
 
                 <dd>
-                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">"{[{app_device_name}]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/static/sdk/DCIOT.PKG" style="cursor:pointer;" class=""></i><span style="font-size: 17px;margin-left: 5px; color: red">屏端软件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>
+                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 16px;margin-left: 5px;">"{[{app_device_name}]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/static/sdk/DCIOT.PKG" style="cursor:pointer;" class=""></i><span style="font-size: 16px;margin-left: 5px; color: red">屏端软件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>
                         <a href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"><i class="ace-icon fa fa-question-circle bigger-120"></i></a>
                         </div>
                 </dd>
@@ -286,11 +286,11 @@
 <div class="guide" style="display: none">
     <div><span style="font-size: 18px">开发引导</span> <span style="margin-left: 20px;color: grey">按标准功能开发</span></div>
     <ul style="margin-left: 5px">
-        <li>1 初步了解WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"> 查看安装标准软件方法 ></a><br><span>软件效果为准备功能和协议对应的界面，可手机进行操控。</span></li>
-        <li>2 导出标准协议，电控开始对接。<a href="javascript:void(0)" onclick="export_parameter()">导出{[{app_device_name}]}标准控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/Protocol/README">查看对接开发帮助 ></a><br><span>按标准功能和协议进行电控对接, 详细功能请查看定义功能和协议区域</span></li>
-        <li>3 替换产品Key。<a href="/static/sdk/COOKEING-Hood.rar">下载{[{app_device_name}]}标准工程<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://test.open.53iq.com/wiki/doc_wiki?view=Navicat310#130">查看更换Key方法></a></li>
-        <li>4 调试，连接电控和WiFi屏进行调试。    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper">查看调试方法></a></li>
-        <li>5 整机测试。</li>
+        <li>1 初步了解WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"> 查看安装标准软件方法 ></a><br><span>软件效果为标准功能和协议对应的界面，可手机进行操控。</span></li>
+        <li>2 替换产品Key,连接云端<a href="/static/sdk/COOKEING-Hood.rar">下载{[{app_device_name}]}标准工程<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://test.open.53iq.com/wiki/doc_wiki?view=Navicat310#130">查看更换Key方法></a></li>
+        <li>3 导出标准协议，电控开始对接。<a href="javascript:void(0)" onclick="export_parameter()">导出{[{app_device_name}]}标准控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/Protocol/README">查看对接开发帮助 ></a><br><span>按标准功能和协议进行电控对接, 详细功能请查看定义功能和协议区域</span></li>
+        <li>4 整机测试。    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper">查看调试方法></a></li>
+
     </ul>
 </div>
 </div>
