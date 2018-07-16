@@ -490,7 +490,7 @@ def product_main(request):
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-                print('数据',opera_data)
+
                 mod = get_mod_funs(opera_data, device_conf)
                 return JsonResponse({"data": mod})
             elif post_data == "add_mod":
