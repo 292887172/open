@@ -55,6 +55,7 @@ function create_product(type, type1) {
 }
 function show_detail() {
     if(app_id){
+        console.log('xxx')
         window.location.href="/product/main/?ID="+app_id+"#/portal"
     }
 
