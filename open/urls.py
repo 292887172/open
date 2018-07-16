@@ -20,4 +20,5 @@ urlpatterns = patterns(
     url(r"^debug/", include(debug_patterns)),
     # api
     url(r'^api/', include('api.urls')),
+
 )

@@ -6,12 +6,57 @@
 {% endblock %}
 
 {% block style %}
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/product/video-js.css' %}">
     <style>
+        .footer{
+            margin-top: 500px;
+        }
+        .m {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 204px;
+            z-index: 101;
+        }
+
+        .my-video-dimensions {
+            width: 680px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .close-video {
+            position: relative;
+            right: -324px;
+            line-height: 26px;
+            width: 33px;
+            height: 26px;
+            top: 26px;
+            color: #fff;
+            margin: auto;
+            z-index: 102;
+            cursor: pointer;
+            background-color: gray;
+        }
+
+        .left-dv4 {
+            width: 125px;
+            transform: skewX(-1deg);
+            margin-top: 162px;
+            height: 127px;
+            margin-right: 2px;
+        }
+
+        .left-dv4:hover {
+            opacity: 0.85;
+            cursor: pointer;
+        }
         .m-banner{
             background: url(/static/image/home/160903-1.jpg) no-repeat center #0D0F28;
             position: relative;
             background-size: 100% 100%;
-            height: 621px;
+            height: 450px;
             min-width: 1000px;
             margin-top: 90px;
         }
@@ -27,7 +72,7 @@
             text-align: center;
             overflow: hidden;
             color: #fff;
-            padding-top: 88px;
+            padding-top: 45px;
         }
         .bannertitle {
             font-size: 50px;
@@ -44,6 +89,14 @@
         }
         .bannertitlefour img{
             width: 56%;
+        }
+        .smart_main{
+            width: 1200px;
+            height: 100%;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            margin: 0 auto;
         }
     </style>
 {% endblock %}
@@ -66,9 +119,54 @@
                 </div>
             </div>
         </div>
+    <div class="left-dv4" id="WiFi-oven-demo" style="margin-top: 27px;width:200px;height: 47px;margin-left: 45%">
+                <img src="/static/image/product/ico-video.png"/>
+                <p style="text-align: center;margin-left: 10px;margin-top: -30px;color: #fff4eb">如何开发智能厨电</p>
+            </div>
+      <div class="markLayout"></div>
+    <div style="height: 500px;background-color: white">
+        <div class="smart_main">
+            <div class="col-md-6 col-md-offset-1" style="padding-left: 0px">
+                <img src="/static/image/home/smartreciped.jpg" alt="">
+            </div>
+            <div class="col-md-4 " style="height: 487px;text-align: left">
+                <div style="height: 162px;margin-top: 64px;">
+                    <span style="display: block;font-size: 30px" >免费送100道智能菜谱</span>
+                    <span style="display: block;margin-top: 10px;font-size: 30px;">海量智能云菜谱</span>
+                    <hr style="border-top:1px solid #e6e6e6;margin-top: 15px;font-size: 32px">
+                    <span style="display: block;margin-top: 10px;font-size: 24px">智能烹饪 一步到位</span>
+                </div>
+                <div style="margin-top: 10px">
+                    <img src="/static/image/home/erweima.png" alt="">
+                    <span style="color: blue;display: block;margin-top: 10px;margin-left: 51px">扫码下载App</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m" style="display: none">
+        <div class="close-video"><i class="fa fa-times"></i></div>
+        <video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
+               poster="m.png" data-setup="{}">
+            <source src="http://storage.56iq.net/group1/M00/44/15/CgoKQ1tAdpqAQxr9AewAUuoaHpQ353.mp4" type="video/mp4">
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+        <script src="/static/js/product/video.min.js"></script>
+        <script type="text/javascript">
+            var myPlayer = videojs('my-video');
+            videojs("my-video").ready(function () {
+                myPlayer = this;
+            });
+        </script>
+    </div>
     </div>
 {% endblock %}
 
+
 {% block script %}
+    <script src="/static/js/product/bootbox.js"></script>
+    <script src="/static/js/product/fast_create.js"></script>
 
 {% endblock %}

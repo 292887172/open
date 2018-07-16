@@ -7,8 +7,9 @@ __author__ = 'achais'
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect,JsonResponse
 from django.http.response import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from common.app_helper import fetch_publishing_app_data, fetch_all_app_data
 from common.app_helper import fetch_published_app_data
 from common.app_helper import pass_app
@@ -25,7 +26,8 @@ from common.developer_helper import fetch_developer_data
 from common.developer_helper import denied_developer
 from common.developer_helper import pass_developer
 from common.developer_helper import toggle_forbid_developer
-from common.account_helper import fetch_user_list_data
+from common.account_helper import fetch_user_list_data,fetch_user_list_user_data
+from common.app_helper import fetch_one_app_data
 from common.account_helper import toggle_forbid_user
 from common.smart_helper import update_app_protocol
 from common.device_fun_helper import *
@@ -47,7 +49,9 @@ _convention = ConventionValue()
 
 @login_required
 def admin_home(request):
+
     if not request.user.account_type == _convention.USER_IS_ADMIN:
+
         return HttpResponseRedirect(reverse("center"))
 
     def get():
@@ -204,13 +208,19 @@ def account_list_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search',"")
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "createtime":
             order_by_names += "account_create_date"
-        ret = fetch_user_list_data(page, limit, order_by_names)
+        if search == '':
+
+            ret = fetch_user_list_data(page, limit, order_by_names)
+        else:
+            ret= fetch_user_list_user_data(search,page, limit, order_by_names)
+        print('a','error message')
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
     if request.method == "GET":
@@ -262,7 +272,18 @@ def developer_checking_data(request):
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
     if request.method == "GET":
-        return get()
+        page = request.GET.get("page", 1)
+        limit = request.GET.get("limit", 20)
+        sort = request.GET.get("sort", "")
+        print(sort,'xx'*29)
+        (sort_name, sort_status) = sort.split(".")
+        order_by_names = ""
+        if sort_status == "desc":
+            order_by_names = "-"
+        if sort_name == "createtime":
+            order_by_names += "developer_create_date"
+        ret = fetch_developer_list_data(page, limit, order_by_names)
+        return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
 
 def developer_detail_modal(request):
@@ -505,13 +526,20 @@ def application_all_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search','')
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "createtime":
             order_by_names += "app_update_date"
-        ret = fetch_all_app_data(page, limit, order_by_names)
+        if search == '':
+            ret = fetch_all_app_data(page, limit, order_by_names)
+        else:
+            ret = fetch_one_app_data(search,page, limit, order_by_names)
+
+            return HttpResponse(json.dumps(ret, separators=(",", ":")))
+
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
     def post():
@@ -624,13 +652,17 @@ def function_all_data(request):
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit", 20)
         sort = request.GET.get("sort", "")
+        search = request.GET.get('search','')
         (sort_name, sort_status) = sort.split(".")
         order_by_names = ""
         if sort_status == "desc":
             order_by_names = "-"
         if sort_name == "create_time":
             order_by_names += "df_update_date"
-        ret = fetch_all_fun_data(page, limit, order_by_names)
+        if search == '':
+            ret = fetch_all_fun_data(page, limit, order_by_names)
+        else:
+            ret = fetch_all_app_search_data(search,page,limit,order_by_names)
         return HttpResponse(json.dumps(ret, separators=(",", ":")))
 
     def post():

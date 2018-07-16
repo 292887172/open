@@ -1,0 +1,80 @@
+{% extends 'home/base.tpl' %}
+{% load filter %}
+{% load staticfiles %}
+{% block title %}
+    厨房社区
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/home/kitchen/app_index.css' %}">
+{% endblock %}
+{% block menu %}
+    {% create_menu 4 user.account_id %}
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <div class="main">
+            <div class="content-left">
+                <div class="phone-android animate"></div>
+                <div class="phone-ios"></div>
+            </div>
+            <div class="content-right">
+                <div class="content-box">
+                    <div class="content-title">
+                        <h3>你的厨房社区 吃货乐趣</h3>
+                        <p class="slogan">分享美食和快乐,厨友们活动神器</p>
+                    </div>
+                    <div class="content-footer">
+                        <div class="download-btn">
+                            <a target="_blank" class="btn-a download-ios-btn"
+                               data-url="https://itunes.apple.com/cn/app/%E5%8E%A8%E6%96%B9-%E6%99%BA%E8%83%BD%E8%AE%A9%E5%8E%A8%E6%88%BF%E6%9B%B4%E5%BF%AB%E4%B9%90/id1372696755?mt=8"
+                               onclick="jump(this)">
+                                <span class="download-ios-icon"></span>
+                                <span class="download-ios-text">iOS下载</span>
+                            </a>
+                            <a target="_blank" class="btn-a download-android-btn"
+                               data-url="http://storage.56iq.net/group1/M00/43/7A/CgoKQ1s7MoyAcYVfAJBedINxpHw391.apk"
+                               onclick="jump(this)">
+                                <span class="download-android-icon"></span>
+                                <span class="download-android-text">Android下载</span>
+                            </a>
+                        </div>
+                        <div class="content-or">
+                            <p class="line line-l"></p>
+                            or扫描二维码下载
+                            <p class="line line-r"></p>
+                        </div>
+                        <div class="qrcode">
+                            <div class="qrcode-box">
+                                <img src="/static/image/home/erweima.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".download-ios-btn").hover(function () {
+                $(".phone-ios").addClass("animate");
+                $(".phone-android").removeClass("animate");
+            });
+
+            $(".download-android-btn").hover(function () {
+                $(".phone-android").addClass("animate");
+                $(".phone-ios").removeClass("animate");
+            });
+
+            jump = function (url) {
+                var down = $(url).data("url");
+
+                location.href = down;
+            }
+        })
+    </script>
+{% endblock %}

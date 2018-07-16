@@ -5,10 +5,11 @@ import logging
 import pymysql
 import json
 import datetime
-from base.connection import SysMysqlHandler
+from base.connection import SysMysqlHandler,MysqlHandler
 from base.crypto import md5_en
 from util.export_excel import deal_json
-
+from model.center.protocol import Protocol
+from model.center.message import Message
 
 def check_user_password(user, password):
     """
@@ -48,6 +49,39 @@ def check_user_password(user, password):
     return obj
 
 
+
+def search_time(key):
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sqlOne = "SELECT ebf_pc_create_date FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key)
+        cursor.execute(sqlOne)
+        test = cursor.fetchone()
+
+        return test
+    except Exception as e:
+        print(e)
+        return ''
+    finally:
+        conn.close()
+def search_time1(key):
+    conn = SysMysqlHandler().conn
+    try:
+        cursor = conn.cursor()
+        sqlOne = "SELECT ebf_ui_update_date FROM ebt_device_page_conf WHERE ebf_device_key='{0}'".format(key)
+        cursor.execute(sqlOne)
+        test = cursor.fetchone()
+        print(test)
+        return test
+    except Exception as e:
+        print(e)
+        return ''
+    finally:
+        conn.close()
+def search_time11(key):
+    d = Protocol.objects.filter(protocol_device_key=key)
+    for i in d:
+        return i.protocol_create_date
 def update_app_protocol(app):
     conn = SysMysqlHandler().conn
     try:
@@ -58,6 +92,8 @@ def update_app_protocol(app):
         sqlOne = "SELECT ebf_pc_device_key FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key_value)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
+
+
         if not test:
             sql = "INSERT INTO ebt_protocol_conf(" \
                   "ebf_pc_factory_uid, " \
@@ -137,7 +173,7 @@ def get_device_list(device_secret):
     key = device_secret[len(device_secret)-8:]
     try:
         cursor = conn.cursor()
-        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac FROM ebt_device WHERE ebf_device_secret="{0}" order BY ebf_device_id'.format(key)
+        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac FROM ebt_device WHERE ebf_device_key="{0}" order BY ebf_device_id'.format(key)
         cursor.execute(sql)
         re = cursor.fetchall()
         if re:
@@ -176,6 +212,48 @@ def get_factory_info(user_id):
     finally:
         conn.close()
     return ''
+
+
+def select_protocol(device_key,zdy):
+    # m = Protocol.objects.all().filter(protocol_device_key=key)
+    # if m:
+    #     for i in m:
+    #         res_ = i.protocol_factory_content
+    #         res_ = json.loads(res_)
+    #         return res_
+    # else:
+    if zdy == 1 or zdy == 0:
+        mm = Protocol.objects.filter(protocol_factory_type=zdy,protocol_device_key=device_key)
+        if mm.count() > 0:
+            for i in mm:
+                res_ = i.protocol_factory_type
+                res_ = json.loads(res_)
+                return res_
+            else:
+                return None
+    else:
+        mm = Protocol.objects.filter(protocol_factory_type=0,protocol_device_key=device_key)
+        if mm.count() > 0:
+            for i in mm:
+                res_ = i.protocol_factory_content
+                res_ = json.loads(res_)
+                return res_
+        else:
+            return None
+
+
+def update_protocol(list_key, data_sql_update,protocol_type,cook_ies):
+    t = Protocol.objects.filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
+
+    if not t:
+        print('rr')
+        Protocol.objects.create(protocol_device_key=list_key,protocol_factory_content=data_sql_update,protocol_factory_type=protocol_type,protocol_create_date=datetime.datetime.utcnow(),protocol_update_date=datetime.datetime.utcnow())
+        Message.objects.create(message_content='协议更新',message_type=int(2),message_handler_type=int(2),device_key=list_key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+
+    else:
+        print('rrt')
+        t.update(protocol_factory_content=data_sql_update)
+        Message.objects.create(message_content='协议更新',message_type=int(2),message_handler_type=int(2),device_key=list_key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
 
 
 def get_factory_id(factory_name):

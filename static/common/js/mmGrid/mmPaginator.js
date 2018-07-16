@@ -67,7 +67,7 @@
             if(page > 4 ){
                 list.push('...');
             }
-            for(var i= 0; i < 5; i++){
+            for(var i= 0; i < 8; i++){
                 var no = page - 2 + i;
                 if(no > 1 && no <= totalPage-1){
                     list.push(no);

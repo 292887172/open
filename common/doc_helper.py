@@ -23,6 +23,26 @@ django.setup()
 from model.center.doc import Doc
 from model.center.doc_menu import DocMenu
 from model.center.api import Api
+from model.center.device_menu import DeviceMenu
+
+def save_device_menu(menu_data):
+    device_menu = DeviceMenu.objects.all()
+    store_device = EbStore(CLOUD_TOKEN)
+    file_name_device = "menu-{0}.js".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
+    store_device.upload(json.dumps(device_menu,cls=MyEncoder).encode("utf-8"),file_name_device,"application/javascript")
+    DeviceMenu.objects.all().delete()
+    try:
+        for menu in menu_data:
+
+            # 保存一级菜单
+            DeviceMenu(device_menu_id=menu["id"], menu_name=menu["title"], menu_url=menu["url"],
+                       device_key=menu["ordernum"],device_type=menu["sort"],create_time=datetime.datetime.now(),update_time=datetime.datetime.now()).save()
+        pass
+        return True
+    except Exception as e:
+        print(str(e))
+        logging.getLogger("").info(str(e))
+        return False
 
 
 def execute_menu(menu_arr):

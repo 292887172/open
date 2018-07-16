@@ -65,7 +65,8 @@
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
             </span>
-                    <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索...">
+                    <input type="text" class="form-control input-sm no-border rounded" id="applyCertNum"
+                           placeholder="搜索...">
                 </div>
             </div>
         </form>
@@ -269,8 +270,16 @@
                                     <li>
                                         <a href="#/doc/menu" class="auto">
 
-                                           <i class="fa fa-list-ul"></i>
+                                            <i class="fa fa-list-ul"></i>
                                             <span>菜单管理</span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="#/device" class="auto">
+
+                                             <i class="fa fa-list-ul"></i>
+                                            <span>设备菜单管理</span>
                                         </a>
 
                                     </li>
@@ -302,5 +311,6 @@
 
     {% block end_fixed_script %}{% endblock %}
     {% block end_script %}{% endblock %}
+
 </body>
 </html>

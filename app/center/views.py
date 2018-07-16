@@ -105,7 +105,7 @@ def home(request):
     fac_info = get_factory_info(request.user.account_from_id)
     return render(request, "center/home.html", locals())
 
-
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         account = request.POST.get("account", "")
@@ -153,9 +153,9 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/list")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/controldown")
         if request.user.developer.developer_id:
-            return HttpResponseRedirect("/product/list")
+            return HttpResponseRedirect("/product/controldown")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
@@ -170,7 +170,7 @@ def login(request):
             ac_pwd = base64.b64decode(al.al_account_pwd)
             user_obj = authenticate(username=ac_id, password=ac_pwd)
             django.contrib.auth.login(request, user_obj)
-            return HttpResponseRedirect("/product/list")
+            return HttpResponseRedirect("/product/controldown")
         except Exception as e:
             pass
     return render(request, "center/login.html", locals())
@@ -756,10 +756,10 @@ def callback(request):
                 user_obj = authenticate(username=username, password='123')
                 django.contrib.auth.login(request, user_obj)
                 if ac.is_developer:
-                    response = HttpResponseRedirect('/product/list')
+                    response = HttpResponseRedirect('/product/controldown')
                 else:
                     create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
-                    response = HttpResponseRedirect('/product/list')
+                    response = HttpResponseRedirect('/product/controldown')
                 response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
@@ -773,7 +773,7 @@ def callback(request):
                 return HttpResponse('登录失败，请尝试其他方式登录')
             user_obj = authenticate(username=username, password='123')
             django.contrib.auth.login(request, user_obj)
-            response = HttpResponseRedirect('/product/list')
+            response = HttpResponseRedirect('/product/controldown')
             response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
             response.set_cookie(AUTO_LOGIN, token, expires=dt)
             return response

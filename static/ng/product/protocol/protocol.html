@@ -1,0 +1,1064 @@
+<style>
+
+    #successImg{
+        width: 58px;
+        height: 58px;
+        margin: 0px auto;
+        background: url("/static/image/success1.png") no-repeat ;
+        border:none;
+    }
+    .u208 {
+        margin-top: 7px;
+        left: 0px;
+        top: 0px;
+        width: 86px;
+        height: 48px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(121, 121, 121, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .u209 {
+        margin-top: 7px;
+        width: 196px;
+        height: 48px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(121, 121, 121, 1);
+        border-radius: 0px;
+    }
+
+    .xinput {
+        margin-left: 0px;
+        padding: 0px;
+        width: 48px;
+        height: 24px;
+
+    }
+
+    select {
+        padding: 0 4px;
+    }
+
+    input {
+        display: inline;
+
+        background-color: white !important;
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 44px;
+        border-top-width: 0px;
+        border-left-width: 0px;
+        border-bottom-width: 0px;
+        border-right-width: 0px;
+
+    }
+
+    .protocol-choose {
+        width: 16px;
+        height: 16px;
+        top: 9px;
+        position: relative;
+    }
+
+    .btnn {
+        width: 135px;
+        height: 42px;
+        color: white;
+        background-color: #ff6202;
+        border: 0;
+        border-radius: 4px;
+    }
+
+    .btnn:active, .btnn:hover {
+        opacity: 0.65;
+    }
+    .common_dp-btn{
+        display: inline-block;
+        height: 36px;
+        line-height: 33px;
+        color: #666;
+        border: 1px solid silver;
+        border-radius: 2px;
+        font-size: 12px;
+        padding: 0 15px 0 15px;
+        margin: 5px 7px 5px 0;
+        box-sizing: content-box;
+    }
+    .common_dp-btn:hover{
+        border-color: #2fa666;
+        cursor: pointer;
+    }
+    .common_dp-checked{
+        color: #2fa666;
+        border-color: #2fa666;
+        background: #f2f0e1;
+    }
+    /*预览帧样式*/
+    .num {
+        width: 76px;
+        /*height: 50px;*/
+        text-align: center;
+        /*line-height: 50px;*/
+        border: 1px solid #c3c3c3;
+        background-color: #FEDCD2;
+        border-radius: 10px;
+        margin-right: 5px;
+        color: #333;
+    }
+
+    .num:nth-child(2) {
+        background-color: #BFD8D2;
+    }
+
+    .num:nth-last-child(1) {
+        background-color: #DF744A;
+    }
+
+    .num-title, .num-val {
+        height: 20px;
+        line-height: 1.5
+    }
+
+    .num-title {
+        border-bottom: 1px solid #333
+    }
+
+    .protocol-pre {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin-top: 20px;
+        margin-left: 100px;
+    }
+
+    .pre-title {
+        width: 100%;
+        height: 20px;
+        font-size: 17px;
+        margin-top: 10px;
+        color: #939192;
+    }
+
+    /*end*/
+
+    .delete {
+        width: 15px;
+        height: 15px;
+        top: 0px;
+        margin-left: 96px;
+        border-radius: 15px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .delete1 {
+        width: 15px;
+        height: 15px;
+        top: -6px;
+        right: -6px;
+        border-radius: 15px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .x11x {
+        position: relative;
+    }
+
+    #div_add {
+        position: relative;
+    }
+
+    /* 遮罩层*/
+    .black_overlay {
+        display: none;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: 0.5;
+        overflow:hidden;
+        filter: alpha(opacity=80);
+    }
+
+    .white_content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        margin-left: -300px;
+        left: 50%;
+        margin-top: -130px;
+        width:600px;
+        height: 260px;
+        border: 2px solid lightblue;
+        background-color: white;
+        z-index: 1002;
+        overflow:hidden;
+
+    }
+
+    .white_content_small {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        margin-left: -300px;
+        margin-top: -135px;
+        height: 270px;
+        border: 2px solid lightblue;
+        background-color: white;
+        z-index: 1002;
+        overflow: auto;
+    }
+
+    /*数据域样式*/
+    .ui-data-domain {
+        border: 1px solid #ccc;
+        width: 550px;
+        height: 77px;
+        overflow-x: scroll;
+        top: -8px;
+        left: 50px;
+        position: relative;
+        padding: 0;
+    }
+
+    table {
+        height: 60px;
+        width: 100%;
+        border: 1px solid #ccc;
+    }
+
+    tr {
+        text-align: center;
+    }
+    th{
+        width: 30px;
+        display: inline-block;
+        line-height: 20px;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        top: 1px;
+    }
+    td {
+        border: 1px solid #ccc;
+    }
+    button{
+       background:#fff;
+        }
+
+    .modal-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -135px;
+        margin-left: -300px;
+        width: 600px;
+        height: 270px;
+        border: 2px solid lightblue;
+        background-color: white;
+        z-index: 1002;
+        overflow: hidden;
+    }
+    .bootbox-close-button{
+        font-size: 25px;
+        width: 30px;
+        margin-top: -5px;
+    }
+
+    /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+    .ui-data-domain::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        background-color: #F5F5F5;
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    .ui-data-domain::-webkit-scrollbar-track {
+
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    .ui-data-domain::-webkit-scrollbar-thumb {
+
+        -webkit-box-shadow: inset 0 0 3px rgba(193, 193, 193, .3);
+        background-color: #ccc;
+    }
+    .xrx{
+        display: block;
+        margin: 10px 0;
+    }
+
+    /*end*/
+</style>
+<script>
+
+    function Iclose(b) {
+        var parentNode1 = b.parentNode.parentNode;
+        parentNode1.remove()
+    }
+
+    function Iclose1(a) {
+        var parentNode = a.parentNode;
+        parentNode.remove()
+    }
+
+    //增加第二版
+    function New_add_title(c) {
+        var color1 = document.getElementsByClassName("new_add_data");
+        for (var zpz=0, l_c = color1.length; zpz<l_c;zpz++) {
+            color1[zpz].classList.remove("active");
+            color1[zpz].style.color='black'
+            color1[zpz].style.backgroundColor='white'
+        }
+         var bgdiv = document.getElementById("fade");
+        bgdiv.style.width = document.body.scrollWidth;
+        bgdiv.style.height = $(document).height();
+
+        document.body.style.overflow='hidden';
+        document.body.style.height='100%';
+        $('body').css('overflow', 'hidden');
+        // 获取未删除之前的所有数据
+        var mak = {"心跳帧":"","控制帧":"","故障报警帧":""};
+
+        // 获取被删除的数据
+        var new_data_list = {};
+        var ttt = document.getElementsByClassName("code-items")
+        for (var t_key = 0, l = ttt.length; t_key < l; t_key++) {
+            var key = ttt[t_key].getElementsByTagName("span")[0].innerText;
+            var valuez = ttt[t_key].getElementsByTagName("input")[0].value;
+            console.log(mak[key])
+            delete mak[key]
+            new_data_list[key] = valuez
+        }
+        // mak 未被删除的数据
+        console.log("操作完之后的数据", new_data_list, mak)
+        var del_again = document.getElementsByClassName("new_add_data");
+        var del_kk=[]
+        for (var del_k=0, dl_l=del_again.length;del_k<dl_l;del_k++) {
+            console.log(del_again[del_k].innerText)
+            if (del_again[del_k].innerText.length>0){
+                 del_kk.push(del_again[del_k].innerText)
+            }
+
+        }
+        console.log('被删除的key',del_kk)
+        var hide_key = []
+        for (var p in mak) {
+            hide_key.push(p)
+        }
+        console.log(hide_key)
+        console.log("mak", mak)
+        console.log('changdu',del_kk.length)
+        if (del_kk.length > 0 ){
+            console.log("有毒")
+            hide_key=del_kk
+        }
+        if (hide_key.length == 0) {
+            console.log('走这里')
+            document.getElementById("no_add").style.display = ''
+
+
+
+        } else {
+            try {
+                for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
+                document.getElementById("no_add").style.display = 'none';
+
+                document.getElementsByClassName("new_add_data")[gg].style.display='';
+                document.getElementsByClassName("new_add_data")[gg].innerText = hide_key[gg]
+
+                }
+            }catch (err) {
+                    for (var gg = 0, lg = hide_key.length; gg < lg; gg++) {
+                    document.getElementById("no_add").style.display = ''
+
+
+                }
+                }
+
+        }
+
+        //先判断长度
+        var lengg = document.getElementsByClassName("code-items").length + document.getElementsByClassName("new_class").length;
+        try {
+
+            if (lengg >= 3){
+            console.log(lengg)
+            document.getElementsByClassName("new_add_data")[0].remove()
+            document.getElementById("no_add").style.display=''
+            }
+        }catch(err){
+            document.getElementById("no_add").style.display=''
+        }
+
+        document.getElementsByClassName("black_overlay")[0].style.display = 'block'
+        document.getElementsByClassName("modal-content")[0].style.display = 'block'
+
+    }
+
+    // 被选中颜色
+    function pitch(on) {
+        var t =0;
+        if(t %2==0){
+            t++
+            console.log(t)
+             //放大代码
+            on.style.color = "green";
+            on.style.backgroundColor="#efedda"
+        }else{
+        //缩小代码
+            t++
+            on.style.color = "black";
+            on.style.backgroundColor="white"
+        }
+
+
+
+        console.log(on)
+    }
+
+    //新增协议关闭
+    function func11(d) {
+        document.getElementsByClassName("black_overlay")[0].style.display = 'none'
+        document.getElementsByClassName("modal-content")[0].style.display = 'none'
+        $('body').css('overflow', 'auto');
+
+    }
+
+    function func22(d) {
+        var mak = {};
+        var hide_list = document.getElementsByClassName("code-items1");
+        for (var hi = 0, hide_length = hide_list.length; hi < hide_length; hi++) {
+            mak[$(hide_list[hi]).children("span").text().replace(/(^\s*)|(\s*$)/g, "")] = $(hide_list[hi]).children("input").val();
+        }
+        console.log("mak", mak);
+        var zzrr = []
+        var leg = document.getElementsByClassName("new_add_data");
+        for (var xzxc =0,xlen = leg.length;xzxc<xlen;xzxc++) {
+            if (leg[xzxc].style.display==''){
+                zzrr.push('x')
+            }
+        }
+        console.log('长度',zzrr)
+        if (leg.length == 0) {
+            console.log("0")
+            document.getElementsByClassName("black_overlay")[0].style.display = 'none'
+            document.getElementsByClassName("modal-content")[0].style.display = 'none'
+            location.reload()
+        } else {
+            // 循环操作
+            for (var nd=0,zzxx = zzrr.length;nd<zzxx;nd++){
+                try {
+                var tttt = leg[nd].style;
+                }
+                catch (err) {
+                    console.log('错误pass')
+                }
+
+                if (tttt.color == "green") {
+
+                    var t = document.getElementsByClassName("code-items").lastChild
+                    var tt = document.getElementsByClassName("xxxxxx")[0]
+                    var newDiv1 = document.createElement("div");
+                    if (leg[nd]){
+                         var tr = leg[nd].innerText
+                         var tr_value = mak[tr]
+                         if (tr_value){
+                            console.log('')
+                         }else {
+                             tr_value=''
+                         }
+                    }
+
+                    newDiv1.className = "u208 col-md-2 new_class ";
+                    newDiv1.style = "margin-left: 10px;padding-left: 0px;padding-right: 0px";
+                    newDiv1.innerHTML =
+                        '                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1" onclick="Iclose1(this)"/>\n' +
+                        '                    <input style="display: block;margin-top: 3px;margin-left: 0px;width: 84px;text-align: center"placeholder="描述名称" value="' + tr + '">\n' +
+                        '                    <input id=\'input_1\' class="bianji" placeholder="请输入" style="margin-left: 21px;margin-top:3px;text-align: center"\n' +
+                        '                           value="' + tr_value + '">\n' +
+                        '\n'
+                    ;
+                    tt.insertBefore(newDiv1, t);
+
+                    document.getElementsByClassName("black_overlay")[0].style.display = 'none'
+                    document.getElementsByClassName("modal-content")[0].style.display = 'none'
+                    console.log('beisc',leg[nd])
+                    leg[nd].remove()
+
+                } else {
+                    console.log('cw')
+                }
+                console.log(leg[nd])
+
+            }
+            // 一系列神操作
+
+
+        }
+        document.getElementsByClassName("black_overlay")[0].style.display = 'none'
+        document.getElementsByClassName("modal-content")[0].style.display = 'none'
+
+        $('body').css('overflow', 'auto');
+    }
+
+    function func33(d) {
+        document.getElementsByClassName("black_overlay")[0].style.display = 'none'
+        document.getElementsByClassName("modal-content")[0].style.display = 'none'
+        $('body').css('overflow', 'auto');
+
+    }
+
+    //弹出隐藏层
+    function ShowDiv(show_div, bg_div) {
+        document.getElementById(show_div).style.display = 'block';
+        document.getElementById(bg_div).style.display = 'block';
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+        bgdiv.style.height = $(document).height();
+        $("#" + bg_div).height($(document).height());
+        document.body.style.overflow='hidden';
+        document.body.style.height='100%';
+    };
+
+    //关闭弹出层
+    function CloseDiv(show_div, bg_div) {
+        document.getElementById(show_div).style.display = 'none';
+        document.getElementById(bg_div).style.display = 'none';
+        $('body').css('overflow', 'auto');
+    };
+
+    function SubmitProtocol1(show_div, bg_div) {
+
+        document.getElementById(show_div).style.display = 'none';
+        document.getElementById(bg_div).style.display = 'none';
+        $('body').css('overflow', 'auto');
+        if (document.getElementById("x_x").selected) {
+            console.log('下行')
+
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+        }
+        if (document.getElementById("s_x").selected) {
+            console.log('上行')
+
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+        }
+       var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+
+       var $scope = angular.element(appElement).scope();
+        $scope.TypeProtocol()
+
+    }
+</script>
+
+<div class="box2 relative" ng-app="Product.protocol" ng-controller="ProtocolCtrl" id="mainDiv1">
+
+    <div class="hl-help">
+        <span class="linkBlue" style="font-size:13px">定义协议</span>
+    </div>
+    <hr style="height: 20px;margin-top: 17px;border-top-width: 1px;">
+
+    <div class="" style="margin-left: 50px">
+        <div class="col-md-4" style="display: inline;margin-left: 50px;padding-left:0px">
+            <input type="radio" name="xx" class="standard protocol-choose" value="standard" id="standard-item"
+                   ng-click="BzProtocol()">
+            <p style="font-size: 20px;margin-left: 25px">标准协议</p>
+        </div>
+        <div class="" style="display: inline;margin-left: 50px">
+            <input type="radio" name="xx" class="custom protocol-choose" value="custom" id="custom-item"
+                   ng-click="ZdyProtocol()">
+            <p style="font-size: 20px;margin-left: 420px">自定义协议</p>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="hl-help" style="margin-top: 20px;color: #333333">
+        帧定义:
+    </div>
+    <hr>
+    <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
+            name="condition" id="select_id" class="bianji">
+        <option value="0" id="s_x" ng-selected="response.protocol_type=='0'">MCU到云端</option>
+        <option value="1" id="x_x" ng-selected="response.protocol_type=='1'">云端到MCU</option>
+    </select>
+
+    <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
+        <p class="pre-title">协议格式预览</p>
+        <div class="num" ng-repeat="x in list_mode" ng-click="gotoPosition(x.number)">
+            <div class="num-title">{[{x.title}]}</div>
+            <div class="num-val">{[{x.val}]}</div>
+        </div>
+    </div>
+    <select disabled="disabled" style="display: block;margin-top: 12px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
+            name="condition" id="select_id_1" class="bianji">
+        <option value="0" id="s_x_e" ng-selected="response.endian_type=='0'">小端</option>
+        <option value="1" id="x_x_e" ng-selected="response.endian_type=='1'">大端</option>
+    </select>
+    <div class="x1x" id="protocolx{[{ x.number }]}x" style="margin-top: 15px;margin-left: 100px;height: 100px"
+         ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}"
+         ng-if="x.is_enable==true || x.is_enable=='true'">
+
+        <input style="margin-left: 0px;font-size: larger;width: 100px;display: none" readonly="readonly" value="{[{ x.title }]}">
+         <span class="xrx" style="margin-left: 0px;font-size: larger;width: 100px">{[{ x.title }]}</span>
+        <input type="checkbox" class="ids taf" checked style="margin-left: 30px;display: none"
+               ng-if="x.is_enable==true || x.is_enable=='true'">
+        <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none"
+               ng-if="x.is_enable==false || x.is_enable=='false'">
+        <span class="ids" style="display: none">启用</span>
+        <br>
+        <br>
+        <div id="x5x">
+            <div class="u208 col-md-2">
+                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
+                <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px"
+                       value="{[{ x.number }]}">
+            </div>
+            <div class="u208 col-md-2 " style="margin-left: 10px">
+                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
+                <input ng-if="x.name=='data_domain'" disabled="" id="data_domain_length" data-length="{[{ frame_length/8 }]}" value="{[{ frame_length/8 }]}Byte">
+                <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px"
+                        disabled="disabled" class="bianji" name="checkout_length" id="select_length"
+                        onchange="show_or_hide1(this)">
+                    <option value="1" ng-selected="x.length =='1'">1Byte</option>
+                    <option value="2" ng-selected="x.length =='2'">2Byte</option>
+                    <option value="3" ng-selected="x.length =='3'">3Byte</option>
+                    <option value="4" ng-selected="x.length =='4'">4Byte</option>
+                </select>
+            </div>
+
+            <div ng-if="x.name=='data_domain'" class="ui-data-domain">
+
+                <table border="1">
+                    <tr>
+                        <th  width="30px">编号</th>
+                        <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.id }]}</td>
+
+                    </tr>
+                    <tr>
+                        <th width="30px">字节</th>
+
+                        <td ng-repeat="i in range(frame_length) track by $index">bit{[{ 7-$index%8 }]}</td>
+
+                    </tr>
+                    <tr>
+                        <th  width="30px">功能</th>
+                        <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.title }]}</td>
+
+                    </tr>
+
+
+                </table>
+            </div>
+            <span ng-if="x.name=='data_domain'" style="color: #f35019"> tips:数据域修改请到定义功能部分修改</span>
+            <div ng-if="x.title == '帧头'">
+                <div class="u209 col-md-2 code-item " id="del_c"
+                     style="margin-left: 10px;padding-left: 0px;padding-right: 0px;text-align: center"
+                     ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
+                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
+                         onclick="Iclose1(this)"/>
+                    <span style="display: block;margin-top: 11px;width: 198px;text-align: center"> {[{ c.desc}]}</span>
+                    <input type="text" disabled="disabled" class="xinput bblchk"
+                           value="{[{ c.value.split('')[0]+c.value.split('')[1]}]}"><input type="text"
+                                                                                           disabled="disabled"
+                                                                                           class="xinput bblchk"
+                                                                                           value="{[{ c.value.split('')[2]+c.value.split('')[3]}]}"><input
+                        type="text" disabled="disabled" class="xinput bblchk" style="display: none"
+                        value="{[{ c.value.split('')[4]+c.value.split('')[5]}]}"><input type="text"
+                                                                                        value="{[{ c.value.split('')[6]+c.value.split('')[7]}]}"
+                                                                                        disabled="disabled"
+                                                                                        class="xinput bblchk"
+                                                                                        style="display: none">
+                </div>
+
+            </div>
+            <div ng-if="x.title == '帧数据类型'" class="xxxxxx">
+                <div class="u208 col-md-2 code-item code-items" id="del_c"
+                     style="margin-left: 10px;padding-left: 0px;padding-right: 0px"
+                     ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
+                    <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
+                         onclick="Iclose1(this)"/>
+                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
+                    <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
+                           style="margin-left: 21px;text-align: center"
+                           value="{[{ c.value }]}">
+
+                </div>
+
+            </div>
+
+            <div ng-if="x.title == '帧数据类型' " class="ids" id="x4x">
+                <!--<img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">-->
+                <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;"
+                     id="new_add" onclick="New_add_title(this)">
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div style="margin-left: 90px;margin-top: 60px;height: 70px" id="x3x">
+        <div class="u208 col-md-2" id="x2x" style="margin-left: 10px">
+            <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">校验算法</span>
+            <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji"
+                    name="checkout_algorithm" id="select_option">
+                <option value="sum">SUM(加和效验)</option>
+                <option value="crc-8" ng-selected="response.checkout_algorithm=='crc-8'">CRC-8</option>
+                <option value="crc-16" ng-selected="response.checkout_algorithm=='crc-16'">CRC-16</option>
+            </select>
+
+        </div>
+        <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px">
+            <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">起始检验位</span>
+            <input id='input_04' class="bianji" placeholder="0" style="text-align: center"
+                   value="{[{ response.start_check_number}]}">
+
+        </div>
+        <div class="u208 col-md-2 col-md-offset-2" style="margin-left: 10px">
+            <span style="display: block;margin-top: 11px;width: 74px;padding-left: 0px;padding-right: 0px">结束检验位</span>
+            <input id='input_05' class="bianji" placeholder="0" style="text-align: center"
+                   value="{[{ response.end_check_number}]}">
+
+        </div>
+    </div>
+    <div style="margin-top: 0px;text-align: center">
+
+        <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="display: none">新增协议
+        </button>
+
+        <button type="submit" class="btn-s-xs btnn ids" id="sbt" ng-click="SubmitProtocol()">保存</button>
+
+    </div>
+</div>
+<!--弹出层时背景层DIV-->
+<div id="fade" class="black_overlay">
+</div>
+<div id="MyDiv" class="white_content" style="display: none;text-align: center">
+    <div class="modal-header" style="text-align: center">
+        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
+                onclick="CloseDiv('MyDiv','fade')">×
+        </button>
+        <h4 class="modal-title">上下行切换</h4>
+    </div>
+    <div class="modal-body" style="height: auto;text-align: center">
+        <div class="bootbox-body">
+             <h4 class="modal-title">是否对以编辑的内容进行保存</h4>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-bb-handler="success" type="button" style="outline:none" class="btn btn btn-primary"
+                onclick="SubmitProtocol1('MyDiv','fade')"></i> 确定
+        </button>
+        <button data-bb-handler="cancel" type="button" style="outline:none" class="btn btn btn-default"
+                onclick="CloseDiv('MyDiv','fade')"><i class="icon-info"></i> 取消
+        </button>
+    </div>
+</div>
+<div class="modal-content " style="display: none;text-align: center;">
+    <div class="modal-header" style="text-align: center">
+        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true"
+                onclick="func11(this)">×
+        </button>
+        <h4 class="modal-title">选择帧数据类型</h4>
+    </div>
+    <div class="modal-body" style="height: auto;">
+        <div class="bootbox-body">
+
+            <div class="common_dp-btn1" data-id="STATE" style="text-align: center">
+
+                <span id="no_add" style="text-align: center;display: none">当前无可选择新增数据类型，试试自定义协议吧！</span>
+
+                    <button class="new_add_data  common_dp-btn  btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+
+                    <button class="new_add_data  common_dp-btn btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+
+                    <button class="new_add_data  common_dp-btn  btnxx" data-id="" onclick="pitch(this)" style="background-color: white;width: 113px;display: none"></button>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-bb-handler="success" type="button" style="outline:none" class="btn btn btn-primary"
+                onclick="func22(this)"><i class="icon-ok"></i> 确定
+        </button>
+        <button data-bb-handler="cancel" type="button" style="outline:none" class="btn btn btn-default"
+                onclick="func33(this)"><i class="icon-info"></i> 取消
+        </button>
+    </div>
+</div>
+
+
+
+<script>
+    $('.btnxx').click(function(){//给id为btn的元素添加点击事件
+        $(this).toggleClass('active');//每次点击的时候，将当前的元素切换active样式
+                                      //如果有，则去掉，否则添加
+        });
+    $(document).ready(function () {
+        console.log(document.getElementsByClassName("code-items"))
+        $("#select_id").change(function () {
+            ShowDiv('MyDiv', 'fade');
+
+        })
+
+    });
+    function custom(){
+        var list = document.getElementsByClassName("ids");
+        for (var i = 0, l = list.length; i < l; i++) {
+            var obj = list[i];
+            obj.style.display = '';
+        }
+        var list1 = document.getElementsByClassName("bianji");
+        for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+            $('input[class=bianji]').removeAttr("disabled");
+        }
+        var list11 = document.getElementsByClassName("bblchk");
+        for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+            console.log(list11[iii]);
+            list11[iii].disabled = false;
+        }
+        var list111 = document.getElementsByClassName("baf");
+        for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
+            list111[iiii].disabled = 'false';
+        }
+        var select_option = document.getElementsByTagName("select")[0];
+        select_option.disabled = false;
+        var select_option1 = document.getElementById("select_length");
+        select_option1.disabled = false;
+    }
+
+    $(".custom").on('click', function () {
+        custom()
+
+
+    });
+    $(".standard").on('click', function () {
+
+        var lis = document.getElementsByClassName("ids");
+        for (var j = 0, l = lis.length; j < l; j++) {
+            var obj = lis[j];
+            obj.style.display = 'none';
+        }
+        var lis1 = document.getElementsByClassName("bianji");
+        for (var jj = 0, ll = lis1.length; jj < ll; jj++) {
+            $('input[class=bianji]').attr("disabled", "disabled");
+        }
+        var lis11 = document.getElementsByClassName("bblchk");
+        for (var jjj = 0, lll = lis11.length; jjj < lll; jjj++) {
+            lis11[jjj].disabled = true;
+        }
+        var select_option = document.getElementsByTagName("select")[0];
+        select_option.disabled = true;
+        var select_option1 = document.getElementById("select_length");
+        select_option1.disabled = true;
+    });
+    $("#newpro").on('click', function () {
+
+        var newDiv = document.createElement("div");
+        newDiv.className = "x11x";
+        newDiv.setAttribute("id", 'x11x');
+        newDiv.style = "margin-top:50px;margin-left:100px;";
+        newDiv.innerHTML =
+            '<input style="margin-left: 0px;text-align:left;font-size: larger;width: 800px" placeholder="自定义协议名称" value="">\n' +
+
+            '        <br>\n' +
+            '        <br>\n' +
+            '        <div>\n' +
+            '            <div class="u208 col-md-2">\n' +
+
+            '                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 24px" value="">\n' +
+            '            </div>\n' +
+            '            <div class="u208 col-md-2 " style="margin-left: 10px">\n' +
+            '                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 24px" value="">\n' +
+            '            </div>\n' +
+            '<img src="/static/image/product/delete.png" class="delete" id="delete" onclick="Iclose(this)"/>' +
+            '            <div class="u208 col-md-2 " id="keyven" style="margin-left: 10px">\n' +
+            '                <input style="display: block;width: 70px;margin-top:3px;margin-left:0px" placeholder="自定义参数">\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 20px;margin-top:0px" value="">\n' +
+            '            </div>\n' +
+
+            '\n' +
+
+            '    </div>';
+
+
+        var oldDiv = document.getElementById("mainDiv1");
+        var ooDiv = document.getElementById("x3x");
+        oldDiv.insertBefore(newDiv, ooDiv);
+
+    })
+
+    function foo() {
+        if (document.getElementById("custom-item").checked) {
+            console.log('zidingyi')
+            var list = document.getElementsByClassName("ids");
+            for (var i = 0, l = list.length; i < l; i++) {
+                var obj = list[i];
+                obj.style.display = '';
+            }
+            var list1 = document.getElementsByClassName("bianji");
+            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                $('input[class=bianji]').removeAttr("disabled");
+            }
+            var list11 = document.getElementsByClassName("bblchk");
+            for (var iii = 0, lll = list11.length; iii < lll; iii++) {
+
+                list11[iii].disabled = false;
+            }
+            var list111 = document.getElementsByClassName("baf");
+            for (var iiii = 0, llll = list111.length; iiii < llll; iiii++) {
+                list111[iiii].disabled = 'false';
+            }
+
+            var select_option = document.getElementsByTagName("select");
+            for (var y = 0, ls = select_option.length; y < ls; y++)
+                select_option[y].disabled = false;
+
+        } else {
+            console.log('biaozhun')
+            var lis = document.getElementsByClassName("ids");
+            for (var j = 0, lzz = lis.length; j < lzz; j++) {
+                var obj3 = lis[j];
+                obj3.style.display = 'none';
+            }
+            console.log('yy')
+            var lis1 = document.getElementsByClassName("bianji");
+            for (var jj = 0, llzz = lis1.length; jj < llzz; jj++) {
+                $('input[class=bianji]').attr("disabled", "disabled");
+            }
+            var lis11 = document.getElementsByClassName("bblchk");
+            for (var jjj = 0, lllzz = lis11.length; jjj < lllzz; jjj++) {
+                lis11[jjj].disabled = true;
+            }
+        }
+    }
+
+    function f1() {
+
+
+        if (document.getElementById("x_x").selected) {
+            var list = document.getElementsByClassName("ids");
+            for (var i = 0, l = list.length; i < l; i++) {
+                var obj = list[i];
+                obj.style.display = '';
+            }
+            var list1 = document.getElementsByClassName("bianji");
+            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                $('input[class=bianji]').removeAttr("disabled");
+            }
+            var select_option = document.getElementsByTagName("select");
+            for (var y = 0, ls = select_option.length; y < ls; y++)
+                select_option[y].disabled = false;
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "5AA5";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+        }
+        if (document.getElementById("s_x").selected) {
+            var list = document.getElementsByClassName("ids");
+            for (var i = 0, l = list.length; i < l; i++) {
+                var obj = list[i];
+                obj.style.display = '';
+            }
+            var list1 = document.getElementsByClassName("bianji");
+            for (var ii = 0, ll = list1.length; ii < ll; ii++) {
+                $('input[class=bianji]').removeAttr("disabled");
+            }
+            var select_option = document.getElementsByTagName("select");
+            for (var y = 0, ls = select_option.length; y < ls; y++)
+                select_option[y].disabled = false;
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("input")[0].value = "A55A";
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+        }
+    }
+
+    function show_or_hide1(v) {
+
+      if ($(v).parent().parent().parent().find("span").html()=="帧头") {
+           if (v.value == "1") {
+            console.log('1')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "2") {
+                console.log('2')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "3") {
+                console.log('3')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v.value == "4") {
+                console.log('4')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = '';
+            }
+      }
+
+
+    }
+    function show_or_hide(v) {
+
+           if (v== "1") {
+
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "2") {
+                console.log('2')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = 'none';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "3") {
+                console.log('3')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = 'none';
+            }
+            else if (v == "4") {
+                console.log('4')
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[0].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[1].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[2].style.display = '';
+                document.getElementsByClassName("u209")[0].getElementsByTagName("input")[3].style.display = '';
+            }
+
+
+
+    }
+
+
+</script>

@@ -10,7 +10,7 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
-    <title>{% block title %}{% endblock %} 厨房智能平台</title>
+    <title>{% block title %}{% endblock %} 厨电开发平台</title>
     <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/home/main.css' %}"/>
@@ -90,7 +90,7 @@
                     </div>
             {% else %}
                 <!-- 登录 -->
-                    <a style="min-width: 75px;" class="user-login" href="{% url 'login' %}">登录</a>
+
 
             {% endif %}
     </div>
@@ -156,7 +156,15 @@
 </div>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script>
+    window.onload=function () {
+            var height1 = document.body.scrollHeight;
 
+            console.log(document.getElementsByClassName("footer")[0].style.marginTop)
+            //document.getElementsByClassName("footer")[0].style.marginTop=(height1 / 2)-440+"px"
+            console.log(document.body.scrollHeight)
+        }
+</script>
 {% block script %}
 
 {% endblock %}

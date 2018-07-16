@@ -10,7 +10,7 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="Keywords" content="53iq智能，开放平台,超级APP,互联互通,硬件开发，物联开发，物联网，智能硬件开发，智能家居开发，健康设备开发，开发者中心"/>
     <meta name="Description" content="中国物联网与智能硬件行业领先的技术平台，为硬件厂商和开发者提供智能产品接入和推广的快捷通道，智能开发从53iq开始。"/>
-    <title>{% block title %}{% endblock %} 厨房智能平台</title>
+    <title>{% block title %}{% endblock %} 厨电开发平台</title>
     <link rel="shortcut icon" href="{% static 'image/53iq.ico' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}"/>
@@ -64,14 +64,16 @@ var _hmt = _hmt || [];
                                             title="53iq云智能云"></a>
         </h1>
         <ul class="nav">
+            <li><a href="/product/controldown/">控制台</a></li>
             {% if user.account_id or user.developer.developer_from == 3%}
                 <li><a href="{% url 'product/list' %}">产品管理</a></li>
             {% else %}
                 <li><a href="{% url 'home' %}">首页</a></li>
             {% endif %}
             <li><a href="{% url 'product/kitchen' %}">厨电方案</a></li>
-            <li><a href="{% url 'wiki' %}">开发指南</a></li>
-            <li><a href="/smartmenu">智能菜谱</a></li>
+            <!--<li><a href="{% url 'wiki' %}">开发指南</a></li>-->
+            <li><a href="/SmartRecipe">智能菜谱</a></li>
+            <li><a href="/community">厨房社区</a></li>
 
         </ul>
         <div class="sign_out">

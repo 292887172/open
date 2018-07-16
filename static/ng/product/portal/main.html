@@ -1,0 +1,385 @@
+<style>
+    .boxInfo {
+        padding-bottom: 0;
+    }
+    .fmInfo1 {
+        padding: 8px 0;
+        height: 66px;
+    }
+    .goods-list {
+        width: 100%;
+
+        padding: 14px;
+        margin-right: 36px;
+        float: initial;
+    }
+
+    .goods-list dl dt {
+        width: auto;
+        height: auto;
+        top: 10px;
+        border: 1px solid #c9c9c9;
+        border-radius: 4px;
+    }
+
+    .goods-list dl dd {
+        margin-left: 96px;
+        padding-top: 6px;
+    }
+
+    .goods-list dl {
+        overflow: visible;
+    }
+
+    .ui-control {
+        padding-top: 18px !important;
+        margin-left: 0 !important;
+    }
+
+    .progress {
+        width: 350px;
+        margin: auto;
+        height: 43px;
+        overflow: visible;
+        background-color: #fff;
+        border-radius: 0;
+        position: relative;
+        margin-left: -24px;
+    }
+
+    .progress li {
+        text-align: center;
+        font-size: 14px;
+        color: #B6B6B6;
+        float: left;
+        width: 85px;
+    }
+
+    .progress li.prog_a {
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
+    .progress li.prog_c {
+        position: relative;
+        left: 4px;
+        top: 0;
+    }
+
+    .progress li a {
+        color: #545a5f;
+        font-weight: bold;
+    }
+
+    .progress li span {
+        display: block;
+        margin: auto;
+        padding-top: 3px;
+        padding-right: 4px;
+        margin-bottom: 10px;
+        width: 25px;
+        height: 25px;
+        background: #d6dae0;
+        border-radius: 50%;
+        margin-top: -23px;
+        margin-left: -3px;
+    }
+
+    .progress li.prog_d {
+        position: relative;
+
+        top: 0;
+        float: right;
+    }
+
+    .goods-list dl dt img {
+        width: 70px;
+        height: 75px;
+    }
+
+    .mt20 {
+        padding-bottom: 20px;
+    }
+
+    .box2 {
+        min-height: 503px;
+    }
+
+    .footer {
+        z-index: 1;
+    }
+
+    .bg-white {
+        background-color: #fff;
+        color: #788188;
+        font-weight: bold;
+    }
+
+    .ui-edit-item a {
+        color: #4395FF;
+    }
+
+    .goods-list dl dd .goods-title {
+        height: 25px;
+    }
+    .fa-question-circle{
+        color: #ccc;
+    }
+    .dev-guide-bar {
+        height: 40px;
+        line-height: 40px;
+        background: lightyellow;
+    }
+    .dev-guide-bar div {
+        display: inline-block;
+        padding-left: 30px;
+    }
+    .new_time div {
+        height: 30px;
+    }
+    .new_time span {
+        color: lightgray;
+        float: right;
+        margin-right: 20%;
+    }
+    .guide {
+        line-height: 40px;
+    }
+    .guide ul {
+        font-size: 16px;
+    }
+    .guide span {
+        font-size: 14px;
+    }
+    .guide .aw {
+        color:#333;
+    }
+</style>
+<!--开发引导bar-->
+<div class="dev-guide-bar">
+    <div>开发引导</div>
+    <div>WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
+    <div><a href="#portal?type=guide">正式开发查看下一步></a></div>
+</div>
+<div class="box2 relative" style="padding-bottom: 1px">
+    <div class="hl-help" style="display: none;">
+        <span class="linkBlue">产品控制台</span>
+    </div>
+    <div class="mt20" style="height: 190px;margin-top: 0;border-top: none;">
+
+        <div class="goods-list">
+            <dl class="col-md-4" >
+                <dt style="margin-top: 42px">
+                    <a href="/info">
+                        <img style="width: 40px;height: 40px" src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'"
+                             title="产品图标">
+                    </a>
+                    <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="607"><i></i></a>
+                </dt>
+                <dd style="margin-left: 60px">
+                    <div class="goods-title" style="margin-left: -60px"><a href="#/info">{[{ infoFormData.app_name }]}</a>
+                        <span class="label bg-white" style="font-size: 100%;">
+                                {[{ infoFormData.app_model }]}</span>
+
+
+                    </div>
+                    <div class="product-info-div" style="">
+
+                        <p class="product-info-p">
+                            分类： {[{app_device_name}]} {[{ app_create_source }]}<label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
+                        </p>
+                        <p class="product-info-p">Key：<label>{[{key}]}</label>
+
+
+                        </p>
+
+                        <p class="product-info-p">更新于：{[{ infoFormData.app_update_time }]}<label
+                                style="margin-left: 3%;color: #333">未发布</label></p>
+                        <p class="xxx" style="display: none">{[{infoFormData.app_id}]}</p>
+                    </div>
+                </dd>
+
+            </dl>
+            <dl class="col-md-8" style="padding-top: 45px">
+                <dd>
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 17px;margin-left: 5px;">1. 导出"{[{ infoFormData.app_name }]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                </dd>
+                <dd>
+                    <div><a href="http://doc.53iq.com/#/function" target="_blank" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">2. "{[{ infoFormData.app_name }]}"标准功能定义</span></a> <a href="http://doc.53iq.com/#/function" target="_blank"> <i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                </dd>
+                <dd>
+                    <div><a href="http://doc.53iq.com/#/Protocol/README" target="_blank" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;color: #333">3. 电控对接标准协议</span></a></div>
+                </dd>
+                <dd>
+                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 17px;margin-left: 5px;">4. "{[{ infoFormData.app_name }]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/static/sdk/DCIOT.PKG" style="cursor:pointer;" class=""></i><span style="font-size: 17px;margin-left: 5px; color: red">屏端软件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>
+                        <a href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"><i class="ace-icon fa fa-question-circle bigger-120"></i></a>
+                        </div>
+                </dd>
+
+            </dl>
+        </div>
+
+
+        <br>
+        <p style="padding-left: 20px" class="ui-edit-item"></p>
+
+
+    </div>
+    <div class="hl-help">
+
+    </div>
+    <div class="mt20" style="margin-top: 5px;height: 250px">
+        <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 16px">产品动态</span>
+        <div class="goods-list" style="padding-top: 0px;height: 145px">
+            <div class="info-list col-md-6 new_time" style="margin-top: 15px">
+                <div>生成标准屏端工程软件 <span>{[{ create_time_detail }]}</span></div>
+                <div>生成标准工程文件 <span>{[{ create_time_detail }]}</span></div>
+                <div>生成{[{ app_device_name }]}标准控制协议 <span>{[{ create_time_detail }]}</span></div>
+            </div>
+           <div class="col-md-6">
+                <div class="title1" style="height: 30px;margin-top: -20px">
+                    <span style="font-size: 16px">常见问题</span> <span style="margin-left: 25px;position: relative;bottom: 1px"><a href="/wiki/doc_wiki?view=Navicat2111#111" target="_blank">更多></a></span>
+                </div>
+                <div  class="protocol-info-main">
+                    <p style="margin-top: 10px;font-size: 14px">1.设备之间怎样进行连线与测试?</p>
+                    <p style="margin-top: 30px;font-size: 14px">2.设备通信故障如何使用串口调试？</p>
+                    <p style="margin-top: 30px;font-size: 14px">3.串口工具与设备之间的如何通信？</p>
+                </div>
+           </div>
+
+    </div>
+    <div class="mt20" style="margin-top: 20px">
+                <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 14px">基本信息</span>
+
+        <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
+
+    </div>
+        <!--<div class="mt20" style="height: 300px">
+
+        <div class="goods-list">
+             <div class="boxInfo" style="border-top: none;">
+                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>产品名称:
+                    <span style="color: black;">{[{infoFormData.app_name}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>品牌/型号:
+                    <span style="color:black;">{[{infoFormData.app_model}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>分类:
+                    <span style="color: black;">{[{app_device_name}]}</span>
+                </dl>
+                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>创建时间</span>:
+                    <span style="color: black;">{[{ infoFormData.app_create_time }]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>APPID:
+                    <span style="color: black;">{[{infoFormData.app_id}]}</span>
+                </dl>
+                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
+                    <span style="color: #d43f3a;"></span>secret:
+                    <span style="color: black;">{[{app_secret}]}</span>
+                </dl>
+
+             </div>
+        </div>
+    </div>-->
+    <div id="ie-form"></div>
+</div>
+<div class="guide" style="display: none">
+    <div><span style="font-size: 18px">开发引导</span> <span style="margin-left: 20px;color: grey">按标准功能开发</span></div>
+    <ul style="margin-left: 5px">
+        <li>1 初步了解WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"> 查看安装标准软件方法 ></a><br><span>软件效果为准备功能和协议对应的界面，可手机进行操控。</span></li>
+        <li>2 导出标准协议，电控开始对接。<a href="javascript:void(0)" onclick="export_parameter()">导出{[{app_device_name}]}标准控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://doc.53iq.com/#/Protocol/README">查看对接开发帮助 ></a><br><span>按标准功能和协议进行电控对接, 详细功能请查看定义功能和协议区域</span></li>
+        <li>3 替换产品Key。<a href="/static/sdk/COOKEING-Hood.rar">下载{[{app_device_name}]}标准工程<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>    <a class="aw" target="_blank" href="http://test.open.53iq.com/wiki/doc_wiki?view=Navicat310#130">查看更换Key方法></a></li>
+        <li>4 调试，连接电控和WiFi屏进行调试。    <a class="aw" target="_blank" href="http://doc.53iq.com/#/debug_helper">查看调试方法></a></li>
+        <li>5 整机测试。</li>
+    </ul>
+</div>
+</div>
+
+
+<script>
+    // 如果参数中有type=guide，则显示新的引导页面
+    let list = location.href.split("?");
+    let guide = false;
+    for (let i = 0; i < list.length; ++i) {
+        if (list[i] === "type=guide") {
+            guide = true;
+        }
+    }
+    if (guide) {
+        $(".dev-guide-bar").remove();
+        $(".box2").children(":not('.guide')").remove();
+        $(".guide").show();
+    }
+
+
+    function ppp(rr) {
+        document.getElementById(rr).style.opacity=1
+    }
+    function ddd(rr) {
+        document.getElementById(rr).style.opacity=0
+    }
+    function export_parameter(){
+
+            if('' == '1' && '' == ''){
+                bootbox.alert("暂无参数信息！");
+                return;
+            }
+            bootbox.confirm("确定导出控制协议参数吗?", function (result) {
+                if (result) {
+                    var form = document.createElement('form');
+                    form.action = '#/argue';
+                    form.method = 'post';
+                    form.style = "display: none";
+                    var input = document.createElement("input");
+                    input.name = "name";
+                    input.type = "text";
+                    input.value = "export";
+                    form.appendChild(input);
+                    $("#ie-form").html(form);
+                    form.submit();
+                }
+            });
+        }
+    var num = location.href.split("#")[0].split("=")[1]
+    $.ajax({
+        method:"GET",
+        data:{'num':num},
+        url:"/product/portal/"
+    }).success(function (da) {
+        data11 = JSON.parse(da);
+        ttt_key = []
+        ttt_value = []
+        for (var i = 0, le = data11.length;i<le;i++){
+            try {
+                for (var k in data11[i]){
+                if (k == 'message') {
+                    ttt_key.push(data11[i][k])
+
+                }else if (k == 'time') {
+                    ttt_value.push(data11[i][k])
+
+                }
+            }
+            }
+            catch (err) {
+                console.log('err')
+            }
+
+        }
+
+       for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
+            document.getElementById("p"+rr).innerText=ttt_key[rr]
+            document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
+       }
+
+
+    })
+</script>
+

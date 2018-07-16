@@ -1,5 +1,6 @@
 
 .mmGrid{
+    height:773px;
     position: relative;
     overflow: hidden;
     background: #fff;
@@ -234,6 +235,7 @@
     position: relative;
     overflow: auto;
     width: 9999px;
+    height:737px;
     min-height: 0%; /* fix IE9 hover bug see: http://jsfiddle.net/pjkix/86Lfv/ */
 }
 

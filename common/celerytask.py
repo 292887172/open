@@ -24,12 +24,11 @@ platforms.C_FORCE_ROOT = True
 @celery.task
 def add(app_id):
     app = App.objects.get(app_id=app_id)
-    print(app)
     from common.smart_helper import update_app_protocol
     update_app_protocol(app)
     app_key = app.app_appid
     key = app_key[-8:]
-    requests.get(KEY_URL, params={'key': key})
+    # requests.get(KEY_URL, params={'key': key})
 
 @celery.task
 def get_device():

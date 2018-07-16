@@ -17,7 +17,11 @@ angular.module('Product', [
     "Product.edit",
     "Product.oven",
     "Product.content",
-    "Product.app"
+    "Product.app",
+    //定义协议
+    "Product.protocol",
+    // 产品门户
+    "Product.portal"
 
 ])
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {

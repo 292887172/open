@@ -8,10 +8,10 @@ from base.connection import ReleaseApiMongoDBHandler
 from base.const import ConventionValue
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-import markdown
-from model.center.doc_menu import DocMenu
+#import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
 from conf.message import *
+from model.center.doc_menu import DocMenu
 
 from open import settings
 _convention = ConventionValue()
@@ -41,7 +41,7 @@ def home(request):
         if account == "admin":
             uri = "/center"
         else:
-            uri = "/product/list"
+            uri = "/product/controldown"
         return HttpResponseRedirect(uri)
     except Exception as e:
         print(e)
@@ -242,7 +242,7 @@ def app_user(request):
                 'from': from_dict.get(i.get('source'), ''),
                 'is_bind_device': '',
                 'is_control': '',
-                'date': (updated++ datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+                'date': (updated+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
             }
             total_data.append(t)
         for j in wx_user:

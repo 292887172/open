@@ -9,13 +9,14 @@
       }
 
       .addButton{
-            padding: 4px;
-          background: #327AB7;
+            padding: 4px 6px;
+          background: #ff6202;
           color:#fff;
             font-weight: 500;
             text-decoration:none;
             cursor:pointer;
             border-radius: 4px;
+          font-size: 14px;
       }
       .addButton:hover{
           color: #fff;
@@ -149,26 +150,54 @@
         display: inline-block;
         content: "\E91A";
     }
+    .self-define{
+        display: inline-block;
+    background-color: #4cd964;
+    color: #fff;
+    border-radius: 100px;
+    padding: 2px 4px;
+    margin-left: 2px;
+    font-size: 12px;
+    }
+    .off-btn{
+        position: absolute;
+        right: 65px;
+        bottom: -55px;
+        z-index: 99;
+    }
+    .guanli{
+        background-color: #327AB7;
+        position: absolute;
+        top: 6px;
+        right: 36px;
+        height: 27px;
+        line-height: 20px;
+    }
+    .add_btn{
+        margin-left: 5px;
+    }
     </style>
     <link rel="stylesheet" href="/static/css/product/jquery-ui-1.8.16.custom.css">
     <div class="main-container box2">
-        <div class="hl-help">
+        <div class="hl-help" style="display: none">
             <span class="linkBlue">定义产品功能</span>&nbsp;&nbsp;&nbsp;
             <input type="hidden" id="device_type" ng-value="{[{ app_device_type }]}">
+            <span style="margin-left: 300px">已为您定制标准参数，如果标准参数不能满足需求，请通过【+定义新功能】添加。</span>
         </div>
 
-        <div class="mt20"></div>
-        <div class="headerH1">
-            <a onclick='export_parameter()' style="cursor:pointer;" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i>导出控制协议</a>
-            <div style="float: right;">
+        <div class="mt20" style="display: none"></div>
+        <div class="headerH1" style="position: relative;">
+            <a onclick='export_parameter()' style="cursor:pointer;" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 20px;margin-left: 5px;">导出控制协议</span></a>
+            <div style="float: right;" class="off-btn">
                 <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
                     <option value=0>选择总开关</option>
                 </select>
-                <span class='help-button' data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
+                <span class='help-button' style="display: none;" data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
             </div>
         </div>
         <table id="grid-table" >
         </table>
+        <!--
         <div id="gridpager"></div><div class="mt20"></div>
 
         <table id="grid-table-new" ></table>
@@ -176,11 +205,12 @@
         <div id="show-no-data" ng-hide='{[{ visible }]}'>
 
             <div style="    padding: 30px 0 24px 0;">
-                <a role="button" class="btn-blue" href="#/edit">立即定义产品功能</a>
+                <a role="button" class="btn-blue" href="#/edit">创建自定义功能</a>
             </div>
             <span id="advice-content"></span>
 
         </div>
+        -->
         <div style="margin-top: 20px">
             <a class="headerH1" onmouseover="show_tips(this)" style="text-decoration: none;">
              <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom">?</span> 查看产品功能填写规则
@@ -191,10 +221,10 @@
         <div id="tips" style="background: #fff;display: none">
 
             <h1 class="headerH1">tips</h1>
-            <h1 class="headerH1">1.功能序号：主要关系二进制 数据中改值所在帧结构中位置<br></h1>
+            <h1 class="headerH1">1.功能序号：主要关系二进制数据中该值所在帧结构中位置<br></h1>
             <h1 class="headerH1">2.长度：是指该功能占用的位数，单位(Bit)。1byte=8Bit<br></h1>
-            <h1 class="headerH1">3.单指令帧：设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能实际占用长度保持一致<br></h1>
-            <h1 class="headerH1">4.全指令帧：设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，导致功能解析错乱，状态不正确</h1>
+            <h1 class="headerH1">3.单指令帧：设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能配置长度保持一致<br></h1>
+            <h1 class="headerH1">4.全指令帧：设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，会导致功能解析错乱，状态不正确</h1>
          </div>
         <div id="tip2" style="display: none;">
             <div class="prompt-class">
@@ -206,7 +236,7 @@
                 <img src="/static/image/product/prompt2.jpg">
             </div>
             <div class="prompt-class">
-                <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">全指令：</span>全指令数据部分传输的功能状态必须和功能列表顺序保持一致，不可交叉，不接漏传</p>
+                <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">全指令：</span>全指令数据部分传输的功能状态必须和功能列表顺序保持一致，不可交叉，不可漏传</p>
                 <img src="/static/image/product/prompt3.jpg">
                 <img style="    position: relative;margin-left: 75%;" src="/static/image/product/tishi.png">
             </div>
@@ -214,22 +244,7 @@
         <div id="ie-form"></div>
     </div>
 
-    <div class="popBox" id="newHtmlBox" style="display: block;z-index: 111111;text-align: center">
-        <a href="javascript:;" onclick="new_close()" class="close">关闭</a>
-        <h3 style="text-align: center">温馨提示</h3>
-        <div class="cont mt20" style="margin-top: 20px;">
-            <div class="warnCont">
-                <p class="mt6">已为您定制油烟机的标准参数，如果标准参数不能满足需</p>
-                <p class="mt6">求，请通过【+定义新功能】添加。申请发布需等待审核</p>
-            </div>
-        </div>
-        <p align="center"><input type="checkbox" id="check_continueShowTips" >不再提示</p>
 
-        <span >
-            <a  href="" onclick="new_close()"  class="btn-blue" style="margin-top: 46px;">知道了</a>
-        </span>
-
-    </div>
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -238,25 +253,8 @@
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
-        var flag = getCookie('cookie_prompt');
 
-        $('[data-rel=popover]').popover({container:'body'});
-        if(flag){
-            $("#newHtmlBox").css('display','none');
-            $(".markLayout").hide();
-        }
-        else{
-            $(".markLayout").show();
-        }
-        function new_close() {
-            var check_prompt = $("#check_continueShowTips").is(':checked');
-            // 关闭的情况下，选中不再提醒
-            if (check_prompt){
-                setCookie('cookie_prompt', check_prompt);
-            }
-            $("#newHtmlBox").css('display','none');
-            $(".markLayout").hide();
-        }
+
         function setCookie(name, value) {
             var Days = 30;
             var exp = new Date();
@@ -343,18 +341,27 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>标准功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton'>管理</a>","gridpager");
-        select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
+        select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/README' style='margin-left:100px' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
+        //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
                 url: location.href,
                 postData: data,
                 datatype: "json",
                 mtype: "POST",
-                colNames: ['功能序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '卡片显示', '显示到UI', '云菜谱可控', '操作'],
+                colNames: ['序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '云菜谱可控', '操作'],
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
-                    {name: 'Stream_ID', width: 143},
+                    {name: 'Stream_ID', align: 'center', width: 143, formatter: function (cellvalue, options,rowObject) {
+                        if(rowObject.standa_or_define=='1'){
+                            return cellvalue+"<span class='self-define'>自定义</span>"
+                        }
+                        else{
+                            return cellvalue
+                        }
+
+
+                        }},
                     {name: 'mxsLength', width: 100, align: 'center'},
                     {name: 'name', width: 127, align: 'center'},
                     {name: 'mxsNum', width: 120, align: 'center', title: false,
@@ -394,27 +401,8 @@
                             }
                         }
                     },
-                    {name: 'isShow', width: 131, align: 'center',
-                        formatter: function (cellvalue) {
-                            if (cellvalue == "1") {
-                                return '<input name="isShow" onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
 
-                            } else {
-                                return '<input name="isShow"  onclick="checkToShow(this)" type="checkbox"  class="ace ace-switch ace-switch-5"/><span  class="lbl middle"></span>';
-                            }
-                        }
-                    },
-                    {name: 'isDisplay', width: 131, align: 'center',
-                        formatter: function (cellvalue) {
-                            if (cellvalue == "1") {
-                                return '<input name="isDisplay" onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5" checked/><span ng-disabled="true" class="lbl middle"></span>';
-
-                            } else {
-                                return '<input name="isDisplay"  onclick="checkToDisplay(this)" type="checkbox" class="ace ace-switch ace-switch-5"/><span ng-disabled="true" class="lbl middle"></span>';
-                            }
-                        }
-                    },
-                    {name: 'isCloudMenu', width: 108, algin: 'center',
+                    {name: 'isCloudMenu', width: 108, align: 'center',
                         formatter: function (cellvalue) {
                             if (cellvalue == "1") {
                                 return '<input name="isCloud" onclick="checkToCloud(this)" type="checkbox"  class="ace ace-switch ace-switch-5" checked/><span  class="lbl middle"></span>';
@@ -456,7 +444,7 @@
                         $("#"+page).css("display","none");
                         if(table=="grid-table-new"){
                             $("#show-no-data").css('display', 'block');
-                            $("#advice-content").text("当前没有任何功能，选择立即定义。");
+                            $("#advice-content").text("标准功能无法满足，可添加产品功能");
                         }
                     }
                     if (rows.check_state >= 1) {

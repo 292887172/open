@@ -111,6 +111,34 @@ def fetch_all_fun_data(page, limit, order_by_names):
         return ""
 
 
+def fetch_all_app_search_data(search,page,limit,order_by_names):
+    try:
+        pager = Paginator(Device_Fun.objects.filter(device_key__icontains=search).order_by(order_by_names),
+                          int(limit))
+        dfs = pager.page(int(page))
+        total_count = pager.count
+        data = []
+        for df in dfs:
+            fun = json.loads(df.device_function)
+            d = dict(
+                id = df.df_id,
+                key=df.device_key,
+                name=fun["Stream_ID"],
+                status=df.df_check_status,
+                update_time=date2ymdhms(utctime2localtime(df.df_update_date)),
+                create_time=date2ymdhms(utctime2localtime(df.df_create_date)),
+            )
+            data.append(d)
+        result = dict(
+            totalCount=total_count,
+            items=data
+        )
+        return result
+    except Exception as e:
+        logging.getLogger("").error(e)
+        return ""
+
+
 def fetch_published_fun_data(page, limit, order_by_names):
     """
     获取所有审核通过的功能

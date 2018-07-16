@@ -10,6 +10,7 @@ from common.app_helper import update_app_fun_widget
 
 from util.excelutil import write_data
 from model.center.app import App
+from model.center.protocol import Protocol
 
 
 def write_excel(items, filename):
@@ -86,8 +87,7 @@ def deal_json(app):
         print("json loads error in :", e)
     for data in config_data:
         # 写入Excel的数据
-        j = {}
-        j["remarks"] = ""
+        j = {"remarks": ""}
         for l in range(len(data["mxs"])):
             j["remarks"] += data["mxs"][l]["data"] + ' '
             j["remarks"] += data["mxs"][l]["desc"] + ' '
@@ -95,31 +95,13 @@ def deal_json(app):
         j["name"] = data["name"]
         j["Stream_ID"] = data["Stream_ID"]
         j["mxsLength"] = data["mxsLength"]
-        j["values"] = json.dumps([data.get("min",0), data.get("max")])
-        j['widget'] = data['widget']
+        j["values"] = json.dumps([data.get("min", 0), data.get("max")])
+        j['widget'] = data.get('widget', 'button')
         j['isFunction'] = data.get("isFunction", 1)
         j['toSwitch'] = data.get('toSwitch', 0)
 
         # 写入json的数据
-        i = {}
-        i["frames"] = []
-        i["cmdconfig"] = {
-            "SendHeart":True,
-            "HeartFrequency":1000,
-            "SupportSerial":True,
-            "ResendInterval":100,
-            "ResendTimes":5,
-            "SupportSignleContorl":False,
-            "SendResponse":True,
-            "AnalyzeData":True,
-            "isStandard":True,
-            "serial_name":"/dev/ttyS1",
-            "serial_baudrate":9600,
-            "serial_csize":8,
-            "serial_parity":-1,
-            "serial_stopbits":1
-
-        }
+        i = dict()
         i['value_des'] = data['mxs']
         i["id"] = data["id"]
         i["no"] = i["id"]
@@ -132,9 +114,9 @@ def deal_json(app):
         i["isCardShow"] = data.get('isShow', 0)
         i["isUiShow"] = data.get("isDisplay", 0)
         i["widget"] = data.get("widget", "button")
-
+        i['widgetId'] = ""
         i["value"] = 0
-        i["values"] = [data.get("min",0), data.get("max")]
+        i["values"] = [data.get("min", 0), data.get("max")]
         if data['paramType'] == 1:
             i['type'] = 'bool'
         elif data['paramType'] == 3:
@@ -152,6 +134,84 @@ def deal_json(app):
 
         temp1_data.append(i)
         temp2_data.append(j)
+    try:
+        p = Protocol.objects.filter(protocol_device_key=key[len_key:])
+        frame_content = []
+        for z in p:
+            pc = json.loads(z.protocol_factory_content)
+            j_data["cmdconfig"] = {
+                "SendHeart": pc.get("active_heartbeat"),
+                "HeartFrequency": pc.get("heart_rate"),
+                "SupportSerial": pc.get("support_serial"),
+                "ResendInterval": pc.get("repeat_rate"),
+                "ResendTimes": pc.get("repeat_count"),
+                "SupportSingleContorl": pc.get("is_single_instruction"),
+                "SendResponse": pc.get("support_response_frame"),
+                # "CheckoutAlgorithm": pc.get("checkout_algorithm"),
+                # "StartCheckPid": pc.get("start_check_number"),
+                # "EndCheckPid": pc.get("end_check_number"),
+                "AnalyzeData": True,
+                "isStandard": False,
+                "serial_name": "/dev/ttyS1",
+                "serial_baudrate": 9600,
+                "serial_csize": 8,
+                "serial_parity": -1,
+                "serial_stopbits": 1
+
+            }
+            frame = {
+                "check_type": pc.get("checkout_algorithm"),
+                "check_data_start": pc.get("start_check_number"),
+                "check_data_end": pc.get("end_check_number"),
+                "endian_type": pc.get("endian_type", "0"),
+                "length": "",
+                "length_start": "",
+                "length_end": "",
+                "length_offset": "",
+            }
+            if z.protocol_factory_type == 1:
+                # 下行数据
+                frame["Type"] = "DownStream"
+            else:
+                # 上行数据
+                frame["Type"] = "UpStream"
+            f_content = []
+            for i in pc.get('frame_content', []):
+                code = []
+                if i['code']:
+                    for j in i['code']:
+                        c = {"value": j['value'], "type": j['type']}
+                        code.append(c)
+                if code:
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "name": i['name'], "value": code}
+                else:
+                    tmp = {"pid": i['number'], "length": i.get('length', 0), "name": i['name']}
+                f_content.append(tmp)
+            frame['structs'] = f_content
+            frame_content.append(frame)
+        j_data['frames'] = frame_content
+    except Exception as e:
+        print('处理自定义协议出错', e)
+        logging.getLogger('').info("处理自定义协议出错:"+str(e))
+        j_data["cmdconfig"] = {
+            "SendHeart": True,
+            "HeartFrequency": 1000,
+            "SupportSerial": True,
+            "ResendInterval": 100,
+            "ResendTimes": 5,
+            "SupportSingleContorl": False,
+            "SendResponse": True,
+            "AnalyzeData": True,
+            "isStandard": True,
+            "serial_name": "/dev/ttyS1",
+            "serial_baudrate": 9600,
+            "serial_csize": 8,
+            "serial_parity": -1,
+            "serial_stopbits": 1
+
+        }
+        j_data['frames'] = []
+        pass
     e_data['functions'] = temp2_data
     j_data['functions'] = temp1_data
     return {'e_data': e_data, 'j_data': j_data}
@@ -174,4 +234,4 @@ def date_deal(app_id):
         return res
     except Exception as e:
         logging.error(e)
-        print("写入excel出错",e)
+        print("写入excel出错", e)

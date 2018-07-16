@@ -7,6 +7,8 @@ from model.center.app import App
 from model.center.app_history import AppHistory
 from model.center.developer import Developer
 from model.center.account import Account
+from model.center.message import Message
+from model.center.device_fun import Device_Fun
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
@@ -22,6 +24,8 @@ from common.app_api_helper import remove_conf_prefix
 from common.message_helper import save_user_message
 from conf.message import *
 
+from django.db.models import Q
+
 import logging
 import datetime
 __author__ = 'achais'
@@ -29,7 +33,7 @@ _convention = ConventionValue()
 
 
 def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
-               app_factory_id, app_group, app_logo, check_status=0):
+               app_factory_id, app_group, app_logo,app_product_fast, check_status=0):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -42,6 +46,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     :param app_factory_id: app品牌id
     :param app_group: 设备类型
     :param check_status: 产品审核状态
+    :param app_product_fast: 是否快速创建
     :return:
     """
     try:
@@ -70,11 +75,13 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
                           app_logo=app_logo,
+                          app_create_source=app_product_fast,
                           check_status=check_status,
                           app_create_date=datetime.datetime.utcnow(),
                           app_update_date=datetime.datetime.utcnow()
                           )
                 app.save()
+                print('保存成功')
                 message_content = '"'+ app_name + '"' + CREATE_APP
                 save_user_message(developer_id, message_content, USER_TYPE, developer_id)
                 break
@@ -124,6 +131,7 @@ def del_app(app_id):
                                      app_model=app.app_model,
                                      app_level=app.app_level,
                                      app_group=app.app_group,
+
                                      app_push_url=app.app_push_url,
                                      app_push_token=app.app_push_token,
                                      app_device_type=app.app_device_type,
@@ -356,17 +364,17 @@ def add_fun_id(opera_data, indata):
     indata['standa_or_define'] = str(is_define)
     if opera_data:
         id = int(opera_data[-1].get("id"))
-        if is_define == 1:
-            if id < 101:
-                indata["id"] = '101'
-            else:
-                indata["id"] = str(id + 1)
+        # if is_define == 1:
+        #     if id < 101:
+        #         indata["id"] = '101'
+        #     else:
+        indata["id"] = str(id + 1)
     else:
         indata["id"] = '101'
     return indata
 
 
-def add_mod_funs(opera_data, device_conf, funs):
+def add_mod_funs(opera_data, device_conf, funs,app_device_type):
     funs = json.loads(funs)
     add_funs = []
     max_num = 0
@@ -375,21 +383,45 @@ def add_mod_funs(opera_data, device_conf, funs):
         temp = int(data.get("id"))
         if temp < 101 and temp > max_num:
             max_num = temp
-    for device in device_conf:
-        if device.get("Stream_ID") in funs:
-            k += 1
-            device["id"] = max_num + k
-            add_funs.append(device)
-    opera_data.extend(add_funs)
+    if int(app_device_type) == 0:
+        for device in PROTOCOL_KU:
+            if device.get("Stream_ID") in funs:
+                k += 1
+                device["id"] = max_num + k
+                add_funs.append(device)
+        opera_data.extend(add_funs)
+    else:
+        for device in device_conf:
+            if device.get("Stream_ID") in funs:
+                k += 1
+                device["id"] = max_num + k
+                add_funs.append(device)
+        opera_data.extend(add_funs)
     opera_data.sort(key=lambda x: int(x.get("id")))
 
 
-def get_mod_funs(opera_data, device_conf):
+def get_mod_funs(opera_data, device_conf,app_device_type):
     mod = []
+    modd = []
     fun_name = list(map(lambda x: x["Stream_ID"], opera_data))
-    for device in device_conf:
-        if device.get("Stream_ID") not in fun_name:
-            mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+    print('data',device_conf)
+    if int(app_device_type) == 0:
+
+        for device in PROTOCOL_KU:
+
+            if device.get("Stream_ID") in fun_name:
+                modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+            if device.get("Stream_ID") not in fun_name:
+                mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+        print(modd)
+    else:
+        for device in device_conf:
+
+            if device.get("Stream_ID") in fun_name:
+                modd.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+            if device.get("Stream_ID") not in fun_name:
+                mod.append({"name": device.get("name"), "Stream_ID": device.get("Stream_ID")})
+        print(modd)
     return mod
 
 
@@ -508,16 +540,60 @@ def fetch_all_app_data(page, limit, order_by_names):
                 print(e)
                 nickname = ''
                 pass
+
             d = dict(
                 id=app.app_id,
                 name=app.app_name,
                 logo=app.app_logo,
-                describe=app.app_describe,
+                describe=app.app_appid[-8:],
                 site=app.app_site,
                 nickname=nickname,
                 createtime=date2ymdhms(utctime2localtime(app.app_update_date))
             )
+
             data.append(d)
+
+        result = dict(
+            totalCount=total_count,
+            items=data
+        )
+        return result
+    except Exception as e:
+        print(e)
+        logging.getLogger("").error(e)
+        return ""
+def fetch_one_app_data(serach,page, limit, order_by_names):
+    try:
+        pager = Paginator(App.objects.filter(Q(app_appid__icontains=serach)|Q(app_name__icontains=serach)).order_by(order_by_names),
+                          int(limit))
+        apps = pager.page(int(page))
+        total_count = pager.count
+        data = []
+
+        for app in apps:
+            try:
+                an = Account.objects.filter(account_id__contains=app.developer.developer_id[2:]).extra(
+                    order_by=('account_create_date',))[0:1]
+                nickname = an[0].account_nickname
+                if not nickname:
+                    nickname = app.developer.developer_id
+            except Exception as e:
+                print(e)
+                nickname = ''
+                pass
+
+            d = dict(
+                id=app.app_id,
+                name=app.app_name,
+                logo=app.app_logo,
+                describe=app.app_appid[-8:],
+                site=app.app_site,
+                nickname=nickname,
+                createtime=date2ymdhms(utctime2localtime(app.app_update_date))
+            )
+
+            data.append(d)
+
         result = dict(
             totalCount=total_count,
             items=data
@@ -528,12 +604,17 @@ def fetch_all_app_data(page, limit, order_by_names):
         logging.getLogger("").error(e)
         return ""
 
-
-def save_app(app, opera_data):
+def save_app(app, opera_data,cook_ies):
     # 保存修改后的device_config
     r = Redis3(rdb=6).client
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
+    try:
+        Message.objects.create(message_content='功能更新',message_type=int(1),message_handler_type=int(1),device_key=key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+
+    except Exception as e:
+        print(e)
+        logging.getLogger("").error(e)
     remove_conf_prefix(key)
     app.app_update_date = datetime.datetime.utcnow()
     app.save()

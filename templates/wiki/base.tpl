@@ -53,9 +53,9 @@
         }
 
         .menuBox ul {
-            padding-left: 0px;
+
             border-top: 1px solid #f5f5f5;
-            padding-top: 7px;
+            padding-top: 0px;
         }
 
         .menuBox ul li{
@@ -83,7 +83,7 @@
 
         h5 {
             padding-left: 15px;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             cursor: pointer;
             position: relative;
         }
@@ -208,13 +208,13 @@
                 {% for app in default_apps %}
                     <li>
                         {% if user.developer.developer_id%}
-                            <a href="javascript:void(create_procuct('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
+                            <a href="javascript:void(create_product('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
                         {% else %}
                             <a href="javascript:void(dont_develop())">{{ app.app_name }}</a>
                         {% endif %}
                     </li>
                     {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_procuct(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
                         <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
                     {% endif %}
                 {% endfor %}
@@ -240,7 +240,7 @@
         <li><a href="/contact" target="" rel="nofollow">联系我们</a></li>
 
     </ul>
-    <p>Copyright©2015 53iq 版权所有</p><a name="chaper" class="ui-scroll-top"
+    <p>Copyright©{% now 'Y' %} 53iq 版权所有</p><a name="chaper" class="ui-scroll-top"
                                       href="javascript:scroll(0,0);"><img src="{% static 'image/wiki/zhid2.png' %}"
                                                                           title="回到顶部"/></a>
 </div>

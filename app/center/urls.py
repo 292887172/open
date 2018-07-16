@@ -18,17 +18,21 @@ doc_urlpatterns = patterns(
     url(r'^doc_show/(?P<doc_id>\d+)$', 'doc_show'),
     # 菜单管理
     url(r'^doc_menu$', 'doc_menu', name='doc_menu'),
+    url(r'^doc_device$', 'doc_device', name='doc_device'),
+    # 设备菜单管理
+
 )
+
 
 admin_urlpatterns = patterns(
     'app.center.admin_views',
     url(r'^admin/$', 'admin_home', name='admin_center'),
-    url(r'^admin/user/list/data$', 'account_list_data'),
+    url(r'^admin/user/list/data$', 'account_list_data'),  # 全部用户
     url(r'^admin/developer/list/data$', 'developer_list_data'),
     url(r'^admin/developer/check/data$', 'developer_checking_data'),
     url(r'^admin/developer/modal/detail', 'developer_detail_modal'),
     url(r'^admin/application/data$', 'application_checked_data'),
-    url(r'^admin/application/all/data$', 'application_all_data'),
+    url(r'^admin/application/all/data$', 'application_all_data'),  # 全部应用
     url(r'^admin/application/check/data$', 'application_checking_data'),
     url(r'^admin/application/modal/detail$', 'application_detail_modal'),
 

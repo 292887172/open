@@ -70,13 +70,23 @@ register.filter(num_app)
 def category_detail(obj):
     try:
         type = str(obj)
-        category = {'1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '0': '其他'}
+        category = {'31':'洗碗机','1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱','21':"蒸烤箱", '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '30':'微蒸烤','0': '其他'}
         return category[type]
     except Exception as e:
         print(e)
 
 
 register.filter(category_detail)
+def category_detail1(obj):
+    try:
+        type = str(obj)
+        category = {'0':'','1':'（标准产品）'}
+        return category[type]
+    except Exception as e:
+        print(e)
+
+
+register.filter(category_detail1)
 
 
 def is_none(value):
@@ -105,18 +115,23 @@ def create_menu(context, cur=0, username=None):
     else:
         if username:
             menu = [
+
+                    {"url": "/product/controldown/", "title": "控制台"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
-                    {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                    {"url": "/product/community/", "title": "厨房社区"},
+
                     ]
 
         else:
             menu = [
                     {"url": "/", "title": "首页"},
+                    {"url": "/product/controldown/", "title": "控制台"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/smartmenu", "title": "智能菜谱"},
-                    {"url": "/wiki", "title": "开发指南"},
+                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                    {"url": "/product/community/", "title": "厨房社区"},
+
                     ]
         ret["menu"] = menu
     return ret
@@ -205,3 +220,10 @@ def cover_product_key(val):
     except:
         return ""
 register.filter(cover_product_key)
+
+
+@register.inclusion_tag('component/fast_create.html')
+def fast_create_product(developer_id):
+    # 暂时没有用到的参数
+    ret = {"developer_id": developer_id}
+    return ret

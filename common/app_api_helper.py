@@ -14,7 +14,6 @@ from common.code import ResponseCode
 
 _cache_key = ResponseCode()
 
-
 class ApiHandler(object):
     """
     AppApi处理类

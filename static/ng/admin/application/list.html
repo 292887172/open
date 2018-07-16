@@ -16,13 +16,15 @@
 <!-- /.modal -->
 <script type="text/javascript">
     // 应用图标Html
+    // 提醒用户进行key字段搜索
+    $("input").attr("placeholder","通过key/名称搜索");
     var toLogoHtml = function (val) {
         return '<img src="' + val + '" onerror="this.src=\'/static/image/global/default.png\'" width=64 height=64 alt="应用图标"/>'
     };
 
     // 描述Html
     var toDescribeHtml = function (val) {
-        return val == "" || val == null ? "无描述" : val.substring(0, 37);
+        return val == "" || val == null ? "无key" : val.substring(0, 37);
     };
 
     // 应用网站预览Html
@@ -44,7 +46,7 @@
         {title: '编号', name: 'id', width: 20, align: 'center', lockDisplay: true},
         {title: '图标', name: 'logo', width: 60, align: 'center', lockDisplay: true, renderer: toLogoHtml},
         {title: '名称', name: 'name', align: 'center',lockDisplay: true},
-        {title: '描述', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
+        {title: '产品key', name: 'describe', width: 200, nowrap: true, align: 'center', lockDisplay: true, renderer: toDescribeHtml},
         {title: '网址', name: 'site', align: 'center', lockDisplay: true, renderer: toReadHtml},
         {title: '通过时间', name: 'createtime', lockDisplay: true, align: 'center', sortable: true},
         {title: '详细', name: 'id', width: 60, align: 'center', lockDisplay: true, renderer: toDetailHtml},
@@ -58,7 +60,7 @@
         sortStatus: 'desc',
         remoteSort: true,
         fullWidthRows: true,
-        height: 550,
+        height: 773,
         cols: cols,
         plugins: [
             $('#paginator').mmPaginator()
@@ -69,5 +71,20 @@
         $("#remarkTextArea").val("");
         $("#failModalAppId").attr("data-id", item.id).attr("data-row", rowIndex);
     })
+    $("#applyCertNum").keydown(function (e) {
+        if (e.keyCode == 13) {
+            search_data =  $('#applyCertNum').val();
+            mmg.load({'search':search_data})
+        }
+    });
+
+
+
+
+
+
+
+
+
 
 </script>

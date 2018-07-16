@@ -20,7 +20,8 @@
 <div class="box2 relative">
     <div class="hl-help">
 
-        <span class="linkBlue">设备管理中心</span>
+        <a href="http://doc.53iq.com/#/debug_helper" target="_blank"><span class="linkBlue">调试帮助</span></a>
+        <a href="/static/sdk/ComMonitor.exe" target="_blank"><span class="linkBlue" style="display: inline-block;margin-left: 100px">串口调试工具</span></a>
     </div>
 	<div class="mt20">
         <div class="boxInfo">
@@ -58,7 +59,8 @@
             }
             group += '<td>'+is_online+'</td><td>';
             if (device_list[i].ebf_device_mac) {
-                group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="'+device_list[i].ebf_device_mac+'" target="_blank" >调试</a>'
+                //group += '<a style="cursor: pointer;" onclick="DebugDevice(this)" data-mac="'+device_list[i].ebf_device_mac+'" target="_blank" >调试</a>'
+                group += '<a style="cursor: pointer;" href="https://oven.53iq.com/static/list/index.html#/flexibleunit?d='+device_list[i].ebf_device_mac+'&token=api_token_1234567" >调试</a>'
             }
             group += '</td></tr>'
         }

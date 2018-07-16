@@ -13,6 +13,10 @@ class Message(models.Model):
     message_content = models.CharField(max_length=512, db_column='ebf_message_content')
     # 消息类型
     message_type = models.IntegerField(max_length=2, default=1, db_column='ebf_message_type')
+    # 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
+    message_handler_type = models.IntegerField(max_length=2, default=1, db_column='ebf_message_handler_type')
+    # 产品key
+    device_key = models.CharField(max_length=8, db_column='ebf_device_key')
     # 发送者
     message_sender = models.CharField(max_length=64, db_column='ebf_message_sender')
     # 消息接收者

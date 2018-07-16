@@ -1,0 +1,162 @@
+{% extends 'wiki/base.tpl' %}
+{% load filter %}
+{% block title %}
+    开发指南
+{% endblock %}
+{% block style %}
+
+
+
+    <style>
+        .title{
+            margin-top: 90px;
+            width: 100%;
+            z-index: 1;
+            height: 10px;
+        }
+        .breadcrumb{
+
+            line-height: 0;
+            background-color: transparent;
+            margin: 6px 0 1px;
+            padding: 0;
+            font-size: 16px;
+            border-radius: 0;
+        }
+        .protocol-info-main {
+            width: 1014px;
+            color: #626262;
+            font-size: 14px;
+            margin: auto;
+            margin-top: 40px;
+            overflow: hidden;
+        }
+        .protocol-info-main .item {
+            width: 220px;
+            height: 340px;
+            padding-top: 35px;
+            text-align: center;
+            background: #fff;
+            margin: 0 57px;
+            float: left;
+            list-style: none;
+            border: 1px solid #ccc;
+        }
+        .protocol-info-main .item .title {
+            line-height: 36px;
+            font-size: 18px;
+            color: #000;
+            text-align: center;
+            border: none;
+            box-shadow:none;
+            padding: 25px 0 0 0;
+            margin-top: 0;
+        }
+        .protocol-info-main .item .info-list {
+            line-height: 30px;
+            margin-left: 30px;
+            text-align: left;
+            height: 150px;
+            margin-top: 46px;
+        }
+        .protocol-info-main .item .info-list .info {
+            position: relative;
+            padding-left: 42px;
+        }
+
+        .protocol-info-main .item .info-list .info a {
+            color: #626262;
+        }
+        .protocol-info-main .item .info-list .info a:hover, .protocol-info-main .item .info-list .info a:active,.protocol-info-main .item .info-list .info a:focus{
+            color: #ff6202;
+        }
+        .home-logo{
+            background: #FF7038;
+            text-align: center;
+            margin-top: 90px;
+            top:0;
+            opacity: 0.89;
+        }
+        .f-tit{
+            position: absolute;
+            left:20%;
+            top: 167px;
+            color: #fff;
+        }
+        .new-app li{
+            display: inline;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        li a:hover{
+            color: #ff6202;
+        }
+    .breadcrumb > li + li:before{
+        content: "\f105";
+        font-family: FontAwesome;
+    }
+    label{
+            font-weight: initial;
+        }
+    .popBox h3{
+        color: #788188;
+    }
+
+    </style>
+    <script>
+    function read() {
+        alert(1)
+        window.open("/templates/wiki/read.html")
+    }
+    </script>
+{% endblock %}
+{% block menu %}
+    {% create_menu 4 user.account_id %}
+{% endblock %}
+{% block content %}
+    <body>
+        <div class="title">
+            <div class="wrapper">
+            {% for default_app in default_apps %}
+                <input type="hidden" class="default-app" data-appid={{ default_app.app_id }}>
+            {% endfor %}
+            {% for a in all_app %}
+                {% if a.check_status != 3%}
+                    <input type="hidden" class="owner-app" data-appid={{ a.app_id }}>
+                {% endif %}
+            {% endfor %}
+            <ol class="breadcrumb" style="width: 36%;float: left">
+                <li><a href="/product/list">产品管理</a></li>
+                <li style="color: #ff6202;">开发指南</li>
+            </ol>
+            <ol style="width: 50%;float: left;margin: 6px 0 1px;line-height: 0;" class="new-app">
+                <li style="color: #c6c6c6;">模板创建：</li>
+                {% for app in default_apps %}
+                    <li>
+                        {% if user.developer.developer_id%}
+                            <a href="javascript:void(create_product('{{ app.app_device_type }}'))" >{{ app.app_name }}</a>
+                        {% else %}
+                            <a href="javascript:void(dont_develop())">{{ app.app_name }}</a>
+                        {% endif %}
+                    </li>
+                    {% if forloop.counter == 3 %}
+                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(11,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi烤箱</a></li>
+                        <li style="padding-left: 84px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+
+            </div>
+
+        </div>
+        <div class="w">
+            <ul class="protocol-info-main" style="text-align: center">
+                <img src="/static/image/wiki/read.jpg" alt="">
+            </ul>
+        </div>
+    </body>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

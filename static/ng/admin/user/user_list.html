@@ -39,6 +39,7 @@
 </div>
 <!-- /.modal -->
 <script>
+    $("input").attr("placeholder","通过账号进行搜索");
     // 操作Html
     var toControlHtml = function (val) {
         if (val == 0){
@@ -102,4 +103,10 @@
             return $("#modalBody").html("请确认启用该用户：启用");
         }
     })
+     $("#applyCertNum").keydown(function (e) {
+        if (e.keyCode == 13) {
+            search_data =  $('#applyCertNum').val();
+            mmg.load({'search':search_data})
+        }
+    });
 </script>
