@@ -124,7 +124,7 @@ def product_list(request):
                 unpublished_apps.append(app)
         for app1 in user_apps1:
             # 已经发布
-            print('app1',app1)
+
             if app1.check_status == _convention.APP_CHECKED:
                 published_apps.append(app1)
             elif app1.check_status == _convention.APP_CHECKING:
@@ -490,12 +490,13 @@ def product_main(request):
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-
+                print('数据',opera_data)
                 mod = get_mod_funs(opera_data, device_conf)
                 return JsonResponse({"data": mod})
             elif post_data == "add_mod":
                 funs = request.POST.get("funs")
-                add_mod_funs(opera_data, device_conf, funs)
+                app_device_type = app.app_device_type
+                add_mod_funs(opera_data, device_conf, funs,app_device_type)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 return HttpResponse('add_mod_success')
