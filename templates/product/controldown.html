@@ -483,6 +483,71 @@
 
     <div class="wrapper mt20" style="text-align: center;padding: 0 3.2%;overflow: hidden;">
         {% fast_create_product  user.developer.developer_id  %}
+        <img src="/static/image/product/down1.png" onclick="close_new()" id="close111" alt="" style="width: 16px;position: absolute;margin-top: 30px;margin-left: 547px;z-index: 1">
+        <p style="float: right;margin-top: 10px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
+        <div class="title-sub">
+            <div class="" style="text-align: center;background-color: white;height: 80px;padding-left: 0px">
+                <div class="www">
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left;padding-left: 24px">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                        href="http://doc.53iq.com/#/debug_helper" target="_blank"> 1. <b>创建产品</b></a>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                        href="http://doc.53iq.com/#/debug_helper" target="_blank">使用模板一键创建标准产品</a>
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left">
+                    <li class="item">
+
+                        <div class="info-list" style="margin-top: 15px">
+                            <p class="info" style="font-size: 14px"><b><a href="/wiki/doc_wiki?view=Navicat2112#112"
+                                                                          target="_blank"> <b>2. </b>导出协议和工程</a></b></p>
+                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                        href="http://doc.53iq.com/#/debug_helper" target="_blank">定义功能和协议，调整标准界面</a>
+                                </p>
+
+
+                        </div>
+                    </li>
+                </div>
+
+                    <div class="protocol-info-main col-md-3"
+                 style="background-color: white;text-align: left;padding-right: 0px;">
+                <li class="item">
+
+                    <div class="info-list" style="margin-top: 15px">
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                href="/static/sdk/COOKEING-Hood.rar" target="_blank"> <b>3. </b>开发 </a></p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                href="/static/sdk/COOKEING-Hood.rar" target="_blank">电控对接标准协议，屏端工程软件开发</a></p>
+                    </div>
+                </li>
+
+            </div>
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left">
+                <li class="item">
+
+                    <div class="info-list" style="margin-top: 15px">
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                href="/static/sdk/ComMonitor.exe" target="_blank"><b>4. </b> 调试</a></p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                href="/static/sdk/ComMonitor.exe" target="_blank">屏端、手机APP和设备调试</a></p>
+                    </div>
+                </li>
+
+            </div>
+                </div>
+            </div>
+        </div>
+
         <div class="title-sub">
             <div class="" style="text-align: center;background-color: white;height: 200px;padding-left: 0px">
                 <div class="www">
@@ -684,8 +749,16 @@
 
 {% block script %}
     <script>
-
-
+    function close_new() {
+        document.getElementsByClassName("title-sub")[0].style.display='none';
+        document.getElementById('close111').style.display='none';
+        document.getElementById('new_yindao').style.display=''
+    }
+    function show_new(){
+        document.getElementsByClassName("title-sub")[0].style.display='';
+        document.getElementById('close111').style.display='';
+        document.getElementById('new_yindao').style.display='none'
+    }
     $(".more1").click(function () {
         $.ajax({
             method:"GET",
