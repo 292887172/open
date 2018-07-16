@@ -505,7 +505,7 @@
             </ol>
 
             <ol style="width: 60%;float: left;margin: 6px 0 1px;" class="new-app">
-                <li style="color: #c6c6c6;">模板创建：</li>
+                <li style="color: #c6c6c6;">模板一键创建：</li>
                 {% for app in default_apps %}
                     <li>
                         <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
