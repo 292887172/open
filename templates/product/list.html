@@ -514,14 +514,14 @@
                     {% if forloop.counter == 3 %}
                         <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
                         <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
-                        <!--{% if user.developer.developer_id %}
+                        {% if user.developer.developer_id %}
                             <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"
                              data-target="#user_address">申请样品 </span>
                         {% else %}
                              <span style="color:#ff6202;cursor:pointer;font-size: 16px"
                                      onclick="javascript:void(dont_develop())">申请样品 </span>
 
-                        {% endif %}-->
+                        {% endif %}
 
                     {% endif %}
                 {% endfor %}
@@ -529,7 +529,7 @@
         </div>
     </div>
     <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
-            <!--<div class="modal-dialog">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -550,7 +550,7 @@
                         </button>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
     <div class="wrapper mt20">
     {% fast_create_product  user.developer.developer_id  %}

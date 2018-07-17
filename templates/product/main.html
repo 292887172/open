@@ -236,7 +236,7 @@
             </li>
             {% endif %}
             </ol>
-            <span style="color:#585252">Key:</span> <span>{{ app.app_appid|cover_product_key }}</span>
+            
                 <span style="margin-left: 22%;color: red;"> {% if app.check_status == 1 %}该产品处于发布审核阶段，功能点不可修改。{% elif app.check_status == 2 %}该产品已发布，功能点不可修改。{% elif app.check_status == 3 %}{{ app.app_name }}示例体验，功能点不可修改。{% endif %}</span>
 
             </div>
