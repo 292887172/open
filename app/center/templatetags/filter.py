@@ -132,6 +132,7 @@ def create_menu(context, cur=0, username=None):
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
                     {"url": "/product/community/", "title": "厨房社区"},
 
+
                     ]
         ret["menu"] = menu
     return ret

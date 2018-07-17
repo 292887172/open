@@ -129,7 +129,7 @@
     .dev-guide-bar {
         height: 40px;
         line-height: 40px;
-        background: lightyellow;
+        background: #e0e0e0;
     }
     .dev-guide-bar div {
         display: inline-block;
@@ -169,7 +169,7 @@
     <div class="mt20" style="height: auto;margin-top: 0;border-top: none;">
 
         <div class="goods-list">
-            <dl class="col-md-4" >
+            <dl class="col-md-6" >
                 <dt style="margin-top: 42px">
                     <a href="#/info">
                         <img style="width: 40px;height: 40px" src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'"
@@ -186,28 +186,35 @@
                     </div>
                     <div class="product-info-div" style="">
 
-                        <p class="product-info-p">
+                        <p class="product-info-p" style="">
                             分类： {[{app_device_name}]} {[{ app_create_source }]}<label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
-                        </p>
-                        <p class="product-info-p">Key：<label>{[{key}]}</label>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Key：{[{key}]}
+                  </p>
 
-
-                        </p>
 
                         <p class="product-info-p">更新于：{[{ infoFormData.app_update_time }]}<label
                                 style="margin-left: 3%;color: #333">未发布</label></p>
                         <p class="xxx" style="display: none">{[{infoFormData.app_id}]}</p>
+                        <p class="product-info-p" style="width: 350px"> 1.下载屏端油烟机标准工程包开发<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i>&nbsp;&nbsp;<r style="color: #e0e0e0">如何开发 ？</r></p>
+                        <p class="product-info-p" style="width: 350px"> 2.开发后编译，将新固件烧录到屏端&nbsp;&nbsp;<r style="color: #e0e0e0">如何修改key ？</r></p>
+                        <r class="product-info-p" style="width: 350px"> 3.WiFi屏链接到平台，查看通信日志</p>
                     </div>
                 </dd>
 
             </dl>
-            <dl class="col-md-8" style="padding-top: 45px">
+            <dl class="col-md-6" style="padding-top: 100px">
                 <dd>
-                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 16px;margin-left: 5px;">导出"{[{app_device_name}]}"控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div><span style="font-size: 16px;margin-left: 5px;">快速体验</span></div>
+                </dd>
+                <dd>
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 16px;margin-left: 5px;">下载屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                </dd>
+                <dd style="display: none">
+                    <div><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 16px;margin-left: 5px;">导出{[{app_device_name}]}控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
 
-                <dd>
-                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 16px;margin-left: 5px;">"{[{app_device_name}]}"标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <dd style="display: none">
+                    <div><a href="/static/sdk/COOKEING-Hood.rar" style="cursor:pointer;"  class=""></i><span style="font-size: 16px;margin-left: 5px;">{[{app_device_name}]}标准工程文件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/static/sdk/DCIOT.PKG" style="cursor:pointer;" class=""></i><span style="font-size: 16px;margin-left: 5px; color: red">屏端软件下载</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>
                         <a href="http://doc.53iq.com/#/debug_helper?id=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B7%A5%E7%A8%8B%E8%BD%AF%E4%BB%B6%E8%87%B3wifi%E5%B1%8F"><i class="ace-icon fa fa-question-circle bigger-120"></i></a>
                         </div>
@@ -249,6 +256,8 @@
                 <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 14px">基本信息</span>
 
         <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
+        <span class="linkBlue" style="margin-left: 270px;"><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">导出{[{app_device_name}]}控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></span>
+
         <div style="margin-top: 5px;height: 20px">
             <span style="display: inline-block;margin-left: 25px">电控板须支持：5V供电，1路串口</span>
         </div>
