@@ -1,14 +1,14 @@
 <!--和fast_create.js以及list.css一起才能实现快速创建的效果，这里只是一个模态框，js方法实现还是在js文件里，-->
-<div class="popBox" id="newHtmlBox" style="display: none;">
+<div class="popBox" id="newHtmlBox" style="display: none;height:400px !important;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
-        <h3 style="text-align: center;">标准<span id="productType"></span>创建</h3>
+        <h3 style="text-align: center;"><span id="productType"></span> 创建</h3>
         <div class="cont mt20" style="margin-top: -15px;">
             <div style="float:left;">
-                <img id="show_logo" style="width: 110px;height: 120px;margin:0 0 0 -3%;"
+                <img id="show_logo" style="width: 40px;height: 40px;margin:0 0 0 -3%;"
                      src="http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png">
             </div>
             <div class="warnCont" style="width: 76%">
-                <form name="formProduct" method="post" class="fd7_create_product-form" action="/product/add/" target="nm_iframe">
+                <form name="formProduct" method="post" style="padding-top: 0px" class="fd7_create_product-form" action="/product/add/" target="nm_iframe">
                     <div class="ant-row ant-form-item">
                         <label for="product_name" class="">产品名称:</label>
                         <span class="ant-input-wrapper">
@@ -17,20 +17,26 @@
                         </span>
                         <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
                     </div>
-                    <div class="ant-row ant-form-item" id="com_type">
-                        <label class="dtbox">硬件条件:</label>
 
-                        <p class="technology" style="float: right;width: 75%">
+
+
+                        <p class="technology" style="float: left;width: 75%">
                             <input class="magic-radio" type="radio" style="display: none" disabled="disabled"
                                                                   onclick="select_progm(3)" name="select_group" id="c3"
                                                                   checked>
-                            <label for="c3" style="display: block;font-size: 14px;margin-top:2px">WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</label>
-                            <label style="color:#ff6202;font-size: 14px">默认按标准功能和协议创建</label>
+                            <label for="c3" style="display: block;font-size: 14px;margin-top:2px">电控板须支持：5V供电，1路串口</label>
+
+
+
+                        <label for="c3" style="display: block;font-size: 14px;margin-top:2px"> 控制协议: 53iq 标准协议（创建后，可更换控制协议)</label>
+
+                        <label for="c3" style="display: block;font-size: 14px;margin-top:2px">功能: 标准洗碗机（创建后，可增加、删减各个功能)</label>
+                        <label style="color:#ff6202;font-size: 14px">默认按标准功能和协议创建</label>
 
 
                         </p>
 
-                    </div>
+
                     <br>
                     <br>
                     <div class="ui-item-explain">
