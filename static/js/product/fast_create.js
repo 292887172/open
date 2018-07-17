@@ -210,8 +210,12 @@ function uploadInfo() {
             }
         })
     }else{
+
         bootbox.alert("请输入正确的信息！");
+
+
     }
+     document.getElementsByClassName("modal-content")[1].style.marginLeft="50px";
 }
 
 var nameBtn = false;
