@@ -33,7 +33,7 @@
 </head>
 <style>
     .sign_out a:hover{
-        color: #ff6202;
+        color: #ff0000 !import;
     }
     .sign_out a.user-login{
         background-color: #FF6F37
@@ -89,7 +89,9 @@
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
                     </div>
             {% else %}
-                <!-- 登录 -->
+                  <a href="/center/login">
+                            <span class="show-control;color: #ff0000 !import">登录</span>
+                        </a>
 
 
             {% endif %}
