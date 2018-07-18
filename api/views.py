@@ -86,7 +86,7 @@ def diy_ui_conf(request):
                     p = json.loads(back_data['ebf_page_conf'])['function']
                     for ii in range(len(p)):
                         p[ii].update(new_functions[ii])
-                    return HttpResponse(json.dumps(p), content_type="application/json")
+                    return HttpResponse(json.dumps({"function": p}), content_type="application/json")
             except Exception as e:
                 print(e)
             return JsonResponse({})
