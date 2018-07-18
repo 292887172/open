@@ -23,13 +23,13 @@ def pull_ui_conf(request):
                 # print(json.loads(a['ebf_page_conf'])['name'])
                 for i in function_list:
                     if int(i['isUiShow']) == 1:
-                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
+
+                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title'],'values':i['values'],'type':i['type'],'permission':i['permission']})
                 json.loads(a['ebf_pc_conf'])['functions'] = new_functions
 
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],
                             "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions,
-                            'type': function_list[0].get('type',''),'values': function_list[0].get('values',''),
-                            'permission':function_list[0].get('permission','')}
+                            }
                 back_data = {"data": new_list, "code": 0}
                 return JsonResponse(back_data)
             else:
