@@ -1,7 +1,7 @@
 <!--和fast_create.js以及list.css一起才能实现快速创建的效果，这里只是一个模态框，js方法实现还是在js文件里，-->
-<div class="popBox" id="newHtmlBox" style="display: none;height:400px !important;">
+<div class="popBox" id="newHtmlBox" style="display: none;height:460px !important;">
         <a href="javascript:" onclick="new_close()" class="close">关闭</a>
-        <h3 style="text-align: center;"><span id="productType"></span> 创建</h3>
+        <h3 style="text-align: center;">标准<span id="productType"></span> 创建</h3>
         <div class="cont mt20" style="margin-top: -15px;">
             <div style="float:left;">
                 <img id="show_logo" style="width: 40px;height: 40px;margin:0 0 0 -3%;"
@@ -16,6 +16,20 @@
                                    class="ant-input ant-input-lg">
                         </span>
                         <div id="productName" style="color: #f50;font-size: 12px;padding-left: 76px"></div>
+                    </div>
+                    <div class="ant-row ant-form-item">
+                        <label for="product_name1" class="">屏幕尺寸:</label>
+                        <select name="product_category_detail2" id="product_category_detail2"
+                                                class="sel4">
+                                            <option value="">请选择屏幕尺寸</option>
+                                            <option value="1">4.3寸</option>
+                                            <option value="2">5寸</option>
+                                            <option value="3">6.8寸</option>
+                                            <option value="4">7寸</option>
+
+                                            <option value="0">其他</option>
+                                        </select>
+                         <span style="color: red;display: none;padding-left: 20px;" class="check-sel">请选择屏幕尺寸</span>
                     </div>
 
 
@@ -49,6 +63,7 @@
                     </div>
 
                     <input type="hidden" value="" id="product_category_detail" name="product_category_detail" class="">
+
                     <input type="hidden" value="{{ developer_id }}" name="developer_id">
                     <input type="hidden" value="2" name="product_group" class="product_group">
                     <input type="hidden" value="是" name="product_command">
@@ -67,3 +82,6 @@
               </span>
         </div>
 </div>
+<script>
+
+</script>

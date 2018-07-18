@@ -68,6 +68,7 @@ function submit_product() {
     var form = $("form[name=formProduct]");
     var product_name = $("#product_name").val();
 
+
     try{
         // 更新标记，回调ifram获取返回值,部分页面有，目前只有快速创建模块有
         handlerFlag=1;
@@ -239,6 +240,12 @@ function validateName(that) {
     }
 }
 
+function screen() {
+    var value = $("#product_category_detail2 option:selected").val();
+    document.getElementById("product_category_detail2").value=value
+    console.log(value)
+}
+
 function validatePhone(that) {
     var patt = /^1[3|4|5|8][0-9]\d{8}$/;
     if (!patt.test(that.value)) {
@@ -283,7 +290,7 @@ function validateAddress(that) {
 
         function showProcess(step) {
             console.log(step);
-            $(".popBox").css("height", '430px');
+            $(".popBox").css("height", '460px');
             $("#productSubmit").hide();
             setTimeout(function () {
                 $("#ui-item-explain-"+step).removeClass('hide');
