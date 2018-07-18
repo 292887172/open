@@ -302,20 +302,28 @@
 
             <div class="left col-md-12" style="margin-top: 30px;float:none;padding-right:20px;padding-top: 30px;text-align: center">
                 <div class="col-md-2"></div>
-            {% for app in default_apps %}
+                <div class="col-md-2" >
+                        <img src="http://storage.56iq.net/group1/M00/44/10/CgoKQ1tAV7eAP1E9AAAaN6nFl6E565.png">
+                        <h4>智能烤箱</h4>
 
-                {% if app.app_name == "智能油烟机" %}
-
-                    <div class="col-md-2" >
-                        <img src="{{ app.app_logo }}">
-                        <h4>WiFi屏洗碗机</h4>
-                        {% if app.app_device_type == 1 %}
-                            <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
-                        {% elif app.app_device_type == 2 %}
-                            <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
-                        {% elif app.app_device_type == 11 %}
                             <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
-                        {% endif %}
+
+                        <div class="ui-demo">
+                            {% if user.developer.developer_id %}
+                                <a style="display:block;color:#fff"
+                                   href="javascript:void(create_product('{{ 21 }}'))">快速创建</a>
+                            {% else %}
+                                <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                <div class="col-md-2" >
+                        <img src="http://storage.56iq.net/group1/M00/44/76/CgoKQ1tEbOGAbzLIAAAaTrkX6oY542.png">
+                        <h4>WiFi屏洗碗机</h4>
+
+                            <p>精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
+
                         <div class="ui-demo">
                             {% if user.developer.developer_id %}
                                 <a style="display:block;color:#fff"
@@ -326,32 +334,23 @@
 
                         </div>
                     </div>
+                <div class="col-md-2" >
+                        <img src="http://storage.56iq.net/group1/M00/44/10/CgoKQ1tAV4qATrLxAAAtVEey7Xc366.png">
+                        <h4>智能集成灶</h4>
 
-                {% else %}
-                    <div class="col-md-2">
-                        <img src="{{ app.app_logo }}">
-                        <h4>{{ app.app_name }}</h4>
-                        {% if app.app_device_type == 1 %}
-                            <p style="padding-left: 0px;">精彩触屏体验、高可靠、AI智能洗,手机App操控预约</p>
-                        {% elif app.app_device_type == 2 %}
                             <p>WiFi触屏体验，远程监控灶状态，厨房指数模板快速接入</p>
-                        {% elif app.app_device_type == 11 %}
-                            <p>标准化蒸烤箱模板，3步快速接入，支持海量一键云菜谱</p>
-                        {% endif %}
+
                         <div class="ui-demo">
                             {% if user.developer.developer_id %}
                                 <a style="display:block;color:#fff"
-                                   href="javascript:void(create_product('{{ app.app_device_type }}'))">快速创建</a>
+                                   href="javascript:void(create_product('{{ 2 }}'))">快速创建</a>
                             {% else %}
                                 <a style="display:block;color:#fff" href="javascript:void(dont_develop())">快速创建</a>
                             {% endif %}
-
                         </div>
                     </div>
-                {% endif %}
 
 
-            {% endfor %}
                 <div class="col-md-2"  style="width: 230px">
                     <p style="text-align: left;padding-top: 5px;margin-left: 30px;font-size: 16px;padding-right: 0px;width: 200px">如何开发WiFi屏厨电？</p>
                     <div class="left-dv4" id="WiFi-oven-demo">
