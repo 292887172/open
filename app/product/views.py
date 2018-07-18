@@ -176,6 +176,7 @@ def product_list(request):
     elif request.method == "POST":
         return post()
 
+
 @login_required
 @csrf_exempt
 def product_controldown(request):
@@ -295,6 +296,7 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.developer:
             return HttpResponseRedirect(reverse("center"))
@@ -318,7 +320,7 @@ def product_add(request):
         app_category_detail = request.POST.get("product_category_detail", 0)
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
-        print(app_category_detail2)
+
         if app_category_detail and app_category_detail2:
             try:
                 app_category_detail = int(app_category_detail)
