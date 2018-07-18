@@ -27,7 +27,9 @@ def pull_ui_conf(request):
                 json.loads(a['ebf_pc_conf'])['functions'] = new_functions
 
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],
-                            "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions}
+                            "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions,
+                            'type': function_list[0].get('type',''),'values': function_list[0].get('values',''),
+                            'permission':function_list[0].get('permission','')}
                 back_data = {"data": new_list, "code": 0}
                 return JsonResponse(back_data)
             else:
