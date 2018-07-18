@@ -80,7 +80,7 @@ register.filter(category_detail)
 def category_detail1(obj):
     try:
         type = str(obj)
-        category = {'0':'','1':'（标准产品）'}
+        category = {'0':'','1':'(标准型)'}
         return category[type]
     except Exception as e:
         print(e)

@@ -557,11 +557,11 @@
 
                     <div class="info-list" style="margin-top: 15px">
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/quickly_start" target="_blank"><b>5. </b> 交互调试</a></p>
+                                href="http://doc.53iq.com/#/quickly_start" target="_blank"><b>5. </b> 调试</a></p>
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/quickly_start" target="_blank">- 厨电和电控调试</a></p>
+                                href="http://doc.53iq.com/#/quickly_start" target="_blank">- 电控和屏端联合调试</a></p>
                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/quickly_start" target="_blank">- 屏端调试</a></p>
+                                href="http://doc.53iq.com/#/quickly_start" target="_blank">- 厨电整机调试</a></p>
                     </div>
                 </li>
 
@@ -701,28 +701,28 @@
                                     <div>
 
                                         {% if app.check_status == 0 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                            最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == 1 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                            最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == 2 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }} 
+                                            最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == -1 %}
-                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                            最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% else %}
-                                            <p>分类:{{ app.app_device_type| category_detail }} {{ app.app_create_source|category_detail1 }}
-                                            最后编辑时间：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                            最后编辑：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% endif %}
