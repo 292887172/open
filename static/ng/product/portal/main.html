@@ -162,13 +162,13 @@
     <div style="font-size: 16px">WiFi屏效果：<a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
     <div><a href="#portal?type=guide" style="font-size: 16px">下一步></a></div>
 </div>
-<div class="box2 relative" style="padding-bottom: 1px">
+<div class="box2 relative" style="padding-bottom: 1px;padding-top: 1px">
     <div class="hl-help" style="display: none;">
         <span class="linkBlue">产品控制台</span>
     </div>
     <div class="mt20" style="height: 120px;margin-top: 0;border-top: none;">
 
-        <div class="goods-list">
+        <div class="goods-list" style="padding-bottom: 0px">
             <dl class="col-md-6" >
                 <dt style="margin-top: 42px">
                     <a href="#/info">
@@ -230,8 +230,8 @@
      <div class="hl-help">
 
     </div>
-    <div class="mt20" style="height: auto;margin-top: 0;border-top: 1px solid #ccc;">
-        <hr style="bor">
+    <div class="mt20" style="height: 240px;margin-top: 0;padding-bottom: 0px;border-top: 1px solid #ccc;">
+        <hr style="">
         <div class="goods-list">
             <dl class="col-md-6" style="padding-top: 40px;height: 100px">
                 <div class="title1" style="height: 30px;margin-top: -20px">
@@ -243,7 +243,7 @@
                     <p style="margin-top: 25px;font-size: 14px"> - 电脑程序开发实现、烧录</p>
                     <p style="margin-top: 30px;font-size: 14px">- 连接硬件（WiFi屏+电控板） <a href="http://doc.53iq.com/#/function" target="_blank" style="color: #bfbfbf">  图解</a></p>
                     <p style="margin-top: 30px;font-size: 14px">- 测试调试  <a href="http://doc.53iq.com/#/debug_helper" target="_blank" style="color: #bfbfbf">  调试方法？</a></p>
-
+                    <p style="margin-top: 30px;font-size: 14px">电控板须支持：5V供电，1路串口</p>
 
             </dl>
             <dl class="col-md-6" style="padding-top: 40px;height: 100px">
@@ -268,8 +268,8 @@
     </div>
 
     <div class="mt20" style="margin-top: 5px;height: 250px">
-        <span class="linkBlue" style="display: inline-block;margin-top: 20px;height: 20px;margin-left: 25px;font-size: 16px">产品动态</span>
-        <div class="goods-list" style="padding-top: 0px;height: 145px">
+        <span class="linkBlue" style="display: inline-block;margin-top: 32px;height: 30px;margin-left: 25px;font-size: 16px">产品动态</span>
+        <div class="goods-list" style="padding-top: 0px;height: 95px">
             <div class="info-list col-md-6 new_time" style="margin-top: 15px">
                 <div> - 生成标准屏端工程软件 <span>{[{ create_time_detail }]}</span></div>
                 <div> - 生成标准工程文件 <span>{[{ create_time_detail }]}</span></div>
@@ -287,15 +287,13 @@
            </div>
 
     </div>
-    <div class="mt20" style="margin-top: 20px">
+    <div class="mt20" style="margin-top: 0px;padding-top: 25px">
                 <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 14px">基本信息</span>
 
         <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
         <span class="linkBlue" style="margin-left: 270px;"><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">导出{[{app_device_name}]}控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></span>
 
-        <div style="margin-top: 5px;height: 20px">
-            <span style="display: inline-block;margin-left: 25px">电控板须支持：5V供电，1路串口</span>
-        </div>
+
 
     </div>
 

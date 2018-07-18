@@ -41,7 +41,7 @@ def home(request):
         if account == "admin":
             uri = "/center"
         else:
-            uri = "/product/controldown"
+            uri = "/product/console"
         return HttpResponseRedirect(uri)
     except Exception as e:
         print(e)
