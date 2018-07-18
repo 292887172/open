@@ -100,7 +100,7 @@ $(function () {
             var li = document.createElement("li");
             li.setAttribute("value", renderName[index]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
+            var str = '<span class="title preApp pull-left" '+ 'data-permission="'+ item.permission + '"'+ 'data-type="'+ item.type +'"'+ 'data-valuesa="'+ item.values[0] +'"'+ 'data-valuesb="'+ item.values[1] +'"' + '><i class="iconfont icon-dp_list"></i><span class="">' + renderList[index] + '</span></span><select name="" id="" class="moduleControl pull-left">';
             switch (item.model) {
                 case "big":
                     str += '<option value="medium">中模块</option><option value="big" selected>大模块</option><option value="small">小模块</option><option value="hidden">不显示</option>', display = "block";
@@ -136,12 +136,13 @@ $(function () {
     container.appendChild(sortable);
     previewApp();
     toggleBg();
-    $("#sortable").sortable({
+    //开启拖拽选项
+    /*$("#sortable").sortable({
         stop: function (event, ui) {
             previewApp();
             toggleBg();
         }
-    });
+    });*/
     var backward = document.createElement("button");
     backward.id = "backward";
     backward.textContent = "返回";
@@ -212,6 +213,7 @@ $(function () {
     // 选择图标模态框
     var confirm = document.querySelector(".confirm");
     confirm.addEventListener("click", function () {
+        console.log(currentIcon)
         currentLi.querySelector(".switchIcon").querySelector("i").className = "iconfont " + currentIcon + " pull-right";
         previewApp();
     })
@@ -240,6 +242,7 @@ $(function () {
     // 预览手机端效果
     function previewApp() {
         var list = getInfo().function;
+        console.log(list)
         fnList.innerHTML = "";
         list.forEach(function (item, index) {
             var preLi = document.createElement("li");
@@ -278,7 +281,7 @@ $(function () {
             }
             if (item.model == "medium") {
                 var i = document.createElement("i");
-                i.style = "color:#fff;margin-top:1px;position:absolute;left:20px;";
+                i.style = "color:#fff;margin-top:1px;margin-left:8px;vertical-align:middle;";
                 i.className = "iconfont " + item.icon;
                 preLi.appendChild(i);
                 preLi.style.paddingTop = "2px";
@@ -287,8 +290,39 @@ $(function () {
                 preLi.style.color = "#000";
                 var span = document.createElement("span");
                 span.textContent = item.title;
-                span.style = "margin-left:56%;";
+                span.style = "display:inline-block;transform:scale(0.9);";
                 preLi.appendChild(span);
+                if (list[index].type == 'int' || list[index].type == 'bool'){
+                    if ( Number(list[index].valuesb) - Number(list[index].valuesa) == 1){
+                        console.log("此为开关")
+                        var img = document.createElement("img");
+                        img.src = "http://storage.56iq.net/group1/M00/45/6B/CgoKQ1tO4F2AU0DvAAACUm4ZfQM204.png";
+                        img.style = "float:right;width:25px;margin-right:5px;";
+                        preLi.appendChild(img);
+                    }else if (Number(list[index].valuesb) - Number(list[index].valuesa) > 1){
+                        if (list[index].permission == 477){
+                            console.log("状态")
+                            var span_z = document.createElement("span");
+                            span_z.textContent = "状态：";
+                            span_z.style = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
+                            var span_z_s = document.createElement("span");
+                            span_z_s.textContent = "无";
+                            span_z_s.style = "color:#fff";
+                            span_z.appendChild(span_z_s);
+                            preLi.appendChild(span_z);
+                        }else if (list[index].permission == 777){
+                            console.log("当前值")
+                            var span_t = document.createElement("span");
+                            span_t.textContent = "当前值：";
+                            span_t.style = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
+                            var span_t_s = document.createElement("span");
+                            span_t_s.textContent = "关";
+                            span_t_s.style = "color:#fff";
+                            span_t.appendChild(span_t_s);
+                            preLi.appendChild(span_t);
+                        }
+                    }
+                }
             }
             if (item.model == "hidden") {
                 preLi.style.display = "none";
@@ -334,6 +368,10 @@ $(function () {
             var className = item.querySelector(".switchIcon").querySelector("i").className;
             arr[index].icon = className.slice(9, className.length - 11);
             arr[index].bg = item.querySelector(".switchBg").querySelector("img").src;
+            arr[index].permission = item.querySelector(".title").getAttribute('data-permission');
+            arr[index].type = item.querySelector(".title").getAttribute('data-type');
+            arr[index].valuesa = item.querySelector(".title").getAttribute('data-valuesa');
+            arr[index].valuesb = item.querySelector(".title").getAttribute('data-valuesb');
         })
         uploadConfig.function = arr;
         return uploadConfig;
