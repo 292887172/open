@@ -32,7 +32,7 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_category_detail2, app_command, device_conf,
                app_factory_id, app_group, app_logo,app_product_fast, check_status=0):
     """
     创建应用
@@ -41,6 +41,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     :param app_model: 型号
     :param app_category: 分类
     :param app_category_detail: 详细分类
+    :param app_category_detail2: 屏幕尺寸
     :param app_command: 指令类型
     :param device_conf: 产品默认功能配置
     :param app_factory_id: app品牌id
@@ -72,6 +73,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           device_conf=device_conf,
                           app_config_path='',
                           package_name='',
+                          app_screen_size=app_category_detail2,
                           app_factory_uid=app_factory_id,
                           app_group=app_group,
                           app_logo=app_logo,
