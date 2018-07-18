@@ -116,7 +116,7 @@ def create_menu(context, cur=0, username=None):
         if username:
             menu = [
 
-                    {"url": "/product/controldown/", "title": "控制台"},
+                    {"url": "/product/console/", "title": "控制台"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
@@ -127,7 +127,7 @@ def create_menu(context, cur=0, username=None):
         else:
             menu = [
                     {"url": "/", "title": "首页"},
-                    {"url": "/product/controldown/", "title": "控制台"},
+                    {"url": "/product/console/", "title": "控制台"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
                     {"url": "/product/community/", "title": "厨房社区"},
