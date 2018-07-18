@@ -123,6 +123,7 @@
       `ebf_app_level` int(3) NOT NULL DEFAULT '0' COMMENT '接口等级（0：普通接口，1：高级接口，2：内部接口',
       `ebf_app_group` int(8) NOT NULL DEFAULT '0' COMMENT '接口分类（0：普通应用,1：内部接口,2：某某合作伙伴应用,',
       `ebf_app_push_url` text COMMENT '设备消息推送地址',
+      `ebf_app_screen_size` int(2) NOT NULL DEFAULT '0' COMMENT '屏幕尺寸'
       `ebf_app_push_token` varchar(1024) DEFAULT NULL COMMENT '设备消息推送验证Token',
       `ebf_app_device_type` int(3) NOT NULL DEFAULT '0' COMMENT '设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）',
       `ebf_app_protocol_type` int(3) NOT NULL DEFAULT '1' COMMENT '协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）',

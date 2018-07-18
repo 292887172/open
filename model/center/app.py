@@ -36,6 +36,8 @@ class App(models.Model):
     app_appid = models.CharField(max_length=512, db_column='ebf_app_appid')
     # appsecret
     app_appsecret = models.CharField(max_length=1024, db_column='ebf_app_appsecret')
+    # 屏幕尺寸
+    app_screen_size = models.IntegerField(max_length=2,default=0,db_column='ebf_app_screen_size')
     # 应用是否禁用 （0：未禁用，1：禁用）
     app_is_forbid = models.IntegerField(max_length=2, default=0, db_column='ebf_app_is_forbid')
     # 设备品牌

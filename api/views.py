@@ -23,11 +23,13 @@ def pull_ui_conf(request):
                 # print(json.loads(a['ebf_page_conf'])['name'])
                 for i in function_list:
                     if int(i['isUiShow']) == 1:
-                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title']})
+
+                        new_functions.append({'name': i['name'], "id": i['id'], 'title': i['title'],'values':i['values'],'type':i['type'],'permission':i['permission']})
                 json.loads(a['ebf_pc_conf'])['functions'] = new_functions
 
                 new_list = {'name':  json.loads(a['ebf_pc_conf'])['name'], 'key': json.loads(a['ebf_pc_conf'])['key'],
-                            "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions}
+                            "model":  json.loads(a['ebf_pc_conf'])['model'], "functions": new_functions,
+                            }
                 back_data = {"data": new_list, "code": 0}
                 return JsonResponse(back_data)
             else:
@@ -69,9 +71,22 @@ def diy_ui_conf(request):
         device_key = request.GET.get('key')
         if device_key:
             try:
+                a = query_data(device_key)
                 back_data = query_ui_conf(device_key)
+                new_functions = []
+                if a:
+                    function_list = json.loads(a['ebf_pc_conf'])['functions']
+                    # print(json.loads(a['ebf_page_conf'])['name'])
+                    for i in function_list:
+                        if int(i['isUiShow']) == 1:
+                            new_functions.append(
+                                { "id": i['id'],'values': i['values'],
+                                 'type': i['type'], 'permission': i['permission']})
                 if back_data and back_data != 'error':
-                    return HttpResponse((back_data['ebf_page_conf']), content_type="application/json")
+                    p = json.loads(back_data['ebf_page_conf'])['function']
+                    for ii in range(len(p)):
+                        p[ii].update(new_functions[ii])
+                    return HttpResponse(json.dumps({"function": p}), content_type="application/json")
             except Exception as e:
                 print(e)
             return JsonResponse({})

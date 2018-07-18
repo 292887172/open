@@ -316,13 +316,16 @@ def product_add(request):
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "厨房类")
         app_category_detail = request.POST.get("product_category_detail", 0)
+        app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
-
-        if app_category_detail:
+        print(app_category_detail2)
+        if app_category_detail and app_category_detail2:
             try:
                 app_category_detail = int(app_category_detail)
+                app_category_detail2 = int(app_category_detail2)
             except Exception as e:
                 app_category_detail = 0
+                app_category_detail2 = 0
                 print(e)
         if app_product_fast:
             try:
@@ -354,7 +357,8 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
-            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_category_detail2, app_command,
                                 device_conf, app_factory_id, app_group, app_logo,app_product_fast)
             from common.celerytask import add
             r = Redis3(rdb=6).client

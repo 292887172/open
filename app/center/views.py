@@ -153,9 +153,9 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>不存在此用户</P></div>"
             return render(request, "center/login.html", locals())
     try:
-        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/controldown")
+        request.session[SESSION_REDIRECT_URI] = request.GET.get('next', "/product/console")
         if request.user.developer.developer_id:
-            return HttpResponseRedirect("/product/controldown")
+            return HttpResponseRedirect("/product/console")
         elif request.user.account_id:
             return HttpResponseRedirect("/guide")
     except Exception as e:
@@ -170,7 +170,7 @@ def login(request):
             ac_pwd = base64.b64decode(al.al_account_pwd)
             user_obj = authenticate(username=ac_id, password=ac_pwd)
             django.contrib.auth.login(request, user_obj)
-            return HttpResponseRedirect("/product/controldown")
+            return HttpResponseRedirect("/product/console")
         except Exception as e:
             pass
     return render(request, "center/login.html", locals())
@@ -756,10 +756,10 @@ def callback(request):
                 user_obj = authenticate(username=username, password='123')
                 django.contrib.auth.login(request, user_obj)
                 if ac.is_developer:
-                    response = HttpResponseRedirect('/product/controldown')
+                    response = HttpResponseRedirect('/product/console')
                 else:
                     create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
-                    response = HttpResponseRedirect('/product/controldown')
+                    response = HttpResponseRedirect('/product/console')
                 response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response

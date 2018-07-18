@@ -80,7 +80,7 @@ register.filter(category_detail)
 def category_detail1(obj):
     try:
         type = str(obj)
-        category = {'0':'','1':'（标准产品）'}
+        category = {'0':'','1':'(标准型)'}
         return category[type]
     except Exception as e:
         print(e)
@@ -116,7 +116,7 @@ def create_menu(context, cur=0, username=None):
         if username:
             menu = [
 
-                    {"url": "/product/controldown/", "title": "控制台"},
+                    {"url": "/product/console/", "title": "控制台"},
                     {"url": "/product/list/", "title": "产品管理"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
@@ -127,10 +127,11 @@ def create_menu(context, cur=0, username=None):
         else:
             menu = [
                     {"url": "/", "title": "首页"},
-                    {"url": "/product/controldown/", "title": "控制台"},
+                    {"url": "/product/console/", "title": "控制台"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
                     {"url": "/product/community/", "title": "厨房社区"},
+
 
                     ]
         ret["menu"] = menu

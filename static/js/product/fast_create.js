@@ -20,12 +20,14 @@ function create_product(type, type1) {
     if (type == '1') {
         $("#product_category_detail").val(1);
         $("#productType").html("油烟机");
+        $("#productType1").html("油烟机");
         $("#product_name").val("油烟机");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oSmAbhKvAAALicfeZeI743.png");
     }
     else if (type == '2') {
         $("#product_category_detail").val(2);
         $("#productType").html("集成灶");
+        $("#productType1").html("集成灶");
         $("#product_name").val("集成灶");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oYGANZPwAAAIvQGt7RM216.png");
     }
@@ -33,6 +35,7 @@ function create_product(type, type1) {
         $("#ScreenSize").text("(5寸)");
         $("#product_category_detail").val(11);
         $("#productType").html("烤箱");
+        $("#productType1").html("烤箱");
         $("#product_name").val("烤箱");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
     }
@@ -40,6 +43,7 @@ function create_product(type, type1) {
 
         $("#product_category_detail").val(31);
         $("#productType").html("洗碗机");
+        $("#productType1").html("洗碗机");
         $("#product_name").val("洗碗机");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/44/79/CgoKQ1tEjDCAFxfRAAAHGI3eiDc451.png");
     }
@@ -63,6 +67,7 @@ function show_detail() {
 function submit_product() {
     var form = $("form[name=formProduct]");
     var product_name = $("#product_name").val();
+
 
     try{
         // 更新标记，回调ifram获取返回值,部分页面有，目前只有快速创建模块有
@@ -235,6 +240,12 @@ function validateName(that) {
     }
 }
 
+function screen() {
+    var value = $("#product_category_detail2 option:selected").val();
+    document.getElementById("product_category_detail2").value=value
+    console.log(value)
+}
+
 function validatePhone(that) {
     var patt = /^1[3|4|5|8][0-9]\d{8}$/;
     if (!patt.test(that.value)) {
@@ -279,7 +290,7 @@ function validateAddress(that) {
 
         function showProcess(step) {
             console.log(step);
-            $(".popBox").css("height", '380px');
+            $(".popBox").css("height", '460px');
             $("#productSubmit").hide();
             setTimeout(function () {
                 $("#ui-item-explain-"+step).removeClass('hide');
