@@ -196,7 +196,9 @@
 
         <div class="mt20" style="display: none"></div>
         <div class="headerH1" style="position: relative;">
-            <a onclick='export_parameter()' style="cursor:pointer;margin-left: 500px" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 20px;margin-left: 5px;">导出控制协议</span></a>
+
+             <span style="cursor:pointer;font-size: 16px;margin-left: 5px;">定义帧数据子域的功能</span>
+            <a onclick='export_parameter()' style="cursor:pointer;margin-left: 400px" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 16px;margin-left: 5px;">导出控制协议</span></a>
             <a href='http://doc.53iq.com/#/Protocol/README' style='float: right' target='_blank'>53IQ电控通信协议说明</a>
             <div style="float: right;" class="off-btn">
                 <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
@@ -570,7 +572,7 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<span>定义帧数据子域的功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加功能</span></a> ","gridpager");
+        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加功能</span></a> ","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
@@ -1018,7 +1020,7 @@
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
                 group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
@@ -1079,7 +1081,7 @@
         group+='		<input type="text" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-        group+='		<a href="#" onclick="del(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group+='		<a href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
         group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
@@ -1088,7 +1090,7 @@
 
         mxs.push({"data":'',"desc":''})
     }
-    function del(ths){
+    function del1(ths){
         value = $(ths.parentNode.parentNode.children[1].children).val();
         for(var i=0;i<mxs.length;i++) {
             if(mxs[i].data==value) {
