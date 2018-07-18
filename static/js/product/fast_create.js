@@ -283,7 +283,7 @@ function validateAddress(that) {
 
         function showProcess(step) {
             console.log(step);
-            $(".popBox").css("height", '380px');
+            $(".popBox").css("height", '430px');
             $("#productSubmit").hide();
             setTimeout(function () {
                 $("#ui-item-explain-"+step).removeClass('hide');
