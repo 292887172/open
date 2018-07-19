@@ -261,7 +261,7 @@ $(function () {
             var url = "url(" + item.bg + ")";
             if (item.model == "big") {
                 var i = document.createElement("i");
-                i.style = "color:#fff;margin-top:1px;";
+                i.style.cssText = "color:#fff;margin-top:1px;";
                 i.className = "iconfont " + item.icon;
                 preLi.appendChild(i);
                 preLi.style.paddingTop = "2px";
@@ -276,7 +276,7 @@ $(function () {
             }
             if (item.model == "small") {
                 var i = document.createElement("i");
-                i.style = "color:#fff;margin-top:1px;";
+                i.style.cssText = "color:#fff;margin-top:1px;";
                 i.className = "iconfont " + item.icon;
                 preLi.appendChild(i);
                 preLi.style.paddingTop = "2px";
@@ -293,7 +293,7 @@ $(function () {
             }
             if (item.model == "medium") {
                 var i = document.createElement("i");
-                i.style = "color:#fff;margin-top:1px;margin-left:8px;vertical-align:middle;";
+                i.style.cssText = "color:#fff;margin-top:1px;margin-left:8px;vertical-align:middle;";
                 i.className = "iconfont " + item.icon;
                 preLi.appendChild(i);
                 preLi.style.paddingTop = "2px";
@@ -302,34 +302,34 @@ $(function () {
                 preLi.style.color = "#000";
                 var span = document.createElement("span");
                 span.textContent = item.title;
-                span.style = "display:inline-block;transform:scale(0.9);";
+                span.style.cssText = "display:inline-block;transform:scale(0.9);";
                 preLi.appendChild(span);
                 if (list[index].type == 'int' || list[index].type == 'bool'){
                     if ( Number(list[index].valuesb) - Number(list[index].valuesa) == 1){
                         console.log("此为开关")
                         var img = document.createElement("img");
                         img.src = "http://storage.56iq.net/group1/M00/45/6B/CgoKQ1tO4F2AU0DvAAACUm4ZfQM204.png";
-                        img.style = "float:right;width:25px;margin-right:5px;";
+                        img.style.cssText = "float:right;width:25px;margin-right:5px;";
                         preLi.appendChild(img);
                     }else if (Number(list[index].valuesb) - Number(list[index].valuesa) > 1){
                         if (list[index].permission == 477){
                             console.log("状态")
                             var span_z = document.createElement("span");
                             span_z.textContent = "状态：";
-                            span_z.style = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
+                            span_z.style.cssText = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
                             var span_z_s = document.createElement("span");
                             span_z_s.textContent = "无";
-                            span_z_s.style = "color:#fff";
+                            span_z_s.style.cssText = "color:#fff";
                             span_z.appendChild(span_z_s);
                             preLi.appendChild(span_z);
                         }else if (list[index].permission == 777){
                             console.log("当前值")
                             var span_t = document.createElement("span");
                             span_t.textContent = "当前值：";
-                            span_t.style = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
+                            span_t.style.cssText = "float:right;margin-right:5px;display:inline-block;transform:scale(0.9);color:#687eb1";
                             var span_t_s = document.createElement("span");
                             span_t_s.textContent = "关";
-                            span_t_s.style = "color:#fff";
+                            span_t_s.style.cssText = "color:#fff";
                             span_t.appendChild(span_t_s);
                             preLi.appendChild(span_t);
                         }
