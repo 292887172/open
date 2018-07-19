@@ -39,6 +39,14 @@ function create_product(type, type1) {
         $("#product_name").val("烤箱");
         $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
     }
+    else if (type == '21') {
+        $("#ScreenSize").text("(5寸)");
+        $("#product_category_detail").val(11);
+        $("#productType").html("蒸烤箱");
+        $("#productType1").html("蒸烤箱");
+        $("#product_name").val("蒸烤箱");
+        $("#show_logo").attr('src', "http://storage.56iq.net/group1/M00/1D/0C/CgoKQ1m3oWqAbFICAAAKkW-6s_Q059.png");
+    }
     else if (type == '31') {
 
         $("#product_category_detail").val(31);
