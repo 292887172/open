@@ -525,11 +525,11 @@
                         msg += '<div class="common_dp-btn" data-id="'+mods[k].Stream_ID+'"><i class="fa fa-check"></i><span>'+mods[k].name+'</span></div>'
                     }
                     if(msg == ''){
-                        msg = "当前无可选标准功能点，试试自定义功能吧"
+                        msg = "当前无可选标准功能点，<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn' onclick='func5()'>添加</span>"
                     }
                     bootbox.dialog({
                         message: msg,
-                        title:"选择标准功能",
+                        title:"新增标准功能",
                         buttons:{
                             "success" :
                              {
@@ -572,7 +572,9 @@
                 }
              });
         }
-        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加功能</span></a> ","gridpager");
+        //select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/READMEx' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
+
+        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span> ","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
@@ -580,7 +582,7 @@
                 postData: data,
                 datatype: "json",
                 mtype: "POST",
-                colNames: ['序号', '功能标识', '长度', '功能名称', '参数个数', '是否可控', '云菜谱可控', '操作'],
+                colNames: ['序号', '功能标识', '长度', '功能名称', '参数个数', '手机App可控', '云菜谱可控', '操作'],
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
                     {name: 'Stream_ID', align: 'center', width: 143, formatter: function (cellvalue, options,rowObject) {
@@ -889,6 +891,13 @@
 
 
         //
+        function func5() {
+          document.getElementsByClassName("btn-primary")[0].click()
+        }
+        function func4() {
+            document.getElementsByClassName("main-container")[0].style.display='none'
+             document.getElementsByClassName("main-container")[1].style.display=''
+        }
         function func2() {
              document.getElementsByClassName("main-container")[1].style.display='none'
              document.getElementsByClassName("main-container")[0].style.display=''
@@ -1251,7 +1260,7 @@
     }
 
     function SelectFunc(ths) {
-        name = $(ths).val();
+        var name = $(ths).val();
         for(var i=0;i<funs.length;i++){
             if(funs[i].Stream_ID==name){
                 $("#minDefault").val(funs[i].min);
