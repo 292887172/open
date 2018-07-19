@@ -2,6 +2,10 @@ $(function () {
     // 渲染列表
     var renderList = [];
     var renderName = [];
+    var renderPermission = [];
+    var renderType = [];
+    var renderValuesa = [];
+    var renderValuesb = [];
     var logBtn = false;
     var configList = [];
     var bgs = document.querySelectorAll(".bgColor");
@@ -56,9 +60,17 @@ $(function () {
                         }
                         renderList = [];
                         renderName = [];
+                        renderPermission = [];
+                        renderType = [];
+                        renderValuesa = [];
+                        renderValuesb = [];
                         initialList.forEach(function (item) {
                             renderList.push(item.title);
                             renderName.push(item.name);
+                            renderPermission.push(item.permission);
+                            renderType.push(item.type);
+                            renderValuesa.push(item.values[0]);
+                            renderValuesb.push(item.values[1]);
                         })
                     }
                 }
@@ -128,7 +140,7 @@ $(function () {
             var li = document.createElement("li");
             li.setAttribute("value", renderName[i]);
             li.className = "clearfix ui-state-default";
-            var str = '<span class="title preApp pull-left"><i class="iconfont icon-dp_list"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-dp_power2 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/01.jpg" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
+            var str = '<span class="title preApp pull-left"'+ 'data-permission="'+ renderPermission[i] +'"'+ 'data-type="'+ renderType[i] +'"'+ 'data-valuesa="'+ renderValuesa[i] +'"'+ 'data-valuesb="'+ renderValuesb[i] +'"' +'><i class="iconfont icon-dp_list"></i><span class="">' + renderList[i] + '</span></span><select name="" id="" class="moduleControl pull-left"><option value="medium">中模块</option><option value="big">大模块</option><option value="small">小模块</option><option value="hidden">不显示</option></select><span class="col-md-2 switchIcon lis" data-toggle="modal" data-target="#iconList"><i class="iconfont icon-dp_power2 pull-right"></i><button class="btn pull-right margin iconBtn">选择图标</button></span><span style="display:none;" class="col-md-2 switchBg lis" data-toggle="modal" data-target="#bgList"><img src="/static/image/bg/01.jpg" class="squareBg pull-right"/><button class="btn pull-right margin">选择背景</button></span>';
             li.innerHTML = str;
             sortable.appendChild(li);
         }
