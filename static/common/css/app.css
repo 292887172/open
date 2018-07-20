@@ -1,6 +1,6 @@
 html {
   background-color: #f2f4f8;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 body {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
