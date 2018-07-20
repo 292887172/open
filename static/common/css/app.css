@@ -544,7 +544,7 @@ a.list-group-item:focus {
   min-height: 50px;
   padding: 0 15px;
 }
-.header{min-width:120px;padding-left:0;padding-right:0;}
+.header{min-width:1200px;padding-left:0;padding-right:0;}
 .header > p,
 .footer > p {
   margin-top: 15px;
@@ -2973,6 +2973,7 @@ a.bg-light:focus {
 }
 .wrapper-xs {
   padding: 5px;
+  min-width: 1200px;
 }
 .wrapper-sm {
   padding: 10px;
