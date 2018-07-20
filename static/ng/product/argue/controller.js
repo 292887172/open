@@ -12,7 +12,7 @@ angular.module('Product.argue', ['ngRoute'])
         $scope.dis = true;
 
         // if(device_type == 20 || device_type == 27 || device_type == 11 ){
-        //     title = ['功能序号','功能标识', '长度', '功能名称','参数个数','是否可控', '卡片显示','显示到UI','云菜谱可控','操作'];
+        //     title = ['功能序号','功能标识', '长度', '功能名称','参数个数','手机App可控', '卡片显示','显示到UI','云菜谱可控','操作'];
         // }
         $scope.errorType = -1;
         $scope.errorData = null;
@@ -25,6 +25,31 @@ angular.module('Product.argue', ['ngRoute'])
          * 提交配置信息表单
          * @constructor
          */
+        function checkID(){
+        var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
+        var data=$.trim($('#Stream_ID').val());
+        var temp =false;
+
+        if(edit_data &&edit_data.standa_or_define != 1 && edit_data.Stream_ID!=data){
+            $('#checkID').html("该参数不可修改");
+            $('#checkID').css("display", "block");
+            return "error";
+        }
+        if (data == '' || role.test(data) == false) {
+            $('#checkID').html("该参数以英文字母、数字下划线组成、不能重复");
+            $('#checkID').css("display", "block");
+            return "error";
+        }
+        else if(mods.indexOf(data)>-1){
+            $('#checkID').html("该功能参数已经存在！");
+            $('#checkID').css("display", "block");
+            return "repeat"
+        }
+        else {
+            $('#checkID').css("display", "none");
+            return "correct";
+        }
+    }
 		$scope.save_mxs = function (paramDatas,paramDescs,isdefault) {
 			for(var i=0;i<paramDatas.length;i++){
 				var data=$.trim(paramDatas[i].value);
@@ -54,10 +79,7 @@ angular.module('Product.argue', ['ngRoute'])
 			}
         };
         $scope.Save = function () {
-        	var state = checkID();
-			if (state !='correct' || !checkName()){
-				return;
-			}
+
 			if($.trim($('#mxsLength').val())==''){
 				$('#checkLength').html("长度不能为空!!");
 				$('#checkLength').css("display","block");

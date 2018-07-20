@@ -6,6 +6,8 @@
 {% endblock %}
 
    {% block style %}
+    <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
+    <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/product/video-js.css' %}">
     <style>
@@ -98,6 +100,50 @@
             justify-content: center;
             margin: 0 auto;
         }
+         #user_address .modal-header {
+            background: #dfe6eb;
+        }
+
+        #user_address .modal-footer {
+            border-radius: 0;
+        }
+
+        #user_address .modal-content {
+            width: 500px;
+        }
+
+        #user_address .modal-body {
+            height: 165px;
+            text-align: center;
+        }
+
+        #user_address .modal-body p {
+            font: 16px/45px "microsoft yahei";
+        }
+        #user_address .modal-body p span{
+            margin-left:5px;
+        }
+        #user_address .modal-body p input {
+            text-indent: 10px;
+            border-radius: 3px;
+            border: 1px solid #d9d9d9;
+            width: 350px;
+            line-height: 32px;
+        }
+        label{
+            font-weight:inherit;
+        }
+        .header{
+            height: 75px;
+        }
+        .hover_text span{
+            cursor: pointer;
+        }
+        .hover_text span:hover{
+            color: #000 !important;
+        }
+
+
     </style>
 {% endblock %}
 {% block menu %}
@@ -126,8 +172,12 @@
       <div class="markLayout"></div>
     <div style="height: 500px;background-color: white">
         <div class="smart_main">
-            <div class="col-md-6 col-md-offset-1" style="padding-left: 0px">
-                <img src="/static/image/home/smartreciped.jpg" alt="">
+            <div class="col-md-6 col-md-offset-1" style="padding-left: 0px;background:url(/static/image/home/smartreciped.jpg)" >
+                {% if user.developer.developer_id %}
+                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(create_product('{{ 21 }}'))" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
+                {% else %}
+                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(dont_develop())" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
+                {% endif %}
             </div>
             <div class="col-md-4 " style="height: 487px;text-align: left">
                 <div style="height: 162px;margin-top: 64px;">
@@ -138,11 +188,12 @@
                 </div>
                 <div style="margin-top: 10px">
                     <img src="/static/image/home/erweima.png" alt="">
-                    <span style="color: blue;display: block;margin-top: 10px;margin-left: 51px">扫码下载App</span>
+                    <span style="color: black;display: block;margin-top: 10px;margin-left: 51px">扫码下载App</span>
                 </div>
             </div>
         </div>
     </div>
+    {% fast_create_product  user.developer.developer_id  %}
     <div class="m" style="display: none">
         <div class="close-video"><i class="fa fa-times"></i></div>
         <video id="my-video" class="video-js" controls preload="auto" width="680" height="400"

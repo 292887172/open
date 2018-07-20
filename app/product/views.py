@@ -78,7 +78,7 @@ def product_list(request):
         if len(app_names) < 3:
             for i in range(len(APP_NAME)):
                 if APP_NAME[i] not in app_names:
-                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
+                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i],DEVICE_TYPE[i],
                                     APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
                     if result:
                         result.app_logo = APP_LOGO[i]
@@ -360,8 +360,8 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
-            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_category_detail2, app_command,
-                                device_conf, app_factory_id, app_group, app_logo,app_product_fast)
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_category_detail2,app_command,
+                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
