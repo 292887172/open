@@ -1,4 +1,4 @@
-body,html{background:#F1F4F9;color:#333}
+body,html{background:#F1F4F9;color:#333;min-width:1200px;}
 body,button,input,select,textarea{font:14px Microsoft YaHei,tahoma,arial}
 input{outline:0}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,menu,nav,section{margin:0;padding:0;font-family:Microsoft YaHei,tahoma,arial}
@@ -48,7 +48,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 
 /* STRUCTURE */
 .wrapper{margin:0 auto; width: 100%;
-        min-width: 1024px;
+        min-width: 1200px;
         max-width: 1200px;}
 
 /*header*/
