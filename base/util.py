@@ -1227,7 +1227,7 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '保留', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2',  'corpName': '', 'paramType': 4,'mxs': [],
+         'mxsNum': '0',  'corpName': '', 'paramType': 4,'mxs': [],
          'mxsLength': '8', 'id': '2', 'Stream_ID': 'SAVE1', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '预约', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -1247,56 +1247,51 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '6', 'Stream_ID': 'LAMP', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2',  'corpName': '', 'paramType': 4,'mxs': [{'desc': '停止', 'trigger':[],'data': '2'},{'desc': '关', 'data': '0'},{'desc':'工作','data':'1'}, {'desc': '暂停', 'trigger':[],'data': '3'}],
+         'mxsNum': '4',  'corpName': '', 'paramType': 4,'mxs': [{'desc': '停止', 'trigger':[],'data': '2'},{'desc': '关', 'data': '0'},{'desc':'工作','data':'1'}, {'desc': '暂停', 'trigger':[],'data': '3'}],
          'mxsLength': '8', 'id': '7', 'Stream_ID': 'STATE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '模式', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2',  'corpName': '', 'paramType': 4,'mxs': [{"desc":"自定义","data":"0"},{"desc":"标准洗","trigger":[],"data":"12288"},{ "desc":"强力洗","trigger":[],"data":"12289"},{"desc":"节能洗","trigger":[],"data":"12290"},{"desc":"少量洗","trigger":[],"data":"12291"},{"desc":"快速洗","trigger":[],"data":"12292"},{
+         'mxsNum': '7',  'corpName': '', 'paramType': 4,'mxs': [{"desc":"自定义","data":"0"},{"desc":"标准洗","trigger":[],"data":"12288"},{ "desc":"强力洗","trigger":[],"data":"12289"},{"desc":"节能洗","trigger":[],"data":"12290"},{"desc":"少量洗","trigger":[],"data":"12291"},{"desc":"快速洗","trigger":[],"data":"12292"},{
 "desc":"智能洗","trigger":[],"data":"12293"}],
          'mxsLength': '8', 'id': '8', 'Stream_ID': 'MODEL', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '预约小时', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '9', 'Stream_ID': 'APPOINT_HOUR', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '预约分钟', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '10', 'Stream_ID': 'APPOINT_MINUTE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '保留', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '11', 'Stream_ID': 'SAVE', 'toSwitch': '0', 'isFunction': '1'},
-            {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
-             'name': '当前温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-             'mxsNum': '2', 'corpName': '', 'paramType': 4,
-             'mxs': [],
-             'mxsLength': '8', 'id': '12', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '当前温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
+         'mxs': [],'mxsLength': '8', 'id': '12', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '设定烘干时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '13', 'Stream_ID': 'SET_DRY_TIME', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '洗涤时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
          'mxsLength': '8', 'id': '14', 'Stream_ID': 'WASH_TIME', 'toSwitch': '0', 'isFunction': '1'},
-        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
-         'name': '洗涤时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
-         'mxs': [],
-         'mxsLength': '8', 'id': '15', 'Stream_ID': 'WASH_TIME', 'toSwitch': '0', 'isFunction': '1'},
+
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '剩余工作/预约时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'corpName': '', 'paramType': 4,
          'mxs': [],
-         'mxsLength': '8', 'id': '16', 'Stream_ID': 'REMAIN_WORK_TIME', 'toSwitch': '0', 'isFunction': '1'},
+         'mxsLength': '8', 'id': '15', 'Stream_ID': 'REMAIN_WORK_TIME', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '状态反馈', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '6', 'corpName': '', 'paramType': 4,
          'mxs': [
              {
                     "desc":"门关",
@@ -1340,10 +1335,10 @@ def gen_app_default_conf(val):
                     ],
                     "data":"16"
                 }],
-         'mxsLength': '8', 'id': '17', 'Stream_ID': 'System_Status', 'toSwitch': '0', 'isFunction': '1'},
+         'mxsLength': '8', 'id': '16', 'Stream_ID': 'System_Status', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '故障', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'corpName': '', 'paramType': 4,
+         'mxsNum': '7', 'corpName': '', 'paramType': 4,
          'mxs': [
              {
                     "desc":"无",
@@ -1394,7 +1389,7 @@ def gen_app_default_conf(val):
                     ],
                     "data":"1"
                 }],
-         'mxsLength': '8', 'id': '18', 'Stream_ID': 'ERROR', 'toSwitch': '0', 'isFunction': '1'},
+         'mxsLength': '8', 'id': '17', 'Stream_ID': 'ERROR', 'toSwitch': '0', 'isFunction': '1'},
     ]
     oven_zkx = [
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
@@ -1403,7 +1398,7 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '1', 'Stream_ID': 'POWER', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '系统保留', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [
+         'mxsNum': '4', 'mxs': [
                 {
                     "desc":"无",
                     "data":"0"
@@ -1456,7 +1451,7 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '4', 'Stream_ID': 'LAMP', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [
+         'mxsNum': '4', 'mxs': [
                 {
                     "desc":"无",
                     "trigger":[
@@ -1489,7 +1484,7 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '模式', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [
+         'mxsNum': '16', 'mxs': [
                 {
                     "desc":"解冻",
                     "data":"1"
@@ -1680,39 +1675,39 @@ def gen_app_default_conf(val):
          'mxsLength': '8', 'id': '6', 'Stream_ID': 'MODEL', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '设定温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '7', 'Stream_ID': 'SET_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '建议温度下限', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '8', 'Stream_ID': 'Suggest_Temp_Down', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '建议温度上限', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '9', 'Stream_ID': 'Suggest_Temp_Up', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '当前温度', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '10', 'Stream_ID': 'CUR_TEMPE', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '设定工作时间', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '11', 'Stream_ID': 'SET_WORK_TIME', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '建议工作时间下限', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '12', 'Stream_ID': 'Suggest_Time_Down', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '建议工作时间上限', 'corpMark': '', 'widget': 'input', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '13', 'Stream_ID': 'Suggest_Time_Up', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '剩余工作时间', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [], 'corpName': '', 'paramType': 4,
+         'mxsNum': '0', 'mxs': [], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '14', 'Stream_ID': 'REMAIN_WORK_TIME', 'toSwitch': '0', 'isFunction': '1'},
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '状态反馈', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [
+         'mxsNum': '5', 'mxs': [
                 {
                     "desc":"门关",
                     "trigger":[
@@ -1751,7 +1746,7 @@ def gen_app_default_conf(val):
             ], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '15', 'Stream_ID': 'System_Status', 'toSwitch': '0', 'isFunction': '1'},{'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '故障', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
-         'mxsNum': '2', 'mxs': [
+         'mxsNum': '6', 'mxs': [
                 {
                     "desc":"无",
                     "trigger":[
