@@ -9,6 +9,7 @@ body {
   background-color: transparent;
   -webkit-font-smoothing: antialiased;
   line-height: 1.40;
+  min-width: 1200px;
 }
 .h1,
 .h2,
