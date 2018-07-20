@@ -148,8 +148,16 @@ angular.module('Product.edit', ['ngRoute'])
 			if(!edit_data){
 				indata.standa_or_define = 1;
 			}
-
-			indata.id=document.getElementById('ididid').value;
+			var url=location.href;
+			var str=url.split("edit");
+			var id;
+			if  (str[1]){
+				id=str[1].split("=")[1];
+			}
+			else {
+				id="";
+			}
+			indata.id=id;
 			if(document.getElementsByName("isControl")[0].checked){
 				indata.isControl=1;//可控
 			}else{

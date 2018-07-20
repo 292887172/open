@@ -293,7 +293,7 @@ $(function () {
             }
             if (item.model == "medium") {
                 var i = document.createElement("i");
-                i.style.cssText = "color:#fff;margin-top:1px;margin-left:8px;vertical-align:middle;";
+                i.style.cssText = "color:#fff;margin-top:1px;margin-left:2px;vertical-align:middle;";
                 i.className = "iconfont " + item.icon;
                 preLi.appendChild(i);
                 preLi.style.paddingTop = "2px";
