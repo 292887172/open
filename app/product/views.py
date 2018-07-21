@@ -30,6 +30,7 @@ from common.util import parse_response, send_test_device_status
 from model.center.app import App
 from model.center.protocol import Protocol
 from base.connection import Redis3
+from common.mysql_helper import get_ui_static_conf
 
 import hashlib
 import time
@@ -455,8 +456,11 @@ def product_main(request):
         #data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
         cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
-
+        import os
+        import os.path
         post_data = request.POST.get("name")
+
+
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
         standa = request.POST.get("is_standa", None)  # 标准、自定义
@@ -871,9 +875,27 @@ def upload_file(request):
             return HttpResponse(data)
     except Exception as e:
         print(e)
+    if request.method == 'POST':
 
+        file = request.FILES.get("file", '')
+        post_data = request.POST.get('name', '')
+        key = request.POST.get('key', '')
+        print(key)
+        if post_data == 'upload':
+            # 未知云存储接口 故暂时放置此接口
+            file_path = os.path.join("static/file/tpl", file.name)
+            f = open(file_path, mode="wb")
+            for i in file.chunks():
+                f.write(i)
+            f.close()
+            get_ui_static_conf(key,post_data,file_path)
+            os.remove(file_path)
+            r = {"code": 0}
 
-@csrf_exempt
+        else:
+            r = {"code": 1}
+        return HttpResponse(json.dumps(r))
+
 def wx_scan_code(request):
     def createRandomStr():
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))

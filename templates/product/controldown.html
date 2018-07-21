@@ -503,9 +503,10 @@
          <div class="title-sub" style="height: 30px;padding-top: 10px">
 
 
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer;color: red" onclick="F_C0(this)" id="click0" class="style_title">快速入门</p></div>
                 <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" onclick="F_C1(this)" id="click1" class="style_title">电控开发人员</p></div>
-                <div class="col-md-3 col-md-offset-1"><p style="font-size: 16px;cursor: pointer" id="click2" onclick="F_C2(this)" class="style_title">UI开发人员</p></div>
-                <div class="col-md-3 col-md-offset-1"><p style="font-size: 16px;cursor: pointer" id="click3" onclick="F_C3(this)" class="style_title">彩屏程序开发人员</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click2" onclick="F_C2(this)" class="style_title">UI开发人员</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click3" onclick="F_C3(this)" class="style_title">彩屏程序开发人员</p></div>
 
         </div>
         <p style="float: right;margin-top: 0px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
@@ -598,7 +599,7 @@
         <div class="title-sub" style="position: relative;display: none">
             <div class="" style="text-align: center;background-color: white;height: 175px;padding-left: 0px">
                 <div class="www">
-                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left;padding-left: 24px;width: 159px">
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left;padding-left: 24px;">
                         <li class="item">
 
                             <div class="info-list" style="margin-top: 15px;text-align: left">
@@ -644,27 +645,14 @@
                     </li>
                 </div>
 
-                    <div class="protocol-info-main col-md-2 "
-                 style="background-color: white;text-align: left;width: 200px;">
+                    <div class="protocol-info-main col-md-3 "
+                 style="background-color: white;text-align: left;">
                 <li class="item">
 
                     <div class="info-list" style="margin-top: 15px">
                         <p class="info" style="margin-top: 10px;font-size: 14px"><b>4. 我的哪些传统厨电可以智能化</b></p>
                         <p class="info" style="margin-top: 10px;font-size: 14px">- 希望把哪些设备接入</p>
 
-                    </div>
-                </li>
-
-            </div>
-                    <div class="protocol-info-main col-md-1" style="width: 190px;float:right;background-color: white;text-align: left;padding: 0">
-                <li class="item">
-
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>5.  流程</b></p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px">- 导出油烟机控制协议</p>
-                            <p class="info" style="margin-top: 10px;font-size: 14px">- 电控程序开发实现、烧录</p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px">- 连接硬件(WiFi屏+电控板)</p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px">- 测试调试<p>
                     </div>
                 </li>
 
@@ -759,7 +747,7 @@
                         <div class="info-list" style="margin-top: 15px">
                             <p class="info" style="font-size: 14px"><b> 3. 我需要做什么</b></p>
                              <p class="info" style="margin-top: 10px;font-size: 14px">- 开发什么，明确什么</p>
-                                 <p class="info" style="margin-top: 10px;font-size: 14px"><- 准备开发
+                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 准备开发
                                 </p>
                             <p class="info" style="margin-top: 10px;font-size: 14px">- 业务实现具体功能，对接协议
                                 </p>
@@ -958,11 +946,23 @@
 
 {% block script %}
     <script>
+    function F_C0(that) {
+        console.log('x')
+        document.getElementById('click1').style.color=""
+        document.getElementById('click2').style.color=""
+        document.getElementById('click3').style.color=""
+        document.getElementById('click0').style.color="red"
+        document.getElementsByClassName('title-sub')[4].style.display='none'
+        document.getElementsByClassName('title-sub')[1].style.display=''
+        document.getElementsByClassName('title-sub')[2].style.display='none'
+        document.getElementsByClassName('title-sub')[3].style.display='none'
+    }
     function F_C1(that) {
         console.log('x')
         document.getElementById('click1').style.color="red"
         document.getElementById('click2').style.color=""
         document.getElementById('click3').style.color=""
+        document.getElementById('click0').style.color=""
         document.getElementsByClassName('title-sub')[4].style.display='none'
         document.getElementsByClassName('title-sub')[2].style.display=''
         document.getElementsByClassName('title-sub')[1].style.display='none'
@@ -972,6 +972,7 @@
         document.getElementById('click2').style.color="red"
         document.getElementById('click1').style.color=""
         document.getElementById('click3').style.color=""
+        document.getElementById('click0').style.color=""
         document.getElementsByClassName('title-sub')[1].style.display='none'
         document.getElementsByClassName('title-sub')[2].style.display='none'
         document.getElementsByClassName('title-sub')[3].style.display=''
@@ -981,6 +982,7 @@
         document.getElementById('click3').style.color="red"
         document.getElementById('click1').style.color=""
         document.getElementById('click2').style.color=""
+        document.getElementById('click0').style.color=""
         document.getElementsByClassName('title-sub')[1].style.display='none'
         document.getElementsByClassName('title-sub')[2].style.display='none'
         document.getElementsByClassName('title-sub')[3].style.display='none'

@@ -1,78 +1,188 @@
-
 <style>
-    dt{
+    dt {
         padding: 10px;
         width: 286px;
 
         overflow: hidden;
     }
-    .plan{
+
+    .plan {
         margin: 7px 14px;
         text-align: center;
         border: 1px solid #ccc;
     }
-    .plan:hover{
+
+    .plan:hover {
         border: #2fa666 1px solid;
     }
 
-    .card{
+    .card {
         margin-left: 10px;
         float: left;
         position: relative;
     }
-    img{
+
+    img {
         width: 100%;
         height: 100%;
         cursor: pointer;
     }
-    a{
+
+    a {
         cursor: default;
     }
-     a:hover{ text-decoration:none; }
 
+    a:hover {
+        text-decoration: none;
+    }
 
+    #user_address .modal-header {
+        background: #dfe6eb;
+    }
+
+    #user_address .modal-footer {
+        border-radius: 0;
+    }
+
+    #user_address .modal-content {
+        width: 500px;
+    }
+
+    #user_address .modal-body {
+        height: 165px;
+        text-align: center;
+    }
+
+    #user_address .modal-body p {
+        font: 16px/45px "microsoft yahei";
+    }
+
+    #user_address .modal-body p span {
+        margin-left: 5px;
+    }
+
+    #user_address .modal-body p input {
+        text-indent: 10px;
+        border-radius: 3px;
+        border: 1px solid #d9d9d9;
+        width: 350px;
+        line-height: 32px;
+    }
+    .file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
 </style>
 <div class="box2 relative">
+    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        上传文件
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <input class="file" id="file" name="file" style="display: inline-block" type="file"/>
+                    <button id="doUpload" class="btn btn-info" onclick="doUploadFile()" style="float: right;width:80px;padding-bottom: 0px;padding-top: 0px">
+                        上传
+                    </button>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
     <div class="hl-help">
         <span class="linkBlue" style="color: black;font-size: 16px">{[{ infoFormData.app_name }]}UI编辑</span>
-        <span class="linkBlue" style="float: right;font-size: 16px"><a href="/product/uiconf/{[{key}]}">手机App界面编辑</a></span>
+
+        <button class="btn btn-info"
+                style="display: inline-block;width: 105px;border-bottom-width: 1px;border-top-width: 1px"
+                data-toggle="modal" data-target="#user_address">上传UI文件
+        </button>
+
+
+        <span class="linkBlue" style="float: right;font-size: 16px"><a
+                href="/product/uiconf/{[{key}]}">手机App界面编辑</a></span>
+        <input type="text" value="{[{key}]}" style="display: none" id="keys">
     </div>
-	<div class="mt20">
+    <div class="mt20">
 
         <!--<div class="boxInfo">选择模板</div>-->
         <div class="boxInfo">
-            <div  class="protocol-info-main" style="text-align: left;margin-top: 100px;margin-left: 100px">
-                    <p class="product-info-p" style="padding-bottom: 10px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG" target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i class="ace-icon fa fa-arrow-circle-o-down bigger-120" ></i></a><a href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p>
-                    <p class="product-info-p" style="padding-bottom: 10px;cursor: pointer"><a href="http://doc.53iq.com/#/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87">2.下载UI编辑软件VisualTFT&nbsp;&nbsp;<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
-                            href="" style="color: black">使用软件打开工程包</a><a href="http://doc.53iq.com/#/env?id=visualtft%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E
-" target="_blank" style="color: #e0e0e0;cursor: pointer">  如何编辑 ？</a></p>
-                    <p class="product-info-p" style="height: 20px;margin-top: 10px"> 3.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank" style="color: #e0e0e0;cursor: pointer">屏端固件烧录搭配厨电屏上体验？</a></p>
-
-                </div>
-             <!--<div style="" class="card">
-                <a ng-click="block_mac(this)" data-appid="{[{appid}]}" id="controlId">
-                <a  data-appid="{[{appid}]}" id="controlId">
-                    <dl class="plan">
-                        <dt style="width: 449px;margin-left: 38px"><img  src="/static/image/product/wifi_png1.jpg"/><i class="icon-selected"></i></dt>
-                         <dd>5寸页面示例下载</dd>
-                        <dt style="width: 526px;"><img  src="/static/image/product/wifi_png2.jpg"/><i class="icon-selected"></i></dt>
-                        <dd>6.8寸示例下载</dd>
-                    </dl>
-                </a>
-
-            </div>
-            <div style="" class="card">
-                <a href="/product/uiconf/{[{key}]}">
-                    <dl class="plan">
-                        <dt><img src="/static/image/product/appIng.jpg"/><i class="icon-selected"></i></dt>
-                        <dd>手机App模板</dd>
-                    </dl>
-                </a>
+            <div class="protocol-info-main" style="text-align: left;margin-top: 100px;margin-left: 100px">
+                <p class="product-info-p" style="padding-bottom: 10px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
+                                                                                          target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
+                        class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
+                        href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p>
+                <p class="product-info-p" style="padding-bottom: 10px;cursor: pointer"><a
+                        href="http://doc.53iq.com/#/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87">2.下载UI编辑软件VisualTFT&nbsp;&nbsp;<i
+                        class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
+                        href="" style="color: black">使用软件打开工程包</a><a href="http://doc.53iq.com/#/env?id=visualtft%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E
+" target="_blank" style="color: #e0e0e0;cursor: pointer"> 如何编辑 ？</a></p>
+                <p class="product-info-p" style="height: 20px;margin-top: 10px"> 3.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a
+                        href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
+                        style="color: #e0e0e0;cursor: pointer">屏端固件烧录搭配厨电屏上体验？</a></p>
 
             </div>
 
-        </div>-->
 
+        </div>
     </div>
-</div>
+    <script>
+        function doUploadFile() {
+            var formData = new FormData();
+            formData.append("file",document.getElementById("file").files[0]);
+            formData.append("name",'upload');
+            formData.append("key",document.getElementById("keys").value);
+            if (document.getElementById("file").files[0]){
+                 $.ajax({
+                url:'/product/upload_file',
+                type:"POST",
+                data:formData,
+                contentType:false,
+                processData: false,
+            }).success(function (data) {
+                     document.getElementsByClassName("close")[0].click();
+                     alert('上传成功')
 
+            })
+            }else {
+                alert('不能为空')
+            }
+
+
+
+
+        }
+
+
+    </script>
