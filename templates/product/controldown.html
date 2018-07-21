@@ -11,7 +11,24 @@
     <link rel="stylesheet" href="{% static 'css/product/list.css' %}"/>
     <link rel="stylesheet" href="/static/css/product/bootbox.css">
     <style>
-
+        .style_title{
+            list-style: none;
+            display: inline-block;
+            box-sizing: border-box;
+            -webkit-transition: color 0.4s ease-in-out;
+            -moz-transition: color 0.4s ease-in-out;
+            -ms-transition: color 0.4s ease-in-out;
+            -o-transition: color 0.4s ease-in-out;
+            transition: color 0.4s ease-in-out;
+            -webkit-transition: border 0.4s ease-in-out;
+            -moz-transition: border 0.4s ease-in-out;
+            -ms-transition: border 0.4s ease-in-out;
+            -o-transition: border 0.4s ease-in-out;
+            transition: border 0.4s ease-in-out;
+        }
+        .style_title:hover{
+            color: red;
+        }
         .wrapper {
             padding: 0;
             margin: 0 auto;
@@ -44,7 +61,7 @@
         }
 
         .title-sub {
-            padding: 36px 0 0;
+            padding: 20px 0 0;
         }
 
         .set-radius {
@@ -483,9 +500,17 @@
 
     <div class="wrapper mt20" style="text-align: center;padding: 0 3.2%;overflow: hidden;">
         {% fast_create_product  user.developer.developer_id  %}
-        <p style="float: right;margin-top: 10px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
-        <div class="title-sub" style="position: relative;">
-            <img src="/static/image/product/down1.png" onclick="close_new()" id="close111" alt="" style="width: 16px;position: absolute;top: 30px;right: -5px;z-index: 1;cursor: pointer">
+         <div class="title-sub" style="height: 30px;padding-top: 10px">
+
+
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" onclick="F_C1(this)" id="click1" class="style_title">电控开发人员</p></div>
+                <div class="col-md-3 col-md-offset-1"><p style="font-size: 16px;cursor: pointer" id="click2" onclick="F_C2(this)" class="style_title">UI开发人员</p></div>
+                <div class="col-md-3 col-md-offset-1"><p style="font-size: 16px;cursor: pointer" id="click3" onclick="F_C3(this)" class="style_title">彩屏程序开发人员</p></div>
+
+        </div>
+        <p style="float: right;margin-top: 0px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
+        <div class="title-sub show_neww" style="position: relative;">
+            <img src="/static/image/product/down1.png" onclick="close_new()" id="close111" alt="" style="width: 16px;position: absolute;top: 13px;right: -7px;z-index: 1;cursor: pointer">
             <div class="" style="text-align: center;background-color: white;height: 100px;padding-left: 0px">
                 <div class="www">
                     <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left;padding-left: 24px;width: 159px">
@@ -543,7 +568,7 @@
 
                     <div class="info-list" style="margin-top: 15px">
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="" target="_blank"> <b>4. </b>电控开发、厨电开发</a></p>
+                                href="" target="_blank"> <b>4. 电控开发、厨电开发</b></a></p>
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
                                 href="http://doc.53iq.com/#/quickly_start" target="_blank">- 电控对接协议</a></p>
                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
@@ -557,7 +582,7 @@
 
                     <div class="info-list" style="margin-top: 15px">
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="" target="_blank"><b>5. </b> 调试</a></p>
+                                href="" target="_blank"><b>5. 调试</b></a></p>
                         <p class="info" style="margin-top: 10px;font-size: 14px"><a
                                 href="http://doc.53iq.com/#/quickly_start" target="_blank">- 电控和屏端联合调试</a></p>
                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
@@ -570,9 +595,190 @@
                 </div>
             </div>
         </div>
+        <div class="title-sub" style="position: relative;display: none">
+            <div class="" style="text-align: center;background-color: white;height: 175px;padding-left: 0px">
+                <div class="www">
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left;padding-left: 24px;width: 159px">
+                        <li class="item">
 
-        <div class="title-sub">
-            <div class="" style="text-align: center;background-color: white;height: 200px;padding-left: 0px">
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px">1. <b>我如何使用开发平台</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 平台能提供哪些支持，能带来什么好处</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 使用引导
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left;padding-left: 24px">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px"><b> 2. 如何和平台其他人员协助开发智能厨电</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 如何协助屏端开发
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+
+                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left">
+                    <li class="item">
+
+                        <div class="info-list" style="margin-top: 15px">
+                            <p class="info" style="font-size: 14px"><b>3. 已明确一款厨电要智能化，我需要做什么</b></p>
+                             <p class="info" style="margin-top: 10px;font-size: 14px">- 硬件设计</p>
+                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 制定协议
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 开发调试
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 和屏端开发工程师联调
+                                </p>
+
+
+                        </div>
+                    </li>
+                </div>
+
+                    <div class="protocol-info-main col-md-2 "
+                 style="background-color: white;text-align: left;width: 200px;">
+                <li class="item">
+
+                    <div class="info-list" style="margin-top: 15px">
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>4. 我的哪些传统厨电可以智能化</b></p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px">- 希望把哪些设备接入</p>
+
+                    </div>
+                </li>
+
+            </div>
+                    <div class="protocol-info-main col-md-1" style="width: 190px;float:right;background-color: white;text-align: left;padding: 0">
+                <li class="item">
+
+                    <div class="info-list" style="margin-top: 15px">
+                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>5.  流程</b></p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px">- 导出油烟机控制协议</p>
+                            <p class="info" style="margin-top: 10px;font-size: 14px">- 电控程序开发实现、烧录</p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px">- 连接硬件(WiFi屏+电控板)</p>
+                        <p class="info" style="margin-top: 10px;font-size: 14px">- 测试调试<p>
+                    </div>
+                </li>
+
+            </div>
+                </div>
+            </div>
+        </div>
+        <div class="title-sub" style="position: relative;display: none">
+            <div class="" style="text-align: center;background-color: white;height: 100px;padding-left: 0px">
+                <div class="www">
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px;">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>我如何使用开发平台</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 平台能提供哪些支持，能带来什么好处</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 使用引导
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px">  <b>2.如何和平台其他人员协助开发智能厨电</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 协助屏端开发工程师
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                    <li class="item">
+
+                        <div class="info-list" style="margin-top: 15px">
+                            <p class="info" style="font-size: 14px"><b> 3.我需要做什么</b></p>
+                             <p class="info" style="margin-top: 10px;font-size: 14px">- 提供UI切图</p>
+                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 提供开发工程
+                                </p>
+
+
+                        </div>
+                    </li>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="title-sub" style="position: relative;display: none">
+            <div class="" style="text-align: center;background-color: white;height: 160px;padding-left: 0px">
+                <div class="www">
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>我如何使用开发平台</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px"> - 平台提供哪些支持，能带来什么好处</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 使用引导
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
+                        <li class="item">
+
+                            <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                <p class="info" style="margin-top: 10px;font-size: 14px"><b>2. 如何和平台其他人协助开发智能厨电</b>
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 如何协助UI开发工程师
+                                </p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px"> 如何协助电控开发工程师
+                                </p>
+                            </div>
+
+                        </li>
+                    </div>
+
+                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                    <li class="item">
+
+                        <div class="info-list" style="margin-top: 15px">
+                            <p class="info" style="font-size: 14px"><b> 3. 我需要做什么</b></p>
+                             <p class="info" style="margin-top: 10px;font-size: 14px">- 开发什么，明确什么</p>
+                                 <p class="info" style="margin-top: 10px;font-size: 14px"><- 准备开发
+                                </p>
+                            <p class="info" style="margin-top: 10px;font-size: 14px">- 业务实现具体功能，对接协议
+                                </p>
+                            <p class="info" style="margin-top: 10px;font-size: 14px">- 测试
+                                </p>
+
+
+                        </div>
+                    </li>
+                </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="title-sub" style="">
+            <div class="" style="text-align: center;background-color: white;height: 153px;padding-left: 0px">
                 <div class="www">
 
 
@@ -658,7 +864,7 @@
                 </div>
             </div>
 
-            <div class="goodsBox" style=" margin-top: 10px;text-align: center;width: 1200px;">
+            <div class="goodsBox" style=" margin-top: 20px;text-align: center;width: 1200px;">
                 {% if  not unpublished_apps and not keyword %}
                     <div style="text-align: center">
                         <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
@@ -752,13 +958,41 @@
 
 {% block script %}
     <script>
+    function F_C1(that) {
+        console.log('x')
+        document.getElementById('click1').style.color="red"
+        document.getElementById('click2').style.color=""
+        document.getElementById('click3').style.color=""
+        document.getElementsByClassName('title-sub')[4].style.display='none'
+        document.getElementsByClassName('title-sub')[2].style.display=''
+        document.getElementsByClassName('title-sub')[1].style.display='none'
+        document.getElementsByClassName('title-sub')[3].style.display='none'
+    }
+    function F_C2(that) {
+        document.getElementById('click2').style.color="red"
+        document.getElementById('click1').style.color=""
+        document.getElementById('click3').style.color=""
+        document.getElementsByClassName('title-sub')[1].style.display='none'
+        document.getElementsByClassName('title-sub')[2].style.display='none'
+        document.getElementsByClassName('title-sub')[3].style.display=''
+        document.getElementsByClassName('title-sub')[4].style.display='none'
+    }
+    function F_C3(that) {
+        document.getElementById('click3').style.color="red"
+        document.getElementById('click1').style.color=""
+        document.getElementById('click2').style.color=""
+        document.getElementsByClassName('title-sub')[1].style.display='none'
+        document.getElementsByClassName('title-sub')[2].style.display='none'
+        document.getElementsByClassName('title-sub')[3].style.display='none'
+        document.getElementsByClassName('title-sub')[4].style.display=''
+    }
     function close_new() {
-        document.getElementsByClassName("title-sub")[0].style.display='none';
+        document.getElementsByClassName("title-sub")[1].style.display='none';
         document.getElementById('close111').style.display='none';
         document.getElementById('new_yindao').style.display=''
     }
     function show_new(){
-        document.getElementsByClassName("title-sub")[0].style.display='';
+        document.getElementsByClassName("show_neww")[0].style.display='';
         document.getElementById('close111').style.display='';
         document.getElementById('new_yindao').style.display='none'
     }

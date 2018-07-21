@@ -16,6 +16,51 @@
     <link rel="stylesheet" href="{% static 'css/product/video-js.css' %}">
     <style>
 
+        .bottom {
+            width: 100%;
+            padding-top: 50px;
+            overflow: hidden;
+            background-color: white;
+            padding-bottom: 50px;
+        }
+
+        .b-left {
+            width: 24.1%;
+            margin-left: 17%;
+            float: left;
+            background-color: #eee;
+        }
+
+        .b-right {
+            width: 24.2%;
+            float: left;
+            margin-left: 9%;
+            background-color: #eee;
+        }
+
+        .oven-img {
+            width: 100%;
+        }
+
+        .b-title {
+            font-size: 23px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .paddle {
+            height: 1px;
+            background-color: white;
+        }
+
+        .b-text {
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
         .goods span {
             height: 30px;
         }
@@ -385,17 +430,17 @@
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 32px;color: #000" onclick="toggleTab1(xx2)">5寸WiFi屏</span><img style="margin-left: 50px;width: 100px; " src="/static/image/product/5.jpg" alt="">
                      <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合新款智能厨电，应用于蒸箱、烤箱、蒸烤箱、洗碗机等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
-                    <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx3)">6.8寸WiFi屏</span><img style="margin-left: 30px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
+                    <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx3)">6.8寸长条屏</span><img style="margin-left: 30px;height:58px;display: none " src="/static/image/product/6.0.jpg" alt="">
                      <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合广泛的传统厨电结构，快速出智能厨电，应用于蒸箱、烤箱、蒸烤箱、微蒸烤、集成灶等</p>
                 </div>
                 <div style="margin-top: 35px" class="hover_text">
                     <span style="font-size: 20px;color: #2980b9" onclick="toggleTab1(xx4)">7寸WiFi屏</span><img style="margin-left: 50px;width: 120px;display: none " src="/static/image/product/7.jpg" alt="">
                      <hr style="color: #D7D7D7;border-top:1px solid #e6e6e6;margin-top: 1px;">
-                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >应用于集成灶、冰箱</p>
+                    <p style="margin-top: 5px;font-size: 16px;color: #6B6B6B" >适合现代主流的内容、格式，应用于集成灶、冰箱</p>
                 </div>
 
 
@@ -410,6 +455,7 @@
             </div>
          </div>
     </div>
+     <div class="bottom"><div class="b-left"><div><img src="/static/image/product/yyy.jpg" style="height: 203px" class="oven-img"></div><div class="b-title">6.8寸长条屏蒸烤箱</div><div class="paddle"></div><div class="b-text"><div>适合广泛传统厨电结构</div><div>免费送100道<a href="http://53iq.com/SmartRecipe" target="_blank">智能菜谱</a></div><div>品牌UI定制+手机App</div></div></div><div class="b-right"><div><img src="/static/image/product/xxx.jpg" style="height: 203px" class="oven-img"></div><div class="b-title">5寸标准屏蒸烤箱</div><div class="paddle"></div><div class="b-text"><div>适合新款智能厨电，适配主流的内容格式</div><div>免费送100道<a href="http://53iq.com/SmartRecipe" target="_blank">智能菜谱</a></div><div>品牌UI定制+手机App</div></div></div></div>
     <div class="markLayout"></div>
     <div class="m" style="display: none">
         <div class="close-video"><i class="fa fa-times"></i></div>
@@ -429,7 +475,7 @@
             });
         </script>
     </div>
-
+    <div style="margin-left: 40%;margin-top: -30px"><a href="javascript:void(create_product('21'))" style="font-size: 16px;cursor: pointer" class="alianxi">立即智能化我的蒸烤箱&gt;</a></div>
 {% endblock %}
 
 {% block script %}
