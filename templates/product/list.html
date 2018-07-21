@@ -554,7 +554,7 @@
         </div>
     <div class="wrapper mt20">
     {% fast_create_product  user.developer.developer_id  %}
-    <div class="title-sub"><span class="old">最新编辑</span>
+    <div class="title-sub" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;margin-bottom: 20px"><span class="old">最新编辑</span>
         <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: left">
         {% if unpublished_apps %}
             <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
@@ -567,7 +567,7 @@
 
     <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
 
-    <div class="goodsBox" style=" margin-top: 8px;height: 180px">
+    <div class="goodsBox" style=" margin-top: 0px;height: 165px">
         {% if not unpublished_apps and not keyword %}
             <div style="text-align: center">
                 <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
@@ -653,8 +653,8 @@
 
     </div>
     {% if published_apps %}
-        <div class="title-sub"><span class="old">标准产品</span></div>
-        <div class="goodsBox" style=" margin-top: 8px;">
+        <div class="title-sub" style="padding-bottom: 0px;padding-top: 0px;margin-top: 20px;margin-bottom: 20px"><span class="old">标准产品</span></div>
+        <div class="goodsBox" style=" margin-top: 47px;">
             {% for app1 in  published_apps %}
                 {% if app1.app_device_type == 1 or app1.app_device_type == 2 or app1.app_device_type == 21 or app1.app_device_type == 31 %}
 
@@ -730,8 +730,8 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="title-sub"><span class="old">其他</span></div>
-        <div class="goodsBox" style=" margin-top: 8px;">
+        <div class="title-sub" style="padding-top: 0px;padding-bottom: 0px;margin-top: 13px"><span class="old">其他</span></div>
+        <div class="goodsBox" style=" margin-top: 43px;">
             {% for app1 in  published_apps %}
                 {% if not app1.app_device_type  == 1 and not app1.app_device_type == 2 and not app1.app_device_type == 21 and not app1.app_device_type == 31 %}
                      <div class="goods-list" >
