@@ -876,24 +876,22 @@ def upload_file(request):
     except Exception as e:
         print(e)
     if request.method == 'POST':
-
         file = request.FILES.get("file", '')
         post_data = request.POST.get('name', '')
         key = request.POST.get('key', '')
-        print(key)
-        if post_data == 'upload':
-            # 未知云存储接口 故暂时放置此接口
-            file_path = os.path.join("static/file/tpl", file.name)
-            f = open(file_path, mode="wb")
-            for i in file.chunks():
-                f.write(i)
-            f.close()
-            get_ui_static_conf(key,post_data,file_path)
-            os.remove(file_path)
-            r = {"code": 0}
+        try:
+            if post_data == 'upload':
 
-        else:
-            r = {"code": 1}
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                get_ui_static_conf(key, post_data, rr['data'])
+            else:
+                r = 1
+        except Exception as e:
+            r = 1
+            print(e)
         return HttpResponse(json.dumps(r))
 
 def wx_scan_code(request):

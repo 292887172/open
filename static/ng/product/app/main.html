@@ -171,8 +171,16 @@
                 contentType:false,
                 processData: false,
             }).success(function (data) {
-                     document.getElementsByClassName("close")[0].click();
+                if (data == '0'){
+                    document.getElementsByClassName("close")[0].click();
+
                      alert('上传成功')
+                }else {
+                     document.getElementsByClassName("close")[0].click();
+
+                     alert('上传失败')
+                }
+
 
             })
             }else {
