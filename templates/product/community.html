@@ -6,10 +6,16 @@
 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/home/kitchen/app_index.css' %}">
+    <style>
+    .header{
+        height: 76px;
+    }
+</style>
 {% endblock %}
 {% block menu %}
     {% create_menu 4 user.account_id %}
 {% endblock %}
+
 {% block content %}
     <div id="content">
         <div class="main">
