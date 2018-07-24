@@ -232,6 +232,8 @@ def ex(request):
         page = request.GET.get('page', "")
         if page == "desc":
             return render(request, 'home/ex_desc.html', locals())
+        if is_mobile(request):
+            return render(request, 'home/experience-mobile.html', locals())
         return render(request, 'home/experience.html', locals())
 
     if request.method == "POST":

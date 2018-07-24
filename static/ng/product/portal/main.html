@@ -313,6 +313,7 @@
 
         <span class="linkBlue" style="margin-left: 20px;"><a  href="" ng-click="addEmail()">添加</a></span>
         <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
+            <p ng-if="teams_data.length == 0">暂无成员信息</p>
             <p style="margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
 
         </div>
