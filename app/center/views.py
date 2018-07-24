@@ -33,7 +33,7 @@ from common.smart_helper import check_user_password, check_factory_uuid, get_fac
 from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
-from common.developer_helper import create_developer
+from common.developer_helper import create_developer, update_group_info
 from common.app_helper import create_app
 from base.connection import MyAdapter
 from util.sms.verify_code import verify_sms_code
@@ -54,19 +54,26 @@ def home(request):
     :param request:
     :return:
     """
-    if request.user.account_type == _convention.USER_IS_ADMIN:
-        return HttpResponseRedirect(reverse("admin_center"))
-    # 移除第三方登录标志，和注册成功标志，防止用户直接访问这两个页面
-    try:
-        del request.session[SESSION_LOGIN_THIRD]
-        del request.session[SESSION_REGISTER_SUCCESS]
-    except Exception as e:
-        logging.getLogger("").info(str(e))
-        pass
-    if request.method == 'POST':
+    if request.method == 'GET':
+        if request.user.account_type == _convention.USER_IS_ADMIN:
+            return HttpResponseRedirect(reverse("admin_center"))
+        # 移除第三方登录标志，和注册成功标志，防止用户直接访问这两个页面
+        try:
+            del request.session[SESSION_LOGIN_THIRD]
+            del request.session[SESSION_REGISTER_SUCCESS]
+        except Exception as e:
+            logging.getLogger("").info(str(e))
+            pass
+        fac_info = get_factory_info(request.user.account_from_id)
+        t = Account.objects.get(account_id=request.user)
+        team_info = json.loads(t.relate_account)
+        return render(request, "center/home.html", locals())
+    elif request.method == 'POST':
         # 登录账户信息
         user = request.POST.get('user', '')
+        action = request.POST.get("action", "")
         user_from = request.POST.get('user_from', '')
+        team_info = request.POST.get("team_info")
         # 公司团队信息
         company = request.POST.get('coName', '')
         company_url = request.POST.get('coNetUrl', '')
@@ -88,13 +95,16 @@ def home(request):
         factory_name = request.POST.get('factory_name', '')
         factory_uuid = request.POST.get('coFacUid', '')
         update = request.POST.get('coUpdate', None)
+        if action == 'submit_email':
+            update_group_info(user, team_info)
+            return HttpResponse(json.dumps({"status": "ok"}))
         r = RedisBaseHandler().client
         try:
             e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
-            re = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
-                                  contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
-                                  factory_uuid, user, user_from)
-            if re:
+            res = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
+                                   contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
+                                   factory_uuid, user, user_from)
+            if res:
                 return HttpResponse(json.dumps({'status': 'ok', 'msg': '基本信息已保存', 'url': 'product/list'}))
             else:
                 return HttpResponse(json.dumps({'status': 'error', 'msg': '登记失败，请确保信息完整'}))
@@ -102,8 +112,7 @@ def home(request):
         except Exception as e:
             logging.getLogger('').info(str(e))
             return HttpResponse(json.dumps({'status': 'error', 'msg': '验证码失效，请重新获取'}))
-    fac_info = get_factory_info(request.user.account_from_id)
-    return render(request, "center/home.html", locals())
+
 
 @csrf_exempt
 def login(request):

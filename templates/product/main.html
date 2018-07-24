@@ -377,6 +377,7 @@
     <script src="{% static "ng/product/content/controller.js" %}"></script>
     <script src="{% static "ng/product/oven/controller.js" %}"></script>
     <script src="{% static "ng/product/protocol/controller.js" %}"></script>
+    <script src="{% static "ng/product/schedule/controller.js" %}"></script>
     <script src="/static/js/product/bootbox.js"></script>
 
     <script src="{% static "bootstrap/bootstrap-notify.min.js" %}"></script>
@@ -447,6 +448,7 @@
                     $scope.band_name = "{{ band_name }}";
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
                     $scope.key = "{{ key }}";
+                    $scope.teams = {{ teams|safe|linebreaksbr }};
                     keysss = "{{ key }}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
                     $scope.create_time = "{{ app.app_create_date|utc2local  }}";

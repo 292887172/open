@@ -1,0 +1,122 @@
+
+<!--进度表-->
+
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}"/>
+
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'js/jquery-1.11.0.min.js' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.js' %}"/>
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/2.1.30/js/locales/bootstrap-datetimepicker.zh-CN.js" rel="stylesheet">
+    <script>
+        $.fn.datetimepicker.defaults = {
+            //默认语言
+            language: 'zh-CN',
+            //默认选择格式
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: true,
+            todayBtn: true,
+            //选择板所在输入框位置
+            pickerPosition: "bottom-left"
+        };
+    </script>
+<div class="title-sub" style="text-align: center;font-size: larger">
+    项目计划书
+</div>
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>负责方</th>
+          <th>任务</th>
+          <th>时间</th>
+          <th>操作</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>提交蒸烤箱详细技术功能规划书</td>
+            <td><input size="16" type="text" id="datetimeStart" readonly class="form_datetime"> -- <input size="16" type="text" id="datetimeEnd" readonly class="form_datetime"></td>
+          <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>提交电控板功能协议文档</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>提交正式蒸烤箱UI和UE</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>制定项目进度计划书</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>蒸烤箱应用程序开发</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+       <tr>
+          <th scope="row">6</th>
+          <td>提供正式电控版</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+      <tr>
+          <th scope="row">7</th>
+          <td>蒸烤箱控制协议对接</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+      <tr>
+          <th scope="row">8</th>
+          <td>提供蒸烤箱整机</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+      <tr>
+          <th scope="row">9</th>
+          <td>整机联调、老化测试</td>
+          <td></td>
+                    <td><button type="button" class="btn btn-primary">上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;">下载</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+<script>
+    $("#datetimeStart").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        lang: 'zh-CN',
+        autoclose:true,
+        startDate:new Date()
+    }).on("click",function(){
+        $("#datetimeStart").datetimepicker("setEndDate",$("#datetimeEnd").val())
+    });
+    $("#datetimeEnd").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        language: 'zh-CN',
+        autoclose:true,
+        startDate:new Date()
+    }).on("click",function(){
+        $("#datetimeEnd").datetimepicker("setStartDate",$("#datetimeStart").val())
+    });
+</script>
+
+

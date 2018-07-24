@@ -44,6 +44,7 @@ from conf.newuserconf import *
 from conf.wxconf import *
 from conf.apiconf import *
 from conf.message import *
+from model.center.user_group import UserGroup
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -76,14 +77,7 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        if len(app_names) < 3:
-            for i in range(len(APP_NAME)):
-                if APP_NAME[i] not in app_names:
-                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i],DEVICE_TYPE[i],
-                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                    if result:
-                        result.app_logo = APP_LOGO[i]
-                        result.save()
+
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -145,6 +139,7 @@ def product_list(request):
             published_apps= published_apps,
             default_apps=default_apps,
         )
+        print(default_apps)
         return render(request, template, content)
 
     def post():
@@ -177,6 +172,7 @@ def product_list(request):
     elif request.method == "POST":
         return post()
 
+
 @login_required
 @csrf_exempt
 def product_controldown(request):
@@ -192,14 +188,7 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        if len(app_names) < 3:
-            for i in range(len(APP_NAME)):
-                if APP_NAME[i] not in app_names:
-                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
-                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                    if result:
-                        result.app_logo = APP_LOGO[i]
-                        result.save()
+
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -296,6 +285,7 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.developer:
             return HttpResponseRedirect(reverse("center"))
@@ -319,7 +309,7 @@ def product_add(request):
         app_category_detail = request.POST.get("product_category_detail", 0)
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
-        print(app_category_detail2)
+
         if app_category_detail and app_category_detail2:
             try:
                 app_category_detail = int(app_category_detail)
@@ -359,8 +349,8 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
-            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_category_detail2,app_command,
-                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,)
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command,
+                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
@@ -398,7 +388,6 @@ def product_main(request):
         # 上传图片回调
         res = request.GET.get("res", "")
         data = request.GET.get("data",'')
-        print(data)
         if data:
             print(data)
             return JsonResponse({"xx":"xxx"})
@@ -415,7 +404,7 @@ def product_main(request):
             if not user_apps:
                 user_apps = App.objects.filter(developer=DEFAULT_USER,app_id=int(app_id))
         except Exception as e:
-            print(e)
+            print(e, '有问题')
             logging.getLogger('').info("应用出错", str(e))
             return HttpResponseRedirect(reverse("product/list"))
         if not user_apps:
@@ -426,9 +415,14 @@ def product_main(request):
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
 
+        # g = Group.objects.get(group_id=app.group_id)
+        teams = []
+        ug = UserGroup.objects.filter(group=app.group_id)
+        for j in ug:
+            teams.append(j.user_account)
         # 获取这个app的API接口列表
-        api_handler = ApiHandler(app.app_level, app.app_group)
-        api_list = api_handler.api_list
+        # api_handler = ApiHandler(app.app_level, app.app_group)
+        # api_list = api_handler.api_list
         band_name = get_factory_name(app.app_factory_uid)
         app_key = app.app_appid
         key = app_key[-8:]
@@ -437,7 +431,7 @@ def product_main(request):
         content = dict(
             all_app=all_app,
             app=app,
-            api_list=api_list,
+            teams=teams,
             default_apps=default_apps,
             key=key,
             device_name=device_name,
@@ -508,6 +502,8 @@ def product_main(request):
                 add_mod_funs(opera_data, device_conf, funs,app_device_type)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                message_content = '"' + app.app_name + '"' + funs + CREATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
@@ -516,9 +512,13 @@ def product_main(request):
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
+            data = find(id, opera_data)
+            fun_name = data[1].get("name")
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
@@ -535,7 +535,7 @@ def product_main(request):
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
                 return HttpResponse('del_success')
         elif post_data == 'update':
             funs = request.POST.get("funs")
@@ -549,6 +549,8 @@ def product_main(request):
             c_data.extend(opera_data[len(funs):])
             save_app(app, c_data,cook_ies)
             update_app_protocol(app)
+            message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -565,10 +567,16 @@ def product_main(request):
             data = find(id, opera_data)
             if data:
                 data[1][post_data] = val
+                fun_name = data[1].get("name")
                 if post_data == "isCloudMenu":
                     app.app_is_cloudmenu_device = check_cloud(opera_data)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                if val == str(1):
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                else:
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -600,7 +608,7 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             else:
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
@@ -847,17 +855,24 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:5]
+            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
                 times.append({"time":tis,"message":i.message_content})
+                print(times)
 
 
 
 
 
         return HttpResponse(json.dumps(times))
+
+@csrf_exempt
+def schedule(request):
+    return HttpResponse('dddd')
+
+
 @csrf_exempt
 def upload_file(request):
     try:

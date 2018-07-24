@@ -76,6 +76,8 @@ class App(models.Model):
     app_is_cloudmenu_device = models.IntegerField(default=0, db_column='ebf_app_is_cloudmenu_device')
     # app创建来源,0：默认创建，1：模板创建
     app_create_source = models.IntegerField(default=0, db_column='ebf_app_create_source')
+    # 产品组id
+    group_id = models.IntegerField(max_length=11, default=0, db_column='ebf_group_id')
 
     class Meta:
         app_label = 'center'

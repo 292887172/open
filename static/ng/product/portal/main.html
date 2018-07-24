@@ -155,12 +155,27 @@
     .guide .aw {
         color:#333;
     }
+    .del-team-user{
+        font-size: 22px;
+    position: relative;
+    top: 3px;
+        color: #f35019;
+    }
+    .item-team-user{
+        margin-left: 17px;
+        margin-top: 10px;
+    }
+    .ui-edit-email{
+        float: left;
+        width: 65%;
+        margin-right: 20px;
+    }
 </style>
 <!--开发引导bar-->
 <div class="dev-guide-bar">
     <div style="font-size: 16px">新手引导</div>
     <div style="font-size: 16px"><a href="/static/sdk/DCIOT.PKG">下载安装{[{app_device_name}]}标准软件</a> （标准功能和协议对应的界面效果）</div>
-    <div><a href="#portal?type=guide" style="font-size: 16px">下一步></a></div>
+    <div><a href="#/schedule" style="font-size: 16px">下一步></a></div>
 </div>
 <div class="box2 relative" style="padding-bottom: 1px;padding-top: 1px">
     <div class="hl-help" style="display: none;">
@@ -171,11 +186,9 @@
         <div class="goods-list" style="padding-bottom: 0px">
             <dl class="col-md-6" >
                 <dt style="margin-top: 42px">
-                    <a href="#/info">
                         <img style="width: 40px;height: 40px" src="{[{ infoFormData.app_logo }]}" onerror="this.src='/static/image/global/default.png'"
                              title="产品图标">
-                    </a>
-                    <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="607"><i></i></a>
+
                 </dt>
                 <dd style="margin-left: 60px">
                     <div class="goods-title" style="margin-left: 0;position: relative;left: -60px;"><a href="#/info">{[{ infoFormData.app_name }]}</a>
@@ -266,13 +279,21 @@
 
     </div>
 
-    <div class="mt20" style="margin-top: 5px;height: 250px">
+    <div class="mt20" style="margin-top: 5px">
         <span class="linkBlue" style="display: inline-block;margin-top: 32px;height: 30px;margin-left: 25px;font-size: 16px">产品动态</span>
         <div class="goods-list" style="padding-top: 0px;height: 95px;margin-bottom: 14px">
             <div class="info-list col-md-6 new_time" style="margin-top: 15px">
-                <div> - 生成标准屏端工程软件 <span>{[{ create_time_detail }]}</span></div>
-                <div> - 生成标准工程文件 <span>{[{ create_time_detail }]}</span></div>
-                <div> - 生成{[{ app_device_name }]}标准控制协议 <span>{[{ create_time_detail }]}</span></div>
+
+                <div><span style="float: left;color: black" id="p0"></span>
+                    <span id="0p0"></span>
+                </div>
+                <div><span style="float: left;color: black" id="p1"></span>
+                    <span id="1p1"></span>
+                </div>
+                <div><span style="float: left;color: black" id="p2"></span>
+                    <span id="2p2"></span>
+                </div>
+
             </div>
            <div class="col-md-6">
                 <div class="title1" style="height: 30px;margin-top: -27px">
@@ -285,6 +306,21 @@
                 </div>
            </div>
 
+        </div>
+    </div>
+    <div class="mt20" style="margin-top: 0px;padding-top: 25px">
+        <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 16px">成员管理</span>
+
+        <span class="linkBlue" style="margin-left: 20px;"><a  href="" ng-click="addEmail()">添加</a></span>
+        <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
+            <p style="margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
+
+        </div>
+        <div class="row item-team-user">
+
+        </div>
+
+
     </div>
     <div class="mt20" style="margin-top: 0px;padding-top: 25px">
                 <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 16px">基本信息</span>
@@ -295,41 +331,8 @@
 
 
     </div>
-
-        <!--<div class="mt20" style="height: 300px">
-
-        <div class="goods-list">
-             <div class="boxInfo" style="border-top: none;">
-                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>产品名称:
-                    <span style="color: black;">{[{infoFormData.app_name}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>品牌/型号:
-                    <span style="color:black;">{[{infoFormData.app_model}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>分类:
-                    <span style="color: black;">{[{app_device_name}]}</span>
-                </dl>
-                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>创建时间</span>:
-                    <span style="color: black;">{[{ infoFormData.app_create_time }]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>APPID:
-                    <span style="color: black;">{[{infoFormData.app_id}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>secret:
-                    <span style="color: black;">{[{app_secret}]}</span>
-                </dl>
-
-             </div>
-        </div>
-    </div>-->
     <div id="ie-form"></div>
-</div>
+
 <div class="guide" style="display: none">
     <div><span style="font-size: 18px">开发引导</span> <span style="margin-left: 20px;color: grey">按标准功能开发</span></div>
     <ul style="margin-left: 5px">
@@ -415,7 +418,7 @@
         }
 
        for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
-            document.getElementById("p"+rr).innerText=ttt_key[rr]
+            document.getElementById("p"+rr).innerText="-"+" "+ ttt_key[rr]
             document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
        }
 
