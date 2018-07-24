@@ -352,3 +352,19 @@
       KEY `Index_13` (`ebf_group_id`),
       CONSTRAINT `FK_Reference_10` FOREIGN KEY (`ebf_group_id`) REFERENCES `ebt_group` (`ebf_group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户组关联表';
+
+    -- ----------------------------
+    --  Table structure for `ebt_doc_ui`
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_doc_ui`;
+    CREATE TABLE `ebt_doc_ui` (
+      `ebf_ui_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ui产品编号',
+      `ebf_ui_key` varchar(8) NOT NULL COMMENT 'ui产品key',
+      `ebf_ui_content` text COMMENT 'ui上传内容',
+      `ebf_ui_type` varchar(8) DEFAULT NULL COMMENT 'ui上传类型',
+      `ebf_ui_title` varchar(64) DEFAULT '1.0' COMMENT 'ui上传说明（版本v1，v2）',
+      `ebf_ui_create_date` datetime DEFAULT NULL COMMENT '创建时间',
+      `ebf_ui_update_date` datetime DEFAULT NULL COMMENT '更新时间',
+      PRIMARY KEY (`ebf_ui_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
