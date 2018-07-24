@@ -246,7 +246,7 @@
     <div class="mt20" style="height: 221px;margin-top: 0;padding-bottom: 0px;border-top: 1px solid #ccc;">
         <hr style="">
         <div class="goods-list">
-            <dl class="col-md-6" style="padding-top: 0px;height: 100px">
+            <dl class="col-md-5" style="padding-top: 0px;height: 100px;">
                 <div class="title1" style="height: 20px;margin-top: 16px">
                     <span style="font-size: 16px">电控部分开发</span>
                 </div>
@@ -258,7 +258,10 @@
                     <p style="margin-top: 30px;font-size: 14px"><span style="color: red">*</span> 电控板:&nbsp; 须支持5V供电,1路串口</p>
 
             </dl>
-            <dl class="col-md-6" style="padding-top: 0px;height: 100px">
+            <dl class="col-md-1" style="border-left:1px solid #e0e0e0;width: 40px;margin-left: 30px;padding-right: 0px;padding-left: 0px;">
+
+            </dl>
+            <dl class="col-md-6" style="padding-top: 0px;height: 100px;padding-left: 23px">
                 <div class="title1" style="height: 20px;margin-top:16px">
                     <span style="font-size: 16px">WiFi屏部分开发</span>
                 </div>
@@ -313,6 +316,7 @@
 
         <span class="linkBlue" style="margin-left: 20px;"><a  href="" ng-click="addEmail()">添加</a></span>
         <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
+            <p ng-if="teams_data.length == 0">暂无成员信息</p>
             <p style="margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
 
         </div>
