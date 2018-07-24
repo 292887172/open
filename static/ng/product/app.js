@@ -21,7 +21,9 @@ angular.module('Product', [
     //定义协议
     "Product.protocol",
     // 产品门户
-    "Product.portal"
+    "Product.portal",
+    // 产品进度
+    "Product.schedule"
 
 ])
 .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
