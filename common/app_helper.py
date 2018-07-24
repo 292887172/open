@@ -32,8 +32,8 @@ __author__ = 'achais'
 _convention = ConventionValue()
 
 
-def create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_category_detail2, app_command, device_conf,
-               app_factory_id, app_group, app_logo,app_product_fast, check_status=0):
+def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
+               app_factory_id, app_group, app_logo,app_product_fast, check_status=0, app_category_detail2=1):
     """
     创建应用
     :param developer_id: 开发者编号

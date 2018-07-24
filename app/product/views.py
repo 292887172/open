@@ -146,6 +146,7 @@ def product_list(request):
             published_apps= published_apps,
             default_apps=default_apps,
         )
+        print(default_apps)
         return render(request, template, content)
 
     def post():
@@ -362,8 +363,8 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
-            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_category_detail2,app_command,
-                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,)
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command,
+                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
@@ -880,6 +881,12 @@ def portal(request):
 
 
         return HttpResponse(json.dumps(times))
+
+@csrf_exempt
+def schedule(request):
+    return HttpResponse('dddd')
+
+
 @csrf_exempt
 def upload_file(request):
     try:
