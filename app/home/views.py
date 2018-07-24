@@ -229,6 +229,9 @@ def ex(request):
     :return:
     """
     if request.method == "GET":
+        page = request.GET.get('page', "")
+        if page == "desc":
+            return render(request, 'home/ex_desc.html', locals())
         return render(request, 'home/experience.html', locals())
 
     if request.method == "POST":

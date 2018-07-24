@@ -206,12 +206,10 @@
             <div class="txt">
                 简单、快捷
             </div>
-            {% if user.account_id %}
-                <div class="btn-area">
-                    <button>下载智能屏用户界面和交互</button>
-                </div>
-            {% endif %}
-            <a href="http://www.53iq.com/support">如何快速体验？ ></a>
+            <div class="btn-area">
+                <button onclick="download()">下载智能屏用户界面和交互</button>
+            </div>
+            <a href="?page=desc">如何快速体验？ ></a>
         </div>
         <div class="u-right">
             <img src="{% static 'image/home/ex/1.jpg' %}">
@@ -256,7 +254,7 @@
     <div class="modal-body">
         <div class="ui-factory">
             <img src="http://www.53iq.com/static/img/home/kitchen/oven2.jpg">
-            <span title="关闭" class="myclose" onclick="javascript:$('#myModal').modal('hide');">×</span>
+            <span title="关闭" class="myclose" onclick="$('#myModal').modal('hide');">×</span>
         </div>
         <p style="margin-top: 15px;font-size: 15px;text-align: center">登记信息立即接入智能化</p>
         <div style="padding: 0 20px">
@@ -288,6 +286,10 @@
     let type = "zkx";
     let size = "4.3";
     let weixin = $(".weixin");
+    let login = false;
+    {% if user.account_id %}
+        login = true;
+    {% endif %}
     weixin.bind("mouseover", function () {
         $(".qr-code-img").show()
     });
@@ -307,7 +309,7 @@
 
         // 蒸烤箱没有7寸
         if (type === "zkx") {
-            $(".size-7").hide();
+            $(".size-7").removeClass("d-active").hide();
             if (size === '7') {
                 $(".size-43").addClass("d-active");
                 size = "4.3";
@@ -319,7 +321,7 @@
 
         // 油烟机没有4.3寸
         if (type === "yyj") {
-            $(".size-43").hide();
+            $(".size-43").removeClass("d-active").hide();
             if (size === '4.3') {
                 $(".size-5").addClass("d-active");
                 size = '5';
@@ -382,10 +384,14 @@
     }
 
     function jump() {
-        if (size === '7') {
-            alert('暂无该尺寸结构图');
+        open("{% static 'image/home/ex/' %}" + size + "-model.jpg");
+    }
+
+    function download() {
+        if (login) {
+
         } else {
-            open("{% static 'image/home/ex/' %}" + size + "-model.jpg");
+            location.href = "/center/register";
         }
     }
 </script>
