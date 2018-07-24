@@ -77,14 +77,7 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        if len(app_names) < 3:
-            for i in range(len(APP_NAME)):
-                if APP_NAME[i] not in app_names:
-                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i],DEVICE_TYPE[i],
-                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                    if result:
-                        result.app_logo = APP_LOGO[i]
-                        result.save()
+
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -195,14 +188,7 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        if len(app_names) < 3:
-            for i in range(len(APP_NAME)):
-                if APP_NAME[i] not in app_names:
-                    result = create_app(DEFAULT_USER, APP_NAME[i], APP_MODEL[i], APP_CATEGORY[i], DEVICE_TYPE[i],
-                                    APP_COMMAND[i], DEVICE_CONF[i], APP_FACTORY_UID[i], 0, 3)
-                    if result:
-                        result.app_logo = APP_LOGO[i]
-                        result.save()
+
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
