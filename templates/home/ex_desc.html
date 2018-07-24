@@ -17,12 +17,29 @@
     <link rel="stylesheet"
           href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link href="{% static 'css/home/smartsys_main.css' %}" rel="Stylesheet" type="text/css"/>
-    <link href="{% static 'css/home/smartsys_support.css' %}" rel="Stylesheet" type="text/css"/>
+    <link href="{% static 'css/home/smartsys_support.css' %}?v=1" rel="Stylesheet" type="text/css"/>
     <style>
         .content {
-            width: 1100px;
-            margin: auto;
-            padding: 20px;
+            max-width: 1100px;
+        }
+        .topleft {
+            width: auto;
+        }
+        .topleft img {
+            margin-right: 10px;
+        }
+        .logo-title {
+            display: block;
+            float: left;
+        }
+
+        @media screen and (max-width: 522px) {
+            .logo-title {
+                margin-top: 15px;
+            }
+            .topright {
+                margin-top: 5px;
+            }
         }
 
         .myclose {
@@ -36,6 +53,7 @@
         .red {
             color: #f46b64;
         }
+
         .apply {
             text-decoration: underline;
             cursor: pointer;
@@ -43,14 +61,12 @@
     </style>
 </head>
 <body>
-<div class="head">
-    <div class="contain" style="width:985px;margin:auto;">
+<div>
+    <div class="container">
         <div class="topleft">
             <a class="logoa" href="#" target="_self">
                 <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
-                <span style="display:block; float:left;">
-                    	&nbsp;厨电智能系统－让厨房更快乐
-                	</span>
+                <span class="logo-title">厨电智能系统－让厨房更快乐</span>
             </a>
         </div>
         <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
@@ -72,41 +88,41 @@
         </div>
     </div>
 </div>
-<div class="content">
-    <div class="serverbox">
-        <div class="sb-head">
-            如何快速体验
-            <div class="sb-head-right">
-                联系我们<b> 400-668-6870</b>
+<div class="content container-fluid">
+    <div class="row">
+        <div class="serverbox col-lg-12 col-md-12">
+            <div class="sb-head">
+                如何快速体验
             </div>
-        </div>
-        <div class="sb-list">
-            <div class="sb-list-top">
-                <b> 一、安装软件工程 </b>
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b> 一、安装软件工程 </b>
+                </div>
+                <div class="sb-list-mian">
+                    1、下载<a class="red" href="/static/sdk/DCIOT.PKG">智能屏用户界面和交互</a>软件工程DCIOT.PKG；<br>
+                    2、将DCIOT.PKG文件复制 到U盘根目录中<br>
+                    3、U盘接上WiFi屏套件（没有WiFi屏套件，<a class="apply">立即申请</a>） 断电重启；WiFi屏自动进行烧录安装,直到屏上显示：Upgrade
+                    finished即成功；<br>
+                    4、拔出U盘,重启WiFi屏即可完成安装。
+                </div>
             </div>
-            <div class="sb-list-mian">
-                1、下载<a class="red" href="/static/sdk/DCIOT.PKG">智能屏用户界面和交互</a>软件工程DCIOT.PKG；<br>
-                2、将DCIOT.PKG文件复制 到U盘根目录中<br>
-                3、U盘接上WiFi屏套件（没有WiFi屏套件，<a class="apply">立即申请</a>） 断电重启；WiFi屏自动进行烧录安装,直到屏上显示：Upgrade finished即成功；<br>
-                4、拔出U盘,重启WiFi屏即可完成安装。
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b>二、智能屏体验</b>
+                </div>
+                <div class="sb-list-mian">
+                    1、不同品类厨电智能屏体验；<br>
+                    2、基础智能屏用户界面和交互体验；<br>
+                    3、智能菜谱体验；
+                </div>
             </div>
-        </div>
-        <div class="sb-list">
-            <div class="sb-list-top">
-                <b>二、智能屏体验</b>
-            </div>
-            <div class="sb-list-mian">
-                1、不同品类厨电智能屏体验；<br>
-                2、基础智能屏用户界面和交互体验；<br>
-                3、智能菜谱体验；
-            </div>
-        </div>
-        <div class="sb-list">
-            <div class="sb-list-top">
-                <b>三、研发评估 </b>
-            </div>
-            <div class="sb-list-mian">
-                根据厨电的实际情况自助评估选择合适方案提交，53iq后24小时内和你联系。
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b>三、研发评估 </b>
+                </div>
+                <div class="sb-list-mian">
+                    根据厨电的实际情况自助评估选择合适方案提交，53iq后24小时内和你联系。
+                </div>
             </div>
         </div>
     </div>
