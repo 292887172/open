@@ -508,6 +508,8 @@ def product_main(request):
                 add_mod_funs(opera_data, device_conf, funs,app_device_type)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                message_content = '"' + app.app_name + '"' + funs + CREATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
@@ -516,9 +518,13 @@ def product_main(request):
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
+            data = find(id, opera_data)
+            fun_name = data[1].get("name")
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
@@ -535,7 +541,7 @@ def product_main(request):
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
                 return HttpResponse('del_success')
         elif post_data == 'update':
             funs = request.POST.get("funs")
@@ -549,6 +555,8 @@ def product_main(request):
             c_data.extend(opera_data[len(funs):])
             save_app(app, c_data,cook_ies)
             update_app_protocol(app)
+            message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -565,10 +573,16 @@ def product_main(request):
             data = find(id, opera_data)
             if data:
                 data[1][post_data] = val
+                fun_name = data[1].get("name")
                 if post_data == "isCloudMenu":
                     app.app_is_cloudmenu_device = check_cloud(opera_data)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                if val == str(1):
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                else:
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -600,7 +614,7 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             else:
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
@@ -847,11 +861,12 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:5]
+            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
                 times.append({"time":tis,"message":i.message_content})
+                print(times)
 
 
 
