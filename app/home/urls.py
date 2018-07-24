@@ -20,5 +20,6 @@ urlpatterns = patterns(
     url(r'^big$', 'big', name='big'),
     url(r'^contact$', 'contact', name='contact'),
     url(r'^app/user$', 'app_user', name='app'),
-
+    # 智能化体验页面
+    url(r'^ex$', "ex"),
 )
