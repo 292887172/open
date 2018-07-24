@@ -62,7 +62,7 @@
         .container-narrow {
             width: 95%;
             max-width: 430px;
-            min-width: 400px;
+            {#min-width: 400px;#}
             margin: 10% auto;
         }
 
@@ -257,7 +257,57 @@
     .login-right > a:hover,.login-right > a:active,.login-right > a:focus{
         text-decoration:none;
     }
-
+    .wrapper{
+        max-width: 1200px;
+        width: auto;
+        overflow: hidden;
+    }
+    .footer{
+        max-width: 1200px;
+        width: auto;
+        overflow: hidden;
+    }
+    .home-more{
+        display: none;
+    }
+    .login-tap{
+        display: none;
+    }
+    @media screen and (max-width: 910px){
+        .wrapper .nav{
+            display: none;
+        }
+        .home-more{
+            display: block;
+            width: 30px;
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            z-index: 50;
+        }
+        .home-more img{
+            width: 100%;
+        }
+        .logo{
+            height: 40px;
+            margin: 10px 0;
+        }
+        .login-tap{
+            color: #fff;
+            position: absolute;
+            width: 100%;
+            padding: 2%;
+            top: 45px;
+            left: 0;
+        }
+        .login-tap li{
+            float: left;
+            font-size: 16px;
+            width: 20%;
+            text-align: center;
+            padding: 0.8rem 0;
+        }
+    }
     </style>
 {% endblock %}
 {% block image %}
@@ -267,6 +317,16 @@
     {% create_menu 1 user.account_id %}
 {% endblock %}
 {% block content %}
+    <div class="home-more"><img src="http://storage.56iq.net/group1/M00/46/4D/CgoKQ1tXByGAD6-oAAABR2NhaWU183.png" alt=""></div>
+    <div class="login-tap">
+        <ul style="overflow: hidden">
+            <li><a href="">首页</a></li>
+            <li><a href="">控制台</a></li>
+            <li><a href="">厨电方案</a></li>
+            <li><a href="">智能菜谱</a></li>
+            <li><a href="">厨房社区</a></li>
+        </ul>
+    </div>
 <div class="ui-mmask"></div>
     <div class="container">
         <div class="row-fluid">
@@ -373,6 +433,10 @@
             $(this).children().children('img').attr('src', img_src)
         })
 
+    })
+
+    $(".home-more").click(function () {
+        $(".login-tap").slideToggle()
     })
     </script>
 {% endblock %}
