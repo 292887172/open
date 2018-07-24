@@ -21,7 +21,7 @@ class AccountIfo(models.Model):
     # 手机号
     contact_address = models.CharField(max_length=512, null=True, db_column='ebf_account_contact_address')
     # 帐号信息创建时间
-    account_create_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_account_info_create_date')
+    account_create_date = models.DateTimeField(default=datetime.datetime.utcnow, db_column='ebf_account_info_create_date')
 
     class Meta:
         app_label = 'center'

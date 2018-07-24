@@ -103,6 +103,18 @@
     .container{
         margin-top: 90px;
     }
+    .ui-del-item{
+        width: 20px;
+        margin-top: 6px;
+    }
+    .item-team-user{
+        margin-top: 10px;
+    }
+    .ui-edit-disable{
+        border: 0;
+        background-color: #fff!important;
+        box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
+    }
     </style>
 
 {% endblock %}
@@ -348,45 +360,12 @@
                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                        maxlength="64">
                                 <span id="devEmailErrorId" class="error"></span></dd>
-                            <!--
-                            <dt><span>*</span>邮箱验证码：</dt>
-                            <dd><label for="inCode"></label><input type="text" name="devCode" id="inCode" class="txt short" value="" maxlength="6"
-                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyDevCode(this,6))">
-                                <a id="getDevCodeId">获取邮箱验证码</a><span
-                                        id="devCodeMsgId"></span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span id="devCodeErrorId" class="error"></span>
-                            </dd>
-                            -->
 
                         </dl>
                     </div>
 
-{#                        <h3 >合作厂商信息</h3>#}
                         <dl >
-{#                            {% if fac_info %}#}
-{#                            <dt><span>*</span>合作厂商名称：</dt>#}
-{#                            <dd><label for="inFac"></label><input style="background: #aaa" type="text" name="coFac" id="inFac" class="txt" value="{{ fac_info.factory_name|is_none }}" disabled#}
-{#                                       maxlength="64">#}
-{#                                <span id="coFacErrorId" class="error"></span></dd>#}
-{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
-{#                            <dd><label for="inFacUid"></label><input style="background: #aaa" type="text" name="coFacUid" id="inFacUid" class="txt" value="{{ fac_info.factory_uid|is_none }}" disabled#}
-{#                                       maxlength="255">#}
-{#                                <span id="coFacUidErrorId" class="error success"></span></dd>#}
-{#                            <dt></dt>#}
-{#                            {% else %}#}
-{#                            <dt><span>*</span>合作厂商名称：</dt>#}
-{#                            <dd><label for="inFac"></label><input type="text" name="coFac" id="inFac" class="txt" value=""#}
-{#                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'合作厂商名称'))"#}
-{#                                       maxlength="64">#}
-{#                                <span id="coFacErrorId" class="error"></span><a href="#" onclick="DevAppInfo.sAlert('<label>1.厂商唯一标识由服务器统一分配，开发者可以向相关厂家获取</label><label>2.普通开发者可以使用以下测试号，厂家名称:星际网络，唯一标识：53iq0002</label>')">如何获得厂商唯一标识？</a></dd>#}
-{#                            <dt><span>*</span>合作厂商唯一标识：</dt>#}
-{#                            <dd><label for="inFacUid"></label><input type="text" name="coFacUid" id="inFacUid" class="txt" value=""#}
-{#                                       onblur="show_error_msg(this,'coFacUidErrorId','请输入正确的合作厂商标识')"#}
-{#                                       maxlength="255">#}
-{#                                <span id="coFacUidErrorId" class="error"></span></dd>#}
-{#                            <dt></dt>#}
-{##}
-{#                            {% endif %}#}
+
                             <dd style="text-align: center;margin-left: 20px"><label><input type="checkbox" name="agree" id="agree" checked=""
                                               onclick="DevAppInfo.doVerifyAgree(this)">我已阅读并同意<a href="view_rule"
                                                                                                  target="_blank">《53iq智能云开发者协议》</a></label>
@@ -401,8 +380,31 @@
                         </p>
                     </form>
                 {% endif %}
+            <div style="float: left" id="item-team-control">
+                <p style="margin-top: 15px">团队邮箱管理  &nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></p>
+                {% for t in team_info %}
+                <div class="row item-team-user">
+                  <div class="col-xs-2">
+                    <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
+                  </div>
+                  <div class="col-xs-3">
+                    <input type="text" class="form-control ui-edit-disable" placeholder="职务" value="{{ t.job }}" disabled="disabled">
+                  </div>
+                  <div class="col-xs-4">
+                    <input type="email" class="form-control ui-edit-disable" placeholder="邮箱" value="{{ t.email }}" disabled="disabled">
+                  </div>
+                    <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
+                </div>
+                {% endfor %}
+
+
             </div>
-            <div>新增团队邮箱</div>
+            <div style="float: left;width: 100%">
+                <button class="btn btn-primary item-team-user" id="addTeamSubmit" style="display: none;">确认</button>
+            </div>
+
+            </div>
+
         </div>
     </div>
     <div class="mask" id="mask" style="display:none"></div>
@@ -418,9 +420,15 @@
     <script type="text/javascript" language="JavaScript" src="{% static 'js/center/devApp.js' %}"
             charset="utf-8"></script>
     <script src="/static/js/product/bootbox.js"></script>
+    <script src="/static/js/ejs.js"></script>
     <script>
-
-
+        var config = {
+            url: {"team_email": "{% static 'tpl/team_email.ejs' %}"}
+        }
+        var length = 0;
+        var user_account = "{{ user.account_id }}";
+        var email = "{{ user.account_email}}";
+        var phone = "{{ user.account_phone}}";
         function show_error_msg(self, id, msg) {
             if ($(self).val().length == 0) {
                 $("#" + id).text(msg);
@@ -430,6 +438,19 @@
                 $("#" + id).text("");
 
             }
+        }
+        function addTeamEmail() {
+                $(".item-team-user").show();
+                length += $(".item-team-user").length;
+                console.log(length);
+                var html = new EJS({url: config.url["team_email"]}).render({"id": length});
+                $("#item-team-control").append(html)
+
+            }
+        function editTeamEmail() {
+            $(".item-team-user").find("input").removeAttr('disabled').removeClass('ui-edit-disable')
+            $(".ui-del-item").show();
+            $(".item-team-user").show()
         }
         $(function () {
             $(".btn-edit").click(function () {
@@ -500,10 +521,6 @@
             });
             $("#submitBtn").click(function () {
                 if (DevAppInfo.changeButtonCSS(true)) {
-
-                        var user_account = "{{ user.account_id }}";
-                        var email = "{{ user.account_email}}";
-                        var phone = "{{ user.account_phone}}";
                         if(user_account==email && email!=$("#inEmail").val()){
                             $("#devEmailErrorId").text('请输入正确的邮箱地址');
                             return;
@@ -544,9 +561,6 @@
                             },
                             success: function (response) {
                                 response = jQuery.parseJSON(response);
-{#                                    console.log(response);#}
-{#                                    console.log(response['status']);#}
-{#                                    console.log(response['msg']);#}
                                 if (response['status'] == 'ok') {
                                     $("#submitBtn").text('提交成功...');
                                     location.href="/product/list";
@@ -559,7 +573,67 @@
 
                         });
                 }
+            });
+            $("#item-team-control").delegate(".ui-del-item", "click", function () {
+                if($(".item-team-user").length<=2){
+                    return false
+                }else {
+                    // 页面上多余一个的team成员框才可以删除
+                    $(this).parent().remove()
+                }
+
+            });
+            $("#addTeamSubmit").click(function () {
+                // 团队邮箱信息提交
+                var data = [];
+                $(".item-team-user").each(function () {
+
+                    var input_length = $(this).find("input").length;
+                    if(input_length == 3){
+
+                        var tmp = {
+                            "name": $($(this).find("input")[0]).val(),
+                            "job": $($(this).find("input")[1]).val(),
+                            "email": $($(this).find("input")[2]).val()
+                        };
+                        data.push(tmp)
+                    }
+                });
+                var data_item = {
+                    "action": "submit_email",
+                    "user": user_account,
+                    "team_info": JSON.stringify(data)
+
+                };
+                console.log(data_item);
+                jQuery.ajax({
+                    url: location.href,
+                    type: "POST",
+                    data: data_item,
+                    error: function () {
+                        console.log("error");
+                        $("#addTeamSubmit").text('确认');
+                    },
+                    beforeSend: function () {
+                        $("#submitBtn").text('正在提交...');
+
+                    },
+                    success: function (response) {
+                        response = jQuery.parseJSON(response);
+                        console.log(response);
+                        if (response['status'] == 'ok') {
+                            bootbox.alert("提交成功")
+                        }
+                        else{
+                            bootbox.alert(response['msg']);
+
+                        }
+                        $("#submitBtn").text('确认');
+                    }
+
+                });
             })
+
         });
 
 

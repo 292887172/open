@@ -155,6 +155,21 @@
     .guide .aw {
         color:#333;
     }
+    .del-team-user{
+        font-size: 22px;
+    position: relative;
+    top: 3px;
+        color: #f35019;
+    }
+    .item-team-user{
+        margin-left: 17px;
+        margin-top: 10px;
+    }
+    .ui-edit-email{
+        float: left;
+        width: 65%;
+        margin-right: 20px;
+    }
 </style>
 <!--开发引导bar-->
 <div class="dev-guide-bar">
@@ -265,7 +280,7 @@
 
     </div>
 
-    <div class="mt20" style="margin-top: 5px;height: 250px">
+    <div class="mt20" style="margin-top: 5px">
         <span class="linkBlue" style="display: inline-block;margin-top: 32px;height: 30px;margin-left: 25px;font-size: 16px">产品动态</span>
         <div class="goods-list" style="padding-top: 0px;height: 95px;margin-bottom: 14px">
             <div class="info-list col-md-6 new_time" style="margin-top: 15px">
@@ -284,6 +299,21 @@
                 </div>
            </div>
 
+        </div>
+    </div>
+    <div class="mt20" style="margin-top: 0px;padding-top: 25px">
+        <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 16px">成员管理</span>
+
+        <span class="linkBlue" style="margin-left: 20px;"><a  href="" ng-click="addEmail()">添加</a></span>
+        <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
+            <p style="margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
+
+        </div>
+        <div class="row item-team-user">
+
+        </div>
+
+
     </div>
     <div class="mt20" style="margin-top: 0px;padding-top: 25px">
                 <span class="linkBlue" style="display: inline-block;margin-top: 10px;height: 20px;margin-left: 25px;font-size: 16px">基本信息</span>
@@ -294,41 +324,8 @@
 
 
     </div>
-
-        <!--<div class="mt20" style="height: 300px">
-
-        <div class="goods-list">
-             <div class="boxInfo" style="border-top: none;">
-                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>产品名称:
-                    <span style="color: black;">{[{infoFormData.app_name}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>品牌/型号:
-                    <span style="color:black;">{[{infoFormData.app_model}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>分类:
-                    <span style="color: black;">{[{app_device_name}]}</span>
-                </dl>
-                <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>创建时间</span>:
-                    <span style="color: black;">{[{ infoFormData.app_create_time }]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>APPID:
-                    <span style="color: black;">{[{infoFormData.app_id}]}</span>
-                </dl>
-                 <dl class="fmInfo1" style="height: 46px;margin-left: 11px">
-                    <span style="color: #d43f3a;"></span>secret:
-                    <span style="color: black;">{[{app_secret}]}</span>
-                </dl>
-
-             </div>
-        </div>
-    </div>-->
     <div id="ie-form"></div>
-</div>
+
 <div class="guide" style="display: none">
     <div><span style="font-size: 18px">开发引导</span> <span style="margin-left: 20px;color: grey">按标准功能开发</span></div>
     <ul style="margin-left: 5px">

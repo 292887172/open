@@ -8,7 +8,7 @@ from model.center.app_history import AppHistory
 from model.center.developer import Developer
 from model.center.account import Account
 from model.center.message import Message
-from model.center.device_fun import Device_Fun
+from model.center.group import Group
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
@@ -52,8 +52,12 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     """
     try:
         developer = Developer.objects.get(developer_id=developer_id)
-        app_app_id = ""
-        app_app_secret = ""
+        try:
+            g = Group.objects.get(create_user=str(developer_id).split("_")[1], relate_project=0)
+            group_id = g.group_id
+        except Exception as e:
+            group_id = 0
+            pass
         while True:
             try:
                 app_app_id = gen_app_app_id()
@@ -79,6 +83,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_logo=app_logo,
                           app_create_source=app_product_fast,
                           check_status=check_status,
+                          group_id=group_id,
                           app_create_date=datetime.datetime.utcnow(),
                           app_update_date=datetime.datetime.utcnow()
                           )

@@ -141,7 +141,8 @@ class Account(AbstractBaseUser):
     account_sproducts = models.CharField(max_length=128, db_column='ebf_account_sproducts')
     # 合作意向
     account_intent = models.CharField(max_length=128, db_column='ebf_account_intent')
-
+    # 关联账户
+    relate_account = models.TextField(null=True, db_column='ebf_account_relate_account')
     USERNAME_FIELD = 'account_id'
     # REQUIRED_FIELDS = ['stat', ]
     objects = MyUserManager()
