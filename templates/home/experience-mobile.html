@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1,maximum-scale=1,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="keywords" content="厨电智能系统,屏幕智能电器,53iq,杭州纳帕科技,纳帕科技,智能厨电,智能油烟机,智能冰柜,智能燃气灶,蒸烤箱,微蒸烤,净水器">
+    <meta name="description"
+          content="53iq是世界上合作厂商数最多的厨电智能系统，高可靠性、数十万同类用户验证,提供基于机器学习的厨房智能，快速将油烟机/集成灶、冰箱、洗衣机、蒸烤箱和净水器等智能化。开放合作，让厨房变得更轻松安全。">
+    <title>厨电智能化体验 -53iq 杭州纳帕</title>
+    <link rel="stylesheet" href="/static/css/home/ex-mobile.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/mint-ui/2.2.13/style.min.css">
+    <style>
+        html {
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script>
+        !function () {
+            function e(e) {
+                return this.config = e, this
+            }
+
+            e.prototype = {
+                reset: function () {
+                    var e = Math.min(document.documentElement.clientWidth, 750) / 750 * 100;
+                    document.documentElement.style.fontSize = e + "px";
+                    var t = parseFloat(window.getComputedStyle(document.documentElement).fontSize), n = e / t;
+                    1 != n && (document.documentElement.style.fontSize = e * n + "px")
+                }
+            }, window.Adapter = new e, window.Adapter.reset(), window.onload = function () {
+                window.Adapter.reset()
+            }, window.onresize = function () {
+                window.Adapter.reset()
+            }
+        }();
+    </script>
+</head>
+<body>
+<div id="user-plan">
+    <div class="head">
+        <div class="contain">
+            <div class="topleft">
+                <a class="logoa" href="/" target="_self"><img src="http://www.53iq.com/static/img/home/130726logo.png">
+                    <span style="display:block; ">&nbsp;&nbsp;厨电智能</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="plan-guide">
+        <h3>智能屏厨电体验</h3>
+        <h4>简单、快捷</h4>
+        <p class="plan-download"><a @click="download">下载智能屏用户界面和交互 > </a></p>
+        <p class="plan-fast"><a href="?page=desc">如何快速体验？</a></p>
+        <p class="plan-fast-img"><img src="/static/image/home/ex/1.jpg" alt=""></p>
+    </div>
+    {% if user.account_id %}
+        <!--方案-->
+        <div class="plan-box" id="planVue">
+            <h4>厨电方案</h4>
+            <div id="plan-combination">
+                <p class="plan-text">
+                    {{ my_device }} <span style="margin: 0 0.15rem;">+</span> {{ my_spec }}智能屏
+                </p>
+                <p class="replace" @click="getMyplan">更换方案组合</p>
+            </div>
+            <p class="plan-ask">
+                <a href="/static/image/home/ex/4.3-model.jpg" id="go_req">结构要求 ></a>
+                <span href="/" style="margin-left: 0.3rem;" @click="open_prompt=true">电控板要求 ></span>
+            </p>
+            <p class="plan-prompt" v-show="open_prompt">供电电压5V 2A，一路TTL串口</p>
+            <div class="plan-fast-img">
+                <img :src="'/static/image/home/ex/'+ fast_img" alt="">
+            </div>
+            <div class="other-plan" @click="open_other">其他厨电</div>
+            <mt-popup
+                    v-model="plan_prop"
+                    position="bottom" class="plan-popup">
+                <div class="plan-popup-title">请需要的选择方案组合</div>
+                <mt-picker :slots="myPlanes" :visible-item-count="3" @change="onMyPlanes"
+                           class="plan-picker"></mt-picker>
+                <div style="text-align: center;font-size: 0">
+                    <mt-button type="danger" @click="modefire" class="ele-btn">确定</mt-button>
+                    <mt-button type="default" @click="unmodefire" class="ele-btn">取消</mt-button>
+                </div>
+            </mt-popup>
+            <!--其他窗口-->
+            <mt-popup
+                    v-model="plan_other"
+                    popup-transition="popup-fade" class="plan-popup-other">
+                <div class="plan-other-img">
+                    <img src="http://www.53iq.com/static/img/home/kitchen/oven2.jpg" alt="">
+                </div>
+                <p class="title">填写您希望进行智能化的厨电，我们将尽快联络您</p>
+                <div class="plan-info">
+                    <input type="text" placeholder="您的产品" class="plan-form" v-model="my_product">
+                    <input type="email" placeholder="您的邮箱" class="plan-form" v-model="my_email">
+                    <input type="tel" placeholder="电话" class="plan-form" v-model="my_tel">
+                    <button @click="up_info">立即登记</button>
+                </div>
+            </mt-popup>
+        </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/mint-ui/2.2.13/index.js"></script>
+<script>
+    let plan_json = {
+        "蒸烤箱": ["4.3寸", "5寸", "6.8寸"],
+        "洗碗机": ["4.3寸", "5寸", "6.8寸", "7寸"],
+        "油烟机 集成灶": ["5寸", "6.8寸", "7寸"]
+    };
+
+    let plans = new Vue({
+        el: "#planVue",
+        data: {
+            fast_img: 'xwj_4.3.jpg',  // 方案图片
+            plan_prop: false,   //弹窗
+            plan_other: false,  //其他
+            myPlanes: [
+                {
+                    flex: 1,
+                    defaultIndex: 0,
+                    values: Object.keys(plan_json),  //设备数组
+                    className: 'slot1',
+                    textAlign: 'center'
+                }, {
+                    divider: true,
+                    content: '-',
+                    className: 'slot2'
+                }, {
+                    flex: 1,
+                    values: [],
+                    className: 'slot3',
+                    textAlign: 'center'
+                },
+            ],
+            my_device: "",   //选择设备
+            my_spec: "",     //选择规格
+            my_product: "",
+            my_email: "",
+            my_tel: "",
+            open_prompt: false, //提示
+        },
+        methods: {
+            onMyPlanes: function (picker, values) {
+                let that = this;
+                if (plan_json[values[0]]) {  //这个判断类似于v-if的效果（可以不加，但是vue会报错，很不爽）
+                    picker.setSlotValues(1, plan_json[values[0]]); // Object.keys()会返回一个数组，当前省的数组
+                    that.my_device = values[0]
+                    that.my_spec = values[1]
+                }
+            },
+            getMyplan: function () {
+                //选择方案
+                this.plan_prop = true
+            },
+            modefire: function () {
+                //确定
+                let device = this.my_device;
+                let spec = parseFloat(this.my_spec);
+                let img_name = "";
+                if (device == "蒸烤箱") {
+                    img_name = "zkx_"
+                } else if (device == "洗碗机") {
+                    img_name = "xwj_"
+                } else if (device == "油烟机 集成灶") {
+                    img_name = "yyj_"
+                }
+                this.fast_img = img_name + spec + ".jpg";
+
+                document.getElementById("go_req").href = "/static/image/home/ex/" + spec + '-model.jpg';
+                this.plan_prop = false
+            },
+            unmodefire: function () {
+                //取消
+                this.plan_prop = false
+            },
+            open_other: function () {
+                //选择其他
+                this.plan_other = true
+            },
+            up_info: function () {
+                //提交信息
+                let that = this
+                let re = /^1[3|4|5|8][0-9]\d{4,8}$/;
+                if (re.test(that.my_tel)) {
+
+                } else {
+                    that.$toast({
+                        message: '请输入正确的手机号码',
+                        position: 'bottom',
+                        duration: 2000
+                    })
+                    that.my_tel = '';
+                    return
+                }
+                let res = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+                if (res.test(that.my_email)) {
+
+                } else {
+                    that.$toast({
+                        message: '请输入正确的邮箱',
+                        position: 'bottom',
+                        duration: 2000
+                    })
+                    that.my_email = '';
+                    return
+                }
+                if (that.my_product == "") {
+                    that.$toast({
+                        message: '请填写您的产品名称或类型！',
+                        position: 'bottom',
+                        duration: 2000
+                    })
+                    return
+                }
+
+                that.plan_other = false
+
+                that.$indicator.open({
+                    text: '发送中,请稍后',
+                    spinnerType: 'fading-circle'
+                });
+                $.ajax({
+                    url: location.href,
+                    type: "POST",
+                    data: {
+                        "action": "enroll",
+                        "email": that.my_email,
+                        "phone": that.my_tel,
+                        "product": that.my_product,
+                        "demand": '无'
+                    },
+                    success: function (res) {
+                        that.$indicator.close()
+                        if (res == "ok") {
+                            that.$toast({
+                                message: '我们已收到您的信息，将尽快与你取得联系！',
+                                position: 'bottom',
+                                duration: 2000
+                            })
+                        } else {
+                            that.$toast({
+                                message: '登记失败！',
+                                position: 'bottom',
+                                duration: 2000
+                            })
+                        }
+                    },
+                    error: function () {
+                        that.$indicator.close()
+                        that.$toast({
+                            message: '登记失败!请检查您的网络',
+                            position: 'bottom',
+                            duration: 2000
+                        })
+                    }
+                })
+
+            }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.myPlanes[0].defaultIndex = 1
+            })
+        }
+    });
+
+    let guide = new Vue({
+        el: ".plan-guide",
+        data: {},
+        methods: {
+            download: function () {
+                let login = false;
+                {% if user.account_id %}
+                    login = true;
+                {% endif %}
+                if (login) {
+
+                } else {
+                    location.href = "/center/login?next=/ex";
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

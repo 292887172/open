@@ -121,6 +121,14 @@
             color: #999;
             font-size: 16px;
             padding-bottom: 10px;
+            position: relative;
+        }
+
+        .d-title span {
+            margin-left: 70px;
+            font-size: 40px;
+            position: absolute;
+            bottom: -2px;
         }
 
         .d-img-l img {
@@ -145,9 +153,27 @@
             border-bottom: 1px solid #f46b64;
         }
 
+        .size-43 img {
+            height: 45%;
+            top: 18px !important;
+        }
+
+        .size-5 img {
+            height: 55%;
+        }
+
+        .size-68 img {
+            height: 55%;
+            top: 15px !important;
+        }
+
+        .size-7 img {
+            height: 80%;
+            top: 8px !important;
+        }
+
         .d-active img {
             position: absolute;
-            height: 60%;
             top: 10px;
             left: 40%;
             display: block;
@@ -159,7 +185,8 @@
         }
 
         .myclose {
-            top: 0;
+            top: 150px;
+            color: black;
         }
 
         .btn-primary {
@@ -169,13 +196,11 @@
 </head>
 <body>
 <div class="head">
-    <div class="contain" style="width:985px;margin:auto;">
+    <div class="container">
         <div class="topleft">
             <a class="logoa" href="#" target="_self">
                 <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
-                <span style="display:block; float:left;">
-                    	&nbsp;厨电智能系统－让厨房更快乐
-                	</span>
+                <span style="display:block; float:left;margin-left: 10px">厨电智能</span>
             </a>
         </div>
         <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
@@ -218,14 +243,14 @@
     {% if user.account_id %}
         <div class="down container">
             <div class="col-md-3 col-lg-3 row1">
-                <div class="d-title">你的厨电</div>
+                <div class="d-title">我的厨电<span>+</span></div>
                 <div class="d-txt d-active" data-type="zkx"><span>蒸烤箱</span></div>
                 <div class="d-txt" data-type="xwj"><span>洗碗机</span></div>
                 <div class="d-txt" data-type="yyj"><span>油烟机 集成灶</span></div>
                 <div class="d-txt" data-type="others"><span>其他厨电</span></div>
             </div>
             <div class="col-md-3 col-lg-3 row2">
-                <div class="d-title">WiFi屏规格</div>
+                <div class="d-title">WiFi屏规格<span>→</span></div>
                 <div class="d-txt size-43 d-active" data-size="4.3"><span>4.3寸</span><img
                         src="{% static 'image/home/ex/4.3.jpg' %}"></div>
                 <div class="d-txt size-5" data-size="5"><span>5寸</span><img src="{% static 'image/home/ex/5.jpg' %}">
@@ -236,14 +261,15 @@
                         src="{% static 'image/home/ex/7.jpg' %}"></div>
             </div>
             <div class="col-md-4 col-lg-4 row3">
-                <div class="d-title">智能厨电方案</div>
+                <div class="d-title">我的智能屏厨电</div>
                 <div class="d-img-l">
                     <img src="{% static 'image/home/ex/zkx_4.3.jpg' %}">
                 </div>
+                <div class="d-txt my-name" style="padding: 15px 0">4.3寸智能屏蒸烤箱</div>
             </div>
             <div class="col-md-2 col-lg-2 row4">
                 <div class="d-title">方案接入条件</div>
-                <a class="d-txt" onclick="jump()">结构要求 ></a>
+                <a class="d-txt" onclick="jump()"><span class="my-size">4.3</span>寸结构要求 ></a>
                 <a class="d-txt" onclick="$('.dkb-demand').show()">电控板要求 ></a>
                 <div class="d-txt dkb-demand" style="display: none">供电电压5V 2A，一路TTL串口</div>
             </div>
@@ -256,7 +282,8 @@
             <img src="http://www.53iq.com/static/img/home/kitchen/oven2.jpg">
             <span title="关闭" class="myclose" onclick="$('#myModal').modal('hide');">×</span>
         </div>
-        <p style="margin-top: 15px;font-size: 15px;text-align: center">登记信息立即接入智能化</p>
+        <p style="margin-top: 15px;font-size: 15px;text-align: center;width: 270px;margin-left: 32px">
+            填写您希望进行智能化的厨电，我们将尽快联络您</p>
         <div style="padding: 0 20px">
             <input type="text" class="form-control" id="txtProduct" placeholder="您的产品"/>
             <input type="text" class="form-control" id="txtEmail" placeholder="您的邮箱"/>
@@ -299,9 +326,11 @@
 
     $(".d-txt").bind("click", function () {
         if ($(this).data("type") !== "others") {
-            $(this).siblings().removeClass("d-active");
-            $(this).addClass("d-active");
-            type = $(".row1 .d-active").data("type");
+            if ($(this).data("type") || $(this).data("size")) {
+                $(this).siblings().removeClass("d-active");
+                $(this).addClass("d-active");
+                type = $(".row1 .d-active").data("type");
+            }
         } else {
             $('#myModal').modal({show: true});
         }
@@ -381,6 +410,8 @@
         // 设置智能厨电方案的图片
         let filename = type + "_" + size + ".jpg";
         $(".d-img-l img").attr("src", "{% static 'image/home/ex/' %}" + filename);
+        $(".my-size").text(size);
+        $(".my-name").text(size + "寸智能屏" + $(".row1 .d-active span").text());
     }
 
     function jump() {
@@ -391,7 +422,7 @@
         if (login) {
 
         } else {
-            location.href = "/center/register";
+            location.href = "/center/login?next=/ex";
         }
     }
 </script>

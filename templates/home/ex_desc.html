@@ -22,28 +22,29 @@
         .content {
             max-width: 1100px;
         }
+
         .topleft {
             width: auto;
         }
+
         .topleft img {
             margin-right: 10px;
         }
+
         .logo-title {
             display: block;
             float: left;
         }
 
-        @media screen and (max-width: 522px) {
-            .logo-title {
-                margin-top: 15px;
-            }
+        @media screen and (max-width: 592px) {
             .topright {
                 margin-top: 5px;
             }
         }
 
         .myclose {
-            top: 0;
+            top: 150px;
+            color: black;
         }
 
         .btn-primary {
@@ -66,7 +67,7 @@
         <div class="topleft">
             <a class="logoa" href="#" target="_self">
                 <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
-                <span class="logo-title">厨电智能系统－让厨房更快乐</span>
+                <span class="logo-title">厨电智能</span>
             </a>
         </div>
         <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
@@ -133,7 +134,8 @@
             <img src="http://www.53iq.com/static/img/home/kitchen/oven2.jpg">
             <span title="关闭" class="myclose" onclick="$('#myModal').modal('hide');">×</span>
         </div>
-        <p style="margin-top: 15px;font-size: 15px;text-align: center">登记信息立即接入智能化</p>
+        <p style="margin-top: 15px;font-size: 15px;text-align: center;width: 270px;margin-left: 32px;color: #000">
+            填写您希望进行智能化的厨电，我们将尽快联络您</p>
         <div style="padding: 0 20px">
             <input type="text" class="form-control" id="txtProduct" placeholder="您的产品"/>
             <input type="text" class="form-control" id="txtEmail" placeholder="您的邮箱"/>
