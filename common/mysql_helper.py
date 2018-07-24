@@ -5,6 +5,7 @@ import pymysql
 from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL_PWD_SYS, MYSQL_DB_SYS
 from base.crypto import md5_en
 from model.center.message import Message
+from model.center.doc_ui import DocUi
 import datetime
 
 
@@ -233,12 +234,10 @@ def get_ui_static_conf(key, post_data,file_path,cook_ies=''):
                               device_key=key, message_sender=cook_ies, message_target=cook_ies,
                               create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
-        cursor = conn.cursor()
-        sql = '''insert into ebt_device_page_conf(ebf_device_key,ebf_ui_config_static,ebf_ui_create_date) values(%s,%s,%s)'''
-        l = [[key, file_path, datetime.datetime.utcnow()]]
-        cursor.executemany(sql, l)
-        conn.commit()
-        return 'ok'
+        DocUi.objects.create(ui_key=key,ui_content=file_path,ui_type='UI',create_date=datetime.datetime.utcnow(),
+                             update_date=datetime.datetime.utcnow())
+
+
     except Exception as e:
         print(e)
     finally:

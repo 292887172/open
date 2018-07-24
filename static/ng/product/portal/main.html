@@ -270,9 +270,17 @@
         <span class="linkBlue" style="display: inline-block;margin-top: 32px;height: 30px;margin-left: 25px;font-size: 16px">产品动态</span>
         <div class="goods-list" style="padding-top: 0px;height: 95px;margin-bottom: 14px">
             <div class="info-list col-md-6 new_time" style="margin-top: 15px">
-                <div> - 生成标准屏端工程软件 <span>{[{ create_time_detail }]}</span></div>
-                <div> - 生成标准工程文件 <span>{[{ create_time_detail }]}</span></div>
-                <div> - 生成{[{ app_device_name }]}标准控制协议 <span>{[{ create_time_detail }]}</span></div>
+
+                <div><span style="float: left;color: black" id="p0"></span>
+                    <span id="0p0"></span>
+                </div>
+                <div><span style="float: left;color: black" id="p1"></span>
+                    <span id="1p1"></span>
+                </div>
+                <div><span style="float: left;color: black" id="p2"></span>
+                    <span id="2p2"></span>
+                </div>
+
             </div>
            <div class="col-md-6">
                 <div class="title1" style="height: 30px;margin-top: -27px">
@@ -415,7 +423,7 @@
         }
 
        for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
-            document.getElementById("p"+rr).innerText=ttt_key[rr]
+            document.getElementById("p"+rr).innerText="-"+" "+ ttt_key[rr]
             document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
        }
 
