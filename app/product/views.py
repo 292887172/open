@@ -876,17 +876,19 @@ def upload_file(request):
     except Exception as e:
         print(e)
     if request.method == 'POST':
+        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
         file = request.FILES.get("file", '')
         post_data = request.POST.get('name', '')
         key = request.POST.get('key', '')
         try:
+            # 上传UI文件
             if post_data == 'upload':
 
                 store = EbStore(CLOUD_TOKEN)
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'])
+                get_ui_static_conf(key, post_data, rr['data'],cook_ies)
             else:
                 r = 1
         except Exception as e:
