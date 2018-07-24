@@ -89,8 +89,24 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           )
                 app.save()
                 print('保存成功')
+                Message.objects.create(message_content='生成标准屏端工程软件', device_key=app_app_id[-8:],
+                                       message_sender=app.developer_id,
+                                       message_target=app.developer_id, is_read=0,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+                Message.objects.create(message_content='生成标准工程文件', device_key=app_app_id[-8:],
+                                       message_sender=app.developer_id,
+                                       message_target=app.developer_id, is_read=0,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+                Message.objects.create(message_content='生成标准控制协议', device_key=app_app_id[-8:],
+                                       message_sender=app.developer_id,
+                                       message_target=app.developer_id, is_read=0,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 message_content = '"'+ app_name + '"' + CREATE_APP
-                save_user_message(developer_id, message_content, USER_TYPE, developer_id)
+                save_user_message(developer_id, message_content, USER_TYPE, developer_id,app_app_id)
+
                 break
             except Exception as e:
                 del e
@@ -148,7 +164,8 @@ def del_app(app_id):
         new_app_history.save()
         app.delete()
         message_content = '"'+ app.app_name + '"' + DEL_APP
-        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+
+        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
         # 删除应用, 同步到 RESTFul API
         delete_api_app(app.app_appid)
         return True
@@ -169,7 +186,7 @@ def release_app(app_id):
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + RELEASE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
             return True
         else:
             return False
@@ -191,7 +208,7 @@ def cancel_release_app(app_id):
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + CANCEL_RELEASE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -214,7 +231,7 @@ def off_app(app_id):
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + OFF_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -237,7 +254,7 @@ def pass_app(app_id):
             # APP审核通过, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + PASS_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             create_release_api_app(app.app_appid)
             return True
         else:
@@ -263,7 +280,7 @@ def denied_app(app_id, remark):
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + DENIED_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             return True
         else:
             return False
@@ -322,7 +339,7 @@ def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_log
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + UPDATE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             return True
         else:
             return False
@@ -346,7 +363,7 @@ def update_app_config(app_id, app_push_url, app_push_token):
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
             message_content = '"'+ app.app_name + '"' + UPDATE_APP_CONFIG
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             return True
         else:
             return False
@@ -446,7 +463,7 @@ def reset_app_secret(app_id):
         if update_line > 0:
             # 同步到 RESTFul API
             message_content = '"'+ app.app_name + '"' + RESET_APP_SECRET
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             reset_api_app_secret(app.app_appid, new_app_secret)
             return new_app_secret
         else:
@@ -616,12 +633,7 @@ def save_app(app, opera_data,cook_ies):
     r = Redis3(rdb=6).client
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
-    try:
-        Message.objects.create(message_content='功能更新',message_type=int(1),message_handler_type=int(1),device_key=key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
 
-    except Exception as e:
-        print(e)
-        logging.getLogger("").error(e)
     remove_conf_prefix(key)
     app.app_update_date = datetime.datetime.utcnow()
     app.save()

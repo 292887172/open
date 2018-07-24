@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-import codecs
 import json
-from django.http import JsonResponse
+
+import requests
+from django.core.urlresolvers import reverse
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from base.connection import ReleaseApiMongoDBHandler
 from base.const import ConventionValue
-from django.shortcuts import render, HttpResponseRedirect
-from django.core.urlresolvers import reverse
-#import markdownfrom model.center.doc_menu import DocMenu
+# import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
 from conf.message import *
 from model.center.doc_menu import DocMenu
 
-from open import settings
 _convention = ConventionValue()
 
 
@@ -49,7 +49,6 @@ def home(request):
 
 
 def smart_menu(request):
-
     return render(request, "home/smart-menu.html", locals())
 
 
@@ -95,7 +94,7 @@ def status(request):
             "req_code": req_code,
             "scan_code": scan_code,
             "down_code": down_code
-            }
+        }
         return JsonResponse(ret)
     except Exception as e:
         print("获取秦秋次数出错:", e)
@@ -223,11 +222,37 @@ def contact(request):
 
 
 @csrf_exempt
+def ex(request):
+    """
+    体验的新页面
+    :param request:
+    :return:
+    """
+    if request.method == "GET":
+        page = request.GET.get('page', "")
+        if page == "desc":
+            return render(request, 'home/ex_desc.html', locals())
+        return render(request, 'home/experience.html', locals())
+
+    if request.method == "POST":
+        action = request.POST.get("action", "")
+        if action == "enroll":
+            email = request.POST.get("email", "")
+            phone = request.POST.get("phone", "")
+            fac_product = request.POST.get("product", "")
+            demand = request.POST.get("demand", "")
+            payload = {'email': email, 'phone': '烟机' + phone, 'product': fac_product, 'demand': demand}
+            r = requests.post("http://www.56iq.net/p/web.aspx?op=add&va=Info", data=payload)
+            return HttpResponse(r.text)
+        return HttpResponse('error')
+
+
+@csrf_exempt
 def app_user(request):
     if request.method == 'POST':
         db = ReleaseApiMongoDBHandler().db
         # page = request.POST.get('page')
-        from_dict = {'ios': 'ios日记', 'zncf': '通用App', 'md':'美大厨房', 'arda': '安德厨房', 'kinde': '金帝厨房', 'app': '厨房日记'}
+        from_dict = {'ios': 'ios日记', 'zncf': '通用App', 'md': '美大厨房', 'arda': '安德厨房', 'kinde': '金帝厨房', 'app': '厨房日记'}
         phone_user = db.ebc_app_users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
         wx_user = db.users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
         total_data = []
@@ -242,7 +267,7 @@ def app_user(request):
                 'from': from_dict.get(i.get('source'), ''),
                 'is_bind_device': '',
                 'is_control': '',
-                'date': (updated+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+                'date': (updated + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
             }
             total_data.append(t)
         for j in wx_user:
@@ -255,7 +280,7 @@ def app_user(request):
                 'from': from_dict.get(j.get('source'), ''),
                 'is_bind_device': '',
                 'is_control': '',
-                'date': (updated+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
+                'date': (updated + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%I:%S")
             }
             total_data.append(t)
         for z in total_data:

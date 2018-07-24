@@ -30,6 +30,7 @@ from common.util import parse_response, send_test_device_status
 from model.center.app import App
 from model.center.protocol import Protocol
 from base.connection import Redis3
+from common.mysql_helper import get_ui_static_conf
 
 import hashlib
 import time
@@ -462,8 +463,11 @@ def product_main(request):
         #data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
         cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
-
+        import os
+        import os.path
         post_data = request.POST.get("name")
+
+
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
         standa = request.POST.get("is_standa", None)  # 标准、自定义
@@ -511,6 +515,8 @@ def product_main(request):
                 add_mod_funs(opera_data, device_conf, funs,app_device_type)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                message_content = '"' + app.app_name + '"' + funs + CREATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
@@ -519,9 +525,13 @@ def product_main(request):
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
+            data = find(id, opera_data)
+            fun_name = data[1].get("name")
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
             return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
@@ -538,7 +548,7 @@ def product_main(request):
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
                 return HttpResponse('del_success')
         elif post_data == 'update':
             funs = request.POST.get("funs")
@@ -552,6 +562,8 @@ def product_main(request):
             c_data.extend(opera_data[len(funs):])
             save_app(app, c_data,cook_ies)
             update_app_protocol(app)
+            message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return HttpResponse('update_success')
         elif post_data == 'toSwitch':
             for switch in opera_data:
@@ -568,10 +580,16 @@ def product_main(request):
             data = find(id, opera_data)
             if data:
                 data[1][post_data] = val
+                fun_name = data[1].get("name")
                 if post_data == "isCloudMenu":
                     app.app_is_cloudmenu_device = check_cloud(opera_data)
                 save_app(app, opera_data,cook_ies)
                 update_app_protocol(app)
+                if val == str(1):
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                else:
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('change_success')
         elif post_data == "export":
             res = date_deal(app_id)
@@ -603,7 +621,7 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
             else:
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
@@ -850,11 +868,12 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:5]
+            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
                 times.append({"time":tis,"message":i.message_content})
+                print(times)
 
 
 
@@ -878,9 +897,27 @@ def upload_file(request):
             return HttpResponse(data)
     except Exception as e:
         print(e)
+    if request.method == 'POST':
+        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+        file = request.FILES.get("file", '')
+        post_data = request.POST.get('name', '')
+        key = request.POST.get('key', '')
+        try:
+            # 上传UI文件
+            if post_data == 'upload':
 
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                get_ui_static_conf(key, post_data, rr['data'],cook_ies)
+            else:
+                r = 1
+        except Exception as e:
+            r = 1
+            print(e)
+        return HttpResponse(json.dumps(r))
 
-@csrf_exempt
 def wx_scan_code(request):
     def createRandomStr():
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))

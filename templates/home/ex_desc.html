@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="keywords"
+          content="厨电智能系统,屏幕智能电器,53iq,杭州纳帕科技,纳帕科技,智能厨电,智能油烟机,智能冰柜,智能燃气灶,蒸烤箱,微蒸烤,净水器"/>
+    <meta name="description"
+          content="53iq是世界上合作厂商数最多的厨电智能系统，高可靠性、数十万同类用户验证,提供基于机器学习的厨房智能，快速将油烟机/集成灶、冰箱、洗衣机、蒸烤箱和净水器等智能化。开放合作，让厨房变得更轻松安全。"/>
+    <title>如何快速体验 -53iq 杭州纳帕</title>
+
+    <link rel="stylesheet"
+          href="{% static 'bootstrap/bootstrap.css' %}"/>
+    <link href="{% static 'css/home/smartsys_main.css' %}" rel="Stylesheet" type="text/css"/>
+    <link href="{% static 'css/home/smartsys_support.css' %}?v=1" rel="Stylesheet" type="text/css"/>
+    <style>
+        .content {
+            max-width: 1100px;
+        }
+        .topleft {
+            width: auto;
+        }
+        .topleft img {
+            margin-right: 10px;
+        }
+        .logo-title {
+            display: block;
+            float: left;
+        }
+
+        @media screen and (max-width: 522px) {
+            .logo-title {
+                margin-top: 15px;
+            }
+            .topright {
+                margin-top: 5px;
+            }
+        }
+
+        .myclose {
+            top: 0;
+        }
+
+        .btn-primary {
+            background-color: #f46b64;
+        }
+
+        .red {
+            color: #f46b64;
+        }
+
+        .apply {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="container">
+        <div class="topleft">
+            <a class="logoa" href="#" target="_self">
+                <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
+                <span class="logo-title">厨电智能系统－让厨房更快乐</span>
+            </a>
+        </div>
+        <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
+        <div class="topright">
+            <ul class="topmain">
+                <li>
+                    <a class="weixin">官方微信</a>
+                </li>
+                <li>|</li>
+                <li><a class="support" href="http://www.53iq.com/support">技术支持</a></li>
+                <li>|</li>
+                <li><a class="ui-about" href="http://www.53iq.com/about">关于</a></li>
+                <li>
+                    <a>
+                        &nbsp;<span style="font-size:18px; font-weight:bold;color: #333">400-668-6870</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content container-fluid">
+    <div class="row">
+        <div class="serverbox col-lg-12 col-md-12">
+            <div class="sb-head">
+                如何快速体验
+            </div>
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b> 一、安装软件工程 </b>
+                </div>
+                <div class="sb-list-mian">
+                    1、下载<a class="red" href="/static/sdk/DCIOT.PKG">智能屏用户界面和交互</a>软件工程DCIOT.PKG；<br>
+                    2、将DCIOT.PKG文件复制 到U盘根目录中<br>
+                    3、U盘接上WiFi屏套件（没有WiFi屏套件，<a class="apply">立即申请</a>） 断电重启；WiFi屏自动进行烧录安装,直到屏上显示：Upgrade
+                    finished即成功；<br>
+                    4、拔出U盘,重启WiFi屏即可完成安装。
+                </div>
+            </div>
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b>二、智能屏体验</b>
+                </div>
+                <div class="sb-list-mian">
+                    1、不同品类厨电智能屏体验；<br>
+                    2、基础智能屏用户界面和交互体验；<br>
+                    3、智能菜谱体验；
+                </div>
+            </div>
+            <div class="sb-list">
+                <div class="sb-list-top">
+                    <b>三、研发评估 </b>
+                </div>
+                <div class="sb-list-mian">
+                    根据厨电的实际情况自助评估选择合适方案提交，53iq后24小时内和你联系。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal">
+    <div class="modal-body">
+        <div class="ui-factory">
+            <img src="http://www.53iq.com/static/img/home/kitchen/oven2.jpg">
+            <span title="关闭" class="myclose" onclick="$('#myModal').modal('hide');">×</span>
+        </div>
+        <p style="margin-top: 15px;font-size: 15px;text-align: center">登记信息立即接入智能化</p>
+        <div style="padding: 0 20px">
+            <input type="text" class="form-control" id="txtProduct" placeholder="您的产品"/>
+            <input type="text" class="form-control" id="txtEmail" placeholder="您的邮箱"/>
+            <input type="text" class="form-control" placeholder="电话" name="" id="txtPhone"/>
+            <input type="button" id="btnConfirm" class="btn btn-primary" value="立即登记"/>
+            <img src="http://www.53iq.com/static/img/loading.gif" width="20" height="20" id="loading"
+                 style="display:none;"/>
+            <p class="label1 label-danger1" id="lbMessage"></p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>
+        <a href="http://www.53iq.com/about">关于我们</a><span>•</span>
+        <a href="http://www.53iq.com/support">服务支持</a><span>•</span>
+        <a href="http://www.53iq.com/dev">开发文档</a><span></span>
+    </p>
+    <p style="margin-top: 10px;">Copyright © {% now 'Y' %} 纳帕科技 版权所有</p>
+    <a name="chaper" class="ui-scroll-top" href="javascript:scroll(0,0);"><img
+            src="http://www.53iq.com/static/img/zhid2.png"
+            title="回到顶部"/></a>
+</div>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script>
+    let weixin = $(".weixin");
+    weixin.bind("mouseover", function () {
+        $(".qr-code-img").show()
+    });
+    weixin.bind("mouseout", function () {
+        $(".qr-code-img").hide()
+    });
+    $(".apply").click(function () {
+        $('#myModal').modal({show: true});
+    });
+    $("#btnConfirm").click(function () {
+        var product = $("#txtProduct").val();
+        var email = $("#txtEmail").val();
+        var phone = $("#txtPhone").val();
+        if (!/^[0-9a-zA-Z]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$/gi.test(email)) {
+            msg("请输入正确的邮箱！");
+            return false;
+        }
+        if (!/^[0-9\-]{4,13}$/gi.test(phone)) {
+            msg("请输入正确的电话号码！");
+            return false;
+        }
+        if (product == '' || product == '您的产品') {
+            msg("请填写您的产品名称或类型！");
+            return false;
+        }
+        $.ajax({
+            url: location.href,
+            type: "POST",
+            data: {"action": "enroll", "email": email, "phone": phone, 'product': product, 'demand': '无'},
+            beforeSend: function () {
+                $("#loading").show();
+            },
+            success: function (res) {
+                if (res === "ok") {
+                    alert("我们已收到你的登记信息，将尽快与你取得联系！");
+                    $('#myModal').modal('hide');
+                }
+                else {
+                    msg("登记失败！");
+                }
+                $("#loading").hide();
+            },
+            error: function (res) {
+                $("#loading").hide();
+            }
+        })
+    });
+
+    function msg(val) {
+        $("#lbMessage").text(val).show().fadeOut(4000);
+    }
+</script>
+</html>
