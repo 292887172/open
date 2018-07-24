@@ -44,6 +44,7 @@ from conf.newuserconf import *
 from conf.wxconf import *
 from conf.apiconf import *
 from conf.message import *
+from model.center.user_group import UserGroup
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -177,6 +178,7 @@ def product_list(request):
     elif request.method == "POST":
         return post()
 
+
 @login_required
 @csrf_exempt
 def product_controldown(request):
@@ -296,6 +298,7 @@ def product_add(request):
     ret = dict(
         code=0
     )
+
     def get():
         if not request.user.developer:
             return HttpResponseRedirect(reverse("center"))
@@ -319,7 +322,7 @@ def product_add(request):
         app_category_detail = request.POST.get("product_category_detail", 0)
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
-        print(app_category_detail2)
+
         if app_category_detail and app_category_detail2:
             try:
                 app_category_detail = int(app_category_detail)
@@ -398,7 +401,6 @@ def product_main(request):
         # 上传图片回调
         res = request.GET.get("res", "")
         data = request.GET.get("data",'')
-        print(data)
         if data:
             print(data)
             return JsonResponse({"xx":"xxx"})
@@ -415,7 +417,7 @@ def product_main(request):
             if not user_apps:
                 user_apps = App.objects.filter(developer=DEFAULT_USER,app_id=int(app_id))
         except Exception as e:
-            print(e)
+            print(e, '有问题')
             logging.getLogger('').info("应用出错", str(e))
             return HttpResponseRedirect(reverse("product/list"))
         if not user_apps:
@@ -426,9 +428,14 @@ def product_main(request):
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
 
+        # g = Group.objects.get(group_id=app.group_id)
+        teams = []
+        ug = UserGroup.objects.filter(group=app.group_id)
+        for j in ug:
+            teams.append(j.user_account)
         # 获取这个app的API接口列表
-        api_handler = ApiHandler(app.app_level, app.app_group)
-        api_list = api_handler.api_list
+        # api_handler = ApiHandler(app.app_level, app.app_group)
+        # api_list = api_handler.api_list
         band_name = get_factory_name(app.app_factory_uid)
         app_key = app.app_appid
         key = app_key[-8:]
@@ -437,7 +444,7 @@ def product_main(request):
         content = dict(
             all_app=all_app,
             app=app,
-            api_list=api_list,
+            teams=teams,
             default_apps=default_apps,
             key=key,
             device_name=device_name,

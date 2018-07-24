@@ -35,6 +35,7 @@
       `ebf_account_expertise` varchar(128)  COMMENT '专长',
       `ebf_account_sproducts` varchar(128)  COMMENT '已出货的产品',
       `ebf_account_cooperation` varchar(128)  COMMENT '合作方式',
+      `ebf_account_relate_account` text COMMENT '用户关联账户',
       PRIMARY KEY (`ebf_account_id`)
     ) ENGINE=ndbcluster DEFAULT CHARSET=utf8 COMMENT='用户表';
 
@@ -131,6 +132,7 @@
       `ebf_app_update_date` datetime NOT NULL COMMENT '更新时间',
       `ebf_app_is_cloudmenu_device` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是云菜谱产品（0：否，1：是）',
       `ebf_app_create_source` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'App创建来源（0：手动创建，1：模板创建）',
+      `ebf_group_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目所属组id',
       PRIMARY KEY (`ebf_app_id`),
       KEY `Index_1` (`ebf_developer_id`),
       CONSTRAINT `FK_Reference_6` FOREIGN KEY (`ebf_developer_id`) REFERENCES `ebt_developer` (`ebf_developer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -162,9 +164,11 @@
       `ebf_app_push_token` varchar(1024) DEFAULT NULL COMMENT '设备消息推送验证Token',
       `ebf_app_device_type` int(3) NOT NULL DEFAULT '0' COMMENT '设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）',
       `ebf_app_protocol_type` int(3) NOT NULL DEFAULT '1' COMMENT '协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）',
+      `ebf_group_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目所属组id',
       `ebf_app_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-      `ebf_app_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_app_update_date`6px datetime NOT NULL COMMENT '更新时间',
       `ebf_app_delete_date` datetime NOT NULL COMMENT '删除时间',
+
       PRIMARY KEY (`ebf_app_id`)
     ) ENGINE=ndbcluster AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='应用历史表';
 
@@ -320,3 +324,31 @@
       `ebf_df_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
       PRIMARY KEY (`ebf_fp_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='厂家协议定义表';
+
+    -- ----------------------------
+    -- Table structure for ebt_group
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_group`;
+    CREATE TABLE `ebt_group` (
+      `ebf_group_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '组id',
+      `ebf_create_user` varchar(64) NOT NULL COMMENT '创建者id',
+      `ebf_relate_project_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联项目id',
+      `ebf_group_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_group_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_group_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自定义组表';
+
+    -- ----------------------------
+    -- Table structure for ebt_user_group
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_user_group`;
+    CREATE TABLE `ebt_user_group` (
+      `ebf_ug_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户组id',
+      `ebf_group_id` int(11) NOT NULL COMMENT '组id',
+      `ebf_user_account` varchar(64) NOT NULL COMMENT '用户账号',
+      `ebf_ug_update_date` datetime NOT NULL COMMENT '更新时间',
+      `ebf_ug_create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      PRIMARY KEY (`ebf_ug_id`),
+      KEY `Index_13` (`ebf_group_id`),
+      CONSTRAINT `FK_Reference_10` FOREIGN KEY (`ebf_group_id`) REFERENCES `ebt_group` (`ebf_group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户组关联表';

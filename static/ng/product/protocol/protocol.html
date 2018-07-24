@@ -247,7 +247,7 @@
         text-align: center;
     }
     th{
-        width: 30px;
+        width: 60px;
         display: inline-block;
         line-height: 20px;
         border: 0;
@@ -647,18 +647,18 @@
 
                 <table border="1">
                     <tr>
-                        <th  width="30px">编号</th>
+                        <th  width="30px">功能编号</th>
                         <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.id }]}</td>
 
                     </tr>
                     <tr>
-                        <th width="30px">字节</th>
+                        <th width="30px">数据位</th>
 
                         <td ng-repeat="i in range(frame_length) track by $index">bit{[{ 7-$index%8 }]}</td>
 
                     </tr>
                     <tr>
-                        <th  width="30px">功能</th>
+                        <th  width="30px">功能名称</th>
                         <td colspan="{[{ x.length }]}" ng-repeat="x in data_menu">{[{ x.title }]}</td>
 
                     </tr>

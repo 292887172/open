@@ -48,6 +48,8 @@ class AppHistory(models.Model):
     app_push_token = models.CharField(max_length=2048, null=True, db_column='ebf_app_push_token')
     # 设备类型（0：未知,1：油烟机，2：集成灶，3：冰柜，4：洗衣机）
     app_device_type = models.IntegerField(max_length=2, default=0, db_column='ebf_app_device_type')
+    # 设备默认配置
+    device_conf = models.TextField(null=True, db_column='ebf_device_conf')
     # 协议类型（1:53iq协议，2：阿里小智协议，3：京东协议）
     app_protocol_type = models.IntegerField(max_length=2, default=1, db_column='ebf_app_protocol_type')
     # 应用创建时间
@@ -56,6 +58,16 @@ class AppHistory(models.Model):
     app_update_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_app_update_date')
     # 应用删除时间
     app_delete_date = models.DateTimeField(auto_now_add=True, db_column='ebf_app_delete_date')
+    # 全指令
+    app_command = models.CharField(max_length=8, null=True, db_column='ebf_app_command')
+    # 厂家/品牌uid
+    app_factory_uid = models.CharField(max_length=64, null=True, db_column='ebf_app_factory_uid')
+    # 云菜谱可控
+    app_is_cloudmenu_device = models.IntegerField(default=0, db_column='ebf_app_is_cloudmenu_device')
+    # app创建来源,0：默认创建，1：模板创建
+    app_create_source = models.IntegerField(default=0, db_column='ebf_app_create_source')
+    # 产品组id
+    group_id = models.IntegerField(max_length=11, default=0, db_column='ebf_group_id')
 
     class Meta:
         app_label = 'center'

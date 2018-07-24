@@ -1,5 +1,11 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import json
+
+from model.center.account import Account
+from model.center.account_info import AccountIfo
+from model.center.group import Group
+from model.center.user_group import UserGroup
 
 __author__ = 'rdy'
 
@@ -16,7 +22,8 @@ _convention = ConventionValue()
 
 
 def create_developer(company, company_url, company_address, company_scale, contact_name, contact_role, contact_mobile,
-                     contact_phone, contact_qq, contact_email, factory_name, factory_uuid, user, user_from, check_status=1):
+                     contact_phone, contact_qq, contact_email, factory_name, factory_uuid, user, user_from,
+                     check_status=1):
     """
     注册开发者帐号
     :param company:
@@ -236,3 +243,50 @@ def fetch_developer_data(developer_id):
     except Exception as e:
         logging.getLogger("").error(e)
         return None
+
+
+def update_group_info(user_account, team_info):
+
+    try:
+        ac = Account.objects.get(account_id=user_account)
+        if ac:
+            ac.relate_account = team_info
+            ac.save()
+    except Exception as e:
+        print(e, '没有相关账户信息')
+        pass
+    try:
+        # 先检查有没有默认分组
+        g = Group.objects.get(create_user=user_account, relate_project=0)
+        if g:
+            # 有默认分组，直接更新组成员
+            ug = UserGroup.objects.filter(group=g)
+            for i in ug:
+                i.delete()
+            team_info = json.loads(team_info)
+            for j in team_info:
+                email = j.get("email")
+                if email:
+                    ug2 = UserGroup(group=g,
+                                    user_account=email,
+                                    update_date=datetime.datetime.utcnow(),
+                                    create_date=datetime.datetime.utcnow())
+                    ug2.save()
+    except Exception as e:
+        print(e, '没有默认分组')
+        # 没有默认分组，先创建分组，再更新组成员
+        g2 = Group(create_user=user_account,
+                   relate_project=0,
+                   update_date=datetime.datetime.utcnow(),
+                   create_date=datetime.datetime.utcnow())
+        g2.save()
+        team_info = json.loads(team_info)
+        for j in team_info:
+            email = j.get("email")
+            if email:
+                ug2 = UserGroup(group=g2,
+                                user_account=email,
+                                update_date=datetime.datetime.utcnow(),
+                                create_date=datetime.datetime.utcnow())
+                ug2.save()
+        pass
