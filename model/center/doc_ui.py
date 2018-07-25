@@ -8,6 +8,8 @@ class DocUi(models.Model):
     """
     # ui产品编号
     ui_id = models.AutoField(primary_key=True, db_column='ebf_ui_id')
+    # ui_上传编号
+    ui_upload_id = models.IntegerField(max_length=2,default=0,db_column='ebf_ui_upload_id')
     # ui产品key
     ui_key = models.CharField(max_length=8, null=True, db_column='ebf_ui_key')
     # ui上传内容
