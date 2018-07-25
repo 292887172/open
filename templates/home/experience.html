@@ -17,183 +17,7 @@
     <link rel="stylesheet"
           href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link href="{% static 'css/home/smartsys_main.css' %}" rel="Stylesheet" type="text/css"/>
-    <style>
-        .head {
-            border-bottom: 1px solid #eee;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            color: #999999;
-            font: 14px "Arial", '微软雅黑';
-        }
-
-        .footer a {
-            text-decoration: none;
-            margin: 0 5px;
-            color: #999999;
-        }
-
-        .footer a:hover {
-            color: #000000;
-        }
-
-        .ui-scroll-top {
-            position: fixed;
-            bottom: 10px;
-            right: 3%;
-            z-index: 99;
-            display: none;
-            width: 40px;
-            height: auto;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .topmain {
-            width: 100%;
-        }
-
-        .content {
-            width: 1115px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .upper {
-            width: 100%;
-            overflow: hidden;
-            padding: 30px 0;
-        }
-
-        .u-left {
-            float: left;
-            width: 47%;
-            padding-left: 80px;
-        }
-
-        .u-right {
-            float: left;
-            width: 40%;
-        }
-
-        .u-right img {
-            height: 100%;
-        }
-
-        .title {
-            font-size: 40px;
-            padding: 20px 0;
-        }
-
-        .txt {
-            font-size: 25px;
-            padding: 10px 0;
-            padding-bottom: 20px;
-        }
-
-        .btn-area {
-            padding: 20px 0;
-        }
-
-        .btn-area button {
-            background-color: #f46b64;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 10px 12px;
-            font-size: 16px;
-        }
-
-        .u-left a {
-            color: #f46b64;
-            font-size: 14px;
-            margin-left: 2px;
-        }
-
-        .down {
-            background-color: #f7f7f7;
-            padding: 30px 50px;
-            width: 100%;
-        }
-
-        .d-title {
-            color: #999;
-            font-size: 16px;
-            padding-bottom: 10px;
-            position: relative;
-        }
-
-        .d-title span {
-            margin-left: 70px;
-            font-size: 40px;
-            position: absolute;
-            bottom: -2px;
-        }
-
-        .d-img-l img {
-            max-width: 80%;
-            margin-left: 0;
-        }
-
-        .d-txt {
-            font-size: 16px;
-            padding: 25px 0;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .d-txt img {
-            display: none;
-        }
-
-        .d-active span {
-            font-size: 28px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f46b64;
-        }
-
-        .size-43 img {
-            height: 45%;
-            top: 18px !important;
-        }
-
-        .size-5 img {
-            height: 55%;
-        }
-
-        .size-68 img {
-            height: 55%;
-            top: 15px !important;
-        }
-
-        .size-7 img {
-            height: 80%;
-            top: 8px !important;
-        }
-
-        .d-active img {
-            position: absolute;
-            top: 10px;
-            left: 40%;
-            display: block;
-        }
-
-        .row4 a {
-            display: block;
-            color: #f46b64;
-        }
-
-        .myclose {
-            top: 150px;
-            color: black;
-        }
-
-        .btn-primary {
-            background-color: #f46b64;
-        }
-    </style>
+    <link href="{% static 'css/home/ex.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="head">
@@ -207,18 +31,18 @@
         <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
         <div class="topright">
             <ul class="topmain">
-                <li>
-                    <a class="weixin">官方微信</a>
-                </li>
+                {% if user.account_id %}
+                    <li style="margin-right: 8px">{{ user.account_id }}</li>
+                {% else %}
+                    <li><a href="/center/login?next=/ex">登录</a></li>
+                {% endif %}
+                <li>|</li>
+                <li><a class="weixin">官方微信</a></li>
                 <li>|</li>
                 <li><a class="support" href="http://www.53iq.com/support">技术支持</a></li>
                 <li>|</li>
                 <li><a class="ui-about" href="http://www.53iq.com/about">关于</a></li>
-                <li>
-                    <a>
-                        &nbsp;<span style="font-size:18px; font-weight:bold;color: #333">400-668-6870</span>
-                    </a>
-                </li>
+                <li><a>&nbsp<span style="font-size:18px; font-weight:bold;color: #333">400-668-6870</span></a></li>
             </ul>
         </div>
     </div>
@@ -233,7 +57,13 @@
                 简单、快捷
             </div>
             <div class="btn-area">
-                <button onclick="download()">下载体验智能屏</button>
+                <button onclick="download()">
+                    {% if user.account_id %}
+                        下载体验智能屏
+                    {% else %}
+                        申请体验智能屏
+                    {% endif %}
+                </button>
             </div>
             <a href="?page=desc">如何快速体验？ ></a>
         </div>
@@ -241,41 +71,49 @@
             <img src="{% static 'image/home/ex/1.jpg' %}">
         </div>
     </div>
-    {% if user.account_id %}
-        <div class="down container">
-            <div class="col-md-3 col-lg-3 row1">
-                <div class="d-title">我的厨电<span>+</span></div>
-                <div class="d-txt d-active" data-type="zkx"><span>蒸烤箱</span></div>
-                <div class="d-txt" data-type="xwj"><span>洗碗机</span></div>
-                <div class="d-txt" data-type="yyj"><span>油烟机 集成灶</span></div>
-                <div class="d-txt" data-type="others"><span>其他厨电</span></div>
+    <div class="down container">
+        <div class="col-md-3 col-lg-3 row1">
+            <div class="d-title">我的厨电<span>+</span></div>
+            <div class="d-txt d-active" data-type="zkx"><span>蒸烤箱</span></div>
+            <div class="d-txt" data-type="xwj"><span>洗碗机</span></div>
+            <div class="d-txt" data-type="yyj"><span>油烟机 集成灶</span></div>
+            <div class="d-txt" data-type="others"><span>其他厨电</span></div>
+        </div>
+        <div class="col-md-3 col-lg-3 row2">
+            <div class="d-title">WiFi屏规格<span>→</span></div>
+            <div class="d-txt size-43 d-active" data-size="4.3"><span>4.3寸</span><img
+                    src="{% static 'image/home/ex/4.3.jpg' %}"></div>
+            <div class="d-txt size-5" data-size="5"><span>5寸</span><img src="{% static 'image/home/ex/5.jpg' %}">
             </div>
-            <div class="col-md-3 col-lg-3 row2">
-                <div class="d-title">WiFi屏规格<span>→</span></div>
-                <div class="d-txt size-43 d-active" data-size="4.3"><span>4.3寸</span><img
-                        src="{% static 'image/home/ex/4.3.jpg' %}"></div>
-                <div class="d-txt size-5" data-size="5"><span>5寸</span><img src="{% static 'image/home/ex/5.jpg' %}">
-                </div>
-                <div class="d-txt size-68" data-size="6.8"><span>6.8寸</span><img
-                        src="{% static 'image/home/ex/6.8.jpg' %}"></div>
-                <div class="d-txt size-7" data-size="7" style="display: none"><span>7寸</span><img
-                        src="{% static 'image/home/ex/7.jpg' %}"></div>
+            <div class="d-txt size-68" data-size="6.8"><span>6.8寸</span><img
+                    src="{% static 'image/home/ex/6.8.jpg' %}"></div>
+            <div class="d-txt size-7" data-size="7" style="display: none"><span>7寸</span><img
+                    src="{% static 'image/home/ex/7.jpg' %}"></div>
+        </div>
+        <div class="col-md-4 col-lg-4 row3">
+            <div class="d-title">我的智能屏厨电</div>
+            <div class="d-img-l">
+                <img src="{% static 'image/home/ex/zkx_4.3.jpg' %}">
             </div>
-            <div class="col-md-4 col-lg-4 row3">
-                <div class="d-title">我的智能屏厨电</div>
-                <div class="d-img-l">
-                    <img src="{% static 'image/home/ex/zkx_4.3.jpg' %}">
-                </div>
-                <div class="d-txt my-name" style="padding: 15px 0">4.3寸智能屏蒸烤箱</div>
-            </div>
-            <div class="col-md-2 col-lg-2 row4">
-                <div class="d-title">方案接入条件</div>
-                <a class="d-txt" onclick="jump()"><span class="my-size">4.3</span>寸屏结构要求 ></a>
-                <a class="d-txt" onclick="$('.dkb-demand').show()">电控板要求 ></a>
-                <div class="d-txt dkb-demand" style="display: none">供电电压5V 2A，一路TTL串口</div>
+            <div class="d-txt my-name" style="padding: 15px 0">4.3寸智能屏蒸烤箱</div>
+        </div>
+        <div class="col-md-2 col-lg-2 row4">
+            {#            <div class="d-title">方案接入条件</div>#}
+            {#            <a class="d-txt" onclick="jump()"><span class="my-size">4.3</span>寸屏结构要求 ></a>#}
+            {#            <a class="d-txt" onclick="$('.dkb-demand').show()">电控板要求 ></a>#}
+            {#            <div class="d-txt dkb-demand" style="display: none">供电电压5V 2A，一路TTL串口</div>#}
+            <div class="btn-area" style="margin-top: 50%" onclick="next()">
+                <button>下一步方案评估</button>
             </div>
         </div>
-    {% endif %}
+    </div>
+</div>
+<div class="plan-service">
+    <div class="phoneNumber"><p>400-668-6870</p></div>
+    <a>
+        <i><img src="http://storage.56iq.net/group1/M00/46/68/CgoKQ1tYHcSAabUJAAAHuocUmgA407.png" alt=""></i>
+        <p>电话咨询</p>
+    </a>
 </div>
 <div id="myModal" class="modal">
     <div class="modal-body">
@@ -323,6 +161,14 @@
     });
     weixin.bind("mouseout", function () {
         $(".qr-code-img").hide()
+    });
+
+    let plan_service = $(".plan-service");
+    plan_service.bind("mouseover", function () {
+        $(this).addClass("plan-active");
+    });
+    plan_service.bind("mouseout", function () {
+        $(this).removeClass("plan-active");
     });
 
     $(".d-txt").bind("click", function () {
@@ -423,7 +269,15 @@
         if (login) {
 
         } else {
-            location.href = "/center/login?next=/ex";
+            $('#myModal').modal({show: true});
+        }
+    }
+
+    function next() {
+        if (login) {
+
+        } else {
+            $('#myModal').modal({show: true});
         }
     }
 </script>
