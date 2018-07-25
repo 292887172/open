@@ -175,8 +175,8 @@ angular.module('Product.argue', ['ngRoute'])
 				indata.standa_or_define = 1;
 			}
 
-            console.log(document.getElementById('ididid').value)
-			indata.id=document.getElementById('ididid').value;
+            console.log('id',document.getElementById('vid').value)
+			indata.id=document.getElementById('vid').value;
 			if(document.getElementsByName("isControl")[0].checked){
 				indata.isControl=1;//可控
 			}else{

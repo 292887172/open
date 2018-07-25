@@ -228,7 +228,7 @@
             <h1 class="headerH1">3.单指令帧：设备只需要传输设备功能id(序号)紧接着传该功能的的值，具体传输数据占用长度跟该功能配置长度保持一致<br></h1>
             <h1 class="headerH1">4.全指令帧：设备只需要按功能序号组装数据帧即可，每个功能值占用长度很配置的该功能占用长度保持一致，若传输数据和功能id(序号)对应位置不匹配，会导致功能解析错乱，状态不正确</h1>
          </div>
-        <div id="tip2" style="display: none;">
+            <div id="tip2" style="display: none;">
             <div class="prompt-class">
                 <p class="headerH1" style="font-weight: bold;"><span style="font-size: 24px;">单指令：</span>单指令数据部分添加功能序号和对应状态，每次只能传递一个功能状态</p>
                 <img src="/static/image/product/prompt1.jpg">
@@ -475,7 +475,7 @@
         </div>
     </div><!-- /.main-content -->
 </div>
-
+<div style="display: none"><input type="text" id="vid"></div>
     <!-- page specific plugin scripts -->
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
@@ -885,11 +885,6 @@
         // 关闭删除弹窗
             $('.del-info').popover('hide');
         }
-
-
-
-
-
         //
         function func5() {
           document.getElementsByClassName("btn-primary")[0].click()
@@ -904,6 +899,7 @@
         }
         function func(that) {
             var num = location.href.split("#")[0].split("=")[1]
+            document.getElementById("vid").value=that
 
             document.getElementById('ididid').value=that
             console.log(num)
