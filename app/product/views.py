@@ -518,17 +518,20 @@ def product_main(request):
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
+            print('opera_data',opera_data)
             edit_data = find(id, opera_data)
+            print(edit_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
             data = find(id, opera_data)
-            fun_name = data[1].get("name")
+            print('ddd',data[1])
+
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
-                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
+                message_content = '"' + app.app_name + '"' + "新增" + UPDATE_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
