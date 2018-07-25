@@ -66,7 +66,8 @@ def home(request):
             pass
         fac_info = get_factory_info(request.user.account_from_id)
         t = Account.objects.get(account_id=request.user)
-        team_info = json.loads(t.relate_account)
+        if t.relate_account:
+            team_info = json.loads(t.relate_account)
         return render(request, "center/home.html", locals())
     elif request.method == 'POST':
         # 登录账户信息

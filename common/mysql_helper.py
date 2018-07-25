@@ -217,27 +217,25 @@ def get_ui_base_conf(key, conf,cook_ies):
             close_connection(conn)
 
 
-def get_ui_static_conf(key, post_data,file_path,cook_ies=''):
+def get_ui_static_conf(key, post_data, file_path,cook_ies=''):
     """
     获取自定义ui配置并且保存
     :param key:
-    :param conf:
+    :param post_data:
     :return:
     """
     conn = get_main_connection()
     try:
-       # 未做插入前判断是否更新！
-       # 未增加message信息
-       # 暂时未知该数据是否未外包使用，故咱放置在此
-       # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
+        # 未做插入前判断是否更新！
+        # 未增加message信息
+        # 暂时未知该数据是否未外包使用，故咱放置在此
+        # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
         Message.objects.create(message_content='UI更新', message_type=int(3), message_handler_type=int(3),
                               device_key=key, message_sender=cook_ies, message_target=cook_ies,
                               create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
         DocUi.objects.create(ui_key=key,ui_content=file_path,ui_type='UI',create_date=datetime.datetime.utcnow(),
                              update_date=datetime.datetime.utcnow())
-
-
     except Exception as e:
         print(e)
     finally:
@@ -276,6 +274,7 @@ def get_ui_base_conf(key, conf,cook_ies):
         finally:
             close_connection(conn)
 
+
 def modify_ui_conf(key, conf, conn,cook_ies):
     """
     通过key查询是否存在配置，存在时修改配置
@@ -284,9 +283,12 @@ def modify_ui_conf(key, conf, conn,cook_ies):
     :param conn    
     :return: 
     """
-    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s', ebf_ui_update_date = '%s' WHERE ebf_device_key = '%s'" % (conf, datetime.datetime.utcnow(), key)
+    sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s', ebf_ui_update_date = '%s' " \
+          "WHERE ebf_device_key = '%s'" % (conf, datetime.datetime.utcnow(), key)
     try:
-        Message.objects.create(message_content='UI更新',message_type=int(3),message_handler_type=int(3),device_key=key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+        Message.objects.create(message_content='UI更新',message_type=int(3),message_handler_type=int(3),device_key=key,
+                               message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),
+                               update_date=datetime.datetime.utcnow())
 
         cursor = conn.cursor()
         cursor.execute(sql)

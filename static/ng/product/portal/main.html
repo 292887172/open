@@ -316,7 +316,7 @@
 
         <span class="linkBlue" style="margin-left: 20px;"><a  href="" ng-click="addEmail()">添加</a></span>
         <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
-            <p ng-if="teams_data.length == 0">暂无成员信息</p>
+            <p ng-if="teams_data.length == 0" id="item-no-teams">暂无成员信息</p>
             <p style="margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
 
         </div>
@@ -331,7 +331,6 @@
 
         <span class="linkBlue" style="margin-left: 20px;"><a href="#/info" >产品信息编辑</a></span>
         <span class="linkBlue" style="margin-left: 270px;"><a onclick="export_parameter()" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">导出{[{app_device_name}]}控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></span>
-
 
 
     </div>
@@ -428,5 +427,7 @@
 
 
     })
+
+
 </script>
 

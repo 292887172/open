@@ -396,32 +396,7 @@
             }
             $(obj).attr('href',href1);
     }
-    /*
-    function default_href(obj) {
-        text = $(obj).html();
-        var href= location.href;
-        var id = "ID=";
-        var get_app_id;
-        if(text == "产品体验"){
-            get_app_id = $(".default-app").attr("data-appid");
-        }
-        else if(text == "我的产品"){
-            get_app_id = $(".owner-app").attr("data-appid");
-        }
-        id += get_app_id;
-        href = href.replace(/ID=\d+/,id);
-        test = href.split("demo");
-        if (test.length > 1){
-            href = test[0];
-        }
-        if(!get_app_id){
-            $(obj).removeAttr('href');
-            bootbox.alert("您还没有任何产品，去产品管理页立即创建吧");
-        }
-        else {
-            $(obj).attr('href',href);
-        }
-    }*/
+
         angular.module('Product.base', ['ngRoute'])
                 .controller('ProductBaseCtrl', ['$scope', function ($scope) {
                     // 应用信息
