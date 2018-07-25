@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 
-import requests
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-from base.connection import ReleaseApiMongoDBHandler
+from base.connection import ReleaseApiMongoDBHandler, SandboxApiMongoDBHandler
 from base.const import ConventionValue
 # import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
@@ -241,11 +240,19 @@ def ex(request):
         if action == "enroll":
             email = request.POST.get("email", "")
             phone = request.POST.get("phone", "")
-            fac_product = request.POST.get("product", "")
-            demand = request.POST.get("demand", "")
-            payload = {'email': email, 'phone': '烟机' + phone, 'product': fac_product, 'demand': demand}
-            r = requests.post("http://www.56iq.net/p/web.aspx?op=add&va=Info", data=payload)
-            return HttpResponse(r.text)
+            product = request.POST.get("product", "")
+            source = request.POST.get("source", "ex")
+            db = SandboxApiMongoDBHandler().db
+            # 用户申请智能化设备的表
+            db.ebc_user_device_apply.insert({
+                "create_date": datetime.datetime.utcnow(),
+                "checked": 0,
+                "phone": phone,
+                "email": email,
+                "product": product,
+                "source": source,
+            })
+            return HttpResponse("ok")
         return HttpResponse('error')
 
 
