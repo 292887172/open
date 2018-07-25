@@ -24,11 +24,12 @@ from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
 from common.device_fun_helper import add_device_fun
-from conf.commonconf import CLOUD_TOKEN,KEY_URL
+from conf.commonconf import CLOUD_TOKEN, KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
 from model.center.protocol import Protocol
+from model.center.doc_ui import DocUi
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf
 
@@ -71,6 +72,7 @@ def product_list(request):
     :param request:
     :return:
     """
+
     def get():
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
@@ -85,14 +87,16 @@ def product_list(request):
                 developer = ''
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
-                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
-                user_apps1 = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
+                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
+                    "-app_create_date")
+                user_apps1 = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
+                    "-app_create_date")
             else:
                 user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:3]
                 user_apps1 = developer.developer_related_app.all().order_by("-app_create_date")[3:]
         except Exception as e:
-            user_apps=[]
-            user_apps1=[]
+            user_apps = []
+            user_apps1 = []
             developer = ''
             keyword = ''
             print(e)
@@ -136,7 +140,7 @@ def product_list(request):
             keyword=keyword,
             developer=developer,
             unpublished_apps=unpublished_apps,
-            published_apps= published_apps,
+            published_apps=published_apps,
             default_apps=default_apps,
         )
         print(default_apps)
@@ -162,11 +166,12 @@ def product_list(request):
                 ret = del_app(app_id)
                 res["data"] = ret
                 r = Redis3(rdb=6).client
-                r.delete("product_funs"+app_id)
+                r.delete("product_funs" + app_id)
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
+
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -181,6 +186,7 @@ def product_controldown(request):
     :param request:
     :return:
     """
+
     def get():
         more_product = request.GET.get("more", '')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
@@ -196,22 +202,23 @@ def product_controldown(request):
                 developer = ''
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
-                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by("-app_create_date")
+                user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
+                    "-app_create_date")
             else:
                 if more_product == '1':
                     user_apps = developer.developer_related_app.all().order_by("-app_update_date")
                 else:
                     user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
         except Exception as e:
-            user_apps=[]
+            user_apps = []
             developer = ''
             keyword = ''
             print(e)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        #published_apps = []
+        # published_apps = []
         unpublished_apps = []
-        #publishing_apps = []
-        #failed_apps = []
+        # publishing_apps = []
+        # failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
@@ -263,11 +270,12 @@ def product_controldown(request):
                 ret = del_app(app_id)
                 res["data"] = ret
                 r = Redis3(rdb=6).client
-                r.delete("product_funs"+app_id)
+                r.delete("product_funs" + app_id)
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
         else:
             res["code"] = 10002
         return HttpResponse(json.dumps(res, separators=(",", ":")))
+
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -299,7 +307,7 @@ def product_add(request):
             factory_list=factory_list,
             default_apps=default_apps
         )
-        return render(request, template,content)
+        return render(request, template, content)
 
     def post():
 
@@ -349,8 +357,9 @@ def product_add(request):
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
-            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail,app_command,
-                                device_conf, app_factory_id, app_group, app_logo,app_product_fast,app_category_detail2)
+            app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
+                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,
+                                app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
             add.delay(app_id)
@@ -368,6 +377,7 @@ def product_add(request):
             ret["msg"] = "created app error"
             ret["message"] = "创建应用失败"
             return HttpResponse(json.dumps(ret, separators=(",", ':')))
+
     if request.method == "GET":
         return get()
     elif request.method == "POST":
@@ -384,13 +394,14 @@ def product_main(request):
     :param request:
     :return:
     """
+
     def get():
         # 上传图片回调
         res = request.GET.get("res", "")
-        data = request.GET.get("data",'')
+        data = request.GET.get("data", '')
         if data:
             print(data)
-            return JsonResponse({"xx":"xxx"})
+            return JsonResponse({"xx": "xxx"})
         if res:
             return HttpResponse(res)
         if not request.user.developer:
@@ -400,9 +411,9 @@ def product_main(request):
         try:
             user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
-            user_apps = App.objects.filter(developer=developer,app_id=int(app_id))
+            user_apps = App.objects.filter(developer=developer, app_id=int(app_id))
             if not user_apps:
-                user_apps = App.objects.filter(developer=DEFAULT_USER,app_id=int(app_id))
+                user_apps = App.objects.filter(developer=DEFAULT_USER, app_id=int(app_id))
         except Exception as e:
             print(e, '有问题')
             logging.getLogger('').info("应用出错", str(e))
@@ -440,20 +451,19 @@ def product_main(request):
         return render(request, template, locals())
 
     def find(id, opera_data):
-            for i in range(len(opera_data)):
-                if str(opera_data[i]['id']) == id:
-                    return [i, opera_data[i]]
-            return []
+        for i in range(len(opera_data)):
+            if str(opera_data[i]['id']) == id:
+                return [i, opera_data[i]]
+        return []
 
     def post():
-        #data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
-        #data_protocol_list = json.loads(request.body.decode('utf-8'))
+        # data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
+        # data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
         cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
         import os
         import os.path
         post_data = request.POST.get("name")
-
 
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
@@ -485,22 +495,22 @@ def product_main(request):
                 temp.append(line)
             data = {'rows': opera_data, 'check_state': app.check_status}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
-            data["rows"] = temp[(page-1)*rows:page*rows]
-            data["total"] = len(temp)//rows + 1
+            data["rows"] = temp[(page - 1) * rows:page * rows]
+            data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
             return JsonResponse(data)
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-                print('数据',opera_data)
+                print('数据', opera_data)
                 app_device_type = app.app_device_type
-                mod = get_mod_funs(opera_data, device_conf,app_device_type)
+                mod = get_mod_funs(opera_data, device_conf, app_device_type)
                 return JsonResponse({"data": mod})
             elif post_data == "add_mod":
                 funs = request.POST.get("funs")
                 app_device_type = app.app_device_type
-                add_mod_funs(opera_data, device_conf, funs,app_device_type)
-                save_app(app, opera_data,cook_ies)
+                add_mod_funs(opera_data, device_conf, funs, app_device_type)
+                save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + funs + CREATE_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
@@ -532,10 +542,10 @@ def product_main(request):
                 is_standa = data[1].get("standa_or_define", None)
                 opera_data.pop(i)
                 replace_fun_id(opera_data, id, is_standa)
-                save_app(app, opera_data,cook_ies)
+                save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('del_success')
         elif post_data == 'update':
             funs = request.POST.get("funs")
@@ -547,7 +557,7 @@ def product_main(request):
             c_data = opera_data[:len(funs)]
             c_data.sort(key=lambda x: int(x.get("id")))
             c_data.extend(opera_data[len(funs):])
-            save_app(app, c_data,cook_ies)
+            save_app(app, c_data, cook_ies)
             update_app_protocol(app)
             message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
@@ -558,7 +568,7 @@ def product_main(request):
                     switch["toSwitch"] = 1
                 else:
                     switch["toSwitch"] = 0
-            save_app(app, opera_data,cook_ies)
+            save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
 
             return HttpResponse('select_success')
@@ -570,7 +580,7 @@ def product_main(request):
                 fun_name = data[1].get("name")
                 if post_data == "isCloudMenu":
                     app.app_is_cloudmenu_device = check_cloud(opera_data)
-                save_app(app, opera_data,cook_ies)
+                save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 if val == str(1):
                     message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
@@ -608,7 +618,7 @@ def product_main(request):
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
@@ -617,7 +627,7 @@ def product_main(request):
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "add_success"
-            save_app(app, opera_data,cook_ies)
+            save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)
 
@@ -632,7 +642,7 @@ def product_main(request):
                 device_list = json.loads(device_list.decode())
             else:
                 device_list = get_device_list(app.app_appid)
-                r5.set(device_content, json.dumps(device_list), 2*60)
+                r5.set(device_content, json.dumps(device_list), 2 * 60)
             for k in device_list:
                 is_online = device_online(k['ebf_device_id'])
                 k["is_online"] = is_online
@@ -746,7 +756,7 @@ def protocol(request):
             logging.getLogger('').info("传入的参数zdy出错", str(e))
             data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
             return HttpResponse(json.dumps(data))
-        r = select_protocol(device_key,zdy)
+        r = select_protocol(device_key, zdy)
 
         if r is None:
             rr = DefaultProtocol().DEFAULT_DATA
@@ -764,8 +774,8 @@ def protocol(request):
         try:
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
-                protocol_type = data_protocol_list.get('protocol_type',0)
-                list_fivechoose = data_protocol_list.get('fivechoose','')
+                protocol_type = data_protocol_list.get('protocol_type', 0)
+                list_fivechoose = data_protocol_list.get('fivechoose', '')
                 list_t = data_protocol_list.get('frame_content', '')
                 list_key = data_protocol_list.get('key', '')
                 data_sql['is_single_instruction'] = list_fivechoose[0]
@@ -777,29 +787,30 @@ def protocol(request):
                 data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
                 data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
                 data_sql['endian_type'] = data_protocol_list.get('endian_type')
-                print("data_sql",data_protocol_list.get('endian_type'))
+                print("data_sql", data_protocol_list.get('endian_type'))
                 data_sql['frame_content'] = list_t
                 data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
                 data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
                 data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
                 print("data_sql", data_sql)
-                data_sql_update = json.dumps(data_sql,ensure_ascii=False)
+                data_sql_update = json.dumps(data_sql, ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
 
                 if types == "change":
                     ## 上下行  切换
                     if protocol_type == "0":
-                        update_protocol(list_key, data_sql_update, 1,cook_ies)
+                        update_protocol(list_key, data_sql_update, 1, cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=0)
                     else:
-                        update_protocol(list_key, data_sql_update, 0,cook_ies)
+                        update_protocol(list_key, data_sql_update, 0, cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=1)
                 else:
-                    update_protocol(list_key, data_sql_update, protocol_type,cook_ies)
-                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
+                    update_protocol(list_key, data_sql_update, protocol_type, cook_ies)
+                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
+                                                          protocol_factory_type=protocol_type)
                 for ii in mlist:
                     res_list_data = ii.protocol_factory_content
                     protocol_type1 = ii.protocol_factory_type
@@ -824,7 +835,7 @@ def key_verify(request):
         if not key:
             return JsonResponse(parse_response(code=_code.MISSING_APP_KEY_CODE, msg=_code.MISSING_APP_KEY_MSG))
         app = App.objects.filter(app_appid__endswith=key)
-        flag = os.path.exists('static/file/'+key+'.zip')
+        flag = os.path.exists('static/file/' + key + '.zip')
         if app and flag:
             http_host = request.META.get('HTTP_HOST')
 
@@ -842,11 +853,12 @@ def control(request):
         data = json.loads(data.decode('utf-8'))
         send_test_device_status(data['did'], data)
         return HttpResponse(json.dumps({'code': 0}))
+
+
 @csrf_exempt
 def portal(request):
     if request.method == 'GET':
-        date1 = request.GET.get('num','')
-
+        date1 = request.GET.get('num', '')
 
         data1 = int(date1)
         # 根据id获取各个时间message_content
@@ -859,18 +871,30 @@ def portal(request):
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
-                times.append({"time":tis,"message":i.message_content})
+                times.append({"time": tis, "message": i.message_content})
                 print(times)
-
-
-
-
 
         return HttpResponse(json.dumps(times))
 
+
 @csrf_exempt
 def schedule(request):
-    return HttpResponse('dddd')
+    key = request.GET.get('key', '')
+    print(key)
+    update_list = []
+    try:
+        li_ui = DocUi.objects.filter(ui_key=key)
+        print(li_ui)
+        for i in li_ui:
+            update_dict = {}
+
+            update_dict['id'] = i.ui_upload_id
+            update_dict['url'] = i.ui_content
+            update_list.append(update_dict)
+            print(i.ui_content)
+    except Exception as e:
+        print(e)
+    return HttpResponse(json.dumps(update_list))
 
 
 @csrf_exempt
@@ -895,6 +919,7 @@ def upload_file(request):
         file = request.FILES.get("file", '')
         post_data = request.POST.get('name', '')
         key = request.POST.get('key', '')
+        id = request.POST.get('id', '')
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -903,7 +928,7 @@ def upload_file(request):
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'],cook_ies)
+                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id)
             else:
                 r = 1
         except Exception as e:
@@ -911,9 +936,11 @@ def upload_file(request):
             print(e)
         return HttpResponse(json.dumps(r))
 
+
 def wx_scan_code(request):
     def createRandomStr():
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
+
     if request.method == 'GET':
         url = 'https://' + request.get_host() + request.get_full_path()
         r = requests.get(wx_ticket)
@@ -941,7 +968,7 @@ def wx_scan_code(request):
         key = request.GET.get('key', None)
         device_id = request.GET.get('id', None)
         if key:
-            query_app = App.objects.filter(app_appid__endswith = key)
+            query_app = App.objects.filter(app_appid__endswith=key)
             if query_app:
                 app = query_app[0]
                 return render(request, 'product/wexin.html', locals())
@@ -961,7 +988,8 @@ def wx_scan_code(request):
         TOKEN = "SvycTZu4hMo21A4Fo3KJ53NNwexy3fu8GNcS8J0kiqaQoi0XvgnvXvyv5UhW8nJj_551657047c2d5d0fd8a30e999b4f7b20f5ea568e"
         url1 = INSIDE_MESSAGE_PUSH.format(TOKEN)
         data = {
-            "message": [{"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url, "KEY": key}, "TK_PY_ID": device_id}],
+            "message": [
+                {"TK_TYPE": "DownloadZip", "EB_TASK_PARAM": {"ZipUrl": url, "KEY": key}, "TK_PY_ID": device_id}],
             "touser": [device_id]
         }
         res = requests.post(url=url1, data=json.dumps(data))
