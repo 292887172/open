@@ -68,11 +68,11 @@
     <div class="plan-guide">
         <h3>智能屏厨电体验</h3>
         <h4>简单、快捷</h4>
-        <p class="plan-download"><a @click="download">下载体验智能屏</a></p>
+        <p class="plan-download"><a @click="open_other_ex">申请体验智能屏</a></p>
         <p class="plan-fast"><a href="?page=desc">如何快速体验？</a></p>
         <p class="plan-fast-img"><img src="/static/image/home/ex/1.jpg" alt=""></p>
     </div>
-    {% if user.account_id %}
+{#    {% if user.account_id %}#}
         <!--方案-->
         <div class="plan-box" id="planVue">
             <h4>厨电方案</h4>
@@ -83,14 +83,14 @@
                 <p class="replace" @click="getMyplan">更换方案组合</p>
             </div>
             <p class="plan-ask">
-                <a href="/static/image/home/ex/5-model.jpg" id="go_req"><span v-text="my_spec"></span>智能屏结构要求 ></a>
-                <span href="/" style="margin-left: 0.3rem;" @click="open_prompt=true">电控板要求 ></span>
+                <a href="/static/image/home/ex/5-model.jpg" id="go_req" v-show="false"><span v-text="my_spec"></span>智能屏结构要求 ></a>
+                <span href="/" style="margin-left: 0.3rem;" @click="open_prompt=true" v-show="false">电控板要求 ></span>
             </p>
             <p class="plan-prompt" v-show="open_prompt">供电电压5V 2A，一路TTL串口</p>
             <div class="plan-fast-img">
                 <img :src="'/static/image/home/ex/'+ fast_img" alt="">
             </div>
-            <div class="other-plan" @click="open_other">其他厨电</div>
+            <div class="plan-download" @click="open_other">下一步 方案评估</div>
             <mt-popup
                     v-model="plan_prop"
                     position="bottom" class="plan-popup">
@@ -118,7 +118,7 @@
                 </div>
             </mt-popup>
         </div>
-    {% endif %}
+{#    {% endif %}#}
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
@@ -306,6 +306,10 @@
             }
         }
     })
+
+    function open_other_ex() {
+        plans.plan_other = true
+    }
 </script>
 </body>
 </html>
