@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
@@ -889,18 +890,15 @@ def portal(request):
 @csrf_exempt
 def schedule(request):
     key = request.GET.get('key', '')
-    print(key)
     update_list = []
     try:
         li_ui = DocUi.objects.filter(ui_key=key)
-        print(li_ui)
         for i in li_ui:
             update_dict = {}
 
             update_dict['id'] = i.ui_upload_id
             update_dict['url'] = i.ui_content
             update_list.append(update_dict)
-            print(i.ui_content)
     except Exception as e:
         print(e)
     return HttpResponse(json.dumps(update_list))
