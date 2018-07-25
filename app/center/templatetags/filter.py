@@ -117,7 +117,7 @@ def create_menu(context, cur=0, username=None):
             menu = [
 
                     {"url": "/product/console/", "title": "控制台"},
-                    {"url": "/product/list/", "title": "产品管理"},
+                    {"url": "/product/list/", "title": "厨电开发"},
                     {"url": "/product/kitchen/", "title": "厨电方案"},
                     {"url": "/SmartRecipe/", "title": "智能菜谱"},
                     {"url": "/product/community/", "title": "厨房社区"},

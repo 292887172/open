@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load filter %}
 {% block title %}
-    产品管理
+    厨电开发
 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
@@ -186,7 +186,7 @@
                 {% endif %}
             {% endfor %}
             <ol class="breadcrumb">
-            <li><a href="/product/list/">产品管理</a></li>
+            <li><a href="/product/list/">厨电开发</a></li>
             <li>
                      {% if app.check_status == 3 %}开发示例
                      {% else %}我的产品{% endif %}
