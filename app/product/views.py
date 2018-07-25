@@ -144,7 +144,7 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print(default_apps)
+        print(content)
         return render(request, template, content)
 
     def post():
@@ -359,7 +359,7 @@ def product_add(request):
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,
+                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,0,
                                 app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
