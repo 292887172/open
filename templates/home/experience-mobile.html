@@ -83,7 +83,7 @@
                 <p class="replace" @click="getMyplan">更换方案组合</p>
             </div>
             <p class="plan-ask">
-                <a href="/static/image/home/ex/4.3-model.jpg" id="go_req"><span v-text="my_spec"></span>智能屏结构要求 ></a>
+                <a href="/static/image/home/ex/5-model.jpg" id="go_req"><span v-text="my_spec"></span>智能屏结构要求 ></a>
                 <span href="/" style="margin-left: 0.3rem;" @click="open_prompt=true">电控板要求 ></span>
             </p>
             <p class="plan-prompt" v-show="open_prompt">供电电压5V 2A，一路TTL串口</p>
@@ -126,15 +126,15 @@
 <script src="https://cdn.bootcss.com/mint-ui/2.2.13/index.js"></script>
 <script>
     let plan_json = {
-        "蒸烤箱": ["4.3寸", "5寸", "6.8寸"],
         "洗碗机": ["4.3寸", "5寸", "6.8寸", "7寸"],
+        "蒸烤箱": ["4.3寸", "5寸", "6.8寸"],
         "油烟机 集成灶": ["5寸", "6.8寸", "7寸"]
     };
 
     let plans = new Vue({
         el: "#planVue",
         data: {
-            fast_img: 'xwj_4.3.jpg',  // 方案图片
+            fast_img: 'zkx_5.jpg',  // 方案图片
             plan_prop: false,   //弹窗
             plan_other: false,  //其他
             myPlanes: [
@@ -283,7 +283,8 @@
         },
         mounted() {
             this.$nextTick(() => {
-                this.myPlanes[0].defaultIndex = 1
+                this.myPlanes[0].defaultIndex = 1;
+                this.myPlanes[2].defaultIndex = 1;
             })
         }
     });
