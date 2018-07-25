@@ -29,6 +29,33 @@
             right: 10px;
             font-size: 0.3rem;
         }
+        .plan-service{
+            padding: 0.25rem 0.15rem;
+            position: fixed;
+            right: 5px;
+            bottom: 60px;
+            background-color: #0086ff;
+            color: #fff;
+            -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.15);
+            box-shadow: 2px 2px 2px rgba(0,0,0,.15);
+            -moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .plan-service a{
+            font-size: 0;
+        }
+        .plan-service i{
+            display: block;
+            text-align: center;
+        }
+        .plan-service img{
+            width: 30px;
+        }
     </style>
     <script>
         !function () {
@@ -90,7 +117,7 @@
             <div class="plan-fast-img">
                 <img :src="'/static/image/home/ex/'+ fast_img" alt="">
             </div>
-            <div class="plan-download" @click="open_other">下一步 方案评估</div>
+            <div class="plan-download" @click="open_other" style="margin-bottom: 0.3rem">下一步 方案评估</div>
             <mt-popup
                     v-model="plan_prop"
                     position="bottom" class="plan-popup">
@@ -119,6 +146,12 @@
             </mt-popup>
         </div>
 {#    {% endif %}#}
+    <div class="plan-service">
+        <a href="tel:0571-88868856" target="_blank">
+            <i><img src="http://storage.56iq.net/group1/M00/46/68/CgoKQ1tYHcSAabUJAAAHuocUmgA407.png" alt=""></i>
+            <p style="text-align: center;font-size: 12px;">电话咨询</p>
+        </a>
+    </div>
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
