@@ -8,6 +8,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
+from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
@@ -16,8 +17,6 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
-from common.app_api_helper import ApiHandler
-from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
 from base.const import StatusCode, DefaultProtocol
 from base.const import ConventionValue
@@ -27,7 +26,9 @@ from common.device_fun_helper import add_device_fun
 from conf.commonconf import CLOUD_TOKEN, KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
+from model.center.account import Account
 from model.center.app import App
+from model.center.group import Group
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
 from base.connection import Redis3
@@ -457,14 +458,10 @@ def product_main(request):
         return []
 
     def post():
-        # data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
-        # data_protocol_list = json.loads(request.body.decode('utf-8'))
+
         app_id = request.GET.get("ID", "")
         cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
-        import os
-        import os.path
         post_data = request.POST.get("name")
-
         id = request.POST.get("id")
         r = Redis3(rdb=6).client
         standa = request.POST.get("is_standa", None)  # 标准、自定义
@@ -787,12 +784,12 @@ def protocol(request):
                 data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
                 data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
                 data_sql['endian_type'] = data_protocol_list.get('endian_type')
-                print("data_sql", data_protocol_list.get('endian_type'))
+                # print("data_sql", data_protocol_list.get('endian_type'))
                 data_sql['frame_content'] = list_t
                 data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
                 data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
                 data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-                print("data_sql", data_sql)
+                # print("data_sql", data_sql)
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
@@ -859,10 +856,8 @@ def control(request):
 def portal(request):
     if request.method == 'GET':
         date1 = request.GET.get('num', '')
-
         data1 = int(date1)
         # 根据id获取各个时间message_content
-
         t = App.objects.filter(app_id=data1)
         times = []
         for i in t:
@@ -872,26 +867,38 @@ def portal(request):
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
                 times.append({"time": tis, "message": i.message_content})
-                print(times)
 
         return HttpResponse(json.dumps(times))
+    elif request.method == 'POST':
+        action = request.POST.get("action", "")
+        app_id = request.POST.get("app_id", "")
+        email = request.POST.get("email", "")
+        user_account = request.user
+        print(user_account, app_id, action)
+        if action == 'submitEmail':
+            # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
+            # 若有分组，则直接在分组中添加成员
+            team_info = add_team_email(user_account, app_id, email)
+            return HttpResponse(json.dumps({"code": 0, "team_info": team_info}))
+        elif action == 'delEmail':
+            # 删除成员邮箱，先检查是否有自定义分组如果没有，则自动继承默认分组，删除相关成员，更新产品所属组信息
+            # 已有自定义分组，直接删除相关成员信息
+            del_team_email(user_account, app_id, email)
+            return HttpResponse(json.dumps({"code": 0}))
 
 
 @csrf_exempt
 def schedule(request):
     key = request.GET.get('key', '')
-    print(key)
     update_list = []
     try:
         li_ui = DocUi.objects.filter(ui_key=key)
-        print(li_ui)
         for i in li_ui:
             update_dict = {}
 
             update_dict['id'] = i.ui_upload_id
             update_dict['url'] = i.ui_content
             update_list.append(update_dict)
-            print(i.ui_content)
     except Exception as e:
         print(e)
     return HttpResponse(json.dumps(update_list))

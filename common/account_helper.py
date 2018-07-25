@@ -1,5 +1,10 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import json
+
+from model.center.app import App
+from model.center.group import Group
+from model.center.user_group import UserGroup
 
 __author__ = 'achais'
 import datetime
@@ -70,6 +75,8 @@ def fetch_user_list_data(page, limit, order_by_names):
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
+
+
 def fetch_user_list_user_data(search,page, limit, order_by_names):
 
     try:
@@ -97,6 +104,7 @@ def fetch_user_list_user_data(search,page, limit, order_by_names):
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
+
 
 def change_user_pwd(user_id, new_pwd):
     """
@@ -143,3 +151,78 @@ def update_user_login_data(user_id, pwd, token, ip, action):
             AutoLogin.objects.filter(al_account_id=user_id).delete()
         except Exception as e:
             print(e)
+
+
+def add_team_email(user_account, app_id, email):
+    """
+    
+    :param user_account: 用户账号
+    :param app_id: 产品id
+    :param email: 团队成员邮箱
+    :return: team_info: [{"name": "", "email": "", "job": ""}]
+    """
+    g = Group.objects.filter(create_user=user_account, relate_project=app_id)
+    team_info = []
+    if g:
+        for i in g:
+
+            u = UserGroup(group=i, user_account=email, create_date=datetime.datetime.utcnow(),
+                          update_date=datetime.datetime.utcnow())
+            u.save()
+            ug = UserGroup.objects.filter(group=i.group_id)
+            for j in ug:
+                team_info.append({"name": "", "email": j.user_account, "job": ""})
+    else:
+        g1 = Group(create_user=user_account, relate_project=app_id, create_date=datetime.datetime.utcnow(),
+                   update_date=datetime.datetime.utcnow())
+        g1.save()
+        a = App.objects.get(app_id=app_id)
+        a.group_id = g1.group_id
+        a.save()
+        ac = Account.objects.get(account_id=user_account)
+        team_info = ac.relate_account
+        if team_info:
+            # team_info=[{"name": "", "email": "", "job": ""}]
+            team_info = json.loads(team_info)
+            team_info.append({"name": "", "email": email, "job": ""})
+        else:
+            team_info = [{"name": "", "email": email, "job": ""}]
+        for j in team_info:
+            ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
+                           update_date=datetime.datetime.utcnow())
+            ug.save()
+        return team_info
+
+
+def del_team_email(user_account, app_id, email):
+    """
+    删除团队成员邮箱
+    :param user_account: 
+    :param app_id: 
+    :param email: 
+    :return: 
+    """
+    g = Group.objects.filter(create_user=user_account, relate_project=app_id)
+    if g:
+        # 已有分组
+        for i in g:
+            UserGroup.objects.filter(group=i, user_account=email).delete()
+    else:
+        g1 = Group(create_user=user_account, relate_project=app_id, create_date=datetime.datetime.utcnow(),
+                   update_date=datetime.datetime.utcnow())
+        g1.save()
+        a = App.objects.get(app_id=app_id)
+        a.group_id = g1.group_id
+        a.save()
+        ac = Account.objects.get(account_id=user_account)
+        team_info = ac.relate_account
+        if team_info:
+            # team_info=[{"name": "", "email": "", "job": ""}]
+            team_info = json.loads(team_info)
+            for index, i in enumerate(team_info):
+                if i.get('email') == email:
+                    del team_info[index]
+            for j in team_info:
+                ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
+                               update_date=datetime.datetime.utcnow())
+                ug.save()

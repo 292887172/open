@@ -49,52 +49,8 @@ def test_name():
 
 
 if __name__=="__main__":
-    db = ReleaseApiMongoDBHandler().db
-    # page = request.POST.get('page')
-    phone_user = db.ebc_app_users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
-    wx_user = db.users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
-    total_data = []
-    for i in phone_user:
-        nickname = i['phone']
-        account_id = i['account_id']
-        updated = i['_updated']
-
-        t = {
-            'nickname': nickname,
-            'openid': account_id,
-            'from': i.get('source'),
-            'is_bind_device': '',
-            'is_control': '',
-            'date': updated
-        }
-        total_data.append(t)
-    for j in wx_user:
-        nickname = j['nickname']
-        openid = j['openid']
-        updated = j['_updated']
-        t = {
-            'nickname': nickname,
-            'openid': openid,
-            'from': j.get('source'),
-            'is_bind_device': '',
-            'is_control': '',
-            'date': updated
-        }
-        total_data.append(t)
-    for z in total_data:
-        du = db.devices_users.find({"openid": z.get("openid")})
-        if du.count() > 0:
-            is_bind_device = True
-        else:
-            is_bind_device = False
-        if is_bind_device:
-            rd = db.record.find({"user": z.get("openid")})
-            if rd.count() > 0:
-                is_control = True
-            else:
-                is_control = False
-        else:
-            is_control = False
-        z['is_bind_device'] = is_bind_device
-        z['is_control'] = is_control
-    print(total_data)
+    team_info = [{"name": "1", "email": "8@q.com"}, {"name": "2", "email": "82@q.com"}, {"name": "3", "email": "83@q.com"}]
+    for index, i in enumerate(team_info):
+        if i.get('email') == "83@q.com":
+            del team_info[index]
+    print(team_info)
