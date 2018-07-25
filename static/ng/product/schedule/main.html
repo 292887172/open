@@ -1,6 +1,5 @@
 <!--进度表-->
-
-
+<link href="/static/bootstrap/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
 <style>
     dt {
         padding: 10px;
@@ -167,11 +166,8 @@
     <tr >
         <th scope="row">1</th>
         <td>提交蒸烤箱详细技术功能规划书</td>
-        <td ><input size="16" type="text" id="datetimeStart" class="form_datetime"> -- <input size="16"
-                                                                                                      type="text"
-                                                                                                      id="datetimeEnd"
-
-                                                                                                      class="form_datetime">
+        <td ><input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-1"/>
         </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
@@ -185,7 +181,8 @@
     <tr>
         <th scope="row">2</th>
         <td>提交电控板功能协议文档</td>
-        <td></td>
+        <td><input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-2"/></td>
         <td>
             <button id="xx" type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(2)">上传
@@ -199,7 +196,10 @@
     <tr>
         <th scope="row">3</th>
         <td>提交正式蒸烤箱UI和UE</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-3"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(3)">上传
@@ -211,7 +211,10 @@
     <tr>
         <th scope="row">4</th>
         <td>制定项目进度计划书</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-4"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(4)">上传
@@ -224,7 +227,10 @@
     <tr>
         <th scope="row">5</th>
         <td>蒸烤箱应用程序开发</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-5"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(5)">上传
@@ -237,7 +243,10 @@
     <tr>
         <th scope="row">6</th>
         <td>提供正式电控版</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-6"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(6)">上传
@@ -250,7 +259,10 @@
     <tr>
         <th scope="row">7</th>
         <td>蒸烤箱控制协议对接</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-7"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(7)">上传
@@ -263,7 +275,10 @@
     <tr>
         <th scope="row">8</th>
         <td>提供蒸烤箱整机</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-8"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(8)">上传
@@ -276,7 +291,10 @@
     <tr>
         <th scope="row">9</th>
         <td>整机联调、老化测试</td>
-        <td></td>
+        <td>
+            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+                                       id="reservation-9"/>
+        </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(9)">上传
@@ -292,6 +310,9 @@
     <input type="text" value="" id="get_value">
     <input type="text" value="" id="get_remarks">
 </div>
+
+
+
 <script>
 
     $.ajax({
@@ -366,5 +387,6 @@
 
     }
 </script>
+
 
 
