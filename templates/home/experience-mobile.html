@@ -17,6 +17,18 @@
         html {
             background-color: #f9f9f9;
         }
+        .topleft{
+            position: relative;
+            margin: 0;
+            padding: 20px 0 5px 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        .go-login{
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            font-size: 0.3rem;
+        }
     </style>
     <script>
         !function () {
@@ -47,13 +59,16 @@
                 <a class="logoa" href="/" target="_self"><img src="http://www.53iq.com/static/img/home/130726logo.png">
                     <span style="display:block; ">&nbsp;&nbsp;厨电智能</span>
                 </a>
+                {% if not user.account_id %}
+                    <a href="/center/login" class="go-login">登录</a>
+                {% endif %}
             </div>
         </div>
     </div>
     <div class="plan-guide">
         <h3>智能屏厨电体验</h3>
         <h4>简单、快捷</h4>
-        <p class="plan-download"><a @click="download">下载智能屏用户界面和交互 > </a></p>
+        <p class="plan-download"><a @click="download">下载体验智能屏</a></p>
         <p class="plan-fast"><a href="?page=desc">如何快速体验？</a></p>
         <p class="plan-fast-img"><img src="/static/image/home/ex/1.jpg" alt=""></p>
     </div>
@@ -63,12 +78,12 @@
             <h4>厨电方案</h4>
             <div id="plan-combination">
                 <p class="plan-text">
-                    {{ my_device }} <span style="margin: 0 0.15rem;">+</span> {{ my_spec }}智能屏
+                    <span v-text="my_device"></span> <span style="margin: 0 0.15rem;">+</span> <span v-text="my_spec"></span>智能屏
                 </p>
                 <p class="replace" @click="getMyplan">更换方案组合</p>
             </div>
             <p class="plan-ask">
-                <a href="/static/image/home/ex/4.3-model.jpg" id="go_req">结构要求 ></a>
+                <a href="/static/image/home/ex/4.3-model.jpg" id="go_req"><span v-text="my_spec"></span>智能屏结构要求 ></a>
                 <span href="/" style="margin-left: 0.3rem;" @click="open_prompt=true">电控板要求 ></span>
             </p>
             <p class="plan-prompt" v-show="open_prompt">供电电压5V 2A，一路TTL串口</p>
@@ -155,6 +170,7 @@
                     that.my_device = values[0]
                     that.my_spec = values[1]
                 }
+                console.log(that.my_device,that.my_spec)
             },
             getMyplan: function () {
                 //选择方案
