@@ -66,6 +66,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                     device_conf = json.dumps(device_conf)
                 except Exception as e:
                     pass
+                print('chanp',check_status)
                 app = App(developer=developer,
                           app_name=app_name,
                           app_appid=app_app_id,
