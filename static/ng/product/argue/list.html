@@ -252,7 +252,7 @@
     <div class="hl-help">
 
     <span class="linkBlue">添加新功能</span>
-    <span class="linkBlue" style="float: right" onclick="func2()">返回</span>
+    <span class="linkBlue" style="float: right;cursor: pointer" onclick="func2()">返回</span>
         <input id="device_type" type="hidden" value="{[{ app_device_type}]}">
         <input id="ididid" type="hidden" value="">
 
@@ -647,7 +647,7 @@
                     },
                     {name: 'operation', width: 150, align: 'center',
                         formatter: function (cellvalue, options, rowObject) {
-                            return "<span style='color:#337ab7'  onclick=func(" + rowObject.id + ") >编辑</span> | <a rel='popover' href='#/argue' id='del-info" + rowObject.id + "' onclick='del(this)' class='del-info' style='color:#337ab7'>删除</a>";
+                            return "<span style='color:#337ab7;cursor:pointer'  onclick=func(" + rowObject.id + ") >编辑</span> | <a rel='popover' href='#/argue' id='del-info" + rowObject.id + "' onclick='del(this)' class='del-info' style='color:#337ab7'>删除</a>";
                         }
                     }
                 ],
