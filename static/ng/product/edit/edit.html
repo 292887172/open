@@ -323,7 +323,7 @@
     var url=location.href;
     var num=url.indexOf('?id');
     var str=url.substring(num+1);
-    var id = str.split("=")[1];
+    var id = str.split("=")[1].split("#")[0];
     var count=0;
     var mxs = [];
     var trig=[];

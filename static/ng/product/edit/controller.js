@@ -155,7 +155,8 @@ angular.module('Product.edit', ['ngRoute'])
 				id=str[1].split("=")[1];
 			}
 			else {
-				id="";
+				console.log('xxx')
+				id=document.getElementById("vid").value;
 			}
 			indata.id=id;
 			if(document.getElementsByName("isControl")[0].checked){

@@ -216,7 +216,7 @@ def get_ui_base_conf(key, conf, cook_ies):
             close_connection(conn)
 
 
-def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0):
+def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0'):
     """
     获取自定义ui配置并且保存
     :param key:
@@ -229,16 +229,20 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0):
         # 未增加message信息
         # 暂时未知该数据是否未外包使用，故咱放置在此
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
-        Message.objects.create(message_content='UI计划书上传', message_type=int(3), message_handler_type=int(3),
-                               device_key=key, message_sender=cook_ies, message_target=cook_ies,
-                               create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
-        ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key)
+
+        ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key,ui_title=ui_info)
         if not ui_obj:
-            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI',
+            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI',ui_title=ui_info,
                                  create_date=datetime.datetime.utcnow(),
                                  update_date=datetime.datetime.utcnow())
+            Message.objects.create(message_content='UI计划书上传', message_type=int(3), message_handler_type=int(3),
+                                   device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                   create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
         else:
-            ui_obj.update(ui_content=file_path, ui_type='UI', update_date=datetime.datetime.utcnow())
+            ui_obj.update(ui_content=file_path, ui_type='UI', ui_title=ui_info,update_date=datetime.datetime.utcnow())
+            Message.objects.create(message_content='UI计划书更新', message_type=int(3), message_handler_type=int(3),
+                                   device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                   create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
 
     except Exception as e:

@@ -1,4 +1,6 @@
 <!--进度表-->
+
+
 <style>
     dt {
         padding: 10px;
@@ -91,17 +93,35 @@
         top: 0;
         opacity: 0;
     }
-
+    .xxx{
+        width: 170px;
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
     .file:hover {
         background: #AADFFD;
         border-color: #78C3F3;
         color: #004974;
         text-decoration: none;
     }
+    .disaplaied{
+        pointer-events:none;
+    }
+
 </style>
 
 <div class="title-sub" style="text-align: center;font-size: larger">
     项目计划书
+
 </div>
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,6 +142,10 @@
                         style="float: right;width:80px;padding-bottom: 0px;padding-top: 0px">
                     上传
                 </button>
+                <div>
+                     <span style="float: left;margin-top: 40px;margin-left: 50px" >备注信息：</span><input type="text" id="ui_info" class="xxx" style="display: inline-block;margin-top:25px;margin-left:-80px " placeholder="备注信息">
+                </div>
+
 
             </div>
 
@@ -136,27 +160,27 @@
         <th>任务</th>
         <th>时间</th>
         <th>操作</th>
-        <th>备注</th>
+        <th>确认(不可更改)</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr >
         <th scope="row">1</th>
         <td>提交蒸烤箱详细技术功能规划书</td>
-        <td><input size="16" type="text" id="datetimeStart" readonly class="form_datetime"> -- <input size="16"
+        <td ><input size="16" type="text" id="datetimeStart" class="form_datetime"> -- <input size="16"
                                                                                                       type="text"
                                                                                                       id="datetimeEnd"
-                                                                                                      readonly
+
                                                                                                       class="form_datetime">
         </td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(1)">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary"
-                                                                 style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white" download="UI.png">下载</a>
+                                                                 style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white" download="UI">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(1)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">2</th>
@@ -169,7 +193,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(2)">确认</button></td>
 
     </tr>
     <tr>
@@ -182,7 +206,7 @@
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(3)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">4</th>
@@ -195,7 +219,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(4)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">5</th>
@@ -208,7 +232,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(5)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">6</th>
@@ -221,7 +245,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(6)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">7</th>
@@ -234,7 +258,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(7)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">8</th>
@@ -247,7 +271,7 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(8)">确认</button></td>
     </tr>
     <tr>
         <th scope="row">9</th>
@@ -260,13 +284,13 @@
                                                                  style="background-color: #00d95a !important;"><a href="" style="cursor: pointer;color: white">下载</a>
         </button>
         </td>
-        <td><input type="text" placeholder="版本号..."></td>
+        <td><button type="button" class="btn btn-primary" style="background-color: #2A00FF !important;" onclick="confirm(9)">确认</button></td>
     </tr>
     </tbody>
 </table>
 <div style="display: none">
     <input type="text" value="" id="get_value">
-    <input type="text" value="{[{key}]}" style="display: none" id="keys">
+    <input type="text" value="" id="get_remarks">
 </div>
 <script>
 
@@ -285,18 +309,35 @@
         }
 
     })
-
+    function confirm(that) {
+        console.log(document.querySelector(".table").querySelectorAll("tr")[that])
+        $.ajax({
+            url:'/product/schedule',
+            type:"POST",
+            data:{"num":that,"key":keysss},
+        }).success(function (data) {
+            // code 判断
+            alert('保存成功，已通知下一环节处理人员');
+            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[1].classList.add("disaplaied");
+            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[2].classList.add("disaplaied");
+            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].classList.add("disaplaied");
+        })
+    }
     function xxx(that) {
         console.log(that)
-        document.getElementById("get_value").value = that
+        document.getElementById("get_value").value = that;
+
+        console.log('that',that)
+        //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
 
     function doUploadFile() {
         var formData = new FormData();
         formData.append("file", document.getElementById("file").files[0]);
         formData.append("name", 'upload');
-        formData.append("key", document.getElementById("keys").value);
+        formData.append("key", keysss);
         formData.append("id", document.getElementById("get_value").value);
+        formData.append("ui_info", document.getElementById("ui_info").value);
 
         if (document.getElementById("file").files[0]) {
             $.ajax({
