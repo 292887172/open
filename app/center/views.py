@@ -69,6 +69,7 @@ def home(request):
         t = Account.objects.get(account_id=request.user)
         if t.relate_account:
             team_info = json.loads(t.relate_account)
+            print(team_info)
         return render(request, "center/home.html", locals())
     elif request.method == 'POST':
         # 登录账户信息
