@@ -717,6 +717,7 @@
                 async :false,
                 success: function (data) {
                         console.log(types, "更新成功")
+                        location.reload()
                     },
                 error:function (data) {
                     console.log(types, "更新失败");
@@ -847,6 +848,7 @@
             fun_name = [];
             // 重新按位置排序，并更新这一行中所有用到id的位置
             fun_name = RePosition(0,0);
+
             fun_name = JSON.stringify(fun_name);
             SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
         }
