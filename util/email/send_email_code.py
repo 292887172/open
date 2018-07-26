@@ -71,7 +71,7 @@ def send_product_process_email(title, product_name, process_name, next_process, 
         # 进度确认邮件
         text = '<html><head lang="en"><style>' \
                '.content{width: 100%;height: 450px;}.header{width: 100%;border-bottom: 1px solid #333;}' \
-               '.ui-body{width: 100%;height: 260px;border-bottom: 1px dashed #333;padding-left: 10px;padding-top: 6px;}' \
+               '.ui-body{width: 100%;height: 210px;border-bottom: 1px dashed #333;padding-left: 10px;padding-top: 6px;}' \
                '.foot{padding-left: 12px;}.foot p{font-size: 12px;color: #909090;}p{padding-left:2em}' \
                '.strong-text{font-weight:bolder}' \
                '</style></head><body><div class ="content"><div class ="header">' \
@@ -86,13 +86,19 @@ def send_product_process_email(title, product_name, process_name, next_process, 
     msg = MIMEText(text, _subtype='html', _charset='utf-8')
     msg['Subject'] = title
     msg['From'] = MAIL_USER
-    msg['To'] = to_user
+
     try:
         server = smtplib.SMTP()
         server.connect(MAIL_HOST)
         # server.debuglevel(1)
         server.login(MAIL_USER, MAIL_PWD)
-        server.sendmail(MAIL_USER, to_user, msg.as_string())
+        if isinstance(to_user, list):
+            for i in to_user:
+                msg['To'] = i
+                server.sendmail(MAIL_USER, i, msg.as_string())
+        else:
+            msg['To'] = to_user
+            server.sendmail(MAIL_USER, to_user, msg.as_string())
         server.close()
         return True
     except Exception as e:
@@ -101,5 +107,5 @@ def send_product_process_email(title, product_name, process_name, next_process, 
         return False
 
 if __name__ == "__main__":
-    r = send_product_process_email("油烟机正式UI和UE v1.0已确认", '油烟机', '正式UI和UE v1.0', '提交蒸烤箱详细技术功能规格书', '15256734655', 'rendy@53iq.com', 'http://www.553iq.com', 'confirm')
+    r = send_product_process_email("油烟机已提交正式UI和UE v1.0", '油烟机', '提交正式UI和UE v1.0', '提交蒸烤箱详细技术功能规格书', '15256734655', ['rendy@53iq.com', 'liuwu@53iq.com'], 'http://www.553iq.com', 'submit')
     print(r)
