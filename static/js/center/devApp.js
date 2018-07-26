@@ -1,4 +1,5 @@
 var DevAppInfo = {
+var DevAppInfo = {
     isNomal: // 检查是否包含特殊字符
         function (value) {
             var pattern = new RegExp("[/\\\\:*?\"<>|;]");
@@ -379,13 +380,9 @@ var DevAppInfo = {
     },
     changeCss: function (flag) {
         if (!flag) {
-            jQuery("#submitBtn").addClass("disable");
-            //jQuery("#submitBtn" ).disabled=true;
-            jQuery("#submitBtn").attr('disabled', 'disabled');
+           console.log('未知bug')
         } else {
-            jQuery("#submitBtn").removeClass("disable");
-            //jQuery("#submitBtn" ).disabled=false;
-            jQuery("#submitBtn").removeAttr('disabled');
+           console.log('未知bug')
         }
 
         $("span").each(
