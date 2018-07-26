@@ -163,7 +163,7 @@
         position: absolute;
         right: 65px;
         bottom: -55px;
-        z-index: 99;
+        z-index: 1;
     }
     .guanli{
         background-color: #327AB7;
@@ -201,7 +201,7 @@
             <a onclick='export_parameter()' style="cursor:pointer;margin-left: 400px" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 16px;margin-left: 5px;">导出控制协议</span></a>
             <a href='http://doc.53iq.com/#/Protocol/README' style='float: right' target='_blank'>53IQ电控通信协议说明</a>
             <div style="float: right;" class="off-btn">
-                <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
+                <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202;z-index: 1 '>
                     <option value=0>选择总开关</option>
                 </select>
                 <span class='help-button' style="display: none;" data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
