@@ -598,8 +598,8 @@
 			<div  id="tab4" class="tab">
 				 <div style="float: left" id="item-team-control">
                 <p style="margin-top: 15px">团队邮箱管理  &nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></p>
-
-                <div class="row item-team-user">
+                {% for t in team_info %}
+                <div class="row item-team-user item-tmp-team">
                   <div class="col-xs-2">
                     <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
                   </div>
@@ -611,11 +611,18 @@
                   </div>
                     <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                 </div>
-			</div>
-		</div>
+                {% endfor %}
 
 
-	</div>
+            </div>
+            <div style="float: left;width: 100%">
+                <button class="btn btn-primary item-team-user" id="addTeamSubmit" style="display: none;">确认</button>
+            </div>
+
+            </div>
+
+        </div>
+    </div>
     <div class="mask" id="mask" style="display:none"></div>
     <div class="pop_win" id="pop_win" style="display:none">
         <div></div>
@@ -653,12 +660,12 @@
                 $(".item-team-user").show();
                 length += $(".item-team-user").length;
                 console.log(length);
-                var html = new EJS({url: config.url["team_email"]}).render({"id": length});
+                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": "", "job": "", "email": ""});
                 $("#item-team-control").append(html)
 
             }
         function editTeamEmail() {
-            $(".item-team-user").find("input").removeAttr('disabled').removeClass('ui-edit-disable')
+            $(".item-team-user").find("input").removeAttr('disabled').removeClass('ui-edit-disable');
             $(".ui-del-item").show();
             $(".item-team-user").show()
         }
@@ -825,20 +832,30 @@
                         $("#addTeamSubmit").text('确认');
                     },
                     beforeSend: function () {
-                        $("#submitBtn").text('正在提交...');
+                        $("#addTeamSubmit").text('正在提交...');
 
                     },
                     success: function (response) {
                         response = jQuery.parseJSON(response);
                         console.log(response);
                         if (response['status'] == 'ok') {
-                            bootbox.alert("提交成功")
+                            bootbox.alert("提交成功");
+                            $(".item-tmp-team").remove();
+                            for(var i =0;i<data.length;i++){
+                                name = data[i].name;
+                                job = data[i].job;
+                                email = data[i].email;
+                                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": name, "job": job, "email": email});
+                                $("#item-team-control").append(html)
+                            }
+
+
                         }
                         else{
                             bootbox.alert(response['msg']);
 
                         }
-                        $("#submitBtn").text('确认');
+                        $("#addTeamSubmit").text('确认');
                     }
 
                 });
