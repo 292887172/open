@@ -181,9 +181,18 @@ angular.module('Product.edit', ['ngRoute'])
 				data: {"name": "save", "d": JSON.stringify(indata)},
 				success:(function (data) {
 				if (data=="modify_success") {
-					console.log("修改信息成功!");
+					console.log(location.href)
+					var tt = location.href;
+					var p = tt.split("#/")[1];
+					console.log(p)
+					if (p == "argue"){
+						location.reload()
+					}else{
+						location.replace("#/argue")
+					}
+
 					$(".notification-container").html(msg_notice);
-					location.href="#/argue"
+
 				}
 				else if(data=="add_success"){
 
