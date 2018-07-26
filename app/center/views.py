@@ -14,7 +14,7 @@ import django
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from base.const import ConventionValue
@@ -43,6 +43,7 @@ from base.crypto import md5_en
 from common.account_helper import change_user_pwd, update_user_login_data
 from conf.wxconf import APPID, APP_SECRET
 import requests
+
 _convention = ConventionValue()
 
 
@@ -280,6 +281,21 @@ def register(request):
         expertise = request.POST.get('expertise', "")
         sproducts = request.POST.get('sproducts', "")
         intent = request.POST.get('intent', "")
+
+        # 用这个字段判断是否给用户默认注册
+        # 有这个字段的请求，是从外部过来的
+        default_register = request.POST.get("default", "")
+        if default_register == "1":
+            email = request.POST.get("email", '')
+            try:
+                # 平台注册帐号来源为53iq
+                Account.objects.create_user(
+                    account=user_id, password=password, stat="open/ex", dproducts=dproducts, email=email)
+                ret = {"code": 0, "msg": "success"}
+            except Exception as e:
+                logging.getLogger('').exception(e)
+                ret = {"code": -1, "msg": str(e)}
+            return JsonResponse(ret)
 
         # 人数为空时，默认为None
         if team_persons == '':
@@ -604,8 +620,8 @@ def forget_pwd(request):
                     del request.session['step1']
                     request.session['step2'] = 'step2'
                     return HttpResponse(json.dumps(
-                            {'status': 1, 'url': '/center/forget_pwd?id=36129a68e34a0c182d4e7ad279e7bd86',
-                             'error': ''}))
+                        {'status': 1, 'url': '/center/forget_pwd?id=36129a68e34a0c182d4e7ad279e7bd86',
+                         'error': ''}))
             else:
                 r = RedisBaseHandler().client
                 e_code = r.get(EMAIL_CHECK_CODE_PREFIX + user_id)
@@ -614,8 +630,8 @@ def forget_pwd(request):
                     del request.session['step1']
                     request.session['step2'] = 'step2'
                     return HttpResponse(json.dumps(
-                            {'status': 1, 'url': '/center/forget_pwd?id=36129a68e34a0c182d4e7ad279e7bd86',
-                             'error': ''}))
+                        {'status': 1, 'url': '/center/forget_pwd?id=36129a68e34a0c182d4e7ad279e7bd86',
+                         'error': ''}))
             return HttpResponse(json.dumps({'status': 0, 'url': '', 'error': '验证码错误'}))
         elif method == 'third':
             new_pwd = request.POST.get('pwd')
@@ -732,7 +748,7 @@ def callback(request):
                     login_status = deal_wxlogin_data(unionid, state)
                 except Exception as e:
                     login_status = False
-                    logging.getLogger('').info('推送微信消息出错'+str(e))
+                    logging.getLogger('').info('推送微信消息出错' + str(e))
                 return render(request, 'center/wx-login-wait.html', locals())
             access_token = ret.get('access_token', None)
             if access_token is None:
@@ -774,12 +790,12 @@ def callback(request):
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
                 return response
             except Exception as e:
-                logging.getLogger('').info("微信登录设置登录cookie出错"+str(e))
+                logging.getLogger('').info("微信登录设置登录cookie出错" + str(e))
             try:
                 Account.objects.create_wx_user(username, '123', openid, nickname)
                 create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
-                logging.getLogger('').info('创建微信账号出错'+str(e), "  nickname:", nickname)
+                logging.getLogger('').info('创建微信账号出错' + str(e), "  nickname:", nickname)
                 return HttpResponse('登录失败，请尝试其他方式登录')
             user_obj = authenticate(username=username, password='123')
             django.contrib.auth.login(request, user_obj)
