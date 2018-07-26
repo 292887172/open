@@ -383,7 +383,7 @@
             <div style="float: left" id="item-team-control">
                 <p style="margin-top: 15px">团队邮箱管理  &nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></p>
                 {% for t in team_info %}
-                <div class="row item-team-user">
+                <div class="row item-team-user item-tmp-team">
                   <div class="col-xs-2">
                     <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
                   </div>
@@ -443,12 +443,12 @@
                 $(".item-team-user").show();
                 length += $(".item-team-user").length;
                 console.log(length);
-                var html = new EJS({url: config.url["team_email"]}).render({"id": length});
+                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": "", "job": "", "email": ""});
                 $("#item-team-control").append(html)
 
             }
         function editTeamEmail() {
-            $(".item-team-user").find("input").removeAttr('disabled').removeClass('ui-edit-disable')
+            $(".item-team-user").find("input").removeAttr('disabled').removeClass('ui-edit-disable');
             $(".ui-del-item").show();
             $(".item-team-user").show()
         }
@@ -615,20 +615,30 @@
                         $("#addTeamSubmit").text('确认');
                     },
                     beforeSend: function () {
-                        $("#submitBtn").text('正在提交...');
+                        $("#addTeamSubmit").text('正在提交...');
 
                     },
                     success: function (response) {
                         response = jQuery.parseJSON(response);
                         console.log(response);
                         if (response['status'] == 'ok') {
-                            bootbox.alert("提交成功")
+                            bootbox.alert("提交成功");
+                            $(".item-tmp-team").remove();
+                            for(var i =0;i<data.length;i++){
+                                name = data[i].name;
+                                job = data[i].job;
+                                email = data[i].email;
+                                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": name, "job": job, "email": email});
+                                $("#item-team-control").append(html)
+                            }
+
+
                         }
                         else{
                             bootbox.alert(response['msg']);
 
                         }
-                        $("#submitBtn").text('确认');
+                        $("#addTeamSubmit").text('确认');
                     }
 
                 });

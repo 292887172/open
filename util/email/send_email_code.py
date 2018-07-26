@@ -4,8 +4,9 @@
 __author__ = 'rdy'
 import smtplib
 from email.mime.text import MIMEText
+from email.header import Header
 from conf.emailconf import *
-
+import logging
 
 def send_mail(to_user, sub, code):
     if len(code) > 7:
@@ -31,16 +32,21 @@ def send_mail(to_user, sub, code):
     me = "53iqCloudDev" + "<" + MAIL_USER + "@" + MAIL_POSTFIX + ">"
     msg = MIMEText(text, _subtype='html', _charset='utf-8')
     msg['Subject'] = sub
-    msg['From'] = me
-    msg['To'] = to_user
+    msg['From'] = Header(me, 'utf-8')
+    msg['To'] = Header(to_user, 'utf-8')
     try:
         server = smtplib.SMTP()
-        server.connect(MAIL_HOST)
-        # server.debuglevel(1)
+        server.connect(MAIL_HOST, 6443)
+        server.debuglevel(1)
         server.login(MAIL_USER, MAIL_PWD)
         server.sendmail(me, to_user, msg.as_string())
         server.close()
         return True
     except Exception as e:
-        del e
+        print(e)
+        logging.getLogger('').info("发送邮件出错"+str(e))
         return False
+
+if __name__ == "__main__":
+    r = send_mail("rendy@53iq.com", '53iq通行证-注册激活', 'https://open.53iq.com/center/active?user=222')
+    print(r)

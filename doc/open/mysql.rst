@@ -23,7 +23,7 @@
       `ebf_account_id` varchar(64) NOT NULL COMMENT '用户账号',
       `ebf_account_from_id` varchar(64) DEFAULT NULL,
       `ebf_account_password` varchar(512) NOT NULL COMMENT '密码',
-      `ebf_account_type` int(3) NOT NULL DEFAULT '0' COMMENT '账号类型（0：普通账号 ，1：运营账号）',
+      `ebf_account_type` int(3) NOT NULL DEFAULT '0' COMMENT '账号类型（0：普通账号 ，1：运营账号, 3:微信账号， 4：默认创建）',
       `ebf_account_email` varchar(128) DEFAULT NULL COMMENT '用户邮箱',
       `ebf_account_phone` varchar(32) DEFAULT NULL COMMENT '手机号',
       `ebf_account_status` int(3) NOT NULL DEFAULT '1' COMMENT '用户状态（0：未通过审核，1：可用）',
