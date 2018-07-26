@@ -17,11 +17,12 @@
     <link rel="stylesheet"
           href="{% static 'bootstrap/bootstrap.css' %}"/>
     <link href="{% static 'css/home/smartsys_main.css' %}" rel="Stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
     <link href="{% static 'css/home/ex.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="head">
-    <div class="container">
+    <div class="layui-container">
         <div class="topleft">
             <a class="logoa" href="#" target="_self">
                 <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
@@ -65,45 +66,50 @@
                     {% endif %}
                 </button>
             </div>
-            <a href="?page=desc">如何快速体验？ ></a>
+            {% if not user.account_id %}
+                <a href="?page=desc" style="margin-right: 20px">智能屏典型案例 ></a>
+            {% endif %}
+            <a>如何快速体验？ ></a>
         </div>
         <div class="u-right">
             <img src="{% static 'image/home/ex/1.jpg' %}">
         </div>
     </div>
-    <div class="down container">
-        <div class="col-md-3 col-lg-3 row1">
-            <div class="d-title">我的厨电<span>+</span></div>
-            <div class="d-txt d-active" data-type="zkx"><span>蒸烤箱</span></div>
-            <div class="d-txt" data-type="xwj"><span>洗碗机</span></div>
-            <div class="d-txt" data-type="yyj"><span>油烟机 集成灶</span></div>
-            <div class="d-txt" data-type="others"><span>其他厨电</span></div>
-        </div>
-        <div class="col-md-3 col-lg-3 row2">
-            <div class="d-title">WiFi屏规格<span>→</span></div>
-            <div class="d-txt size-43 d-active" data-size="4.3"><span>4.3寸</span><img
-                    src="{% static 'image/home/ex/4.3.jpg' %}"></div>
-            <div class="d-txt size-5" data-size="5"><span>5寸</span><img src="{% static 'image/home/ex/5.jpg' %}">
+    <div class="down layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md3 layui-col-lg3 row1">
+                <div class="d-title">我的厨电<span>+</span></div>
+                <div class="d-txt d-active" data-type="zkx"><span>蒸烤箱</span></div>
+                <div class="d-txt" data-type="xwj"><span>洗碗机</span></div>
+                <div class="d-txt" data-type="yyj"><span>油烟机 集成灶</span></div>
+                <div class="d-txt" data-type="others"><span>其他厨电</span></div>
             </div>
-            <div class="d-txt size-68" data-size="6.8"><span>6.8寸</span><img
-                    src="{% static 'image/home/ex/6.8.jpg' %}"></div>
-            <div class="d-txt size-7" data-size="7" style="display: none"><span>7寸</span><img
-                    src="{% static 'image/home/ex/7.jpg' %}"></div>
-        </div>
-        <div class="col-md-4 col-lg-4 row3">
-            <div class="d-title">我的智能屏厨电</div>
-            <div class="d-img-l">
-                <img src="{% static 'image/home/ex/zkx_4.3.jpg' %}">
+            <div class="layui-col-md3 layui-col-lg3 row2">
+                <div class="d-title">WiFi屏规格<span>→</span></div>
+                <div class="d-txt size-43 d-active" data-size="4.3"><span>4.3寸</span><img
+                        src="{% static 'image/home/ex/4.3.jpg' %}"></div>
+                <div class="d-txt size-5" data-size="5"><span>5寸</span><img src="{% static 'image/home/ex/5.jpg' %}">
+                </div>
+                <div class="d-txt size-68" data-size="6.8"><span>6.8寸</span><img
+                        src="{% static 'image/home/ex/6.8.jpg' %}"></div>
+                <div class="d-txt size-7" data-size="7" style="display: none"><span>7寸</span><img
+                        src="{% static 'image/home/ex/7.jpg' %}"></div>
             </div>
-            <div class="d-txt my-name" style="padding: 15px 0">4.3寸智能屏蒸烤箱</div>
-        </div>
-        <div class="col-md-2 col-lg-2 row4">
-            {#            <div class="d-title">方案接入条件</div>#}
-            {#            <a class="d-txt" onclick="jump()"><span class="my-size">4.3</span>寸屏结构要求 ></a>#}
-            {#            <a class="d-txt" onclick="$('.dkb-demand').show()">电控板要求 ></a>#}
-            {#            <div class="d-txt dkb-demand" style="display: none">供电电压5V 2A，一路TTL串口</div>#}
-            <div class="btn-area" style="margin-top: 50%" onclick="next()">
-                <button>下一步方案评估</button>
+            <div class="layui-col-md4 layui-col-lg4 row3">
+                <div class="d-title">我的智能屏厨电</div>
+                <div class="d-img-l">
+                    <img src="{% static 'image/home/ex/zkx_4.3.jpg' %}">
+                </div>
+                <div class="d-txt my-name" style="padding: 15px 0">4.3寸智能屏蒸烤箱</div>
+            </div>
+            <div class="layui-col-md2 layui-col-lg2 row4">
+                {#            <div class="d-title">方案接入条件</div>#}
+                {#            <a class="d-txt" onclick="jump()"><span class="my-size">4.3</span>寸屏结构要求 ></a>#}
+                {#            <a class="d-txt" onclick="$('.dkb-demand').show()">电控板要求 ></a>#}
+                {#            <div class="d-txt dkb-demand" style="display: none">供电电压5V 2A，一路TTL串口</div>#}
+                <div class="btn-area" style="margin-top: 50%" onclick="next()">
+                    <button>下一步方案评估</button>
+                </div>
             </div>
         </div>
     </div>
@@ -146,8 +152,9 @@
             title="回到顶部"/></a>
 </div>
 </body>
-<script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
 <script>
     let type = "zkx";
     let size = "4.3";
@@ -235,8 +242,16 @@
             },
             success: function (res) {
                 if (res === "ok") {
-                    alert("我们已收到你的登记信息，将尽快与你取得联系！");
-                    $('#myModal').modal('hide');
+                    layui.use(['layer', 'form'], function () {
+                        let layer = layui.layer;
+                        layer.open({
+                            title: '提示',
+                            content: '我们已收到你的登记信息，将尽快与你取得联系！',
+                            success: function () {
+                                $('#myModal').modal('hide');
+                            }
+                        });
+                    });
                 }
                 else {
                     msg("登记失败！");

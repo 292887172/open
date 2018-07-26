@@ -16,6 +16,7 @@
 
     <link rel="stylesheet"
           href="{% static 'bootstrap/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
     <link href="{% static 'css/home/smartsys_main.css' %}" rel="Stylesheet" type="text/css"/>
     <link href="{% static 'css/home/smartsys_support.css' %}?v=1" rel="Stylesheet" type="text/css"/>
     <style>
@@ -51,19 +52,73 @@
             background-color: #f46b64;
         }
 
-        .red {
-            color: #f46b64;
+        .sb-title {
+            padding: 30px;
         }
 
-        .apply {
-            text-decoration: underline;
+        .sb-title div {
+            display: inline-block;
+            width: 24%;
+            text-align: center;
+            font-size: 16px;
             cursor: pointer;
+            min-width: 110px;
         }
+
+        @media screen and (max-width: 542px) {
+            .sb-title {
+                padding: 10px;
+            }
+            .sb-title div {
+                margin-top: 20px;
+            }
+        }
+
+        .sb-active span {
+            font-size: 17px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f46b64;
+            color: #333;
+        }
+
+        .sb-list-top {
+            font-size: 19px;
+            padding: 20px;
+            background: none;
+            font-weight: bold;
+        }
+
+        .sb-list-mian {
+            font-size: 16px;
+            line-height: 2em;
+        }
+
+        .sb-list {
+            border: none;
+            padding: 0;
+            padding-top: 10px;
+        }
+
+        .list {
+            padding: 0 60px;
+            font-size: 16px;
+            line-height: 2em;
+        }
+
+        .list li {
+            list-style: inherit;
+        }
+
+        .image img {
+            max-height: 300px;
+            max-width: 100%;
+        }
+
     </style>
 </head>
 <body>
 <div>
-    <div class="container">
+    <div class="layui-container">
         <div class="topleft">
             <a class="logoa" href="#" target="_self">
                 <img src="http://www.53iq.com/static/img/home/130726logo.png"/>
@@ -73,6 +128,12 @@
         <img class="qr-code-img" hidden="hidden" src="http://www.53iq.com/static/img/home/qrcode.jpg">
         <div class="topright">
             <ul class="topmain">
+                {% if user.account_id %}
+                    <li style="margin-right: 8px">{{ user.account_id }}</li>
+                {% else %}
+                    <li><a href="/center/login?next=/ex">登录</a></li>
+                {% endif %}
+                <li>|</li>
                 <li>
                     <a class="weixin">官方微信</a>
                 </li>
@@ -89,40 +150,116 @@
         </div>
     </div>
 </div>
-<div class="content container-fluid">
-    <div class="row">
-        <div class="serverbox col-lg-12 col-md-12">
+<div class="content layui-container">
+    <div class="layui-row">
+        <div class="serverbox layui-col-lg12 layui-col-md12">
             <div class="sb-head">
-                如何快速体验
+                <a style="color: #333" href="/ex">首页</a> > <span style="color: #f46b64">厨电案例</span>
             </div>
-            <div class="sb-list">
-                <div class="sb-list-top">
-                    <b> 一、安装软件工程 </b>
-                </div>
-                <div class="sb-list-mian">
-                    1、下载<a class="red" href="/static/sdk/DCIOT.PKG">智能屏用户界面和交互</a>软件工程DCIOT.PKG；<br>
-                    2、将DCIOT.PKG文件复制 到U盘根目录中<br>
-                    3、U盘接上WiFi屏套件（没有WiFi屏套件，<a class="apply">立即申请</a>） 断电重启；WiFi屏自动进行烧录安装,直到屏上显示：Upgrade
-                    finished即成功；<br>
-                    4、拔出U盘,重启WiFi屏即可完成安装。
-                </div>
+
+            <div class="sb-title">
+                <div class="sb-active" data-c="1"><span>标准蒸烤箱</span></div>
+                <div data-c="2"><span>定制款蒸烤箱</span></div>
+                <div data-c="3"><span>标准洗碗机</span></div>
+                <div data-c="4"><span>定制集成灶</span></div>
             </div>
-            <div class="sb-list">
-                <div class="sb-list-top">
-                    <b>二、智能屏体验</b>
+
+            <div>
+                <div class="1">
+                    <div class="sb-list-mian">
+                        A厂多年来从事蒸烤箱OEM生产，一些厨电品牌通过A厂OEM蒸烤箱，业务发展不错。难点是，这几年来，烤箱一直缺乏创新，只靠外观工程，价格提不起来。<br>
+                        A厂和53iq沟通后，决定和53iq合作研发4.3寸WiFi触摸屏蒸烤箱，用触摸屏替代传统烤箱按键和数码管显示屏，相比传统烤箱乏味的机械按钮，类似iPhone屏的触摸互动使操作体验畅快无比。
+                    </div>
+                    <div class="sb-list-top">
+                        自助结构评估，简单快捷
+                    </div>
+                    <ul class="list">
+                        <li>
+                            首先，要考虑蒸烤箱的结构，在烤箱上边框里是否能放4.3寸WiFi屏，A厂上53iq的厨电评估平台，上面有蒸烤箱的规格和评估指南，A厂很快就了解智能屏的尺寸可以放入蒸烤箱。
+                        </li>
+                        <li>接下去是就检查电源板是否适合智能化，好在A厂的电源板合作商B在原蒸烤箱里已提供了5V供电, 并且有预留1路串口，一切顺畅，电源板和结构完全具备智能化基础条件。</li>
+                    </ul>
+                    <div class="image">
+                        <img src="{% static 'image/home/ex/desc/1.png' %}">
+                    </div>
+                    <div class="sb-list-top">
+                        平台高效助力，UI灵活快速的定制开发
+                    </div>
+                    <ul class="list">
+                        <li>
+                            触摸屏厨电需要精美的UI，A厂希望换成自己的UI界面，于是A厂把设计上传平台，53iq 1天就实现了全新的UI界面，更新在厨电开发平台上供A厂集成。
+                        </li>
+                        <li>后面A厂和B 在厨房开发平台支持下，完成厨电功能协议的配置，B厂用5天时间就实现该控制协议，并完成新电控程序的烧录。</li>
+                        <li>
+                            由于希望蒸烤箱能配上智能菜谱，让烹饪实现真正智能且实用，A厂还设计了手机APP控制页面，放在OEM的厨房智能App中，其中包含免费提供的100道精品智能菜谱，同时厨房社区的上万名厨房用户会持续产出更多的精品智能菜谱。<br>
+                        </li>
+                    </ul>
+                    <div class="sb-list-mian">
+                        A厂装配好整机，进行测试，多次测试-调整后，通过。全新4.3寸WiFi智能屏蒸烤箱，投入了小批量生产，进入市场。
+                    </div>
                 </div>
-                <div class="sb-list-mian">
-                    1、不同品类厨电智能屏体验；<br>
-                    2、基础智能屏用户界面和交互体验；<br>
-                    3、智能菜谱体验；
+                <div class="2" style="display: none">
+                    <div class="sb-list-mian">
+                        厂商A有着10年蒸烤箱OEM生产经验，国内众多品牌厂商由A厂提供OEM蒸烤箱，尤其在近两年适合国人烹饪习惯的“蒸烤箱”渐渐成为消费者选购的新宠，市场普及率迅速提升，A厂在行业迅速上升期抢占市场份额和提高自身产品的竞争力，决定和53iq合作研发5寸WiFi屏蒸烤箱。
+                    </div>
+                    <div class="sb-list-top">
+                        三大智能化改造服务，为开发过程做减法
+                    </div>
+                    <ul class="list">
+                        <li>
+                            5寸WiFi屏蒸烤箱的结构和控制电路的适配度是接入智能屏硬件基础，A通过平台自助评估模型，准确的评估出结构上的适配的尺寸，模具结构上不需要改造调整，但是原电源板没有多余的TTL串口，而连接5寸WiFi屏的电源板必须满足5V2A供电和一路TTL串口通信，由于传统的蒸烤箱控制电路还是采用原有的按键板+电源板模式，53iq
+                            5寸WiFi智能屏相当于替代了按键板，因此A需要配合改造原有电源板。
+                        </li>
+                        <li>
+                            面对80、90后消费主力人群，消费需求转向个性化，是颜控也是重度懒癌，对触摸屏厨电追求精美和流畅易用UI，A厂希望换成自己品牌形象相符的UI界面，于是A厂把设计上传平台，53iq通过用户调研分析的丰富经验
+                            1天就实现了全新的UI界面，更新在厨电开发平台上供A厂集成。
+                        </li>
+                        <div class="image">
+                            <img src="{% static 'image/home/ex/desc/2.png' %}">
+                        </div>
+                        <li>
+                            在做UI的同时，厂商A在厨电开发平台上完成功能协议的配置，53iq负责5寸WiFi屏功能开发，厂商A完成电源板的改造，2周后双方开发结果联合调试，53iq同时为厂商A定制了专属的手机App，支持远程操控和免费的100道精品智能菜谱，多次测试-调整后，通过样机阶段。全新5寸WiFi智能屏蒸烤箱投入了小批量生产，进入市场。
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="sb-list">
-                <div class="sb-list-top">
-                    <b>三、研发评估 </b>
+                <div class="3" style="display: none;">
+                    <div class="sb-list-mian">
+                        厂商C是生产品牌洗碗机的厂商，市场上同类化产品过多，自从某一线大品牌加入洗碗机行业后，导致他们销量和价格严重下滑。在“突破传统，解放双手”的洗碗机潮流下，厂商C找到53iq，想要为用户提供更高效更安全更放心的智能化产品，由于是创新产品，厂商C不想过多研发投入，根据C厂的实际情况评估，确定和53iq共同研发合作6.8寸长条屏水槽式洗碗机。
+                    </div>
+                    <div class="sb-list-top">
+                        合理整合资源加快智能化
+                    </div>
+                    <div class="sb-list-mian">
+                        根据C厂的实际情况，根据53iq平台自助评估模型得出水槽洗碗机在结构上的适配度完全可以满足，可以嵌入6.8寸长条屏，而水槽洗碗机控制电路采用53iq标准产品进行改造。
+                    </div>
+                    <div class="sb-list-mian">
+                        在标准洗碗机UI基础上，厂商C想要定制更吻合自己企业形象的UI，于是将设计要求提交到厨房开发平台，53iq用1天时间完成了全新的UI界面开发的同时，经过2天用户调研和反复探讨调整，在原功能基础上，新增了一键智能洗和DIY模式，可以省去厨房用户每次使用前重复设置的烦恼。
+                    </div>
+                    <div class="sb-list-mian">
+                        与此同时，厂商C在厨电开发平台完成功能协议的配置，电源板工程师对接标准控制协议，2周后，导出开发好的WiFi屏固件双方联合调试，53iq同时定制了厂商专属的手机APP，支持远程进程查看和预约提醒等，反复测试-调整后。全新6.8寸WiFi屏水槽式洗碗机投入了小批量生产，行业内一台最具厨房人情怀的洗碗机进入市场。
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'image/home/ex/desc/3.png' %}">
+                    </div>
                 </div>
-                <div class="sb-list-mian">
-                    根据厨电的实际情况自助评估选择合适方案提交，53iq后24小时内和你联系。
+                <div class="4" style="display: none">
+                    <div class="sb-list-mian">
+                        厂商D是集成灶一线品牌，近几年集成灶每年都保持30%以上的增速，越来越多厂商开始生产或销售集成灶，行业异军突起，以至于厂商D的集成灶市场份额和销售价格在明显下降，危机感超前的厂商D想到53iq创新互联网集成灶来提高市场竞争力。
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'image/home/ex/desc/4.png' %}">
+                    </div>
+                    <div class="sb-list-top">互联网+时代 谁成为下一个集成灶领域赢家</div>
+                    <ul class="list">
+                        <li>
+                            D通过平台自助评估模型，综合评定：6.8寸长条屏最长条屏适合头部窄且长的集成灶结构，厂商不需要投入研发新机型，即可适用，但是原电源板没有多余的TTL串口和5V2A供电来连接WiFi长条屏，传统的蒸烤箱控制电路还是采用原有的按键板+电源板的形式，53iq
+                            5寸WiFi屏相当于替代了按键板，因此D需要配合改造电源板。
+                        </li>
+                        <li>触摸屏厨电需要精美的UI，D厂希望换成自己的UI界面，于是D厂把设计上传平台，53iq 1天就实现了全新的UI界面，更新在厨电开发平台上供D厂集成。</li>
+                        <li>
+                            厂商A在厨电开发平台完成功能功能协议的配置，在接下来的2周时间里，53iq负责6.8寸长条屏功能开发，厂商A完成电源板的改造，2周后双方开发结果联合调试，53iq同时定制了厂商专属的手机APP，支持远程操控和查看厨房状态，并且结合厨房环境融入及时安全告警、在外App关灶提醒等实用功能，多次测试-调整后，通过样机阶段。全新6.8寸长条屏集成灶投入了小批量生产，进入市场。
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -159,8 +296,9 @@
             title="回到顶部"/></a>
 </div>
 </body>
-<script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'bootstrap/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
 <script>
     let weixin = $(".weixin");
     weixin.bind("mouseover", function () {
@@ -197,8 +335,16 @@
             },
             success: function (res) {
                 if (res === "ok") {
-                    alert("我们已收到你的登记信息，将尽快与你取得联系！");
-                    $('#myModal').modal('hide');
+                    layui.use(['layer', 'form'], function () {
+                        let layer = layui.layer;
+                        layer.open({
+                            title: '提示',
+                            content: '我们已收到你的登记信息，将尽快与你取得联系！',
+                            success: function () {
+                                $('#myModal').modal('hide');
+                            }
+                        });
+                    });
                 }
                 else {
                     msg("登记失败！");
@@ -209,6 +355,11 @@
                 $("#loading").hide();
             }
         })
+    });
+    $(".sb-title div").bind("click", function () {
+        $(this).addClass("sb-active").siblings().removeClass("sb-active");
+        let cls = $("." + $(this).data("c"));
+        cls.show().siblings().hide();
     });
 
     function msg(val) {

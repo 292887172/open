@@ -96,8 +96,11 @@
 
 .down {
     background-color: #f7f7f7;
-    padding: 30px 50px;
     width: 100%;
+}
+
+.layui-row {
+    padding: 30px 50px;
 }
 
 .d-title {
