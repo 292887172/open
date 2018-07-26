@@ -151,12 +151,11 @@ angular.module('Product.edit', ['ngRoute'])
 			var url=location.href;
 			var str=url.split("edit");
 			var id;
-			if  (str[1]){
-				id=str[1].split("=")[1];
+			if  (document.getElementById("vid")){
+				id=document.getElementById("vid").value;
 			}
 			else {
-				console.log('xxx')
-				id=document.getElementById("vid").value;
+				id='';
 			}
 			indata.id=id;
 			if(document.getElementsByName("isControl")[0].checked){
@@ -182,8 +181,18 @@ angular.module('Product.edit', ['ngRoute'])
 				data: {"name": "save", "d": JSON.stringify(indata)},
 				success:(function (data) {
 				if (data=="modify_success") {
-					console.log("修改信息成功!");
+					console.log(location.href)
+					var tt = location.href;
+					var p = tt.split("#/")[1];
+					console.log(p)
+					if (p == "argue"){
+						location.reload()
+					}else{
+						location.replace("#/argue")
+					}
+
 					$(".notification-container").html(msg_notice);
+
 				}
 				else if(data=="add_success"){
 

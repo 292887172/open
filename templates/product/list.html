@@ -558,7 +558,11 @@
         </div>
     <div class="wrapper mt20">
     {% fast_create_product  user.developer.developer_id  %}
-    <div class="title-sub" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;margin-bottom: 20px"><span class="old">最新编辑</span>
+    <div class="title-sub" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;margin-bottom: 20px">
+        {% if unpublished_apps %}
+            <span class="old">最新编辑</span>
+        {% endif %}
+
         <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: -7px;text-align: left">
         {% if unpublished_apps %}
             <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
@@ -571,9 +575,9 @@
 
     <div id="loadingDiv" style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none"><div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>
 
-    <div class="goodsBox" style=" margin-top: 0px;height: 165px">
+    <div class="goodsBox " style=" margin-top: 0px;height: 165px;" >
         {% if not unpublished_apps and not keyword %}
-            <div style="text-align: center">
+            <div style="text-align: center;margin-left: 400px;margin-top: 50px">
                 <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
                 <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
                 <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">

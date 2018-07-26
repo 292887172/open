@@ -202,6 +202,7 @@ angular.module('Product.argue', ['ngRoute'])
 				if (data=="modify_success") {
 					console.log("修改信息成功!");
 					$(".notification-container").html(msg_notice);
+					location.reload()
 				}
 				else if(data=="add_success"){
 

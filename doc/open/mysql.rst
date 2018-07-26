@@ -365,6 +365,7 @@
       `ebf_ui_title` varchar(64) DEFAULT '1.0' COMMENT 'ui上传说明（版本v1，v2）',
       `ebf_ui_create_date` datetime DEFAULT NULL COMMENT '创建时间',
       `ebf_ui_update_date` datetime DEFAULT NULL COMMENT '更新时间',
+      `ebf_ui_upload_id` int(2) DEFAULT '0' COMMENT 'ui上传编号',
       PRIMARY KEY (`ebf_ui_id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
