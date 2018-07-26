@@ -51,9 +51,9 @@ var _hmt = _hmt || [];
         background-color: #ff6202
     }
     #header{
-        position: fixed;
-        width:100%;
-        top:0;
+        position: fixed !import;
+        width:100% !import;
+        top:0 !import;
     }
 </style>
 <body>
