@@ -34,12 +34,11 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_user(self, account, password, stat, dproducts='', team_persons=1, expertise="", sproducts="", intent="",
-                    tel='no'):
+                    tel='no', email=''):
         # 最后一个参数为了区分设备管理系统厂商注册过来的电话号码，其他注册没有这个参数
         if not account:
             raise ValueError('Users must have an account id')
         from_id = stat
-        email = ''
         phone = ''
         if str(account).find('@') > 1:
             email = account
