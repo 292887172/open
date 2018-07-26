@@ -805,7 +805,10 @@
         </div>
         <div class="title-sub"></div>
         <div class="title-sub" style="margin-top: 0px;padding-bottom: 10px;overflow: hidden;">
-            <span class="old" style="color: #000;border-left:3px solid #000">最新编辑产品</span>
+            {% if unpublished_apps %}
+                <span class="old" style="color: #000;border-left:3px solid #000">最新编辑产品</span>
+            {% endif %}
+
 
             <ol style="width: 550px;float: right;" class="new-app">
                 <li style="color: #c6c6c6;">模板一键创建：</li>
@@ -844,17 +847,13 @@
 
             <div class="goodsBox" style=" margin-top: 20px;text-align: center;width: 1200px;">
                 {% if  not unpublished_apps and not keyword %}
-                    <div style="text-align: center">
-                        <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
-                        <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
-                        <a href="
-
-
-                                {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
-                           class="btn btn-s-lg btn-success">
-                            <i class="fa fa-plus"></i>
-                            <span class="text">创建产品</span>
-                        </a>
+                    <div style="text-align: center;margin-top: 100px">
+                         <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
+                <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
+                <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
+                    <i class="fa fa-plus"></i>
+                    <span class="text">创建产品</span>
+                </a>
                     </div>
                 {% endif %}
 
@@ -1005,7 +1004,7 @@
 
 
     </script>
-
+    <script src="/static/js/product/bootbox.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
