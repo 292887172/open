@@ -8,7 +8,6 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
-from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
@@ -17,6 +16,8 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
+from common.app_api_helper import ApiHandler
+from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
 from base.const import StatusCode, DefaultProtocol
 from base.const import ConventionValue
@@ -26,9 +27,7 @@ from common.device_fun_helper import add_device_fun
 from conf.commonconf import CLOUD_TOKEN, KEY_URL
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
-from model.center.account import Account
 from model.center.app import App
-from model.center.group import Group
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
 from base.connection import Redis3
@@ -144,7 +143,7 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print(content)
+        print(default_apps)
         return render(request, template, content)
 
     def post():
@@ -359,7 +358,7 @@ def product_add(request):
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,0,
+                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,
                                 app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
@@ -518,20 +517,21 @@ def product_main(request):
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
-            print('opera_data',opera_data)
+
+            if len(id) > 3:
+                id = id.split("#")[0]
+
             edit_data = find(id, opera_data)
-            print(edit_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
             data = find(id, opera_data)
-            print('ddd',data[1])
 
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
-                message_content = '"' + app.app_name + '"' + "新增" + UPDATE_FUN
+                message_content = '"' + app.app_name + '"'  + UPDATE_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
@@ -630,7 +630,7 @@ def product_main(request):
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
-                tt = "add_success"
+                tt = "modify_success"
             save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)
@@ -883,29 +883,22 @@ def portal(request):
 
 @csrf_exempt
 def schedule(request):
-    if request.method == "GET":
-        key = request.GET.get('key', '')
-        print(key)
-        update_list = []
-        try:
-            li_ui = DocUi.objects.filter(ui_key=key)
-            print(li_ui)
-            for i in li_ui:
-                update_dict = {}
+    key = request.GET.get('key', '')
+    print(key)
+    update_list = []
+    try:
+        li_ui = DocUi.objects.filter(ui_key=key)
+        print(li_ui)
+        for i in li_ui:
+            update_dict = {}
 
-                update_dict['id'] = i.ui_upload_id
-                update_dict['url'] = i.ui_content
-                update_list.append(update_dict)
-                print(i.ui_content)
-        except Exception as e:
-            print(e)
-        return HttpResponse(json.dumps(update_list))
-    if request.method == "POST":
-        key = request.POST.get('key', '')
-        num = request.POST.get('num', '')
-
-
-        return HttpResponse('ok')
+            update_dict['id'] = i.ui_upload_id
+            update_dict['url'] = i.ui_content
+            update_list.append(update_dict)
+            print(i.ui_content)
+    except Exception as e:
+        print(e)
+    return HttpResponse(json.dumps(update_list))
 
 
 @csrf_exempt
@@ -931,7 +924,6 @@ def upload_file(request):
         post_data = request.POST.get('name', '')
         key = request.POST.get('key', '')
         id = request.POST.get('id', '')
-        ui_info = request.POST.get('ui_info', '')
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -940,7 +932,7 @@ def upload_file(request):
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info)
+                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id)
             else:
                 r = 1
         except Exception as e:

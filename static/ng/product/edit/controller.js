@@ -151,12 +151,11 @@ angular.module('Product.edit', ['ngRoute'])
 			var url=location.href;
 			var str=url.split("edit");
 			var id;
-			if  (str[1]){
-				id=str[1].split("=")[1];
+			if  (document.getElementById("vid")){
+				id=document.getElementById("vid").value;
 			}
 			else {
-				console.log('xxx')
-				id=document.getElementById("vid").value;
+				id='';
 			}
 			indata.id=id;
 			if(document.getElementsByName("isControl")[0].checked){
