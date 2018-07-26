@@ -885,22 +885,32 @@ def portal(request):
 
 @csrf_exempt
 def schedule(request):
-    key = request.GET.get('key', '')
-    print(key)
-    update_list = []
-    try:
-        li_ui = DocUi.objects.filter(ui_key=key)
-        print(li_ui)
-        for i in li_ui:
-            update_dict = {}
+    if request.method == "GET":
+        key = request.GET.get('key', '')
+        print(key)
+        update_list = []
+        try:
+            li_ui = DocUi.objects.filter(ui_key=key)
+            print(li_ui)
+            for i in li_ui:
+                update_dict = {}
 
-            update_dict['id'] = i.ui_upload_id
-            update_dict['url'] = i.ui_content
-            update_list.append(update_dict)
-            print(i.ui_content)
-    except Exception as e:
-        print(e)
-    return HttpResponse(json.dumps(update_list))
+                update_dict['id'] = i.ui_upload_id
+                update_dict['url'] = i.ui_content
+                update_dict['ack'] = i.ui_ack
+                update_dict['time_stemp'] = i.ui_time_stemp
+                update_list.append(update_dict)
+                print(i.ui_time_stemp)
+        except Exception as e:
+            print(e)
+        return HttpResponse(json.dumps(update_list))
+    if request.method == "POST":
+        key = request.POST.get('key', '')
+        num = request.POST.get('num', '')
+        modele = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
+        if modele:
+            modele.update(ui_ack=int(1))
+        return HttpResponse('ok')
 
 
 @csrf_exempt
@@ -926,6 +936,8 @@ def upload_file(request):
         post_data = request.POST.get('name', '')
         key = request.POST.get('key', '')
         id = request.POST.get('id', '')
+        ui_info = request.POST.get('ui_info', '')
+        ui_time_stemp = request.POST.get('ui_time_stemp','')
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -934,7 +946,7 @@ def upload_file(request):
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id)
+                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info,ui_time_stemp)
             else:
                 r = 1
         except Exception as e:
