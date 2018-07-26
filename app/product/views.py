@@ -30,8 +30,13 @@ from common.util import parse_response, send_test_device_status
 from model.center.app import App
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
+from model.center.group import Group
+from model.center.user_group import UserGroup
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf
+from util.email.send_email_code import send_product_process_email
+from conf.message import BOOK
+
 
 import hashlib
 import time
@@ -907,7 +912,21 @@ def schedule(request):
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
+        location = request.POST.get('location','')
         modele = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
+        a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
+        t = int(num) + int(1)
+        #print('t', t)
+        #print(BOOK[str(t)])  # next_process  暂不考虑9步骤
+        app_name = '' # 1
+        developer = ''
+        for i in a:
+            #print(i.developer_id)
+            #print(i.app_name)
+            app_name = i.app_name
+            developer = i.developer_id
+        # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
+        # 2 4 5 7 8
         if modele:
             modele.update(ui_ack=int(1))
         return HttpResponse('ok')
@@ -938,6 +957,29 @@ def upload_file(request):
         id = request.POST.get('id', '')
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp','')
+        location = request.POST.get('location','')
+        a = App.objects.filter(app_appid__endswith=key)
+        #print(BOOK[id])  # process_name
+        t = int(id) + int(1)
+        #print('t', t)
+        #print(BOOK[str(t)])  # next_process  暂不考虑9步骤
+        # 文件名字file.name
+        #print('user', request.COOKIES['COOKIE_USER_ACCOUNT'])
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+        #print('ww', a)
+
+        b = UserGroup.objects.filter(group__create_user=user1)
+        email_list=[]
+        for i in b:
+            #print('email',i.user_account)
+            email_list.append(i.user_account)
+        app_name=''
+        developer = ''
+        for i in a:
+           # print(i.developer_id)
+           # print(i.app_name)
+            app_name=i.app_name
+            developer=i.developer_id
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -946,7 +988,13 @@ def upload_file(request):
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info,ui_time_stemp)
+                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info, ui_time_stemp)
+                # 获取 邮件通知所需参数
+               # print(app_name,file.name, BOOK[id],BOOK[str(t)],developer, email_list,location, "submit")
+                product_name = app_name+'上传更新提示'
+                # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
+                send_product_process_email(product_name,app_name, BOOK[id],BOOK[str(t)],developer, email_list,location, "submit")
+
             else:
                 r = 1
         except Exception as e:

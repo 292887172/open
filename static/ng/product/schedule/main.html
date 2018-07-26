@@ -299,6 +299,8 @@
 
 
 <script>
+    console.log('1',location.href)
+    console.log('2',window.location.href)
     $('.pull-right').daterangepicker();
     $.ajax({
         url: '/product/schedule',
@@ -331,10 +333,11 @@
     })
     function confirm(that) {
         console.log(document.querySelector(".table").querySelectorAll("tr")[that])
+         var thref = location.href
         $.ajax({
             url:'/product/schedule',
             type:"POST",
-            data:{"num":that,"key":keysss,},
+            data:{"num":that,"key":keysss,"location":thref},
         }).success(function (data) {
             // code 判断
             alert('保存成功，已通知下一环节处理人员');
@@ -363,6 +366,8 @@
         formData.append("id", document.getElementById("get_value").value);
         formData.append("ui_info", document.getElementById("ui_info").value);
         formData.append("ui_time_stemp", time_stemp);
+        var thref = location.href
+        formData.append("location", thref);
 
         if (document.getElementById("file").files[0]) {
             $.ajax({
