@@ -402,7 +402,8 @@
         angular.module('Product.base', ['ngRoute'])
                 .controller('ProductBaseCtrl', ['$scope', function ($scope) {
                     // 应用信息
-                    $scope.app_check_status = "{{ app.check_status }}";
+                    $scope.app_prot = "{{ app.app_prot }}";
+                    $scope.app_check_remarks = "{{ app.check_remarks }}";
                     $scope.visible =
                             "{% if app.check_status == 1 or app.check_status == 2 or app.check_status == 3 %}true{% else %}false{% endif %}";
                     $scope.disabled = $scope.visible;
