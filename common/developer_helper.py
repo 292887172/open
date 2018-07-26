@@ -246,12 +246,14 @@ def fetch_developer_data(developer_id):
 
 
 def update_group_info(user_account, team_info):
+    # 主账号下关联的邮箱自动创建账号可以登录，默认密码123456
 
     try:
         ac = Account.objects.get(account_id=user_account)
         if ac:
             ac.relate_account = team_info
             ac.save()
+
     except Exception as e:
         print(e, '没有相关账户信息')
         pass
@@ -267,6 +269,8 @@ def update_group_info(user_account, team_info):
             for j in team_info:
                 email = j.get("email")
                 if email:
+                    # 默认创建登录账号
+                    create_team_account(email)
                     ug2 = UserGroup(group=g,
                                     user_account=email,
                                     update_date=datetime.datetime.utcnow(),
@@ -284,9 +288,22 @@ def update_group_info(user_account, team_info):
         for j in team_info:
             email = j.get("email")
             if email:
+                create_team_account(email)
                 ug2 = UserGroup(group=g2,
                                 user_account=email,
                                 update_date=datetime.datetime.utcnow(),
                                 create_date=datetime.datetime.utcnow())
                 ug2.save()
         pass
+
+
+def create_team_account(user_id):
+    """
+    默认创建团队成员账号密码初始密码123456
+    :param user_id: 
+    :return: 
+    """
+    a = Account.objects.filter(account_id=user_id)
+    if a.count() == 0:
+        # 还没有账号
+        Account.objects.create_user(user_id, '123456', 4, '')

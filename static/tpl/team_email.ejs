@@ -1,12 +1,24 @@
-<div class="row item-team-user">
+<div class="row item-team-user item-tmp-team">
   <div class="col-xs-2">
-    <input type="text" id="team-username<%= id %>" class="form-control" placeholder="姓名">
+  <% if(name) {%>
+    <input type="text" id="team-username<%= id %>" class="form-control ui-edit-disable" placeholder="姓名" value="<%= name %>" disabled="disabled">
+  <%} else {%>
+    <input type="text" id="team-username<%= id %>" class="form-control" placeholder="姓名" >
+    <% }%>
   </div>
   <div class="col-xs-3">
-    <input type="text" id="team-userjob<%= id %>" class="form-control" placeholder="职务">
+  <% if (job) {%>
+    <input type="text" id="team-userjob<%= id %>" class="form-control ui-edit-disable" placeholder="职务" value="<%= job %>" disabled="disabled">
+  <% } else {%>
+  <input type="email" id="team-userjob<%= id %>" class="form-control" placeholder="职务" >
+    <% }%>
   </div>
   <div class="col-xs-4">
-    <input type="email" id="team-useremail<%= id %>" class="form-control" placeholder="邮箱">
+  <% if (email) {%>
+    <input type="email" id="team-useremail<%= id %>" class="form-control ui-edit-disable" placeholder="邮箱" value="<%= email %>" disabled="disabled">
+  <% } else {%>
+  <input type="email" id="team-useremail<%= id %>" class="form-control" placeholder="邮箱" >
+    <% }%>
   </div>
     <img class="ui-del-item" src="/static/image/product/delete.png" alt="">
 </div>

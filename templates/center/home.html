@@ -122,8 +122,8 @@
         width:100% !important;
         top:0 !important;
     }
-    .item-team-user{
-        height: 50px!important;
+    .item-team-user1{
+        height: 30px!important;
     }
     </style>
 
@@ -270,7 +270,7 @@
                              <div style="" id="item-team-control">
                                  <p style="margin-top: 15px">团队邮箱管理  &nbsp;&nbsp;&nbsp;&nbsp;<a style="float: right" class="btn " type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></p>
 
-                            <div class="row item-team-user" style="height: 100px!important;" >
+                            <div class="row item-team-user1" style="height: 30px!important;" >
                               <div class="col-xs-2">
                                 <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
                               </div>
@@ -283,14 +283,45 @@
                                 <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                             </div>
 			</div>
-                        <div style="float: left;width: 100%">
+                        <div style="float: left;width: 100%;margin-top: 20px">
                             <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认</button>
                         </div>
 		                </div>
             {% endif %}
         {% endif %}
 
-	</div>
+			<div id="tab4" class="tab">
+                <div style="" id="item-team-control">
+                    <p style="margin-top: 15px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;<a style="float: right" class="btn "
+                                                                                  type="button"
+                                                                                  onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            class="" onclick="addTeamEmail()">添加</a></p>
+
+                    <div class="row item-team-user" style="height: 100px!important;">
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control ui-edit-disable" placeholder="姓名"
+                                   value="{{ t.name }}" disabled="disabled">
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control ui-edit-disable" placeholder="职务" value="{{ t.job }}"
+                                   disabled="disabled">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="email" class="form-control ui-edit-disable" placeholder="邮箱"
+                                   value="{{ t.email }}" disabled="disabled">
+                        </div>
+                        <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt=""
+                             style="display: none">
+                    </div>
+                </div>
+                <div style="float: left;width: 100%">
+                    <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="mask" id="mask" style="display:none"></div>
     <div class="pop_win" id="pop_win" style="display:none">
         <div></div>
@@ -328,12 +359,14 @@
                 $(".item-team-user1").show();
                 length += $(".item-team-user1").length;
                 console.log(length);
-                var html = new EJS({url: config.url["team_email"]}).render({"id": length});
+                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": "", "job": "", "email": ""});
                 $("#item-team-control").append(html)
 
             }
         function editTeamEmail() {
+
             $(".item-team-user1").find("input").removeAttr('disabled').removeClass('ui-edit-disable')
+
             $(".ui-del-item").show();
             $(".item-team-user1").show()
         }
@@ -495,20 +528,30 @@
                         $("#addTeamSubmit").text('确认');
                     },
                     beforeSend: function () {
-                        $("#submitBtn").text('正在提交...');
+                        $("#addTeamSubmit").text('正在提交...');
 
                     },
                     success: function (response) {
                         response = jQuery.parseJSON(response);
                         console.log(response);
                         if (response['status'] == 'ok') {
-                            bootbox.alert("提交成功")
+                            bootbox.alert("提交成功");
+                            $(".item-tmp-team").remove();
+                            for(var i =0;i<data.length;i++){
+                                name = data[i].name;
+                                job = data[i].job;
+                                email = data[i].email;
+                                var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": name, "job": job, "email": email});
+                                $("#item-team-control").append(html)
+                            }
+
+
                         }
                         else{
                             bootbox.alert(response['msg']);
 
                         }
-                        $("#submitBtn").text('确认');
+                        $("#addTeamSubmit").text('确认');
                     }
 
                 });
