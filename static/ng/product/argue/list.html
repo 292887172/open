@@ -163,7 +163,7 @@
         position: absolute;
         right: 65px;
         bottom: -55px;
-        z-index: 99;
+        z-index: 1;
     }
     .guanli{
         background-color: #327AB7;
@@ -201,7 +201,7 @@
             <a onclick='export_parameter()' style="cursor:pointer;margin-left: 400px" id='export-protocol' class=''><i class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span style="font-size: 16px;margin-left: 5px;">导出控制协议</span></a>
             <a href='http://doc.53iq.com/#/Protocol/README' style='float: right' target='_blank'>53IQ电控通信协议说明</a>
             <div style="float: right;" class="off-btn">
-                <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202; '>
+                <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202;z-index: 1 '>
                     <option value=0>选择总开关</option>
                 </select>
                 <span class='help-button' style="display: none;" data-rel='popover' data-trigger='hover' data-placement='right' data-content='选择总开关' title='' data-original-title=''>?</span>
@@ -437,7 +437,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup"></div>
@@ -448,7 +448,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup1"></div>
@@ -1034,7 +1034,7 @@
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -1090,12 +1090,12 @@
         group+='	<div class="col-sm-2 col-xs-3">';
         group+='		<input type="text" id="checkData" onblur="check_paramData(this)" onkeypress="return onKeyPress(event)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
-        group+='	<div class="col-sm-1 col-xs-2">';
+        group+='	<div class="col-sm-2 col-xs-3">';
         group+='		<input type="text" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);

@@ -448,7 +448,7 @@
                 group += '	</div>';
                 group += '	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -509,7 +509,7 @@
         group+='	</div>';
         group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="display:none;padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
