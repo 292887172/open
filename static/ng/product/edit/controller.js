@@ -183,6 +183,7 @@ angular.module('Product.edit', ['ngRoute'])
 				if (data=="modify_success") {
 					console.log("修改信息成功!");
 					$(".notification-container").html(msg_notice);
+					location.href="#/argue"
 				}
 				else if(data=="add_success"){
 
