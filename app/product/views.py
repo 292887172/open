@@ -914,21 +914,27 @@ def schedule(request):
         num = request.POST.get('num', '')
         location = request.POST.get('location','')
         modele = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
+        print(modele)
         a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
         t = int(num) + int(1)
-        #print('t', t)
-        #print(BOOK[str(t)])  # next_process  暂不考虑9步骤
         app_name = '' # 1
-        developer = ''
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+
+        b = UserGroup.objects.filter(group__create_user=user1)
+        email_list = []
+        for i in b:
+            email_list.append(i.user_account)
         for i in a:
-            #print(i.developer_id)
-            #print(i.app_name)
             app_name = i.app_name
-            developer = i.developer_id
-        # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
-        # 2 4 5 7 8
+
+        ack_name = app_name + '第'+num + '步操作确认通知'
+        #email_list1 = ['292887172@qq.com', 'liuwu@53iq.com']
+        send_product_process_email(ack_name,app_name,BOOK[num],BOOK[str(t)],user1,email_list1,location,'confirm')
         if modele:
+            print('ee',modele)
             modele.update(ui_ack=int(1))
+
+            App.objects.filter(app_appid__endswith=key).update(app_prot=BOOK[str(int(num)+int(1))])
         return HttpResponse('ok')
 
 
@@ -959,25 +965,15 @@ def upload_file(request):
         ui_time_stemp = request.POST.get('ui_time_stemp','')
         location = request.POST.get('location','')
         a = App.objects.filter(app_appid__endswith=key)
-        #print(BOOK[id])  # process_name
         t = int(id) + int(1)
-        #print('t', t)
-        #print(BOOK[str(t)])  # next_process  暂不考虑9步骤
-        # 文件名字file.name
-        #print('user', request.COOKIES['COOKIE_USER_ACCOUNT'])
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
-        #print('ww', a)
-
         b = UserGroup.objects.filter(group__create_user=user1)
         email_list=[]
         for i in b:
-            #print('email',i.user_account)
             email_list.append(i.user_account)
         app_name=''
         developer = ''
         for i in a:
-           # print(i.developer_id)
-           # print(i.app_name)
             app_name=i.app_name
             developer=i.developer_id
         try:

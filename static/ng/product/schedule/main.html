@@ -155,7 +155,7 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>负责方</th>
+        <th>序号</th>
         <th>任务</th>
         <th>时间</th>
         <th>操作</th>
@@ -165,7 +165,7 @@
     <tbody>
     <tr >
         <th scope="row">1</th>
-        <td>提交蒸烤箱详细技术功能规划书</td>
+        <td>提交详细技术功能规划书</td>
         <td ><input type="text" placeholder="请选择日期" class="form-control pull-right"
                                        id="reservation-1"/>
         </td>
@@ -192,7 +192,7 @@
     </tr>
     <tr>
         <th scope="row">3</th>
-        <td>提交正式蒸烤箱UI和UE</td>
+        <td>提交正式UI和UE</td>
         <td>
             <input type="text" placeholder="请选择日期" class="form-control pull-right"
                                        id="reservation-3"/>
@@ -220,7 +220,7 @@
     </tr>
     <tr>
         <th scope="row">5</th>
-        <td>蒸烤箱应用程序开发</td>
+        <td>应用程序开发</td>
         <td>
             <input type="text" placeholder="请选择日期" class="form-control pull-right"
                                        id="reservation-5"/>
@@ -248,7 +248,7 @@
     </tr>
     <tr>
         <th scope="row">7</th>
-        <td>蒸烤箱控制协议对接</td>
+        <td>控制协议对接</td>
         <td>
             <input type="text" placeholder="请选择日期" class="form-control pull-right"
                                        id="reservation-7"/>
@@ -262,7 +262,7 @@
     </tr>
     <tr>
         <th scope="row">8</th>
-        <td>提供蒸烤箱整机</td>
+        <td>提供整机</td>
         <td>
             <input type="text" placeholder="请选择日期" class="form-control pull-right"
                                        id="reservation-8"/>
@@ -299,8 +299,6 @@
 
 
 <script>
-    console.log('1',location.href)
-    console.log('2',window.location.href)
     $('.pull-right').daterangepicker();
     $.ajax({
         url: '/product/schedule',
@@ -310,10 +308,7 @@
         data = JSON.parse(data)
         console.log('长度',data)
         for (var i = 0, lent = data.length;i<lent;i++){
-            console.log(data[i]['id'])
-            console.log(data[i]['url'])
-            console.log(data[i]['ack'])
-            console.log(data[i]['time_stemp'])
+
             var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
                 ty.setAttribute('href', data[i]['url'])
                 ty.text=data[i]['url'].substring(data[i]['url'].length-8)
@@ -322,6 +317,7 @@
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[1].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("button").style.backgroundColor="#fc5555";
 
             }
             if (data[i]['time_stemp']) {
