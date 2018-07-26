@@ -216,7 +216,7 @@ def get_ui_base_conf(key, conf, cook_ies):
             close_connection(conn)
 
 
-def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0'):
+def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0',ui_time_stemp=""):
     """
     获取自定义ui配置并且保存
     :param key:
@@ -232,14 +232,14 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0
 
         ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key,ui_title=ui_info)
         if not ui_obj:
-            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI',ui_title=ui_info,
+            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI',ui_title=ui_info,ui_time_stemp=ui_time_stemp,
                                  create_date=datetime.datetime.utcnow(),
                                  update_date=datetime.datetime.utcnow())
             Message.objects.create(message_content='UI计划书上传', message_type=int(3), message_handler_type=int(3),
                                    device_key=key, message_sender=cook_ies, message_target=cook_ies,
                                    create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
         else:
-            ui_obj.update(ui_content=file_path, ui_type='UI', ui_title=ui_info,update_date=datetime.datetime.utcnow())
+            ui_obj.update(ui_content=file_path, ui_type='UI', ui_title=ui_info,ui_time_stemp=ui_time_stemp,update_date=datetime.datetime.utcnow())
             Message.objects.create(message_content='UI计划书更新', message_type=int(3), message_handler_type=int(3),
                                    device_key=key, message_sender=cook_ies, message_target=cook_ies,
                                    create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())

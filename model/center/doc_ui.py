@@ -18,6 +18,10 @@ class DocUi(models.Model):
     ui_type = models.CharField(max_length=8, db_column='ebf_ui_type')
     # ui说明（版本代号1.1,1.2）
     ui_title = models.CharField(max_length=64, default=1.0, db_column='ebf_ui_title')
+    # ack 确认 0 非确认 1确认
+    ui_ack = models.IntegerField(max_length=2,default=0,db_column='ebf_ui_ack')
+    # 时间戳
+    ui_time_stemp = models.TextField(max_length=32,db_column='ebf_ui_time_stemp')
     # 创建时间
     create_date = models.DateTimeField(default=datetime.datetime.utcnow(), db_column='ebf_ui_create_date')
     # 更新时间
