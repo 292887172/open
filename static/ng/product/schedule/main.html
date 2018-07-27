@@ -343,7 +343,7 @@
                                                             download="UI"></a>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(9)">确认</button>
+            <button type="button" class="btn " style="color: #a1c0da" onclick="confirm(9)">确认</button>
         </td>
     </tr>
     </tbody>
@@ -377,7 +377,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<a href='" + new_url + "'>" + p + "</a>")
+                    $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
 
 
                 }
@@ -388,7 +388,7 @@
                 var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
 
                 var p = new_url.substring(new_url.length - 6)
-                $(ty).after("<a href='" + new_url + "'>" + p + "</a>")
+                $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
 
 
             }
@@ -399,6 +399,7 @@
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[1].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelectorAll("button")[0].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].innerText="已确认";
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].classList.add("xxxx");
 
             }
@@ -423,6 +424,8 @@
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[1].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[2].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].classList.add("disaplaied");
+            var t = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].innerText="已确认";
+
         })
     }
 
@@ -469,7 +472,7 @@
                             var ty = document.querySelector(".table").querySelectorAll("tr")[idd].querySelectorAll("td")[2].querySelector("a")
 
                             var p = new_url.substring(new_url.length - 6)
-                            $(ty).after("<a href='" + new_url + "'>" + p + "</a>")
+                            $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
 
 
                         }
@@ -480,7 +483,7 @@
                         var ty = document.querySelector(".table").querySelectorAll("tr")[idd].querySelectorAll("td")[2].querySelector("a")
 
                         var p = new_url.substring(new_url.length - 6)
-                        $(ty).after("<a href='" + new_url + "'>" + p + "</a>")
+                        $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
 
 
                     }
