@@ -98,6 +98,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
 
                     $scope.list_mode = [];
+                    console.log('haha',$scope.response.frame_content)
                     for (var i = 0; i < $scope.response.frame_content.length; i++) {
                         if ($scope.response.frame_content[i]['code'] && $scope.response.frame_content[i]['code'].length > 0) {
                             var tmp = {
@@ -106,7 +107,10 @@ angular.module('Product.protocol', ['ngRoute'])
                                 'number': $scope.response.frame_content[i]['number']
                             }
                         } else {
-                            if (parseInt($scope.response.frame_content[i]['length']) > 1) {
+                            if (parseInt($scope.response.frame_content[i]['length']) == 1) {
+                                var t_val = "00"
+                            }
+                            else if (parseInt($scope.response.frame_content[i]['length']) > 1) {
                                 var t_val = "00*" + $scope.response.frame_content[i]['length']
                             }
 
