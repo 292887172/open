@@ -2,11 +2,21 @@
 import datetime
 
 from django import template
-
+from conf.message import BOOK
 
 register = template.Library()
 '''自定义django模板过滤器'''
-
+def xxxx(obj):
+    try:
+        if not obj:
+            obj = 1
+            type = str(int(obj))
+        else:
+            type = str(int(obj))
+        return BOOK[type]
+    except Exception as e:
+        print(e)
+register.filter(xxxx)
 
 def utc2local(obj):
     """
