@@ -99,7 +99,7 @@
     }
     .btn-edit{
         float: right;
-        margin: 3px 10px 0 0;
+        margin: 3px 20% 0 0;
     }
     .ui-sub-item{
         display: none;
@@ -147,6 +147,12 @@
     .cnt_box h3{
         background-color: initial;
     }
+    .ulmenu1 a{
+        color: #333;
+    }
+    a.selected{
+        color: #f35019;
+    }
     </style>
 
 {% endblock %}
@@ -180,7 +186,7 @@
 			            <div id="tab1" class="tab active">
                         <!--已经审核通过，可以修改信息-->
                             <form id="form1" method="post">
-                            <div class="ui-sub-right cnt_box">
+                            <div class="cnt_box">
                                 <h3 style="margin-top: 30px">联系人信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
@@ -220,25 +226,25 @@
                             <form id="form1" method="post">
                             <div class="cnt_box">
                             <h3 style="margin-top: 30px">公司/团队信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
-                            <dl>
+                            <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
-                                <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
+                                <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt ui-edit-txt"
                                                                        value="{{ user.developer.developer_inc|is_none }}"
                                                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
                                                                        maxlength="64">
                                     <span id="coNameErrorId" class="error"></span></dd>
                                 <dt>公司/团队网址：</dt>
-                                <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value="{{ user.developer.developer_site|is_none }}"
+                                <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt ui-edit-txt" value="{{ user.developer.developer_site|is_none }}"
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
                                            maxlength="255">
                                     <span id="coNetUrlErrorId" class=""></span></dd>
                                 <dt>公司/团队所在地：</dt>
-                                <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value="{{ user.developer.developer_address|is_none }}"
+                                <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt ui-edit-txt" value="{{ user.developer.developer_address|is_none }}"
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
                                            maxlength="255">
                                     <span id="coAddressErrorId" class=""></span></dd>
                                 <dt><span>*</span>开发团队人数：</dt>
-                                <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="{{ user.developer.developer_person|is_none }}" class="txt"
+                                <dd><label for="inDevScale"></label><input type="text" name="coDevScale" id="inDevScale" value="{{ user.developer.developer_person|is_none }}" class="txt ui-edit-txt"
                                            onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'开发团队人数'))"
                                            maxlength="64">
                                     <span id="coDevScaleErrorId" class="error"></span></dd>
@@ -254,8 +260,9 @@
 
 
 			            <div id="tab3" class="tab"  >
-                             <div style="" id="item-team-control" style="margin-top: 30px">
-                                 <p style="margin-top: 15px">团队邮箱管理  &nbsp;&nbsp;&nbsp;&nbsp;<a style="float: right" class="btn " type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></p>
+                             <div style="" id="item-team-control " style="margin-top: 30px" class="cnt_box">
+                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn " type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></h3>
+                                 <p style="margin-top: 15px;display: none">团队邮箱管理  </p>
                              {% for t in team_info %}
                                 <div class="row item-team-user" style="height: 30px!important;" >
                                   <div class="col-xs-2">
