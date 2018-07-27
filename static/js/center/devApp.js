@@ -1,5 +1,4 @@
 var DevAppInfo = {
-var DevAppInfo = {
     isNomal: // 检查是否包含特殊字符
         function (value) {
             var pattern = new RegExp("[/\\\\:*?\"<>|;]");

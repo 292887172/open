@@ -366,31 +366,19 @@
         //console.log('长度',data)
         for (var i = 0, lent = data.length; i < lent; i++) {
             //url 处理
-            var list = data[i]['url'].split('[')[1].split(']')[0]
+            var list = data[i]['url'];
 
             // 长度判断
-            if (list.length > 150) {
-                var ttt = list.split(',')
-                for (var ti = 0, tl = ttt.length; ti < tl; ti++) {
+            if (list.length > 0) {
+
+                for (var ti = 0; ti < list.length; ti++) {
                     //console.log(ttt[ti].split("'")[1])
-                    var new_url = ttt[ti].split("'")[1]
+                    var new_url = list[ti];
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
 
                     var p = new_url.substring(new_url.length - 6)
                     $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
-
-
                 }
-            } else {
-
-
-                var new_url = list.split("'")[1];
-                var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
-
-                var p = new_url.substring(new_url.length - 6)
-                $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
-
-
             }
 
 

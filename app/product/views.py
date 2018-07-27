@@ -8,6 +8,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
+from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
@@ -103,8 +104,10 @@ def product_list(request):
             user_apps1 = []
             developer = ''
             keyword = ''
-            print(e)
+            print(e, '问题')
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
+        u = UserGroup.objects.filter(user_account=request.user)
+
         published_apps = []
         unpublished_apps = []
         unpublished_apps1 = []
@@ -139,6 +142,13 @@ def product_list(request):
             elif app1.check_status == _convention.APP_CHECK_FAILED:
                 published_apps.append(app1)
 
+        for i in u:
+            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            for j in relate_app:
+                if len(unpublished_apps) < 3:
+                    unpublished_apps.append(j)
+                else:
+                    published_apps.append(j)
         template = "product/list.html"
         content = dict(
             keyword=keyword,
@@ -147,7 +157,6 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print(content)
         return render(request, template, content)
 
     def post():
@@ -406,7 +415,6 @@ def product_main(request):
         res = request.GET.get("res", "")
         data = request.GET.get("data", '')
         if data:
-            print(data)
             return JsonResponse({"xx": "xxx"})
         if res:
             return HttpResponse(res)
@@ -417,7 +425,8 @@ def product_main(request):
         try:
             user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
-            user_apps = App.objects.filter(developer=developer, app_id=int(app_id))
+            user_apps = App.objects.filter(app_id=int(app_id))
+
             if not user_apps:
                 user_apps = App.objects.filter(developer=DEFAULT_USER, app_id=int(app_id))
         except Exception as e:
@@ -885,25 +894,44 @@ def portal(request):
                 print(times)
 
         return HttpResponse(json.dumps(times))
+    elif request.method == 'POST':
+        action = request.POST.get("action", "")
+        app_id = request.POST.get("app_id", "")
+        email = request.POST.get("email", "")
+        user_account = request.user
+        if action == 'submitEmail':
+            # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
+            # 若有分组，则直接在分组中添加成员
+            team_info = add_team_email(user_account, app_id, email)
+            return HttpResponse(json.dumps({"code": 0, "team_info": team_info}))
+        elif action == 'delEmail':
+            # 删除成员邮箱，先检查是否有自定义分组如果没有，则自动继承默认分组，删除相关成员，更新产品所属组信息
+            # 已有自定义分组，直接删除相关成员信息
+            del_team_email(user_account, app_id, email)
+            return HttpResponse(json.dumps({"code": 0}))
 
 
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
-        print(key)
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
-            print(li_ui)
             for i in li_ui:
                 update_dict = {}
                 update_dict['id'] = i.ui_upload_id
-                update_dict['url'] =i.ui_content
+                try:
+                    url = eval(i.ui_content)
+                except Exception as e:
+                    url = [i.ui_content]
+                if not isinstance(url, list):
+                    url = [url]
+
+                update_dict['url'] = url
                 update_dict['ack'] = i.ui_ack
                 update_dict['time_stemp'] = i.ui_time_stemp
                 update_list.append(update_dict)
-                print(i.ui_time_stemp)
         except Exception as e:
             print(e)
         return HttpResponse(json.dumps(update_list))
