@@ -69,6 +69,7 @@
             .sb-title {
                 padding: 10px;
             }
+
             .sb-title div {
                 margin-top: 20px;
             }
@@ -158,14 +159,14 @@
             </div>
 
             <div class="sb-title">
-                <div class="sb-active" data-c="1"><span>标准蒸烤箱</span></div>
+                <div data-c="1"><span>标准蒸烤箱</span></div>
                 <div data-c="2"><span>定制款蒸烤箱</span></div>
                 <div data-c="3"><span>标准洗碗机</span></div>
                 <div data-c="4"><span>定制集成灶</span></div>
             </div>
 
             <div>
-                <div class="1">
+                <div class="1" style="display: none">
                     <div class="sb-list-mian">
                         A厂多年来从事蒸烤箱OEM生产，一些厨电品牌通过A厂OEM蒸烤箱，业务发展不错。难点是，这几年来，烤箱一直缺乏创新，只靠外观工程，价格提不起来。<br>
                         A厂和53iq沟通后，决定和53iq合作研发4.3寸WiFi触摸屏蒸烤箱，用触摸屏替代传统烤箱按键和数码管显示屏，相比传统烤箱乏味的机械按钮，类似iPhone屏的触摸互动使操作体验畅快无比。
@@ -222,7 +223,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="3" style="display: none;">
+                <div class="3" style="display: none">
                     <div class="sb-list-mian">
                         厂商C是生产品牌洗碗机的厂商，市场上同类化产品过多，自从某一线大品牌加入洗碗机行业后，导致他们销量和价格严重下滑。在“突破传统，解放双手”的洗碗机潮流下，厂商C找到53iq，想要为用户提供更高效更安全更放心的智能化产品，由于是创新产品，厂商C不想过多研发投入，根据C厂的实际情况评估，确定和53iq共同研发合作6.8寸长条屏水槽式洗碗机。
                     </div>
@@ -300,66 +301,70 @@
 <script type="text/javascript" src="{% static 'bootstrap/bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
 <script>
-    let weixin = $(".weixin");
-    weixin.bind("mouseover", function () {
-        $(".qr-code-img").show()
-    });
-    weixin.bind("mouseout", function () {
-        $(".qr-code-img").hide()
-    });
-    $(".apply").click(function () {
-        $('#myModal').modal({show: true});
-    });
-    $("#btnConfirm").click(function () {
-        var product = $("#txtProduct").val();
-        var email = $("#txtEmail").val();
-        var phone = $("#txtPhone").val();
-        if (!/^[0-9a-zA-Z]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$/gi.test(email)) {
-            msg("请输入正确的邮箱！");
-            return false;
-        }
-        if (!/^[0-9\-]{4,13}$/gi.test(phone)) {
-            msg("请输入正确的电话号码！");
-            return false;
-        }
-        if (product == '' || product == '您的产品') {
-            msg("请填写您的产品名称或类型！");
-            return false;
-        }
-        $.ajax({
-            url: location.href,
-            type: "POST",
-            data: {"action": "enroll", "email": email, "phone": phone, 'product': product, 'demand': '无'},
-            beforeSend: function () {
-                $("#loading").show();
-            },
-            success: function (res) {
-                if (res === "ok") {
-                    layui.use(['layer', 'form'], function () {
-                        let layer = layui.layer;
-                        layer.open({
-                            title: '提示',
-                            content: '我们已收到你的登记信息，将尽快与你取得联系！',
-                            success: function () {
-                                $('#myModal').modal('hide');
-                            }
-                        });
-                    });
-                }
-                else {
-                    msg("登记失败！");
-                }
-                $("#loading").hide();
-            },
-            error: function (res) {
-                $("#loading").hide();
+    $(function () {
+        let cat = parseInt("{{ cat }}") - 1;
+        let weixin = $(".weixin");
+        weixin.bind("mouseover", function () {
+            $(".qr-code-img").show()
+        });
+        weixin.bind("mouseout", function () {
+            $(".qr-code-img").hide()
+        });
+        $(".apply").click(function () {
+            $('#myModal').modal({show: true});
+        });
+        $("#btnConfirm").click(function () {
+            var product = $("#txtProduct").val();
+            var email = $("#txtEmail").val();
+            var phone = $("#txtPhone").val();
+            if (!/^[0-9a-zA-Z]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$/gi.test(email)) {
+                msg("请输入正确的邮箱！");
+                return false;
             }
-        })
-    });
-    $(".sb-title div").bind("click", function () {
-        $(this).addClass("sb-active").siblings().removeClass("sb-active");
-        let cls = $("." + $(this).data("c"));
-        cls.show().siblings().hide();
+            if (!/^[0-9\-]{4,13}$/gi.test(phone)) {
+                msg("请输入正确的电话号码！");
+                return false;
+            }
+            if (product == '' || product == '您的产品') {
+                msg("请填写您的产品名称或类型！");
+                return false;
+            }
+            $.ajax({
+                url: location.href,
+                type: "POST",
+                data: {"action": "enroll", "email": email, "phone": phone, 'product': product, 'demand': '无'},
+                beforeSend: function () {
+                    $("#loading").show();
+                },
+                success: function (res) {
+                    if (res === "ok") {
+                        layui.use(['layer', 'form'], function () {
+                            let layer = layui.layer;
+                            layer.open({
+                                title: '提示',
+                                content: '我们已收到你的登记信息，将尽快与你取得联系！',
+                                success: function () {
+                                    $('#myModal').modal('hide');
+                                }
+                            });
+                        });
+                    }
+                    else {
+                        msg("登记失败！");
+                    }
+                    $("#loading").hide();
+                },
+                error: function (res) {
+                    $("#loading").hide();
+                }
+            })
+        });
+        $(".sb-title div").bind("click", function () {
+            $(this).addClass("sb-active").siblings().removeClass("sb-active");
+            let cls = $("." + $(this).data("c"));
+            cls.show().siblings().hide();
+        });
+        $(".sb-title div:eq(" + cat + ")").click();
     });
 
     function msg(val) {
