@@ -926,12 +926,13 @@ def schedule(request):
         ack_name = app_name + '第' + num + '步操作确认通知'
 
         if t >= 9:
-           next_stemp = "量产阶段"
+            next_stemp = "量产阶段"
         else:
-           next_stemp = BOOK[str(t)]
+            next_stemp = BOOK[str(t)]
         email_list1 = ['292887172@qq.com']
         try:
-            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list1, location, 'confirm')
+            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list1, location,
+                                       'confirm')
             Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
                                    message_handler_type=int(5),
                                    device_key=key, message_sender=user1, message_target=user1,
@@ -942,7 +943,9 @@ def schedule(request):
         if modele:
             # 确认操作
             modele.update(ui_ack=int(1))
-            App.objects.filter(app_appid__endswith=key).update(app_prot=BOOK[str(int(num) + int(1))])
+            # 产品进度
+            pp = int(num) + int(1)
+            App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
         return HttpResponse('ok')
 
 
@@ -997,18 +1000,21 @@ def upload_file(request):
                 get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info, ui_time_stemp)
                 product_name = app_name + '上传更新提示'
                 if t >= 9:
-                   next_stemp = "量产阶段"
+                    next_stemp = "量产阶段"
                 else:
-                   next_stemp = BOOK[str(t)]
+                    next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,location, "submit")
-                    Message.objects.create(message_content=BOOK[id]+':'+'已上传', message_type=int(4), message_handler_type=int(4),
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,
+                                               location, "submit")
+                    Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
+                                           message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
                                            create_date=datetime.datetime.utcnow(),
                                            update_date=datetime.datetime.utcnow())
                 except Exception as e:
                     print(e)
+                return HttpResponse(json.dumps({"url": rr['data'], "code": 0}))
             else:
                 r = 1
         except Exception as e:
