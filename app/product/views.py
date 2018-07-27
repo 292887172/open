@@ -37,7 +37,6 @@ from common.mysql_helper import get_ui_static_conf
 from util.email.send_email_code import send_product_process_email
 from conf.message import BOOK
 
-
 import hashlib
 import time
 import json
@@ -365,7 +364,7 @@ def product_add(request):
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
-                                device_conf, app_factory_id, app_group, app_logo, app_product_fast,0,
+                                device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,
                                 app_category_detail2)
             from common.celerytask import add
             r = Redis3(rdb=6).client
@@ -538,7 +537,7 @@ def product_main(request):
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
-                message_content = '"' + app.app_name + '"'  + UPDATE_FUN
+                message_content = '"' + app.app_name + '"' + UPDATE_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
                 edit_data = ''
@@ -899,7 +898,6 @@ def schedule(request):
             print(li_ui)
             for i in li_ui:
                 update_dict = {}
-
                 update_dict['id'] = i.ui_upload_id
                 update_dict['url'] = i.ui_content
                 update_dict['ack'] = i.ui_ack
@@ -912,12 +910,11 @@ def schedule(request):
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
-        location = request.POST.get('location','')
-        modele = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
-        print(modele)
+        location = request.POST.get('location', '')
+        modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
         a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
         t = int(num) + int(1)
-        app_name = '' # 1
+        app_name = ''  # 1
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
 
         b = UserGroup.objects.filter(group__create_user=user1)
@@ -926,15 +923,12 @@ def schedule(request):
             email_list.append(i.user_account)
         for i in a:
             app_name = i.app_name
-
-        ack_name = app_name + '第'+num + '步操作确认通知'
-        #email_list1 = ['292887172@qq.com', 'liuwu@53iq.com']
-        send_product_process_email(ack_name,app_name,BOOK[num],BOOK[str(t)],user1,email_list1,location,'confirm')
+        ack_name = app_name + '第' + num + '步操作确认通知'
+        send_product_process_email(ack_name, app_name, BOOK[num], BOOK[str(t)], user1, email_list, location, 'confirm')
         if modele:
-            print('ee',modele)
+            print('ee', modele)
             modele.update(ui_ack=int(1))
-
-            App.objects.filter(app_appid__endswith=key).update(app_prot=BOOK[str(int(num)+int(1))])
+            App.objects.filter(app_appid__endswith=key).update(app_prot=BOOK[str(int(num) + int(1))])
         return HttpResponse('ok')
 
 
@@ -962,20 +956,20 @@ def upload_file(request):
         key = request.POST.get('key', '')
         id = request.POST.get('id', '')
         ui_info = request.POST.get('ui_info', '')
-        ui_time_stemp = request.POST.get('ui_time_stemp','')
-        location = request.POST.get('location','')
+        ui_time_stemp = request.POST.get('ui_time_stemp', '')
+        location = request.POST.get('location', '')
         a = App.objects.filter(app_appid__endswith=key)
         t = int(id) + int(1)
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         b = UserGroup.objects.filter(group__create_user=user1)
-        email_list=[]
+        email_list = []
         for i in b:
             email_list.append(i.user_account)
-        app_name=''
+        app_name = ''
         developer = ''
         for i in a:
-            app_name=i.app_name
-            developer=i.developer_id
+            app_name = i.app_name
+            developer = i.developer_id
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -985,12 +979,13 @@ def upload_file(request):
                 rr = json.loads(rr)
                 r = rr['code']
                 get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info, ui_time_stemp)
-                # 获取 邮件通知所需参数
-               # print(app_name,file.name, BOOK[id],BOOK[str(t)],developer, email_list,location, "submit")
-                product_name = app_name+'上传更新提示'
+                product_name = app_name + '上传更新提示'
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
-                send_product_process_email(product_name,app_name, BOOK[id],BOOK[str(t)],developer, email_list,location, "submit")
-
+                try:
+                    send_product_process_email(product_name, app_name, BOOK[id], BOOK[str(t)], developer, email_list,
+                                               location, "submit")
+                except Exception as e:
+                    print(e)
             else:
                 r = 1
         except Exception as e:
