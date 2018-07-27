@@ -362,12 +362,12 @@
         // 时间戳
         var id = document.getElementById("get_value").value
         var time_stemp = document.querySelector(".table").querySelectorAll("tr")[id].querySelectorAll("td")[1].querySelector("input").value;
-
+        var idd = document.getElementById("get_value").value
         var formData = new FormData();
         formData.append("file", document.getElementById("file").files[0]);
         formData.append("name", 'upload');
         formData.append("key", keysss);
-        formData.append("id", document.getElementById("get_value").value);
+        formData.append("id", idd);
         formData.append("ui_info", document.getElementById("ui_info").value);
         formData.append("ui_time_stemp", time_stemp);
         var thref = location.href
@@ -381,13 +381,17 @@
                 contentType: false,
                 processData: false,
             }).success(function (data) {
-                if (data == '0') {
-                    document.getElementsByClassName("close")[0].click();
+                data = JSON.parse(data)
+                if (data['code']==0){
+                    console.log('上传成功')
+                     var ty = document.querySelector(".table").querySelectorAll("tr")[idd].querySelectorAll("td")[2].querySelector("a")
+                     ty.setAttribute('href', data['url'])
+                     ty.text=data['url'].substring(data['url'].length-8)
+                     document.getElementsByClassName("close")[0].click();
 
-                    alert('上传成功')
-                } else {
+                     alert('上传成功')
+                }else{
                     document.getElementsByClassName("close")[0].click();
-
                     alert('上传失败')
                 }
 
