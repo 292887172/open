@@ -145,12 +145,46 @@
                     <button @click="up_info">立即登记</button>
                 </div>
             </mt-popup>
+
+        {#评估智能方案#}
+            <div class="plan-assessment">
+                <h3>评估你的智能方案</h3>
+                <div class="power-box">
+                    <p class="titles">电源板 <span>现有厨电电源板的信息</span></p>
+                    <p class="textes">供电电压：<input type="number" title="电压" v-model="voltage">V<input type="number" title="电流" v-model="current">A</p>
+                    <p class="textes">通信方式：
+                        <select name="" class="user-info" v-model="com_mode">
+                            <option value="TTL">TTL</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </p>
+                </div>
+                <i class="plan-line"></i>
+                <div class="power-box">
+                    <p class="titles">厨电结构 <span>可放置WiFi屏的结构空间</span></p>
+                    <p class="textes">长：<input type="number" title="长" v-model="longs">高：<input type="number" title="高" v-model="heights">厚：<input
+                            type="number" title="厚" v-model="thick">mm</p>
+                    <p style="margin: 0.3rem 0">
+                        <img src="/static/image/home/ex/room.png" alt="" style="width: 100%;">
+                    </p>
+                </div>
+                <div class="plan-tips" v-show="upto_info">
+                    <span>评估结果：</span><span v-text="tips_text" class="my-tips"></span>
+                </div>
+                <div class="plan-btn" v-show="!upto_info">
+                    <button class="upto-userinfo" @click="right_up">立即评估</button>
+                </div>
+                <div class="plan-btn" v-show="upto_info">
+                    <button class="again-userinfo" @click="agin_info">重新评估</button>
+                    <button class="upto-userinfo" @click="upto_url">立即开发</button>
+                </div>
+            </div>
         </div>
 {#    {% endif %}#}
     <div class="plan-service">
         <a href="tel:0571-88868856" target="_blank">
             <i><img src="http://storage.56iq.net/group1/M00/46/68/CgoKQ1tYHcSAabUJAAAHuocUmgA407.png" alt=""></i>
-            <p style="text-align: center;font-size: 12px;">电话咨询</p>
+{#            <p style="text-align: center;font-size: 12px;">电话咨询</p>#}
             <p style="text-align: center;font-size: 12px;">0571-88868856</p>
         </a>
     </div>
@@ -196,6 +230,14 @@
             my_email: "",
             my_tel: "",
             open_prompt: false, //提示
+            upto_info:false,  //评估后开发按钮
+            voltage: 0,  //电压
+            current: 0, //电流
+            com_mode: "TTL", //通信方式
+            longs:0,  //长
+            heights:0, //高
+            thick:0,  //厚
+            tips_text:"",
         },
         methods: {
             onMyPlanes: function (picker, values) {
@@ -235,6 +277,52 @@
             open_other: function () {
                 //选择其他
                 this.plan_other = true
+            },
+            right_up:function(){
+                let that = this;
+                let v = Number(that.voltage);
+                let a = Number(that.current);
+                let com = that.com_mode;
+                let long = Number(that.longs);
+                let tall = Number(that.heights);
+                let thick = Number(that.thick);
+                console.log(v,a,com)
+                let result = '';
+                if ((v !== 5 || a !== 2) && com === 'TTL') {
+                    result += "由于供电未采用5V2A，电源板需要重新改造，";
+                } else if ((v !== 5 || a !== 2) && com !== 'TTL') {
+                    result += "由于供电未采用5V2A，通信方式未采用TTL串，电源板需要重新改造，";
+                } else if ((v === 5 && a === 2) && com !== 'TTL') {
+                    result += "由于通信方式未采用TTL串，电源板需要重新改造，";
+                } else {
+
+                }
+                result += '结构尺寸适合：' + calc(long, tall, thick);
+
+                that.tips_text = result;
+                that.upto_info = true;
+
+                function calc(a, b, c) {
+                    let arr = [];
+                    if (a > 121.9 && b > 74.7 && c > 14.3) arr.push("4.3寸");
+                    if (a > 143.7 && b > 81 && c > 16.4) arr.push("5寸");
+                    if (a > 198.8 && b > 66.6 && c > 16.8) arr.push("6.8寸");
+                    if (a > 188.9 && b > 105.2 && c > 17) arr.push("7寸");
+
+                    if (arr.length) {
+                        return arr.join("、");
+                    } else {
+                        return '暂无';
+                    }
+                }
+            },
+            agin_info:function(){
+                let that = this;
+                that.tips_text = "";
+                that.upto_info = false;
+            },
+            upto_url:function(){
+                location.href = "/center/login?next=/ex";
             },
             up_info: function () {
                 //提交信息
