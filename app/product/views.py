@@ -1005,8 +1005,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    #send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,
-                    #                           location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,
+                                               location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
