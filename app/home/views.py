@@ -230,6 +230,7 @@ def ex(request):
     if request.method == "GET":
         page = request.GET.get('page', "")
         if page == "desc":
+            cat = request.GET.get("cat", "1")
             return render(request, 'home/ex_desc.html', locals())
         if is_mobile(request):
             return render(request, 'home/experience-mobile.html', locals())
