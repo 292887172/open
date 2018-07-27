@@ -3,13 +3,29 @@
 import zipfile
 import os
 import re
+from pathlib import Path
+import shutil
 
 
-def unzip(path):
-    zip_file = zipfile.ZipFile(path)
-    for names in zip_file.namelist():
-        zip_file.extract(names)
-    zip_file.close()
+def unzip(project_name):
+    project_path = os.path.join(os.getcwd(), project_name)
+    if os.path.isdir(project_path):
+        return
+    else:
+        project_file_path = project_path + '.zip'
+
+        with zipfile.ZipFile(project_file_path, 'r') as file:
+            for item in file.namelist():
+                extracted_path = Path(file.extract(item))
+                extracted_path.rename(item.encode('cp437').decode('gbk'))
+        del_output(project_name)
+
+
+def del_output(project_name):
+    output_path = os.path.join(os.getcwd(), project_name, 'output')
+    if os.path.isdir(output_path):
+        shutil.rmtree(output_path)
+    os.makedirs(output_path)
 
 
 def get_personal_project(project_name, new_key):
@@ -19,6 +35,9 @@ def get_personal_project(project_name, new_key):
     :return: 以 (项目名_用户的key.zip) 形式的压缩包
     """
     # 项目文件夹的路径，（项目以文件夹形式存放，方便后续生成指定压缩包）此py文件与项目文件放在同一目录下
+
+    unzip(project_name)
+
     project_path = os.getcwd()
     personal_path = os.path.join(project_path, project_name + '_' + new_key + '.zip')
     main_lua_path = os.path.join(project_path, project_name, 'main.lua')
@@ -40,6 +59,10 @@ def get_personal_project(project_name, new_key):
             file_path = os.path.join(folder, item)
             file_name = file_path.replace(project_path, '')
             zip_file.write(file_path, file_name)
+        if len(file) == 0:
+            file_path = folder.replace(project_path, '')
+            zip_file.write(folder, file_path)
+
     zip_file.close()
 
 
@@ -47,6 +70,5 @@ if __name__ == '__main__':
     """备注
     main.lua 使用utf-8编码进行存放
     """
-
-    get_personal_project('WiFiIot', '123123123')
-    # un_zip('WiFiIot.zip')
+    get_personal_project('WiFiIot', 'keyqwerty')
+    # del_output('WiFiIot')
