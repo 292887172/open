@@ -216,7 +216,7 @@ def get_ui_base_conf(key, conf, cook_ies):
             close_connection(conn)
 
 
-def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0',ui_time_stemp=""):
+def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.0', ui_time_stemp=""):
     """
     获取自定义ui配置并且保存
     :param key:
@@ -230,14 +230,32 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0,ui_info='1.0
         # 暂时未知该数据是否未外包使用，故咱放置在此
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
 
-        ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key,ui_title=ui_info)
+        ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key, ui_title=ui_info)
         if not ui_obj:
-            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI',ui_title=ui_info,ui_time_stemp=ui_time_stemp,
+            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=file_path, ui_type='UI', ui_title=ui_info,
+                                 ui_time_stemp=ui_time_stemp,
                                  create_date=datetime.datetime.utcnow(),
                                  update_date=datetime.datetime.utcnow())
 
         else:
-            ui_obj.update(ui_content=file_path, ui_type='UI', ui_title=ui_info,ui_time_stemp=ui_time_stemp,update_date=datetime.datetime.utcnow())
+            # 上传多个url 判断
+
+            for i in ui_obj:
+
+                url_list = eval(i.ui_content)
+                print(type(url_list))
+                if type(url_list) == list:
+
+                    url_list.append(file_path[0])
+                    ui_obj.update(ui_content=url_list, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                                  update_date=datetime.datetime.utcnow())
+
+                else:
+                    url_list1 = []
+                    url_list1.append(url_list)
+                    ui_obj.update(ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                                  update_date=datetime.datetime.utcnow())
+
 
 
 
@@ -288,7 +306,7 @@ def modify_ui_conf(key, conf, conn, cook_ies):
     :return: 
     """
     sql = "UPDATE ebt_device_page_conf SET ebf_page_conf = '%s', ebf_ui_update_date = '%s' WHERE ebf_device_key = '%s'" % (
-    conf, datetime.datetime.utcnow(), key)
+        conf, datetime.datetime.utcnow(), key)
     try:
         Message.objects.create(message_content='UI更新', message_type=int(3), message_handler_type=int(3), device_key=key,
                                message_sender=cook_ies, message_target=cook_ies, create_date=datetime.datetime.utcnow(),
