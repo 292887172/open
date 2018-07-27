@@ -899,7 +899,7 @@ def schedule(request):
             for i in li_ui:
                 update_dict = {}
                 update_dict['id'] = i.ui_upload_id
-                update_dict['url'] = i.ui_content
+                update_dict['url'] =i.ui_content
                 update_dict['ack'] = i.ui_ack
                 update_dict['time_stemp'] = i.ui_time_stemp
                 update_list.append(update_dict)
@@ -997,7 +997,9 @@ def upload_file(request):
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
-                get_ui_static_conf(key, post_data, rr['data'], cook_ies, id, ui_info, ui_time_stemp)
+                list_url = []
+                list_url.append(rr['data'])
+                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp)
                 product_name = app_name + '上传更新提示'
                 if t >= 9:
                     next_stemp = "量产阶段"
@@ -1005,8 +1007,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,
-                                               location, "submit")
+                    #send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,
+                    #                           location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
@@ -1014,7 +1016,12 @@ def upload_file(request):
                                            update_date=datetime.datetime.utcnow())
                 except Exception as e:
                     print(e)
-                return HttpResponse(json.dumps({"url": rr['data'], "code": 0}))
+                dd = ''
+                p = DocUi.objects.filter(ui_key=key, ui_upload_id=id)
+                for i in p:
+                    dd = i.ui_content
+
+                return HttpResponse(json.dumps({"url": dd, "code": 0}))
             else:
                 r = 1
         except Exception as e:
