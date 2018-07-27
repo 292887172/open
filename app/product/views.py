@@ -929,8 +929,9 @@ def schedule(request):
            next_stemp = "量产阶段"
         else:
            next_stemp = BOOK[str(t)]
+        email_list1 = ['292887172@qq.com']
         try:
-            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location, 'confirm')
+            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list1, location, 'confirm')
             Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
                                    message_handler_type=int(5),
                                    device_key=key, message_sender=user1, message_target=user1,
@@ -980,9 +981,11 @@ def upload_file(request):
             email_list.append(i.user_account)
         app_name = ''
         developer = ''
+
         for i in a:
             app_name = i.app_name
             developer = i.developer_id
+        email_list1 = ['292887172@qq.com']
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -999,7 +1002,7 @@ def upload_file(request):
                    next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list1,location, "submit")
                     Message.objects.create(message_content=BOOK[id]+':'+'已上传', message_type=int(4), message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
                                            create_date=datetime.datetime.utcnow(),
