@@ -12,7 +12,8 @@ SESSION_TIMEOUT = 60 * 120
 HOST_DOMAIN = 'http://localhost:8000'
 
 # 云存储token值
-CLOUD_TOKEN = "5630841e6f43f668994af13c"
+CLOUD_TOKEN = "562f584e6f43f646adb17dfa"
+# CLOUD_TOKEN = "5630841e6f43f668994af13c"
 
 # 消息验证服务器接口地址
 VALIDATE_URL = "http://localhost:8080/messages/verify_message"
