@@ -133,6 +133,7 @@
       `ebf_app_is_cloudmenu_device` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是云菜谱产品（0：否，1：是）',
       `ebf_app_create_source` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'App创建来源（0：手动创建，1：模板创建）',
       `ebf_group_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目所属组id',
+      `ebf_app_prot` varchar(64) DEFAULT '提交详细技术功能规划书' COMMENT '详细技术功能规划书',
       PRIMARY KEY (`ebf_app_id`),
       KEY `Index_1` (`ebf_developer_id`),
       CONSTRAINT `FK_Reference_6` FOREIGN KEY (`ebf_developer_id`) REFERENCES `ebt_developer` (`ebf_developer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
