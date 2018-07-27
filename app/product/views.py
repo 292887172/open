@@ -930,7 +930,7 @@ def schedule(request):
         else:
            next_stemp = BOOK[str(t)]
         try:
-            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location, 'confirm')
+            #send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location, 'confirm')
             Message.objects.create(message_content=BOOK[id] + '已完成', message_type=int(5),
                                    message_handler_type=int(5),
                                    device_key=key, message_sender=user1, message_target=user1,
