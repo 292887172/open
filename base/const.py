@@ -182,7 +182,7 @@ class DefaultProtocol(object):
                           "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
                                   ]},
                          {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
-                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
+                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 1,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
                                    {"value": "01", "desc": "握手帧", "type": "handshake"},
                                    {"value": "20", "desc": "查询帧", "type": "query"},
@@ -208,7 +208,7 @@ class DefaultProtocol(object):
                           "code": [{"value": "A55A", "desc": "发送码", "type": "send"}
                                    ]},
                          {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
-                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 2,
+                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 1,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
                                    {"value": "31", "desc": "控制帧", "type": "control"},
                                    {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
