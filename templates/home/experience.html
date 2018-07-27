@@ -148,7 +148,7 @@
                     </div>
                     <div class="long-input">
                         长：<input type="number" title="长" id="long">
-                        高：<input type="number" title="高" id="tall">
+                        宽：<input type="number" title="宽" id="tall">
                         厚：<input type="number" title="厚" id="thick">mm
                     </div>
                     <div>
@@ -161,9 +161,9 @@
         <div class="layui-row" style="padding-top: 0">
             <div class="eva-result" style="display: none">评估结果：<span style="color: #f46b64"></span></div>
             <div class="btn-area" style="text-align: center;">
-                <button class="layui-btn eva-btn init">立即评估</button>
+                <button class="layui-btn eva-btn">立即评估</button>
                 <div class="after-eva" style="display: none">
-                    <button class="layui-btn eva-btn">重新评估</button>
+                    <button class="layui-btn reset">重新评估</button>
                     <button class="layui-btn ins">立即开发</button>
                 </div>
             </div>
@@ -327,6 +327,12 @@
         location.href = "/center/login?next=/ex";
     });
 
+    $(".reset").bind("click", function () {
+        $(".eva-result").hide();
+        $(".eva-btn").show();
+        $(".after-eva").hide();
+    });
+
     $(".eva-btn").bind("click", function () {
         let v = parseFloat($("#v").val().trim());
         let a = parseFloat($("#a").val().trim());
@@ -349,7 +355,7 @@
 
         function showResult(msg) {
             $(".eva-result").show().find("span").text(msg);
-            $(".init").hide();
+            $(".eva-btn").hide();
             $(".after-eva").show();
         }
 
