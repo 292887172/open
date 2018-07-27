@@ -915,19 +915,23 @@ def portal(request):
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
-        print(key)
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
-            print(li_ui)
             for i in li_ui:
                 update_dict = {}
                 update_dict['id'] = i.ui_upload_id
-                update_dict['url'] =i.ui_content
+                try:
+                    url = eval(i.ui_content)
+                except Exception as e:
+                    url = [i.ui_content]
+                if not isinstance(url, list):
+                    url = [url]
+
+                update_dict['url'] = url
                 update_dict['ack'] = i.ui_ack
                 update_dict['time_stemp'] = i.ui_time_stemp
                 update_list.append(update_dict)
-                print(i.ui_time_stemp)
         except Exception as e:
             print(e)
         return HttpResponse(json.dumps(update_list))
