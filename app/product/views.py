@@ -924,14 +924,15 @@ def schedule(request):
         for i in a:
             app_name = i.app_name
         ack_name = app_name + '第' + num + '步操作确认通知'
-        # if t >= 9:
-        #    next_stemp = "量产阶段"
-        # else:
-        #    next_stemp = BOOK[str(t)]
+
+        if t >= 9:
+           next_stemp = "量产阶段"
+        else:
+           next_stemp = BOOK[str(t)]
         try:
             send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location, 'confirm')
-            Message.objects.create(message_content='项目进度:' + BOOK[id] + '' + '已完成', message_type=int(4),
-                                   message_handler_type=int(4),
+            Message.objects.create(message_content=BOOK[id] + '已完成', message_type=int(5),
+                                   message_handler_type=int(5),
                                    device_key=key, message_sender=user1, message_target=user1,
                                    create_date=datetime.datetime.utcnow(),
                                    update_date=datetime.datetime.utcnow())
@@ -998,8 +999,8 @@ def upload_file(request):
                    next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, developer, email_list,location, "submit")
-                    Message.objects.create(message_content='项目进度:'+BOOK[id]+''+'已上传文件', message_type=int(4), message_handler_type=int(4),
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    Message.objects.create(message_content=BOOK[id]+':'+'已上传', message_type=int(4), message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
                                            create_date=datetime.datetime.utcnow(),
                                            update_date=datetime.datetime.utcnow())
