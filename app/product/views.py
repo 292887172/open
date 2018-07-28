@@ -1066,20 +1066,26 @@ def upload_file(request):
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
-        a = App.objects.filter(app_appid__endswith=key)
+
         t = int(id) + int(1)
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         b = UserGroup.objects.filter(group__create_user=user1)
+        a = App.objects.filter(app_appid__endswith=key)
         email_list = []
-        for i in b:
-            email_list.append(i.user_account)
         app_name = ''
         developer = ''
-
+        group_id=''
         for i in a:
             app_name = i.app_name
+            print('组id', i.group_id)
+            group_id = i.group_id
             developer = i.developer_id
-
+        try:
+            b = UserGroup.objects.filter(group__group_id=group_id)
+            for i in b:
+                print(i.user_account)
+                email_list.append(i.user_account)
+        except Exception as e:
         try:
             # 上传UI文件
             if post_data == 'upload':
