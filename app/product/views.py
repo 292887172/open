@@ -34,7 +34,7 @@ from model.center.doc_ui import DocUi
 from model.center.group import Group
 from model.center.user_group import UserGroup
 from base.connection import Redis3
-from common.mysql_helper import get_ui_static_conf
+from common.mysql_helper import get_ui_static_conf,remove_up_url
 from util.email.send_email_code import send_product_process_email
 from conf.message import BOOK
 
@@ -915,12 +915,16 @@ def portal(request):
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
+        print(key)
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
             for i in li_ui:
                 update_dict = {}
                 update_dict['id'] = i.ui_upload_id
+                update_dict['remark'] = i.ui_remark
+                update_dict['party'] = i.ui_party
+
                 try:
                     url = eval(i.ui_content)
                 except Exception as e:
@@ -931,50 +935,96 @@ def schedule(request):
                 update_dict['url'] = url
                 update_dict['ack'] = i.ui_ack
                 update_dict['time_stemp'] = i.ui_time_stemp
+
                 update_list.append(update_dict)
+
         except Exception as e:
             print(e)
+        print(update_list)
         return HttpResponse(json.dumps(update_list))
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
         location = request.POST.get('location', '')
-        modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
-        a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
-        t = int(num) + int(1)
-        app_name = ''  # 1
-        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+        # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
+        action = request.POST.get('action','')
+        if action == 'del':
+            # 删除下载链接
+            del_id = request.POST.get('del_id', '')
+            del_url = request.POST.get('del_url', '')
+            if del_id:
+                del_id = int(del_id) + 1
+            remove_up_url(key, del_id, del_url)
+            return HttpResponse('ok')
+        elif action =='remark':
+            # 备注信息
+            remark_value = request.POST.get('value','')
+            remark_id = request.POST.get('id','')
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=remark_id)
+            # 判断是否存在当前计划书id的数据
+            if ddd:
+                ddd.update(ui_remark=remark_value)
+            else:
+                DocUi.objects.create(ui_time_stemp='',ui_party='',ui_remark=remark_value,ui_upload_id=remark_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+            return HttpResponse("success")
+        elif action =='party':
+            # 负责方
+            party_value = request.POST.get('value','')
+            party_id = request.POST.get('id','')
 
-        b = UserGroup.objects.filter(group__create_user=user1)
-        email_list = []
-        for i in b:
-            email_list.append(i.user_account)
-        for i in a:
-            app_name = i.app_name
-        ack_name = app_name + '第' + num + '步操作确认通知'
-
-        if t >= 9:
-            next_stemp = "量产阶段"
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=party_id)
+            if ddd:
+                ddd.update(ui_party=party_value)
+            else:
+                DocUi.objects.create(ui_time_stemp='',ui_party=party_value,ui_remark='',ui_upload_id=party_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+            return HttpResponse("success")
+        elif action =='time_strmp':
+            # 时间搓
+            time_value = request.POST.get('value','')
+            time_id = request.POST.get('id','')
+            ddd=DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
+            if ddd:
+                ddd.update(ui_time_stemp=time_value)
+            else:
+                DocUi.objects.create(ui_time_stemp=time_value,ui_party='',ui_remark='',ui_upload_id=time_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+            return HttpResponse("success")
         else:
-            next_stemp = BOOK[str(t)]
+            modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
+            a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
+            t = int(num) + int(1)
+            app_name = ''  # 1
+            user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
 
-        try:
-            send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location,
-                                       'confirm')
-            Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
-                                   message_handler_type=int(5),
-                                   device_key=key, message_sender=user1, message_target=user1,
-                                   create_date=datetime.datetime.utcnow(),
-                                   update_date=datetime.datetime.utcnow())
-        except Exception as e:
-            print(e)
-        if modele:
-            # 确认操作
-            modele.update(ui_ack=int(1))
-            # 产品进度
-            pp = int(num) + int(1)
-            App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
-        return HttpResponse('ok')
+            b = UserGroup.objects.filter(group__create_user=user1)
+            email_list = []
+            for i in b:
+                email_list.append(i.user_account)
+            for i in a:
+                app_name = i.app_name
+            ack_name = app_name + '第' + num + '步操作确认通知'
+
+            if t >= 9:
+                next_stemp = "量产阶段"
+            else:
+                next_stemp = BOOK[str(t)]
+
+            try:
+                send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location,'confirm')
+                Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+            except Exception as e:
+                print(e)
+
+            if modele:
+                # 确认操作
+                modele.update(ui_ack=int(1))
+                # 产品进度
+                pp = int(num) + int(1)
+                App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
+            return HttpResponse('ok')
 
 
 @csrf_exempt
@@ -1035,8 +1085,7 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
-                                               location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
