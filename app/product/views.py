@@ -954,7 +954,7 @@ def schedule(request):
             del_id = request.POST.get('del_id', '')
             del_url = request.POST.get('del_url', '')
             if del_id:
-                del_id = int(del_id) + 1
+                del_id = int(del_id)
             remove_up_url(key, del_id, del_url)
             return HttpResponse('ok')
         elif action =='remark':
@@ -1086,6 +1086,7 @@ def upload_file(request):
                 print(i.user_account)
                 email_list.append(i.user_account)
         except Exception as e:
+            print(e)
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -1123,7 +1124,7 @@ def upload_file(request):
         except Exception as e:
             r = 1
             print(e)
-        return HttpResponse(json.dumps(r))
+        return HttpResponse(json.dumps({"code":0}))
 
 
 def wx_scan_code(request):

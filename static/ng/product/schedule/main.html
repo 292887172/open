@@ -397,7 +397,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ i +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -410,7 +410,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ i +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -440,7 +440,7 @@
 
     })
     function Deleted(c,b) {
-
+        console.log(c,b)
        console.log(c.parentNode.getElementsByTagName("a")[0].href,b)
         var del_url = c.parentNode.getElementsByTagName("a")[0].href
        $.ajax({
