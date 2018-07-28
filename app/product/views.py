@@ -945,6 +945,7 @@ def schedule(request):
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
+        print(num)
         location = request.POST.get('location', '')
         # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
         action = request.POST.get('action','')
@@ -953,7 +954,7 @@ def schedule(request):
             del_id = request.POST.get('del_id', '')
             del_url = request.POST.get('del_url', '')
             if del_id:
-                del_id = int(del_id) + 1
+                del_id = int(del_id)
             remove_up_url(key, del_id, del_url)
             return HttpResponse('ok')
         elif action =='remark':
@@ -995,14 +996,22 @@ def schedule(request):
             app_name = ''  # 1
             user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
 
-            b = UserGroup.objects.filter(group__create_user=user1)
             email_list = []
-            for i in b:
-                email_list.append(i.user_account)
+
+            group_id =''
             for i in a:
                 app_name = i.app_name
+                print('组id', i.group_id)
+                group_id = i.group_id
             ack_name = app_name + '第' + num + '步操作确认通知'
-
+            try:
+                b = UserGroup.objects.filter(group__group_id=group_id)
+                for i in b:
+                    print(i.user_account)
+                    email_list.append(i.user_account)
+            except Exception as e:
+                print(e)
+                print('没有成员')
             if t >= 9:
                 next_stemp = "量产阶段"
             else:
@@ -1024,6 +1033,10 @@ def schedule(request):
                 # 产品进度
                 pp = int(num) + int(1)
                 App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
+            else:
+
+                DocUi.objects.create(ui_ack=int(1),ui_upload_id=num,ui_time_stemp='',ui_party='',ui_remark='', ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+
             return HttpResponse('ok')
 
 
@@ -1053,20 +1066,27 @@ def upload_file(request):
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
-        a = App.objects.filter(app_appid__endswith=key)
+
         t = int(id) + int(1)
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         b = UserGroup.objects.filter(group__create_user=user1)
+        a = App.objects.filter(app_appid__endswith=key)
         email_list = []
-        for i in b:
-            email_list.append(i.user_account)
         app_name = ''
         developer = ''
-
+        group_id=''
         for i in a:
             app_name = i.app_name
+            print('组id', i.group_id)
+            group_id = i.group_id
             developer = i.developer_id
-
+        try:
+            b = UserGroup.objects.filter(group__group_id=group_id)
+            for i in b:
+                print(i.user_account)
+                email_list.append(i.user_account)
+        except Exception as e:
+            print(e)
         try:
             # 上传UI文件
             if post_data == 'upload':
@@ -1104,7 +1124,7 @@ def upload_file(request):
         except Exception as e:
             r = 1
             print(e)
-        return HttpResponse(json.dumps(r))
+        return HttpResponse(json.dumps({"code":0}))
 
 
 def wx_scan_code(request):
