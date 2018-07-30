@@ -182,6 +182,33 @@
     #doUpload:hover{
         background-color: #9dabbb !important;
     }
+    .my_container{
+        position: relative;
+        display: none;
+        text-align: left;
+        width: 100%;
+        height: 15px;
+        background-color: gray;
+    }
+    #progress{
+        text-align: center;
+        font-size: 12px;
+        line-height: 1;
+        height: 15px;
+        background-color: orange;
+        display: inline-block;
+    }
+    #progress-text{
+        position: absolute;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-size: 12px;
+        line-height: 1;
+    }
 </style>
 
 <div class="title-sub " style="text-align: center;font-size: larger">
@@ -198,6 +225,10 @@
                 <h4 class="modal-title" id="myModalLabel">
                     上传文件
                 </h4>
+            </div>
+            <div class="my_container">
+                <span id="progress"></span>
+                <span id="progress-text">0%</span>
             </div>
             <div class="modal-body">
 
@@ -593,13 +624,18 @@
                 data: formData,
                 contentType: false,
                 processData: false,
+                xhr:function () {
+                    console.log("开始上传")
+                  var myXhr = $.ajaxSettings.xhr();
+                  if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
+                  }
+                  return myXhr
+                },
             }).success(function (data) {
+                console.log("上传成功")
                 data = JSON.parse(data)
                 if (data['code'] == 0) {
-
-
-
-
                     document.getElementsByClassName("close")[0].click();
                     window.location.reload()
                     bootbox.alert('上传成功')
@@ -607,11 +643,16 @@
                     document.getElementsByClassName("close")[0].click();
                     bootbox.alert('上传失败')
                 }
-
-
             })
         } else {
             bootbox.alert('不能为空')
+        }
+    }
+    function progressHandlingFunction(e){
+        if(e.lengthComputable){
+            var percent = e.loaded/e.total*100;
+            $('#progress-text').html(percent.toFixed(2) + "%");
+            $('#progress').css('width', percent.toFixed(2) + "%");
         }
     }
 
@@ -621,6 +662,7 @@
         let upto_name = e.currentTarget.files[0].name;
         upto_text.text(upto_name);
         upto_text.attr('title',upto_name);
+        $(".my_container").slideDown();
     })
     function Add() {
         var tables = $('.table');
