@@ -602,57 +602,75 @@
         document.getElementById("get_value").value = that;
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
+    var doUp_data = true;
     function doUploadFile() {
-        // 时间戳
-        var id = document.getElementById("get_value").value
-        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[id].querySelectorAll("td")[2].querySelectorAll("input")[0].value;
-        var idd = document.getElementById("get_value").value
-        var formData = new FormData();
-        formData.append("file", document.getElementById("file").files[0]);
-        formData.append("name", 'upload');
-        formData.append("key", keysss);
-        formData.append("id", idd);
-        formData.append("ui_info", document.getElementById("ui_info").value);
-        formData.append("ui_time_stemp", time_stemp);
-        var thref = location.href
-        formData.append("location", thref);
+        if (doUp_data){
+            // 时间戳
+            var id = document.getElementById("get_value").value
+            var time_stemp = document.querySelector(".table").querySelectorAll("tr")[id].querySelectorAll("td")[2].querySelectorAll("input")[0].value;
+            var idd = document.getElementById("get_value").value
+            var formData = new FormData();
+            formData.append("file", document.getElementById("file").files[0]);
+            formData.append("name", 'upload');
+            formData.append("key", keysss);
+            formData.append("id", idd);
+            formData.append("ui_info", document.getElementById("ui_info").value);
+            formData.append("ui_time_stemp", time_stemp);
+            var thref = location.href
+            formData.append("location", thref);
 
-        if (document.getElementById("file").files[0]) {
-            $.ajax({
-                url: '/product/upload_file',
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                xhr:function () {
-                    console.log("开始上传")
-                  var myXhr = $.ajaxSettings.xhr();
-                  if(myXhr.upload){
-                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
-                  }
-                  return myXhr
-                },
-            }).success(function (data) {
-                console.log("上传成功")
-                data = JSON.parse(data)
-                if (data['code'] == 0) {
-                    document.getElementsByClassName("close")[0].click();
-                    window.location.reload()
-                    bootbox.alert('上传成功')
-                } else {
-                    document.getElementsByClassName("close")[0].click();
-                    bootbox.alert('上传失败')
-                }
-            })
-        } else {
-            bootbox.alert('不能为空')
+
+            if (document.getElementById("file").files[0]) {
+                doUp_data = false;
+                $.ajax({
+                    url: '/product/upload_file',
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    xhr:function () {
+                        console.log("开始上传")
+                      var myXhr = $.ajaxSettings.xhr();
+                      if(myXhr.upload){
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
+                      }
+                      return myXhr
+                    },
+                }).success(function (data) {
+                    data = JSON.parse(data)
+                    $('#progress-text').html(100 + "%");
+                    $('#progress').css('width', 100 + "%");
+                    setTimeout(function () {
+                        if (data['code'] == 0) {
+                            doUp_data = true
+                            document.getElementsByClassName("close")[0].click();
+                            window.location.reload()
+                            bootbox.alert('上传成功')
+                        } else {
+                            doUp_data = true
+                            document.getElementsByClassName("close")[0].click();
+                            bootbox.alert('上传失败')
+                        }
+                    },500)
+                })
+            } else {
+                bootbox.alert('不能为空')
+            }
+        }else{
+            bootbox.alert("文件正在上传或解析，请勿重复操作")
         }
+
     }
     function progressHandlingFunction(e){
         if(e.lengthComputable){
             var percent = e.loaded/e.total*100;
-            $('#progress-text').html(percent.toFixed(2) + "%");
-            $('#progress').css('width', percent.toFixed(2) + "%");
+
+            var my_files = percent.toFixed(2);
+            if (my_files >99){
+                my_files = 99
+            }
+            $('#progress-text').html(my_files + "%");
+            $('#progress').css('width', my_files + "%");
         }
     }
 
