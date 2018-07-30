@@ -34,7 +34,7 @@ from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
 from common.developer_helper import create_developer, update_group_info
-from common.app_helper import create_app
+from django.db.models import Q
 from base.connection import MyAdapter
 from util.sms.verify_code import verify_sms_code
 
@@ -81,7 +81,7 @@ def home(request):
         company = request.POST.get('coName', '')
         company_url = request.POST.get('coNetUrl', '')
         company_address = request.POST.get('coAddress', '')
-        company_scale = request.POST.get('coDevScale', '')
+        company_scale = request.POST.get('coDevScale', 0)
 
         # 联系人信息
         contact_name = request.POST.get('coContactName', '')
@@ -103,7 +103,7 @@ def home(request):
             return HttpResponse(json.dumps({"status": "ok"}))
         r = RedisBaseHandler().client
         try:
-            e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
+            # e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
             res = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
                                    contact_mobile, contact_phone, contact_qq, contact_email, factory_name,
                                    factory_uuid, user, user_from)
@@ -129,6 +129,10 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>请输入密码</P></div>"
             return render(request, "center/login.html", locals())
         try:
+            a = Account.objects.filter(Q(account_id=account)|Q(account_phone=account)|Q(account_email=account))
+            for i in a:
+                account = i.account_id
+                # print(i.account_id, '+++++++')
             password = base64.b64decode(password)
             user_obj = authenticate(username=account, password=password)
 
