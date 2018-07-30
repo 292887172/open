@@ -384,9 +384,6 @@
         for (var i = 0, lent = data.length; i < lent; i++) {
             //url 处理
             var list = data[i]['url'];
-            console.log('url',list[0])
-            console.log('url',list)
-            console.log('url',list.length)
             // 长度判断
             try {
                  if (list[0].length > 0) {
@@ -417,7 +414,6 @@
 
 
             if (data[i]['ack'] == 1) {
-                console.log('xx')
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[0].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].classList.add("disaplaied");
@@ -427,7 +423,6 @@
 
             }
             if (data[i]['time_stemp']) {
-                console.log('xxxxxx')
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("input").value = data[i]['time_stemp']
             }
             if (data[i]['remark']){
@@ -440,16 +435,20 @@
 
     })
     function Deleted(c,b) {
-        console.log(c,b)
-       console.log(c.parentNode.getElementsByTagName("a")[0].href,b)
         var del_url = c.parentNode.getElementsByTagName("a")[0].href
        $.ajax({
            url: '/product/schedule',
            type:"POST",
            data:{"key":keysss,"action":"del","del_id":b,"del_url":del_url}
        }).success(function (data) {
-           alert("删除成功")
-           window.location.reload()
+           data = JSON.parse(data)
+           if (data['code']===0){
+               alert("删除成功")
+           //window.location.reload()
+           }else{
+               alert("删除失败")
+           }
+
        })
     }
     function Change(c,that) {
@@ -465,46 +464,65 @@
              url:'/product/schedule',
              data:{'key':keysss,"action":"time_strmp","value":time_stemp,"id":c}
         }).success(function (data) {
-            console.log('success')
-            window.location.reload()
+            data = JSON.parse(data)
+            if (data['code']===0){
+                console.log('success')
+                document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value =time_stemp;
+            }else {
+                console.log('error')
+            }
+
+
         })
     }
-
     function Blur(a,b,c) {
         var t = c.value
-        console.log(t)
-        console.log(t.length)
         if (a===2){
-             if (t){
+
             // 备注信息
             $.ajax({
                     type:"POST",
                     url:'/product/schedule',
                     data:{'key':keysss,"action":"remark","value":t,"id":b}
                 }).success(function (data) {
-                    console.log('success')
-                    window.location.reload()
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[5].querySelector("input").value = t;
+                    }else {
+                        console.log('error')
+
+                    }
+
+
                 })
-            }
+
         }
         else if (a===0){
-            if (t){
-            // 备注信息
+
+            // 责任方
             $.ajax({
                     type:"POST",
                     url:'/product/schedule',
                     data:{'key':keysss,"action":"party","value":t,"id":b}
                 }).success(function (data) {
-                    console.log('success')
-                    window.location.reload()
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[0].querySelector("input").value = t;
+
+                    }else {
+                        console.log('error')
+                    }
+
                 })
-            }
+
         }
 
 
     }
     function confirm(that) {
-        console.log(document.querySelector(".table").querySelectorAll("tr")[that])
+
         var thref = location.href
         $.ajax({
             url: '/product/schedule',
@@ -520,15 +538,10 @@
 
         })
     }
-
     function xxx(that) {
-        console.log(that)
         document.getElementById("get_value").value = that;
-
-        console.log('that', that)
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
-
     function doUploadFile() {
         // 时间戳
         var id = document.getElementById("get_value").value
