@@ -28,13 +28,14 @@ def del_output(project_name):
     os.makedirs(output_path)
 
 
-def get_personal_project(project_name, new_key):
+def get_personal_project(project_name: str, new_key: str) -> str:
+    """根据原始的项目文件生成自定义用户key的用户项目，生成过程中
+    在解压后的项目文件夹中替换main.lua中的key，替换后删除output文件夹下所有文件，并压缩成zip文件
+
+    :param project_name: 项目文件夹压缩包的名字（WiFiIot）
+    :param new_key: 用户的 key （keyqwerty）
+    :return: 以 (项目名_用户的key.zip) 形式的压缩包名 （WiFiIot_keyqwerty.zip）
     """
-    :param project_name: 项目文件夹的名字
-    :param new_key: 用户的 key
-    :return: 以 (项目名_用户的key.zip) 形式的压缩包
-    """
-    # 项目文件夹的路径，（项目以文件夹形式存放，方便后续生成指定压缩包）此py文件与项目文件放在同一目录下
 
     unzip(project_name)
 
@@ -64,11 +65,17 @@ def get_personal_project(project_name, new_key):
             zip_file.write(folder, file_path)
 
     zip_file.close()
+    return os.path.join(project_name + '_' + new_key + '.zip')
 
 
 if __name__ == '__main__':
-    """备注
-    main.lua 使用utf-8编码进行存放
+    """使用说明
+    main.lua 使用utf-8编码进行存储
+    更新项目时 删除 WiFiIot.zip 以及 WiFiIot文件夹 
+    以 项目名_key 形式存放的文件属于临时文件可以进行删除
+    ls WiFiIot_*zip
+    rm WiFiIot_*zip
     """
-    get_personal_project('WiFiIot', 'keyqwerty')
-    # del_output('WiFiIot')
+    my_project_name = get_personal_project('WiFiIot', 'keyqwerty')
+    print(my_project_name)
+    # WiFiIot_keyqwerty.zip
