@@ -87,18 +87,18 @@
     .delete1{
     width: 10px;
     height: 10px;
-    top: -6px;
-    right: -6px;
+    left: 36px;
+    top: -4px;
     border-radius: 15px;
     position: absolute;
     z-index: 1;
     }
     .div3{
-        position: fixed;
         display: inline-block;
-        width: 40px;
+        width: 50px;
         height: 20px;
         margin-left:0px;
+        position: relative;
 
     }
     .file input {
@@ -108,7 +108,9 @@
         top: 0;
         opacity: 0;
     }
-
+    td input{
+        width: 80px;
+    }
     .xxx {
         width: 170px;
         position: relative;
@@ -193,13 +195,13 @@
 <table class="table table-bordered ">
     <thead>
     <tr>
-        <th>序号</th>
-        <th style="width: 50px">负责方</th>
-        <th>任务</th>
-        <th>时间</th>
-        <th>操作</th>
-        <th>确认(不可更改)</th>
-        <th>备注</th>
+        <th style="width: 50px">序号</th>
+        <th style="width: 100px!important;text-align: center">负责方</th>
+        <th style="width: 174px;text-align: center">任务</th>
+        <th style="text-align: center">时间</th>
+        <th style="width: 200px;text-align: center">操作</th>
+        <th style="text-align: center">确认(不可更改)</th>
+        <th style="text-align: center">备注</th>
     </tr>
     </thead>
     <tbody >
@@ -211,7 +213,7 @@
                    id="reservation-1"/>
         </td>
         <td>
-            <button type="button" class="" data-toggle="modal" data-target="#user_address"
+            <button  type="button" class="" data-toggle="modal" style="background: white" data-target="#user_address"
                     onclick="xxx(1)">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a ></a></div>
 
@@ -228,7 +230,7 @@
         <td><input type="text" placeholder="请选择日期" onclick="Change(2,this)" class="form-control pull-right"
                    id="reservation-2"/></td>
         <td>
-            <button id="xx" type="button" class="" data-toggle="modal" data-target="#user_address"
+            <button id="xx" type="button" class="" style="background: white" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(2)">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a href=""></a></div>
         </td>
@@ -247,7 +249,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(3)">上传
+                    onclick="xxx(3)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -265,7 +267,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(4)">上传
+                    onclick="xxx(4)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -283,7 +285,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(5)">上传
+                    onclick="xxx(5)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -301,7 +303,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(6)">上传
+                    onclick="xxx(6)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -319,7 +321,7 @@
         </td>
         <td >
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(7)">上传
+                    onclick="xxx(7)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div></div>
         </td>
         <td>
@@ -337,7 +339,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(8)">上传
+                    onclick="xxx(8)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -355,7 +357,7 @@
         </td>
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
-                    onclick="xxx(9)">上传
+                    onclick="xxx(9)" style="background: white">上传
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
@@ -384,9 +386,6 @@
         for (var i = 0, lent = data.length; i < lent; i++) {
             //url 处理
             var list = data[i]['url'];
-            console.log('url',list[0])
-            console.log('url',list)
-            console.log('url',list.length)
             // 长度判断
             try {
                  if (list[0].length > 0) {
@@ -397,7 +396,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -410,14 +409,13 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
 
 
             if (data[i]['ack'] == 1) {
-                console.log('xx')
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[0].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].classList.add("disaplaied");
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].classList.add("disaplaied");
@@ -427,7 +425,6 @@
 
             }
             if (data[i]['time_stemp']) {
-                console.log('xxxxxx')
                 document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("input").value = data[i]['time_stemp']
             }
             if (data[i]['remark']){
@@ -440,16 +437,20 @@
 
     })
     function Deleted(c,b) {
-        console.log(c,b)
-       console.log(c.parentNode.getElementsByTagName("a")[0].href,b)
         var del_url = c.parentNode.getElementsByTagName("a")[0].href
        $.ajax({
            url: '/product/schedule',
            type:"POST",
            data:{"key":keysss,"action":"del","del_id":b,"del_url":del_url}
        }).success(function (data) {
-           alert("删除成功")
-           window.location.reload()
+           data = JSON.parse(data)
+           if (data['code']===0){
+               alert("删除成功")
+           //window.location.reload()
+           }else{
+               alert("删除失败")
+           }
+
        })
     }
     function Change(c,that) {
@@ -465,46 +466,65 @@
              url:'/product/schedule',
              data:{'key':keysss,"action":"time_strmp","value":time_stemp,"id":c}
         }).success(function (data) {
-            console.log('success')
-            window.location.reload()
+            data = JSON.parse(data)
+            if (data['code']===0){
+                console.log('success')
+                document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value =time_stemp;
+            }else {
+                console.log('error')
+            }
+
+
         })
     }
-
     function Blur(a,b,c) {
         var t = c.value
-        console.log(t)
-        console.log(t.length)
         if (a===2){
-             if (t){
+
             // 备注信息
             $.ajax({
                     type:"POST",
                     url:'/product/schedule',
                     data:{'key':keysss,"action":"remark","value":t,"id":b}
                 }).success(function (data) {
-                    console.log('success')
-                    window.location.reload()
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[5].querySelector("input").value = t;
+                    }else {
+                        console.log('error')
+
+                    }
+
+
                 })
-            }
+
         }
         else if (a===0){
-            if (t){
-            // 备注信息
+
+            // 责任方
             $.ajax({
                     type:"POST",
                     url:'/product/schedule',
                     data:{'key':keysss,"action":"party","value":t,"id":b}
                 }).success(function (data) {
-                    console.log('success')
-                    window.location.reload()
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[0].querySelector("input").value = t;
+
+                    }else {
+                        console.log('error')
+                    }
+
                 })
-            }
+
         }
 
 
     }
     function confirm(that) {
-        console.log(document.querySelector(".table").querySelectorAll("tr")[that])
+
         var thref = location.href
         $.ajax({
             url: '/product/schedule',
@@ -520,15 +540,10 @@
 
         })
     }
-
     function xxx(that) {
-        console.log(that)
         document.getElementById("get_value").value = that;
-
-        console.log('that', that)
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
-
     function doUploadFile() {
         // 时间戳
         var id = document.getElementById("get_value").value
