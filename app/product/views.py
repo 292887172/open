@@ -581,15 +581,19 @@ def product_main(request):
         elif post_data == 'update':
             funs = request.POST.get("funs")
             funs = json.loads(funs)
-            for i in range(len(opera_data)):
+            try:
                 for j in range(len(funs)):
-                    if str(opera_data[i].get("Stream_ID")) == funs[j]:
-                        opera_data[i]["id"] = j + 1
-            c_data = opera_data[:len(funs)]
-            c_data.sort(key=lambda x: int(x.get("id")))
-            c_data.extend(opera_data[len(funs):])
-            save_app(app, c_data, cook_ies)
+                    for i in funs:
+                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID']==i.split("自定义")[0]:
+                            opera_data[j]['id'] = str(int(funs.index(i))+int(1))
+                c_data = opera_data[:len(funs)]
+                c_data.sort(key=lambda x: int(x.get("id")))
+                c_data.extend(opera_data[len(funs):])
+                save_app(app, c_data, cook_ies)
+            except Exception as e:
+                print(e)
             update_app_protocol(app)
+
             message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return HttpResponse('update_success')

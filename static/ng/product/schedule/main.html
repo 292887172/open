@@ -156,7 +156,7 @@
 
 <div class="title-sub " style="text-align: center;font-size: larger">
     项目计划书
-
+    <button type="button" class="btn btn-success"style="float: right;margin-right: 20px;margin-bottom:10px" onclick="Add()">新增计划</button>
 </div>
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -588,6 +588,22 @@
         }
 
 
+    }
+    function Add() {
+        var tables = $('.table');
+        var row = tables.rows.length;
+
+        var addtr = $("<tr>"+
+        "<th scope=\"row\">10</th>"+
+        "<td><input type='text' name='name' /></td>"+
+        "<td><input type='text' name='age' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><span  onclick='deleteTrRow(this);'>&nbsp;删除</span></td>"+
+        "</tr>");
+
+        addtr.appendTo(tables);
     }
 </script>
 
