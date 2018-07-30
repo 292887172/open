@@ -84,7 +84,7 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-
+        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -116,6 +116,7 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         # 标准
+        print('dddddds',user_apps,user_apps1)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -157,6 +158,7 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
+        print('dddd',unpublished_apps)
         return render(request, template, content)
 
     def post():
@@ -207,9 +209,10 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-
+        print('ssss',request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
+
                 developer = request.user.developer
             else:
                 developer = ''
@@ -247,6 +250,15 @@ def product_controldown(request):
             # 未通过审核
             elif app.check_status == _convention.APP_CHECK_FAILED:
                 unpublished_apps.append(app)
+        # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
+        u = UserGroup.objects.filter(user_account=request.user)
+        for i in u:
+            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            for j in relate_app:
+                if len(unpublished_apps) < 3:
+                    unpublished_apps.append(j)
+                else:
+                    unpublished_apps.append(j)
         template = "product/controldown.html"
         content = dict(
             keyword=keyword,
@@ -1131,8 +1143,7 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    print('邮件列表', email_list)
-                    # send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
