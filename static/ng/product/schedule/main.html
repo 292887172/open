@@ -84,7 +84,24 @@
         text-indent: 0;
         line-height: 20px;
     }
+    .delete1{
+    width: 10px;
+    height: 10px;
+    margin-left: 36px;
+    margin-top: 20px;
+    top: 0px;
+    right: 0px;
+    border-radius: 15px;
 
+    z-index: 1;
+    }
+    .div3{
+        display: inline-block;
+        width: 50px;
+        height: 20px;
+        margin-left:0px;
+
+    }
     .file input {
         position: absolute;
         font-size: 100px;
@@ -92,7 +109,9 @@
         top: 0;
         opacity: 0;
     }
-
+    td input{
+        width: 80px;
+    }
     .xxx {
         width: 170px;
         position: relative;
@@ -136,7 +155,7 @@
     }
 </style>
 
-<div class="title-sub" style="text-align: center;font-size: larger">
+<div class="title-sub " style="text-align: center;font-size: larger">
     项目计划书
 
 </div>
@@ -174,177 +193,178 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered">
+<table class="table table-bordered ">
     <thead>
     <tr>
-        <th>序号</th>
-        <th>任务</th>
-        <th>时间</th>
-        <th>操作</th>
-        <th>确认(不可更改)</th>
+        <th style="width: 50px">序号</th>
+        <th style="width: 100px!important;text-align: center">负责方</th>
+        <th style="width: 174px;text-align: center">任务</th>
+        <th style="text-align: center">时间</th>
+        <th style="width: 200px;text-align: center">操作</th>
+        <th style="text-align: center">确认(不可更改)</th>
+        <th style="text-align: center">备注</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody >
     <tr>
         <th scope="row">1</th>
+        <td><input type="text" onblur="Blur(0,1,this)"></td>
         <td>提交详细技术功能规划书</td>
-        <td><input type="text" placeholder="请选择日期" class="form-control pull-right"
+        <td><input type="text" placeholder="请选择日期" onclick="Change(1,this)" class="form-control pull-right"
                    id="reservation-1"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(1)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a ></a></div>
 
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(1)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(1)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,1,this)"></td>
     </tr>
     <tr>
         <th scope="row">2</th>
+        <td><input type="text" onblur="Blur(0,2,this)"></td>
         <td>提交电控板功能协议文档</td>
-        <td><input type="text" placeholder="请选择日期" class="form-control pull-right"
+        <td><input type="text" placeholder="请选择日期" onclick="Change(2,this)" class="form-control pull-right"
                    id="reservation-2"/></td>
         <td>
-            <button id="xx" type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button id="xx" type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(2)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(2)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(2)">确认</button>
         </td>
-
+        <td><input type="text" onblur="Blur(2,2,this)"></td>
     </tr>
     <tr>
         <th scope="row">3</th>
+        <td><input type="text" onblur="Blur(0,3,this)"></td>
         <td>提交正式UI和UE</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(3,this)" class="form-control pull-right"
                    id="reservation-3"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(3)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(3)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(3)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,3,this)"></td>
     </tr>
     <tr>
         <th scope="row">4</th>
+        <td><input type="text" onblur="Blur(0,4,this)"></td>
         <td>制定项目进度计划书</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(4,this)" class="form-control pull-right"
                    id="reservation-4"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(4)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(4)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(4)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,4,this)"></td>
     </tr>
     <tr>
         <th scope="row">5</th>
+        <td><input type="text" onblur="Blur(0,5,this)"></td>
         <td>应用程序开发</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(5,this)" class="form-control pull-right"
                    id="reservation-5"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(5)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(5)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(5)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,5,this)"></td>
     </tr>
     <tr>
         <th scope="row">6</th>
+        <td><input type="text" onblur="Blur(0,6,this)"></td>
         <td>提供正式电控版</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(6,this)" class="form-control pull-right"
                    id="reservation-6"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(6)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(6)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(6)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,6,this)"></td>
     </tr>
     <tr>
         <th scope="row">7</th>
+        <td><input type="text" onblur="Blur(0,7,this)"></td>
         <td>控制协议对接</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(7,this)" class="form-control pull-right"
                    id="reservation-7"/>
         </td>
-        <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+        <td >
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(7)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(7)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(7)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,7,this)"></td>
     </tr>
     <tr>
         <th scope="row">8</th>
+        <td><input type="text" onblur="Blur(0,8,this)"></td>
         <td>提供整机</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(8,this)" class="form-control pull-right"
                    id="reservation-8"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(8)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="confirm(8)">确认</button>
+            <button type="button" class="btn" style="background-color: blue" onclick="confirm(8)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,8,this)"></td>
     </tr>
     <tr>
         <th scope="row">9</th>
+        <td><input type="text" onblur="Blur(0,9,this)"></td>
         <td>整机联调、老化测试</td>
         <td>
-            <input type="text" placeholder="请选择日期" class="form-control pull-right"
+            <input type="text" placeholder="请选择日期" onclick="Change(9,this)" class="form-control pull-right"
                    id="reservation-9"/>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user_address"
+            <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(9)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                            style="display:inline-block;cursor: pointer;color: black"
-                                                            download="UI"></a>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
         </td>
         <td>
-            <button type="button" class="btn btn-danger"  onclick="confirm(9)">确认</button>
+            <button type="button" class="btn" style="background-color: blue"  onclick="confirm(9)">确认</button>
         </td>
+        <td><input type="text" onblur="Blur(2,9,this)"></td>
     </tr>
     </tbody>
 </table>
@@ -367,40 +387,145 @@
         for (var i = 0, lent = data.length; i < lent; i++) {
             //url 处理
             var list = data[i]['url'];
-
             // 长度判断
-            if (list.length > 0) {
+            try {
+                 if (list[0].length > 0) {
 
                 for (var ti = 0; ti < list.length; ti++) {
                     //console.log(ttt[ti].split("'")[1])
                     var new_url = list[ti];
-                    var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("a")
+                    var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
+                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
+            }
+            }
+            catch (err) {
+                 if (list.length > 0) {
+
+                for (var ti = 0; ti < list.length; ti++) {
+                    //console.log(ttt[ti].split("'")[1])
+                    var new_url = list[ti];
+                    var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
+
+                    var p = new_url.substring(new_url.length - 6)
+                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                }
+            }
             }
 
 
             if (data[i]['ack'] == 1) {
-                console.log('xx')
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[1].classList.add("disaplaied");
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelectorAll("button")[0].classList.add("disaplaied");
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].classList.add("disaplaied");
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].innerText="已确认";
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].classList.add("xxxx");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[0].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelectorAll("button")[0].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[4].classList.add("disaplaied");
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[4].querySelectorAll("button")[0].innerText="已确认";
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[4].querySelectorAll("button")[0].classList.add("xxxx");
 
             }
             if (data[i]['time_stemp']) {
-                console.log('xxxxxx')
-                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[1].querySelector("input").value = data[i]['time_stemp']
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[2].querySelector("input").value = data[i]['time_stemp']
+            }
+            if (data[i]['remark']){
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[5].querySelector("input").value = data[i]['remark']
+            }
+            if (data[i]['party']){
+                document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[0].querySelector("input").value = data[i]['party']
             }
         }
 
     })
+    function Deleted(c,b) {
+        var del_url = c.parentNode.getElementsByTagName("a")[0].href
+       $.ajax({
+           url: '/product/schedule',
+           type:"POST",
+           data:{"key":keysss,"action":"del","del_id":b,"del_url":del_url}
+       }).success(function (data) {
+           data = JSON.parse(data)
+           if (data['code']===0){
+               alert("删除成功")
+           //window.location.reload()
+           }else{
+               alert("删除失败")
+           }
 
+       })
+    }
+    function Change(c,that) {
+
+         setTimeout(function () {
+                           funce(c,that)
+                        }, 4000)
+    }
+    function funce(c,that) {
+        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value
+        $.ajax({
+             type:"POST",
+             url:'/product/schedule',
+             data:{'key':keysss,"action":"time_strmp","value":time_stemp,"id":c}
+        }).success(function (data) {
+            data = JSON.parse(data)
+            if (data['code']===0){
+                console.log('success')
+                document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value =time_stemp;
+            }else {
+                console.log('error')
+            }
+
+
+        })
+    }
+    function Blur(a,b,c) {
+        var t = c.value
+        if (a===2){
+
+            // 备注信息
+            $.ajax({
+                    type:"POST",
+                    url:'/product/schedule',
+                    data:{'key':keysss,"action":"remark","value":t,"id":b}
+                }).success(function (data) {
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[5].querySelector("input").value = t;
+                    }else {
+                        console.log('error')
+
+                    }
+
+
+                })
+
+        }
+        else if (a===0){
+
+            // 责任方
+            $.ajax({
+                    type:"POST",
+                    url:'/product/schedule',
+                    data:{'key':keysss,"action":"party","value":t,"id":b}
+                }).success(function (data) {
+                    data = JSON.parse(data)
+                    if (data['code']===0){
+                        console.log('success')
+                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[0].querySelector("input").value = t;
+
+                    }else {
+                        console.log('error')
+                    }
+
+                })
+
+        }
+
+
+    }
     function confirm(that) {
-        console.log(document.querySelector(".table").querySelectorAll("tr")[that])
+
         var thref = location.href
         $.ajax({
             url: '/product/schedule',
@@ -409,26 +534,21 @@
         }).success(function (data) {
             // code 判断
             alert('保存成功，已通知下一环节处理人员');
-            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[1].classList.add("disaplaied");
+            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[0].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[2].classList.add("disaplaied");
-            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].classList.add("disaplaied");
-            var t = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].innerText="已确认";
+            document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].classList.add("disaplaied");
+            var t = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].innerText="已确认";
 
         })
     }
-
     function xxx(that) {
-        console.log(that)
         document.getElementById("get_value").value = that;
-
-        console.log('that', that)
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
-
     function doUploadFile() {
         // 时间戳
         var id = document.getElementById("get_value").value
-        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[id].querySelectorAll("td")[1].querySelector("input").value;
+        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[id].querySelectorAll("td")[2].querySelectorAll("input")[0].value;
         var idd = document.getElementById("get_value").value
         var formData = new FormData();
         formData.append("file", document.getElementById("file").files[0]);
@@ -451,30 +571,7 @@
                 data = JSON.parse(data)
                 if (data['code'] == 0) {
 
-                    var list = data['url'].split('[')[1].split(']')[0]
-                    if (list.length > 150) {
-                        var ttt = list.split(',')
-                        for (var ti = 0, tl = ttt.length; ti < tl; ti++) {
-                            //console.log(ttt[ti].split("'")[1])
-                            var new_url = ttt[ti].split("'")[1]
-                            var ty = document.querySelector(".table").querySelectorAll("tr")[idd].querySelectorAll("td")[2].querySelector("a")
 
-                            var p = new_url.substring(new_url.length - 6)
-                            $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
-
-
-                        }
-                    } else {
-
-
-                        var new_url = list.split("'")[1];
-                        var ty = document.querySelector(".table").querySelectorAll("tr")[idd].querySelectorAll("td")[2].querySelector("a")
-
-                        var p = new_url.substring(new_url.length - 6)
-                        $(ty).after("<a href='" + new_url + "'>" + p + "</a>&nbsp;&nbsp;")
-
-
-                    }
 
 
                     document.getElementsByClassName("close")[0].click();

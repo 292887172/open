@@ -20,6 +20,10 @@ class DocUi(models.Model):
     ui_title = models.CharField(max_length=64, default=1.0, db_column='ebf_ui_title')
     # ack 确认 0 非确认 1确认
     ui_ack = models.IntegerField(max_length=2,default=0,db_column='ebf_ui_ack')
+    # 备注
+    ui_remark = models.CharField(max_length=64,default='',db_column='ebf_ui_remark')
+    # 负责方
+    ui_party = models.CharField(max_length=64,db_column='ebf_ui_party')
     # 时间戳
     ui_time_stemp = models.TextField(max_length=32,db_column='ebf_ui_time_stemp')
     # 创建时间
