@@ -191,6 +191,10 @@ def add_team_email(user_account, app_id, email):
             ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
                            update_date=datetime.datetime.utcnow())
             ug.save()
+        try:
+            add_team_user_account(email)
+        except Exception as e:
+            pass
         return team_info
 
 
@@ -226,3 +230,11 @@ def del_team_email(user_account, app_id, email):
                 ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
                                update_date=datetime.datetime.utcnow())
                 ug.save()
+
+
+def add_team_user_account(email, pwd='123456'):
+    # 创建成员默认密码
+    a = Account.objects.filter(account_id=email)
+    if a.count() == 0:
+        # 没有账号才创建默认账号
+        Account.objects.create_user(email, pwd, 4, '')
