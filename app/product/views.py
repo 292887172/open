@@ -116,7 +116,7 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         # 标准
-        print('dddddds',user_apps,user_apps1)
+        print('dddddds', user_apps, user_apps1)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -158,7 +158,7 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print('dddd',unpublished_apps)
+        print('dddd', unpublished_apps)
         return render(request, template, content)
 
     def post():
@@ -209,7 +209,7 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss',request.user.developer)
+        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
 
@@ -584,8 +584,8 @@ def product_main(request):
             try:
                 for j in range(len(funs)):
                     for i in funs:
-                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID']==i.split("自定义")[0]:
-                            opera_data[j]['id'] = str(int(funs.index(i))+int(1))
+                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
+                            opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
@@ -1147,7 +1147,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
+                                               location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,

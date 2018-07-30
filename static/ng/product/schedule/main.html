@@ -446,10 +446,10 @@
        }).success(function (data) {
            data = JSON.parse(data)
            if (data['code']===0){
-               alert("删除成功")
+               bootbox.alert('删除成功')
                window.location.reload()
            }else{
-               alert("删除失败")
+               bootbox.alert("删除失败")
            }
 
        })
@@ -532,7 +532,7 @@
             data: {"num": that, "key": keysss, "location": thref},
         }).success(function (data) {
             // code 判断
-            alert('保存成功，已通知下一环节处理人员');
+            bootbox.alert('保存成功，已通知下一环节处理人员');
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[0].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[2].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].classList.add("disaplaied");
@@ -574,17 +574,18 @@
 
 
                     document.getElementsByClassName("close")[0].click();
+
+                    bootbox.alert('上传成功')
                     window.location.reload()
-                    alert('上传成功')
                 } else {
                     document.getElementsByClassName("close")[0].click();
-                    alert('上传失败')
+                    bootbox.alert('上传失败')
                 }
 
 
             })
         } else {
-            alert('不能为空')
+            bootbox.alert('不能为空')
         }
 
 
