@@ -156,7 +156,7 @@
 
 <div class="title-sub " style="text-align: center;font-size: larger">
     项目计划书
-
+    <button type="button" class="btn btn-success"style="float: right;margin-right: 20px;margin-bottom:10px" onclick="Add()">新增计划</button>
 </div>
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -369,6 +369,7 @@
 </table>
 <div style="display: none">
     <input type="text" value="" id="get_value">
+    <input type="text" value="" id="get_values">
     <input type="text" value="" id="get_remarks">
     <input type="text" value="" id="get_time_stemp">
 </div>
@@ -446,7 +447,7 @@
            data = JSON.parse(data)
            if (data['code']===0){
                alert("删除成功")
-           //window.location.reload()
+               window.location.reload()
            }else{
                alert("删除失败")
            }
@@ -455,12 +456,11 @@
     }
     function Change(c,that) {
 
-         setTimeout(function () {
-                           funce(c,that)
-                        }, 4000)
+         document.getElementById("get_values").value = c
     }
-    function funce(c,that) {
-        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value
+    function funce(c) {
+         var time_stemp = document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value
+         console.log(time_stemp)
         $.ajax({
              type:"POST",
              url:'/product/schedule',
@@ -589,6 +589,28 @@
 
 
     }
+    function Add() {
+        var tables = $('.table');
+        var row = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        var leng = row.length
+        var addtr = $("<tr>" +
+        "<th scope=\"row\">"+leng + "</th>"+
+        "<td><input type='text' name='name' /></td>"+
+        "<td><input type='text' name='age' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><input type='text' name='sex' /></td>"+
+        "<td><span  onclick='deleteTrRow(this);'>&nbsp;删除</span></td>"+
+        "</tr>");
+
+        addtr.appendTo(tables);
+    }
+    $(".applyBtn").on("click",function () {
+        var c = document.getElementById("get_values").value
+         setTimeout(function () {
+                           funce(c)
+                        }, 500)
+    })
 </script>
 
 
