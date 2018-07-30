@@ -34,7 +34,7 @@ from model.center.doc_ui import DocUi
 from model.center.group import Group
 from model.center.user_group import UserGroup
 from base.connection import Redis3
-from common.mysql_helper import get_ui_static_conf,remove_up_url
+from common.mysql_helper import get_ui_static_conf, remove_up_url
 from util.email.send_email_code import send_product_process_email
 from conf.message import BOOK
 
@@ -899,6 +899,7 @@ def portal(request):
         app_id = request.POST.get("app_id", "")
         email = request.POST.get("email", "")
         user_account = request.user
+        print('user', user_account)
         if action == 'submitEmail':
             # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
             # 若有分组，则直接在分组中添加成员
@@ -948,47 +949,69 @@ def schedule(request):
         print(num)
         location = request.POST.get('location', '')
         # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
-        action = request.POST.get('action','')
+        action = request.POST.get('action', '')
         if action == 'del':
             # 删除下载链接
             del_id = request.POST.get('del_id', '')
             del_url = request.POST.get('del_url', '')
-            if del_id:
-                del_id = int(del_id)
-            remove_up_url(key, del_id, del_url)
-            return HttpResponse('ok')
-        elif action =='remark':
+            try:
+                if del_id:
+                    del_id = int(del_id)
+                remove_up_url(key, del_id, del_url)
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'remark':
             # 备注信息
-            remark_value = request.POST.get('value','')
-            remark_id = request.POST.get('id','')
-            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=remark_id)
-            # 判断是否存在当前计划书id的数据
-            if ddd:
-                ddd.update(ui_remark=remark_value)
-            else:
-                DocUi.objects.create(ui_time_stemp='',ui_party='',ui_remark=remark_value,ui_upload_id=remark_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
-            return HttpResponse("success")
-        elif action =='party':
+            remark_value = request.POST.get('value', '')
+            remark_id = request.POST.get('id', '')
+            try:
+                ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=remark_id)
+                # 判断是否存在当前计划书id的数据
+                if ddd:
+                    ddd.update(ui_remark=remark_value)
+                else:
+                    DocUi.objects.create(ui_time_stemp='', ui_party='', ui_remark=remark_value, ui_upload_id=remark_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'party':
             # 负责方
-            party_value = request.POST.get('value','')
-            party_id = request.POST.get('id','')
-
-            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=party_id)
-            if ddd:
-                ddd.update(ui_party=party_value)
-            else:
-                DocUi.objects.create(ui_time_stemp='',ui_party=party_value,ui_remark='',ui_upload_id=party_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
-            return HttpResponse("success")
-        elif action =='time_strmp':
+            party_value = request.POST.get('value', '')
+            party_id = request.POST.get('id', '')
+            try:
+                ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=party_id)
+                if ddd:
+                    ddd.update(ui_party=party_value)
+                else:
+                    DocUi.objects.create(ui_time_stemp='', ui_party=party_value, ui_remark='', ui_upload_id=party_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'time_strmp':
             # 时间搓
-            time_value = request.POST.get('value','')
-            time_id = request.POST.get('id','')
-            ddd=DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
-            if ddd:
-                ddd.update(ui_time_stemp=time_value)
-            else:
-                DocUi.objects.create(ui_time_stemp=time_value,ui_party='',ui_remark='',ui_upload_id=time_id, ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
-            return HttpResponse("success")
+            time_value = request.POST.get('value', '')
+            time_id = request.POST.get('id', '')
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
+            try:
+                if ddd:
+                    ddd.update(ui_time_stemp=time_value)
+                else:
+                    DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+
         else:
             modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
             a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
@@ -998,7 +1021,7 @@ def schedule(request):
 
             email_list = []
 
-            group_id =''
+            group_id = ''
             for i in a:
                 app_name = i.app_name
                 print('组id', i.group_id)
@@ -1018,7 +1041,8 @@ def schedule(request):
                 next_stemp = BOOK[str(t)]
 
             try:
-                send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location,'confirm')
+                send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location,
+                                           'confirm')
                 Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=user1, message_target=user1,
@@ -1035,7 +1059,9 @@ def schedule(request):
                 App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
             else:
 
-                DocUi.objects.create(ui_ack=int(1),ui_upload_id=num,ui_time_stemp='',ui_party='',ui_remark='', ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+                DocUi.objects.create(ui_ack=int(1), ui_upload_id=num, ui_time_stemp='', ui_party='', ui_remark='',
+                                     ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                     create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
             return HttpResponse('ok')
 
@@ -1074,7 +1100,7 @@ def upload_file(request):
         email_list = []
         app_name = ''
         developer = ''
-        group_id=''
+        group_id = ''
         for i in a:
             app_name = i.app_name
             print('组id', i.group_id)
@@ -1105,7 +1131,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    print('邮件列表', email_list)
+                    # send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
@@ -1124,7 +1151,7 @@ def upload_file(request):
         except Exception as e:
             r = 1
             print(e)
-        return HttpResponse(json.dumps({"code":0}))
+        return HttpResponse(json.dumps({"code": 0}))
 
 
 def wx_scan_code(request):
