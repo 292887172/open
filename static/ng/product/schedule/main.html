@@ -87,12 +87,10 @@
     .delete1{
     width: 10px;
     height: 10px;
-    margin-left: 36px;
-    margin-top: 20px;
-    top: 0px;
-    right: 0px;
+    left: 36px;
+    top: -4px;
     border-radius: 15px;
-
+    position: absolute;
     z-index: 1;
     }
     .div3{
@@ -100,6 +98,7 @@
         width: 50px;
         height: 20px;
         margin-left:0px;
+        position: relative;
 
     }
     .file input {
@@ -397,7 +396,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -410,7 +409,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
                 }
             }
             }
