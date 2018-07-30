@@ -52,7 +52,8 @@
 
     #user_address .modal-body {
         height: 165px;
-        text-align: center;
+        text-align: left;
+        padding-left: 20%;
     }
 
     #user_address .modal-body p {
@@ -152,6 +153,35 @@
         border-bottom: 0px !important;
         border-top: 0px !important;
     }
+    .table th{
+        text-align: center;
+        line-height: 2.4 !important;
+    }
+    .table>tbody>tr>td {
+        line-height: 2.4;
+        text-align: center;
+    }
+    .modal-label{
+        display: inline-block;
+        line-height: normal;
+        margin-bottom: 10px;
+    }
+    .modal-name{
+        cursor: pointer;
+        max-width: 200px;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: text-bottom;
+    }
+    .modal-name:hover{
+        color: #ff6202;
+    }
+    #doUpload:hover{
+        background-color: #9dabbb !important;
+    }
 </style>
 
 <div class="title-sub " style="text-align: center;font-size: larger">
@@ -171,20 +201,17 @@
             </div>
             <div class="modal-body">
 
-
-                <input class="file" id="file" name="file" style="display: inline-block" type="file"/>
-                <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
-                        style="float: right;width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
+                <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
+                <input class="file" id="file" name="file" style="display: none" type="file"/>
+                <div style="overflow: hidden;">
+                    <span>备注信息：</span><input type="text" id="ui_info" class="xxx" placeholder="备注信息">
+                </div>
+                <div style="text-align: center;margin-left: -20%;margin-top: 10px">
+                    <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
+                        style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
                     上传
                 </button>
-                <div>
-                    <span style="float: left;margin-top: 40px;margin-left: 50px">备注信息：</span><input type="text"
-                                                                                                    id="ui_info"
-                                                                                                    class="xxx"
-                                                                                                    style="display: inline-block;margin-top:25px;margin-left:-80px "
-                                                                                                    placeholder="备注信息">
                 </div>
-
 
             </div>
 
@@ -215,7 +242,7 @@
         <td>
             <button  type="button" class="" data-toggle="modal" style="background: white" data-target="#user_address"
                     onclick="xxx(1)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a ></a></div>
+            </button><div ><a ></a></div>
 
         </td>
         <td>
@@ -232,7 +259,7 @@
         <td>
             <button id="xx" type="button" class="" style="background: white" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(2)">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div ><a href=""></a></div>
+            </button><div ><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(2)">确认</button>
@@ -250,7 +277,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(3)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(3)">确认</button>
@@ -268,7 +295,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(4)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(4)">确认</button>
@@ -286,7 +313,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(5)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(5)">确认</button>
@@ -304,7 +331,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(6)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(6)">确认</button>
@@ -322,7 +349,7 @@
         <td >
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(7)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div></div>
+            </button><div></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(7)">确认</button>
@@ -340,7 +367,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(8)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue" onclick="confirm(8)">确认</button>
@@ -358,7 +385,7 @@
         <td>
             <button type="button" class="" data-toggle="modal" data-target="#user_address"
                     onclick="xxx(9)" style="background: white">上传
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><a href=""></a></div>
+            </button><div><a href=""></a></div>
         </td>
         <td>
             <button type="button" class="btn" style="background-color: blue"  onclick="confirm(9)">确认</button>
@@ -575,19 +602,26 @@
 
                     document.getElementsByClassName("close")[0].click();
                     window.location.reload()
-                    alert('上传成功')
+                    bootbox.alert('上传成功')
                 } else {
                     document.getElementsByClassName("close")[0].click();
-                    alert('上传失败')
+                    bootbox.alert('上传失败')
                 }
 
 
             })
         } else {
-            alert('不能为空')
+            bootbox.alert('不能为空')
         }
+    }
 
-
+    var upto_file = $("#file");
+    var upto_text = $(".modal-name");
+    upto_file.on('change',function (e) {
+        let upto_name = e.currentTarget.files[0].name;
+        upto_text.text(upto_name);
+        upto_text.attr('title',upto_name);
+    })
     }
     function Add() {
         var tables = $('.table');
