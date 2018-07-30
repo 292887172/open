@@ -941,6 +941,7 @@ def schedule(request):
                 update_dict['id'] = i.ui_upload_id
                 update_dict['remark'] = i.ui_remark
                 update_dict['party'] = i.ui_party
+                update_dict['plan'] = i.ui_plan
 
                 try:
                     url = eval(i.ui_content)
@@ -1021,6 +1022,22 @@ def schedule(request):
                     ddd.update(ui_time_stemp=time_value)
                 else:
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'plan':
+            # 时间搓
+            time_value = request.POST.get('value', '')
+            time_id = request.POST.get('id', '')
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
+            try:
+                if ddd:
+                    ddd.update(ui_plan=time_value)
+                else:
+                    DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
                                          ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
@@ -1132,11 +1149,15 @@ def upload_file(request):
         try:
             # 上传UI文件
             if post_data == 'upload':
-
-                store = EbStore(CLOUD_TOKEN)
-                rr = store.upload(file.read(), file.name, file.content_type)
-                rr = json.loads(rr)
-                r = rr['code']
+                try:
+                    store = EbStore(CLOUD_TOKEN)
+                    rr = store.upload(file.read(), file.name, file.content_type)
+                    rr = json.loads(rr)
+                    r = rr['code']
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+                print('code',r)
                 list_url = []
                 list_url.append(rr['data'])
                 get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp)
