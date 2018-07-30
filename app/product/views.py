@@ -116,7 +116,7 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         # 标准
-        print('dddddds',user_apps,user_apps1)
+        print('dddddds', user_apps, user_apps1)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -158,7 +158,7 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print('dddd',unpublished_apps)
+        print('dddd', unpublished_apps)
         return render(request, template, content)
 
     def post():
@@ -209,7 +209,7 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss',request.user.developer)
+        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
 
@@ -584,8 +584,8 @@ def product_main(request):
             try:
                 for j in range(len(funs)):
                     for i in funs:
-                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID']==i.split("自定义")[0]:
-                            opera_data[j]['id'] = str(int(funs.index(i))+int(1))
+                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
+                            opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
@@ -941,6 +941,7 @@ def schedule(request):
                 update_dict['id'] = i.ui_upload_id
                 update_dict['remark'] = i.ui_remark
                 update_dict['party'] = i.ui_party
+                update_dict['plan'] = i.ui_plan
 
                 try:
                     url = eval(i.ui_content)
@@ -1021,6 +1022,22 @@ def schedule(request):
                     ddd.update(ui_time_stemp=time_value)
                 else:
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'plan':
+            # 时间搓
+            time_value = request.POST.get('value', '')
+            time_id = request.POST.get('id', '')
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
+            try:
+                if ddd:
+                    ddd.update(ui_plan=time_value)
+                else:
+                    DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
                                          ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
@@ -1132,11 +1149,15 @@ def upload_file(request):
         try:
             # 上传UI文件
             if post_data == 'upload':
-
-                store = EbStore(CLOUD_TOKEN)
-                rr = store.upload(file.read(), file.name, file.content_type)
-                rr = json.loads(rr)
-                r = rr['code']
+                try:
+                    store = EbStore(CLOUD_TOKEN)
+                    rr = store.upload(file.read(), file.name, file.content_type)
+                    rr = json.loads(rr)
+                    r = rr['code']
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+                print('code',r)
                 list_url = []
                 list_url.append(rr['data'])
                 get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp)
@@ -1147,7 +1168,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
+                                               location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,
