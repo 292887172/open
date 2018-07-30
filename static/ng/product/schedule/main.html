@@ -186,7 +186,7 @@
 
 <div class="title-sub " style="text-align: center;font-size: larger">
     项目计划书
-    <button type="button" class="btn btn-success"style="float: right;margin-right: 20px;margin-bottom:10px" onclick="Add()">新增计划</button>
+    <button type="button" class="btn btn-success"style="float: right;margin-right: 20px;margin-bottom:10px;display: none" onclick="Add() ">新增计划</button>
 </div>
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -622,7 +622,6 @@
         upto_text.text(upto_name);
         upto_text.attr('title',upto_name);
     })
-    }
     function Add() {
         var tables = $('.table');
         var row = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
