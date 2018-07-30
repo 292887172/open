@@ -436,6 +436,8 @@
                     $scope.create_time_detail = "{{ app.app_create_date|utc2local2 }}"; // 详细的时间信息
                     $scope.update_time = "{{ app.app_update_date|utc2local  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 定稿 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
+                    $scope.app_create_user = "{{ app.developer_id }}";
+                    $scope.login_user = "{{ user.account_id }}";
                     // 应用类目
                     $scope.secondProType = [
                         {

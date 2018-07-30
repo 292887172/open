@@ -14,6 +14,8 @@ var portal = angular.module('Product.portal', ['ngRoute']);
         $scope.nav.selected("portalMenu");
         $scope.productImgSrc = "";
         $scope.teams_data = $scope.$parent.teams;
+        $scope.app_create_user = $scope.$parent.app_create_user.split("_")[1];
+        $scope.login_user = $scope.$parent.login_user;
         $scope.addEmail = function () {
             var html = '<div class="col-xs-5"><input type="email" class="form-control ui-edit-email" placeholder="邮箱" ><button class="btn btn-primary" id="addTeamSubmit" onclick="submitEmail(this)" >确认</button></div>'
             $(".item-team-user").append(html)

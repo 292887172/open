@@ -167,7 +167,7 @@
         <div class="menu slider-bar" >
             <ul class="ulmenu1">
                 <li style="height: 50px"><a class="selected" href="#tab1">账号管理</a></li>
-                <li style="height: 50px"><a href="#">团队管理</a></li>
+                <li style="height: 50px"><a href="#">公司信息</a></li>
                 <li style="height: 50px"><a href="#">团队邮箱</a></li>
 
             </ul>
@@ -191,6 +191,7 @@
                                 <h3 style="margin-top: 30px">联系人信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
+                                    <input type="hidden" name="action" value="submit_account_info">
                                     <dd><input disabled="disabled" type="text" name="coContactName" id="inContactName" class="txt ui-edit-txt" value="{{ user.developer.developer_realname|is_none }}"
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
                                                    maxlength="64">
@@ -201,12 +202,12 @@
                                                    maxlength="64">
                                             <span id="coContactRoleErrorId" class="error"></span></dd>
                                     <dt><span>*</span>手机：</dt>
-                                    <dd><label for="inContactMobile"></label><input disabled="disabled"  type="text" name="coContactMobile" id="inContactMobile" class="txt ui-edit-txt" value="{{ user.developer.developer_mobile|is_none }}"
+                                    <dd><label for="inContactMobile"></label><input disabled="disabled"  type="text" name="coContactMobile" id="inContactMobile" class="txt ui-edit-txt" value="{{ user.account_phone|is_none }}"
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
                                                    maxlength="11">
                                             <span id="coContactMobileErrorId" class="error"></span></dd>
                                     <dt><span>*</span>邮箱：</dt>
-                                    <dd><label for="inEmail"></label><input disabled="disabled"  type="text" name="devEmail" id="inEmail" class="txt ui-edit-txt" value="{{ user.developer.developer_email|is_none }}"
+                                    <dd><label for="inEmail"></label><input disabled="disabled"  type="text" name="devEmail" id="inEmail" class="txt ui-edit-txt" value="{{ user.account_email|is_none }}"
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                                    maxlength="64">
                                             <span id="devEmailErrorId" class="error"></span></dd>
@@ -229,6 +230,7 @@
                             <h3 style="margin-top: 30px">公司/团队信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
+                                <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input disabled="disabled"  type="text" name="coName" id="inName" class="txt ui-edit-txt"
                                                                        value="{{ user.developer.developer_inc|is_none }}"
                                                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
@@ -294,6 +296,7 @@
                                 <h3 style="margin-top: 30px">联系人信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
+                                    <input type="hidden" name="action" value="submit_account_info">
                                     <dd><input type="text" name="coContactName" id="inContactName" class="txt " value=""
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
                                                    maxlength="64">
@@ -304,12 +307,12 @@
                                                    maxlength="64">
                                             <span id="coContactRoleErrorId" class="error"></span></dd>
                                     <dt><span>*</span>手机：</dt>
-                                    <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value=""
+                                    <dd><label for="inContactMobile"></label><input type="text" name="coContactMobile" id="inContactMobile" class="txt" value="{{ user.account_phone|is_none }}"
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
                                                    maxlength="11">
                                             <span id="coContactMobileErrorId" class="error"></span></dd>
                                     <dt><span>*</span>邮箱：</dt>
-                                    <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value=""
+                                    <dd><label for="inEmail"></label><input type="text" name="devEmail" id="inEmail" class="txt" value="{{ user.account_email|is_none }}"
                                                    onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
                                                    maxlength="64">
                                             <span id="devEmailErrorId" class="error"></span></dd>
@@ -332,6 +335,7 @@
                             <h3 style="margin-top: 30px">公司/团队信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
+                                <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
                                                                        value=""
                                                                        onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
@@ -518,7 +522,7 @@
                     'coName': $("#inName").val(),
                     'coNetUrl': $("#inNetUrl").val(),
                     'coAddress': $("#inAddress").val(),
-                    'coDevScale': $("#inDevScale").val(),
+                    'coDevScale': $("#inDevScale").val() ? $("#inDevScale").val():0,
                     'coContactName': $("#inContactName").val(),
                     'coContactRole': $("#inContactRole").val(),
                     'coContactMobile': $("#inContactMobile").val(),

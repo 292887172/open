@@ -84,7 +84,6 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -115,8 +114,6 @@ def product_list(request):
         failed_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
-        # 标准
-        print('dddddds', user_apps, user_apps1)
         for app in user_apps:
             # 已经发布
             if app.check_status == _convention.APP_CHECKED:
@@ -158,7 +155,6 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print('dddd', unpublished_apps)
         return render(request, template, content)
 
     def post():
@@ -209,7 +205,6 @@ def product_controldown(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
 

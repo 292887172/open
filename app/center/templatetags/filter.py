@@ -107,6 +107,8 @@ def is_none(value):
     """
     if value is None:
         return ""
+    elif value == 0:
+        return ""
     else:
         return value
 
