@@ -218,6 +218,7 @@
     let login = false;
     {% if user.account_id %}
         login = true;
+        let account = "{{ user.account_id }}";
     {% endif %}
     weixin.bind("mouseover", function () {
         $(".qr-code-img").show()
@@ -340,7 +341,6 @@
         let long = parseFloat($("#long").val().trim());
         let tall = parseFloat($("#tall").val().trim());
         let thick = parseFloat($("#thick").val().trim());
-        console.log(commu);
         let result = '';
         if ((v !== 5 || a !== 2) && commu === 'TTL') {
             result += "由于供电未采用5V2A，电源板需要重新改造，";
@@ -352,6 +352,25 @@
         }
         result += '结构尺寸适合：' + calc(long, tall, thick);
         showResult(result);
+
+        if (login) {
+            // 把已登录用户的评估结果记录下来
+            $.post(location.href, {
+                action: "evaluate",
+                data: JSON.stringify({
+                    v: v,
+                    a: a,
+                    commu: commu,
+                    long: long,
+                    tall: tall,
+                    thick: thick,
+                    result: result,
+                    account: account
+                })
+            }, function (res) {
+                console.log(res);
+            })
+        }
 
         function showResult(msg) {
             $(".eva-result").show().find("span").text(msg);
