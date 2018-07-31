@@ -66,7 +66,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                     device_conf = json.dumps(device_conf)
                 except Exception as e:
                     pass
-                print('chanp',check_status)
+
                 app = App(developer=developer,
                           app_name=app_name,
                           app_appid=app_app_id,
@@ -89,7 +89,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_update_date=datetime.datetime.utcnow()
                           )
                 app.save()
-                print('保存成功')
+
                 Message.objects.create(message_content='生成标准屏端工程软件', device_key=app_app_id[-8:],
                                        message_sender=app.developer_id,
                                        message_target=app.developer_id, is_read=0,
