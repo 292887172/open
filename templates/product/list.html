@@ -203,6 +203,9 @@
             padding: 14px;
             margin: 8px 10px 8px;
         }
+        .goods-list dl{
+            overflow: visible;
+        }
         .goods-list dl dt {
             width: auto;
             height: auto;
@@ -224,6 +227,7 @@
 
         .goods-list dl dd .goods-title {
             margin: 0;
+            overflow: visible;
         }
 
         .self-button {
@@ -311,7 +315,7 @@
         }
 
         .progress {
-            width: 350px;
+            width: 332px;
 
             margin: auto;
             height: 23px;
@@ -493,7 +497,16 @@
         color: #000 !important;
         border-left:3px solid #000 !important;
     }
-
+    .ui-cooperation-text{
+        position: absolute;
+        color: #788188;
+        font-size: 14px;
+        top: -9px;
+        right: -90px;
+    }
+    .bg-white{
+        margin-left: 22px;
+    }
     </style>
 {% endblock %}
 {% block menu %}
@@ -509,7 +522,7 @@
             </ol>
 
             <ol style="width: 60%;float: left;margin: 6px 0 1px;" class="new-app">
-                <li style="color: #c6c6c6;">模板一键创建：</li>
+                <li style="color: #c6c6c6;">一键创建：</li>
                 {% for app in default_apps %}
                     <li>
                         <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
@@ -597,24 +610,17 @@
                     </dt>
                     <dd>
                         <div class="goods-title" style="margin-left: 0px;position:relative;left:-97px;"><a
-                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}</a>
+                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal">{{ app.app_name }}{% if app.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
                             <span class="label bg-white" style="font-size: 100%;">{% if app.app_model %}
                                 {{ app.app_model }}{% endif %}</span>
 
 
                         </div>
                         <div class="product-info-div">
-                            <div class="parcode">
-                                <div class="arrow"></div>
-                                <div id="code" style="padding-top: 5px;text-align: center;"></div>
-                                <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                            </div>
+
                             <p class="product-info-p" style="margin-left: -45px;display: block">
                                 分类：{{ app.app_device_type| category_detail}} {{ app.app_create_source|category_detail1 }}
 
-                                <!--<a style="color: #428bca;" onclick="show_qrcode(this)" onmouseout="hide_qrcode(this)" data-id="{{ app.app_appid| cover_str8 }}" data-name="{{ app.app_name }}" data-date="{{ app.app_create_date| utc2local }}">
-                                    <label style="margin-left: 13px;" class="fa fa-qrcode"></label>
-                                </a>-->
                                 {% if app.app_group == 1 %}
                                     <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
                                     <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
@@ -669,26 +675,22 @@
 
                     <div class="goods-list" >
                         <dl style="height: 156px">
-                <dt style="margin-top: 30px">
-                    <a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">
-                        <img style="width: 40px;height: 40px" src="{{ app1.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
-                    </a>
-                    <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app1.app_id }}"><i></i></a>
-                </dt>
-                <dd>
-                    <div class="goods-title" style="margin-left: 0px;position:relative;left:-97px;"><a
-                            href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}</a>
-                        <span class="label bg-white" style="font-size: 100%;">{% if app1.app_model %}
-                            {{ app1.app_model }}{% endif %}</span>
+                            <dt style="margin-top: 30px">
+                                <a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">
+                                    <img style="width: 40px;height: 40px" src="{{ app1.app_logo }}" onerror="this.src='{% static "image/global/default.png" %}'" title="产品图标">
+                                </a>
+                                <a style="display: none" class="del" href="javascript:" id="delProLink" data-id="{{ app1.app_id }}"><i></i></a>
+                            </dt>
+                        <dd>
+                        <div class="goods-title" style="margin-left: 0px;position:relative;left:-97px;"><a
+                                href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}{% if app1.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
+                            <span class="label bg-white" style="font-size: 100%;">{% if app1.app_model %}
+                                {{ app1.app_model }}{% endif %}</span>
 
 
-                    </div>
-                    <div class="product-info-div" >
-                        <div class="parcode">
-                            <div class="arrow"></div>
-                            <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                            <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
                         </div>
+                    <div class="product-info-div" >
+
                         <p class="product-info-p" >
                             分类：{{ app1.app_device_type| category_detail}}
 
@@ -752,16 +754,12 @@
                         </dt>
                         <dd>
                             <div class="goods-title" style="margin-left: 0px;position:relative;left:-97px;"><a
-                                    href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}</a>
+                                    href="{% url 'product/main' %}?ID={{ app1.app_id }}#/portal">{{ app1.app_name }}{% if app1.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
                                 <span class="label bg-white" style="font-size: 100%;">{% if app1.app_model %}
                                     {{ app1.app_model }}{% endif %}</span>
                             </div>
                             <div class="product-info-div">
-                                <div class="parcode">
-                                    <div class="arrow"></div>
-                                    <div id="code" style="padding-top: 25px;text-align: center;"></div>
-                                    <p style="text-align: center;color: #000;">扫码发送到屏端快速验证</p>
-                                </div>
+
                                 <p class="product-info-p">
                                     分类：{{ app1.app_device_type| category_detail}}
 

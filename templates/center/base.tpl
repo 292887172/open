@@ -51,9 +51,9 @@ var _hmt = _hmt || [];
         background-color: #ff6202
     }
     #header{
-        position: fixed !import;
-        width:100% !import;
-        top:0 !import;
+        position: fixed !important;
+        width:100% !important;
+        top:0 !important;
     }
 </style>
 <body>
@@ -81,6 +81,7 @@ var _hmt = _hmt || [];
                 <a href="#" onclick="$('.login_out').width($(this).width()+46);$('.login_out').toggle();"
                        style="text-decoration: none;">账号：{{ user.account_id|cover_user_name:user.account_nickname }}<span class="corner"></span></a>
                     <div onmouseout="$('.login_out').hide()" style="position: absolute;background: #F1F4F9; box-shadow: 0 1px 6px rgba(0,0,0,.2);">
+                    <!--
                        {% if user.developer.developer_id %}
                                <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
@@ -88,11 +89,9 @@ var _hmt = _hmt || [];
                             <a rel="nofollow" onmouseover="$('.login_out').show()" class="login_out" href="/center/checklist"
                            style="width: 120px; cursor: pointer; display: none;">通知</a>
                         {% endif %}
-
+                    -->
                         <a rel="nofollow" href="/center?" class="login_out" onmouseover="$('.login_out').show()" style="width: 120px; cursor: pointer; display: none;">帐号管理</a>
-                        {% if not user.account_nicknam %}
-                            <a rel="nofollow" id="modify_pwd_id" onclick="location.href='{% url 'modify_pwd' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">修改密码</a>
-                        {% endif %}
+
 
                         <a rel="nofollow" id="modify_pwd_id" href="/contact" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">联系客服</a>
                         <a rel="nofollow" id="login_out_id" onclick="location.href='{% url 'logout' %}'" onmouseover="$('.login_out').show()" class="login_out" style="width: 120px; cursor: pointer; display: none;">退出</a>
@@ -100,6 +99,7 @@ var _hmt = _hmt || [];
             {% endif %}
 
         </div>
+</div>
 </div>
 <div class="container">
 {% if user.developer.developer_check_remarks and user.developer.developer_check_status == -1 %}

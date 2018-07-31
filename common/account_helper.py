@@ -5,19 +5,18 @@ import json
 from model.center.app import App
 from model.center.group import Group
 from model.center.user_group import UserGroup
-
-__author__ = 'achais'
 import datetime
 from model.center.account import Account
 from model.center.auto_login import AutoLogin
 from django.core.paginator import Paginator
+from django.db.models import Q
 from base.const import ConventionValue
-from base.convert import utctime2localtime
+
 from base.convert import date2ymdhms
 from base.crypto import md5_en
 import base64
 import logging
-
+__author__ = 'achais'
 _convention = ConventionValue()
 
 
@@ -191,6 +190,10 @@ def add_team_email(user_account, app_id, email):
             ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
                            update_date=datetime.datetime.utcnow())
             ug.save()
+        try:
+            add_team_user_account(email)
+        except Exception as e:
+            pass
         return team_info
 
 
@@ -226,3 +229,11 @@ def del_team_email(user_account, app_id, email):
                 ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
                                update_date=datetime.datetime.utcnow())
                 ug.save()
+
+
+def add_team_user_account(email, pwd='123456'):
+    # 创建成员默认密码
+    a = Account.objects.filter(Q(account_id=email)|Q(account_email=email))
+    if a.count() == 0:
+        # 没有账号才创建默认账号
+        Account.objects.create_user(email, pwd, 4, '')

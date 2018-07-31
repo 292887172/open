@@ -145,7 +145,19 @@
         .hover_text span:hover{
             color: #000 !important;
         }
-
+        .guto_device{
+            display: inline-block;
+            background-color: #ff6202;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .guto_device:hover{
+            color: #fff;
+            background-color: #d4753b;
+            text-decoration: none;
+        }
 
     </style>
 {% endblock %}
@@ -177,9 +189,9 @@
         <div class="smart_main">
             <div class="col-md-6 col-md-offset-1" style="padding-left: 0px;background:url(/static/image/home/smartreciped.jpg)" >
                 {% if user.developer.developer_id %}
-                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(create_product('{{ 21 }}'))" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
+                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(create_product('{{ 21 }}'))" class="guto_device" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
                 {% else %}
-                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(dont_develop())" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
+                    <div style="position:absolute;right:50px;bottom:20px"><a href="javascript:void(dont_develop())" class="guto_device" style="font-size: 16px">立即智能化我的蒸烤箱></a></div>
                 {% endif %}
             </div>
             <div class="col-md-4 " style="height: 487px;text-align: left">

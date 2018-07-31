@@ -20,7 +20,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
-from base.const import StatusCode, DefaultProtocol
+from base.const import StatusCode, DefaultProtocol,DefaultSchedule
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
@@ -84,7 +84,6 @@ def product_list(request):
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss', request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
                 developer = request.user.developer
@@ -93,63 +92,64 @@ def product_list(request):
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
-                user_apps1 = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
+                    "-app_update_date")
+
             else:
-                user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:3]
-                user_apps1 = developer.developer_related_app.all().order_by("-app_create_date")[3:]
+                user_apps = developer.developer_related_app.all().order_by("-app_update_date")
+                # user_apps1 = developer.developer_related_app.all().order_by("-app_update_date")[3:]
         except Exception as e:
             user_apps = []
-            user_apps1 = []
             developer = ''
             keyword = ''
             print(e, '问题')
+        # 共享的产品,通过email关联， 账号本身就是邮箱的直接用邮箱查找，否则用绑定的邮箱查找
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        u = UserGroup.objects.filter(user_account=request.user)
-
-        published_apps = []
-        unpublished_apps = []
-        unpublished_apps1 = []
-        publishing_apps = []
-        failed_apps = []
+        tmp_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
-        # 标准
-        print('dddddds',user_apps,user_apps1)
         for app in user_apps:
-            # 已经发布
-            if app.check_status == _convention.APP_CHECKED:
-                unpublished_apps.append(app)
-            elif app.check_status == _convention.APP_CHECKING:
-                unpublished_apps.append(app)
-            # 未发布
-            elif app.check_status == _convention.APP_UN_CHECK:
-                unpublished_apps.append(app)
-            # 未通过审核
-            elif app.check_status == _convention.APP_CHECK_FAILED:
-                unpublished_apps.append(app)
-        for app1 in user_apps1:
-            # 已经发布
+            tmp = {
+                "app_id": app.app_id,
+                "app_logo": app.app_logo,
+                "app_name": app.app_name,
+                "app_model": app.app_model,
+                "app_device_type": app.app_device_type,
+                "app_create_source": app.app_create_source,
+                "app_group": app.app_group,
+                "check_status": app.check_status,
+                "app_update_date": app.app_update_date,
+                "is_share": 0
 
-            if app1.check_status == _convention.APP_CHECKED:
-                published_apps.append(app1)
-            elif app1.check_status == _convention.APP_CHECKING:
-                published_apps.append(app1)
-            # 未发布
-            elif app1.check_status == _convention.APP_UN_CHECK:
-                published_apps.append(app1)
-            # 未通过审核
-            elif app1.check_status == _convention.APP_CHECK_FAILED:
-                published_apps.append(app1)
+            }
+            tmp_apps.append(tmp)
 
         for i in u:
             relate_app = App.objects.filter(app_id=i.group.relate_project)
             for j in relate_app:
-                if len(unpublished_apps) < 3:
-                    unpublished_apps.append(j)
-                else:
-                    published_apps.append(j)
+                tmp = {
+                    "app_id": j.app_id,
+                    "app_logo": j.app_logo,
+                    "app_name": j.app_name,
+                    "app_model": j.app_model,
+                    "app_device_type": j.app_device_type,
+                    "app_create_source": j.app_create_source,
+                    "app_group": j.app_group,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
+                    "is_share": 1
+
+                }
+                tmp_apps.append(tmp)
+        tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
+        unpublished_apps = tmp_apps[:3]
+        published_apps = tmp_apps[3:]
         template = "product/list.html"
         content = dict(
             keyword=keyword,
@@ -158,7 +158,6 @@ def product_list(request):
             published_apps=published_apps,
             default_apps=default_apps,
         )
-        print('dddd',unpublished_apps)
         return render(request, template, content)
 
     def post():
@@ -203,13 +202,11 @@ def product_controldown(request):
     """
 
     def get():
-        more_product = request.GET.get("more", '')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         app_names = []
         for tmp_app in tmp_apps:
             app_names.append(tmp_app.app_name)
-        print('ssss',request.user.developer)
         try:
             if request.user.developer:  # 获取验证信息
 
@@ -219,12 +216,9 @@ def product_controldown(request):
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
+                    "-app_update_date")[0:5]
             else:
-                if more_product == '1':
-                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")
-                else:
-                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
+                user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
         except Exception as e:
             user_apps = []
             developer = ''
@@ -233,47 +227,52 @@ def product_controldown(request):
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         # published_apps = []
         unpublished_apps = []
-        # publishing_apps = []
-        # failed_apps = []
+        tmp_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            # 已经发布
-            if app.check_status == _convention.APP_CHECKED:
+            tmp = {
+                "app_id": app.app_id,
+                "app_name": app.app_name,
+                "app_device_type": app.app_device_type,
+                "app_create_source": app.app_create_source,
+                "check_status": app.check_status,
+                "app_update_date": app.app_update_date,
+                "is_share": 0
 
-                unpublished_apps.append(app)
-            elif app.check_status == _convention.APP_CHECKING:
-                unpublished_apps.append(app)
-            # 未发布
-            elif app.check_status == _convention.APP_UN_CHECK:
-                unpublished_apps.append(app)
-            # 未通过审核
-            elif app.check_status == _convention.APP_CHECK_FAILED:
-                unpublished_apps.append(app)
-        # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        u = UserGroup.objects.filter(user_account=request.user)
+            }
+            tmp_apps.append(tmp)
+        # 分享产品
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
             relate_app = App.objects.filter(app_id=i.group.relate_project)
             for j in relate_app:
-                if len(unpublished_apps) < 3:
-                    unpublished_apps.append(j)
-                else:
-                    unpublished_apps.append(j)
+                tmp = {
+                    "app_id": j.app_id,
+                    "app_name": j.app_name,
+                    "app_device_type": j.app_device_type,
+                    "app_create_source": j.app_create_source,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
+                    "is_share": 1
+                }
+                tmp_apps.append(tmp)
+        tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
+        unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
         content = dict(
             keyword=keyword,
             developer=developer,
-
             unpublished_apps=unpublished_apps,
-
             default_apps=default_apps,
 
         )
-        print(content)
-        if more_product == '1':
-            for i in unpublished_apps:
-                print(i)
-            return HttpResponse(unpublished_apps)
 
         return render(request, template, content)
 
@@ -388,10 +387,8 @@ def product_add(request):
                                 device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,
                                 app_category_detail2)
             from common.celerytask import add
-            r = Redis3(rdb=6).client
             add.delay(app_id)
-            app = App.objects.get(app_id=app_id)
-            update_app_protocol(app)
+
             if app_product_fast:
                 return HttpResponse(json.dumps({"code": 0, "appid": app_id}, separators=(",", ':')))
             url = '/product/main/?ID=' + str(app_id) + '#/portal'
@@ -449,8 +446,39 @@ def product_main(request):
             return HttpResponseRedirect(reverse("product/list"))
 
         app = user_apps[0]
-        all_app = user_related_app
-        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        all_app = []
+
+        for a in user_related_app:
+            tmp = {
+                "app_id": a.app_id,
+                "app_name": a.app_name,
+                "check_status": a.check_status,
+                "app_update_date": a.app_update_date,
+                "is_share": 0
+
+            }
+            all_app.append(tmp)
+        # 分享产品
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
+        for i in u:
+            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            for j in relate_app:
+                tmp = {
+                    "app_id": j.app_id,
+                    "app_name": j.app_name,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
+                    "is_share": 1
+                }
+                all_app.append(tmp)
+        all_app = sorted(all_app, key=lambda a: a['app_update_date'], reverse=True)
+
         device_name = get_device_type(app.app_device_type)
 
         # g = Group.objects.get(group_id=app.group_id)
@@ -529,7 +557,6 @@ def product_main(request):
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-                print('数据', opera_data)
                 app_device_type = app.app_device_type
                 mod = get_mod_funs(opera_data, device_conf, app_device_type)
                 return JsonResponse({"data": mod})
@@ -584,9 +611,10 @@ def product_main(request):
             try:
                 for j in range(len(funs)):
                     for i in funs:
-                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID']==i.split("自定义")[0]:
-                            opera_data[j]['id'] = str(int(funs.index(i))+int(1))
+                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
+                            opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
+
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
                 save_app(app, c_data, cook_ies)
@@ -915,7 +943,7 @@ def portal(request):
         app_id = request.POST.get("app_id", "")
         email = request.POST.get("email", "")
         user_account = request.user
-        print('user', user_account)
+
         if action == 'submitEmail':
             # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
             # 若有分组，则直接在分组中添加成员
@@ -936,33 +964,41 @@ def schedule(request):
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
-            for i in li_ui:
-                update_dict = {}
-                update_dict['id'] = i.ui_upload_id
-                update_dict['remark'] = i.ui_remark
-                update_dict['party'] = i.ui_party
+            if li_ui:
+                id_list=[]
+                for i in li_ui:
+                    update_dict = {}
+                    update_dict['id'] = i.ui_upload_id
+                    update_dict['remark'] = i.ui_remark
+                    update_dict['party'] = i.ui_party
+                    update_dict['plan'] = i.ui_plan
+                    id_list.append(i.ui_upload_id)
+                    try:
+                        url = eval(i.ui_content)
+                    except Exception as e:
+                        url = [i.ui_content]
+                    if not isinstance(url, list):
+                        url = [url]
+                    update_dict['url'] = url
+                    update_dict['ack'] = i.ui_ack
+                    update_dict['time_stemp'] = i.ui_time_stemp
 
-                try:
-                    url = eval(i.ui_content)
-                except Exception as e:
-                    url = [i.ui_content]
-                if not isinstance(url, list):
-                    url = [url]
-
-                update_dict['url'] = url
-                update_dict['ack'] = i.ui_ack
-                update_dict['time_stemp'] = i.ui_time_stemp
-
-                update_list.append(update_dict)
-
+                    update_list.append(update_dict)
+                    c_data = update_list[:len(update_list)]
+                    c_data.sort(key=lambda x: int(x.get("id")))
+                    c_data.extend(update_list[len(update_list):])
+                    update_list = c_data
+            else:
+                update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                for i in update_list:
+                    DocUi.objects.create(ui_key=key,ui_ack=0,ui_upload_id=i['id'],ui_plan=i['plan'],ui_party='',ui_remark='',ui_time_stemp='',
+                                         ui_content="['']",ui_type='')
         except Exception as e:
             print(e)
-        print(update_list)
         return HttpResponse(json.dumps(update_list))
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
-        print(num)
         location = request.POST.get('location', '')
         # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
         action = request.POST.get('action', '')
@@ -974,6 +1010,21 @@ def schedule(request):
                 if del_id:
                     del_id = int(del_id)
                 remove_up_url(key, del_id, del_url)
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'delxu':
+            #data: {"key": keysss, "action": "delxu", "del_id": id}
+            del_xu_id = request.POST.get('del_id','')
+            # 删除原有的id对应的数据 大于id的数据id自减1更新
+            try:
+                DocUi.objects.filter(ui_key=key, ui_upload_id=del_xu_id).delete()
+                del_data = DocUi.objects.filter(ui_key=key,ui_upload_id__gt=del_xu_id)
+                if del_data:
+                    for i in del_data:
+                        if int(i.ui_upload_id) > int(del_xu_id):
+                             DocUi.objects.filter(ui_key=key,ui_upload_id=i.ui_upload_id).update(ui_upload_id=int(i.ui_upload_id) - 1)
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1018,9 +1069,26 @@ def schedule(request):
             ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
             try:
                 if ddd:
+                    print(time_id,time_value)
                     ddd.update(ui_time_stemp=time_value)
                 else:
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
+                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'plan':
+            # 时间搓
+            time_value = request.POST.get('value', '')
+            time_id = request.POST.get('id', '')
+            ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
+            try:
+                if ddd:
+                    ddd.update(ui_plan=time_value)
+                else:
+                    DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
                                          ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
@@ -1108,7 +1176,6 @@ def upload_file(request):
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
-
         t = int(id) + int(1)
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         b = UserGroup.objects.filter(group__create_user=user1)
@@ -1119,27 +1186,27 @@ def upload_file(request):
         group_id = ''
         for i in a:
             app_name = i.app_name
-            print('组id', i.group_id)
             group_id = i.group_id
             developer = i.developer_id
         try:
             b = UserGroup.objects.filter(group__group_id=group_id)
             for i in b:
-                print(i.user_account)
                 email_list.append(i.user_account)
         except Exception as e:
             print(e)
         try:
             # 上传UI文件
             if post_data == 'upload':
-
-                store = EbStore(CLOUD_TOKEN)
-                rr = store.upload(file.read(), file.name, file.content_type)
-                rr = json.loads(rr)
-                r = rr['code']
-                list_url = []
-                list_url.append(rr['data'])
-                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp)
+                try:
+                    store = EbStore(CLOUD_TOKEN)
+                    rr = store.upload(file.read(), file.name, file.content_type)
+                    rr = json.loads(rr)
+                    r = rr['code']
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+                list_url = rr['data']
+                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp,file.name)
                 product_name = app_name + '上传更新提示'
                 if t >= 9:
                     next_stemp = "量产阶段"
@@ -1147,7 +1214,8 @@ def upload_file(request):
                     next_stemp = BOOK[str(t)]
                 # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                 try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,location, "submit")
+                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
+                                               location, "submit")
                     Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                            message_handler_type=int(4),
                                            device_key=key, message_sender=cook_ies, message_target=cook_ies,

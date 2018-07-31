@@ -254,6 +254,18 @@ def ex(request):
                 "source": source,
             })
             return HttpResponse("ok")
+        elif action == "evaluate":
+            try:
+                # 保存评估结果
+                data = json.loads(request.POST.get("data", "{}"))
+                if data:
+                    data['create_date'] = datetime.datetime.now()
+                db = SandboxApiMongoDBHandler().db
+                db.ebc_user_device_exEva.insert(data)
+                return JsonResponse({"code": 0, "msg": "success"})
+            except Exception as e:
+                logging.getLogger('').exception(e)
+            return JsonResponse({"code": -1, "msg": "error"})
         return HttpResponse('error')
 
 

@@ -189,7 +189,8 @@
             <li><a href="/product/list/">厨电开发</a></li>
             <li>
                      {% if app.check_status == 3 %}开发示例
-                     {% else %}我的产品{% endif %}
+                     {% else %}<a href="/product/list/">我的产品</a>{% endif %}
+
             </li>
             {% if app.check_status == 3 %}
             <li id="default-app-id">
@@ -211,6 +212,7 @@
                      </ul>
                  </div>
             </li>
+                <span style="margin-left: 40px">key:</span><span>{{ key }}</span>
             {% else %}
             <li id="owner-app-id" >
                 <div class="dropdown" id="dropdown">
@@ -236,6 +238,7 @@
                         {% endif %}
                  </div>
             </li>
+            <span style="margin-left: 40px">key:</span><span style="margin-left: 5px">{{ key }}</span>
             {% endif %}
             </ol>
             
@@ -433,6 +436,8 @@
                     $scope.create_time_detail = "{{ app.app_create_date|utc2local2 }}"; // 详细的时间信息
                     $scope.update_time = "{{ app.app_update_date|utc2local  }}";
                     $scope.apply_status = "{% if app.check_status == 0%} 定稿 {% elif app.check_status == 1 %} 取消发布{% elif app.check_status == 2 %}我要下架{% elif app.check_status == -1 %}重新发布{% endif %}";
+                    $scope.app_create_user = "{{ app.developer_id }}";
+                    $scope.login_user = "{{ user.account_id }}";
                     // 应用类目
                     $scope.secondProType = [
                         {

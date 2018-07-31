@@ -3,20 +3,18 @@
 import json
 
 from model.center.account import Account
-from model.center.account_info import AccountIfo
+
 from model.center.group import Group
 from model.center.user_group import UserGroup
-
-__author__ = 'rdy'
-
 from model.center.developer import Developer
 from django.core.paginator import Paginator
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.const import ConventionValue
-
+from django.db.models import Q
 import datetime
 import logging
+__author__ = 'rdy'
 
 _convention = ConventionValue()
 
@@ -46,7 +44,7 @@ def create_developer(company, company_url, company_address, company_scale, conta
 
     try:
         # 开发者帐号：  由开发者来源+下划线+账号拼接起来
-        # 开发者来源： （1：平台用户，2：设备管理系统厂商，3：微信）
+        # 开发者来源： （1：平台用户，2：设备管理系统厂商，3：微信, 4：默认创建）
         if user_from == '53iq':
             dev_from = 1
             dev_id = '1_' + user
@@ -70,6 +68,8 @@ def create_developer(company, company_url, company_address, company_scale, conta
                 d.developer_mobile = contact_mobile
                 d.save()
         except Exception as e:
+            logging.getLogger('').info(str(e)+'问题来了')
+
             dev = Developer(
                 developer_id=dev_id,
                 developer_account=user,
@@ -89,7 +89,7 @@ def create_developer(company, company_url, company_address, company_scale, conta
             dev.save()
         return dev_id
     except Exception as e:
-        logging.getLogger('').info(str(e))
+        logging.getLogger('').info(str(e)+'问题还在')
 
     return ""
 
@@ -303,7 +303,7 @@ def create_team_account(user_id):
     :param user_id: 
     :return: 
     """
-    a = Account.objects.filter(account_id=user_id)
+    a = Account.objects.filter(Q(account_id=user_id)|Q(account_email=user_id))
     if a.count() == 0:
         # 还没有账号
         Account.objects.create_user(user_id, '123456', 4, '')
