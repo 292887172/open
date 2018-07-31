@@ -300,7 +300,7 @@
                     onclick="xxx(this)">上传
             </button>
 
-                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll[0]}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
+                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
 
 
 
@@ -496,6 +496,8 @@
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
     function xxxx(that) {
+         that = that.attributes['data'].nodeValue
+         console.log('ee',that)
          document.getElementById("get_value").value = that;
     }
     function doUploadFile() {
