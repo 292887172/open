@@ -212,6 +212,10 @@
         font-size: 12px;
         line-height: 1;
     }
+    .div3 span{
+        font-size: 14px;
+        line-height: 2;
+    }
 </style>
 
 <div class="title-sub " style="text-align: center;font-size: larger">
@@ -231,7 +235,7 @@
             </div>
             <div class="my_container">
                 <span id="progress"></span>
-                <span id="progress-text">0%</span>
+                <span id="progress-text">等待上传</span>
             </div>
             <div class="modal-body">
 
@@ -474,7 +478,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><span data-downurl='" + new_url + "' onclick='a_download(this)' style=\"display: inline-block\" >" + p + "</span>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -487,7 +491,7 @@
                     var ty = document.querySelector(".table").querySelectorAll("tr")[data[i]['id']].querySelectorAll("td")[3].querySelector("div")
 
                     var p = new_url.substring(new_url.length - 6)
-                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><a href='" + new_url + "'style=\"display: inline-block\" >" + p + "</a>&nbsp;&nbsp;</div>")
+                    $(ty).after("<div class=\"div3\"><img title=\"删除\" src=\"/static/image/product/delete.png\" class=\"delete1\" alt=\"\" onclick=\"Deleted(this,"+ data[i]['id'] +")\"><span data-downurl='" + new_url + "' onclick='a_download(this)' style=\"display: inline-block\" >" + p + "</span>&nbsp;&nbsp;</div>")
                 }
             }
             }
@@ -518,7 +522,7 @@
 
     })
     function Deleted(c,b) {
-        var del_url = c.parentNode.getElementsByTagName("a")[0].href
+        var del_url = c.parentNode.getElementsByTagName("span")[0].getAttribute("data-downurl");
        $.ajax({
            url: '/product/schedule',
            type:"POST",
@@ -685,6 +689,8 @@
                 },
             }).success(function (data) {
                 console.log("上传成功")
+                $('#progress-text').html(100 + "%");
+                $('#progress').css('width', 100 + "%");
                 data = JSON.parse(data)
                 if (data['code'] == 0) {
                     document.getElementsByClassName("close")[0].click();
@@ -702,8 +708,12 @@
     function progressHandlingFunction(e){
         if(e.lengthComputable){
             var percent = e.loaded/e.total*100;
-            $('#progress-text').html(percent.toFixed(2) + "%");
-            $('#progress').css('width', percent.toFixed(2) + "%");
+            let my_precent_data = percent.toFixed(2);
+            if (my_precent_data >99){
+                my_precent_data = 99
+            }
+            $('#progress-text').html(my_precent_data + "%");
+            $('#progress').css('width', my_precent_data + "%");
         }
     }
 
@@ -735,12 +745,22 @@
     }
 
     $(".applyBtn").on("click",function () {
-        var c = document.getElementById("get_values").value
-        alert('xxxx')
+        var c = document.getElementById("get_values").value;
          setTimeout(function () {
                            funce(c)
                         }, 500)
     })
+
+    function a_download(val){
+        let myUrl = val.getAttribute("data-downurl");
+        var $a = document.createElement('a');
+        $a.setAttribute("href", myUrl);
+        $a.setAttribute("download", "");
+
+        var evObj = document.createEvent('MouseEvents');
+        evObj.initMouseEvent( 'click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
+        $a.dispatchEvent(evObj);
+    }
 </script>
 
 
