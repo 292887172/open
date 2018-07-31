@@ -130,9 +130,10 @@ def login(request):
             return render(request, "center/login.html", locals())
         try:
             a = Account.objects.filter(Q(account_id=account)|Q(account_phone=account)|Q(account_email=account))
+            print(a.count(), '=====')
             for i in a:
                 account = i.account_id
-                # print(i.account_id, '+++++++')
+            print(account, '+++++++')
             password = base64.b64decode(password)
             user_obj = authenticate(username=account, password=password)
 
