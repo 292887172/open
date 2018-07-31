@@ -293,7 +293,7 @@
                     onclick="xxx(this)">上传
             </button>
 
-                <div ng-repeat="c in x.url" ng-if="c" class="div3"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span data-downurl="{[{c}]}" onclick='a_download(this)'>{[{c.substring(c.length-6)}]}</span></div>
+                <div ng-repeat="c in x.url" ng-if="c" class="div3"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span data-downurl="{[{c.urll[0]}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
 
 
 

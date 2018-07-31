@@ -997,12 +997,10 @@ def schedule(request):
                                          ui_content="['']",ui_type='')
         except Exception as e:
             print(e)
-        print('ss',update_list)
         return HttpResponse(json.dumps(update_list))
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
-        print(num)
         location = request.POST.get('location', '')
         # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
         action = request.POST.get('action', '')
@@ -1026,15 +1024,9 @@ def schedule(request):
                 DocUi.objects.filter(ui_key=key, ui_upload_id=del_xu_id).delete()
                 del_data = DocUi.objects.filter(ui_key=key,ui_upload_id__gt=del_xu_id)
                 if del_data:
-
-                    print('被删除的id',del_xu_id)
-
                     for i in del_data:
-                        print('i',i,i.ui_upload_id)
                         if int(i.ui_upload_id) > int(del_xu_id):
-                             print(int(i.ui_upload_id) - 1)
                              DocUi.objects.filter(ui_key=key,ui_upload_id=i.ui_upload_id).update(ui_upload_id=int(i.ui_upload_id) - 1)
-
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1186,7 +1178,6 @@ def upload_file(request):
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
-
         t = int(id) + int(1)
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         b = UserGroup.objects.filter(group__create_user=user1)
@@ -1197,13 +1188,11 @@ def upload_file(request):
         group_id = ''
         for i in a:
             app_name = i.app_name
-            print('组id', i.group_id)
             group_id = i.group_id
             developer = i.developer_id
         try:
             b = UserGroup.objects.filter(group__group_id=group_id)
             for i in b:
-                print(i.user_account)
                 email_list.append(i.user_account)
         except Exception as e:
             print(e)
@@ -1218,10 +1207,8 @@ def upload_file(request):
                 except Exception as e:
                     print(e)
                     return HttpResponse(json.dumps({"code": 1}))
-                print('code',r)
-                list_url = []
-                list_url.append(rr['data'])
-                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp)
+                list_url = rr['data']
+                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp,file.name)
                 product_name = app_name + '上传更新提示'
                 if t >= 9:
                     next_stemp = "量产阶段"
