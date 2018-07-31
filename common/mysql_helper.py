@@ -231,19 +231,24 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
 
         ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key)
-        for i in ui_obj:
-            url_list_now = eval(i.ui_content)
+        if ui_obj:
+            for i in ui_obj:
+                url_list_now = eval(i.ui_content)
 
-            if type(url_list_now) == list:
-                url_dict = {"urll": file_path, "filename": filename}
-                url_list_now.append(url_dict)
-                ui_obj.update(ui_content=url_list_now, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
-                              update_date=datetime.datetime.utcnow())
-            else:
-                url_list1 = []
-                url_list1.append(url_list_now)
-                ui_obj.update(ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
-                              update_date=datetime.datetime.utcnow())
+                if type(url_list_now) == list:
+                    url_dict = {"urll": file_path, "filename": filename}
+                    url_list_now.append(url_dict)
+                    ui_obj.update(ui_content=url_list_now, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                                  update_date=datetime.datetime.utcnow())
+                else:
+                    url_list1 = []
+                    url_list1.append(url_list_now)
+                    ui_obj.update(ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                                  update_date=datetime.datetime.utcnow())
+        else:
+            url_list1=[{"urll":file_path,"filename":filename}]
+            DocUi.objects.create(ui_upload_id=id, ui_key=key,ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                                  update_date=datetime.datetime.utcnow())
     except Exception as e:
         print(e)
     finally:
