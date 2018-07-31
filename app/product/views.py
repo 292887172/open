@@ -105,11 +105,13 @@ def product_list(request):
             keyword = ''
             print(e, '问题')
         # 共享的产品,通过email关联， 账号本身就是邮箱的直接用邮箱查找，否则用绑定的邮箱查找
-
-        if "@" in request.user:
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
-        else:
-            u = UserGroup.objects.filter(user_account=request.user.account_email)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         published_apps = []
         unpublished_apps = []
