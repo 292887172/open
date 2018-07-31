@@ -448,7 +448,38 @@ def product_main(request):
             return HttpResponseRedirect(reverse("product/list"))
 
         app = user_apps[0]
-        all_app = user_related_app
+        all_app = []
+
+        for app in user_related_app:
+            tmp = {
+                "app_id": app.app_id,
+                "app_name": app.app_name,
+                "check_status": app.check_status,
+                "app_update_date": app.app_update_date,
+                "is_share": 0
+
+            }
+            all_app.append(tmp)
+        # 分享产品
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
+        for i in u:
+            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            for j in relate_app:
+                tmp = {
+                    "app_id": j.app_id,
+                    "app_name": j.app_name,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
+                    "is_share": 1
+                }
+                all_app.append(tmp)
+        all_app = sorted(all_app, key=lambda a: a['app_update_date'], reverse=True)
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         device_name = get_device_type(app.app_device_type)
 
