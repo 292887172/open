@@ -346,7 +346,7 @@
     }
     function Deleted(c) {
         console.log(c)
-        var del_url = c.parentNode.getElementsByTagName("a")[0].href
+        var del_url = c.parentNode.getElementsByTagName("span")[0].getAttribute("data-downurl");
         var b = c.attributes['data'].nodeValue
         console.log('xxx',del_url,b)
        $.ajax({
