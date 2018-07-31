@@ -99,8 +99,8 @@
         background-color: #F1F4F9!important;
     }
     .btn-edit{
-        float: right;
-        margin: 3px 20% 0 0;
+
+        margin: 3px 20% 0 3%;
     }
     .ui-sub-item{
         display: none;
@@ -188,7 +188,7 @@
                         <!--已经审核通过，可以修改信息-->
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                                <h3 style="margin-top: 30px">联系人信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
+                                <h3 style="margin-top: 30px">联系人信息<a type="button" class="btn-edit">编辑</a></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
                                     <input type="hidden" name="action" value="submit_account_info">
@@ -227,7 +227,7 @@
 			            <div id="tab2" class="tab">
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                            <h3 style="margin-top: 30px">公司/团队信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
+                            <h3 style="margin-top: 30px">公司/团队信息<a type="button" class="btn-edit">编辑</a></h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
                                 <input type="hidden" name="action" value="submit_company_info">
@@ -264,7 +264,7 @@
 
 			            <div id="tab3" class="tab"  >
                              <div style="" id="item-team-control" style="margin-top: 30px" class="cnt_box">
-                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn " type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></h3>
+                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
                                  <p style="margin-top: 15px;display: none">团队邮箱管理  </p>
                              {% for t in team_info %}
                                 <div class="row item-team-user" style="height: 30px!important;" >
@@ -293,7 +293,7 @@
                         <!--已经审核通过，可以修改信息-->
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                                <h3 style="margin-top: 30px">联系人信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
+                                <h3 style="margin-top: 30px">联系人信息</h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
                                     <input type="hidden" name="action" value="submit_account_info">
@@ -332,7 +332,7 @@
 			            <div id="tab2" class="tab">
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                            <h3 style="margin-top: 30px">公司/团队信息<button type="button" class="btn btn-default btn-edit">编辑</button></h3>
+                            <h3 style="margin-top: 30px">公司/团队信息</h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
                                 <input type="hidden" name="action" value="submit_company_info">
@@ -369,7 +369,7 @@
 
 			            <div id="tab3" class="tab"  >
                              <div id="item-team-control" style="margin-top: 30px" class="cnt_box">
-                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn " type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="" onclick="addTeamEmail()">添加</a></h3>
+                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
 
                              {% for t in team_info %}
                                 <div class="row item-team-user" style="height: 30px!important;" >
@@ -564,12 +564,10 @@
 
             });
             $("#item-team-control").delegate(".ui-del-item", "click", function () {
-                if($(".item-team-user").length<=2){
-                    return false
-                }else {
+
                     // 页面上多余一个的team成员框才可以删除
                     $(this).parent().remove()
-                }
+
 
             });
             $("#addTeamSubmit").click(function () {
@@ -585,7 +583,10 @@
                             "job": $($(this).find("input")[1]).val(),
                             "email": $($(this).find("input")[2]).val()
                         };
-                        data.push(tmp)
+                        if (tmp['email'].indexOf("@")>1){
+                            data.push(tmp)
+                        }
+
                     }
                 });
                 var data_item = {
@@ -595,7 +596,8 @@
 
                 };
                 console.log(data_item);
-                jQuery.ajax({
+                if(data.length > 0){
+                    jQuery.ajax({
                     url: location.href,
                     type: "POST",
                     data: data_item,
@@ -613,11 +615,13 @@
                         if (response['status'] == 'ok') {
                             bootbox.alert("提交成功");
                             $(".item-tmp-team").remove();
+                            $("#item-team-control").find(".item-team-user").remove();
                             for(var i =0;i<data.length;i++){
                                 name = data[i].name;
                                 job = data[i].job;
                                 email = data[i].email;
                                 var html = new EJS({url: config.url["team_email"]}).render({"id": length, "name": name, "job": job, "email": email});
+
                                 $("#item-team-control").append(html)
                             }
 
@@ -631,6 +635,10 @@
                     }
 
                 });
+                }else{
+                    bootbox.alert('请完善团队邮箱信息')
+                }
+
             })
 
         });

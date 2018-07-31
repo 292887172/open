@@ -254,12 +254,12 @@ def product_controldown(request):
             relate_app = App.objects.filter(app_id=i.group.relate_project)
             for j in relate_app:
                 tmp = {
-                    "app_id": app.app_id,
-                    "app_name": app.app_name,
-                    "app_device_type": app.app_device_type,
-                    "app_create_source": app.app_create_source,
-                    "check_status": app.check_status,
-                    "app_update_date": app.app_update_date,
+                    "app_id": j.app_id,
+                    "app_name": j.app_name,
+                    "app_device_type": j.app_device_type,
+                    "app_create_source": j.app_create_source,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
                     "is_share": 1
                 }
                 tmp_apps.append(tmp)
