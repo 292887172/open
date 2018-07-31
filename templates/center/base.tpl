@@ -51,9 +51,9 @@ var _hmt = _hmt || [];
         background-color: #ff6202
     }
     #header{
-        position: fixed !import;
-        width:100% !import;
-        top:0 !import;
+        position: fixed !important;
+        width:100% !important;
+        top:0 !important;
     }
 </style>
 <body>
@@ -99,6 +99,7 @@ var _hmt = _hmt || [];
             {% endif %}
 
         </div>
+</div>
 </div>
 <div class="container">
 {% if user.developer.developer_check_remarks and user.developer.developer_check_status == -1 %}
