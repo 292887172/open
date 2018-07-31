@@ -387,10 +387,8 @@ def product_add(request):
                                 device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,
                                 app_category_detail2)
             from common.celerytask import add
-            r = Redis3(rdb=6).client
             add.delay(app_id)
-            app = App.objects.get(app_id=app_id)
-            update_app_protocol(app)
+
             if app_product_fast:
                 return HttpResponse(json.dumps({"code": 0, "appid": app_id}, separators=(",", ':')))
             url = '/product/main/?ID=' + str(app_id) + '#/portal'
@@ -450,12 +448,12 @@ def product_main(request):
         app = user_apps[0]
         all_app = []
 
-        for app in user_related_app:
+        for a in user_related_app:
             tmp = {
-                "app_id": app.app_id,
-                "app_name": app.app_name,
-                "check_status": app.check_status,
-                "app_update_date": app.app_update_date,
+                "app_id": a.app_id,
+                "app_name": a.app_name,
+                "check_status": a.check_status,
+                "app_update_date": a.app_update_date,
                 "is_share": 0
 
             }
@@ -480,7 +478,7 @@ def product_main(request):
                 }
                 all_app.append(tmp)
         all_app = sorted(all_app, key=lambda a: a['app_update_date'], reverse=True)
-        default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+
         device_name = get_device_type(app.app_device_type)
 
         # g = Group.objects.get(group_id=app.group_id)
@@ -559,7 +557,6 @@ def product_main(request):
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
             if post_data == "show_mod":
-                print('数据', opera_data)
                 app_device_type = app.app_device_type
                 mod = get_mod_funs(opera_data, device_conf, app_device_type)
                 return JsonResponse({"data": mod})
@@ -617,7 +614,7 @@ def product_main(request):
                         if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
                             opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
-                print('ss',c_data)
+
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
                 save_app(app, c_data, cook_ies)

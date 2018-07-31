@@ -64,6 +64,8 @@ def search_time(key):
         return ''
     finally:
         conn.close()
+
+
 def search_time1(key):
     conn = SysMysqlHandler().conn
     try:
@@ -78,10 +80,14 @@ def search_time1(key):
         return ''
     finally:
         conn.close()
+
+
 def search_time11(key):
     d = Protocol.objects.filter(protocol_device_key=key)
     for i in d:
         return i.protocol_create_date
+
+
 def update_app_protocol(app):
     conn = SysMysqlHandler().conn
     try:
@@ -92,8 +98,6 @@ def update_app_protocol(app):
         sqlOne = "SELECT ebf_pc_device_key FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key_value)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
-
-
         if not test:
             sql = "INSERT INTO ebt_protocol_conf(" \
                   "ebf_pc_factory_uid, " \
