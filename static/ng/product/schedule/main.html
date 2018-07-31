@@ -97,7 +97,7 @@
     .div3{
         display: inline-block;
         width: 50px;
-        height: auto;
+
         margin-left:0px;
         position: relative;
         font-size: 0;
@@ -293,13 +293,13 @@
                     onclick="xxx(this)">上传
             </button>
 
-                <div ng-repeat="c in x.url" ng-if="c" class="div3"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span data-downurl="{[{c.urll[0]}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
+                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll[0]}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
 
 
 
         </td>
         <td ng-if="x.ack==1">
-            <button type="button" class="btn" data="{[{x.id}]}" disabled onclick="confirm(this)">已确认</button>
+            已确认
         </td>
         <td ng-if="x.ack==0">
             <button type="button" class="btn" data="{[{x.id}]}" style="background-color: blue" onclick="confirm(this)">确认</button>
