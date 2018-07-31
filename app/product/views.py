@@ -20,7 +20,7 @@ from common.app_helper import reset_app_secret
 from common.app_api_helper import ApiHandler
 from common.app_api_helper import remove_conf_prefix
 from common.device_online import device_online
-from base.const import StatusCode, DefaultProtocol
+from base.const import StatusCode, DefaultProtocol,DefaultSchedule
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
@@ -586,6 +586,7 @@ def product_main(request):
                         if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
                             opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
+                print('ss',c_data)
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
                 save_app(app, c_data, cook_ies)
@@ -931,33 +932,41 @@ def portal(request):
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
-        print(key)
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
-            for i in li_ui:
-                update_dict = {}
-                update_dict['id'] = i.ui_upload_id
-                update_dict['remark'] = i.ui_remark
-                update_dict['party'] = i.ui_party
-                update_dict['plan'] = i.ui_plan
+            if li_ui:
+                id_list=[]
+                for i in li_ui:
+                    update_dict = {}
+                    update_dict['id'] = i.ui_upload_id
+                    update_dict['remark'] = i.ui_remark
+                    update_dict['party'] = i.ui_party
+                    update_dict['plan'] = i.ui_plan
+                    id_list.append(i.ui_upload_id)
+                    try:
+                        url = eval(i.ui_content)
+                    except Exception as e:
+                        url = [i.ui_content]
+                    if not isinstance(url, list):
+                        url = [url]
+                    update_dict['url'] = url
+                    update_dict['ack'] = i.ui_ack
+                    update_dict['time_stemp'] = i.ui_time_stemp
 
-                try:
-                    url = eval(i.ui_content)
-                except Exception as e:
-                    url = [i.ui_content]
-                if not isinstance(url, list):
-                    url = [url]
-
-                update_dict['url'] = url
-                update_dict['ack'] = i.ui_ack
-                update_dict['time_stemp'] = i.ui_time_stemp
-
-                update_list.append(update_dict)
-
+                    update_list.append(update_dict)
+                    c_data = update_list[:len(update_list)]
+                    c_data.sort(key=lambda x: int(x.get("id")))
+                    c_data.extend(update_list[len(update_list):])
+                    update_list = c_data
+            else:
+                update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                for i in update_list:
+                    DocUi.objects.create(ui_key=key,ui_ack=0,ui_upload_id=i['id'],ui_plan=i['plan'],ui_party='',ui_remark='',ui_time_stemp='',
+                                         ui_content="['']",ui_type='')
         except Exception as e:
             print(e)
-        print(update_list)
+        print('ss',update_list)
         return HttpResponse(json.dumps(update_list))
     if request.method == "POST":
         key = request.POST.get('key', '')
@@ -978,7 +987,27 @@ def schedule(request):
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
+        elif action == 'delxu':
+            #data: {"key": keysss, "action": "delxu", "del_id": id}
+            del_xu_id = request.POST.get('del_id','')
+            # 删除原有的id对应的数据 大于id的数据id自减1更新
+            try:
+                DocUi.objects.filter(ui_key=key, ui_upload_id=del_xu_id).delete()
+                del_data = DocUi.objects.filter(ui_key=key,ui_upload_id__gt=del_xu_id)
+                if del_data:
 
+                    print('被删除的id',del_xu_id)
+
+                    for i in del_data:
+                        print('i',i,i.ui_upload_id)
+                        if int(i.ui_upload_id) > int(del_xu_id):
+                             print(int(i.ui_upload_id) - 1)
+                             DocUi.objects.filter(ui_key=key,ui_upload_id=i.ui_upload_id).update(ui_upload_id=int(i.ui_upload_id) - 1)
+
+                return HttpResponse(json.dumps({"code": 0}))
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
         elif action == 'remark':
             # 备注信息
             remark_value = request.POST.get('value', '')

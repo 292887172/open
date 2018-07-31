@@ -305,6 +305,19 @@
         select{
             background-color: white;
         }
+        .guto_device{
+            display: inline-block;
+            background-color: #ff6202;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .guto_device:hover{
+            color: #fff;
+            background-color: #d4753b;
+            text-decoration: none;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -477,7 +490,7 @@
             });
         </script>
     </div>
-    <div style="margin-left: 40%;margin-top: -30px"><a href="javascript:void(create_product('21'))" style="font-size: 16px;cursor: pointer" class="alianxi">立即智能化我的蒸烤箱&gt;</a></div>
+    <div style="text-align: center;background: #fff;padding: 30px 0;"><a href="javascript:void(create_product('21'))" class="guto_device" style="font-size: 16px;cursor: pointer" class="alianxi">立即智能化我的蒸烤箱&gt;</a></div>
 {% endblock %}
 
 {% block script %}
