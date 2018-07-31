@@ -92,15 +92,13 @@ def product_list(request):
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
-                user_apps1 = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
+                    "-app_update_date")
+
             else:
-                user_apps = developer.developer_related_app.all().order_by("-app_create_date")[0:3]
-                user_apps1 = developer.developer_related_app.all().order_by("-app_create_date")[3:]
+                user_apps = developer.developer_related_app.all().order_by("-app_update_date")
+                # user_apps1 = developer.developer_related_app.all().order_by("-app_update_date")[3:]
         except Exception as e:
             user_apps = []
-            user_apps1 = []
             developer = ''
             keyword = ''
             print(e, '问题')
@@ -113,43 +111,45 @@ def product_list(request):
         except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        published_apps = []
-        unpublished_apps = []
+        tmp_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            # 已经发布
-            if app.check_status == _convention.APP_CHECKED:
-                unpublished_apps.append(app)
-            elif app.check_status == _convention.APP_CHECKING:
-                unpublished_apps.append(app)
-            # 未发布
-            elif app.check_status == _convention.APP_UN_CHECK:
-                unpublished_apps.append(app)
-            # 未通过审核
-            elif app.check_status == _convention.APP_CHECK_FAILED:
-                unpublished_apps.append(app)
-        for app1 in user_apps1:
-            # 已经发布
+            tmp = {
+                "app_id": app.app_id,
+                "app_logo": app.app_logo,
+                "app_name": app.app_name,
+                "app_model": app.app_model,
+                "app_device_type": app.app_device_type,
+                "app_create_source": app.app_create_source,
+                "app_group": app.app_group,
+                "check_status": app.check_status,
+                "app_update_date": app.app_update_date,
+                "is_share": 0
 
-            if app1.check_status == _convention.APP_CHECKED:
-                published_apps.append(app1)
-            elif app1.check_status == _convention.APP_CHECKING:
-                published_apps.append(app1)
-            # 未发布
-            elif app1.check_status == _convention.APP_UN_CHECK:
-                published_apps.append(app1)
-            # 未通过审核
-            elif app1.check_status == _convention.APP_CHECK_FAILED:
-                published_apps.append(app1)
+            }
+            tmp_apps.append(tmp)
 
         for i in u:
             relate_app = App.objects.filter(app_id=i.group.relate_project)
             for j in relate_app:
-                if len(unpublished_apps) < 3:
-                    unpublished_apps.append(j)
-                else:
-                    published_apps.append(j)
+                tmp = {
+                    "app_id": j.app_id,
+                    "app_logo": j.app_logo,
+                    "app_name": j.app_name,
+                    "app_model": j.app_model,
+                    "app_device_type": j.app_device_type,
+                    "app_create_source": j.app_create_source,
+                    "app_group": j.app_group,
+                    "check_status": j.check_status,
+                    "app_update_date": j.app_update_date,
+                    "is_share": 1
+
+                }
+                tmp_apps.append(tmp)
+        tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
+        unpublished_apps = tmp_apps[:3]
+        published_apps = tmp_apps[3:]
         template = "product/list.html"
         content = dict(
             keyword=keyword,
@@ -202,7 +202,6 @@ def product_controldown(request):
     """
 
     def get():
-        more_product = request.GET.get("more", '')
         # 在一个固定账号下查看是否有三个默认的产品，缺少任何一个则创建该产品，有则跳过
         tmp_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         app_names = []
@@ -217,12 +216,9 @@ def product_controldown(request):
             keyword = request.GET.get("search", "")  # 后续搜索操作
             if keyword:
                 user_apps = developer.developer_related_app.all().filter(app_name__contains=keyword).order_by(
-                    "-app_create_date")
+                    "-app_update_date")[0:5]
             else:
-                if more_product == '1':
-                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")
-                else:
-                    user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
+                user_apps = developer.developer_related_app.all().order_by("-app_update_date")[0:5]
         except Exception as e:
             user_apps = []
             developer = ''
@@ -231,47 +227,52 @@ def product_controldown(request):
         # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
         # published_apps = []
         unpublished_apps = []
-        # publishing_apps = []
-        # failed_apps = []
+        tmp_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            # 已经发布
-            if app.check_status == _convention.APP_CHECKED:
+            tmp = {
+                "app_id": app.app_id,
+                "app_name": app.app_name,
+                "app_device_type": app.app_device_type,
+                "app_create_source": app.app_create_source,
+                "check_status": app.check_status,
+                "app_update_date": app.app_update_date,
+                "is_share": 0
 
-                unpublished_apps.append(app)
-            elif app.check_status == _convention.APP_CHECKING:
-                unpublished_apps.append(app)
-            # 未发布
-            elif app.check_status == _convention.APP_UN_CHECK:
-                unpublished_apps.append(app)
-            # 未通过审核
-            elif app.check_status == _convention.APP_CHECK_FAILED:
-                unpublished_apps.append(app)
-        # 已经发布, 未发布, 正在请求发布，未通过审核,默认状态
-        u = UserGroup.objects.filter(user_account=request.user)
+            }
+            tmp_apps.append(tmp)
+        # 分享产品
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
             relate_app = App.objects.filter(app_id=i.group.relate_project)
             for j in relate_app:
-                if len(unpublished_apps) < 3:
-                    unpublished_apps.append(j)
-                else:
-                    unpublished_apps.append(j)
+                tmp = {
+                    "app_id": app.app_id,
+                    "app_name": app.app_name,
+                    "app_device_type": app.app_device_type,
+                    "app_create_source": app.app_create_source,
+                    "check_status": app.check_status,
+                    "app_update_date": app.app_update_date,
+                    "is_share": 1
+                }
+                tmp_apps.append(tmp)
+        tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
+        unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
         content = dict(
             keyword=keyword,
             developer=developer,
-
             unpublished_apps=unpublished_apps,
-
             default_apps=default_apps,
 
         )
-        print(content)
-        if more_product == '1':
-            for i in unpublished_apps:
-                print(i)
-            return HttpResponse(unpublished_apps)
 
         return render(request, template, content)
 
