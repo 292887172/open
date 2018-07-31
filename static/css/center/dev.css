@@ -54,7 +54,7 @@ img{border:none;}
 
 .cnt_box h3{height:40px; margin:0 0 16px; background:#ddd; color:#666; font-size:16px; font-weight:normal; text-indent:16px; line-height:40px;}
 .cnt_box dl{width:100%; margin:0 0 16px; overflow:hidden;}
-.cnt_box dt{float:left; clear:both; width:180px; padding:12px 0; color:#444; font-size:14px; text-align:center; line-height:32px;}
+.cnt_box dt{float:left; clear:both; width:180px; padding:12px 0; color:#444; font-size:14px; text-align:right; line-height:32px;margin-right: 20px}
 .cnt_box dd{min-height:32px; margin:0 0 0 0px; *margin:0; padding:12px 0; *padding-left:26px; line-height:32px; color:#444; font-size:14px; overflow:hidden;}
 
 .cnt_box dt span{color:#F60;}
