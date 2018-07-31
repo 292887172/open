@@ -974,6 +974,7 @@ def schedule(request):
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
+
         elif action == 'remark':
             # 备注信息
             remark_value = request.POST.get('value', '')
@@ -1014,6 +1015,7 @@ def schedule(request):
             ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
             try:
                 if ddd:
+                    print(time_id,time_value)
                     ddd.update(ui_time_stemp=time_value)
                 else:
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
