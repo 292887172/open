@@ -97,8 +97,7 @@
     .div3{
         display: inline-block;
         width: 50px;
-
-        margin-left:0px;
+        margin: 2px 4px;
         position: relative;
         font-size: 0;
     }
@@ -216,8 +215,16 @@
         display: none;
     }
     .div3 span{
-        font-size: 14px;
-        line-height: 2;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .my-upinfo-btn{
+        display: block;
+        margin: 7px auto;
     }
 </style>
 
@@ -286,14 +293,14 @@
         <td ng-if="x.ack==1"><input type="text" disabled placeholder="请选择日期" data="{[{x.id}]}" value="{[{x.time_stemp}]}" onclick="Change(this)" class="form-control pull-right" id="reservation-1"/></td>
         <td ng-if="x.ack==0"><input type="text" placeholder="请选择日期" data="{[{x.id}]}" value="{[{x.time_stemp}]}" onclick="Change(this)" class="form-control pull-right" id="reservation-1"/></td>
         <td >
-            <button ng-if="x.ack==1" disabled type="button" class="" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
+            <button ng-if="x.ack==1" disabled type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
                     onclick="xxx(this)">上传
             </button>
-            <button ng-if="x.ack==0" type="button" class="" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
+            <button ng-if="x.ack==0" type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
                     onclick="xxx(this)">上传
             </button>
 
-                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll[0]}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
+                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
 
 
 
@@ -489,6 +496,8 @@
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
     function xxxx(that) {
+         that = that.attributes['data'].nodeValue
+         console.log('ee',that)
          document.getElementById("get_value").value = that;
     }
     function doUploadFile() {

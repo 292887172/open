@@ -960,6 +960,7 @@ def portal(request):
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
+        print(key)
         update_list = []
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
