@@ -3,20 +3,18 @@
 import json
 
 from model.center.account import Account
-from model.center.account_info import AccountIfo
+
 from model.center.group import Group
 from model.center.user_group import UserGroup
-
-__author__ = 'rdy'
-
 from model.center.developer import Developer
 from django.core.paginator import Paginator
 from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.const import ConventionValue
-
+from django.db.models import Q
 import datetime
 import logging
+__author__ = 'rdy'
 
 _convention = ConventionValue()
 
@@ -305,7 +303,7 @@ def create_team_account(user_id):
     :param user_id: 
     :return: 
     """
-    a = Account.objects.filter(account_id=user_id)
+    a = Account.objects.filter(Q(account_id=user_id)|Q(account_email=user_id))
     if a.count() == 0:
         # 还没有账号
         Account.objects.create_user(user_id, '123456', 4, '')
