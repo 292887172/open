@@ -215,6 +215,10 @@
     .hide1{
         display: none;
     }
+    .div3 span{
+        font-size: 14px;
+        line-height: 2;
+    }
 </style>
 
 <div class="title-sub " style="text-align: center;font-size: larger">
@@ -236,7 +240,7 @@
             </div>
             <div class="my_container">
                 <span id="progress"></span>
-                <span id="progress-text">0%</span>
+                <span id="progress-text">等待上传</span>
             </div>
             <div class="modal-body">
 
@@ -457,7 +461,6 @@
 
                 })
 
-
         }
 
 
@@ -537,8 +540,12 @@
     function progressHandlingFunction(e){
         if(e.lengthComputable){
             var percent = e.loaded/e.total*100;
-            $('#progress-text').html(percent.toFixed(2) + "%");
-            $('#progress').css('width', percent.toFixed(2) + "%");
+            let my_precent_data = percent.toFixed(2);
+            if (my_precent_data >99){
+                my_precent_data = 99
+            }
+            $('#progress-text').html(my_precent_data + "%");
+            $('#progress').css('width', my_precent_data + "%");
         }
     }
 
@@ -570,6 +577,23 @@
         $('.pull-right').daterangepicker();
     }
 
+    $(".applyBtn").on("click",function () {
+        var c = document.getElementById("get_values").value;
+         setTimeout(function () {
+                           funce(c)
+                        }, 500)
+    })
+
+    function a_download(val){
+        let myUrl = val.getAttribute("data-downurl");
+        var $a = document.createElement('a');
+        $a.setAttribute("href", myUrl);
+        $a.setAttribute("download", "");
+
+        var evObj = document.createEvent('MouseEvents');
+        evObj.initMouseEvent( 'click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
+        $a.dispatchEvent(evObj);
+    }
 
 </script>
 
