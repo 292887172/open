@@ -29,9 +29,9 @@ class AppVersion(models.Model):
     # 版本备注
     remarks = models.TextField(null=True, db_column='ebf_av_remarks')
     # 版本签名
-    av_md5 = models.CharField(max_length=128, null=True, db_column="ebf_av_md5")
+    av_md5 = models.CharField(max_length=128, default='', db_column="ebf_av_md5")
     # 文件md5值
-    file_md5 = models.CharField(max_length=128, null=True, db_column="ebf_file_md5")
+    file_md5 = models.CharField(max_length=128, default='', db_column="ebf_file_md5")
     # 版本类型
     av_type = models.IntegerField(max_length=3, default=0, db_column='ebf_av_type')
     # 最小版本
