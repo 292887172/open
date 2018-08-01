@@ -342,17 +342,15 @@
         }
 
         .progress li span {
-            display: block;
-            margin: auto;
-            padding-top: 12px;
-            margin-bottom: 10px;
-            width: 25px;
-            height: 25px;
-            background: #d6dae0;
-            border-radius: 50%;
+           display: block;
+            width: 135px;
+            line-height: 33px;
 
-            margin-top: -23px;
-            margin-left: -3px;
+            background: #FCF2DF;
+
+            margin-top: -4px;
+            margin-left: -40px;
+            color: #FF6202;
         }
 
         .progress li.cur span {
@@ -368,6 +366,9 @@
             font-size: 15px;
             line-height: 1px;
             border-radius: 50%;
+        }
+        .ui-down-pkg:hover{
+            color: #2980b9;
         }
 
         .progress li.cur span i {
@@ -656,7 +657,7 @@
                             </a>
                                 </li>
                             <li style="text-align: left">|</li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">UI</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app.app_id }}#/app">{% if app.has_version %}<span class="ui-down-pkg">下载屏端固件</span>{% else %}UI{% endif %}</a></li>
 
                         </ul>
                     </dd>
@@ -729,7 +730,7 @@
                             <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app1.app_id }})" href="#">导出
                             </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">UI</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">{% if app1.has_version %}<span class="ui-down-pkg">下载屏端固件</span>{% else %}UI{% endif %}</a></li>
 
                         </ul>
 
@@ -798,7 +799,7 @@
                             <li class="prog_c" style="text-align: left"><a onclick="export_protocol({{ app1.app_id }})" href="#">导出
                             </a>
                                 </li>
-                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">UI</a></li>
+                            <li class="prog_d "><a href="{% url 'product/main' %}?ID={{ app1.app_id }}#/app">{% if app1.has_version %}<span class="ui-down-pkg">下载屏端固件</span>{% else %}UI{% endif %}</a></li>
 
                         </ul>
 

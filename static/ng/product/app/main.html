@@ -94,9 +94,29 @@
     color: #004974;
     text-decoration: none;
 }
+    .btn{
+        width: initial;
+    }
+    .btn-submit-file{
+
+    }
+        .xxx {
+        width: 170px;
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
 </style>
 <div class="box2 relative">
-    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -111,6 +131,10 @@
 
 
                     <input class="file" id="file" name="file" style="display: inline-block" type="file"/>
+                     <div style="width: 410px;margin-left: 20px;margin-top: 30px">
+                    <span>备注信息：</span><input type="text" id="ui_info" class="xxx" placeholder="备注信息">
+                </div>
+
                     <button id="doUpload" class="btn btn-info" onclick="doUploadFile()" style="float: right;width:80px;padding-bottom: 0px;padding-top: 0px">
                         上传
                     </button>
@@ -138,7 +162,10 @@
 
         <!--<div class="boxInfo">选择模板</div>-->
         <div class="boxInfo">
-            <div class="protocol-info-main" style="text-align: left;margin-top: 100px;margin-left: 100px">
+
+            <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 90px">
+                <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
+
                 <p class="product-info-p" style="padding-bottom: 20px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
                                                                                           target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
                         class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a

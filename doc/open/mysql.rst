@@ -174,6 +174,31 @@
     ) ENGINE=ndbcluster AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='应用历史表';
 
     -- ----------------------------
+    -- Table structure for ebt_app_version
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_app_version`;
+    CREATE TABLE `ebt_app_version` (
+      `ebf_av_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '版本编号',
+      `ebf_app_id` int(11) DEFAULT NULL COMMENT 'app编号',
+      `ebf_av_version_code` varchar(256) NOT NULL COMMENT '版本号',
+      `ebf_av_version_name` varchar(256) NOT NULL COMMENT '版本名称',
+      `ebf_av_download_url` text COMMENT '下载地址',
+      `ebf_av_is_notify` varchar(16) NOT NULL DEFAULT 'yes' COMMENT '是否提示(yes提示，no不提示)',
+      `ebf_av_is_force` varchar(16) NOT NULL DEFAULT 'no' COMMENT '是否强制升级(yes强制，no不强制)',
+      `ebf_av_size` varchar(32) DEFAULT NULL COMMENT '文件大小(bytes)',
+      `ebf_av_remarks` text COMMENT '更新备注',
+      `ebf_av_updatedate` datetime NOT NULL COMMENT '更新时间',
+      `ebf_av_createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      `ebf_av_md5` varchar(128) NOT NULL COMMENT '版本签名',
+      `ebf_file_md5` varchar(128) NOT NULL COMMENT 'apk文件md5值',
+      `ebf_av_type` int(3) DEFAULT '0' COMMENT '版本类型（0：外部版本，1：内部版本）',
+      `ebf_min_version` int(11) DEFAULT '0',
+      PRIMARY KEY (`ebf_av_id`),
+      KEY `FK_Reference_1` (`ebf_app_id`),
+      CONSTRAINT `FK_Reference_1` FOREIGN KEY (`ebf_app_id`) REFERENCES `ebt_app` (`ebf_app_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    ) ENGINE=ndbcluster AUTO_INCREMENT=247 DEFAULT CHARSET=utf8 COMMENT='app版本信息';
+
+    -- ----------------------------
     -- Table structure for ebt_developer
     -- ----------------------------
     DROP TABLE IF EXISTS `ebt_developer`;
