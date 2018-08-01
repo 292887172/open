@@ -5,6 +5,7 @@ from model.center.app import App
 from django.db import models
 __author__ = 'rdy'
 
+
 class AppVersion(models.Model):
     """
     ebt_app_version应用版本表
