@@ -966,10 +966,10 @@ def app(request):
         for i in m:
             app_dict={}
             app_dict['url'] = eval(i.download_url)
-            print(eval(i.download_url),type(eval(i.download_url)))
             app_dict['version'] = i.version_name
-
-
+            date = i.create_date
+            tis = date.strftime("%Y-%m-%d %H:%I:%S")
+            app_dict['time'] = tis
             app_list.append(app_dict)
     return HttpResponse(json.dumps(app_list))
 @csrf_exempt
