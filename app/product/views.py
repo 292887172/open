@@ -949,7 +949,7 @@ def portal(request):
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d %H:%M:%S")
                 times.append({"time": tis, "message": i.message_content})
-                print(times)
+
 
         return HttpResponse(json.dumps(times))
     elif request.method == 'POST':
