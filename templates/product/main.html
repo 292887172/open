@@ -431,6 +431,7 @@
                     $scope.key = "{{ key }}";
                     $scope.teams = {{ teams|safe|linebreaksbr }};
                     keysss = "{{ key }}";
+                    app_id1 =  "{% if app.app_id %}{{ app.app_id }}{% endif %}";
                     $scope.check_status = "{% if app.check_status == 0%} 未发布 {% elif app.check_status == 1 %} 审核中{% elif app.check_status == -1 %} 未通过{% elif app.check_status == 2 %}已发布{% else %}体验产品{% endif %}";
                     $scope.create_time = "{{ app.app_create_date|utc2local  }}";
                     $scope.create_time_detail = "{{ app.app_create_date|utc2local2 }}"; // 详细的时间信息

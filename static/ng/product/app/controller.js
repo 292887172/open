@@ -1,18 +1,37 @@
 'use strict';
-
 angular.module('Product.app', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/app', {
             templateUrl: "/static/ng/product/app/main.html",
-            controller: "appCtrl"
+            controller: "AppCtrl"
         });
     }])
 
 
-     .controller('appCtrl', ['$scope', "$http", function ($scope, $http) {
+     .controller('AppCtrl', ['$scope', "$http", function ($scope, $http) {
 
          $scope.nav.selected("appMenu");
+         var xx = 0;
+         $scope.sss = 0;
+         console.log('s')
+         if (xx == 0) {
+            console.log(xx)
+            $http({
+                method: "GET",
+                url: "/product/app/"+ '?' + "id=" + app_id1,
+                data: {'id': app_id1},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function (response) {
+                // 获取前端接收到的数据
+
+                $scope.response = response;
+                $scope.sss = 1;
+                console.log($scope.response)
+            })
+
+
+        }
          $scope.block_mac = function () {
 
              $scope.app_appid = $("#controlId").attr('data-appid');
