@@ -131,7 +131,7 @@ def product_list(request):
             tmp_apps.append(tmp)
 
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
                 tmp = {
                     "app_id": j.app_id,
@@ -251,7 +251,7 @@ def product_controldown(request):
         except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
                 tmp = {
                     "app_id": j.app_id,
@@ -467,7 +467,7 @@ def product_main(request):
         except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
                 tmp = {
                     "app_id": j.app_id,
