@@ -231,6 +231,7 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
 
         ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key)
+        print('xxx')
         if ui_obj:
             for i in ui_obj:
                 url_list_now = eval(i.ui_content)

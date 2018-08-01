@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
+from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from app.center.templatetags.filter import utc2local2
 from base.util import gen_app_default_conf, get_app_default_logo
@@ -1039,8 +1040,9 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_remark=remark_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp='', ui_party='', ui_remark=remark_value, ui_upload_id=remark_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1055,8 +1057,9 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_party=party_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp='', ui_party=party_value, ui_remark='', ui_upload_id=party_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1072,8 +1075,9 @@ def schedule(request):
                     print(time_id,time_value)
                     ddd.update(ui_time_stemp=time_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1088,14 +1092,14 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_plan=time_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
-
         else:
             modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
             a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
@@ -1138,12 +1142,15 @@ def schedule(request):
             if modele:
                 # 确认操作
                 modele.update(ui_ack=int(1))
+                # 根据产品key，到docui表中去读取所有ack的id，和该key下有多少条id 根据id总数去range循环
+                m = DocUi.objects.filter(ui_key=key).count()
                 # 产品进度
-                pp = int(num) + int(1)
+                pp = int(modele.filter(ui_ack=int(1)).values("ui_upload_id")[0]['ui_upload_id']) + int(1)
                 App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
             else:
 
                 DocUi.objects.create(ui_ack=int(1), ui_upload_id=num, ui_time_stemp='', ui_party='', ui_remark='',
+
                                      ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
                                      create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
@@ -1197,11 +1204,13 @@ def upload_file(request):
         try:
             # 上传UI文件
             if post_data == 'upload':
+
                 try:
                     store = EbStore(CLOUD_TOKEN)
                     rr = store.upload(file.read(), file.name, file.content_type)
                     rr = json.loads(rr)
                     r = rr['code']
+                    print(rr)
                 except Exception as e:
                     print(e)
                     return HttpResponse(json.dumps({"code": 1}))
