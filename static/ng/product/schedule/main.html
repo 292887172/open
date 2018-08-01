@@ -85,25 +85,29 @@
         text-indent: 0;
         line-height: 20px;
     }
-    .delete1{
-    width: 10px;
-    height: 10px;
-    left: 42px;
-    top: -5px;
-    border-radius: 15px;
-    position: absolute;
-    z-index: 1;
+
+    .delete1 {
+        width: 10px;
+        height: 10px;
+        left: 42px;
+        top: -5px;
+        border-radius: 15px;
+        position: absolute;
+        z-index: 1;
     }
-    .div3{
+
+    .div3 {
         display: inline-block;
         width: 50px;
         margin: 2px 4px;
         position: relative;
         font-size: 0;
     }
-    .div3 a{
+
+    .div3 a {
         font-size: 14px;
     }
+
     .file input {
         position: absolute;
         font-size: 100px;
@@ -111,9 +115,11 @@
         top: 0;
         opacity: 0;
     }
-    td input{
+
+    td input {
         width: 80px;
     }
+
     .xxx {
         width: 170px;
         position: relative;
@@ -143,32 +149,39 @@
     .xxxx {
         background-color: #cacaca !important;
     }
-    .btn-success:hover{
-       background-color: #f33000!important;
+
+    .btn-success:hover {
+        background-color: #f33000 !important;
     }
-    .cancelBtn{
-       border: 4px solid #ddd;
+
+    .cancelBtn {
+        border: 4px solid #ddd;
     }
+
     button {
         border-right: 0px !important;
         border-left: 0px !important;
         border-bottom: 0px !important;
         border-top: 0px !important;
     }
-    .table th{
+
+    .table th {
         text-align: center;
         line-height: 2.4 !important;
     }
-    .table>tbody>tr>td {
+
+    .table > tbody > tr > td {
         line-height: 2.4;
         text-align: center;
     }
-    .modal-label{
+
+    .modal-label {
         display: inline-block;
         line-height: normal;
         margin-bottom: 10px;
     }
-    .modal-name{
+
+    .modal-name {
         cursor: pointer;
         max-width: 200px;
         overflow: hidden;
@@ -178,13 +191,16 @@
         display: inline-block;
         vertical-align: text-bottom;
     }
-    .modal-name:hover{
+
+    .modal-name:hover {
         color: #ff6202;
     }
-    #doUpload:hover{
+
+    #doUpload:hover {
         background-color: #9dabbb !important;
     }
-    .my_container{
+
+    .my_container {
         position: relative;
         display: none;
         text-align: left;
@@ -192,7 +208,8 @@
         height: 15px;
         background-color: gray;
     }
-    #progress{
+
+    #progress {
         text-align: center;
         font-size: 12px;
         line-height: 1;
@@ -200,7 +217,8 @@
         background-color: orange;
         display: inline-block;
     }
-    #progress-text{
+
+    #progress-text {
         position: absolute;
         display: block;
         margin: 0 auto;
@@ -211,10 +229,12 @@
         font-size: 12px;
         line-height: 1;
     }
-    .hide1{
+
+    .hide1 {
         display: none;
     }
-    .div3 span{
+
+    .div3 span {
         display: inline-block;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -222,17 +242,32 @@
         font-size: 12px;
         line-height: 1.5;
     }
-    .my-upinfo-btn{
+
+    .my-upinfo-btn {
         display: block;
         margin: 7px auto;
+    }
+
+    .leftSide {
+        display: none !important;
+    }
+    .rightMain{
+        float: none;
+        width: auto;
     }
 </style>
 
 <div class="title-sub " style="text-align: center;font-size: larger">
     项目计划书
-    <button type="button" class="btn btn-success" style="float: right;margin-right: 20px;margin-bottom:10px;" onclick="Add() ">新增计划</button>
-    <button type="button" class="btn btn-success" style="float: right;margin-right: 20px;margin-bottom:10px;display: none" onclick="Show()">编辑</button>
-    <button type="button" class="btn btn-success" style="float: right;margin-right: 20px;margin-bottom:10px;display: none" onclick="Setting()">合并</button>
+    <button type="button" class="btn btn-success" style="float: right;margin-right: 20px;margin-bottom:10px;"
+            onclick="Add() ">新增计划
+    </button>
+    <button type="button" class="btn btn-success"
+            style="float: right;margin-right: 20px;margin-bottom:10px;display: none" onclick="Show()">编辑
+    </button>
+    <button type="button" class="btn btn-success"
+            style="float: right;margin-right: 20px;margin-bottom:10px;display: none" onclick="Setting()">合并
+    </button>
 </div>
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -258,9 +293,9 @@
                 </div>
                 <div style="text-align: center;margin-left: -20%;margin-top: 10px">
                     <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
-                        style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
-                    上传
-                </button>
+                            style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
+                        上传
+                    </button>
                 </div>
 
             </div>
@@ -269,7 +304,7 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered all_setting" ng-app="Product.protocol" >
+<table class="table table-bordered all_setting" ng-app="Product.protocol">
     <thead>
     <tr>
 
@@ -283,25 +318,38 @@
         <th style="text-align: center">操作</th>
     </tr>
     </thead>
-    <tbody >
-    <tr ng-repeat="x in response" >
-        <th style="font-family: 黑体" >{[{x.id}]}</th>
-        <td ng-if="x.ack==1"><input type="text"  value="{[{x.party}]}" data="{[{x.id}]}" onblur="Blur(0,this)" disabled></td>
+    <tbody>
+    <tr ng-repeat="x in response">
+        <th style="font-family: 黑体">{[{x.id}]}</th>
+        <td ng-if="x.ack==1"><input type="text" value="{[{x.party}]}" data="{[{x.id}]}" onblur="Blur(0,this)" disabled>
+        </td>
         <td ng-if="x.ack==0"><input type="text" value="{[{x.party}]}" data="{[{x.id}]}" onblur="Blur(0,this)"></td>
-        <td ng-if="x.ack==1"><input value="{[{x.plan}]}" disabled class="x3x" data="{[{x.id}]}" onblur='Blur(1,this)' type="text" style="width: 180px"></td>
-        <td ng-if="x.ack==0"><input value="{[{x.plan}]}" class="x3x" data="{[{x.id}]}" onblur='Blur(1,this)' type="text" style="width: 180px"></td>
-        <td ng-if="x.ack==1"><input type="text" disabled placeholder="请选择日期" data="{[{x.id}]}" value="{[{x.time_stemp}]}" onclick="Change(this)" class="form-control pull-right" id="reservation-1"/></td>
-        <td ng-if="x.ack==0"><input type="text" placeholder="请选择日期" data="{[{x.id}]}" value="{[{x.time_stemp}]}" onclick="Change(this)" class="form-control pull-right" id="reservation-1"/></td>
-        <td >
-            <button ng-if="x.ack==1" disabled type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
+        <td ng-if="x.ack==1"><input value="{[{x.plan}]}" disabled class="x3x" data="{[{x.id}]}" onblur='Blur(1,this)'
+                                    type="text" style="width: 180px"></td>
+        <td ng-if="x.ack==0"><input value="{[{x.plan}]}" class="x3x" data="{[{x.id}]}" onblur='Blur(1,this)' type="text"
+                                    style="width: 180px"></td>
+        <td ng-if="x.ack==1"><input type="text" disabled placeholder="请选择日期" data="{[{x.id}]}"
+                                    value="{[{x.time_stemp}]}" onclick="Change(this)" class="form-control pull-right"
+                                    id="reservation-1"/></td>
+        <td ng-if="x.ack==0"><input type="text" placeholder="请选择日期" data="{[{x.id}]}" value="{[{x.time_stemp}]}"
+                                    onclick="Change(this)" class="form-control pull-right" id="reservation-1"/></td>
+        <td>
+            <button ng-if="x.ack==1" disabled type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal"
+                    style="background: white" data-target="#user_address"
                     onclick="xxx(this)">上传
             </button>
-            <button ng-if="x.ack==0" type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal" style="background: white" data-target="#user_address"
+            <button ng-if="x.ack==0" type="button" class="my-upinfo-btn" data="{[{x.id}]}" data-toggle="modal"
+                    style="background: white" data-target="#user_address"
                     onclick="xxx(this)">上传
             </button>
 
-                <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除" src="/static/image/product/delete.png" data="{[{x.id}]}"  class="delete1" alt="" onclick="Deleted(this)"><span style="height: 20px;width: 50px" data-downurl="{[{c.urll}]}" onclick='a_download(this)'>{[{c.filename}]}</span></div>
-
+            <div ng-repeat="c in x.url" ng-if="c" class="div3" style="height: 20px"><img title="删除"
+                                                                                         src="/static/image/product/delete.png"
+                                                                                         data="{[{x.id}]}"
+                                                                                         class="delete1" alt=""
+                                                                                         onclick="Deleted(this)"><span
+                    style="height: 20px;width: 50px" data-downurl="{[{c.urll}]}" onclick='a_download(this)'>{[{c.filename}]}</span>
+            </div>
 
 
         </td>
@@ -309,10 +357,14 @@
             已确认
         </td>
         <td ng-if="x.ack==0">
-            <button type="button" class="btn" data="{[{x.id}]}" style="background-color: blue" onclick="confirm(this)">确认</button>
+            <button type="button" class="btn" data="{[{x.id}]}" style="background-color: blue" onclick="confirm(this)">
+                确认
+            </button>
         </td>
         <td><input type="text" data="{[{x.id}]}" value="{[{x.remark}]}" onblur="Blur(2,this)"></td>
-        <td><button class="btn " data="{[{x.id}]}" onclick="Del(this)">删除</button></td>
+        <td>
+            <button class="btn " data="{[{x.id}]}" onclick="Del(this)">删除</button>
+        </td>
     </tr>
 
     </tbody>
@@ -327,151 +379,158 @@
 
 <script>
     $('.pull-right').daterangepicker();
+
     function Del(that) {
         var id = that.attributes['data'].nodeValue
         $.ajax({
-           url: '/product/schedule',
-           type:"POST",
-           data:{"key":keysss,"action":"delxu","del_id":id}
-       }).success(function (data) {
-              data = JSON.parse(data)
-           if (data['code']===0){
-               bootbox.alert("删除成功")
-               window.location.reload()
-           }else{
-               bootbox.alert("删除失败")
-           }
+            url: '/product/schedule',
+            type: "POST",
+            data: {"key": keysss, "action": "delxu", "del_id": id}
+        }).success(function (data) {
+            data = JSON.parse(data)
+            if (data['code'] === 0) {
+                bootbox.alert("删除成功")
+                window.location.reload()
+            } else {
+                bootbox.alert("删除失败")
+            }
 
         })
     }
+
     function Show() {
         var t = document.getElementsByClassName("hide1")
-        for (var i =0,t_l = t.length;i<t_l;i++){
+        for (var i = 0, t_l = t.length; i < t_l; i++) {
 
             console.log(t[i])
         }
     }
+
     function Deleted(c) {
         console.log(c)
         var del_url = c.parentNode.getElementsByTagName("span")[0].getAttribute("data-downurl");
         var b = c.attributes['data'].nodeValue
-        console.log('xxx',del_url,b)
-       $.ajax({
-           url: '/product/schedule',
-           type:"POST",
-           data:{"key":keysss,"action":"del","del_id":b,"del_url":del_url}
-       }).success(function (data) {
-           data = JSON.parse(data)
-           if (data['code']===0){
-               bootbox.alert("删除成功")
-               window.location.reload()
-           }else{
-               bootbox.alert("删除失败")
-           }
+        console.log('xxx', del_url, b)
+        $.ajax({
+            url: '/product/schedule',
+            type: "POST",
+            data: {"key": keysss, "action": "del", "del_id": b, "del_url": del_url}
+        }).success(function (data) {
+            data = JSON.parse(data)
+            if (data['code'] === 0) {
+                bootbox.alert("删除成功")
+                window.location.reload()
+            } else {
+                bootbox.alert("删除失败")
+            }
 
-       })
+        })
     }
+
     function Change(that) {
         that = that.attributes['data'].nodeValue
         document.getElementById("get_values").value = that
     }
-    window.onload = function(){
+
+    window.onload = function () {
         $('.pull-right').daterangepicker();
-        $(".applyBtn").on("click",function () {
-        var c = document.getElementById("get_values").value
-         setTimeout(function () {
-                           funce(c)
-                        }, 500)
-    })
+        $(".applyBtn").on("click", function () {
+            var c = document.getElementById("get_values").value
+            setTimeout(function () {
+                funce(c)
+            }, 500)
+        })
     }
 
     function funce(c) {
         console.log(c)
-         var time_stemp = document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value
-         console.log(time_stemp)
+        var time_stemp = document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value
+        console.log(time_stemp)
         $.ajax({
-             type:"POST",
-             url:'/product/schedule',
-             data:{'key':keysss,"action":"time_strmp","value":time_stemp,"id":c}
+            type: "POST",
+            url: '/product/schedule',
+            data: {'key': keysss, "action": "time_strmp", "value": time_stemp, "id": c}
         }).success(function (data) {
             data = JSON.parse(data)
-            if (data['code']===0){
+            if (data['code'] === 0) {
                 console.log('success')
-                document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value =time_stemp;
-            }else {
+                document.querySelector(".table").querySelectorAll("tr")[c].querySelectorAll("td")[2].querySelector("input").value = time_stemp;
+            } else {
                 console.log('error')
             }
 
 
         })
     }
-    function Blur(a,c) {
+
+    function Blur(a, c) {
         var b = c.attributes['data'].nodeValue
         var t = c.value
-        if (a===2){
+        if (a === 2) {
 
             // 备注信息
             $.ajax({
-                    type:"POST",
-                    url:'/product/schedule',
-                    data:{'key':keysss,"action":"remark","value":t,"id":b}
-                }).success(function (data) {
-                    data = JSON.parse(data)
-                    if (data['code']===0){
-                        console.log('success')
-                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[5].querySelector("input").value = t;
-                    }else {
-                        console.log('error')
+                type: "POST",
+                url: '/product/schedule',
+                data: {'key': keysss, "action": "remark", "value": t, "id": b}
+            }).success(function (data) {
+                data = JSON.parse(data)
+                if (data['code'] === 0) {
+                    console.log('success')
+                    document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[5].querySelector("input").value = t;
+                } else {
+                    console.log('error')
 
-                    }
+                }
 
 
-                })
+            })
 
         }
-        else if (a===0){
+        else if (a === 0) {
 
             // 责任方
             $.ajax({
-                    type:"POST",
-                    url:'/product/schedule',
-                    data:{'key':keysss,"action":"party","value":t,"id":b}
-                }).success(function (data) {
-                    data = JSON.parse(data)
-                    if (data['code']===0){
-                        console.log('success')
-                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[0].querySelector("input").value = t;
+                type: "POST",
+                url: '/product/schedule',
+                data: {'key': keysss, "action": "party", "value": t, "id": b}
+            }).success(function (data) {
+                data = JSON.parse(data)
+                if (data['code'] === 0) {
+                    console.log('success')
+                    document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[0].querySelector("input").value = t;
 
-                    }else {
-                        console.log('error')
-                    }
+                } else {
+                    console.log('error')
+                }
 
-                })
+            })
 
         }
-        else if (a===1){
+        else if (a === 1) {
 
-           // 责任方
+            // 责任方
             $.ajax({
-                    type:"POST",
-                    url:'/product/schedule',
-                    data:{'key':keysss,"action":"plan","value":t,"id":b}
-                }).success(function (data) {
-                    data = JSON.parse(data)
-                    if (data['code']===0){
-                        console.log('success')
-                        document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[1].querySelector("input").value = t;
+                type: "POST",
+                url: '/product/schedule',
+                data: {'key': keysss, "action": "plan", "value": t, "id": b}
+            }).success(function (data) {
+                data = JSON.parse(data)
+                if (data['code'] === 0) {
+                    console.log('success')
+                    document.querySelector(".table").querySelectorAll("tr")[b].querySelectorAll("td")[1].querySelector("input").value = t;
 
-                    }else {
-                        console.log('error')
-                    }
+                } else {
+                    console.log('error')
+                }
 
-                })
+            })
 
         }
 
 
     }
+
     function confirm(that) {
         that = that.attributes['data'].nodeValue
         var thref = location.href
@@ -485,21 +544,24 @@
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[0].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[2].classList.add("disaplaied");
             document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].classList.add("disaplaied");
-            var t = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].innerText="已确认";
+            var t = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[4].innerText = "已确认";
 
         })
     }
+
     function xxx(that) {
         that = that.attributes['data'].nodeValue
         console.log(that)
         document.getElementById("get_value").value = that;
         //document.getElementById("get_remarks").value = document.querySelector(".table").querySelectorAll("tr")[that].querySelectorAll("td")[3].querySelector("input").value
     }
+
     function xxxx(that) {
-         that = that.attributes['data'].nodeValue
-         console.log('ee',that)
-         document.getElementById("get_value").value = that;
+        that = that.attributes['data'].nodeValue
+        console.log('ee', that)
+        document.getElementById("get_value").value = that;
     }
+
     function doUploadFile() {
         // 时间戳
         var id = document.getElementById("get_value").value
@@ -522,13 +584,13 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                xhr:function () {
+                xhr: function () {
                     console.log("开始上传")
-                  var myXhr = $.ajaxSettings.xhr();
-                  if(myXhr.upload){
-                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
-                  }
-                  return myXhr
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', progressHandlingFunction, false)
+                    }
+                    return myXhr
                 },
             }).success(function (data) {
                 console.log("上传成功")
@@ -546,11 +608,12 @@
             bootbox.alert('不能为空')
         }
     }
-    function progressHandlingFunction(e){
-        if(e.lengthComputable){
-            var percent = e.loaded/e.total*100;
+
+    function progressHandlingFunction(e) {
+        if (e.lengthComputable) {
+            var percent = e.loaded / e.total * 100;
             let my_precent_data = percent.toFixed(2);
-            if (my_precent_data >99){
+            if (my_precent_data > 99) {
                 my_precent_data = 99;
             }
             $('#progress-text').html(my_precent_data + "%");
@@ -560,10 +623,10 @@
 
     var upto_file = $("#file");
     var upto_text = $(".modal-name");
-    upto_file.on('change',function (e) {
+    upto_file.on('change', function (e) {
         let upto_name = e.currentTarget.files[0].name;
         upto_text.text(upto_name);
-        upto_text.attr('title',upto_name);
+        upto_text.attr('title', upto_name);
         $(".my_container").slideDown();
     })
 
@@ -572,35 +635,35 @@
         var row = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
         var leng = row.length + 1
         var addtr = $("<tr>" +
-        "<th scope=\"row\">"+leng + "</th>"+
-        "<td><input type=\"text\" data=\""+leng+"\" onblur=\"Blur(0,this)\"></td>"+
-        "<td><input value=\"\" type=\"text\" data=\""+leng+"\" onblur=\"Blur(1,this)\" style=\"width: 180px\"></td>"+
-        "<td><input type=\"text\" data=\""+leng+"\" placeholder=\"请选择日期\" onclick=\"Change(this)\" class=\"form-control pull-right\" id=\"reservation-"+leng+"\"/></td>"+
-        "<td><button type=\"button\" data=\""+leng+"\" class=\"\" data-toggle=\"modal\" data-target=\"#user_address\" onclick=\"xxxx(this)\" style=\"background: white\">上传 </button><div><a href=\"\"></a></div></td>"+
-        "<td><button type=\"button\" data=\""+leng+"\" class=\"btn\" style=\"background-color: blue\"  onclick=\"confirm(this)\">确认</button></td>"+
-        "<td><input type=\"text\" data=\""+leng+"\" onblur=\"Blur(2,this)\"></td>"+
-        "<td><button class=\"btn \" data=\""+leng+"\" onclick=\"Del(this)\">删除</button></td>"+
-        "</tr>");
+            "<th scope=\"row\">" + leng + "</th>" +
+            "<td><input type=\"text\" data=\"" + leng + "\" onblur=\"Blur(0,this)\"></td>" +
+            "<td><input value=\"\" type=\"text\" data=\"" + leng + "\" onblur=\"Blur(1,this)\" style=\"width: 180px\"></td>" +
+            "<td><input type=\"text\" data=\"" + leng + "\" placeholder=\"请选择日期\" onclick=\"Change(this)\" class=\"form-control pull-right\" id=\"reservation-" + leng + "\"/></td>" +
+            "<td><button type=\"button\" data=\"" + leng + "\" class=\"\" data-toggle=\"modal\" data-target=\"#user_address\" onclick=\"xxxx(this)\" style=\"background: white\">上传 </button><div><a href=\"\"></a></div></td>" +
+            "<td><button type=\"button\" data=\"" + leng + "\" class=\"btn\" style=\"background-color: blue\"  onclick=\"confirm(this)\">确认</button></td>" +
+            "<td><input type=\"text\" data=\"" + leng + "\" onblur=\"Blur(2,this)\"></td>" +
+            "<td><button class=\"btn \" data=\"" + leng + "\" onclick=\"Del(this)\">删除</button></td>" +
+            "</tr>");
 
         addtr.appendTo(tables);
         $('.pull-right').daterangepicker();
     }
 
-    $(".applyBtn").on("click",function () {
+    $(".applyBtn").on("click", function () {
         var c = document.getElementById("get_values").value;
-         setTimeout(function () {
-                           funce(c)
-                        }, 500)
+        setTimeout(function () {
+            funce(c)
+        }, 500)
     })
 
-    function a_download(val){
+    function a_download(val) {
         let myUrl = val.getAttribute("data-downurl");
         var $a = document.createElement('a');
         $a.setAttribute("href", myUrl);
         $a.setAttribute("download", "");
 
         var evObj = document.createEvent('MouseEvents');
-        evObj.initMouseEvent( 'click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
+        evObj.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
         $a.dispatchEvent(evObj);
     }
 
