@@ -19,7 +19,7 @@ from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
 
 from common.device_online import device_online
-from base.const import StatusCode, DefaultProtocol,DefaultSchedule
+from base.const import StatusCode, DefaultProtocol, DefaultSchedule
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
@@ -947,7 +947,7 @@ def portal(request):
             timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
-                tis = i.update_date.strftime("%Y-%m-%d %H:%I:%S")
+                tis = i.update_date.strftime("%Y-%m-%d %H:%M:%S")
                 times.append({"time": tis, "message": i.message_content})
                 print(times)
 
@@ -973,19 +973,21 @@ def portal(request):
 @csrf_exempt
 def app(request):
     ids = request.GET.get('id', '')
-    m = AppVersion.objects.filter(app_ids=ids).order_by("-create_date")
+    m = AppVersion.objects.filter(app_id=ids).order_by("-create_date")
     if m:
-        app_list=[]
+        app_list = []
         for i in m:
-            app_dict={}
+            app_dict = {}
             app_dict['url'] = i.download_url
             app_dict['version'] = i.version_name
             date = i.create_date
-            tis = date.strftime("%Y-%m-%d %H:%I:%S")
+            tis = date.strftime("%Y-%m-%d %H:%M:%S")
             app_dict['time'] = tis
             app_list.append(app_dict)
 
     return HttpResponse(json.dumps(app_list))
+
+
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
@@ -995,7 +997,7 @@ def schedule(request):
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
             if li_ui:
-                id_list=[]
+                id_list = []
                 for i in li_ui:
                     update_dict = {}
                     update_dict['id'] = i.ui_upload_id
@@ -1021,8 +1023,9 @@ def schedule(request):
             else:
                 update_list = DefaultSchedule().DEFAULT_SCHEDULE
                 for i in update_list:
-                    DocUi.objects.create(ui_key=key,ui_ack=0,ui_upload_id=i['id'],ui_plan=i['plan'],ui_party='',ui_remark='',ui_time_stemp='',
-                                         ui_content="['']",ui_type='')
+                    DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
+                                         ui_remark='', ui_time_stemp='',
+                                         ui_content="['']", ui_type='')
         except Exception as e:
             print(e)
         return HttpResponse(json.dumps(update_list))
@@ -1045,16 +1048,17 @@ def schedule(request):
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'delxu':
-            #data: {"key": keysss, "action": "delxu", "del_id": id}
-            del_xu_id = request.POST.get('del_id','')
+            # data: {"key": keysss, "action": "delxu", "del_id": id}
+            del_xu_id = request.POST.get('del_id', '')
             # 删除原有的id对应的数据 大于id的数据id自减1更新
             try:
                 DocUi.objects.filter(ui_key=key, ui_upload_id=del_xu_id).delete()
-                del_data = DocUi.objects.filter(ui_key=key,ui_upload_id__gt=del_xu_id)
+                del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=del_xu_id)
                 if del_data:
                     for i in del_data:
                         if int(i.ui_upload_id) > int(del_xu_id):
-                             DocUi.objects.filter(ui_key=key,ui_upload_id=i.ui_upload_id).update(ui_upload_id=int(i.ui_upload_id) - 1)
+                            DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
+                                ui_upload_id=int(i.ui_upload_id) - 1)
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1101,7 +1105,7 @@ def schedule(request):
             ddd = DocUi.objects.filter(ui_key=key, ui_upload_id=time_id)
             try:
                 if ddd:
-                    print(time_id,time_value)
+                    print(time_id, time_value)
                     ddd.update(ui_time_stemp=time_value)
                 else:
                     uw = ['']
@@ -1122,7 +1126,8 @@ def schedule(request):
                     ddd.update(ui_plan=time_value)
                 else:
                     uw = ['']
-                    DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
+                    DocUi.objects.create(ui_plan=time_value, ui_party='', ui_time_stemp='', ui_remark='',
+                                         ui_upload_id=time_id,
                                          ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
@@ -1213,9 +1218,9 @@ def upload_file(request):
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
         # action 判断
-        action = request.POST.get('action','')
-        app_ids = request.POST.get('app_id','')
-        app_version = request.POST.get('app_version','')
+        action = request.POST.get('action', '')
+        app_ids = request.POST.get('app_id', '')
+        app_version = request.POST.get('app_version', '')
 
         if action == 'ui_upload':
             try:
@@ -1227,21 +1232,20 @@ def upload_file(request):
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
-            print(app_ids)
             mobj = App.objects.filter(app_id=int(app_ids))
             print(mobj)
-            t = AppVersion.objects.filter(app_ids_id=int(app_ids),version_code=app_version,version_name=app_version)
-            for i in t:
-                print(i.app_ids)
-                print(i.app_ids_id)
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version)
 
             if t:
                 return HttpResponse(json.dumps({"code": 2}))
             else:
 
                 url_list = rr['data']
-                AppVersion.objects.create(app_ids=mobj[0], download_url=url_list, version_code=app_version,version_name=app_version,av_md5='1',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
-                return HttpResponse(json.dumps({"code": 0,"url": rr['data'], "filename": file.name,"version":app_version}))
+                AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
+                                          version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
+                                          update_date=datetime.datetime.utcnow())
+                return HttpResponse(
+                    json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
 
         else:
             t = int(id) + int(1)
@@ -1276,7 +1280,7 @@ def upload_file(request):
                         print(e)
                         return HttpResponse(json.dumps({"code": 1}))
                     list_url = rr['data']
-                    get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp,file.name)
+                    get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp, file.name)
                     product_name = app_name + '上传更新提示'
                     if t >= 9:
                         next_stemp = "量产阶段"
