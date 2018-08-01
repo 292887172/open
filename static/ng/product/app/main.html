@@ -131,8 +131,9 @@
 
 
                     <input class="file" id="file" name="file" style="display: inline-block" type="file"/>
-                     <div style="width: 410px;margin-left: 20px;margin-top: 30px">
-                    <span>备注信息：</span><input type="text" id="ui_info" class="xxx" placeholder="备注信息">
+                     <div style="width: 354px;margin-left: 20px;margin-top: 30px">
+                    <span style="display: inline-block;font-size: 16px">版本号：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
+                    <span style="color: red;display: none" id="hides">请输入版本号</span>
                 </div>
 
                     <button id="doUpload" class="btn btn-info" onclick="doUploadFile()" style="float: right;width:80px;padding-bottom: 0px;padding-top: 0px">
@@ -157,21 +158,32 @@
         <span class="linkBlue" style="float: right;font-size: 16px"><a
                 href="/product/uiconf/{[{key}]}">手机App界面编辑</a></span>
         <input type="text" value="{[{key}]}" style="display: none" id="keys">
+        <input type="text" value="" style="display: none" id="fr">
     </div>
     <div class="mt20">
 
         <!--<div class="boxInfo">选择模板</div>-->
-        <div class="boxInfo">
+        <div class="boxInfo" ng-app="Product.app" ng-controller="AppCtrl">
 
             <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 90px">
                 <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
+                <div ng-if="sss==1" style="height: 50px;margin-top: 30px">
+                    <p >历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 12px;color: #e0e0e0 ">如何屏端固件烧录到厨电屏上体验？</p>
+                    <div ng-repeat="x in response">
+                    <p style="display: inline-block;margin-left: 30px;margin-top: 30px">{[{x.version}]}</p>
+                    <div class="col-md-11 col-md-offset-1"  ng-repeat="i in x.url" style="height: 20px"><a href="{[{i.url}]}" target="_blank">{[{i.filename}]}</a></div>
 
-                <p class="product-info-p" style="padding-bottom: 20px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
+
+
+                </div>
+                </div>
+
+                <p ng-if="sss==0" class="product-info-p" style="padding-bottom: 20px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
                                                                                           target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
                         class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
                         href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p><br>
 
-                <p class="product-info-p" style="height: 20px;margin-top: 10px"> 2.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a
+                <p ng-if="sss==0" class="product-info-p" style="height: 20px;margin-top: 10px"> 2.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a
                         href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
                         style="color: #e0e0e0;cursor: pointer">屏端固件烧录搭配厨电屏上体验？</a></p>
 
@@ -182,38 +194,67 @@
     </div>
     <script>
         function doUploadFile() {
-            var formData = new FormData();
-            formData.append("file",document.getElementById("file").files[0]);
-            formData.append("name",'upload');
-            formData.append("key",document.getElementById("keys").value);
-            if (document.getElementById("file").files[0]){
-                 $.ajax({
-                url:'/product/upload_file',
-                type:"POST",
-                data:formData,
-                contentType:false,
-                processData: false,
-            }).success(function (data) {
-                if (data == '0'){
-                    document.getElementsByClassName("close")[0].click();
+            var oTxt = document.getElementById('ui_info')
+            isnull( oTxt.value );
+            if (document.getElementById("fr").value=='true'){
+                var formData = new FormData();
+                formData.append("file",document.getElementById("file").files[0]);
+                formData.append("name",'upload');
+                formData.append("key",document.getElementById("keys").value);
+                formData.append("app_version", document.getElementById("ui_info").value);
+                formData.append("action",'ui_upload');
+                formData.append("app_id",app_id1);
+                if (document.getElementById("file").files[0]){
+                     $.ajax({
+                    url:'/product/upload_file',
+                    type:"POST",
+                    data:formData,
+                    contentType:false,
+                    processData: false,
+                }).success(function (data) {
+                    data = JSON.parse(data)
+                         console.log(data)
+                    if (data['code'] == '0'){
+                        document.getElementsByClassName("close")[0].click();
 
-                     alert('上传成功')
+                         bootbox.alert('上传成功')
+                         window.location.reload()
+                    }else {
+                         document.getElementsByClassName("close")[0].click();
+
+                         bootbox.alert('上传失败,此版本已存在')
+                    }
+
+
+                })
                 }else {
-                     document.getElementsByClassName("close")[0].click();
-
-                     alert('上传失败')
+                    alert('不能为空')
                 }
 
 
-            })
-            }else {
-                alert('不能为空')
             }
 
 
 
 
-        }
 
+        }
+        function isnull(val) {
+            var str = val.replace(/(^\s*)|(\s*$)/g, '');//去除空格;
+
+            if (str == '' || str == undefined || str == null) {
+                //return true;
+                document.getElementById("ui_info").style.border="1px solid red"
+                document.getElementById("hides").style.display=''
+
+
+            } else {
+                //return false;
+                console.log('非空');
+                document.getElementById("ui_info").style.border="1px solid black"
+                document.getElementById("hides").style.display='none'
+                document.getElementById("fr").value='true'
+            }
+        }
 
     </script>

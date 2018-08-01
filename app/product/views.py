@@ -28,10 +28,13 @@ from conf.commonconf import CLOUD_TOKEN
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
-from model.center.app_version import AppVersion
+
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
 
+from model.center.app_version import AppVersion
+from model.center.group import Group
+from model.center.user_group import UserGroup
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
 from util.email.send_email_code import send_product_process_email
@@ -113,11 +116,6 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
-            av = AppVersion.objects.filter(app_id=app.app_id)
-            if av.count() > 0:
-                has_version = 1
-            else:
-                has_version = 0
             tmp = {
                 "app_id": app.app_id,
                 "app_logo": app.app_logo,
@@ -128,8 +126,7 @@ def product_list(request):
                 "app_group": app.app_group,
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
-                "is_share": 0,
-                "has_version": has_version
+                "is_share": 0
 
             }
             tmp_apps.append(tmp)
@@ -137,11 +134,6 @@ def product_list(request):
         for i in u:
             relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
-                av = AppVersion.objects.filter(app_id=j.app_id)
-                if av.count() > 0:
-                    has_version = 1
-                else:
-                    has_version = 0
                 tmp = {
                     "app_id": j.app_id,
                     "app_logo": j.app_logo,
@@ -152,8 +144,7 @@ def product_list(request):
                     "app_group": j.app_group,
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
-                    "is_share": 1,
-                    "has_version": has_version
+                    "is_share": 1
 
                 }
                 tmp_apps.append(tmp)
@@ -967,6 +958,21 @@ def portal(request):
 
 
 @csrf_exempt
+def app(request):
+    ids = request.GET.get('id', '')
+    m = AppVersion.objects.filter(app_ids=ids)
+    if m:
+        app_list=[]
+        for i in m:
+            app_dict={}
+            app_dict['url'] = eval(i.download_url)
+            print(eval(i.download_url),type(eval(i.download_url)))
+            app_dict['version'] = i.version_name
+
+
+            app_list.append(app_dict)
+    return HttpResponse(json.dumps(app_list))
+@csrf_exempt
 def schedule(request):
     if request.method == "GET":
         key = request.GET.get('key', '')
@@ -1192,66 +1198,98 @@ def upload_file(request):
         ui_info = request.POST.get('ui_info', '')
         ui_time_stemp = request.POST.get('ui_time_stemp', '')
         location = request.POST.get('location', '')
-        t = int(id) + int(1)
-        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
-        b = UserGroup.objects.filter(group__create_user=user1)
-        a = App.objects.filter(app_appid__endswith=key)
-        email_list = []
-        app_name = ''
-        developer = ''
-        group_id = ''
-        for i in a:
-            app_name = i.app_name
-            group_id = i.group_id
-            developer = i.developer_id
-        try:
-            b = UserGroup.objects.filter(group__group_id=group_id)
-            for i in b:
-                email_list.append(i.user_account)
-        except Exception as e:
-            print(e)
-        try:
-            # 上传UI文件
-            if post_data == 'upload':
+        # action 判断
+        action = request.POST.get('action','')
+        app_ids = request.POST.get('app_id','')
+        app_version = request.POST.get('app_version','')
 
-                try:
-                    store = EbStore(CLOUD_TOKEN)
-                    rr = store.upload(file.read(), file.name, file.content_type)
-                    rr = json.loads(rr)
-                    r = rr['code']
-                    print(rr)
-                except Exception as e:
-                    print(e)
-                    return HttpResponse(json.dumps({"code": 1}))
-                list_url = rr['data']
-                get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp,file.name)
-                product_name = app_name + '上传更新提示'
-                if t >= 9:
-                    next_stemp = "量产阶段"
-                else:
-                    next_stemp = BOOK[str(t)]
-                # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
-                try:
-                    send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
-                                               location, "submit")
-                    Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
-                                           message_handler_type=int(4),
-                                           device_key=key, message_sender=cook_ies, message_target=cook_ies,
-                                           create_date=datetime.datetime.utcnow(),
-                                           update_date=datetime.datetime.utcnow())
-                except Exception as e:
-                    print(e)
-                dd = ''
-                p = DocUi.objects.filter(ui_key=key, ui_upload_id=id)
-                for i in p:
-                    dd = i.ui_content
+        if action == 'ui_upload':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            print(app_ids)
+            mobj = App.objects.filter(app_id=int(app_ids))
+            print(mobj)
+            t = AppVersion.objects.filter(app_ids_id=int(app_ids),version_code=app_version,version_name=app_version)
+            for i in t:
+                print(i.app_ids)
+                print(i.app_ids_id)
 
-                return HttpResponse(json.dumps({"url": dd, "code": 0}))
+            if t:
+                return HttpResponse(json.dumps({"code": 2}))
             else:
+
+                url_list = [{"url": rr['data'], "filename": file.name}]
+                AppVersion.objects.create(app_ids=mobj[0], download_url=url_list, version_code=app_version,version_name=app_version,av_md5='1')
+                return HttpResponse(json.dumps({"code": 0,"url": rr['data'], "filename": file.name,"version":app_version}))
+
+        else:
+            t = int(id) + int(1)
+            user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+            b = UserGroup.objects.filter(group__create_user=user1)
+            a = App.objects.filter(app_appid__endswith=key)
+            email_list = []
+            app_name = ''
+            developer = ''
+            group_id = ''
+            for i in a:
+                app_name = i.app_name
+                group_id = i.group_id
+                developer = i.developer_id
+            try:
+                b = UserGroup.objects.filter(group__group_id=group_id)
+                for i in b:
+                    email_list.append(i.user_account)
+            except Exception as e:
+                print(e)
+            try:
+                # 上传UI文件
+                if post_data == 'upload':
+
+                    try:
+                        store = EbStore(CLOUD_TOKEN)
+                        rr = store.upload(file.read(), file.name, file.content_type)
+                        rr = json.loads(rr)
+                        r = rr['code']
+                        print(rr)
+                    except Exception as e:
+                        print(e)
+                        return HttpResponse(json.dumps({"code": 1}))
+                    list_url = rr['data']
+                    get_ui_static_conf(key, post_data, list_url, cook_ies, id, ui_info, ui_time_stemp,file.name)
+                    product_name = app_name + '上传更新提示'
+                    if t >= 9:
+                        next_stemp = "量产阶段"
+                    else:
+                        next_stemp = BOOK[str(t)]
+                    # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
+                    try:
+                        send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
+                                                   location, "submit")
+                        Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
+                                               message_handler_type=int(4),
+                                               device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                               create_date=datetime.datetime.utcnow(),
+                                               update_date=datetime.datetime.utcnow())
+                    except Exception as e:
+                        print(e)
+                    dd = ''
+                    p = DocUi.objects.filter(ui_key=key, ui_upload_id=id)
+                    for i in p:
+                        dd = i.ui_content
+
+                    return HttpResponse(json.dumps({"url": dd, "code": 0}))
+                else:
+                    r = 1
+            except Exception as e:
                 r = 1
-        except Exception as e:
-            r = 1
-            print(e)
+                print(e)
         return HttpResponse(json.dumps({"code": 0}))
 
 

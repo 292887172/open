@@ -214,6 +214,11 @@
 <script>
     let type = "zkx";
     let size = "4.3";
+    let dev_dict = {
+        zkx: "蒸烤箱",
+        xwj: "洗碗机",
+        yyj: "油烟机 集成灶"
+    };
     let weixin = $(".weixin");
     let login = false;
     {% if user.account_id %}
@@ -353,11 +358,26 @@
         result += '结构尺寸适合：' + calc(long, tall, thick);
         showResult(result);
 
+        // 评估结果上报逻辑：
+        // 1. 登录用户上报所有填写的信息，包括厨电类型、尺寸以及智能方案厨电结构；
+        // 2. 未登录用户，只有填写了电源板信息和厨电结构的才上报
+        let postData = {};
         if (login) {
-            // 把已登录用户的评估结果记录下来
-            $.post(location.href, {
-                action: "evaluate",
-                data: JSON.stringify({
+            postData = {
+                v: v,
+                a: a,
+                commu: commu,
+                long: long,
+                tall: tall,
+                thick: thick,
+                result: result,
+                account: account,
+                size: size,
+                dev_type: dev_dict[type]
+            };
+        } else {
+            if (v && a && long && thick && tall) {
+                postData = {
                     v: v,
                     a: a,
                     commu: commu,
@@ -365,11 +385,20 @@
                     tall: tall,
                     thick: thick,
                     result: result,
-                    account: account
-                })
+                    // account: account, 未登录用户没有account，后台取ip作为account
+                    size: size,
+                    dev_type: dev_dict[type]
+                }
+            }
+        }
+
+        if (!$.isEmptyObject(postData)) {
+            $.post(location.href, {
+                action: "evaluate",
+                data: JSON.stringify(postData)
             }, function (res) {
                 console.log(res);
-            })
+            });
         }
 
         function showResult(msg) {
