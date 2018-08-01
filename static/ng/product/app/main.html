@@ -175,7 +175,7 @@
         <!--<div class="boxInfo">选择模板</div>-->
         <div class="boxInfo" ng-app="Product.app">
 
-            <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 50px">
+            <div class="protocol-info-main" style="text-align: left;margin-top: 30px;margin-left: 50px">
                 <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
                 <div ng-if="sss==1" style="height: 50px;margin-top: 30px">
                     <div style="height: 20px">
@@ -185,10 +185,10 @@
                         style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
                     <div class="col-md-12 ui-item-version"  ng-repeat="x in response" >
-                    <div style="height: 30px;margin-top: 10px" class="col-md-2 col-md-offset-0">
+                    <div style="height: 30px;margin-top: 10px;width: 50px" class="col-md-2 col-md-offset-0">
                         {[{x.version}]}
                     </div>
-                    <div style="height: 30px;" class="col-md-4">
+                    <div style="height: 30px;padding-left: 0px" class="col-md-4">
                         <a href="{[{x.url}]}" target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
                     </div>
                     <div style="height: 30px;margin-top: 10px" class="col-md-4">
