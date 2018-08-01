@@ -968,6 +968,8 @@ def app(request):
             app_dict['url'] = eval(i.download_url)
             print(eval(i.download_url),type(eval(i.download_url)))
             app_dict['version'] = i.version_name
+
+
             app_list.append(app_dict)
     return HttpResponse(json.dumps(app_list))
 @csrf_exempt
