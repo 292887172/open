@@ -1226,7 +1226,7 @@ def upload_file(request):
             else:
 
                 url_list = rr['data']
-                AppVersion.objects.create(app_ids=mobj[0], download_url=url_list, version_code=app_version,version_name=app_version,av_md5='1')
+                AppVersion.objects.create(app_ids=mobj[0], download_url=url_list, version_code=app_version,version_name=app_version,av_md5='1',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0,"url": rr['data'], "filename": file.name,"version":app_version}))
 
         else:
