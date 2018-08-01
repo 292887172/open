@@ -960,7 +960,7 @@ def portal(request):
 @csrf_exempt
 def app(request):
     ids = request.GET.get('id', '')
-    m = AppVersion.objects.filter(app_ids=ids)
+    m = AppVersion.objects.filter(app_ids=ids).order_by("-create_date")
     if m:
         app_list=[]
         for i in m:
@@ -971,6 +971,7 @@ def app(request):
             tis = date.strftime("%Y-%m-%d %H:%I:%S")
             app_dict['time'] = tis
             app_list.append(app_dict)
+
     return HttpResponse(json.dumps(app_list))
 @csrf_exempt
 def schedule(request):
