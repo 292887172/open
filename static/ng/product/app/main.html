@@ -114,6 +114,15 @@
         text-indent: 0;
         line-height: 20px;
     }
+    .ui-item-version{
+        height: 55px;
+
+        padding-top: 15px;
+        border-bottom: 1px solid #f7f7f7;
+    }
+    .ui-item-version:first-child{
+        border-top: 1px solid #f7f7f7;
+    }
 </style>
 <div class="box2 relative">
     <div class="modal fade" id="user_address" tabindex="-1" role="dialog" >
@@ -165,7 +174,7 @@
         <!--<div class="boxInfo">选择模板</div>-->
         <div class="boxInfo" ng-app="Product.app" ng-controller="AppCtrl">
 
-            <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 90px">
+            <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 50px">
                 <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
                 <div ng-if="sss==1" style="height: 50px;margin-top: 30px">
                     <div style="height: 20px">
@@ -174,7 +183,7 @@
                         href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
                         style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
-                    <div class="col-md-12" style="height: 40px;padding-top: 10px;border-top:  1px solid #f7f7f7;width: 650px " ng-repeat="x in response">
+                    <div class="col-md-12 ui-item-version"  ng-repeat="x in response" >
                     <div style="height: 30px;margin-top: 10px" class="col-md-2 col-md-offset-0">
                         {[{x.version}]}
                     </div>
