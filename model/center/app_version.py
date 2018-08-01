@@ -13,7 +13,7 @@ class AppVersion(models.Model):
     # 版本编号
     av_id = models.AutoField(primary_key=True, db_column='ebf_av_id')
     # 应用编号
-    app_ids = models.ForeignKey(App, null=True, db_column='ebf_app_id', related_name='app_version_related_app')
+    app_id = models.ForeignKey(App, null=True, db_column='ebf_app_id', related_name='app_version_related_app')
     # 版本号
     version_code = models.CharField(max_length=64, db_column='ebf_av_version_code')
     # 版本名称

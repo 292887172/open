@@ -116,6 +116,12 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
+
+            av = AppVersion.objects.filter(app_id=app.app_id)
+            if av.count() > 0:
+                has_version = 1
+            else:
+                has_version = 0
             tmp = {
                 "app_id": app.app_id,
                 "app_logo": app.app_logo,
@@ -126,7 +132,8 @@ def product_list(request):
                 "app_group": app.app_group,
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
-                "is_share": 0
+                "is_share": 0,
+                "has_version": has_version
 
             }
             tmp_apps.append(tmp)
@@ -134,6 +141,11 @@ def product_list(request):
         for i in u:
             relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
+                av = AppVersion.objects.filter(app_id=j.app_id)
+                if av.count() > 0:
+                    has_version = 1
+                else:
+                    has_version = 0
                 tmp = {
                     "app_id": j.app_id,
                     "app_logo": j.app_logo,
@@ -144,7 +156,8 @@ def product_list(request):
                     "app_group": j.app_group,
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
-                    "is_share": 1
+                    "is_share": 1,
+                    "has_version": has_version
 
                 }
                 tmp_apps.append(tmp)
