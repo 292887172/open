@@ -318,7 +318,7 @@
         <span class="linkBlue" style="margin-left: 20px;"><a ng-if="app_create_user==login_user"  href="" ng-click="addEmail()">添加</a></span>
         <div  class="protocol-info-main" style="margin-left: 30px;margin-top: 15px" id="team-email-info">
             <p ng-if="teams_data.length == 0" id="item-no-teams">暂无成员信息</p>
-            <p style="line-height:13px;margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data"> - {[{ t }]} <i ng-if="app_create_user==login_user" class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
+            <p style="line-height:13px;margin-top: 10px;font-size: 14px" ng-repeat="t in teams_data track by $index"> - {[{ t }]} <i ng-if="app_create_user==login_user" class="fa fa-minus-square-o del-team-user" aria-hidden="true" onclick="delTeamEmail(this)"></i></p>
 
         </div>
         <div class="row item-team-user">
