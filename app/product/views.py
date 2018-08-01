@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from app.center.templatetags.filter import utc2local2
+
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
@@ -17,26 +17,24 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
-from common.app_api_helper import ApiHandler
-from common.app_api_helper import remove_conf_prefix
+
 from common.device_online import device_online
 from base.const import StatusCode, DefaultProtocol,DefaultSchedule
 from base.const import ConventionValue
 from common.smart_helper import *
 from common.message_helper import save_user_message
 from common.device_fun_helper import add_device_fun
-from conf.commonconf import CLOUD_TOKEN, KEY_URL
+from conf.commonconf import CLOUD_TOKEN
 from ebcloudstore.client import EbStore
 from common.util import parse_response, send_test_device_status
 from model.center.app import App
+from model.center.app_version import AppVersion
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
-from model.center.group import Group
-from model.center.user_group import UserGroup
+
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
 from util.email.send_email_code import send_product_process_email
-from conf.message import BOOK
 
 import hashlib
 import time
@@ -115,6 +113,11 @@ def product_list(request):
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
         for app in user_apps:
+            av = AppVersion.objects.filter(app_id=app.app_id)
+            if av.count() > 0:
+                has_version = 1
+            else:
+                has_version = 0
             tmp = {
                 "app_id": app.app_id,
                 "app_logo": app.app_logo,
@@ -125,14 +128,20 @@ def product_list(request):
                 "app_group": app.app_group,
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
-                "is_share": 0
+                "is_share": 0,
+                "has_version": has_version
 
             }
             tmp_apps.append(tmp)
 
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
+                av = AppVersion.objects.filter(app_id=j.app_id)
+                if av.count() > 0:
+                    has_version = 1
+                else:
+                    has_version = 0
                 tmp = {
                     "app_id": j.app_id,
                     "app_logo": j.app_logo,
@@ -143,7 +152,8 @@ def product_list(request):
                     "app_group": j.app_group,
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
-                    "is_share": 1
+                    "is_share": 1,
+                    "has_version": has_version
 
                 }
                 tmp_apps.append(tmp)
@@ -251,7 +261,7 @@ def product_controldown(request):
         except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
                 tmp = {
                     "app_id": j.app_id,
@@ -467,7 +477,7 @@ def product_main(request):
         except Exception as e:
             u = UserGroup.objects.filter(user_account=request.user)
         for i in u:
-            relate_app = App.objects.filter(app_id=i.group.relate_project)
+            relate_app = App.objects.filter(group_id=i.group.group_id)
             for j in relate_app:
                 tmp = {
                     "app_id": j.app_id,
@@ -1039,8 +1049,9 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_remark=remark_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp='', ui_party='', ui_remark=remark_value, ui_upload_id=remark_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1055,8 +1066,9 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_party=party_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp='', ui_party=party_value, ui_remark='', ui_upload_id=party_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1072,8 +1084,9 @@ def schedule(request):
                     print(time_id,time_value)
                     ddd.update(ui_time_stemp=time_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_time_stemp=time_value, ui_party='', ui_remark='', ui_upload_id=time_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1088,14 +1101,14 @@ def schedule(request):
                 if ddd:
                     ddd.update(ui_plan=time_value)
                 else:
+                    uw = ['']
                     DocUi.objects.create(ui_plan=time_value, ui_party='',ui_time_stemp='', ui_remark='', ui_upload_id=time_id,
-                                         ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
+                                         ui_key=key, ui_content=uw, ui_type='UI', ui_title='1.0',
                                          create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
-
         else:
             modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
             a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
@@ -1138,12 +1151,15 @@ def schedule(request):
             if modele:
                 # 确认操作
                 modele.update(ui_ack=int(1))
+                # 根据产品key，到docui表中去读取所有ack的id，和该key下有多少条id 根据id总数去range循环
+                m = DocUi.objects.filter(ui_key=key).count()
                 # 产品进度
-                pp = int(num) + int(1)
+                pp = int(modele.filter(ui_ack=int(1)).values("ui_upload_id")[0]['ui_upload_id']) + int(1)
                 App.objects.filter(app_appid__endswith=key).update(app_currversion=pp)
             else:
 
                 DocUi.objects.create(ui_ack=int(1), ui_upload_id=num, ui_time_stemp='', ui_party='', ui_remark='',
+
                                      ui_key=key, ui_content='', ui_type='UI', ui_title='1.0',
                                      create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
@@ -1197,11 +1213,13 @@ def upload_file(request):
         try:
             # 上传UI文件
             if post_data == 'upload':
+
                 try:
                     store = EbStore(CLOUD_TOKEN)
                     rr = store.upload(file.read(), file.name, file.content_type)
                     rr = json.loads(rr)
                     r = rr['code']
+                    print(rr)
                 except Exception as e:
                     print(e)
                     return HttpResponse(json.dumps({"code": 1}))

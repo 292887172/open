@@ -259,7 +259,9 @@ def ex(request):
                 # 保存评估结果
                 data = json.loads(request.POST.get("data", "{}"))
                 if data:
-                    data['create_date'] = datetime.datetime.now()
+                    data['create_date'] = datetime.datetime.utcnow()
+                if "account" not in data.keys():
+                    data['account'] = request.META.get('REMOTE_ADDR', "")
                 db = SandboxApiMongoDBHandler().db
                 db.ebc_user_device_exEva.insert(data)
                 return JsonResponse({"code": 0, "msg": "success"})
