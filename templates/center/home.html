@@ -238,9 +238,9 @@
                                 <dl style="margin-top: 25px" class="ui-account-item">
                                     <h2>账号整体情况</h2>
                                     <div>
-                                        <p class="ui-product-item">新建产品 <br><span>0</span> </p>
-                                        <p class="ui-product-item">协作产品 <br><span>70</span> </p>
-                                        <p class="ui-product-item">评估产品 <br><span>0</span><a href="/ex">立即评估</a></p>
+                                        <p class="ui-product-item">新建产品 <br><span>{{ create_num }}</span> </p>
+                                        <p class="ui-product-item">协作产品 <br><span>{{ cooperation_num }}</span> </p>
+                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a href="/ex">立即评估</a></p>
                                     </div>
                                 </dl>
                             </div>
@@ -356,36 +356,17 @@
             {% endif %}
         {% else %}
             <div class="menu1 menu_tab">
-                        <div id="tab1" class="tab active">
-                        <!--已经审核通过，可以修改信息-->
-                            <form id="form1" method="post">
+                        <div id="tab1" class="tab active tab-account">
+
                             <div class="cnt_box">
-                                <h3 >联系人信息<a type="button" class="btn-edit">编辑</a></h3>
-                                <dl style="margin-left: 50px;margin-top: 30px">
-                                    <dt><span>*</span>联系人姓名：</dt>
-                                    <input type="hidden" name="action" value="submit_account_info">
-                                    <dd><input disabled="disabled" type="text" name="coContactName" id="inContactName" class="txt ui-edit-txt" value="{{ user.developer.developer_realname|is_none }}"
-                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人姓名'))"
-                                                   maxlength="64">
-                                            <span id="coContactNameErrorId" class="error"></span></dd>
-                                    <dt><span>*</span>联系人职务：</dt>
-                                    <dd><label for="inContactRole"></label><input disabled="disabled"  type="text" name="coContactRole" id="inContactRole" class="txt ui-edit-txt" value="{{ user.developer.developer_job|is_none }}"
-                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'联系人职务'))"
-                                                   maxlength="64">
-                                            <span id="coContactRoleErrorId" class="error"></span></dd>
-                                    <dt><span>*</span>手机：</dt>
-                                    <dd><label for="inContactMobile"></label><input disabled="disabled"  type="text" name="coContactMobile" id="inContactMobile" class="txt ui-edit-txt" value="{{ user.account_phone|is_none }}"
-                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMobile(this,true,11))"
-                                                   maxlength="11">
-                                            <span id="coContactMobileErrorId" class="error"></span></dd>
-                                    <dt><span>*</span>邮箱：</dt>
-                                    <dd><label for="inEmail"></label><input disabled="disabled"  type="text" name="devEmail" id="inEmail" class="txt ui-edit-txt" value="{{ user.account_email|is_none }}"
-                                                   onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyEmail(this,true,64))"
-                                                   maxlength="64">
-                                            <span id="devEmailErrorId" class="error"></span></dd>
-                                    <dt ><span>*</span>修改密码：</dt>
-                                    <dd><label for="inEmail"></label><a href="/center/modify_pwd">修改</a>
-                                        <span id="devEmailErrorId" class="error"></span></dd>
+                                <dl class="ui-notify"><img width="25px" src="{% static 'image/center/notify_li.png' %}" alt="">标准产品页面已更新</dl>
+                                <dl style="margin-top: 25px" class="ui-account-item">
+                                    <h2>账号整体情况</h2>
+                                    <div>
+                                        <p class="ui-product-item">新建产品 <br><span>{{ create_num }}</span> </p>
+                                        <p class="ui-product-item">协作产品 <br><span>{{ cooperation_num }}</span> </p>
+                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a href="/ex">立即评估</a></p>
+                                    </div>
                                 </dl>
                             </div>
 
@@ -393,9 +374,9 @@
                                 <button type="button" id="submitBtn" class="ui-submit-btn btn" >提交</button>
                                 &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
                             </p>
-                            </form>
+
 			            </div>
-			            <div id="tab2" class="tab active">
+			            <div id="tab2" class="tab">
                         <!--已经审核通过，可以修改信息-->
                             <form id="form1" method="post">
                             <div class="cnt_box">
