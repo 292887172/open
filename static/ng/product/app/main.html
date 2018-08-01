@@ -168,11 +168,22 @@
             <div class="protocol-info-main" style="text-align: left;margin-top: 70px;margin-left: 90px">
                 <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
                 <div ng-if="sss==1" style="height: 50px;margin-top: 30px">
-                    <p >历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 12px;color: #e0e0e0 ">如何屏端固件烧录到厨电屏上体验？</p>
-                    <div ng-repeat="x in response">
-                    <p style="display: inline-block;margin-left: 30px;margin-top: 30px">{[{x.version}]}</p>
-                    <div class="col-md-11 col-md-offset-1"  ng-repeat="i in x.url" style="height: 20px"><a href="{[{i.url}]}" target="_blank">下载{[{app_device_name}]}屏端固件</a>
-                    <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p></div>
+                    <div style="height: 20px">
+
+                        <p style="font-size: 16px">历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 14px;color: #b4b2b1 ">如何屏端固件烧录到厨电屏上体验？</p>
+                    </div>
+                    <div class="col-md-12" style="height: 40px;border-top:  1px solid #f7f7f7;width: 650px " ng-repeat="x in response">
+                    <div style="height: 30px;margin-top: 10px" class="col-md-2 col-md-offset-0">
+                        {[{x.version}]}
+                    </div>
+                    <div style="height: 30px;" class="col-md-3">
+                        <a href="{[{url}]}" target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
+                    </div>
+                    <div style="height: 30px;margin-top: 10px" class="col-md-4">
+                         <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p></div>
+
+                    </div>
+
 
 
                 </div>
