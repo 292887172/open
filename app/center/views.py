@@ -76,8 +76,19 @@ def home(request):
             create_num = a.count()
         except Exception as e:
             create_num = 0
-        u = UserGroup.objects.filter(user_account=request.user.account_email)
-        cooperation_num = u.count()
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
+        # u = UserGroup.objects.filter(user_account=request.user.account_email)
+        cooperation_num = 0
+        for j in u:
+            a = App.objects.filter(group_id=j.group.group_id)
+            cooperation_num += a.count()
+
         db = SandboxApiMongoDBHandler().db
         evaluate_num = db.ebc_user_device_exEva.find({"account": {"$regex": request.user.account_id}}).count()
 
