@@ -49,31 +49,12 @@ def test_name():
 
 
 if __name__=="__main__":
-    from email import encoders
-    from email.header import Header
-    from email.mime.text import MIMEText
-    from email.utils import parseaddr, formataddr
+    import requests
+    r = requests.get("http://storage.56iq.net/group1/M00/47/4E/CgoKQ1thb1uASfKjACuT7CTcmIc555.pkg")
+    print(r.headers['content-length'])
+    # print(r.content)
+    import os
 
-    import smtplib
-
-
-
-
-
-    from_addr = 'support@53iq.com'
-    password = 'support@#abc'
-    to_addr = 'rendy@53iq.com'
-    smtp_server = 'mail.53iq.com'
-    msg = MIMEText('<html><body><h1>Hello</h1>' +
-                   '<p>send by <a href="http://www.python.org">Python</a>...</p>' +
-                   '</body></html>', 'html', 'utf-8')
-    msg['From'] = from_addr
-    msg['To'] = to_addr
-    msg['Subject'] = Header(u'来自SMTP的问候……', 'utf-8')
-
-    server = smtplib.SMTP(smtp_server, 25)
-    server.set_debuglevel(1)
-    server.login(from_addr, password)
-    server.sendmail(from_addr, [to_addr], msg.as_string())
-    server.quit()
-    print('ok')
+    url = 'http://storage.56iq.net/group1/M00/47/4E/CgoKQ1thb1uASfKjACuT7CTcmIc555.pkg'
+    filename = os.path.basename(url)
+    print(filename)

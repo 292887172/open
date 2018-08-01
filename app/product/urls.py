@@ -20,4 +20,5 @@ urlpatterns = patterns(
     url(r"^upload_file", "upload_file", name="upload_file"),
     url(r'^wx_code', "wx_scan_code", name='product/wx_code'),
     url(r"^uiconf/(?P<device_key>\w{8})$", "ui_conf_main", name="uiconf"),
+    url(r"^download", "download")
 )
