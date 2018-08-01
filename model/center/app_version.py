@@ -13,7 +13,7 @@ class AppVersion(models.Model):
     # 版本编号
     av_id = models.AutoField(primary_key=True, db_column='ebf_av_id')
     # 应用编号
-    app_ids = models.ForeignKey(App, null=True, db_column='ebf_app_id', related_name='app_version_related_app')
+    app_id = models.ForeignKey(App, null=True, db_column='ebf_app_id', related_name='app_version_related_app')
     # 版本号
     version_code = models.CharField(max_length=64, db_column='ebf_av_version_code')
     # 版本名称
@@ -37,9 +37,9 @@ class AppVersion(models.Model):
     # 最小版本
     min_version = models.IntegerField(max_length=11, default=0, db_column='ebf_min_version')
     # 更新时间，auto_now_add,为添加时的时间，更新对象时不会有变动,auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间
-    update_date = models.DateTimeField(auto_now=True, default=datetime.datetime.utcnow(), db_column='ebf_av_updatedate')
+    update_date = models.DateTimeField(auto_now=True, default=datetime.datetime.utcnow, db_column='ebf_av_updatedate')
     # 创建时间
-    create_date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.utcnow(),
+    create_date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.utcnow,
                                        db_column='ebf_av_createdate')
 
     class Meta:

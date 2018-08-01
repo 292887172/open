@@ -19,8 +19,8 @@ angular.module('Product.app', ['ngRoute'])
             console.log(xx)
             $http({
                 method: "GET",
-                url: "/product/app/"+ '?' + "id=" + app_id1,
-                data: {'id': app_id1},
+                url: "/product/app/"+ '?' + "id=" + $scope.$parent.app_id,
+
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                 // 获取前端接收到的数据
