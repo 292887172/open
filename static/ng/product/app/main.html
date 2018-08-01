@@ -140,7 +140,7 @@
                 <div class="modal-body">
 
 
-                    <input class="file" id="file" name="file" style="display: inline-block" type="file"/>
+                    <input class="file" id="file" name="file" style="display: inline-block" type="file" accept=".pkg"/>
                      <div style="width: 354px;margin-left: 20px;margin-top: 30px">
                     <span style="display: inline-block;font-size: 16px">版本号：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
                     <span style="color: red;display: none" id="hides">请输入版本号</span>
@@ -189,7 +189,7 @@
                         {[{x.version}]}
                     </div>
                     <div style="height: 30px;padding-left: 0px" class="col-md-4">
-                        <a href="{[{x.url}]}" attach target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
+                        <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" attach target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
                     </div>
                     <div style="height: 30px;margin-top: 10px" class="col-md-4">
                          <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p></div>
