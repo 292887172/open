@@ -965,7 +965,7 @@ def app(request):
         app_list=[]
         for i in m:
             app_dict={}
-            app_dict['url'] = eval(i.download_url)
+            app_dict['url'] = i.download_url
             app_dict['version'] = i.version_name
             date = i.create_date
             tis = date.strftime("%Y-%m-%d %H:%I:%S")
@@ -1225,7 +1225,7 @@ def upload_file(request):
                 return HttpResponse(json.dumps({"code": 2}))
             else:
 
-                url_list = [{"url": rr['data'], "filename": file.name}]
+                url_list = rr['data']
                 AppVersion.objects.create(app_ids=mobj[0], download_url=url_list, version_code=app_version,version_name=app_version,av_md5='1')
                 return HttpResponse(json.dumps({"code": 0,"url": rr['data'], "filename": file.name,"version":app_version}))
 
