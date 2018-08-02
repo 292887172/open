@@ -180,7 +180,7 @@ class DefaultProtocol(object):
                     "repeat_count": 3, "frame_content":
                         [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
                           "code": [{"value": "A55A", "desc": "发送码", "type": "send"},
-                                  ]},
+                                   ]},
                          {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
                          {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 1,
                           "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
@@ -199,50 +199,51 @@ class DefaultProtocol(object):
                     "checkout_algorithm": "sum",
                     "start_check_number": 1,
                     "end_check_number": 5,
-                    "endian_type":1
+                    "endian_type": 1
                     }
     DEFAULT_DATA_ZDY = {"is_single_instruction": "true", "support_response_frame": "true", "support_serial": "true",
-                    "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
-                    "repeat_count": 3, "frame_content":
-                        [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
-                          "code": [{"value": "A55A", "desc": "发送码", "type": "send"}
-                                   ]},
-                         {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
-                         {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 1,
-                          "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
-                                   {"value": "31", "desc": "控制帧", "type": "control"},
-                                   {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
-                         {"name": "frame_length", "title": "帧长", "is_enable": "true",
-                          "number": 4, "length": 1},
-                         {"name": "data_domain", "title": "数据域", "is_enable": "true",
-                          "number": 5, "length": "8*N"},
-                         {"name": "check", "title": "校验", "is_enable": "true",
-                          "number": 6, "length": 1}
-                         ],
-                    "checkout_algorithm": "sum",
-                    "start_check_number": 1,
-                    "end_check_number": 5,
-                    "endian_type":1
-                    }
+                        "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
+                        "repeat_count": 3, "frame_content":
+                            [{"name": "frame_head", "title": "帧头", "is_enable": "true", "number": 1, "length": 2,
+                              "code": [{"value": "A55A", "desc": "发送码", "type": "send"}
+                                       ]},
+                             {"name": "flow_number", "title": "流水号", "is_enable": "true", "number": 2, "length": 1},
+                             {"name": "frame_type", "title": "帧数据类型", "is_enable": "true", "number": 3, "length": 1,
+                              "code": [{"value": "00", "desc": "心跳帧", "type": "heart"},
+                                       {"value": "31", "desc": "控制帧", "type": "control"},
+                                       {"value": "FF", "desc": "故障报警帧", "type": "error"}]},
+                             {"name": "frame_length", "title": "帧长", "is_enable": "true",
+                              "number": 4, "length": 1},
+                             {"name": "data_domain", "title": "数据域", "is_enable": "true",
+                              "number": 5, "length": "8*N"},
+                             {"name": "check", "title": "校验", "is_enable": "true",
+                              "number": 6, "length": 1}
+                             ],
+                        "checkout_algorithm": "sum",
+                        "start_check_number": 1,
+                        "end_check_number": 5,
+                        "endian_type": 1
+                        }
+
 
 class DefaultSchedule(object):
     DEFAULT_SCHEDULE = [
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '提交详细技术功能规划书', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提交详细技术功能规划书', 'ack': 0,
          'id': 1},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '提交电控板功能协议文档', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提交电控板功能协议文档', 'ack': 0,
          'id': 2},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '提交正式UI和UE', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提交正式UI和UE', 'ack': 0,
          'id': 3},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '制定项目进度计划书', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '制定项目进度计划书', 'ack': 0,
          'id': 4},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '应用程序开发', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '应用程序开发', 'ack': 0,
          'id': 5},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '提供正式电控版', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提供正式电控版', 'ack': 0,
          'id': 6},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '控制协议对接', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '控制协议对接', 'ack': 0,
          'id': 7},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '提供整机', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提供整机', 'ack': 0,
          'id': 8},
-        {'remark': '', 'url': [], 'time_stemp': '', 'party': '', 'plan': '整机联调、老化测试', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '整机联调、老化测试', 'ack': 0,
          'id': 9},
     ]
