@@ -269,12 +269,9 @@
                             <p class="info" style="margin-top: 10px;font-size: 14px">- 协助电控联调
                                 </p>
 
-
                         </div>
                     </li>
                 </div>
-
-
 
                 </div>
             </div>
@@ -338,12 +335,16 @@
             <ol style="width: 550px;float: right;" class="new-app">
                 <li style="color: #c6c6c6;">一键创建：</li>
                 {% for app in default_apps %}
-                    <li>
-                        <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
 
+                    <li>
+                    {% if app.app_device_type == 11 %}
+                        <a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
+                    {% else %}
+                        <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
+                    {% endif %}
                     </li>
-                    {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202"
+                    {% if forloop.counter == 1 %}
+                        <li><a
                                href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}">WiFi屏洗碗机</a>
                         </li>
 
@@ -447,6 +448,20 @@
 
 {% block script %}
     <script>
+        var dev = "{{ user.developer.developer_id }}";
+        setTimeout(function () {
+            if (dev.length == 0){
+                if (getCookie('notify_develop')){
+                    return true
+                }else{
+                    setCookie("notify_develop", 1);
+                    dont_develop()
+                }
+
+            }
+        }, 1500);
+
+
     function F_C0(that) {
         console.log('x')
         document.getElementById('click1').style.color=""
@@ -611,6 +626,25 @@
                 }
             });
         }
+        // 设置cookie
+        function setCookie(name,value)
+            {
+                var Days = 30;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+            }
+        //读取cookies
+        function getCookie(name)
+            {
+                var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+                if(arr=document.cookie.match(reg))
+
+                    return unescape(arr[2]);
+                else
+                    return null;
+            }
     </script>
 
 {% endblock %}

@@ -1,4 +1,7 @@
 <style>
+    body{
+        line-height: 1;
+    }
     dt {
         padding: 10px;
         width: 286px;
@@ -124,6 +127,20 @@
         border-bottom: 1px solid #f7f7f7;
 
     }
+    .ui-tips{
+        display: inline-block;
+        margin-top: 40px;
+        width: 100%;
+    }
+    .ui-tips-p1{
+        padding: 17px 0px 10px;
+    font-size: 16px;
+        border-bottom: 1px solid #f7f7f7;
+    }
+    .ui-tips-p2{
+        line-height: 2;
+        margin-top: 5px;
+    }
 </style>
 <div class="box2 relative">
     <div class="modal fade" id="user_address" tabindex="-1" role="dialog" >
@@ -177,31 +194,39 @@
 
             <div class="protocol-info-main" style="text-align: left;margin-top: 30px;margin-left: 50px">
                 <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
-                <div ng-if="sss==1" style="height: 50px;margin-top: 30px">
+                <div ng-if="sss==1" style="margin-top: 30px;">
                     <div style="height: 20px">
 
-                        <p style="font-size: 16px">历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 14px;"><a
+                        <p style="font-size: 16px;float: left">历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 14px;"><a
                         href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
                         style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
                     <div class="col-md-12 ui-item-version"  ng-repeat="x in response" >
-                    <div style="height: 30px;margin-top: 10px;width: 50px" class="col-md-2 col-md-offset-0">
-                        {[{x.version}]}
-                    </div>
-                    <div style="height: 30px;padding-left: 0px" class="col-md-4">
-                        <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
-                    </div>
-                    <div style="height: 30px;margin-top: 10px" class="col-md-4">
-                         <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p></div>
+                        <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
+                            {[{x.version}]}
+                        </div>
+                        <div style="padding-left: 0px" class="col-md-4">
+                            <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
+                        </div>
+                        <div style="height: 30px;margin-top: 4px" class="col-md-4">
+                             <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                        </div>
 
                     </div>
-
-
 
                 </div>
+                <div ng-if="sss==1" class="ui-tips">
+                        <p class="ui-tips-p1">屏端固件烧录</p>
+                        <p class="ui-tips-p2">
+                            1 将下载的DCIOT.pkg文件复制 到U盘(U盘文件系统：FAT32) 根目录中;<br>
+                            2 U盘接上WiFi屏后 断电重启；WiFi屏自动进行烧录，安装期间请不要断电，直到屏端出现：Upgrade  finished;<br>
+                            3 拔出U盘，断电重启WiFi屏即可完成固件烧录。
+                        </p>
+                    <img style="width: 400px" src="/static/image/center/tips.jpg" alt="">
                 </div>
+            </div>
 
-                <p ng-if="sss==0" class="product-info-p" style="margin-top:30px;padding-bottom: 20px;margin-left:50px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
+                <p ng-if="sss==0" class="product-info-p" style="margin-top:30px;margin-left:50px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
                                                                                           target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
                         class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
                         href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p><br>
