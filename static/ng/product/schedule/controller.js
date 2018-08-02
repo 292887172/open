@@ -63,7 +63,7 @@ angular.module('Product.schedule', ['ngRoute'])
              document.getElementsByClassName("task-id-name")[0].innerHTML = ''
              document.getElementsByClassName("task-plan-name")[0].innerHTML = ''
              document.getElementsByClassName("remarks")[0].innerHTML ="备注："
-             document.getElementsByClassName("times")[0].innerHTML =''
+             document.getElementsByClassName("times-text")[0].innerHTML =''
              $.ajax({
                 type: "POST",
                 url: '/product/schedule',
@@ -80,7 +80,7 @@ angular.module('Product.schedule', ['ngRoute'])
                     document.getElementsByClassName("task-plan-name")[0].innerHTML = data['plan']
                     document.getElementsByClassName("names")[0].innerHTML = data['party']
                     document.getElementsByClassName("remarks")[0].innerHTML ="备注："+ data['remark']
-                    document.getElementsByClassName("times")[0].innerHTML = data['time_stemp']
+                    document.getElementsByClassName("times-text")[0].innerHTML = data['time_stemp']
                     try {
                          var dd = JSON.parse($scope.responses['content'])
                         for (var i =0,d_length = dd.length;i<d_length;i++){
