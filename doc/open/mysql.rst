@@ -394,8 +394,13 @@
       `ebf_ui_create_date` datetime DEFAULT NULL COMMENT '创建时间',
       `ebf_ui_update_date` datetime DEFAULT NULL COMMENT '更新时间',
       `ebf_ui_upload_id` int(2) DEFAULT '0' COMMENT 'ui上传编号',
+      `ebf_ui_ack` int(2) DEFAULT '0' COMMENT 'ack 确认',
+      `ebf_ui_time_stemp` text COMMENT '时间戳',
+      `ebf_ui_remark` varchar(64) DEFAULT NULL COMMENT '备注信息',
+      `ebf_ui_party` varchar(16) DEFAULT NULL COMMENT '负责方',
+      `ebf_ui_plan` varchar(64) DEFAULT NULL COMMENT '计划名称',
       PRIMARY KEY (`ebf_ui_id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+    ) ENGINE=InnoDB AUTO_INCREMENT=324 DEFAULT CHARSET=utf8;
 
     -- ----------------------------
     --  Table structure for `ebt_app_info`
