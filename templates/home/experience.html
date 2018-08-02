@@ -33,7 +33,7 @@
         <div class="topright">
             <ul class="topmain">
                 {% if user.account_id %}
-                    <li style="margin-right: 8px">{{ user.account_id }}</li>
+                    <li style="margin-right: 8px"><a href="/product/list">{{ user.account_id }}</a></li>
                 {% else %}
                     <li><a href="/center/login?next=/ex">登录</a></li>
                 {% endif %}
