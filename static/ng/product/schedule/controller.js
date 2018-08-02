@@ -111,11 +111,27 @@ angular.module('Product.schedule', ['ngRoute'])
             console.log(that)
         }
         $scope.Save_Plan = function (that) {
-            $.ajax({
-                type: "POST",
-                url: '/product/schedule',
-                data: {'key': keysss, "action": "save_plan", "num": that},
+            console.log(that)
+            layer.confirm('确认提交计划？', {
+                btn: ['确定', '取消'] //按钮
 
+            }, function () {
+                console.log("确定");
+                $.ajax({
+                    type: "POST",
+                    url: '/product/schedule',
+                    data: {'key': keysss, "action": "save_plan", "num": that},
+                    success:function () {
+                        layer.msg('已确认', {icon: 1,time:2000});
+                        location.reload();
+                    },
+                    error:function (even) {
+                        layer.msg('提交失败', {icon: 2,time:2000});
+                        console.log(even)
+                    }
+                })
+            }, function () {
+                console.log("取消");
             })
         }
     }]);
