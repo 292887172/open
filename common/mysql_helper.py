@@ -217,7 +217,8 @@ def get_ui_base_conf(key, conf, cook_ies):
             close_connection(conn)
 
 
-def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.0', ui_time_stemp="", filename=''):
+def get_ui_static_conf(key, file_path, id=0, filename='',
+                       user=''):
     """
     获取自定义ui配置并且保存
     :param key:
@@ -226,6 +227,7 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.
     """
     conn = get_main_connection()
     try:
+        print(filename, user)
         # 插入前判断是否更新！
         # 增加message信息
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
@@ -234,29 +236,47 @@ def get_ui_static_conf(key, post_data, file_path, cook_ies='', id=0, ui_info='1.
         print('xxx')
         if ui_obj:
             for i in ui_obj:
-                url_list_now = eval(i.ui_content)
+                if i.ui_content:
+                    print(i.ui_content)
 
-                if type(url_list_now) == list:
-                    url_dict = {"urll": file_path, "filename": filename}
+                    url_list_now = json.loads(i.ui_content)
+                    url_dict = {"urll": file_path, "filename": filename, "user": user,
+                                "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
+                                    "%Y-%m-%d %H:%M:%S")}
                     url_list_now.append(url_dict)
-                    ui_obj.update(ui_content=url_list_now, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                    url_list_now = json.dumps(url_list_now)
+                    ui_obj.update(ui_content=url_list_now, ui_type='UI',
                                   update_date=datetime.datetime.utcnow())
                 else:
                     url_list1 = []
-                    url_list1.append(url_list_now)
-                    ui_obj.update(ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
+                    url_dict = {"urll": file_path, "filename": filename, "user": user,
+                                "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
+                                    "%Y-%m-%d %H:%M:%S")}
+                    url_list1.append(url_dict)
+                    url_list1 = json.dumps(url_list1)
+                    ui_obj.update(ui_content=url_list1, ui_type='UI',
                                   update_date=datetime.datetime.utcnow())
+            return {"code": 0, "url": file_path, "filename": filename,
+                    "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
+                        "%Y-%m-%d %H:%M:%S"), "user": user}
         else:
-            url_list1=[{"urll":file_path,"filename":filename}]
-            DocUi.objects.create(ui_upload_id=id, ui_key=key,ui_content=url_list1, ui_type='UI', ui_title=ui_info, ui_time_stemp=ui_time_stemp,
-                                  update_date=datetime.datetime.utcnow())
+            url_list1 = [{"urll": file_path, "filename": filename, "user": user,
+                          "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
+                              "%Y-%m-%d %H:%M:%S")}]
+            url_list1 = json.dumps(url_list1)
+            DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=url_list1, ui_type='UI',
+                                 update_date=datetime.datetime.utcnow())
+            return {"code": 1, "url": file_path, "filename": filename,
+                    "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
+                        "%Y-%m-%d %H:%M:%S"), "user": user}
     except Exception as e:
         print(e)
+        return {"code": 2}
     finally:
         close_connection(conn)
 
 
-def remove_up_url(key, del_id, del_url):
+def remove_up_url(key, del_id, del_filename):
     """
     删除上传的文件
     :param key:
@@ -266,12 +286,20 @@ def remove_up_url(key, del_id, del_url):
     """
     try:
         url_list = DocUi.objects.filter(ui_key=key, ui_upload_id=del_id)
+        url_listed = ''
         for i in url_list:
-            url_list = eval(i.ui_content)
-            for i in url_list:
-                if isinstance(i, dict) and del_url in i['urll']:
-                    url_list.remove(i)
-        DocUi.objects.filter(ui_key=key, ui_upload_id=del_id).update(ui_content=url_list)
+            url_listed = json.loads(i.ui_content)
+            for ii in url_listed:
+                if del_filename in ii.values():
+                    url_listed.remove(ii)
+            if url_listed:
+                # 删除后还有url处理
+                url_listed = json.dumps(url_listed)
+                DocUi.objects.filter(ui_key=key, ui_upload_id=del_id).update(ui_content=url_listed)
+            else:
+                # 删除后没有url了
+                url_listed = ''
+                DocUi.objects.filter(ui_key=key, ui_upload_id=del_id).update(ui_content=url_listed)
     except Exception as e:
         print(e)
 
