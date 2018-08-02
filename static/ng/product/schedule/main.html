@@ -127,6 +127,9 @@
         width: 20px;
         vertical-align: text-bottom;
     }
+    .my-ant-tooltip-inner{
+        width: auto !important;
+    }
 </style>
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
@@ -178,9 +181,9 @@
                     <div class="plans-user-info div-flex" data="{[{x.id}]}" ng-click="Show_Detail_Plan(x.id)">
                         <div style="font-size: 16px;">{[{x.id}]}</div>
                         <div  class="name">
-                            <p class="text-ellipsis"><span class="plan-namer">{[{x.party}]}</span></p>
+                            <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)" ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
                             <div class="my-tooltip-box show_div">
-                                <div class="my-ant-tooltip-inner">'负责人':{[{x.party}]}</div>
+                                <div class="my-ant-tooltip-inner">负责人:{[{x.party}]}</div>
                                 <div class="my-ant-tooltip-arrow"></div>
                             </div>
                         </div>
@@ -424,9 +427,9 @@
                          "    <div class=\"plans-user-info div-flex\" data=\""+idd+"\" ng-click=\"Show_Detail_Plan(x."+ idd +")\">\n" +
                          "        <div style=\"font-size: 16px;\" class=\"ng-binding\">"+idd+"</div>\n" +
                          "        <div class=\"name\">\n" +
-                         "            <p class=\"text-ellipsis\"><span class=\"plan-namer ng-binding\">"+plans_user+"</span></p>\n" +
+                         "            <p class=\"text-ellipsis\"><span class=\"plan-namer ng-binding\" ng-mouseover=\"Span_Over($event)\" ng-mouseout=\"Span_Out($event)\">"+plans_user+"</span></p>\n" +
                          "            <div class=\"my-tooltip-box show_div\">\n" +
-                         "                <div class=\"my-ant-tooltip-inner ng-binding\">'负责人':\"+plans_user+\"</div>\n" +
+                         "                <div class=\"my-ant-tooltip-inner ng-binding\">负责人:\"+plans_user+\"</div>\n" +
                          "                <div class=\"my-ant-tooltip-arrow\"></div>\n" +
                          "            </div>\n" +
                          "        </div>\n" +
