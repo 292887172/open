@@ -39,7 +39,7 @@ angular.module('Product.schedule', ['ngRoute'])
 
                     var li_list = $(" <li>\n" +
                         "                <input type=\"text\" value=\""+ $scope.party_list[i]['title'] +"\">\n" +
-                        "                <button class=\"my-user-del\">删除</button>\n" +
+                        "                <button class=\"my-user-del\" onclick='Del_Party(this)'>删除</button>\n" +
                         "            </li>")
 
                     var addtr = $("<option value=\""+ $scope.party_list[i]['title'] +"\">"+ $scope.party_list[i]['title'] +"</option>")

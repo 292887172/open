@@ -1209,18 +1209,38 @@ def party(request):
     if request.method == "POST":
         ap_id = request.POST.get('app_id','')
         info_list = request.POST.get('listed','')
-        print(ap_id)
-        print(info_list,type(json.loads(info_list)))
-        list = json.loads(info_list)
+
+
         obj = AppInfo.objects.filter(app_id=int(ap_id))
-        try:
+        action = request.POST.get('action','')
+        #data: {"key": keysss, "app_id": app_id1, "datas": rr},
+        data_list = request.POST.get('datas','')
+        if action == 'del':
+            title_list =''
             if obj:
-                obj.update(responsible_party=json.dumps(list))
-            else:
-                AppInfo.objects.create(app_id=int(ap_id),responsible_party=json.dumps(list))
-        except Exception as e:
-            print(e)
-        return HttpResponse(json.dumps({"code":0}))
+                for i in obj:
+                    title_list = json.loads(i.responsible_party)
+
+                print('list',title_list)
+                for j in title_list:
+                    if data_list in j.values():
+                        title_list.remove(j)
+                print('lists',title_list)
+                if title_list:
+                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
+                else:
+                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
+            return HttpResponse(json.dumps({"code":0}))
+        else:
+            list = json.loads(info_list)
+            try:
+                if obj:
+                    obj.update(responsible_party=json.dumps(list))
+                else:
+                    AppInfo.objects.create(app_id=int(ap_id),responsible_party=json.dumps(list))
+            except Exception as e:
+                print(e)
+            return HttpResponse(json.dumps({"code": 0}))
         # data: {"key": keysss, "app_id": app_id1, "list": aa},
 
 @csrf_exempt
