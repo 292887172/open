@@ -24,7 +24,6 @@ angular.module('Product.schedule', ['ngRoute'])
                 // 获取前端接收到的数据
                 $scope.response = response;
                 console.log($scope.response)
-                console.log($scope.response[0]['partys'])
                 $scope.party_list = $scope.response[0]['partys']
                 var aaa=[]
 
