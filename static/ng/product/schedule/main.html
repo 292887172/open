@@ -105,6 +105,20 @@
         font-size: 12px;
         line-height: 1;
     }
+    .rightMain{
+        border: none;
+        background-color: transparent;
+    }
+    .view-plans-left,.task-detail{
+        border-radius: 5px;
+    }
+    .layui-select-title input{
+        background-color: #fff;
+    }
+    .newplans-title i{
+        line-height: 1;
+        top: 0;
+    }
 </style>
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
@@ -146,7 +160,7 @@
     <div class="view-plans-left">
 
         <div class="plans-head">
-            <p class="new-plan" onclick="open_plans('new')">＋ 新增计划</p> <a href="#/portal">返回</a>
+            <p class="new-plan" onclick="open_plans('new')">＋ 新增计划</p>
             <p class="new-mainpersol" onclick="add_user()"><img src="http://storage.56iq.net/group1/M00/47/41/CgoKQ1thH12AWbg1AAADGhlwMl8924.png" alt="">负责方</p>
         </div>
 
@@ -180,7 +194,7 @@
     <div class="task-detail">
         <div class="task-head div-flex">
             <div class="task-title" style="font-size: 16px">
-                <p class="task-id-name" style="display: inline-block;width: 10px">2</p><p class="task-plan-name" style="display: inline-block">提供电控板功能协议文档</p>
+                <p class="task-id-name" style="display: inline-block;margin-right: 10px;">2</p><p class="task-plan-name" style="display: inline-block">提供电控板功能协议文档</p>
                 <input type="text" class="task-ack-name" style="display: none">
             </div>
             <div class="task-action div-flex">
@@ -382,7 +396,7 @@
                  var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1
                  console.log(num)
                  if (parseInt(idd) < parseInt(num)) {
-                     console.log('新增')
+                     layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var ul_list = $("#ul_id")
                      var addtr = $(
@@ -408,13 +422,13 @@
                          "</li>"
                         )
                      addtr.appendTo(ul_list)
+                     layer.msg('新建成功', {icon: 1,time:2000});
                  }
 
 
              }
 
         })
-        layer.msg('新建成功', {icon: 1,time:2000});
         $("#mask-box").remove();
         $("#newplans-window").fadeOut();
     }
