@@ -123,6 +123,10 @@
     .plans-user-info div:first-child{
         width: 30px;
     }
+    .times img{
+        width: 20px;
+        vertical-align: text-bottom;
+    }
 </style>
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
@@ -212,7 +216,8 @@
             <p class="names">佳威路</p>
             <p class="job">负责方</p>
             <div class="times">
-                <img src="" alt="">2018-07-25 ～ 2018-08-12
+                <img src="http://storage.56iq.net/group1/M00/47/7A/CgoKQ1ti5syASsUEAAACuImQyn4943.png" alt="">
+                <span class="times-text"></span>
             </div>
         </div>
         <div class="remarks">备注：需双方确认</div>
@@ -256,7 +261,7 @@
             <div class="news-div-style">
                 <p class="news-user">计划时间<span>（选填）</span></p>
                 <div class="my-plug">
-                    <input type="text" class="layui-input" id="test15" placeholder="开始 到 结束">
+                    <input type="text" class="layui-input" id="test15" placeholder="开始 ~ 结束">
                 </div>
             </div>
         </div>
@@ -358,7 +363,8 @@
             document.getElementById("news-plan-remarks").value= document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1]
             document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML
             $("#plans-users").val(document.getElementsByClassName("names")[0].innerHTML)
-            ontimes(document.getElementsByClassName("times")[0].innerHTML)
+            console.log(document.getElementsByClassName("times-text")[0].innerHTML)
+            ontimes(document.getElementsByClassName("times-text")[0].innerHTML)
         }
     }
 
@@ -391,10 +397,10 @@
             layer.msg('请填写负责人名称', {icon: 5,time:2000});
             return
         }
-        if (plans_time == ""){
-            layer.msg('请填写计划时间', {icon: 5,time:2000});
-            return
-        }
+        //if (plans_time == ""){
+            //layer.msg('请填写计划时间', {icon: 5,time:2000});
+            //return
+        //}
         var idd = document.getElementById("hides").value
         console.log(idd,plans_user,plans_remarks,plans_time,plans_name)
         $.ajax({
@@ -408,7 +414,7 @@
 
                      document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val()
                      document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val()
-                     document.getElementsByClassName("times")[0].innerHTML = $("#test15").val()
+                     document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val()
                      document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val()
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
@@ -558,7 +564,7 @@
 
             laydate.render({
             elem: '#test15'
-            ,range: '到'
+            ,range: '~'
             ,value: mytime
             ,format: 'yyyy-MM-dd'
             ,done: function(value, date, endDate){
