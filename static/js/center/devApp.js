@@ -301,15 +301,7 @@ var DevAppInfo = {
             this.changeCss(false);
             return false;
         }
-        if (!DevAppInfo.doVerifyValue('coName', 64, '公司/团队名称', true)) {
 
-            this.changeCss(false);
-            return false;
-        }
-        if (!DevAppInfo.doVerifyValue('coDevScale', 64, '开发团队人数', false)) {
-            this.changeCss(false);
-            return false;
-        }
         if (!DevAppInfo.doVerifyValue('coContactName', 64, '联系人姓名', false)) {
             this.changeCss(false);
             return false;
@@ -345,25 +337,8 @@ var DevAppInfo = {
         } else {
             $('#devEmailErrorId').html('');
         }
-        // var devCodeValue = $('input[name=devCode]').val();
-        // if (devCodeValue == null || devCodeValue == '') {
-        //     this.changeCss(false);
-        //     return false;
-        // } else if ($.trim(devCodeValue).length != 6) {
-        //     //$('#devCodeErrorId').html('请输入6位验证码');
-        //     this.changeCss(false);
-        //     return false;
-        // } else if (!DevAppInfo.isNomal(devCodeValue)) {
-        //     //	$('#deCodeErrorId').html('输入信息中不能有特殊字符');
-        //     this.changeCss(false);
-        //     return false;
-        // } else {
-        //     $('#devCodeErrorId').html('');
-        // }
-        var checkeError = this.checkErro();
-        if (!checkeError) {
-            return checkeError;
-        }
+
+
         this.changeCss(true);
         return true;
     },

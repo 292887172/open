@@ -56,6 +56,13 @@ def create_developer(company, company_url, company_address, company_scale, conta
             dev_from = 2
             dev_id = '2_' + user
         try:
+            if contact_mobile:
+                try:
+                    a = Account.objects.get(account_id=user)
+                    a.account_phone = contact_mobile
+                    a.save()
+                except Exception as e:
+                    pass
             d = Developer.objects.get(developer_account=user)
             if d:
                 d.developer_inc = company
