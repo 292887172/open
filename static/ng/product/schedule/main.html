@@ -164,7 +164,7 @@
     <div class="view-plans-left">
 
         <div class="plans-head">
-            <p class="new-plan" onclick="open_plans('new')">＋ 新增计划</p>
+            <p class="new-plan" onclick="open_plans('new')">＋ 新增计划</p> <a href="#/portal">返回</a>
             <p class="new-mainpersol" onclick="add_user()"><img src="http://storage.56iq.net/group1/M00/47/41/CgoKQ1thH12AWbg1AAADGhlwMl8924.png" alt="">负责方</p>
         </div>
 
@@ -182,7 +182,8 @@
                         </div>
                         <div class="file-info">
                             <span class="text-ellipsis">{[{x.plan}]}</span>
-                            <img src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
+
+                            <img ng-if="x.url.length>1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
                         </div>
                     </div>
                     <div class="confirm-info">
@@ -198,7 +199,7 @@
     <div class="task-detail">
         <div class="task-head div-flex">
             <div class="task-title" style="font-size: 16px">
-                <p class="task-id-name" style="display: inline-block;margin-right: 10px;">2</p><p class="task-plan-name" style="display: inline-block">提供电控板功能协议文档</p>
+                <p class="task-id-name" style="display: inline-block;width: 10px">2</p><p class="task-plan-name" style="display: inline-block">提供电控板功能协议文档</p>
                 <input type="text" class="task-ack-name" style="display: none">
             </div>
             <div class="task-action div-flex">
@@ -401,10 +402,14 @@
              type:"POST",
              data:{"key":keysss,"action":"save","num":idd,"plans_name":plans_name,"plans_time":plans_time,"plans_user":plans_user,"plans_remarks":plans_remarks},
              success:function(data){
-                 console.log('xxxx')
                  var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1
                  console.log(num)
                  if (parseInt(idd) < parseInt(num)) {
+
+                     document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val()
+                     document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val()
+                     document.getElementsByClassName("times")[0].innerHTML = $("#test15").val()
+                     document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val()
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var ul_list = $("#ul_id")
