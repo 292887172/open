@@ -998,21 +998,14 @@ def schedule(request):
         for i in appobj:
             print('ff',i.app_id)
             sapp_id = i.app_id
-        print(key)
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
-        print('xxx',bb)
         try:
-            if bb:
-                party_list =''
-                for i in bb:
-                    print(i.responsible_party)
-                    if i.responsible_party:
-                        party_list = json.loads(i.responsible_party)
-
             li_ui = DocUi.objects.filter(ui_key=key)
             if li_ui:
+                print('yyy')
                 id_list = []
+
                 for i in li_ui:
                     update_dict = {}
                     update_dict['id'] = i.ui_upload_id
@@ -1029,12 +1022,21 @@ def schedule(request):
                     update_dict['url'] = url
                     update_dict['ack'] = i.ui_ack
                     update_dict['time_stemp'] = i.ui_time_stemp
-                    update_dict['partys'] = party_list
+
+                    # 负责方
+                    if bb:
+                        party_list = ''
+                        for i in bb:
+                            print(i.responsible_party)
+                            if i.responsible_party:
+                                party_list = json.loads(i.responsible_party)
+                            update_dict['partys'] = party_list
                     update_list.append(update_dict)
                     c_data = update_list[:len(update_list)]
                     c_data.sort(key=lambda x: int(x.get("id")))
                     c_data.extend(update_list[len(update_list):])
                     update_list = c_data
+
                 return HttpResponse(json.dumps(update_list))
             else:
                 update_list = DefaultSchedule().DEFAULT_SCHEDULE
