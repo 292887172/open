@@ -134,4 +134,21 @@ angular.module('Product.schedule', ['ngRoute'])
                 console.log("取消");
             })
         }
+        var being = true;
+        $scope.Span_Over = function ($event) {
+            if(being){
+                let w_span = $($event.target).width();
+                if (w_span > 100){
+                    w_span = 100
+                }
+                $($event.target).parent(".text-ellipsis").siblings(".my-tooltip-box").css("left",-(100-w_span)/3 + "px");
+                $($event.target).parent(".text-ellipsis").siblings(".my-tooltip-box").fadeIn();
+            }
+            being = false
+        }
+        
+        $scope.Span_Out = function ($event) {
+            being = true;
+            $($event.target).parent(".text-ellipsis").siblings(".my-tooltip-box").fadeOut();
+        }
     }]);
