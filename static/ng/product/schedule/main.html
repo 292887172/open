@@ -337,8 +337,12 @@
             $("#newplans-window").fadeIn();
             var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1 ;
             document.getElementById("hides").value = num
+            //清空计划
+            $("#news-plan-name").val("");  //获取计划名称
+            $("#plans-users").val("");     //获取负责人名称
+            $("#test15").val("");          //获取计划时间
+            $("#news-plan-remarks").val("");  //获取备注
             ontimes()
-
         }
         //编辑计划
         if (val == 'edit'){
@@ -371,6 +375,7 @@
         var plans_user = $("#plans-users").val();     //获取负责人名称
         var plans_time = $("#test15").val();          //获取计划时间
         var plans_remarks = $("#news-plan-remarks").val();  //获取备注
+
 
         console.log(plans_name,plans_user,plans_time,plans_remarks)
         if (plans_name == ""){
