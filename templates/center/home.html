@@ -96,7 +96,7 @@
     }
     .ui-edit-txt{
         border: 0!important;
-        background-color: #F1F4F9!important;
+       /* background-color: #F1F4F9!important;*/
     }
     .btn-edit{
 
@@ -113,11 +113,18 @@
         margin-top: 6px;
     }
     .item-team-user{
-        margin-top: 10px;
+        padding-top: 10px;
+    margin-left: 20px;
+    width: 95%;
+    border-top: 1px solid #f7f7f7;
+    height: 45px;
+    }
+    .item-team-user:last-child{
+        border-bottom: 1px solid #f7f7f7;
     }
     .ui-edit-disable{
         border: 0;
-        background-color: #F1F4F9!important;
+       background-color: #FFF!important;
         box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
     }
     #header{
@@ -129,15 +136,17 @@
         height: 30px!important;
     }
     .slider-bar{
-        padding-top: 3%;
+        margin-top: 30px;
+    padding-top: 30px;
     margin-left: 0px;
     width: 200px;
-    /* height: 400px; */
+    height: 670px;
     float: left;
     position: fixed;
-    height: 100%;
-    box-shadow: 3px 1px 4px rgba(0,0,0,.1);
-        text-align: center;
+    /* height: 100%; */
+    box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+    text-align: center;
+    background-color: #fff;
     }
     .tab{
         display: none;
@@ -154,6 +163,55 @@
     a.selected{
         color: #f35019;
     }
+    .menu_tab{
+        background-color: #fff;
+    height: 700px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        margin-top: 30px!important;
+    }
+    .tab{
+        padding-top: 24px;
+    }
+    .tab-account{
+
+        padding-top: 0px;
+    }
+    .ui-notify{
+        padding: 25px 40px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
+    }
+    .ui-account-item{
+        margin-top: 30px;
+    height: 600px;
+    /* background-color: #fff; */
+    padding: 20px 40px;
+    }
+    .ui-account-item h2{
+        text-align: left;
+        font-size: 18px;
+    }
+    .ui-account-item p{
+
+    }
+    .ui-product-item{
+        float: left;
+        width: 30%;
+        text-align: center;
+        position: relative;
+    }
+    .ui-product-item span{
+        font-size: 42px;
+    }
+    .ui-product-item a{
+        position: absolute;
+        top:42px;
+        right: 40px;
+    }
+    .ui-no-team{
+        padding: 40px 80px;
+        color: #aaa;
+    }
     </style>
 
 {% endblock %}
@@ -166,7 +224,8 @@
     <div class="container" style="margin-top: 90px">
         <div class="menu slider-bar" >
             <ul class="ulmenu1">
-                <li style="height: 50px"><a class="selected" href="#tab1">账号管理</a></li>
+                <li style="height: 50px"><a class="selected" href="#">账户中心</a></li>
+                <li style="height: 50px"><a href="#">联系信息</a></li>
                 <li style="height: 50px"><a href="#">公司信息</a></li>
                 <li style="height: 50px"><a href="#">团队邮箱</a></li>
 
@@ -175,20 +234,34 @@
 
         </div>
 
-	<div class="content" style="margin-top: 0px;margin-left: 220px">
+	<div class="content" style="margin-left: 200px">
 
     	{% if user.developer.developer_id %}
            {% if user.developer.developer_check_status == -1 %}
 
            {% else %}
                <div class="menu1 menu_tab">
+                        <div id="tab1" class="tab active tab-account">
 
-
-			            <div id="tab1" class="tab active">
-                        <!--已经审核通过，可以修改信息-->
-                            <form id="form1" method="post">
                             <div class="cnt_box">
-                                <h3 style="margin-top: 30px">联系人信息<a type="button" class="btn-edit">编辑</a></h3>
+                                <dl class="ui-notify"><img width="25px" src="{% static 'image/center/notify_li.png' %}" alt="">产品“{{ app_name }}”{{ current_version|xxxx }}</dl>
+                                <dl style="margin-top: 25px" class="ui-account-item">
+                                    <h2>账号整体情况</h2>
+                                    <div>
+                                        <p class="ui-product-item">新建产品 <br><span>{{ create_num }}</span> </p>
+                                        <p class="ui-product-item">协作产品 <br><span>{{ cooperation_num }}</span> </p>
+                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a href="/ex">立即评估</a></p>
+                                    </div>
+                                </dl>
+                            </div>
+
+			            </div>
+
+			            <div id="tab2" class="tab">
+                        <!--已经审核通过，可以修改信息-->
+
+                            <div class="cnt_box">
+                                <h3 >联系人信息<a type="button" class="btn-edit">编辑</a></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
                                     <input type="hidden" name="action" value="submit_account_info">
@@ -221,19 +294,18 @@
                                 <button type="button" id="submitBtn" class="ui-submit-btn btn" >提交</button>
                                 &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
                             </p>
-                            </form>
+
 			            </div>
 
-			            <div id="tab2" class="tab">
+			            <div id="tab3" class="tab">
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                            <h3 style="margin-top: 30px">公司/团队信息<a type="button" class="btn-edit">编辑</a></h3>
+                            <h3>公司/团队信息<a type="button" class="btn-edit">编辑</a></h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
                                 <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input disabled="disabled"  type="text" name="coName" id="inName" class="txt ui-edit-txt"
                                                                        value="{{ user.developer.developer_inc|is_none }}"
-                                                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
                                                                        maxlength="64">
                                     <span id="coNameErrorId" class="error"></span></dd>
                                 <dt>公司/团队网址：</dt>
@@ -262,12 +334,15 @@
 			            </div>
 
 
-			            <div id="tab3" class="tab"  >
+			            <div id="tab4" class="tab"  >
                              <div style="" id="item-team-control" style="margin-top: 30px" class="cnt_box">
-                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
-                                 <p style="margin-top: 15px;display: none">团队邮箱管理  </p>
+                             <h3 >团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
+
+                             {% if not team_info %}
+                                 <p class="ui-no-team">暂未绑定团队邮箱</p>
+                             {% else %}
                              {% for t in team_info %}
-                                <div class="row item-team-user" style="height: 30px!important;" >
+                                <div class="row item-team-user" >
                                   <div class="col-xs-2">
                                     <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
                                   </div>
@@ -280,20 +355,36 @@
                                     <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                                 </div>
                              {% endfor %}
+                             {% endif %}
 			            </div>
-                        <div style="float: left;width: 100%;margin-top: 20px">
+                        <div style="float: left;width: 100%;margin: 20px 0 0 30px">
                             <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认</button>
                         </div>
 		                </div>
             {% endif %}
         {% else %}
             <div class="menu1 menu_tab">
+                        <div id="tab1" class="tab active tab-account">
 
-			            <div id="tab1" class="tab active">
+                            <div class="cnt_box">
+                                <dl class="ui-notify"><img width="25px" src="{% static 'image/center/notify_li.png' %}" alt="">标准产品页面已更新</dl>
+                                <dl style="margin-top: 25px" class="ui-account-item">
+                                    <h2>账号整体情况</h2>
+                                    <div>
+                                        <p class="ui-product-item">新建产品 <br><span>{{ create_num }}</span> </p>
+                                        <p class="ui-product-item">协作产品 <br><span>{{ cooperation_num }}</span> </p>
+                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a href="/ex">立即评估</a></p>
+                                    </div>
+                                </dl>
+                            </div>
+
+
+			            </div>
+			            <div id="tab2" class="tab">
                         <!--已经审核通过，可以修改信息-->
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                                <h3 style="margin-top: 30px">联系人信息</h3>
+                                <h3 >联系人信息</h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
                                     <dt><span>*</span>联系人姓名：</dt>
                                     <input type="hidden" name="action" value="submit_account_info">
@@ -329,26 +420,26 @@
                             </form>
 			            </div>
 
-			            <div id="tab2" class="tab">
+			            <div id="tab3" class="tab">
                             <form id="form1" method="post">
                             <div class="cnt_box">
-                            <h3 style="margin-top: 30px">公司/团队信息</h3>
+                            <h3 >公司/团队信息</h3>
                             <dl style="margin-left: 50px;margin-top: 30px;">
                                 <dt><span>*</span>公司/团队名称：</dt>
                                 <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
                                                                        value=""
-                                                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
+
                                                                        maxlength="64">
                                     <span id="coNameErrorId" class="error"></span></dd>
                                 <dt>公司/团队网址：</dt>
                                 <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value=""
-                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
+
                                            maxlength="255">
                                     <span id="coNetUrlErrorId" class=""></span></dd>
                                 <dt>公司/团队所在地：</dt>
                                 <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value=""
-                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
+
                                            maxlength="255">
                                     <span id="coAddressErrorId" class=""></span></dd>
                                 <dt><span>*</span>开发团队人数：</dt>
@@ -367,10 +458,13 @@
 			            </div>
 
 
-			            <div id="tab3" class="tab"  >
-                             <div id="item-team-control" style="margin-top: 30px" class="cnt_box">
-                             <h3 style="margin-top: 30px">团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
+			            <div id="tab4" class="tab"  >
+                             <div id="item-team-control" class="cnt_box">
+                             <h3 >团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
 
+                             {% if not team_info %}
+                             <p class="ui-no-team">暂未绑定团队邮箱</p>
+                             {% else %}
                              {% for t in team_info %}
                                 <div class="row item-team-user" style="height: 30px!important;" >
                                   <div class="col-xs-2">
@@ -385,8 +479,9 @@
                                     <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                                 </div>
                              {% endfor %}
+                             {% endif %}
 			                </div>
-                            <div style="float: left;width: 100%;margin-top: 20px">
+                            <div style="float: left;width: 100%;margin: 20px 0 0 30px">
                                 <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认</button>
                             </div>
 		                </div>
@@ -452,43 +547,7 @@
                 $(".ui-sub-item").show();
                 $(this).parent().parent().find('input').removeAttr('disabled').removeClass('ui-edit-txt')
             });
-            $("#inFac").blur(function () {
-                var fac_uid = $("#inFacUid").val();
-                var fac_name = $("#inFac").val();
-                if (fac_name != '' && fac_uid != '') {
-                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
-                        if (data['status'] == 'ok') {
-                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
-                            DevAppInfo.changeButtonCSS(true)
-                        }
-                        else {
-                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
-                        }
-                    }, 'json');
-                }
-            });
-            $("#inFacUid").blur(function () {
-                var fac_uid = $("#inFacUid").val();
-                var fac_name = $("#inFac").val();
-                if (fac_name == null || fac_name == '') {
-                    $("#coFacErrorId").text('请输入合作厂商名称');
 
-                }
-                else {
-                    $("#coFacErrorId").text('');
-                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
-                        if (data['status'] == 'ok') {
-                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
-
-                            DevAppInfo.changeButtonCSS(true)
-
-                        }
-                        else {
-                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
-                        }
-                    }, 'json');
-                }
-            });
             $("#getDevCodeId").click(function () {
                 var email = $("#inEmail").val();
                 if (DevAppInfo.isNomalEmail(email)) {
@@ -513,7 +572,7 @@
                 }
 
             });
-            $("#submitBtn").click(function () {
+            $(".ui-submit-btn").click(function () {
                 console.log('xxx')
 
                 var data_obj = {
@@ -552,7 +611,8 @@
                         response = jQuery.parseJSON(response);
                         if (response['status'] == 'ok') {
                             $("#submitBtn").text('提交成功...');
-                            location.href="/product/list";
+                            window.location.reload()
+                            bootbox.alert('修改成功')
                         }
                         else{
                             bootbox.alert(response['msg'])
@@ -616,6 +676,7 @@
                             bootbox.alert("提交成功");
                             $(".item-tmp-team").remove();
                             $("#item-team-control").find(".item-team-user").remove();
+                            $(".ui-no-team").hide()
                             for(var i =0;i<data.length;i++){
                                 name = data[i].name;
                                 job = data[i].job;

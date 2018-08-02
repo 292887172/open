@@ -21,9 +21,11 @@ from base.const import ConventionValue
 from base.wx_login import deal_wxlogin_data
 from conf.apiconf import wx_oauth, wx_userinfo
 from conf.sessionconf import *
-from base.connection import RedisBaseHandler
+from base.connection import RedisBaseHandler, SandboxApiMongoDBHandler
 from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
 from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
+from model.center.app import App
+from model.center.user_group import UserGroup
 
 from util.auth import get_auth_user
 from util.sms.SendTemplateSMS import sendTemplateSMS
@@ -69,7 +71,33 @@ def home(request):
         t = Account.objects.get(account_id=request.user)
         if t.relate_account:
             team_info = json.loads(t.relate_account)
-            print(team_info)
+        else:
+            team_info = None
+        try:
+            a = App.objects.filter(developer=request.user.developer.developer_id).order_by(
+                    "-app_update_date")
+            create_num = a.count()
+            current_version = a[0].app_currversion
+            app_name = a[0].app_name
+        except Exception as e:
+            create_num = 0
+            current_version = '1'
+        try:
+            if "@" in request.user.account_id:
+                u = UserGroup.objects.filter(user_account=request.user)
+            else:
+                u = UserGroup.objects.filter(user_account=request.user.account_email)
+        except Exception as e:
+            u = UserGroup.objects.filter(user_account=request.user)
+        # u = UserGroup.objects.filter(user_account=request.user.account_email)
+        cooperation_num = 0
+        for j in u:
+            a = App.objects.filter(group_id=j.group.group_id)
+            cooperation_num += a.count()
+
+        db = SandboxApiMongoDBHandler().db
+        evaluate_num = db.ebc_user_device_exEva.find({"account": {"$regex": request.user.account_id}}).count()
+
         return render(request, "center/home.html", locals())
     elif request.method == 'POST':
         # 登录账户信息

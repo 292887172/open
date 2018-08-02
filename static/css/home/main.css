@@ -211,7 +211,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 .ipt2:focus{ border:1px solid #2a4b6f; color:#666;}
 /*select*/
 .sel1{ border:1px solid #dddddd; padding:5px; height:32px; color:#999; min-width:150px;}
-.sel2{ border:1px solid #dddddd; padding:5px 5px 5px 2px; height:32px; color:#999;}
+.sel2{ border:1px solid #dddddd; padding:5px 5px 5px 2px; height:32px; background-color:#fff;}
 /*width*/
 .w400{ width:400px;}
 .w720{ width:720px;}
