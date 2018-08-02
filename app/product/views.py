@@ -999,15 +999,17 @@ def schedule(request):
             print('ff',i.app_id)
             sapp_id = i.app_id
         print(key)
-        time = (datetime.datetime.utcnow()+datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
-        print(time,type(time))
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
-        party_list =''
-        for i in bb:
-            print(i.responsible_party)
-            party_list = json.loads(i.responsible_party)
+        print('xxx',bb)
         try:
+            if bb:
+                party_list =''
+                for i in bb:
+                    print(i.responsible_party)
+                    if i.responsible_party:
+                        party_list = json.loads(i.responsible_party)
+
             li_ui = DocUi.objects.filter(ui_key=key)
             if li_ui:
                 id_list = []
@@ -1033,15 +1035,17 @@ def schedule(request):
                     c_data.sort(key=lambda x: int(x.get("id")))
                     c_data.extend(update_list[len(update_list):])
                     update_list = c_data
+                return HttpResponse(json.dumps(update_list))
             else:
                 update_list = DefaultSchedule().DEFAULT_SCHEDULE
                 for i in update_list:
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
                                          ui_content='', ui_type='')
+
         except Exception as e:
             print(e)
-        return HttpResponse(json.dumps(update_list))
+            return HttpResponse(json.dumps(update_list))
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
