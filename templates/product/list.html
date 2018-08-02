@@ -526,23 +526,28 @@
                 <li style="color: #c6c6c6;">一键创建：</li>
                 {% for app in default_apps %}
                     <li>
-                        <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
-
+                    {% if app.app_device_type == 11 %}
+                        <a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
+                    {% else %}
+                         <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}" >{{ app.app_name }}</a>
+                    {% endif %}
                     </li>
-                    {% if forloop.counter == 3 %}
-                        <li><a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
-                        <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
-                        {% if user.developer.developer_id %}
-                            <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"
-                             data-target="#user_address">申请样品 </span>
-                        {% else %}
-                             <span style="color:#ff6202;cursor:pointer;font-size: 16px"
-                                     onclick="javascript:void(dont_develop())">申请样品 </span>
+                    {% if forloop.counter == 1 %}
+                        <li><a  href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}" >WiFi屏洗碗机</a></li>
 
-                        {% endif %}
+
 
                     {% endif %}
                 {% endfor %}
+            <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+            {% if user.developer.developer_id %}
+                <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"
+                 data-target="#user_address">申请样品 </span>
+            {% else %}
+                 <span style="color:#ff6202;cursor:pointer;font-size: 16px"
+                         onclick="javascript:void(dont_develop())">申请样品 </span>
+
+            {% endif %}
             </ol>
         </div>
     </div>
@@ -828,6 +833,7 @@
     <script src="/static/js/check-ie.js"></script>
     <script src="/static/js/product/fast_create.js"> </script>
         <script>
+
         //判断ie浏览器版本是否低于9
         if(lessIE9()){
             $.ajax({

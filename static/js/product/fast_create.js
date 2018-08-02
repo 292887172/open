@@ -161,12 +161,23 @@ $(".close-video").click(function () {
 });
 
 function dont_develop() {
-    bootbox.confirm("您现在还不是开发者用户,请确定前往完善开发者信息", function (result) {
+    bootbox.confirm({message:"即刻完成开发者认证,获取更多开发权限",
+        buttons: {
+                confirm: {
+                    label: '前往认证',
+
+                },
+                cancel: {
+                    label: '取消',
+
+                }
+            },
+        callback: function (result) {
         if (result) {
             location.href = "/center";
         }
 
-    })
+    }})
 }
 
 function toggleTab(text) {
