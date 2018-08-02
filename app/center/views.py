@@ -72,10 +72,14 @@ def home(request):
         if t.relate_account:
             team_info = json.loads(t.relate_account)
         try:
-            a = App.objects.filter(developer=request.user.developer.developer_id)
+            a = App.objects.filter(developer=request.user.developer.developer_id).order_by(
+                    "-app_update_date")
             create_num = a.count()
+            current_version = a[0].app_currversion
+            app_name = a[0].app_name
         except Exception as e:
             create_num = 0
+            current_version = '1'
         try:
             if "@" in request.user.account_id:
                 u = UserGroup.objects.filter(user_account=request.user)
