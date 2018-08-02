@@ -206,7 +206,7 @@
     <div class="task-detail">
         <div class="task-head div-flex">
             <div class="task-title" style="font-size: 16px">
-                <p class="task-id-name" style="display: inline-block;margin-right: 10px">2</p><p class="task-plan-name" style="display: inline-block">提供电控板功能协议文档</p>
+                <p class="task-id-name" style="display: inline-block;margin-right: 10px">1</p><p class="task-plan-name" style="display: inline-block">提交详细功能计划书</p>
                 <input type="text" class="task-ack-name" style="display: none">
             </div>
             <div class="task-action div-flex">
@@ -216,14 +216,14 @@
         </div>
 
         <div class="task-user-info div-flex">
-            <p class="names">佳威路</p>
+            <p class="names"></p>
             <p class="job">负责方</p>
             <div class="times">
                 <img src="http://storage.56iq.net/group1/M00/47/7A/CgoKQ1ti5syASsUEAAACuImQyn4943.png" alt="">
                 <span class="times-text"></span>
             </div>
         </div>
-        <div class="remarks">备注：需双方确认</div>
+        <div class="remarks">备注：</div>
         <div class="upfiles">上传：<button class="open-upload-window" data-toggle="modal" data-target="#user_address" >+ 上传</button></div>
         <div class="upfile">
             <div class="file-list" style="display: none">
@@ -360,7 +360,10 @@
         //编辑计划
         if (val == 'edit'){
             $("#newplans-window").fadeIn();
-            var ifnot = document.getElementsByClassName("task-ack-name")[0]
+            var ifnot = document.getElementsByClassName("task-ack-name")[0].value
+            if (ifnot ==1){
+                console.log('yy',document.getElementsByClassName("task-action")[0])
+            }
             console.log(ifnot)
             document.getElementById("news-plan-name").value= document.getElementsByClassName("task-plan-name")[0].innerHTML.replace(/[ /d]/g, '')
             document.getElementById("news-plan-remarks").value= document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1]
@@ -424,23 +427,23 @@
                      var ul_list = $("#ul_id")
                      var addtr = $(
                               "<li class=\"div-flex ng-scope\">\n" +
-                         "    <div class=\"plans-user-info div-flex\" data=\""+idd+"\" ng-click=\"Show_Detail_Plan(x."+ idd +")\">\n" +
+                         "    <div class=\"plans-user-info div-flex\" data=\""+idd+"\" ng-click=\"Show_Detail_Plan(x.id)\">\n" +
                          "        <div style=\"font-size: 16px;\" class=\"ng-binding\">"+idd+"</div>\n" +
                          "        <div class=\"name\">\n" +
-                         "            <p class=\"text-ellipsis\"><span class=\"plan-namer ng-binding\" ng-mouseover=\"Span_Over($event)\" ng-mouseout=\"Span_Out($event)\">"+plans_user+"</span></p>\n" +
+                         "            <p class=\"text-ellipsis\"><span class=\"plan-namer \" ng-mouseover=\"Span_Over($event)\" ng-mouseout=\"Span_Out($event)\">"+plans_user+"</span></p>\n" +
                          "            <div class=\"my-tooltip-box show_div\">\n" +
-                         "                <div class=\"my-ant-tooltip-inner ng-binding\">负责人:\"+plans_user+\"</div>\n" +
+                         "                <div class=\"my-ant-tooltip-inner ng-binding\">负责人:"+plans_user+"</div>\n" +
                          "                <div class=\"my-ant-tooltip-arrow\"></div>\n" +
                          "            </div>\n" +
                          "        </div>\n" +
                          "        <div class=\"file-info\">\n" +
                          "            <span class=\"text-ellipsis ng-binding\">"+ plans_name +"</span>\n" +
-                         "            <img src=\"http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png\">\n" +
+
                          "        </div>\n" +
                          "    </div>\n" +
                          "    <div class=\"confirm-info\">\n" +
                          "       \n" +
-                         "       <p ng-if=\"x.ack==0\" data=\"0\" style=\"color: #2385ff;\" class=\"plans_comfirm ifnot ng-scope\" ng-click=\"Save_Plan(x.\"+ idd +\")\">确认</p>\n" +
+                         "       <p ng-if=\"x.ack==0\" data=\"0\" style=\"color: #2385ff;\" class=\"plans_comfirm ifnot ng-scope\" ng-click=\"Save_Plan(x.id)\">确认</p>\n" +
                          "    </div>\n" +
                          "</li>"
                         )
