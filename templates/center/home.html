@@ -204,6 +204,9 @@
         font-size: 42px;
     }
     .ui-product-item a{
+        text-decoration: none;
+    }
+    .ui-ev{
         position: absolute;
         top:42px;
         right: 40px;
@@ -248,9 +251,9 @@
                                 <dl style="margin-top: 25px" class="ui-account-item">
                                     <h2>账号整体情况</h2>
                                     <div>
-                                        <p class="ui-product-item">新建产品 <br><span>{{ create_num }}</span> </p>
-                                        <p class="ui-product-item">协作产品 <br><span>{{ cooperation_num }}</span> </p>
-                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a href="/ex">立即评估</a></p>
+                                        <p class="ui-product-item">新建产品 <br><span><a href="/product/list/">{{ create_num }}</a></span> </p>
+                                        <p class="ui-product-item">协作产品 <br><span><a href="/product/list/">{{ cooperation_num }}</a></span> </p>
+                                        <p class="ui-product-item">评估产品 <br><span>{{ evaluate_num }}</span><a class="ui-ev" href="/ex">立即评估</a></p>
                                     </div>
                                 </dl>
                             </div>

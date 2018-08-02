@@ -51,7 +51,7 @@ a.linkBlue,a.linkBlue:hover{ color:#37618f;}
 
 /*header*/
 .header{ position:relative; height:90px;border-bottom: 1px solid #ccc }
-.logo{ float:left; width:290px; height:50px; vertical-align:middle; margin:20px 0; overflow:hidden;}
+.logo{ float:left; width:290px;  vertical-align:middle; margin:20px 0; overflow:hidden;}
 .nav{ float:left; margin:21px 0 0px 90px; height:50px;}
 .nav li{ float:left; padding:0 20px; font-size:16px;}
 .nav li a{ color:#333; padding:5px; text-align: center;line-height:12px;}

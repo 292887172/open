@@ -135,11 +135,11 @@
         color: #fff;
     }
     .fa-slider:before{
-        content: "3";
+        content: "4";
         color: #fff;
     }
     .fa-inbox:before {
-        content: "2";
+        content: "3";
         color: #fff;
     }
     .fa-file-text-o:before {
@@ -147,7 +147,7 @@
         color: #fff;
     }
     .fa-desktop:before {
-        content: "4";
+        content: "2";
         color: #fff;
     }
     .fa-text:before{
@@ -258,17 +258,7 @@
         <div class="wrapper mt20 fn-clear" style="border-top: none;padding-top: 158px;">
             <div class="leftSide">
                 <div class="box1">
-                    <!-- 左侧菜单 begin -->
-{#                    <div class="menuBox">#}
-{##}
-{#                        <ul>#}
-{#                            <li id="contentMenu" class="jsNavItem" data-id="contentMenu" ng-click="nav.selected('contentMenu')">#}
-{#                                <a href="#/content">#}
-{#                                   <i class="fa fa-sliders"></i>产品控制台#}
-{#                                </a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
+
                     <div class="menuBox">
 
                         <ul>
@@ -279,12 +269,35 @@
                             </li>
                         </ul>
                     </div>
+                    {% if app.check_status == 3 %}
+                    <div class="menuBox">
+                        <ul>
+                            <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
+                                <a href="#/demo/{{ app.app_name}}">
+                                    <i class="fa fa-desktop " ></i>开发示例
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% else %}
+                        <div class="menuBox">
+                            <ul>
+                                <li id="appMenu" class="jsNavItem" data-id="appMenu" ng-click="nav.selected('appMenu')">
+                                    <a href="#/app">
+                                        <i class="fa fa-desktop " ></i>UI编辑
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    {% endif %}
                     <div class="menuBox">
 
                             <ul>
                                 <li id="argueMenu" class="jsNavItem" data-id="argueMenu" ng-click="nav.selected('argueMenu')">
                                     <a href="#/argue">
-                                        <i class="fa fa-inbox"></i>定义控制功能
+                                        <i class="fa fa-inbox"></i>定义手机控制功能
                                     </a>
                                 </li>
                             </ul>
@@ -301,16 +314,7 @@
                     </div>
 
 
-                    {% if app.check_status == 3 %}
-                    <div class="menuBox">
-                        <ul>
-                            <li id="demoMenu" class="jsNavItem" data-id="demoMenu" ng-click="nav.selected('demoMenu')">
-                                <a href="#/demo/{{ app.app_name}}">
-                                    <i class="fa fa-desktop " ></i>开发示例
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div class="menuBox">
                         <ul>
                             <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
@@ -320,26 +324,8 @@
                             </li>
                         </ul>
                     </div>
-                    {% else %}
-                        <div class="menuBox">
-                            <ul>
-                                <li id="appMenu" class="jsNavItem" data-id="appMenu" ng-click="nav.selected('appMenu')">
-                                    <a href="#/app">
-                                        <i class="fa fa-desktop " ></i>UI编辑
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menuBox">
-                        <ul>
-                            <li id="deviceMenu" class="jsNavItem" data-id="deviceMenu" ng-click="nav.selected('deviceMenu')">
-                                <a href="#/device">
-                                    <i class="fa fa-file-text-o "></i>设备调试
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                        <div class="menuBox">
+                    {% if app.check_status != 3 %}
+                    <div class="menuBox">
                         <div class="gd-opt" style="margin-top: 12px;margin-left: 29px;float: none">
                         <div class="apply" ng-controller="ContentCtrl">
                             <a ng-show="check_status!='体验产品'" href="javascript:void(0)" id="releaseProductBut" ng-controller="ContentCtrl"  ng-click='click(app_check_status)'><i class="fa fa-arrow-circle-o-up"></i><span class="text">{[{apply_status}]}</span></a>
