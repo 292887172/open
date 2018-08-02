@@ -113,8 +113,14 @@
         margin-top: 6px;
     }
     .item-team-user{
-        margin-top: 10px;
-        margin-left: 20px;
+        padding-top: 10px;
+    margin-left: 20px;
+    width: 95%;
+    border-top: 1px solid #f7f7f7;
+    height: 45px;
+    }
+    .item-team-user:last-child{
+        border-bottom: 1px solid #f7f7f7;
     }
     .ui-edit-disable{
         border: 0;
@@ -202,6 +208,10 @@
         top:42px;
         right: 40px;
     }
+    .ui-no-team{
+        padding: 40px 80px;
+        color: #aaa;
+    }
     </style>
 
 {% endblock %}
@@ -245,16 +255,11 @@
                                 </dl>
                             </div>
 
-                            <p class="ui-sub-p ui-sub-item">
-                                <button type="button" id="submitBtn" class="ui-submit-btn btn" >提交</button>
-                                &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
-                            </p>
-
 			            </div>
 
 			            <div id="tab2" class="tab">
                         <!--已经审核通过，可以修改信息-->
-                            <form id="form1" method="post">
+
                             <div class="cnt_box">
                                 <h3 >联系人信息<a type="button" class="btn-edit">编辑</a></h3>
                                 <dl style="margin-left: 50px;margin-top: 30px">
@@ -289,7 +294,7 @@
                                 <button type="button" id="submitBtn" class="ui-submit-btn btn" >提交</button>
                                 &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
                             </p>
-                            </form>
+
 			            </div>
 
 			            <div id="tab3" class="tab">
@@ -301,7 +306,6 @@
                                 <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input disabled="disabled"  type="text" name="coName" id="inName" class="txt ui-edit-txt"
                                                                        value="{{ user.developer.developer_inc|is_none }}"
-                                                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
                                                                        maxlength="64">
                                     <span id="coNameErrorId" class="error"></span></dd>
                                 <dt>公司/团队网址：</dt>
@@ -333,9 +337,12 @@
 			            <div id="tab4" class="tab"  >
                              <div style="" id="item-team-control" style="margin-top: 30px" class="cnt_box">
                              <h3 >团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
-                                 <p style="margin-top: 15px;display: none">团队邮箱管理  </p>
+
+                             {% if not team_info %}
+                                 <p class="ui-no-team">暂未绑定团队邮箱</p>
+                             {% else %}
                              {% for t in team_info %}
-                                <div class="row item-team-user" style="height: 30px!important;" >
+                                <div class="row item-team-user" >
                                   <div class="col-xs-2">
                                     <input type="text" class="form-control ui-edit-disable" placeholder="姓名" value="{{ t.name }}" disabled="disabled">
                                   </div>
@@ -348,6 +355,7 @@
                                     <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                                 </div>
                              {% endfor %}
+                             {% endif %}
 			            </div>
                         <div style="float: left;width: 100%;margin: 20px 0 0 30px">
                             <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认</button>
@@ -370,10 +378,6 @@
                                 </dl>
                             </div>
 
-                            <p class="ui-sub-p ui-sub-item">
-                                <button type="button" id="submitBtn" class="ui-submit-btn btn" >提交</button>
-                                &nbsp;&nbsp;<span id="ErrorId" style="color:red"></span>
-                            </p>
 
 			            </div>
 			            <div id="tab2" class="tab">
@@ -425,17 +429,17 @@
                                 <input type="hidden" name="action" value="submit_company_info">
                                 <dd><label for="inName"></label><input type="text" name="coName" id="inName" class="txt"
                                                                        value=""
-                                                                       onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyMsgName(this,true,64,'公司/团队名称'));"
+
                                                                        maxlength="64">
                                     <span id="coNameErrorId" class="error"></span></dd>
                                 <dt>公司/团队网址：</dt>
                                 <dd><label for="inNetUrl"></label><input type="text" name="coNetUrl" id="inNetUrl" class="txt" value=""
-                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerifyNetUrl(this,false,255))"
+
                                            maxlength="255">
                                     <span id="coNetUrlErrorId" class=""></span></dd>
                                 <dt>公司/团队所在地：</dt>
                                 <dd><label for="inAddress"></label><input type="text" name="coAddress" id="inAddress" class="txt" value=""
-                                           onblur="DevAppInfo.changeButtonCSS(DevAppInfo.doVerify(this,false,255))"
+
                                            maxlength="255">
                                     <span id="coAddressErrorId" class=""></span></dd>
                                 <dt><span>*</span>开发团队人数：</dt>
@@ -455,9 +459,12 @@
 
 
 			            <div id="tab4" class="tab"  >
-                             <div id="item-team-control" style="margin-top: 30px" class="cnt_box">
+                             <div id="item-team-control" class="cnt_box">
                              <h3 >团队邮箱管理 &nbsp;&nbsp;&nbsp;&nbsp;{% if team_info|length > 0 %}<a class="" type="button" onclick="editTeamEmail()">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}<a class="" onclick="addTeamEmail()">添加</a></h3>
 
+                             {% if not team_info %}
+                             <p class="ui-no-team">暂未绑定团队邮箱</p>
+                             {% else %}
                              {% for t in team_info %}
                                 <div class="row item-team-user" style="height: 30px!important;" >
                                   <div class="col-xs-2">
@@ -472,6 +479,7 @@
                                     <img class="ui-del-item" src="{% static 'image/product/delete.png' %}" alt="" style="display: none">
                                 </div>
                              {% endfor %}
+                             {% endif %}
 			                </div>
                             <div style="float: left;width: 100%;margin: 20px 0 0 30px">
                                 <button class="btn btn-primary item-team-user1" id="addTeamSubmit" style="display: none;">确认</button>
@@ -539,43 +547,7 @@
                 $(".ui-sub-item").show();
                 $(this).parent().parent().find('input').removeAttr('disabled').removeClass('ui-edit-txt')
             });
-            $("#inFac").blur(function () {
-                var fac_uid = $("#inFacUid").val();
-                var fac_name = $("#inFac").val();
-                if (fac_name != '' && fac_uid != '') {
-                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
-                        if (data['status'] == 'ok') {
-                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
-                            DevAppInfo.changeButtonCSS(true)
-                        }
-                        else {
-                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
-                        }
-                    }, 'json');
-                }
-            });
-            $("#inFacUid").blur(function () {
-                var fac_uid = $("#inFacUid").val();
-                var fac_name = $("#inFac").val();
-                if (fac_name == null || fac_name == '') {
-                    $("#coFacErrorId").text('请输入合作厂商名称');
 
-                }
-                else {
-                    $("#coFacErrorId").text('');
-                    $.post('{% url 'check_fac_uuid' %}', {'fac_name': fac_name, 'fac_uuid': fac_uid}, function (data) {
-                        if (data['status'] == 'ok') {
-                            $("#coFacUidErrorId").addClass('success').html('<img src="{% static 'image/sucess.png' %}">');
-
-                            DevAppInfo.changeButtonCSS(true)
-
-                        }
-                        else {
-                            $("#coFacUidErrorId").removeClass('success').text('厂家标识不正确，请核对');
-                        }
-                    }, 'json');
-                }
-            });
             $("#getDevCodeId").click(function () {
                 var email = $("#inEmail").val();
                 if (DevAppInfo.isNomalEmail(email)) {
@@ -600,7 +572,7 @@
                 }
 
             });
-            $("#submitBtn").click(function () {
+            $(".ui-submit-btn").click(function () {
                 console.log('xxx')
 
                 var data_obj = {
@@ -639,7 +611,8 @@
                         response = jQuery.parseJSON(response);
                         if (response['status'] == 'ok') {
                             $("#submitBtn").text('提交成功...');
-                            location.href="/product/list";
+                            window.location.reload()
+                            bootbox.alert('修改成功')
                         }
                         else{
                             bootbox.alert(response['msg'])
@@ -703,6 +676,7 @@
                             bootbox.alert("提交成功");
                             $(".item-tmp-team").remove();
                             $("#item-team-control").find(".item-team-user").remove();
+                            $(".ui-no-team").hide()
                             for(var i =0;i<data.length;i++){
                                 name = data[i].name;
                                 job = data[i].job;
