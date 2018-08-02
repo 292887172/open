@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 import datetime
-
+from django.db import models
 from django import template
 from conf.message import BOOK
-
+from model.center.doc_ui import DocUi
 register = template.Library()
 '''自定义django模板过滤器'''
-def xxxx(obj):
+def xxxx(obj,key):
     try:
+        print(obj)
+        vv = ''
+        obj = DocUi.objects.filter(ui_key=key)
         if not obj:
-            obj = 1
-            type = str(int(obj))
+            return "制定计划书"
         else:
-            type = str(int(obj))
-        return BOOK[type]
+            ack_list = []
+            for i in obj:
+                if i.ui_ack == int(1):
+                    pass
+                else:
+                    ack_list.append(i.ui_upload_id)
+            num = sorted(ack_list)[0]
+            for i in obj.filter(ui_upload_id=num):
+                vv = i.ui_plan
+
+            return vv
     except Exception as e:
         print(e)
 register.filter(xxxx)
