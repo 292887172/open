@@ -397,3 +397,16 @@
       PRIMARY KEY (`ebf_ui_id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+    -- ----------------------------
+    --  Table structure for `ebt_app_info`
+    -- ----------------------------
+    DROP TABLE IF EXISTS `ebt_app_info`;
+    CREATE TABLE `ebt_app_info` (
+      `ebf_ai_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '产品信息编号',
+      `ebf_app_id` int(11) DEFAULT NULL COMMENT 'app编号',
+      `ebf_responsible_party` text COMMENT '负责方',
+      `ebf_responsible_people` varchar(64) DEFAULT NULL COMMENT '负责人',
+      `ebf_ai_create_date` datetime DEFAULT NULL COMMENT '创建时间',
+      `ebf_ai_update_date` datetime DEFAULT NULL COMMENT '更新时间',
+      PRIMARY KEY (`ebf_ai_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='App信息完善表';;
