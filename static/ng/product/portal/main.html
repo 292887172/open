@@ -398,35 +398,34 @@
     $.ajax({
         method:"GET",
         data:{'num':num},
-        url:"/product/portal/"
-    }).success(function (da) {
-        data11 = JSON.parse(da);
-        ttt_key = []
-        ttt_value = []
-        for (var i = 0, le = data11.length;i<le;i++){
-            try {
-                for (var k in data11[i]){
-                if (k == 'message') {
-                    ttt_key.push(data11[i][k])
+        url:"/product/portal/",
+        success: function (da) {
+            data11 = JSON.parse(da);
+            ttt_key = []
+            ttt_value = []
+            for (var i = 0, le = data11.length;i<le;i++){
+                try {
+                    for (var k in data11[i]){
+                    if (k == 'message') {
+                        ttt_key.push(data11[i][k])
 
-                }else if (k == 'time') {
-                    ttt_value.push(data11[i][k])
+                    }else if (k == 'time') {
+                        ttt_value.push(data11[i][k])
 
+                    }
                 }
+                }
+                catch (err) {
+                    console.log('err')
+                }
+
             }
+
+           for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
+                document.getElementById("p"+rr).innerText="-"+" "+ ttt_key[rr]
+                document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
+           }
             }
-            catch (err) {
-                console.log('err')
-            }
-
-        }
-
-       for (var rr =0,t_l=ttt_key.length;rr<t_l;rr++) {
-            document.getElementById("p"+rr).innerText="-"+" "+ ttt_key[rr]
-            document.getElementById(rr+"p"+rr).innerText=ttt_value[rr]
-       }
-
-
     })
 
 
