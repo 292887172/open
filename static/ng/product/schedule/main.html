@@ -344,9 +344,14 @@
                  console.log(data)
                  var file = $(".layui-anim-upbit")[0]
 
-                 var attrr = $("<dd lay-value=\""+ y+"\" class=\"\">"+y+"</dd>")
+                 var attrr = $("<option value=\""+ y+"\">"+y+"</option>");
 
-                 attrr.appendTo(file)
+
+                 attrr.appendTo("#plans-users")
+                 layui.use('form', function () {
+                    var form = layui.form;
+                    form.render('select');
+                });
              }
         })
     }
