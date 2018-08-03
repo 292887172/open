@@ -65,7 +65,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 #plans-list{
     margin: 0px 0 5px;
     height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .div-flex{
     display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
