@@ -945,7 +945,7 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
+            timess = Message.objects.filter(device_key=zy,is_read=0).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d")
@@ -1054,6 +1054,7 @@ def schedule(request):
             return HttpResponse(json.dumps(update_list))
 
     if request.method == "POST":
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
         location = request.POST.get('location', '')
@@ -1067,6 +1068,11 @@ def schedule(request):
                 if del_id:
                     del_id = int(del_id)
                 remove_up_url(key, del_id, del_filename)
+                Message.objects.create(message_content='产品计划书上传文件删除', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1083,6 +1089,11 @@ def schedule(request):
                         if int(i.ui_upload_id) > int(del_xu_id):
                             DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
                                 ui_upload_id=int(i.ui_upload_id) - 1)
+                Message.objects.create(message_content='产品计划删除', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1106,6 +1117,11 @@ def schedule(request):
             # data: {'key': keysss, "action": "save_plan", "num": that},
             m = DocUi.objects.filter(ui_key=key, ui_upload_id=num).update(ui_ack=int(1))
             if m:
+                Message.objects.create(message_content='产品计划书更新', message_type=int(5),
+                                       message_handler_type=int(5),is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             else:
                 return HttpResponse(json.dumps({"code": 1}))
@@ -1236,7 +1252,7 @@ def party(request):
                 else:
                     AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
                 Message.objects.create(message_content='产品负责方更新', message_type=int(5),
-                                       message_handler_type=int(5),
+                                       message_handler_type=int(5),is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
                                        create_date=datetime.datetime.utcnow(),
                                        update_date=datetime.datetime.utcnow())
@@ -1249,6 +1265,11 @@ def party(request):
 
                 else:
                     AppInfo.objects.create(app_id=int(ap_id), responsible_party=json.dumps(list))
+                Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                       message_handler_type=int(5),is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
             except Exception as e:
                 print(e)
             return HttpResponse(json.dumps({"code": 0}))
