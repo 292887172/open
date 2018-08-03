@@ -92,7 +92,26 @@ angular.module('Product.schedule', ['ngRoute'])
                         var dd = JSON.parse($scope.responses['content'])
                         for (var i = 0, d_length = dd.length; i < d_length; i++) {
                             var file_list = $(".upfile")[0]
-                            console.log(file_list)
+                            if (dd[i]['date']){
+                                console.log('date')
+                            }else{
+                                dd[i]['date'] = ''
+                            }
+                            if (dd[i]['user']){
+                                console.log('user')
+                            }else{
+                                dd[i]['user'] = ''
+                            }
+                            if (dd[i]['urll']){
+                                console.log('urll')
+                            }else{
+                                dd[i]['urll'] = ''
+                            }
+                            if (dd[i]['filename']){
+                                console.log('filename')
+                            }else{
+                                dd[i]['filename'] = ''
+                            }
                             var addtr = $(
                                 "<div class=\"file-list\">\n" +
                                 "                    <div class=\"div-flex file-box\">\n" +
@@ -137,6 +156,7 @@ angular.module('Product.schedule', ['ngRoute'])
                     console.log(data)
                     console.log(data['id'])
                     console.log(data['plan'])
+
                     console.log($scope.responses['content'])
                     document.getElementsByClassName("task-ack-name")[0].value = data['ack']
                     document.getElementsByClassName("task-id-name")[0].innerHTML = data['id']
@@ -149,6 +169,26 @@ angular.module('Product.schedule', ['ngRoute'])
                         for (var i = 0, d_length = dd.length; i < d_length; i++) {
                             var file_list = $(".upfile")[0]
                             console.log(file_list)
+                            if (dd[i]['date']){
+                                console.log('date')
+                            }else{
+                                dd[i]['date'] = ''
+                            }
+                            if (dd[i]['user']){
+                                console.log('user')
+                            }else{
+                                dd[i]['user'] = ''
+                            }
+                            if (dd[i]['urll']){
+                                console.log('urll')
+                            }else{
+                                dd[i]['urll'] = ''
+                            }
+                            if (dd[i]['filename']){
+                                console.log('filename')
+                            }else{
+                                dd[i]['filename'] = ''
+                            }
                             var addtr = $(
                                 "<div class=\"file-list\">\n" +
                                 "                    <div class=\"div-flex file-box\">\n" +
