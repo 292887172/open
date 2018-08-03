@@ -500,8 +500,8 @@
                      var addtr = $(
                             "<div class=\"file-list\">\n" +
                             "                    <div class=\"div-flex file-box\">\n" +
-                            "                        <a class=\"file-name text-ellipsis\" href=\"/product/download?url="+ data['urll'] +"&name="+ data['filename'] +"\">"+ data['filename'] +"</a>\n" +
-                            "                        <p class=\"file-user text-ellipsis\">"+ data['user'] +"</p>\n" +
+                            "                        <a class=\"file-name text-ellipsis\" title='" + data['filename'] + "' href=\"/product/download?url="+ data['urll'] +"&name="+ data['filename'] +"\">"+ data['filename'] +"</a>\n" +
+                            "                        <p class=\"file-user text-ellipsis\" title='"+ data['user'] +"'>"+ data['user'] +"</p>\n" +
                             "                        <p class=\"file-time\">"+ data['date'] +"</p>\n" +
                             "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
                             "                    </div>\n" +
@@ -516,7 +516,7 @@
             }
             })
         } else {
-            bootbox.alert('不能为空')
+            bootbox.alert('请选择上传文件')
         }
     }
     function progressHandlingFunction(e){
@@ -660,5 +660,17 @@
         }, function () {
             console.log("取消");
         })
+    })
+
+    //打开上传文件弹窗
+    $('#user_address').on('show.bs.modal', function () {
+        //清空历史记录
+        $("#file").val("");
+        $(".modal-name").text("点击选择");
+        $(".modal-name").attr("title","");
+        $("#progress-text").text("等待上传");
+        $("#progress").css("width",0);
+        $(".my_container").css("display","none");
+        $("#ui_info").val("");
     })
 </script>
