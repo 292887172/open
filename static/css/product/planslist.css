@@ -132,6 +132,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: #f8f8f8;
 }
 #plans-list .name{
+    overflow: hidden;
     width: 100px;
     margin-left: 3%;
     position: relative;
