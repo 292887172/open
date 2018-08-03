@@ -221,12 +221,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: space-between;
 }
 .file-list .file-box .file-name{
-    width: 170px;
+    width: 150px;
     color: #2385ff;
 }
 .file-list .file-box .file-user{
     width: 90px;
     color: #ababab;
+    margin-right: 10px;
 }
 .file-list .file-box .file-time{
     color: #ababab;
