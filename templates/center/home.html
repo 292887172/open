@@ -627,9 +627,14 @@
 
             });
             $("#item-team-control").delegate(".ui-del-item", "click", function () {
-
+                var that = this
                     // 页面上多余一个的team成员框才可以删除
-                    $(this).parent().remove()
+                bootbox.confirm("确定删除该项目成员?", function (result) {
+                  if(result){
+                      $(that).parent().remove()
+                  }
+                })
+
 
 
             });

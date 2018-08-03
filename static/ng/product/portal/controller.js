@@ -60,7 +60,7 @@ function delTeamEmail(item) {
     var $scope = angular.element(appElement).scope();
       //调用app_id变量
     var app_id = $scope.app_id;
-    bootbox.confirm("确定删除该团队成员?", function (result) {
+    bootbox.confirm("确定删除该项目成员?", function (result) {
       if(result){
           $.ajax({
          type: "POST",
