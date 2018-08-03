@@ -609,7 +609,15 @@
             ,format: 'yyyy-MM-dd'
             ,done: function(value, date, endDate){
                 console.log(value, date, endDate); //在控件上弹出value值
-                end_time = endDate.year + "-" + endDate.month + "-" + endDate.date;
+                let my_mouth = endDate.month;
+                let my_date = endDate.date;
+                if(my_mouth < 10){
+                    my_mouth = "0" + my_mouth
+                }
+                if(my_date < 10){
+                    my_date = "0" + my_date
+                }
+                end_time = endDate.year + "-" + my_mouth + "-" + my_date;
                 console.log(end_time)
               }
             });
