@@ -55,7 +55,11 @@ angular.module('Product.schedule', ['ngRoute'])
                     form.render('select');
                 });
 
-
+                $("#ul_id").sortable({stop:function (event,ui) {
+                        var arr = $( "#ul_id" ).sortable('toArray');
+                        console.log(arr);
+                    }});
+                $("#ul_id").disableSelection();
 
             })
 
@@ -263,4 +267,5 @@ angular.module('Product.schedule', ['ngRoute'])
             being = true;
             $($event.target).parent(".text-ellipsis").siblings(".my-tooltip-box").fadeOut();
         }
+
     }]);
