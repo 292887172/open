@@ -130,6 +130,9 @@
     .my-ant-tooltip-inner{
         width: auto !important;
     }
+    .footer{
+        position: inherit;
+    }
 </style>
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
@@ -697,4 +700,10 @@
         $(".my_container").css("display","none");
         $("#ui_info").val("");
     })
+
+    //列表高度设定
+    var windows_height = document.documentElement.clientHeight
+    var set_height = windows_height - 260;
+    $("#plans-list").css("height",set_height + 'px');
+    $(".task-detail").css("maxHeight",set_height + 'px')
 </script>

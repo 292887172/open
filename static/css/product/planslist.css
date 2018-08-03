@@ -18,16 +18,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 #my-plans .view-plans-left{
     background-color: #fff;
     float: left;
-    width: 60%;
+    width: 59%;
     padding: 10px 0px;
 }
 #my-plans .task-detail{
     margin-left: 0.6%;
     float: left;
-    width: 39.4%;
+    width: 40.4%;
     min-height: 200px;
     background-color: #fff;
     padding: 10px 14px;
+    overflow-y: scroll;
 }
 #my-plans .plans-head{
     overflow: hidden;
@@ -40,7 +41,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .new-plan{
     float: left;
-    padding: 4px 8px;
+    padding: 5px 10px;
     color: #fff;
     border-radius: 5px;
     background-color: #fe6109;
@@ -61,7 +62,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin-top: -2px;
 }
 #plans-list{
-    margin: 0px 0 10px;
+    margin: 0px 0 5px;
+    overflow-y: scroll;
 }
 .div-flex{
     display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
