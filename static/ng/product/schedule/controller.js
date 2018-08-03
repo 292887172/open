@@ -68,6 +68,7 @@ angular.module('Product.schedule', ['ngRoute'])
              document.getElementsByClassName("task-plan-name")[0].innerHTML = ''
              document.getElementsByClassName("remarks")[0].innerHTML ="备注："
              document.getElementsByClassName("times-text")[0].innerHTML =''
+
              $.ajax({
                 type: "POST",
                 url: '/product/schedule',
