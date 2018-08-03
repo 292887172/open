@@ -1,7 +1,8 @@
 <style>
-    body{
+    body {
         line-height: 1;
     }
+
     dt {
         padding: 10px;
         width: 286px;
@@ -71,39 +72,45 @@
         width: 350px;
         line-height: 32px;
     }
+
     .file {
-    position: relative;
-    display: inline-block;
-    background: #D0EEFF;
-    border: 1px solid #99D3F5;
-    border-radius: 4px;
-    padding: 4px 12px;
-    overflow: hidden;
-    color: #1E88C7;
-    text-decoration: none;
-    text-indent: 0;
-    line-height: 20px;
-}
-.file input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-}
-.file:hover {
-    background: #AADFFD;
-    border-color: #78C3F3;
-    color: #004974;
-    text-decoration: none;
-}
-    .btn{
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
+
+    .btn {
         width: initial;
     }
-    .btn-submit-file{
+
+    .btn-submit-file {
 
     }
-        .xxx {
+
+    .xxx {
         width: 170px;
         position: relative;
         display: inline-block;
@@ -117,33 +124,141 @@
         text-indent: 0;
         line-height: 20px;
     }
-    .ui-item-version{
+
+    .ui-item-version {
         height: 55px;
         padding-top: 15px;
         border-top: 1px solid #f7f7f7;
 
     }
-    .ui-item-version:last-child{
+
+    .ui-item-version:last-child {
         border-bottom: 1px solid #f7f7f7;
 
     }
-    .ui-tips{
+
+    .ui-tips {
         display: inline-block;
         margin-top: 40px;
         width: 100%;
     }
-    .ui-tips-p1{
+
+    .ui-tips-p1 {
         padding: 17px 0px 10px;
-    font-size: 16px;
+        font-size: 16px;
         border-bottom: 1px solid #f7f7f7;
     }
-    .ui-tips-p2{
+
+    .ui-tips-p2 {
         line-height: 2;
         margin-top: 5px;
     }
+
+    #user_address .modal-header {
+        background: #dfe6eb;
+    }
+
+    #user_address .modal-footer {
+        border-radius: 0;
+    }
+
+    #user_address .modal-content {
+        width: 500px;
+    }
+
+    #user_address .modal-body {
+        height: 165px;
+        text-align: left;
+        padding-left: 20%;
+    }
+
+    #user_address .modal-body p {
+        font: 16px/45px "microsoft yahei";
+    }
+
+    #user_address .modal-body p span {
+        margin-left: 5px;
+    }
+
+    #user_address .modal-body p input {
+        text-indent: 10px;
+        border-radius: 3px;
+        border: 1px solid #d9d9d9;
+        width: 350px;
+        line-height: 32px;
+    }
+
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .modal-label {
+        display: inline-block;
+        line-height: normal;
+        margin-bottom: 10px;
+    }
+
+    .modal-name {
+        cursor: pointer;
+        max-width: 200px;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: text-bottom;
+    }
+
+    .modal-name:hover {
+        color: #ff6202;
+    }
+
+    #doUpload:hover {
+        background-color: #9dabbb !important;
+    }
+
+    .my_container {
+        position: relative;
+        display: none;
+        text-align: left;
+        width: 100%;
+        height: 15px;
+        background-color: gray;
+    }
+
+    #progress {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1;
+        height: 15px;
+        background-color: orange;
+        display: inline-block;
+    }
+
+    #progress-text {
+        position: absolute;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-size: 12px;
+        line-height: 1;
+    }
 </style>
 <div class="box2 relative">
-    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" >
+    <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -154,18 +269,23 @@
                         上传文件
                     </h4>
                 </div>
+                <div class="my_container">
+                    <span id="progress"></span>
+                    <span id="progress-text">等待上传</span>
+                </div>
                 <div class="modal-body">
 
-
-                    <input class="file" id="file" name="file" style="display: inline-block" type="file" accept=".pkg"/>
-                     <div style="width: 354px;margin-left: 20px;margin-top: 30px">
-                    <span style="display: inline-block;font-size: 16px">版本号：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
-                    <span style="color: red;display: none" id="hides">请输入版本号</span>
-                </div>
-
-                    <button id="doUpload" class="btn btn-info" onclick="doUploadFile()" style="float: right;width:80px;padding-bottom: 0px;padding-top: 0px">
-                        上传
-                    </button>
+                    <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
+                    <input class="file" id="file" name="file" style="display: none" type="file" accept=".pkg"/>
+                    <div style="overflow: hidden;">
+                        <span>版本号：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
+                    </div>
+                    <div style="text-align: center;margin-left: -20%;margin-top: 10px">
+                        <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
+                                style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
+                            上传
+                        </button>
+                    </div>
 
                 </div>
 
@@ -173,6 +293,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="hl-help">
         <span class="linkBlue" style="color: black;font-size: 16px">{[{ infoFormData.app_name }]}UI编辑</span>
 
@@ -193,116 +315,127 @@
         <div class="boxInfo" ng-app="Product.app">
 
             <div class="protocol-info-main" style="text-align: left;margin-top: 30px;margin-left: 50px">
-                <button class="btn btn-default btn-submit-file"  data-toggle="modal" data-target="#user_address">上传屏端固件</button>
+                <button class="btn btn-default btn-submit-file" data-toggle="modal" data-target="#user_address">上传屏端固件
+                </button>
                 <div ng-if="sss==1" style="margin-top: 30px;">
                     <div style="height: 20px">
 
-                        <p style="font-size: 16px;float: left">历史版本</p><p  ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 14px;"><a
-                        href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
-                        style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
+                        <p style="font-size: 16px;float: left">历史版本</p>
+                        <p ng-if="sss==1" style="display: inline-block;margin-left:80px;font-size: 14px;"><a
+                                href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
+                                style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
-                    <div class="col-md-12 ui-item-version"  ng-repeat="x in response" >
+                    <div class="col-md-12 ui-item-version" ng-repeat="x in response">
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
                         <div style="padding-left: 0px" class="col-md-4">
-                            <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i class="ace-icon fa fa-arrow-circle-o-down"></i></a>
+                            <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i
+                                    class="ace-icon fa fa-arrow-circle-o-down"></i></a>
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-4">
-                             <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                            <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
                         </div>
 
                     </div>
 
                 </div>
                 <div ng-if="sss==1" class="ui-tips">
-                        <p class="ui-tips-p1">屏端固件烧录</p>
-                        <p class="ui-tips-p2">
-                            1 将下载的DCIOT.pkg文件复制 到U盘(U盘文件系统：FAT32) 根目录中;<br>
-                            2 U盘接上WiFi屏后 断电重启；WiFi屏自动进行烧录，安装期间请不要断电，直到屏端出现：Upgrade  finished;<br>
-                            3 拔出U盘，断电重启WiFi屏即可完成固件烧录。
-                        </p>
+                    <p class="ui-tips-p1">屏端固件烧录</p>
+                    <p class="ui-tips-p2">
+                        1 将下载的DCIOT.pkg文件复制 到U盘(U盘文件系统：FAT32) 根目录中;<br>
+                        2 U盘接上WiFi屏后 断电重启；WiFi屏自动进行烧录，安装期间请不要断电，直到屏端出现：Upgrade  finished;<br>
+                        3 拔出U盘，断电重启WiFi屏即可完成固件烧录。
+                    </p>
                     <img style="width: 400px" src="/static/image/center/tips.jpg" alt="">
                 </div>
             </div>
 
-                <p ng-if="sss==0" class="product-info-p" style="margin-top:30px;margin-left:50px;cursor: pointer"><a href="/static/sdk/DCIOT.PKG"
-                                                                                          target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
-                        class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
-                        href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p><br>
+            <p ng-if="sss==0" class="product-info-p" style="margin-top:30px;margin-left:50px;cursor: pointer"><a
+                    href="/static/sdk/DCIOT.PKG"
+                    target="_blank">1.下载屏端油烟机标准工程包编辑&nbsp;&nbsp;<i
+                    class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a><a
+                    href="http://doc.53iq.com/#/function" target="_blank" style="color: #e0e0e0"></a></p><br>
 
-                <p ng-if="sss==0" class="product-info-p" style="margin-left:50px;height: 20px;margin-top: 10px"> 2.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a
-                        href="http://doc.53iq.com/#/quickly_start?id=%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8C" target="_blank"
-                        style="color: #e0e0e0;cursor: pointer">屏端固件烧录搭配厨电屏上体验？</a></p>
-
-            </div>
-
+            <p ng-if="sss==0" class="product-info-p" style="margin-left:50px;height: 20px;margin-top: 10px">
+                2.编辑UI后软件编辑，将新固件烧录到屏端&nbsp;&nbsp;<a
+                    href="http://doc.53iq.com/#/quickly_start?id=%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8C"
+                    target="_blank"
+                    style="color: #e0e0e0;cursor: pointer">屏端固件烧录搭配厨电屏上体验？</a></p>
 
         </div>
+
+
     </div>
-    <script>
-        function doUploadFile() {
-            var oTxt = document.getElementById('ui_info')
-            isnull( oTxt.value );
-            if (document.getElementById("fr").value=='true'){
-                var formData = new FormData();
-                formData.append("file",document.getElementById("file").files[0]);
-                formData.append("name",'upload');
-                formData.append("key",document.getElementById("keys").value);
-                formData.append("app_version", document.getElementById("ui_info").value);
-                formData.append("action",'ui_upload');
-                formData.append("app_id",app_id1);
-                if (document.getElementById("file").files[0]){
-                     $.ajax({
-                    url:'/product/upload_file',
-                    type:"POST",
-                    data:formData,
-                    contentType:false,
-                    processData: false,
-                }).success(function (data) {
-                    data = JSON.parse(data)
-                         console.log(data)
-                    if (data['code'] == '0'){
-                        document.getElementsByClassName("close")[0].click();
-
-                         bootbox.alert('上传成功')
-                         window.location.reload()
-                    }else {
-                         document.getElementsByClassName("close")[0].click();
-
-                         bootbox.alert('上传失败,此版本已存在')
-                    }
+</div>
+<script>
+    function doUploadFile() {
 
 
-                })
-                }else {
-                    alert('不能为空')
+        var formData = new FormData();
+        formData.append("file", document.getElementById("file").files[0]);
+        formData.append("name", 'upload');
+        formData.append("key", document.getElementById("keys").value);
+        formData.append("app_version", document.getElementById("ui_info").value);
+        formData.append("action", 'ui_upload');
+        formData.append("app_id", app_id1);
+        if (document.getElementById("file").files[0]) {
+            $.ajax({
+                url: '/product/upload_file',
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                xhr:function () {
+                    console.log("开始上传")
+                  var myXhr = $.ajaxSettings.xhr();
+                  if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
+                  }
+                  return myXhr
+                },
+            }).success(function (data) {
+                data = JSON.parse(data)
+                console.log(data)
+                if (data['code'] == '0') {
+                    document.getElementsByClassName("close")[0].click();
+
+                    bootbox.alert('上传成功')
+                    window.location.reload()
+                } else {
+                    document.getElementsByClassName("close")[0].click();
+
+                    bootbox.alert('上传失败,此版本已存在')
                 }
 
 
-            }
-
-
-
-
-
-        }
-        function isnull(val) {
-            var str = val.replace(/(^\s*)|(\s*$)/g, '');//去除空格;
-
-            if (str == '' || str == undefined || str == null) {
-                //return true;
-                document.getElementById("ui_info").style.border="1px solid red"
-                document.getElementById("hides").style.display=''
-
-
-            } else {
-                //return false;
-                console.log('非空');
-                document.getElementById("ui_info").style.border="1px solid black"
-                document.getElementById("hides").style.display='none'
-                document.getElementById("fr").value='true'
-            }
+            })
+        } else {
+            alert('不能为空')
         }
 
-    </script>
+
+    }
+
+    function progressHandlingFunction(e) {
+        if (e.lengthComputable) {
+            var percent = e.loaded / e.total * 100;
+            let my_precent_data = percent.toFixed(2);
+            if (my_precent_data > 99) {
+                my_precent_data = 99;
+            }
+            $('#progress-text').html(my_precent_data + "%");
+            $('#progress').css('width', my_precent_data + "%");
+        }
+    }
+
+    var upto_file = $("#file");
+    var upto_text = $(".modal-name");
+    upto_file.on('change', function (e) {
+        let upto_name = e.currentTarget.files[0].name;
+        upto_text.text(upto_name);
+        upto_text.attr('title', upto_name);
+        $(".my_container").slideDown();
+    })
+
+</script>

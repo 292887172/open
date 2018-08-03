@@ -19,7 +19,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: #fff;
     float: left;
     width: 59%;
-    padding: 10px 0px;
+    padding: 10px 0px 0;
 }
 #my-plans .task-detail{
     margin-left: 0.6%;
@@ -132,6 +132,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: #f8f8f8;
 }
 #plans-list .name{
+    overflow: hidden;
     width: 100px;
     margin-left: 3%;
     position: relative;
@@ -145,12 +146,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-radius: 5px;
 }
 #plans-list .file-info{
-    width: 450px;
+    width: 300px;
     margin-left: 6%;
 }
 #plans-list .file-info span{
     display: inline-block;
-    max-width: 380px;
+    max-width: 270px;
     vertical-align: bottom;
 }
 #plans-list .file-info img{
@@ -213,6 +214,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 0 12px;
     font-size:14px;
     align-items:flex-end;
+    cursor: pointer;
 }
 .task-user-info .name{
     background-color: #f0f3f8;
@@ -462,4 +464,39 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 ::-webkit-scrollbar-track {
     background-color: rgba(50,50,50,0.05);
+}
+.plans-tab{
+    padding: 5px 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+.plans-tab p{
+    text-align: center;
+}
+.plans-tab .se_num{
+    width: 50px;
+    margin-left: 11px;
+}
+.plans-tab .se_user{
+    margin-left: 10px;
+}
+.plans-tab .se_name{
+    margin-left: 67px;
+}
+.plan_over_time{
+    width: 110px;
+}
+.plans-tab .se_time{
+    margin-left: 250px;
+}
+#ul_id li:last-child:after{
+    content: "";
+    display: block;
+    width: 96%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: transparent !important;
 }
