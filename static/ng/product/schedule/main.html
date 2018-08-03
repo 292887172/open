@@ -179,7 +179,7 @@
             <ul id="ul_id">
                 <li ng-repeat="x in response" class="div-flex">
                     <div class="plans-user-info div-flex" data="{[{x.id}]}" ng-click="Show_Detail_Plan(x.id)">
-                        <div style="font-size: 16px;">{[{x.id}]}</div>
+                        <div style="font-size: 16px;">{[{$index+1}]}</div>
                         <div  class="name">
                             <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)" ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
                             <div class="my-tooltip-box show_div">
@@ -403,10 +403,6 @@
             layer.msg('请填写负责人名称', {icon: 5,time:2000});
             return
         }
-        //if (plans_time == ""){
-            //layer.msg('请填写计划时间', {icon: 5,time:2000});
-            //return
-        //}
         var idd = document.getElementById("hides").value
         console.log(idd,plans_user,plans_remarks,plans_time,plans_name)
         $.ajax({
@@ -425,34 +421,26 @@
 
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
-                     var ul_list = $("#ul_id")
-                     var addtr = $(
-                              "<li class=\"div-flex ng-scope\">\n" +
-                         "    <div class=\"plans-user-info div-flex\" data=\""+idd+"\" ng-click=\"Show_Detail_Plan(x.id)\">\n" +
-                         "        <div style=\"font-size: 16px;\" class=\"ng-binding\">"+idd+"</div>\n" +
-                         "        <div class=\"name\">\n" +
-                         "            <p class=\"text-ellipsis\"><span class=\"plan-namer \" ng-mouseover=\"Span_Over($event)\" ng-mouseout=\"Span_Out($event)\">"+plans_user+"</span></p>\n" +
-                         "            <div class=\"my-tooltip-box show_div\">\n" +
-                         "                <div class=\"my-ant-tooltip-inner ng-binding\">负责人:"+plans_user+"</div>\n" +
-                         "                <div class=\"my-ant-tooltip-arrow\"></div>\n" +
-                         "            </div>\n" +
-                         "        </div>\n" +
-                         "        <div class=\"file-info\">\n" +
-                         "            <span class=\"text-ellipsis ng-binding\">"+ plans_name +"</span>\n" +
+                     var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+                     var $scope = angular.element(appElement).scope();
 
-                         "        </div>\n" +
-                         "    </div>\n" +
-                         "    <div class=\"confirm-info\">\n" +
-                         "       \n" +
-                         "       <p ng-if=\"x.ack==0\" data=\"0\" style=\"color: #2385ff;\" class=\"plans_comfirm ifnot ng-scope\" ng-click=\"Save_Plan(x.id)\">确认</p>\n" +
-                         "    </div>\n" +
-                         "</li>"
-                        )
-                     addtr.appendTo(ul_list)
-                     window.location.reload()
+                     var tmp_data = {
+                                "plan":plans_name,
+                                "party":plans_user,
+                                "partys":$scope.response[0]['partys'],
+                                "id":num,
+                                "remark":plans_remarks,
+                                "time_stemp":plans_time,
+                                "url":[
+                                    ""
+                                ],
+                                "ack":0
+                            };
+                     $scope.response.push(tmp_data);
+                     $scope.$apply();
+
                      layer.msg('新建成功', {icon: 1,time:2000});
                  }
-
 
              }
 
@@ -612,6 +600,7 @@
     //点击删除计划
     $("#dell_plan").click(function () {
         var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
+        console.log(idd);
         layer.confirm('确定删除计划？', {
             btn: ['确定', '取消'] //按钮
         }, function () {
@@ -621,10 +610,17 @@
                type:"POST",
                data:{"key":keysss,"action":"delxu","del_id":idd},
                success:function (data) {
-                   data = JSON.parse(data)
+                   data = JSON.parse(data);
                    if (data['code']===0){
                        layer.msg('删除成功', {icon: 1,time:2000});
-                       window.location.reload()
+                       var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+                       var $scope = angular.element(appElement).scope();
+                       for(var i= 0;i<$scope.response.length;i++){
+                           if($scope.response[i]['id']==idd){
+                               $scope.response.splice(i, 1);
+                               $scope.$apply()
+                           }
+                       }
                    }else{
                        bootbox.alert("删除失败")
                    }

@@ -77,7 +77,7 @@ def home(request):
             a = App.objects.filter(developer=request.user.developer.developer_id).order_by(
                     "-app_update_date")
             create_num = a.count()
-            current_version = a[0].app_currversion
+            app_key = a[0].app_appid[8:]
             app_name = a[0].app_name
         except Exception as e:
             create_num = 0
