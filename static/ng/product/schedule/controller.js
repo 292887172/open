@@ -30,7 +30,7 @@ angular.module('Product.schedule', ['ngRoute'])
                 var file = $("#plans-users")
                 $("#plans-users").empty()
                 $("#ul_id_party").empty()
-                var attrr = $("<option value=\"\">请选择负责人</option>")
+                var attrr = $("<option value=\"\">请选择负责方</option>")
                 var ul_li = $("#ul_id_party")
                 attrr.appendTo(file)
                 if ($scope.response[0]['partys']) {
