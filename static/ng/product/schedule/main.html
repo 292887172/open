@@ -122,6 +122,7 @@
     }
     .plans-user-info div:first-child{
         width: 30px;
+        text-align: center;
     }
     .times img{
         width: 20px;
@@ -174,10 +175,15 @@
     <div class="view-plans-left">
 
         <div class="plans-head">
-            <p class="new-plan" onclick="open_plans('new')">＋ 新增计划</p>
+            <p class="new-plan" onclick="open_plans('new')">＋ 新建</p>
             <p class="new-mainpersol" onclick="add_user()"><img src="http://storage.56iq.net/group1/M00/47/41/CgoKQ1thH12AWbg1AAADGhlwMl8924.png" alt="">负责方</p>
         </div>
-
+        <div class="div-flex plans-tab">
+            <p class="se_num">序</p>
+            <p class="se_user">负责方</p>
+            <p class="se_name">计划名</p>
+            <p class="se_time">完成时间</p>
+        </div>
         <div id="plans-list">
             <ul id="ul_id">
                 <li ng-repeat="x in response" class="div-flex" ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}'>
@@ -195,6 +201,7 @@
 
                             <img ng-if="x.show_url==1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
                         </div>
+                        <div class="plan_over_time">2018-08-28</div>
                     </div>
                     <div class="confirm-info">
                         <p ng-if="x.ack==1"  data="{[{x.ack}]}" class="ifnot" style="color: #ababab;" >√ 已确认</p>
@@ -218,7 +225,7 @@
             </div>
         </div>
 
-        <div class="task-user-info div-flex">
+        <div class="task-user-info div-flex" onclick="open_plans('edit')">
             <p class="names"></p>
             <p class="job">负责方</p>
             <div class="times">
@@ -611,6 +618,8 @@
     $(".plans-user-add").click(function () {
         let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
         myuser_add.appendTo(".my-user-list ul")
+        var div = document.getElementsByClassName('my-user-list')[0];
+        div.scrollTop = div.scrollHeight;
     })
 
     //点击负责方弹窗保存
