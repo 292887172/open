@@ -948,9 +948,8 @@ def portal(request):
             timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
-                tis = i.update_date.strftime("%Y-%m-%d %H:%M:%S")
+                tis = i.update_date.strftime("%Y-%m-%d")
                 times.append({"time": tis, "message": i.message_content})
-
 
         return HttpResponse(json.dumps(times))
     elif request.method == 'POST':
@@ -997,7 +996,7 @@ def schedule(request):
         sapp_id = ''
         appobj = App.objects.filter(app_appid__endswith=key)
         for i in appobj:
-            print('ff',i.app_id)
+            print('ff', i.app_id)
             sapp_id = i.app_id
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
@@ -1089,9 +1088,9 @@ def schedule(request):
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'get_detail_plan':
-            detail_id = request.POST.get('id','')
-            detail_obj = DocUi.objects.filter(ui_key=key,ui_upload_id=detail_id)
-            detail_obj_dict={}
+            detail_id = request.POST.get('id', '')
+            detail_obj = DocUi.objects.filter(ui_key=key, ui_upload_id=detail_id)
+            detail_obj_dict = {}
             if detail_obj:
                 for i in detail_obj:
                     detail_obj_dict['remark'] = i.ui_remark  # 备注
@@ -1104,21 +1103,21 @@ def schedule(request):
 
                 return HttpResponse(json.dumps(detail_obj_dict))
         elif action == 'save_plan':
-            #data: {'key': keysss, "action": "save_plan", "num": that},
-            m = DocUi.objects.filter(ui_key=key,ui_upload_id=num).update(ui_ack=int(1))
+            # data: {'key': keysss, "action": "save_plan", "num": that},
+            m = DocUi.objects.filter(ui_key=key, ui_upload_id=num).update(ui_ack=int(1))
             if m:
                 return HttpResponse(json.dumps({"code": 0}))
             else:
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'save':
             pass
-            #data: {"key": keysss, "num": idd, "plans_name": plans_name, "plans_time": plans_time,
+            # data: {"key": keysss, "num": idd, "plans_name": plans_name, "plans_time": plans_time,
             #      "plans_user": plans_user, "plans_remarks": plans_remarks},
-            plans_name = request.POST.get('plans_name','')
-            plans_time = request.POST.get('plans_time','')
-            plans_user = request.POST.get('plans_user','')
-            plans_remarks = request.POST.get('plans_remarks','')
-            Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
+            plans_name = request.POST.get('plans_name', '')
+            plans_time = request.POST.get('plans_time', '')
+            plans_user = request.POST.get('plans_user', '')
+            plans_remarks = request.POST.get('plans_remarks', '')
+            Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
             try:
                 if Dobj:
                     # 存在，更新
@@ -1126,10 +1125,14 @@ def schedule(request):
                     url_list = ''
                     for i in Dobj:
                         url_list = i.ui_content
-                    Dobj.update(ui_content=url_list,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name,update_date=datetime.datetime.utcnow())
+                    Dobj.update(ui_content=url_list, ui_remark=plans_remarks, ui_party=plans_user,
+                                ui_time_stemp=plans_time, ui_plan=plans_name, update_date=datetime.datetime.utcnow())
                 else:
                     # 新增
-                    DocUi.objects.create(ui_content='',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow(),ui_key=key,ui_upload_id=num,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name)
+                    DocUi.objects.create(ui_content='', create_date=datetime.datetime.utcnow(),
+                                         update_date=datetime.datetime.utcnow(), ui_key=key, ui_upload_id=num,
+                                         ui_remark=plans_remarks, ui_party=plans_user, ui_time_stemp=plans_time,
+                                         ui_plan=plans_name)
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1212,16 +1215,16 @@ def schedule(request):
 @csrf_exempt
 def party(request):
     if request.method == "POST":
-        ap_id = request.POST.get('app_id','')
-        info_list = request.POST.get('listed','')
-
-
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+        ap_id = request.POST.get('app_id', '')
+        info_list = request.POST.get('listed', '')
+        key = request.POST.get('keysss','')
         obj = AppInfo.objects.filter(app_id=int(ap_id))
-        action = request.POST.get('action','')
-        #data: {"key": keysss, "app_id": app_id1, "datas": rr},
-        data_list = request.POST.get('datas','')
+        action = request.POST.get('action', '')
+        # data: {"key": keysss, "app_id": app_id1, "datas": rr},
+        data_list = request.POST.get('datas', '')
         if action == 'del':
-            title_list =''
+            title_list = ''
             if obj:
                 for i in obj:
                     title_list = json.loads(i.responsible_party)
@@ -1232,7 +1235,12 @@ def party(request):
                     AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
                 else:
                     AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
-            return HttpResponse(json.dumps({"code":0}))
+                Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+            return HttpResponse(json.dumps({"code": 0}))
         else:
             list = json.loads(info_list)
             try:
@@ -1240,11 +1248,12 @@ def party(request):
                     obj.update(responsible_party=json.dumps(list))
 
                 else:
-                    AppInfo.objects.create(app_id=int(ap_id),responsible_party=json.dumps(list))
+                    AppInfo.objects.create(app_id=int(ap_id), responsible_party=json.dumps(list))
             except Exception as e:
                 print(e)
             return HttpResponse(json.dumps({"code": 0}))
         # data: {"key": keysss, "app_id": app_id1, "list": aa},
+
 
 @csrf_exempt
 def upload_file(request):
@@ -1297,6 +1306,11 @@ def upload_file(request):
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
                                           update_date=datetime.datetime.utcnow())
+                Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(
                     json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
 
@@ -1333,10 +1347,10 @@ def upload_file(request):
                         print(e)
                         return HttpResponse(json.dumps({"code": 1}))
                     list_url = rr['data']
-                    print("user1",user1)
-                    print("filename",file.name)
-                    datas = get_ui_static_conf(key, list_url,id,file.name,user1)
-                    print('异步返回的数据',datas)
+                    print("user1", user1)
+                    print("filename", file.name)
+                    datas = get_ui_static_conf(key, list_url, id, file.name, user1)
+                    print('异步返回的数据', datas)
                     product_name = app_name + '上传更新提示'
                     if t >= 9:
                         next_stemp = "量产阶段"
@@ -1442,9 +1456,8 @@ def download(request):
             filename = os.path.basename(url)
         response = HttpResponse(r.content,
                                 content_type='APPLICATION/OCTET-STREAM')  # 设定文件头，这种设定可以让任意文件都能正确下载，而且已知文本文件不是本地打开
-        response['Content-Disposition'] = 'attachment; filename='+filename+''  # 设定传输给客户端的文件名称
+        response['Content-Disposition'] = 'attachment; filename=' + filename + ''  # 设定传输给客户端的文件名称
         response['Content-Length'] = r.headers['content-length']  # 传输给客户端的文件大小
         return response
     else:
         return HttpResponse("no")
-
