@@ -201,7 +201,7 @@
 
                             <img ng-if="x.show_url==1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
                         </div>
-                        <div class="plan_over_time">2018-08-28</div>
+                        <div class="plan_over_time">{[{x.time_stemp.split("~")[1]}]}</div>
                     </div>
                     <div class="confirm-info">
                         <p ng-if="x.ack==1"  data="{[{x.ack}]}" class="ifnot" style="color: #ababab;" >√ 已确认</p>
@@ -440,16 +440,20 @@
                      document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val();
                      document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val();
                      document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val();
+
                      var edit_id = parseInt(idd) - parseInt(1)
 
                      //计划名称
                      console.log(edit_id)
                      var plan_name = $("#news-plan-name").val()
                      var names = $("#plans-users").val()
+
                      console.log(plan_name,names)
                      $("#ul_id li:eq("+edit_id+") .text-ellipsis")[1].innerHTML = plan_name
                      // 负责方
                      $("#ul_id li:eq("+edit_id+") .text-ellipsis span")[0].innerHTML = names;
+                     // 最后时间
+                      $("#ul_id li:eq("+edit_id+") .plan_over_time")[0].innerHTML = end_time;
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
@@ -460,6 +464,7 @@
                                 "party":plans_user,
                                 "partys":$scope.response[0]['partys'],
                                 "id":num,
+
                                 "remark":plans_remarks,
                                 "time_stemp":plans_time,
                                 "url":[
