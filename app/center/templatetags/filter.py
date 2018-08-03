@@ -6,9 +6,9 @@ from conf.message import BOOK
 from model.center.doc_ui import DocUi
 register = template.Library()
 '''自定义django模板过滤器'''
-def xxxx(obj,key):
+def xxxx(key):
     try:
-        print(obj)
+
         vv = ''
         obj = DocUi.objects.filter(ui_key=key)
         if not obj:
@@ -23,8 +23,11 @@ def xxxx(obj,key):
             num = sorted(ack_list)[0]
             for i in obj.filter(ui_upload_id=num):
                 vv = i.ui_plan
+            if vv:
 
-            return vv
+                return vv
+            else:
+                return "制定计划书"
     except Exception as e:
         print(e)
 register.filter(xxxx)

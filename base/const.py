@@ -238,7 +238,7 @@ class DefaultSchedule(object):
          'id': 4},
         {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '应用程序开发', 'ack': 0,
          'id': 5},
-        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提供正式电控版', 'ack': 0,
+        {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '提供正式电控板', 'ack': 0,
          'id': 6},
         {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '控制协议对接', 'ack': 0,
          'id': 7},

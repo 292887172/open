@@ -183,7 +183,7 @@
                         <div  class="name">
                             <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)" ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
                             <div class="my-tooltip-box show_div">
-                                <div class="my-ant-tooltip-inner">负责人:{[{x.party}]}</div>
+                                <div class="my-ant-tooltip-inner">负责方:{[{x.party}]}</div>
                                 <div class="my-ant-tooltip-arrow"></div>
                             </div>
                         </div>
@@ -422,6 +422,7 @@
                      document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val()
                      document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val()
                      document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val()
+
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var ul_list = $("#ul_id")
@@ -507,6 +508,7 @@
                             "                </div>"
                         )
                         addtr.appendTo(file_list)
+
                 } else {
                     document.getElementsByClassName("close")[0].click();
                     bootbox.alert('上传失败，文件格式不支持')
