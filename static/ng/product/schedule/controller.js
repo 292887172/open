@@ -5,15 +5,16 @@ angular.module('Product.schedule', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/schedule', {
             templateUrl: '/static/ng/product/schedule/main.html',
-            controller: 'ScheduleCtrl'
+            // controller:
         });
     }])
 
     .controller('ScheduleCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("scheduleMenu");
         $scope.productImgSrc = "";
-        var xx = 0;
-        if (xx == 0) {
+        var str = 0;
+        var strs = 0;
+        if (str == 0) {
             $http({
                 method: "GET",
                 url: "/product/schedule/"+ '?' + "key=" + keysss,
@@ -59,6 +60,60 @@ angular.module('Product.schedule', ['ngRoute'])
             })
 
 
+        }
+        //如果右侧标签不隐藏，默认显示第一条数据 该请求不刷新页面的情况下 仅请求一次
+        if (strs== 0){
+             $(".upfile").empty()
+             $(".file").empty()
+             document.getElementsByClassName("task-ack-name")[0].innerHTML = ''
+             document.getElementsByClassName("task-id-name")[0].innerHTML = ''
+             document.getElementsByClassName("task-plan-name")[0].innerHTML = ''
+             document.getElementsByClassName("remarks")[0].innerHTML ="备注："
+             document.getElementsByClassName("times-text")[0].innerHTML =''
+
+             $.ajax({
+                type: "POST",
+                url: '/product/schedule',
+                data: {'key': keysss, "action": "get_detail_plan", "id": 1},
+                success: function (data) {
+                    data = JSON.parse(data)
+                    $scope.responses = data;
+                    console.log(data)
+                    console.log(data['id'])
+                    console.log(data['plan'])
+                    console.log($scope.responses['content'])
+                    document.getElementsByClassName("task-ack-name")[0].value = data['ack']
+                    document.getElementsByClassName("task-id-name")[0].innerHTML = data['id']
+                    document.getElementsByClassName("task-plan-name")[0].innerHTML = data['plan']
+                    document.getElementsByClassName("names")[0].innerHTML = data['party']
+                    document.getElementsByClassName("remarks")[0].innerHTML ="备注："+ data['remark']
+                    document.getElementsByClassName("times-text")[0].innerHTML = data['time_stemp']
+                    try {
+                        var dd = JSON.parse($scope.responses['content'])
+                        for (var i = 0, d_length = dd.length; i < d_length; i++) {
+                            var file_list = $(".upfile")[0]
+                            console.log(file_list)
+                            var addtr = $(
+                                "<div class=\"file-list\">\n" +
+                                "                    <div class=\"div-flex file-box\">\n" +
+                                "                        <a class=\"file-name text-ellipsis\" href=\"/product/download?url=" + dd[i]['urll'] + "&name=" + dd[i]['filename'] + "\">" + dd[i]['filename'] + "</a>\n" +
+                                "                        <p class=\"file-user text-ellipsis\">" + dd[i]['user'] + "</p>\n" +
+                                "                        <p class=\"file-time\">" + dd[i]['date'] + "</p>\n" +
+                                "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
+                                "                    </div>\n" +
+                                "                </div>"
+                            )
+                            addtr.appendTo(file_list)
+
+                        }
+                    }
+
+                    catch (e) {
+                        console.log(e)
+                    }
+
+                }
+            });
         }
         $scope.Show_Detail_Plan = function (that) {
              $(".upfile").empty()

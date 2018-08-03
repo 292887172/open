@@ -1,7 +1,7 @@
 import logging
 
 import pymysql
-
+import time
 from conf.mysqlconf import MYSQL_HOST_SYS, MYSQL_PORT_SYS, MYSQL_USER_SYS, MYSQL_PWD_SYS, MYSQL_DB_SYS
 from base.crypto import md5_en
 from model.center.message import Message
@@ -225,55 +225,49 @@ def get_ui_static_conf(key, file_path, id=0, filename='',
     :param conf:
     :return:
     """
-    conn = get_main_connection()
+
     try:
-        print(filename, user)
         # 插入前判断是否更新！
         # 增加message信息
         # :param message_handler_type 消息处理类型，0：无， 1：功能编辑， 2：协议编辑，3：UI编辑
 
         ui_obj = DocUi.objects.filter(ui_upload_id=id, ui_key=key)
-        print('xxx')
         if ui_obj:
             for i in ui_obj:
                 if i.ui_content:
                     print(i.ui_content)
-
+                    print('1')
                     url_list_now = json.loads(i.ui_content)
                     url_dict = {"urll": file_path, "filename": filename, "user": user,
-                                "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
-                                    "%Y-%m-%d %H:%M:%S")}
+                                "date": time.strftime("%Y-%m-%d")}
                     url_list_now.append(url_dict)
                     url_list_now = json.dumps(url_list_now)
                     ui_obj.update(ui_content=url_list_now, ui_type='UI',
                                   update_date=datetime.datetime.utcnow())
                 else:
+                    print('2')
                     url_list1 = []
                     url_dict = {"urll": file_path, "filename": filename, "user": user,
-                                "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
-                                    "%Y-%m-%d %H:%M:%S")}
+                                "date": time.strftime("%Y-%m-%d")}
                     url_list1.append(url_dict)
                     url_list1 = json.dumps(url_list1)
                     ui_obj.update(ui_content=url_list1, ui_type='UI',
                                   update_date=datetime.datetime.utcnow())
             return {"code": 0, "url": file_path, "filename": filename,
-                    "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
-                        "%Y-%m-%d %H:%M:%S"), "user": user}
+                    "date": time.strftime("%Y-%m-%d"), "user": user}
         else:
+            print('3')
             url_list1 = [{"urll": file_path, "filename": filename, "user": user,
-                          "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
-                              "%Y-%m-%d %H:%M:%S")}]
+                          "date": time.strftime("%Y-%m-%d")}]
             url_list1 = json.dumps(url_list1)
             DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=url_list1, ui_type='UI',
                                  update_date=datetime.datetime.utcnow())
             return {"code": 1, "url": file_path, "filename": filename,
-                    "date": (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(
-                        "%Y-%m-%d %H:%M:%S"), "user": user}
+                    "date": time.strftime("%Y-%m-%d"), "user": user}
     except Exception as e:
         print(e)
         return {"code": 2}
-    finally:
-        close_connection(conn)
+
 
 
 def remove_up_url(key, del_id, del_filename):
