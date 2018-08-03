@@ -116,7 +116,7 @@ angular.module('Product.schedule', ['ngRoute'])
             console.log(that)
         };
         $scope.Save_Plan = function (that) {
-            console.log(that)
+            console.log(that);
             layer.confirm('确认提交计划？', {
                 btn: ['确定', '取消'] //按钮
 
@@ -128,7 +128,7 @@ angular.module('Product.schedule', ['ngRoute'])
                     data: {'key': keysss, "action": "save_plan", "num": that},
                     success:function () {
                         layer.msg('已确认', {icon: 1,time:2000});
-                        location.reload();
+                        $scope.response[that-1]['ack']=1
                     },
                     error:function (even) {
                         layer.msg('提交失败', {icon: 2,time:2000});
