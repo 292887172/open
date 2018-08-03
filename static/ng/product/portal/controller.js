@@ -52,7 +52,7 @@ function submitEmail(item) {
 
 }
 function delTeamEmail(item) {
-    $(item).parent('p').remove();
+
     var email = $(item).parent('p').text().split(" ")[2];
     //通过controller来获取Angular应用
     var appElement = document.querySelector('[ng-controller=ProductBaseCtrl]');
@@ -60,15 +60,21 @@ function delTeamEmail(item) {
     var $scope = angular.element(appElement).scope();
       //调用app_id变量
     var app_id = $scope.app_id;
-    $.ajax({
+    bootbox.confirm("确定删除该团队成员?", function (result) {
+      if(result){
+          $.ajax({
          type: "POST",
          url: "/product/portal",
          data: {"app_id":app_id, "email": email,"action": "delEmail"},
          dataType: "json",
          success: function(data){
             console.log(data);
+            $(item).parent('p').remove();
              bootbox.alert('删除成功');
           }
      });
+      }
+    })
+
 
 }
