@@ -600,23 +600,28 @@
        var filename =that.parentNode.firstElementChild.innerHTML
        layer.confirm('确定删除计划？', {
        btn: ['确定', '取消'] //按钮
-        }, function () {
-           $.ajax({
+        }, function (index) {
+
+            layer.close(index);
+            $.ajax({
                url: '/product/schedule',
                type: "POST",
                data: {"key": keysss, "action": "del", "del_id": idd, "del_filename": filename},
                success: function (data) {
                    data = JSON.parse(data)
                    if (data['code'] === 0) {
-
-                       window.location.reload()
+                      that.parentNode.parentNode.remove()
                    } else {
                        bootbox.alert("删除失败")
                    }
 
                }
            })
-       })
+
+       },function () {
+            console.log("取消");
+        }
+       )
     }
     //关闭负责人弹窗
     $("#plans-user-list i").click(function () {
