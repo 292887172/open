@@ -649,10 +649,22 @@
                        for(var i= 0;i<$scope.response.length;i++){
                            if($scope.response[i]['id']==idd){
                                $scope.response.splice(i, 1);
+                               console.log()
                                $scope.$apply()
                            }
+                           try{
+                               if(parseInt($scope.response[i]['id'])>parseInt(idd)){
+                               console.log( $scope.response[i]['id'],idd)
+                               $scope.response[i]['id']=parseInt($scope.response[i]['id']) - 1
+                               $scope.$apply()
+                               $scope.Show_Detail_Plan(parseInt(idd))
+                            }
+                           }catch (e) {
+                               $scope.Show_Detail_Plan(parseInt(idd)-1)
+                           }
+
                        }
-                       window.location.reload()
+
                    }else{
                        bootbox.alert("删除失败")
                    }
