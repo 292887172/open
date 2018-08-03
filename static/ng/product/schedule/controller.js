@@ -128,7 +128,16 @@ angular.module('Product.schedule', ['ngRoute'])
                     data: {'key': keysss, "action": "save_plan", "num": that},
                     success:function () {
                         layer.msg('已确认', {icon: 1,time:2000});
-                        $scope.response[that-1]['ack']=1
+                        for(var i=0;i<$scope.response.length;i++){
+                            if($scope.response[i]['id']==that){
+
+                                $scope.response[i]['ack']=1;
+                                $scope.$apply();
+                                return
+                            }
+
+                        }
+
                     },
                     error:function (even) {
                         layer.msg('提交失败', {icon: 2,time:2000});
