@@ -992,6 +992,7 @@ def app(request):
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
+
         key = request.GET.get('key', '')
         sapp_id = ''
         appobj = App.objects.filter(app_appid__endswith=key)
@@ -1003,7 +1004,6 @@ def schedule(request):
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
             if li_ui:
-                print('yyy')
                 id_list = []
 
                 for i in li_ui:
@@ -1020,6 +1020,11 @@ def schedule(request):
                     if not isinstance(url, list):
                         url = [url]
                     update_dict['url'] = url
+
+                    if len(str(url)) > int(10):
+                        update_dict['show_url'] = 1
+                    else:
+                        update_dict['show_url'] = 0
                     update_dict['ack'] = i.ui_ack
                     update_dict['time_stemp'] = i.ui_time_stemp
 
@@ -1044,10 +1049,11 @@ def schedule(request):
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
                                          ui_content='', ui_type='')
-
+                return HttpResponse(json.dumps(update_list))
         except Exception as e:
             print(e)
             return HttpResponse(json.dumps(update_list))
+
     if request.method == "POST":
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
@@ -1242,6 +1248,7 @@ def party(request):
             try:
                 if obj:
                     obj.update(responsible_party=json.dumps(list))
+
                 else:
                     AppInfo.objects.create(app_id=int(ap_id),responsible_party=json.dumps(list))
             except Exception as e:
