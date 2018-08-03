@@ -115,7 +115,10 @@ angular.module('Product.schedule', ['ngRoute'])
                 }
             });
         }
-        $scope.Show_Detail_Plan = function (that) {
+             $scope.focus = 0;
+        $scope.Show_Detail_Plan = function (that,i_index) {
+             $scope.focus = i_index;
+
              $(".upfile").empty()
              $(".file").empty()
              document.getElementsByClassName("task-ack-name")[0].innerHTML = ''

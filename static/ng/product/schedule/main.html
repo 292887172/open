@@ -177,7 +177,7 @@
 
         <div id="plans-list">
             <ul id="ul_id">
-                <li ng-repeat="x in response" class="div-flex" ng-click="Show_Detail_Plan(x.id)">
+                <li ng-repeat="x in response" class="div-flex" ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}'>
                     <div class="plans-user-info div-flex" data="{[{x.id}]}" >
                         <div style="font-size: 16px;">{[{$index+1}]}</div>
                         <div  class="name">
