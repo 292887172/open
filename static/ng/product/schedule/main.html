@@ -349,12 +349,20 @@
              success:function (data) {
                  data = JSON.parse(data)
                  console.log(data)
+
                  var file = $(".layui-anim-upbit")[0]
+                 $("#plans-users").empty()
+                 var attrrs = $("<option value=\"\">请选择负责人</option>")
+                 attrrs.appendTo("#plans-users")
+                 console.log('长度设定',aa.length)
+                 for (var ii = 0,a_l = aa.length;ii<a_l;ii++) {
+                     var attrr = $("<option value=\""+ aa[ii]['title']+"\">"+aa[ii]['title']+"</option>");
+                     attrr.appendTo("#plans-users")
+                 }
 
-                 var attrr = $("<option value=\""+ y+"\">"+y+"</option>");
 
 
-                 attrr.appendTo("#plans-users")
+
                  layui.use('form', function () {
                     var form = layui.form;
                     form.render('select');
@@ -386,11 +394,17 @@
             if (ifnot ==1){
                 console.log('yy',document.getElementsByClassName("task-action")[0])
             }
+
             console.log(ifnot)
             document.getElementById("news-plan-name").value= document.getElementsByClassName("task-plan-name")[0].innerHTML.replace(/[ /d]/g, '')
             document.getElementById("news-plan-remarks").value= document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1]
             document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML
-            $("#plans-users").val(document.getElementsByClassName("names")[0].innerHTML)
+            $("#plans-users").val(document.getElementsByClassName("names")[0].innerHTML);
+
+            layui.use('form', function () {
+                    var form = layui.form;
+                    form.render('select');
+                });
             console.log(document.getElementsByClassName("times-text")[0].innerHTML)
             ontimes(document.getElementsByClassName("times-text")[0].innerHTML)
         }
@@ -453,7 +467,12 @@
                      // 负责方
                      $("#ul_id li:eq("+edit_id+") .text-ellipsis span")[0].innerHTML = names;
                      // 最后时间
-                      $("#ul_id li:eq("+edit_id+") .plan_over_time")[0].innerHTML = end_time;
+                     if(end_time){
+                          $("#ul_id li:eq("+edit_id+") .plan_over_time")[0].innerHTML = end_time;
+                     }else {
+                         console.log('无变动')
+                     }
+
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
@@ -579,20 +598,24 @@
     function Deleted(that) {
        var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
        var filename =that.parentNode.firstElementChild.innerHTML
-       $.ajax({
-           url: '/product/schedule',
-           type:"POST",
-           data:{"key":keysss,"action":"del","del_id":idd,"del_filename":filename},
-           success: function (data) {
-           data = JSON.parse(data)
-           if (data['code']===0){
-               bootbox.alert("删除成功")
-               window.location.reload()
-           }else{
-               bootbox.alert("删除失败")
-           }
+       layer.confirm('确定删除计划？', {
+       btn: ['确定', '取消'] //按钮
+        }, function () {
+           $.ajax({
+               url: '/product/schedule',
+               type: "POST",
+               data: {"key": keysss, "action": "del", "del_id": idd, "del_filename": filename},
+               success: function (data) {
+                   data = JSON.parse(data)
+                   if (data['code'] === 0) {
 
-       }
+                       window.location.reload()
+                   } else {
+                       bootbox.alert("删除失败")
+                   }
+
+               }
+           })
        })
     }
     //关闭负责人弹窗
