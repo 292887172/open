@@ -1091,7 +1091,6 @@ def schedule(request):
         elif action == 'get_detail_plan':
             detail_id = request.POST.get('id','')
             detail_obj = DocUi.objects.filter(ui_key=key,ui_upload_id=detail_id)
-            print(detail_id)
             detail_obj_dict={}
             if detail_obj:
                 for i in detail_obj:
@@ -1101,7 +1100,6 @@ def schedule(request):
                     detail_obj_dict['ack'] = i.ui_ack  # ack
                     detail_obj_dict['time_stemp'] = i.ui_time_stemp  # 时间戳
                     detail_obj_dict['content'] = i.ui_content  # url
-                    print(i.ui_content,type(i.ui_content))
                     detail_obj_dict['party'] = i.ui_party  # 责任
 
                 return HttpResponse(json.dumps(detail_obj_dict))
@@ -1109,10 +1107,8 @@ def schedule(request):
             #data: {'key': keysss, "action": "save_plan", "num": that},
             m = DocUi.objects.filter(ui_key=key,ui_upload_id=num).update(ui_ack=int(1))
             if m:
-                print(m)
                 return HttpResponse(json.dumps({"code": 0}))
             else:
-                print(num)
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'save':
             pass
@@ -1123,7 +1119,6 @@ def schedule(request):
             plans_user = request.POST.get('plans_user','')
             plans_remarks = request.POST.get('plans_remarks','')
             Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
-            print(plans_name,plans_time,plans_user,plans_remarks)
             try:
                 if Dobj:
                     # 存在，更新
@@ -1131,11 +1126,9 @@ def schedule(request):
                     url_list = ''
                     for i in Dobj:
                         url_list = i.ui_content
-                    print(url_list)
                     Dobj.update(ui_content=url_list,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name,update_date=datetime.datetime.utcnow())
                 else:
                     # 新增
-                    print('xx')
                     DocUi.objects.create(ui_content='',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow(),ui_key=key,ui_upload_id=num,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name)
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
@@ -1232,12 +1225,9 @@ def party(request):
             if obj:
                 for i in obj:
                     title_list = json.loads(i.responsible_party)
-
-                print('list',title_list)
                 for j in title_list:
                     if data_list in j.values():
                         title_list.remove(j)
-                print('lists',title_list)
                 if title_list:
                     AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
                 else:

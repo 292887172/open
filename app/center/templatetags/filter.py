@@ -20,6 +20,9 @@ def xxxx(key):
                     pass
                 else:
                     ack_list.append(i.ui_upload_id)
+
+            if not ack_list:
+                return "等待上线"
             num = sorted(ack_list)[0]
             for i in obj.filter(ui_upload_id=num):
                 vv = i.ui_plan
