@@ -309,7 +309,7 @@
 
 
 <script>
-
+    var end_time = "";
     var being = true;
     $(".plan-namer").mouseover(function () {
         if(being){
@@ -609,6 +609,8 @@
             ,format: 'yyyy-MM-dd'
             ,done: function(value, date, endDate){
                 console.log(value, date, endDate); //在控件上弹出value值
+                end_time = endDate.year + "-" + endDate.month + "-" + endDate.date;
+                console.log(end_time)
               }
             });
         });
