@@ -177,8 +177,8 @@
 
         <div id="plans-list">
             <ul id="ul_id">
-                <li ng-repeat="x in response" class="div-flex">
-                    <div class="plans-user-info div-flex" data="{[{x.id}]}" ng-click="Show_Detail_Plan(x.id)">
+                <li ng-repeat="x in response" class="div-flex" ng-click="Show_Detail_Plan(x.id)">
+                    <div class="plans-user-info div-flex" data="{[{x.id}]}" >
                         <div style="font-size: 16px;">{[{$index+1}]}</div>
                         <div  class="name">
                             <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)" ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
@@ -190,7 +190,7 @@
                         <div class="file-info">
                             <span class="text-ellipsis">{[{x.plan}]}</span>
 
-                            <img ng-if="x.url.length>1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
+                            <img ng-if="x.show_url==1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
                         </div>
                     </div>
                     <div class="confirm-info">
@@ -324,7 +324,9 @@
         $("#ul_id_party input[type='text']").each(function(){
 
             aa.push({"title":$(this).val()})
+            y = $(this).val();
           });
+        console.log('last',y)
         console.log(app_id1)
         console.log(aa)
 
@@ -337,6 +339,11 @@
              success:function (data) {
                  data = JSON.parse(data)
                  console.log(data)
+                 var file = $(".layui-anim-upbit")[0]
+
+                 var attrr = $("<dd lay-value=\""+ y+"\" class=\"\">"+y+"</dd>")
+
+                 attrr.appendTo(file)
              }
         })
     }
@@ -414,11 +421,20 @@
                  console.log(num)
                  if (parseInt(idd) < parseInt(num)) {
 
-                     document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val()
-                     document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val()
-                     document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val()
-                     document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val()
+                     document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val();
+                     document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val();
+                     document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val();
+                     document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val();
+                     var edit_id = parseInt(idd) - parseInt(1)
 
+                     //计划名称
+                     console.log(edit_id)
+                     var plan_name = $("#news-plan-name").val()
+                     var names = $("#plans-users").val()
+                     console.log(plan_name,names)
+                     $("#ul_id li:eq("+edit_id+") .text-ellipsis")[1].innerHTML = plan_name
+                     // 负责方
+                     $("#ul_id li:eq("+edit_id+") .text-ellipsis span")[0].innerHTML = names;
                      layer.msg('编辑成功', {icon: 1,time:2000});
                  }else{
                      var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
@@ -482,8 +498,20 @@
                 if (data['code'] == 0) {
 
                     document.getElementsByClassName("close")[0].click();
+                    console.log('iddd',idd)
+                    var idimg = parseInt(idd) -1
+                    var imgs = $("#ul_id li:eq("+idimg +") .file-info")[0]
+                    var img_length = $("#ul_id li:eq("+idimg +") .file-info img").length
+                    var input_img = $(
+                        "<img ng-if=\"x.show_url==1\" src=\"http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png\" class=\"ng-scope\">"
+                    )
 
                     bootbox.alert('上传成功')
+                    if (parseInt(img_length) == 1){
+                        console.log('已有图标，无需添加')
+                    }else{
+                        input_img.appendTo(imgs)
+                    }
                      var file_list = $(".upfile")[0]
                      var addtr = $(
                             "<div class=\"file-list\">\n" +
