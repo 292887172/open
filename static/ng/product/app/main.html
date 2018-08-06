@@ -124,6 +124,21 @@
         text-indent: 0;
         line-height: 20px;
     }
+    .xxxx {
+        margin-top: 10px;
+        width: 170px;
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
 
     .ui-item-version {
         height: 55px;
@@ -260,7 +275,7 @@
 <div class="box2 relative">
     <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="height: 252px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
@@ -278,7 +293,10 @@
                     <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
                     <input class="file" id="file" name="file" style="display: none" type="file" accept=".pkg"/>
                     <div style="overflow: hidden;">
-                        <span>版本号：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
+                        <span>版本：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
+                    </div>
+                    <div style="overflow: hidden;">
+                        <span>备注：</span><input type="text" id="ui_remark" class="xxxx" placeholder="请输入备注信息">
                     </div>
                     <div style="text-align: center;margin-left: -20%;margin-top: 10px">
                         <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
@@ -329,11 +347,15 @@
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
-                        <div style="padding-left: 0px" class="col-md-4">
+
+                        <div style="padding-left: 0px" class="col-md-3">
                             <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i
                                     class="ace-icon fa fa-arrow-circle-o-down"></i></a>
                         </div>
-                        <div style="height: 30px;margin-top: 4px" class="col-md-4">
+                        <div style="height: 30px;margin-top: 4px" class="col-md-4 col-md-offset-0">
+                            {[{x.remarks}]}
+                        </div>
+                        <div style="height: 30px;margin-top: 4px" class="col-md-3">
                             <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
                         </div>
 
@@ -378,6 +400,7 @@
         formData.append("key", document.getElementById("keys").value);
         formData.append("app_version", document.getElementById("ui_info").value);
         formData.append("action", 'ui_upload');
+        formData.append("app_remark", document.getElementById("ui_remark").value);
         formData.append("app_id", app_id1);
         if (document.getElementById("file").files[0]) {
             $.ajax({
