@@ -379,9 +379,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-        print('xxxx')
-        device_conf = gen_app_default_conf(app_category_detail)
-        get_config_funs(developer_id, app_category_detail)
+        device_conf = get_config_funs(developer_id, app_category_detail)
         app_logo = get_app_default_logo(app_category_detail)
 
         if not developer_id:
@@ -985,6 +983,7 @@ def app(request):
             date = i.create_date
             tis = date.strftime("%Y-%m-%d %H:%M:%S")
             app_dict['time'] = tis
+            app_dict['remarks'] = i.remarks
             app_list.append(app_dict)
 
     return HttpResponse(json.dumps(app_list))
@@ -1329,7 +1328,7 @@ def upload_file(request):
         action = request.POST.get('action', '')
         app_ids = request.POST.get('app_id', '')
         app_version = request.POST.get('app_version', '')
-
+        appversion_remark = request.POST.get('app_remark', '')
         if action == 'ui_upload':
             try:
                 store = EbStore(CLOUD_TOKEN)
@@ -1351,7 +1350,7 @@ def upload_file(request):
                 url_list = rr['data']
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
-                                          update_date=datetime.datetime.utcnow())
+                                          update_date=datetime.datetime.utcnow(),remarks=appversion_remark)
                 Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=cook_ies, message_target=cook_ies,

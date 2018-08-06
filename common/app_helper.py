@@ -29,12 +29,13 @@ from functools import reduce
 import logging
 
 import datetime
+
 __author__ = 'achais'
 _convention = ConventionValue()
 
 
 def create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command, device_conf,
-               app_factory_id, app_group, app_logo,app_product_fast, check_status=0, app_category_detail2=1):
+               app_factory_id, app_group, app_logo, app_product_fast, check_status=0, app_category_detail2=1):
     """
     创建应用
     :param developer_id: 开发者编号
@@ -106,8 +107,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                                        message_target=app.developer_id, is_read=0,
                                        create_date=datetime.datetime.utcnow(),
                                        update_date=datetime.datetime.utcnow())
-                message_content = '"'+ app_name + '"' + CREATE_APP
-                save_user_message(developer_id, message_content, USER_TYPE, developer_id,app_app_id)
+                message_content = '"' + app_name + '"' + CREATE_APP
+                save_user_message(developer_id, message_content, USER_TYPE, developer_id, app_app_id)
 
                 break
             except Exception as e:
@@ -120,37 +121,33 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
         return ""
 
 
-def get_config_funs(developer_id,app_category_detail):
+def get_config_funs(developer_id, app_category_detail):
     """
 
     :param developer_id:
     :param app_category_detail:
     :return:
     """
-    print(developer_id,app_category_detail)
+    device_conf_default = gen_app_default_conf(app_category_detail)
     try:
-        Appobj = App.objects.filter(developer_id=developer_id,app_device_type=app_category_detail)
+        Appobj = App.objects.filter(developer_id=developer_id, app_device_type=app_category_detail)
 
         if not Appobj:
-            print('no')
+            return device_conf_default
         else:
-            print('xxtt')
             device_conf_list = []
-            print(developer_id)
-            device_conf_default = gen_app_default_conf(app_category_detail)
             for i in Appobj:
-                reduce
-                print('config',i.device_conf)
                 config_data = json.loads(i.device_conf)
-                print(config_data,type(config_data))
                 for ii in config_data:
                     device_conf_list.append(ii)
-                    print('config',type(ii),ii['Stream_ID'])
-            print('sss',list(set(device_conf_list)))
-            #return developer_id
+            new_data = []
+            for data_id in device_conf_list:
+                if data_id not in new_data:
+                    new_data.append(data_id)
+            return new_data
     except Exception as e:
         print(e)
-
+        return device_conf_default
 
 
 def update_app_fun_widget(data):
@@ -198,9 +195,9 @@ def del_app(app_id):
                                      app_update_date=app.app_update_date)
         new_app_history.save()
         app.delete()
-        message_content = '"'+ app.app_name + '"' + DEL_APP
+        message_content = '"' + app.app_name + '"' + DEL_APP
 
-        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
+        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_app_id)
         # 删除应用, 同步到 RESTFul API
         delete_api_app(app.app_appid)
         return True
@@ -220,8 +217,8 @@ def release_app(app_id):
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + RELEASE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
+            message_content = '"' + app.app_name + '"' + RELEASE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_app_id)
             return True
         else:
             return False
@@ -242,8 +239,8 @@ def cancel_release_app(app_id):
         if update_line > 0:
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + CANCEL_RELEASE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
+            message_content = '"' + app.app_name + '"' + CANCEL_RELEASE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_app_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -265,8 +262,8 @@ def off_app(app_id):
         if update_line > 0:
             # 应用下架, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + OFF_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_app_id)
+            message_content = '"' + app.app_name + '"' + OFF_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_app_id)
             delete_release_api_app(app.app_appid)
             return True
         else:
@@ -288,8 +285,8 @@ def pass_app(app_id):
         if update_line > 0:
             # APP审核通过, 同步到 RESTFul API
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + PASS_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+            message_content = '"' + app.app_name + '"' + PASS_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             create_release_api_app(app.app_appid)
             return True
         else:
@@ -314,8 +311,8 @@ def denied_app(app_id, remark):
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + DENIED_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+            message_content = '"' + app.app_name + '"' + DENIED_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return True
         else:
             return False
@@ -341,7 +338,8 @@ def fetch_app_data(app_id):
         return None
 
 
-def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo, app_command, app_group, app_factory_uid):
+def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo, app_command, app_group,
+                    app_factory_uid):
     """
     更新应用基础信息
     :param app_id:
@@ -373,8 +371,8 @@ def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_log
         update_line = App.objects.filter(app_id=int(app_id)).update(**params)
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + UPDATE_APP
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+            message_content = '"' + app.app_name + '"' + UPDATE_APP
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return True
         else:
             return False
@@ -397,8 +395,8 @@ def update_app_config(app_id, app_push_url, app_push_token):
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
             app = App.objects.get(app_id=int(app_id))
-            message_content = '"'+ app.app_name + '"' + UPDATE_APP_CONFIG
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+            message_content = '"' + app.app_name + '"' + UPDATE_APP_CONFIG
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             return True
         else:
             return False
@@ -433,7 +431,7 @@ def add_fun_id(opera_data, indata):
     return indata
 
 
-def add_mod_funs(opera_data, device_conf, funs,app_device_type):
+def add_mod_funs(opera_data, device_conf, funs, app_device_type):
     funs = json.loads(funs)
     add_funs = []
     max_num = 0
@@ -459,11 +457,11 @@ def add_mod_funs(opera_data, device_conf, funs,app_device_type):
     opera_data.sort(key=lambda x: int(x.get("id")))
 
 
-def get_mod_funs(opera_data, device_conf,app_device_type):
+def get_mod_funs(opera_data, device_conf, app_device_type):
     mod = []
     modd = []
     fun_name = list(map(lambda x: x["Stream_ID"], opera_data))
-    print('data',device_conf)
+    print('data', device_conf)
     if int(app_device_type) == 0:
 
         for device in PROTOCOL_KU:
@@ -497,8 +495,8 @@ def reset_app_secret(app_id):
                                                                     app_update_date=datetime.datetime.utcnow())
         if update_line > 0:
             # 同步到 RESTFul API
-            message_content = '"'+ app.app_name + '"' + RESET_APP_SECRET
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id,app.app_appid)
+            message_content = '"' + app.app_name + '"' + RESET_APP_SECRET
+            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             reset_api_app_secret(app.app_appid, new_app_secret)
             return new_app_secret
         else:
@@ -621,10 +619,13 @@ def fetch_all_app_data(page, limit, order_by_names):
         print(e)
         logging.getLogger("").error(e)
         return ""
-def fetch_one_app_data(serach,page, limit, order_by_names):
+
+
+def fetch_one_app_data(serach, page, limit, order_by_names):
     try:
-        pager = Paginator(App.objects.filter(Q(app_appid__icontains=serach)|Q(app_name__icontains=serach)).order_by(order_by_names),
-                          int(limit))
+        pager = Paginator(
+            App.objects.filter(Q(app_appid__icontains=serach) | Q(app_name__icontains=serach)).order_by(order_by_names),
+            int(limit))
         apps = pager.page(int(page))
         total_count = pager.count
         data = []
@@ -663,7 +664,8 @@ def fetch_one_app_data(serach,page, limit, order_by_names):
         logging.getLogger("").error(e)
         return ""
 
-def save_app(app, opera_data,cook_ies):
+
+def save_app(app, opera_data, cook_ies):
     # 保存修改后的device_config
     r = Redis3(rdb=6).client
     app.device_conf = json.dumps(opera_data)
@@ -673,7 +675,8 @@ def save_app(app, opera_data,cook_ies):
     app.app_update_date = datetime.datetime.utcnow()
     app.save()
     data = {'rows': opera_data, 'check_state': app.check_status}
-    r.set("product_funs" + str(app.app_id), json.dumps(data), 3600*24*3)
+    r.set("product_funs" + str(app.app_id), json.dumps(data), 3600 * 24 * 3)
+
 
 def check_cloud(opera_data):
     # 检查功能是否被设为云菜谱可控
