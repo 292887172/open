@@ -55,7 +55,7 @@ angular.module('Product.schedule', ['ngRoute'])
                     form.render('select');
                 });
 
-                $("#ul_id").sortable({stop:function (event,ui) {
+                $("#ul_id").sortable({update:function (event,ui) {
                         var arr = $( "#ul_id" ).sortable('toArray');
                         console.log(arr);
                         console.log(arr.length);
