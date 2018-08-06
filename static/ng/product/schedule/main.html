@@ -423,15 +423,15 @@
         //编辑计划
         if (val == 'edit') {
             $("#newplans-window").fadeIn();
-            var ifnot = document.getElementsByClassName("task-ack-name")[0].value
+            var ifnot = document.getElementsByClassName("task-ack-name")[0].value;
             if (ifnot == 1) {
                 console.log('yy', document.getElementsByClassName("task-action")[0])
             }
 
             console.log(ifnot)
-            document.getElementById("news-plan-name").value = document.getElementsByClassName("task-plan-name")[0].innerHTML.replace(/[ /d]/g, '')
-            document.getElementById("news-plan-remarks").value = document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1]
-            document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML
+            document.getElementById("news-plan-name").value = document.getElementsByClassName("task-plan-name")[0].innerHTML;
+            document.getElementById("news-plan-remarks").value = document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1];
+            document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML;
             $("#plans-users").val(document.getElementsByClassName("names")[0].innerHTML);
 
             layui.use('form', function () {
