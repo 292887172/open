@@ -56,44 +56,56 @@ angular.module('Product.schedule', ['ngRoute'])
                 });
 
                 $("#ul_id").sortable({update:function (event,ui) {
-                        var arr = $( "#ul_id" ).sortable('toArray');
-                        console.log(arr);
-                        console.log(arr.length);
-                        console.log('sss',$scope.response)
-                        ss=[]
 
-                        for (var ir =0,il_len = arr.length;ir<il_len;ir++){
+                        layer.confirm('确认提交计划？', {
+                            btn: ['确定', '取消'] //按钮
+                        },
+                        function () {
+                            console.log("确定");
+                            var arr = $( "#ul_id" ).sortable('toArray');
+                            console.log(arr);
+                            console.log(arr.length);
+                            console.log('sss',$scope.response)
+                            ss=[]
+                            for (var ir =0,il_len = arr.length;ir<il_len;ir++){
 
                             ss.push($scope.response[parseInt(arr[ir])-1])
 
                             console.log($scope.response[ir]['id'],ir + 1,arr[ir])
                         }
-
-                        console.log(ss)
-                        for (var irr =0,il_lens = ss.length;irr<il_lens;irr++){
-                            ss[irr]['id'] = irr + 1
-                        }
-                        console.log(ss)
-                        $scope.response = ss;
-                        $scope.$apply();
-                        $.ajax({
-
-                            method: "POST",
-                            url: "/product/schedule/"+ '?' + "key=" + keysss,
-                            data: {'data': JSON.stringify(ss)},
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-                        }).success(function (data) {
-                            data = JSON.parse(data)
-                            if (data['code']==0){
-                                bootbox.alert('更新成功')
-                            }else{
-                                bootbox.alert('更新失败')
+                            for (var irr =0,il_lens = ss.length;irr<il_lens;irr++){
+                                ss[irr]['id'] = irr + 1
                             }
+                            $scope.response = ss;
+                            $scope.$apply();
+                            $.ajax({
 
-                        })
+                                method: "POST",
+                                url: "/product/schedule/"+ '?' + "key=" + keysss,
+                                data: {'data': JSON.stringify(arr)},
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+                            }).success(function (data) {
+                                data = JSON.parse(data)
+                                console.log('返回的数据',data)
+                                if (data['code']==0){
+                                    bootbox.alert('更新成功')
+                                }else{
+                                    bootbox.alert('更新失败')
+                                }
+
+                            })
+                            },
+                        function () {
+                            console.log('取消')
+
+                        }
+                        )
 
                     }});
+
+
+
                 $("#ul_id").disableSelection();
 
             })
@@ -257,8 +269,10 @@ angular.module('Product.schedule', ['ngRoute'])
             layer.confirm('确认提交计划？', {
                 btn: ['确定', '取消'] //按钮
 
-            }, function () {
+            },
+                function () {
                 console.log("确定");
+
                 $.ajax({
                     type: "POST",
                     url: '/product/schedule',
@@ -281,7 +295,8 @@ angular.module('Product.schedule', ['ngRoute'])
                         console.log(even)
                     }
                 })
-            }, function () {
+            },
+                function () {
                 console.log("取消");
             })
         }
