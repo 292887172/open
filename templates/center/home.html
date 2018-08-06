@@ -627,11 +627,13 @@
 
             });
             $("#item-team-control").delegate(".ui-del-item", "click", function () {
-
+                var that = this
                     // 页面上多余一个的team成员框才可以删除
-                    $(this).parent().remove()
-
-
+                bootbox.confirm("确定删除该项目成员?", function (result) {
+                  if(result){
+                      $(that).parent().remove()
+                  }
+                })
             });
             $("#addTeamSubmit").click(function () {
                 // 团队邮箱信息提交
@@ -709,5 +711,5 @@
 
 
     </script>
-    {#    <script src="{% static 'js/center/product.js' %}"></script>#}
+
 {% endblock %}

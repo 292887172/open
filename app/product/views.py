@@ -956,7 +956,7 @@ def portal(request):
         action = request.POST.get("action", "")
         app_id = request.POST.get("app_id", "")
         email = request.POST.get("email", "")
-        user_account = request.user
+        user_account = request.user.account_id
 
         if action == 'submitEmail':
             # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
@@ -997,7 +997,6 @@ def schedule(request):
         sapp_id = ''
         appobj = App.objects.filter(app_appid__endswith=key)
         for i in appobj:
-            print('ff', i.app_id)
             sapp_id = i.app_id
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
@@ -1207,13 +1206,11 @@ def schedule(request):
             group_id = ''
             for i in a:
                 app_name = i.app_name
-                print('组id', i.group_id)
                 group_id = i.group_id
             ack_name = app_name + '第' + num + '步操作确认通知'
             try:
                 b = UserGroup.objects.filter(group__group_id=group_id)
                 for i in b:
-                    print(i.user_account)
                     email_list.append(i.user_account)
             except Exception as e:
                 print(e)

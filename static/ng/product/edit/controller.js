@@ -17,6 +17,7 @@ angular.module('Product.edit', ['ngRoute'])
         $scope.min=0;
         $scope.max=0;
         $scope.mxsNum=0;
+
         /**
          * 提交配置信息表单
          * @constructor
