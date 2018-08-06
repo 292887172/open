@@ -186,7 +186,7 @@
         </div>
         <div id="plans-list">
             <ul id="ul_id">
-                <li ng-repeat="x in response" class="div-flex" ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}'>
+                <li ng-repeat="x in response" id="{[{$index+1}]}" class="div-flex" ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}' >
                     <div class="plans-user-info div-flex" data="{[{x.id}]}" >
                         <div style="font-size: 16px;">{[{$index+1}]}</div>
                         <div  class="name">
@@ -307,7 +307,6 @@
     </div>
 </div>
 
-
 <script>
     var end_time = "";
     var being = true;
@@ -329,7 +328,7 @@
     function Save_Party() {
         // 负责方添加
         //设置负责方
-        // 负责人信息
+        // 负责方信息
         var aa =[]
         $("#ul_id_party input[type='text']").each(function(){
 
@@ -352,7 +351,7 @@
 
                  var file = $(".layui-anim-upbit")[0]
                  $("#plans-users").empty()
-                 var attrrs = $("<option value=\"\">请选择负责人</option>")
+                 var attrrs = $("<option value=\"\">请选择负责方</option>")
                  attrrs.appendTo("#plans-users")
                  console.log('长度设定',aa.length)
                  for (var ii = 0,a_l = aa.length;ii<a_l;ii++) {
@@ -436,7 +435,7 @@
             return
         }
         if (plans_user == ""){
-            layer.msg('请填写负责人名称', {icon: 5,time:2000});
+            layer.msg('请填写负责方', {icon: 5,time:2000});
             return
         }
         var idd = document.getElementById("hides").value

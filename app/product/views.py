@@ -945,7 +945,7 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy,is_read=0).order_by("-update_date")[0:3]
+            timess = Message.objects.filter(device_key=zy, is_read=0).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
                 tis = i.update_date.strftime("%Y-%m-%d")
@@ -1058,8 +1058,32 @@ def schedule(request):
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
         location = request.POST.get('location', '')
-        # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
         action = request.POST.get('action', '')
+        data = request.POST.get('data', '')
+        if data:
+            key = request.GET.get('key', '')
+            data1 = json.loads(data)
+
+            for i in data1:
+                if len(str(i['url'])) < 10:
+                    url = ''
+                else:
+                    url = json.dumps(i['url'])
+                if not i['party']:
+                    i['party'] = ''
+                if not i['remark']:
+                    i['party'] = ''
+                if not i['time_stemp']:
+                    i['time_stemp'] = ''
+                obj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(i['id']))
+                tt = obj.update(ui_content=url, ui_party=i['party'], ui_remark=i['remark'],
+                                ui_plan=i['plan'], ui_type='UI', ui_title='',
+                                ui_time_stemp=i['time_stemp'], ui_ack=int(i['ack']))
+                if tt:
+                    data = {"code": 0}
+                else:
+                    data = {"code": 1}
+            return HttpResponse(json.dumps(data))
         if action == 'del':
             # 删除下载链接
             del_id = request.POST.get('del_id', '')
@@ -1118,7 +1142,7 @@ def schedule(request):
             m = DocUi.objects.filter(ui_key=key, ui_upload_id=num).update(ui_ack=int(1))
             if m:
                 Message.objects.create(message_content='产品计划书更新', message_type=int(5),
-                                       message_handler_type=int(5),is_read=1,
+                                       message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
                                        create_date=datetime.datetime.utcnow(),
                                        update_date=datetime.datetime.utcnow())
@@ -1234,7 +1258,7 @@ def party(request):
         user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         ap_id = request.POST.get('app_id', '')
         info_list = request.POST.get('listed', '')
-        key = request.POST.get('keysss','')
+        key = request.POST.get('keysss', '')
         obj = AppInfo.objects.filter(app_id=int(ap_id))
         action = request.POST.get('action', '')
         # data: {"key": keysss, "app_id": app_id1, "datas": rr},
@@ -1252,7 +1276,7 @@ def party(request):
                 else:
                     AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
                 Message.objects.create(message_content='产品负责方更新', message_type=int(5),
-                                       message_handler_type=int(5),is_read=1,
+                                       message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
                                        create_date=datetime.datetime.utcnow(),
                                        update_date=datetime.datetime.utcnow())
@@ -1266,7 +1290,7 @@ def party(request):
                 else:
                     AppInfo.objects.create(app_id=int(ap_id), responsible_party=json.dumps(list))
                 Message.objects.create(message_content='产品负责方更新', message_type=int(5),
-                                       message_handler_type=int(5),is_read=1,
+                                       message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
                                        create_date=datetime.datetime.utcnow(),
                                        update_date=datetime.datetime.utcnow())
