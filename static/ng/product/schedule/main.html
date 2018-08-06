@@ -360,14 +360,14 @@
         $("#ul_id_party input[type='text']").each(function () {
 
             aa.push({"title": $(this).val()})
-            y = $(this).val();
         });
-        console.log('last', y)
+
         console.log(app_id1)
         console.log(aa)
 
         var json_a = JSON.stringify(aa);
-
+        var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+        var $scope = angular.element(appElement).scope();
         $.ajax({
             url: '/product/party',
             type: "POST",
@@ -386,6 +386,15 @@
                     attrr.appendTo("#plans-users")
                 }
 
+                for (var is_id = 0,is_leng = $scope.response.length;is_id<is_leng;is_id++){
+                    $scope.response[is_id]['partys']=[]
+                    for (var ii = 0, a_l = aa.length; ii < a_l; ii++) {
+                        console.log('xxxxxxx')
+
+                        $scope.response[is_id]['partys'].push({"title":aa[ii]['title']})
+                }
+
+                }
 
                 layui.use('form', function () {
                     var form = layui.form;
@@ -510,7 +519,6 @@
                 } else {
                     var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
                     var $scope = angular.element(appElement).scope();
-
                     var tmp_data = {
                         "plan": plans_name,
                         "party": plans_user,
