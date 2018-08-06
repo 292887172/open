@@ -84,7 +84,7 @@ angular.module('Product.schedule', ['ngRoute'])
 
                                 method: "POST",
                                 url: "/product/schedule/"+ '?' + "key=" + keysss,
-                                data: {'data': JSON.stringify(ss)},
+                                data: {'data': JSON.stringify(arr)},
                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
                             }).success(function (data) {
