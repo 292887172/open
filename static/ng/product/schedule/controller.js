@@ -61,9 +61,11 @@ angular.module('Product.schedule', ['ngRoute'])
                         console.log(arr.length);
                         console.log('sss',$scope.response)
                         ss=[]
+
                         for (var ir =0,il_len = arr.length;ir<il_len;ir++){
 
                             ss.push($scope.response[parseInt(arr[ir])-1])
+
                             console.log($scope.response[ir]['id'],ir + 1,arr[ir])
                         }
 
