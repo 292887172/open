@@ -129,6 +129,9 @@ def home(request):
         if action == 'submit_email':
             update_group_info(user, team_info)
             return HttpResponse(json.dumps({"status": "ok"}))
+        elif action == 'delete_email':
+            update_group_info(user, team_info)
+            return HttpResponse(json.dumps({"status": "ok"}))
         r = RedisBaseHandler().client
         try:
             # e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
