@@ -1013,9 +1013,12 @@ def schedule(request):
                     update_dict['plan'] = i.ui_plan
                     id_list.append(i.ui_upload_id)
                     try:
-                        url = eval(i.ui_content)
+                        if i.ui_content:
+                            url = eval(i.ui_content)
+                        else:
+                            url = ''
                     except Exception as e:
-                        url = [i.ui_content]
+                        url = ''
                     if not isinstance(url, list):
                         url = [url]
                     update_dict['url'] = url
@@ -1065,6 +1068,7 @@ def schedule(request):
             data1 = json.loads(data)
 
             for i in data1:
+                #print(len(str(i['url'])),str(i['url']))
                 if len(str(i['url'])) < 10:
                     url = ''
                 else:
