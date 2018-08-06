@@ -1020,6 +1020,7 @@ def schedule(request):
                         url = ''
                     if not isinstance(url, list):
                         url = [url]
+                    print('url',url)
                     update_dict['url'] = url
 
                     if len(str(url)) > int(10):
@@ -1065,28 +1066,22 @@ def schedule(request):
         if data:
             key = request.GET.get('key', '')
             data1 = json.loads(data)
+            for i in range(len(data1)):
+                ids = int(i)+1
+                Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=int(data1[i]))
+                for i in Dobj:
+                    try:
+                        Dobj.update(ui_upload_id=int(ids*100))
+                    except Exception as e:
+                        print(e)
+            Orders = DocUi.objects.filter(ui_key=key)
+            list_up_id = []
+            for i in Orders:
+                list_up_id.append(i.ui_upload_id)
+            for isd in list_up_id:
+                DocUi.objects.filter(ui_key=key,ui_upload_id=int(isd)).update(ui_upload_id=int(isd/100))
+            return HttpResponse(json.dumps({"code":0}))
 
-            for i in data1:
-                #print(len(str(i['url'])),str(i['url']))
-                if len(str(i['url'])) < 10:
-                    url = ''
-                else:
-                    url = json.dumps(i['url'])
-                if not i['party']:
-                    i['party'] = ''
-                if not i['remark']:
-                    i['party'] = ''
-                if not i['time_stemp']:
-                    i['time_stemp'] = ''
-                obj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(i['id']))
-                tt = obj.update(ui_content=url, ui_party=i['party'], ui_remark=i['remark'],
-                                ui_plan=i['plan'], ui_type='UI', ui_title='',
-                                ui_time_stemp=i['time_stemp'], ui_ack=int(i['ack']))
-                if tt:
-                    data = {"code": 0}
-                else:
-                    data = {"code": 1}
-            return HttpResponse(json.dumps(data))
         if action == 'del':
             # 删除下载链接
             del_id = request.POST.get('del_id', '')
