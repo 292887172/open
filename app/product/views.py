@@ -1021,6 +1021,7 @@ def schedule(request):
                         url = ''
                     if not isinstance(url, list):
                         url = [url]
+                    print('url',url)
                     update_dict['url'] = url
 
                     if len(str(url)) > int(10):
@@ -1068,7 +1069,7 @@ def schedule(request):
             data1 = json.loads(data)
 
             for i in data1:
-                #print(len(str(i['url'])),str(i['url']))
+                # print(len(str(i['url'])),str(i['url']))
                 if len(str(i['url'])) < 10:
                     url = ''
                 else:

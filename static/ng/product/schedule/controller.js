@@ -60,7 +60,7 @@ angular.module('Product.schedule', ['ngRoute'])
                         layer.confirm('确认提交计划？', {
                             btn: ['确定', '取消'] //按钮
                         },
-                        function () {
+                        function (index) {
                             console.log("确定");
                             var arr = $( "#ul_id" ).sortable('toArray');
                             console.log(arr);
@@ -76,13 +76,15 @@ angular.module('Product.schedule', ['ngRoute'])
                             for (var irr =0,il_lens = ss.length;irr<il_lens;irr++){
                                 ss[irr]['id'] = irr + 1
                             }
+                            console.log(ss)
                             $scope.response = ss;
                             $scope.$apply();
+                            layer.close(index);
                             $.ajax({
 
                                 method: "POST",
                                 url: "/product/schedule/"+ '?' + "key=" + keysss,
-                                data: {'data': JSON.stringify(arr)},
+                                data: {'data': JSON.stringify(ss)},
                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
                             }).success(function (data) {
@@ -98,7 +100,8 @@ angular.module('Product.schedule', ['ngRoute'])
                             },
                         function () {
                             console.log('取消')
-
+                            console.log('sss',$scope.response)
+                            $scope.$apply();
                         }
                         )
 
