@@ -25,8 +25,9 @@ from common.message_helper import save_user_message
 from conf.message import *
 
 from django.db.models import Q
-
+from functools import reduce
 import logging
+
 import datetime
 __author__ = 'achais'
 _convention = ConventionValue()
@@ -117,6 +118,39 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
     except Exception as e:
         logging.getLogger("").error(e)
         return ""
+
+
+def get_config_funs(developer_id,app_category_detail):
+    """
+
+    :param developer_id:
+    :param app_category_detail:
+    :return:
+    """
+    print(developer_id,app_category_detail)
+    try:
+        Appobj = App.objects.filter(developer_id=developer_id,app_device_type=app_category_detail)
+
+        if not Appobj:
+            print('no')
+        else:
+            print('xxtt')
+            device_conf_list = []
+            print(developer_id)
+            device_conf_default = gen_app_default_conf(app_category_detail)
+            for i in Appobj:
+                reduce
+                print('config',i.device_conf)
+                config_data = json.loads(i.device_conf)
+                print(config_data,type(config_data))
+                for ii in config_data:
+                    device_conf_list.append(ii)
+                    print('config',type(ii),ii['Stream_ID'])
+            print('sss',list(set(device_conf_list)))
+            #return developer_id
+    except Exception as e:
+        print(e)
+
 
 
 def update_app_fun_widget(data):

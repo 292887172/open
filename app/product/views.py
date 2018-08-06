@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
-from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
+from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
+    get_mod_funs,get_config_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -355,7 +356,7 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "厨房类")
-        app_category_detail = request.POST.get("product_category_detail", 0)
+        app_category_detail = request.POST.get("product_category_detail", 0)  # 产品类型
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
 
@@ -378,9 +379,9 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-
+        print('xxxx')
         device_conf = gen_app_default_conf(app_category_detail)
-
+        get_config_funs(developer_id, app_category_detail)
         app_logo = get_app_default_logo(app_category_detail)
 
         if not developer_id:
@@ -397,6 +398,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            #  根据创建者和产品类型判断用户是否创建过此类型产品
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,

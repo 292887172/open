@@ -100,8 +100,7 @@ angular.module('Product.schedule', ['ngRoute'])
                             },
                         function () {
                             console.log('取消')
-                            console.log('sss',$scope.response)
-                            $scope.$apply();
+                            $("#ul_id").sortable( "cancel" );
                         }
                         )
 
