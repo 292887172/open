@@ -358,8 +358,7 @@
         // 负责方信息
         var aa = []
         $("#ul_id_party input[type='text']").each(function () {
-
-            aa.push({"title": $(this).val()})
+                aa.push({"title": $(this).val()})
         });
 
         console.log(app_id1)
@@ -732,7 +731,7 @@
                     var div = document.getElementsByClassName('my-user-list')[0];
                     div.scrollTop = div.scrollHeight;
                 }else {
-                    layer.msg('不可为空', {icon: 1, time: 2000});
+                    layer.msg('不可为空,请输入', {icon: 1, time: 2000});
                 }
 
 
