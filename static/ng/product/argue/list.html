@@ -330,6 +330,10 @@
                                                     <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
                                                     <span class="lbl bigger-120"> 定时型</span>
                                                 </label>
+                                                <label>
+                                                    <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectEnum(this)" value="6"/>
+                                                    <span class="lbl bigger-120"> 枚举型</span>
+                                                </label>
                                         </div>
                                         <div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
                                             <table border=0>
@@ -353,11 +357,12 @@
                                             <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
                                             <div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
-                                        <div id="selectInt" style="background-color:#fff;display:none;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                        <div id="selectInt" style="background-color:#fff;display:none;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:280px;padding:5px 10px">
                                             <table border=0>
                                                 <tr>
                                                     <td height=30px align="center">最小值</td>
                                                     <td align="center">最大值</td>
+                                                    <td align="center"> 间距</td>
                                                 </tr>
                                                 <tr style="border-top:1px solid #ccc">
                                                     <td width=80px>
@@ -365,6 +370,10 @@
                                                     </td>
                                                     <td width=80px align="right">
                                                         <input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=1 onblur="checkInt()">
+                                                    </td>
+                                                    <td width=80px >
+                                                         <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;width: 80px;text-align: center">
+                                                        <div id="slider" style="width: 80px"></div>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -386,6 +395,29 @@
                                                 </tr>
                                             </table>
                                             <div id="checkTimer" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
+                                        </div>
+                                        <div id="selectEnum" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
+                                            <table border=0 style="width: 160px">
+                                                <tr>
+                                                    <td height=30px align="center">最小值</td>
+                                                    <td align="center">最大值</td>
+
+                                                </tr>
+                                                <tr style="border-top:1px solid #ccc">
+                                                    <td width=80px>
+                                                        <input ng-disabled='{[{ disabled }]}' id="minTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkEnum()">
+                                                    </td>
+                                                    <td width=80px align="right">
+                                                        <input ng-disabled='{[{ disabled }]}' id="maxTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkEnum()">
+                                                    </td>
+
+
+                                                </tr>
+                                                <tr>
+
+                                                </tr>
+                                            </table>
+                                            <div id="selectEnum" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
                                         </div>
                                 </div>
                             </div>
