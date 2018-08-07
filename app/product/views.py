@@ -693,6 +693,7 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
+                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -701,6 +702,7 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
+                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
