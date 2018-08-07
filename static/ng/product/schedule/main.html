@@ -717,10 +717,28 @@
 
     //添加负责人
     $(".plans-user-add").click(function () {
-        let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
-        myuser_add.appendTo(".my-user-list ul")
-        var div = document.getElementsByClassName('my-user-list')[0];
-        div.scrollTop = div.scrollHeight;
+        var len = $("#ul_id_party li input").length;
+        if (len==0){
+            let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
+            myuser_add.appendTo(".my-user-list ul")
+            var div = document.getElementsByClassName('my-user-list')[0];
+            div.scrollTop = div.scrollHeight;
+        }else {
+
+                var z_int = parseInt(len)-1
+                if($("#ul_id_party li input")[z_int].value){
+                    let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
+                    myuser_add.appendTo(".my-user-list ul")
+                    var div = document.getElementsByClassName('my-user-list')[0];
+                    div.scrollTop = div.scrollHeight;
+                }else {
+                    layer.msg('不可为空', {icon: 1, time: 2000});
+                }
+
+
+        }
+
+
     })
 
     //点击负责方弹窗保存
@@ -732,17 +750,33 @@
     // 删除负责方
     function Del_Party(that) {
         console.log(that)
+
         var rr = that.parentNode.firstElementChild.value
-        $.ajax({
+        console.log(rr)
+        if (rr){
+             $.ajax({
             url: '/product/party',
             type: "POST",
             data: {"key": keysss, "app_id": app_id1, "datas": rr, "action": 'del'},
             success: function (data) {
                 console.log(data)
-                that.parentNode.remove()
+                data = JSON.parse(data)
+                if (data['code']==0){
+                    that.parentNode.remove()
+                }else if(data['code']==1){
+                    that.parentNode.remove()
+                    console.log('此数据不在数据库中')
+                }else{
+                    console.log('error')
+                }
+
             }
         })
-        console.log(rr)
+        }else {
+            that.parentNode.remove()
+        }
+
+
     }
 
     //点击删除计划
