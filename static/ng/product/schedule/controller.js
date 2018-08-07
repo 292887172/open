@@ -91,9 +91,9 @@ angular.module('Product.schedule', ['ngRoute'])
                                 data = JSON.parse(data)
                                 console.log('返回的数据',data)
                                 if (data['code']==0){
-                                    bootbox.alert('更新成功')
+                                    layer.msg('编辑成功', {icon: 6, time: 2000});
                                 }else{
-                                    bootbox.alert('更新失败')
+                                    layer.msg('编辑失败', {icon: 1, time: 2000});
                                 }
 
                             })
