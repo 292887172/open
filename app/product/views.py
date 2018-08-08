@@ -32,7 +32,7 @@ from model.center.app import App
 
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
-
+from model.center.firmware import Firmware
 from model.center.app_version import AppVersion
 from model.center.app_info import AppInfo
 from model.center.group import Group
@@ -284,11 +284,17 @@ def product_controldown(request):
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
         unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
+        print(request.COOKIES['COOKIE_USER_ACCOUNT'])
+        if request.COOKIES['COOKIE_USER_ACCOUNT'] == 'admin':
+            fireware = Firmware.objects.all()
+        else:
+            fireware = ''
         content = dict(
             keyword=keyword,
             developer=developer,
             unpublished_apps=unpublished_apps,
             default_apps=default_apps,
+            fireware=fireware
 
         )
 
@@ -1367,7 +1373,22 @@ def upload_file(request):
                                        update_date=datetime.datetime.utcnow())
                 return HttpResponse(
                     json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
-
+        elif action == 'firmware':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            sizes = request.POST.get('sizes','')
+            fobj = Firmware.objects.create(firmware_size=int(sizes),firmware_name=appversion_remark,firmware_version=app_version,firmware_url=rr['data'],firmware_create_date=datetime.datetime.utcnow(),firmware_update_date=datetime.datetime.utcnow())
+            if fobj:
+                return HttpResponse(json.dumps({"code": 0}))
+            else:
+                return HttpResponse(json.dumps({"code": 2}))
         else:
             t = int(id) + int(1)
             user1 = request.COOKIES['COOKIE_USER_ACCOUNT']

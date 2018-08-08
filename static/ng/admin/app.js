@@ -13,7 +13,9 @@ angular.module('Admin', [
     "Admin.function",
     "Admin.api",
     "Admin.doc",
-    "Admin.device"
+    "Admin.device",
+    "Admin.firmware"
+
 ])
     .config(['$routeProvider', "$interpolateProvider", function ($routeProvider, $interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
