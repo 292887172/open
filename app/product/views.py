@@ -135,7 +135,8 @@ def product_list(request):
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
                 "is_share": 0,
-                "has_version": has_version
+                "has_version": has_version,
+                "app_screen_size": app.app_screen_size
 
             }
             tmp_apps.append(tmp)
@@ -159,7 +160,8 @@ def product_list(request):
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
                     "is_share": 1,
-                    "has_version": has_version
+                    "has_version": has_version,
+                    "app_screen_size":j.app_screen_size
 
                 }
                 tmp_apps.append(tmp)
