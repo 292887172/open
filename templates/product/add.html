@@ -221,10 +221,8 @@
                                                 class="sel2">
                                             <option value="0">请选择屏幕尺寸</option>
                                             <option value="3">6.8寸</option>
-                                            <option value="1">4.3寸</option>
                                             <option value="2">5寸</option>
-
-
+                                            <option value="1">4.3寸</option>
                                         </select>
                                     </dd>
                                     <span style="color: red;display: none;padding-left: 20px;" class="check-sel">请选择屏幕尺寸</span>
@@ -265,7 +263,7 @@
                                     <dt>指令类型</dt>
                                     <dd>
                                         <input type="text" name="product_group" id="product_group" maxlength="48"
-                                               class="w280 form-control hidden" placeholder="产品类型" value="3">
+                                               class="w280 form-control hidden" placeholder="产品类型" value="">
                                         <select name="product_command" onclick="showHide()" id="product_command"
                                                 ng-disabled="{[{ disabled }]}" class="sel2" style="width:96px;">
                                             <option value="是" selected="selected">全指令</option>
@@ -286,7 +284,15 @@
                                         <dt><img src="{% static 'image/product/wifiscreen.png' %}"><i class="icon-selected"></i></dt>
                                         <dd>WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</dd>
                                     </dl>
+                                    <dl class="plan" onclick="selectScheme(this, 2)" id="f3">
+                                        <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</dd>
+                                    </dl>
 
+                                    <dl onclick="selectScheme(this, 1)" id="f1" class="plan">
+                                        <dt><img src="{% static 'image/product/android.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱</dd>
+                                    </dl>
 
                                 </div>
                                 <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
