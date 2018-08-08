@@ -145,6 +145,8 @@ def get_config_funs(developer_id, app_category_detail):
                 if data_id not in new_data:
                     new_data.append(data_id)
             # new_data = new_data.sort(key=lambda x: int(x.get("id")))
+            for i in range(len(new_data)):
+                new_data[i]['id'] = i + 1
             return new_data
     except Exception as e:
         print(e)
