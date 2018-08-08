@@ -1,17 +1,20 @@
 <link rel="stylesheet" href="/static/layui/css/layui.css">
 <link rel="stylesheet" href="/static/css/product/planslist.css">
 <style>
-    .rightMain{
+    .rightMain {
         width: auto;
         float: none;
     }
-    .leftSide{
-        display: none!important;
+
+    .leftSide {
+        display: none !important;
     }
-    body{
+
+    body {
         line-height: normal;
     }
-     #user_address .modal-header {
+
+    #user_address .modal-header {
         background: #dfe6eb;
     }
 
@@ -59,12 +62,14 @@
         text-indent: 0;
         line-height: 20px;
     }
-        .modal-label{
+
+    .modal-label {
         display: inline-block;
         line-height: normal;
         margin-bottom: 10px;
     }
-    .modal-name{
+
+    .modal-name {
         cursor: pointer;
         max-width: 200px;
         overflow: hidden;
@@ -74,13 +79,16 @@
         display: inline-block;
         vertical-align: text-bottom;
     }
-    .modal-name:hover{
+
+    .modal-name:hover {
         color: #ff6202;
     }
-    #doUpload:hover{
+
+    #doUpload:hover {
         background-color: #9dabbb !important;
     }
-    .my_container{
+
+    .my_container {
         position: relative;
         display: none;
         text-align: left;
@@ -89,7 +97,8 @@
         color:#fff;
         background-color: #adacac;
     }
-    #progress{
+
+    #progress {
         text-align: center;
         font-size: 12px;
         line-height: 1;
@@ -97,7 +106,8 @@
         background-color: orange;
         display: inline-block;
     }
-    #progress-text{
+
+    #progress-text {
         position: absolute;
         display: block;
         margin: 0 auto;
@@ -108,32 +118,40 @@
         font-size: 12px;
         line-height: 1.2;
     }
-    .rightMain{
+
+    .rightMain {
         border: none;
         background-color: transparent;
     }
-    .view-plans-left,.task-detail{
+
+    .view-plans-left, .task-detail {
         border-radius: 5px;
     }
-    .layui-select-title input{
+
+    .layui-select-title input {
         background-color: #fff;
     }
-    .newplans-title i{
+
+    .newplans-title i {
         line-height: 1;
         top: 0;
     }
-    .plans-user-info div:first-child{
+
+    .plans-user-info div:first-child {
         width: 30px;
         text-align: center;
     }
-    .times img{
+
+    .times img {
         width: 20px;
         vertical-align: text-bottom;
     }
-    .my-ant-tooltip-inner{
+
+    .my-ant-tooltip-inner {
         width: auto !important;
     }
-    .footer{
+
+    .footer {
         position: inherit;
     }
     .close{
@@ -145,45 +163,46 @@
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                &times;
-            </button>
-            <h4 class="modal-title" id="myModalLabel">
-                上传文件
-            </h4>
-        </div>
-        <div class="my_container">
-            <span id="progress"></span>
-            <span id="progress-text">等待上传</span>
-        </div>
-        <div class="modal-body">
-
-            <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
-            <input class="file" id="file" name="file" style="display: none" type="file"/>
-            <div style="overflow: hidden;">
-                <span>备注信息：</span><input type="text" id="ui_info" class="xxx" placeholder="备注信息">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    上传文件
+                </h4>
             </div>
-            <div style="text-align: center;margin-left: -20%;margin-top: 10px">
-                <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
-                    style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
-                上传
-            </button>
+            <div class="my_container">
+                <span id="progress"></span>
+                <span id="progress-text">等待上传</span>
+            </div>
+            <div class="modal-body">
+
+                <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
+                <input class="file" id="file" name="file" style="display: none" type="file"/>
+                <div style="overflow: hidden;">
+                    <span>备注信息：</span><input type="text" id="ui_info" class="xxx" placeholder="备注信息">
+                </div>
+                <div style="text-align: center;margin-left: -20%;margin-top: 10px">
+                    <button id="doUpload" class="btn btn-info" onclick="doUploadFile()"
+                            style="width:80px;height:30px;padding-bottom: 0px;padding-top: 0px">
+                        上传
+                    </button>
+                </div>
+
             </div>
 
+
         </div>
-
-
     </div>
-</div>
 </div>
 <div id="my-plans" ng-controller="ScheduleCtrl">
     <div class="view-plans-left">
 
         <div class="plans-head">
             <p class="new-plan" onclick="open_plans('new')">＋ 新建</p>
-            <p class="new-mainpersol" onclick="add_user()"><img src="http://storage.56iq.net/group1/M00/47/41/CgoKQ1thH12AWbg1AAADGhlwMl8924.png" alt="">负责方</p>
+            <p class="new-mainpersol" onclick="add_user()"><img
+                    src="http://storage.56iq.net/group1/M00/47/41/CgoKQ1thH12AWbg1AAADGhlwMl8924.png" alt="">负责方</p>
         </div>
         <div class="div-flex plans-tab">
             <p class="se_num">序</p>
@@ -193,11 +212,13 @@
         </div>
         <div id="plans-list">
             <ul id="ul_id">
-                <li ng-repeat="x in response" id="{[{$index+1}]}" class="div-flex" ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}' >
-                    <div class="plans-user-info div-flex" data="{[{x.id}]}" >
+                <li ng-repeat="x in response" id="{[{$index+1}]}" class="div-flex"
+                    ng-click="Show_Detail_Plan(x.id,$index)" ng-class='{plans_before: $index==focus}'>
+                    <div class="plans-user-info div-flex" data="{[{x.id}]}">
                         <div style="font-size: 16px;">{[{$index+1}]}</div>
-                        <div  class="name">
-                            <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)" ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
+                        <div class="name">
+                            <p class="text-ellipsis"><span class="plan-namer" ng-mouseover="Span_Over($event)"
+                                                           ng-mouseout="Span_Out($event)">{[{x.party}]}</span></p>
                             <div class="my-tooltip-box show_div">
                                 <div class="my-ant-tooltip-inner">负责方:{[{x.party}]}</div>
                                 <div class="my-ant-tooltip-arrow"></div>
@@ -206,13 +227,15 @@
                         <div class="file-info">
                             <span class="text-ellipsis">{[{x.plan}]}</span>
 
-                            <img ng-if="x.show_url==1" src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
+                            <img ng-if="x.show_url==1"
+                                 src="http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png">
                         </div>
                         <div class="plan_over_time">{[{x.time_stemp.split("~")[1]}]}</div>
                     </div>
                     <div class="confirm-info">
-                        <p ng-if="x.ack==1"  data="{[{x.ack}]}" class="ifnot" style="color: #ababab;" >√ 已确认</p>
-                        <p ng-if="x.ack==0" data="{[{x.ack}]}" style="color: #2385ff;" class="plans_comfirm ifnot" ng-click="Save_Plan(x.id)">确认</p>
+                        <p ng-if="x.ack==1" data="{[{x.ack}]}" class="ifnot" style="color: #ababab;">√ 已确认</p>
+                        <p ng-if="x.ack==0" data="{[{x.ack}]}" style="color: #2385ff;" class="plans_comfirm ifnot"
+                           ng-click="Save_Plan(x.id)">确认</p>
                     </div>
                 </li>
             </ul>
@@ -223,11 +246,13 @@
     <div class="task-detail">
         <div class="task-head div-flex">
             <div class="task-title" style="font-size: 16px">
-                <p class="task-id-name" style="display: inline-block;margin-right: 10px">1</p><p class="task-plan-name" style="display: inline-block">提交详细功能计划书</p>
+                <p class="task-id-name" style="display: inline-block;margin-right: 10px">1</p>
+                <p class="task-plan-name" style="display: inline-block">提交详细功能计划书</p>
                 <input type="text" class="task-ack-name" style="display: none">
             </div>
             <div class="task-action div-flex">
-                <p style="margin-right: 20px;" onclick="open_plans('edit')"><img src="http://storage.56iq.net/group1/M00/47/49/CgoKQ1thTxaAbmV_AAACSBhtGbU871.png" alt="">编辑</p>
+                <p style="margin-right: 20px;" onclick="open_plans('edit')"><img
+                        src="http://storage.56iq.net/group1/M00/47/49/CgoKQ1thTxaAbmV_AAACSBhtGbU871.png" alt="">编辑</p>
                 <p id="dell_plan">删除</p>
             </div>
         </div>
@@ -241,7 +266,9 @@
             </div>
         </div>
         <div class="remarks">备注：</div>
-        <div class="upfiles">上传：<button class="open-upload-window" data-toggle="modal" data-target="#user_address" >+ 上传</button></div>
+        <div class="upfiles">上传：
+            <button class="open-upload-window" data-toggle="modal" data-target="#user_address">+ 上传</button>
+        </div>
         <div class="upfile">
             <div class="file-list" style="display: none">
                 <div class="div-flex file-box">
@@ -272,8 +299,8 @@
                 <p class="news-user">负责方</p>
                 <div class="my-plug">
                     <form class="layui-form my-select" action="">
-                        <select name="city" lay-verify="" id="plans-users" >
-                          <option value="">请选择负责人</option>
+                        <select name="city" lay-verify="" id="plans-users">
+                            <option value="">请选择负责人</option>
                         </select>
                     </form>
                 </div>
@@ -291,7 +318,7 @@
         </div>
     </div>
     <div class="news-plan-btn">
-        <button class="close-info" >取消</button>
+        <button class="close-info">取消</button>
         <button class="up-info" onclick="upto_plans_info()">确定</button>
     </div>
 </div>
@@ -305,7 +332,7 @@
         <i>×</i>
     </div>
     <div class="my-user-list">
-        <ul id="ul_id_party" >
+        <ul id="ul_id_party">
 
         </ul>
     </div>
@@ -318,12 +345,12 @@
     var end_time = "";
     var being = true;
     $(".plan-namer").mouseover(function () {
-        if(being){
+        if (being) {
             let w_span = $(this).width();
-            if (w_span > 100){
+            if (w_span > 100) {
                 w_span = 100
             }
-            $(this).parent(".text-ellipsis").siblings(".my-tooltip-box").css("left",-(100-w_span)/3 + "px");
+            $(this).parent(".text-ellipsis").siblings(".my-tooltip-box").css("left", -(100 - w_span) / 3 + "px");
             $(this).parent(".text-ellipsis").siblings(".my-tooltip-box").fadeIn();
         }
         being = false
@@ -336,55 +363,61 @@
         // 负责方添加
         //设置负责方
         // 负责方信息
-        var aa =[]
-        $("#ul_id_party input[type='text']").each(function(){
+        var aa = []
+        $("#ul_id_party input[type='text']").each(function () {
+                aa.push({"title": $(this).val()})
+        });
 
-            aa.push({"title":$(this).val()})
-            y = $(this).val();
-          });
-        console.log('last',y)
         console.log(app_id1)
         console.log(aa)
 
         var json_a = JSON.stringify(aa);
-
+        var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+        var $scope = angular.element(appElement).scope();
         $.ajax({
-             url: '/product/party',
-             type:"POST",
-             data:{"key":keysss,"app_id":app_id1,"listed":json_a},
-             success:function (data) {
-                 data = JSON.parse(data)
-                 console.log(data)
+            url: '/product/party',
+            type: "POST",
+            data: {"key": keysss, "app_id": app_id1, "listed": json_a},
+            success: function (data) {
+                data = JSON.parse(data)
+                console.log(data)
 
-                 var file = $(".layui-anim-upbit")[0]
-                 $("#plans-users").empty()
-                 var attrrs = $("<option value=\"\">请选择负责方</option>")
-                 attrrs.appendTo("#plans-users")
-                 console.log('长度设定',aa.length)
-                 for (var ii = 0,a_l = aa.length;ii<a_l;ii++) {
-                     var attrr = $("<option value=\""+ aa[ii]['title']+"\">"+aa[ii]['title']+"</option>");
-                     attrr.appendTo("#plans-users")
-                 }
+                var file = $(".layui-anim-upbit")[0]
+                $("#plans-users").empty()
+                var attrrs = $("<option value=\"\">请选择负责方</option>")
+                attrrs.appendTo("#plans-users")
+                console.log('长度设定', aa.length)
+                for (var ii = 0, a_l = aa.length; ii < a_l; ii++) {
+                    var attrr = $("<option value=\"" + aa[ii]['title'] + "\">" + aa[ii]['title'] + "</option>");
+                    attrr.appendTo("#plans-users")
+                }
 
+                for (var is_id = 0,is_leng = $scope.response.length;is_id<is_leng;is_id++){
+                    $scope.response[is_id]['partys']=[]
+                    for (var ii = 0, a_l = aa.length; ii < a_l; ii++) {
+                        console.log('xxxxxxx')
 
+                        $scope.response[is_id]['partys'].push({"title":aa[ii]['title']})
+                }
 
+                }
 
-                 layui.use('form', function () {
+                layui.use('form', function () {
                     var form = layui.form;
                     form.render('select');
                 });
-             }
+            }
         })
     }
 
     function open_plans(val) {
         var my_mask = $("<div></div>");
-        my_mask.attr('id','mask-box');
+        my_mask.attr('id', 'mask-box');
         my_mask.appendTo("body");
         //新增计划
-        if (val == 'new'){
+        if (val == 'new') {
             $("#newplans-window").fadeIn();
-            var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1 ;
+            var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1;
             document.getElementById("hides").value = num
             //清空计划
             $("#news-plan-name").val("");  //获取计划名称
@@ -394,34 +427,35 @@
             ontimes()
         }
         //编辑计划
-        if (val == 'edit'){
+        if (val == 'edit') {
             $("#newplans-window").fadeIn();
-            var ifnot = document.getElementsByClassName("task-ack-name")[0].value
-            if (ifnot ==1){
-                console.log('yy',document.getElementsByClassName("task-action")[0])
+            var ifnot = document.getElementsByClassName("task-ack-name")[0].value;
+            if (ifnot == 1) {
+                console.log('yy', document.getElementsByClassName("task-action")[0])
             }
 
             console.log(ifnot)
-            document.getElementById("news-plan-name").value= document.getElementsByClassName("task-plan-name")[0].innerHTML.replace(/[ /d]/g, '')
-            document.getElementById("news-plan-remarks").value= document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1]
-            document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML
+            document.getElementById("news-plan-name").value = document.getElementsByClassName("task-plan-name")[0].innerHTML;
+            document.getElementById("news-plan-remarks").value = document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1];
+            document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML;
             $("#plans-users").val(document.getElementsByClassName("names")[0].innerHTML);
 
             layui.use('form', function () {
-                    var form = layui.form;
-                    form.render('select');
-                });
+                var form = layui.form;
+                form.render('select');
+            });
             console.log(document.getElementsByClassName("times-text")[0].innerHTML)
             ontimes(document.getElementsByClassName("times-text")[0].innerHTML)
         }
     }
 
-    function add_user(){
+    function add_user() {
         var my_mask = $("<div></div>");
-        my_mask.attr('id','mask-box');
+        my_mask.attr('id', 'mask-box');
         my_mask.appendTo("body");
         $("#plans-user-list").fadeIn();
     }
+
     //关闭计划弹窗
     $("#newplans-window i,.news-plan-btn .close-info").click(function () {
         $("#mask-box").remove();
@@ -429,81 +463,85 @@
     })
 
     //点击计划弹窗确定
-    function upto_plans_info(){
+    function upto_plans_info() {
         var plans_name = $("#news-plan-name").val();  //获取计划名称
         var plans_user = $("#plans-users").val();     //获取负责人名称
         var plans_time = $("#test15").val();          //获取计划时间
         var plans_remarks = $("#news-plan-remarks").val();  //获取备注
 
 
-        console.log(plans_name,plans_user,plans_time,plans_remarks)
-        if (plans_name == ""){
-            layer.msg('请填写计划名称', {icon: 5,time:2000});
+        console.log(plans_name, plans_user, plans_time, plans_remarks)
+        if (plans_name == "") {
+            layer.msg('请填写计划名称', {icon: 5, time: 2000});
             return
         }
-        if (plans_user == ""){
-            layer.msg('请填写负责方', {icon: 5,time:2000});
+        if (plans_user == "") {
+            layer.msg('请填写负责方', {icon: 5, time: 2000});
             return
         }
         var idd = document.getElementById("hides").value
-        console.log(idd,plans_user,plans_remarks,plans_time,plans_name)
+        console.log(idd, plans_user, plans_remarks, plans_time, plans_name)
         $.ajax({
-             url: '/product/schedule',
-             type:"POST",
-             data:{"key":keysss,"action":"save","num":idd,"plans_name":plans_name,"plans_time":plans_time,"plans_user":plans_user,"plans_remarks":plans_remarks},
-             success:function(data){
-                 var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1
-                 console.log(num)
-                 if (parseInt(idd) < parseInt(num)) {
+            url: '/product/schedule',
+            type: "POST",
+            data: {
+                "key": keysss,
+                "action": "save",
+                "num": idd,
+                "plans_name": plans_name,
+                "plans_time": plans_time,
+                "plans_user": plans_user,
+                "plans_remarks": plans_remarks
+            },
+            success: function (data) {
+                var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1
+                console.log(num)
+                if (parseInt(idd) < parseInt(num)) {
 
-                     document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val();
-                     document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val();
-                     document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val();
-                     document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val();
+                    document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val();
+                    document.getElementsByClassName("names")[0].innerHTML = $("#plans-users").val();
+                    document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val();
+                    document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val();
 
-                     var edit_id = parseInt(idd) - parseInt(1)
+                    var edit_id = parseInt(idd) - parseInt(1)
 
-                     //计划名称
-                     console.log(edit_id)
-                     var plan_name = $("#news-plan-name").val()
-                     var names = $("#plans-users").val()
+                    //计划名称
+                    console.log(edit_id)
+                    var plan_name = $("#news-plan-name").val()
+                    var names = $("#plans-users").val()
 
-                     console.log(plan_name,names)
-                     $("#ul_id li:eq("+edit_id+") .text-ellipsis")[1].innerHTML = plan_name
-                     // 负责方
-                     $("#ul_id li:eq("+edit_id+") .text-ellipsis span")[0].innerHTML = names;
-                     // 最后时间
-                     if(end_time){
-                          $("#ul_id li:eq("+edit_id+") .plan_over_time")[0].innerHTML = end_time;
-                     }else {
-                         console.log('无变动')
-                     }
+                    console.log(plan_name, names)
+                    $("#ul_id li:eq(" + edit_id + ") .text-ellipsis")[1].innerHTML = plan_name
+                    // 负责方
+                    $("#ul_id li:eq(" + edit_id + ") .text-ellipsis span")[0].innerHTML = names;
+                    // 最后时间
+                    if (end_time) {
+                        $("#ul_id li:eq(" + edit_id + ") .plan_over_time")[0].innerHTML = end_time;
+                    } else {
+                        console.log('无变动')
+                    }
 
-                     layer.msg('编辑成功', {icon: 1,time:2000});
-                 }else{
-                     var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
-                     var $scope = angular.element(appElement).scope();
+                    layer.msg('编辑成功', {icon: 6, time: 2000});
+                } else {
+                    var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+                    var $scope = angular.element(appElement).scope();
+                    var tmp_data = {
+                        "plan": plans_name,
+                        "party": plans_user,
+                        "partys": $scope.response[0]['partys'],
+                        "id": num,
+                        "remark": plans_remarks,
+                        "time_stemp": plans_time,
+                        "url": '',
+                        "ack": 0
+                    };
+                    $scope.response.push(tmp_data);
+                    $scope.$apply();
 
-                     var tmp_data = {
-                                "plan":plans_name,
-                                "party":plans_user,
-                                "partys":$scope.response[0]['partys'],
-                                "id":num,
+                    layer.msg('新建成功', {icon: 6, time: 2000});
+                }
 
-                                "remark":plans_remarks,
-                                "time_stemp":plans_time,
-                                "url":[
-                                    ""
-                                ],
-                                "ack":0
-                            };
-                     $scope.response.push(tmp_data);
-                     $scope.$apply();
-
-                     layer.msg('新建成功', {icon: 1,time:2000});
-                 }
-
-             }
+            }
 
         })
         $("#mask-box").remove();
@@ -529,62 +567,80 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                xhr:function () {
+                xhr: function () {
                     console.log("开始上传")
-                  var myXhr = $.ajaxSettings.xhr();
-                  if(myXhr.upload){
-                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false)
-                  }
-                  return myXhr
-                },
-                success:function (data) {
-                console.log("上传成功")
-                data = JSON.parse(data)
-                if (data['code'] == 0) {
-
-                    document.getElementsByClassName("close")[0].click();
-                    console.log('iddd',idd)
-                    var idimg = parseInt(idd) -1
-                    var imgs = $("#ul_id li:eq("+idimg +") .file-info")[0]
-                    var img_length = $("#ul_id li:eq("+idimg +") .file-info img").length
-                    var input_img = $(
-                        "<img ng-if=\"x.show_url==1\" src=\"http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png\" class=\"ng-scope\">"
-                    )
-
-                    bootbox.alert('上传成功')
-                    if (parseInt(img_length) == 1){
-                        console.log('已有图标，无需添加')
-                    }else{
-                        input_img.appendTo(imgs)
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', progressHandlingFunction, false)
                     }
-                     var file_list = $(".upfile")[0]
-                     var addtr = $(
+                    return myXhr
+                },
+                success: function (data) {
+                    console.log("上传成功")
+                    data = JSON.parse(data)
+                    if (data['code'] == 0) {
+                        var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+                        var $scope = angular.element(appElement).scope();
+                        document.getElementsByClassName("close")[0].click();
+                        console.log('iddd', idd)
+                        var idimg = parseInt(idd) - 1
+                        var imgs = $("#ul_id li:eq(" + idimg + ") .file-info")[0]
+                        var img_length = $("#ul_id li:eq(" + idimg + ") .file-info img").length
+                        var input_img = $(
+                            "<img ng-if=\"x.show_url==1\" src=\"http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png\" class=\"ng-scope\">"
+                        )
+                        if ($scope.response[idimg]['url'] == 0) {
+                            $scope.response[idimg]['url'] = [{
+                                "urll": data['url'],
+                                "date": data['date'],
+                                "filename": data['filename'],
+                                "user": data['user']
+                            }]
+                        } else {
+                            $scope.response[idimg]['url'].push({
+                                "urll": data['url'],
+                                "date": data['date'],
+                                "filename": data['filename'],
+                                "user": data['user']
+                            })
+
+                        }
+                        layer.msg('上传成功', {icon: 6, time: 2000});
+                        if (parseInt(img_length) == 1) {
+                            console.log('已有图标，无需添加')
+                        } else {
+                            input_img.appendTo(imgs)
+                        }
+                        var file_list = $(".upfile")[0]
+                        var addtr = $(
                             "<div class=\"file-list\">\n" +
                             "                    <div class=\"div-flex file-box\">\n" +
-                            "                        <a class=\"file-name text-ellipsis\" title='" + data['filename'] + "' href=\"/product/download?url="+ data['urll'] +"&name="+ data['filename'] +"\">"+ data['filename'] +"</a>\n" +
-                            "                        <p class=\"file-user text-ellipsis\" title='"+ data['user'] +"'>"+ data['user'] +"</p>\n" +
-                            "                        <p class=\"file-time\">"+ data['date'] +"</p>\n" +
+                            "                        <a class=\"file-name text-ellipsis\" title='" + data['filename'] + "' href=\"/product/download?url=" + data['url'] + "&name=" + data['filename'] + "\">" + data['filename'] + "</a>\n" +
+                            "                        <p class=\"file-user text-ellipsis\" title='" + data['user'] + "'>" + data['user'] + "</p>\n" +
+                            "                        <p class=\"file-time\">" + data['date'] + "</p>\n" +
                             "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
                             "                    </div>\n" +
                             "                </div>"
                         )
                         addtr.appendTo(file_list)
 
-                } else {
-                    document.getElementsByClassName("close")[0].click();
-                    bootbox.alert('上传失败，文件格式不支持')
+                    } else {
+                        document.getElementsByClassName("close")[0].click();
+                        layer.msg('上传失败，文件格式不支持', {icon: 5, time: 2000});
+
+                    }
                 }
-            }
             })
         } else {
-            bootbox.alert('请选择上传文件')
+            layer.msg('请选择上传文件', {icon: 5, time: 2000});
         }
     }
-    function progressHandlingFunction(e){
-        if(e.lengthComputable){
-            var percent = e.loaded/e.total*100;
+
+    function progressHandlingFunction(e) {
+        if (e.lengthComputable) {
+            var percent = e.loaded / e.total * 100;
             let my_precent_data = percent.toFixed(2);
-            if (my_precent_data >99){
+            if (my_precent_data > 99) {
                 my_precent_data = 99;
             }
             $('#progress-text').html(my_precent_data + "%");
@@ -594,41 +650,42 @@
 
     var upto_file = $("#file");
     var upto_text = $(".modal-name");
-    upto_file.on('change',function (e) {
+    upto_file.on('change', function (e) {
         let upto_name = e.currentTarget.files[0].name;
         upto_text.text(upto_name);
-        upto_text.attr('title',upto_name);
+        upto_text.attr('title', upto_name);
         $(".my_container").slideDown();
     })
 
     function Deleted(that) {
-       var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
-       var filename =that.parentNode.firstElementChild.innerHTML
-       layer.confirm('确定删除计划？', {
-       btn: ['确定', '取消'] //按钮
-        }, function (index) {
+        var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
+        var filename = that.parentNode.firstElementChild.innerHTML
+        layer.confirm('确定删除计划？', {
+                btn: ['确定', '取消'] //按钮
+            }, function (index) {
 
-            layer.close(index);
-            $.ajax({
-               url: '/product/schedule',
-               type: "POST",
-               data: {"key": keysss, "action": "del", "del_id": idd, "del_filename": filename},
-               success: function (data) {
-                   data = JSON.parse(data)
-                   if (data['code'] === 0) {
-                      that.parentNode.parentNode.remove()
-                   } else {
-                       bootbox.alert("删除失败")
-                   }
+                layer.close(index);
+                $.ajax({
+                    url: '/product/schedule',
+                    type: "POST",
+                    data: {"key": keysss, "action": "del", "del_id": idd, "del_filename": filename},
+                    success: function (data) {
+                        data = JSON.parse(data)
+                        if (data['code'] === 0) {
+                            that.parentNode.parentNode.remove()
+                        } else {
+                            layer.msg('删除失败', {icon: 1, time: 2000});
+                        }
 
-               }
-           })
+                    }
+                })
 
-       },function () {
-            console.log("取消");
-        }
-       )
+            }, function () {
+                console.log("取消");
+            }
+        )
     }
+
     //关闭负责人弹窗
     $("#plans-user-list i").click(function () {
         $("#mask-box").remove();
@@ -637,38 +694,57 @@
 
     //时间范围实例
     ontimes()
-    function ontimes(mytime){
-        layui.use('laydate', function(){
+
+    function ontimes(mytime) {
+        layui.use('laydate', function () {
             var laydate = layui.laydate;
 
             laydate.render({
-            elem: '#test15'
-            ,range: '~'
-            ,value: mytime
-            ,format: 'yyyy-MM-dd'
-            ,done: function(value, date, endDate){
-                console.log(value, date, endDate); //在控件上弹出value值
-                let my_mouth = endDate.month;
-                let my_date = endDate.date;
-                if(my_mouth < 10){
-                    my_mouth = "0" + my_mouth
+                elem: '#test15'
+                , range: '~'
+                , value: mytime
+                , format: 'yyyy-MM-dd'
+                , done: function (value, date, endDate) {
+                    console.log(value, date, endDate); //在控件上弹出value值
+                    let my_mouth = endDate.month;
+                    let my_date = endDate.date;
+                    if (my_mouth < 10) {
+                        my_mouth = "0" + my_mouth
+                    }
+                    if (my_date < 10) {
+                        my_date = "0" + my_date
+                    }
+                    end_time = endDate.year + "-" + my_mouth + "-" + my_date;
+                    console.log(end_time)
                 }
-                if(my_date < 10){
-                    my_date = "0" + my_date
-                }
-                end_time = endDate.year + "-" + my_mouth + "-" + my_date;
-                console.log(end_time)
-              }
             });
         });
     }
 
     //添加负责人
     $(".plans-user-add").click(function () {
-        let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
-        myuser_add.appendTo(".my-user-list ul")
-        var div = document.getElementsByClassName('my-user-list')[0];
-        div.scrollTop = div.scrollHeight;
+        var len = $("#ul_id_party li input").length;
+        if (len==0){
+            let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
+            myuser_add.appendTo(".my-user-list ul")
+            var div = document.getElementsByClassName('my-user-list')[0];
+            div.scrollTop = div.scrollHeight;
+        }else {
+
+                var z_int = parseInt(len)-1
+                if($("#ul_id_party li input")[z_int].value){
+                    let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
+                    myuser_add.appendTo(".my-user-list ul")
+                    var div = document.getElementsByClassName('my-user-list')[0];
+                    div.scrollTop = div.scrollHeight;
+                }else {
+                    layer.msg('不可为空,请输入', {icon: 1, time: 2000});
+                }
+
+
+        }
+
+
     })
 
     //点击负责方弹窗保存
@@ -676,21 +752,39 @@
         $("#mask-box").remove();
         $("#plans-user-list").fadeOut();
     })
+
     // 删除负责方
-    function Del_Party(that){
+    function Del_Party(that) {
         console.log(that)
+
         var rr = that.parentNode.firstElementChild.value
-        $.ajax({
-             url: '/product/party',
-             type:"POST",
-             data:{"key":keysss,"app_id":app_id1,"datas":rr,"action":'del'},
-             success:function (data) {
-                 console.log(data)
-                 that.parentNode.remove()
-             }
-        })
         console.log(rr)
+        if (rr){
+             $.ajax({
+            url: '/product/party',
+            type: "POST",
+            data: {"key": keysss, "app_id": app_id1, "datas": rr, "action": 'del'},
+            success: function (data) {
+                console.log(data)
+                data = JSON.parse(data)
+                if (data['code']==0){
+                    that.parentNode.remove()
+                }else if(data['code']==1){
+                    that.parentNode.remove()
+                    console.log('此数据不在数据库中')
+                }else{
+                    console.log('error')
+                }
+
+            }
+        })
+        }else {
+            that.parentNode.remove()
+        }
+
+
     }
+
     //点击删除计划
     $("#dell_plan").click(function () {
         var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
@@ -698,47 +792,47 @@
         layer.confirm('确定删除计划？', {
             btn: ['确定', '取消'] //按钮
         }, function () {
-            console.log("确定",idd);
+            console.log("确定", idd);
             $.ajax({
-               url: '/product/schedule',
-               type:"POST",
-               data:{"key":keysss,"action":"delxu","del_id":idd},
-               success:function (data) {
-                   data = JSON.parse(data);
-                   if (data['code']===0){
-                       layer.msg('删除成功', {icon: 1,time:2000});
-                       var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
-                       var $scope = angular.element(appElement).scope();
-                       for(var i= 0;i<$scope.response.length;i++){
-                           if($scope.response[i]['id']==idd){
-                               $scope.response.splice(i, 1);
-                               console.log()
-                               $scope.$apply()
-                           }
-                           try{
-                               if(parseInt($scope.response[i]['id'])>parseInt(idd)){
-                               console.log( $scope.response[i]['id'],idd)
-                               $scope.response[i]['id']=parseInt($scope.response[i]['id']) - 1
-                               $scope.$apply()
-                               $scope.Show_Detail_Plan(parseInt(idd))
+                url: '/product/schedule',
+                type: "POST",
+                data: {"key": keysss, "action": "delxu", "del_id": idd},
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if (data['code'] === 0) {
+                        layer.msg('删除成功', {icon: 6, time: 2000});
+                        var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
+                        var $scope = angular.element(appElement).scope();
+                        for (var i = 0; i < $scope.response.length; i++) {
+                            if ($scope.response[i]['id'] == idd) {
+                                $scope.response.splice(i, 1);
+                                console.log()
+                                $scope.$apply()
                             }
-                           }catch (e) {
-                               $scope.Show_Detail_Plan(parseInt(idd)-1)
-                           }
+                            try {
+                                if (parseInt($scope.response[i]['id']) > parseInt(idd)) {
+                                    console.log($scope.response[i]['id'], idd)
+                                    $scope.response[i]['id'] = parseInt($scope.response[i]['id']) - 1
+                                    $scope.$apply()
+                                    $scope.Show_Detail_Plan(parseInt(idd))
+                                }
+                            } catch (e) {
+                                $scope.Show_Detail_Plan(parseInt(idd) - 1)
+                            }
 
-                       }
+                        }
 
-                   }else{
-                       bootbox.alert("删除失败")
-                   }
-               }
-           })
+                    } else {
+                        layer.msg('删除失败', {icon: 1, time: 2000});
+
+                    }
+                }
+            })
 
         }, function () {
-            console.log("取消",idd);
+            console.log("取消", idd);
         })
     })
-
 
 
     //点击删除附件
@@ -747,7 +841,7 @@
             btn: ['确定', '取消'] //按钮
         }, function () {
             console.log("确定");
-            layer.msg('已删除', {icon: 1,time:2000});
+            layer.msg('已删除', {icon: 1, time: 2000});
         }, function () {
             console.log("取消");
         })
@@ -758,10 +852,10 @@
         //清空历史记录
         $("#file").val("");
         $(".modal-name").text("点击选择");
-        $(".modal-name").attr("title","");
+        $(".modal-name").attr("title", "");
         $("#progress-text").text("等待上传");
-        $("#progress").css("width",0);
-        $(".my_container").css("display","none");
+        $("#progress").css("width", 0);
+        $(".my_container").css("display", "none");
         $("#ui_info").val("");
     })
 

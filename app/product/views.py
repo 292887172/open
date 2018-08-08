@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
-from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
+from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
+    get_mod_funs,get_config_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -355,7 +356,7 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "厨房类")
-        app_category_detail = request.POST.get("product_category_detail", 0)
+        app_category_detail = request.POST.get("product_category_detail", 0)  # 产品类型
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
 
@@ -378,9 +379,7 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-
-        device_conf = gen_app_default_conf(app_category_detail)
-
+        device_conf = get_config_funs(developer_id, app_category_detail)
         app_logo = get_app_default_logo(app_category_detail)
 
         if not developer_id:
@@ -397,6 +396,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            #  根据创建者和产品类型判断用户是否创建过此类型产品
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,
@@ -693,6 +693,7 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
+                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -701,6 +702,7 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
+                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
@@ -956,7 +958,7 @@ def portal(request):
         action = request.POST.get("action", "")
         app_id = request.POST.get("app_id", "")
         email = request.POST.get("email", "")
-        user_account = request.user
+        user_account = request.user.account_id
 
         if action == 'submitEmail':
             # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
@@ -983,6 +985,7 @@ def app(request):
             date = i.create_date
             tis = date.strftime("%Y-%m-%d %H:%M:%S")
             app_dict['time'] = tis
+            app_dict['remarks'] = i.remarks
             app_list.append(app_dict)
 
     return HttpResponse(json.dumps(app_list))
@@ -996,7 +999,6 @@ def schedule(request):
         sapp_id = ''
         appobj = App.objects.filter(app_appid__endswith=key)
         for i in appobj:
-            print('ff', i.app_id)
             sapp_id = i.app_id
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
@@ -1013,11 +1015,15 @@ def schedule(request):
                     update_dict['plan'] = i.ui_plan
                     id_list.append(i.ui_upload_id)
                     try:
-                        url = eval(i.ui_content)
+                        if i.ui_content:
+                            url = eval(i.ui_content)
+                        else:
+                            url = ''
                     except Exception as e:
-                        url = [i.ui_content]
+                        url = ''
                     if not isinstance(url, list):
                         url = [url]
+                    print('url',url)
                     update_dict['url'] = url
 
                     if len(str(url)) > int(10):
@@ -1063,27 +1069,22 @@ def schedule(request):
         if data:
             key = request.GET.get('key', '')
             data1 = json.loads(data)
+            for i in range(len(data1)):
+                ids = int(i)+1
+                Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=int(data1[i]))
+                for i in Dobj:
+                    try:
+                        Dobj.update(ui_upload_id=int(ids*100))
+                    except Exception as e:
+                        print(e)
+            Orders = DocUi.objects.filter(ui_key=key)
+            list_up_id = []
+            for i in Orders:
+                list_up_id.append(i.ui_upload_id)
+            for isd in list_up_id:
+                DocUi.objects.filter(ui_key=key,ui_upload_id=int(isd)).update(ui_upload_id=int(isd/100))
+            return HttpResponse(json.dumps({"code":0}))
 
-            for i in data1:
-                if len(str(i['url'])) < 10:
-                    url = ''
-                else:
-                    url = json.dumps(i['url'])
-                if not i['party']:
-                    i['party'] = ''
-                if not i['remark']:
-                    i['party'] = ''
-                if not i['time_stemp']:
-                    i['time_stemp'] = ''
-                obj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(i['id']))
-                tt = obj.update(ui_content=url, ui_party=i['party'], ui_remark=i['remark'],
-                                ui_plan=i['plan'], ui_type='UI', ui_title='',
-                                ui_time_stemp=i['time_stemp'], ui_ack=int(i['ack']))
-                if tt:
-                    data = {"code": 0}
-                else:
-                    data = {"code": 1}
-            return HttpResponse(json.dumps(data))
         if action == 'del':
             # 删除下载链接
             del_id = request.POST.get('del_id', '')
@@ -1207,13 +1208,11 @@ def schedule(request):
             group_id = ''
             for i in a:
                 app_name = i.app_name
-                print('组id', i.group_id)
                 group_id = i.group_id
             ack_name = app_name + '第' + num + '步操作确认通知'
             try:
                 b = UserGroup.objects.filter(group__group_id=group_id)
                 for i in b:
-                    print(i.user_account)
                     email_list.append(i.user_account)
             except Exception as e:
                 print(e)
@@ -1266,20 +1265,28 @@ def party(request):
         if action == 'del':
             title_list = ''
             if obj:
-                for i in obj:
-                    title_list = json.loads(i.responsible_party)
-                for j in title_list:
-                    if data_list in j.values():
-                        title_list.remove(j)
-                if title_list:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
-                else:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
-                Message.objects.create(message_content='产品负责方更新', message_type=int(5),
-                                       message_handler_type=int(5), is_read=1,
-                                       device_key=key, message_sender=user1, message_target=user1,
-                                       create_date=datetime.datetime.utcnow(),
-                                       update_date=datetime.datetime.utcnow())
+                try:
+                    for i in obj:
+                        title_list = json.loads(i.responsible_party)
+                    for j in title_list:
+                        if data_list in j.values():
+                            title_list.remove(j)
+                        else:
+                            return HttpResponse(json.dumps({"code": 1}))
+                    if title_list:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
+                    else:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
+                    Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                           message_handler_type=int(5), is_read=1,
+                                           device_key=key, message_sender=user1, message_target=user1,
+                                           create_date=datetime.datetime.utcnow(),
+                                           update_date=datetime.datetime.utcnow())
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+            else:
+                return HttpResponse(json.dumps({"code": 1}))
             return HttpResponse(json.dumps({"code": 0}))
         else:
             list = json.loads(info_list)
@@ -1328,7 +1335,7 @@ def upload_file(request):
         action = request.POST.get('action', '')
         app_ids = request.POST.get('app_id', '')
         app_version = request.POST.get('app_version', '')
-
+        appversion_remark = request.POST.get('app_remark', '')
         if action == 'ui_upload':
             try:
                 store = EbStore(CLOUD_TOKEN)
@@ -1350,7 +1357,7 @@ def upload_file(request):
                 url_list = rr['data']
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
-                                          update_date=datetime.datetime.utcnow())
+                                          update_date=datetime.datetime.utcnow(),remarks=appversion_remark)
                 Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=cook_ies, message_target=cook_ies,
