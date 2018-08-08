@@ -37,6 +37,7 @@ from model.center.app_version import AppVersion
 from model.center.app_info import AppInfo
 from model.center.group import Group
 from model.center.user_group import UserGroup
+from model.center.account import Account
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
 from util.email.send_email_code import send_product_process_email
@@ -285,8 +286,21 @@ def product_controldown(request):
         unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
         print(request.COOKIES['COOKIE_USER_ACCOUNT'])
-        if request.COOKIES['COOKIE_USER_ACCOUNT'] == 'admin':
-            fireware = Firmware.objects.all()
+        users = request.COOKIES['COOKIE_USER_ACCOUNT']
+        Uobj = Account.objects.filter(account_id=users)
+        if Uobj:
+            try:
+                for i in Uobj:
+                    if i.account_email in ['Zhangjian@53iq.com','Taosheng@53iq.com','Dev@53iq.com','Yangxy@53iq.com','292887172@qq.com']:
+                        if not unpublished_apps:
+                            fireware = ''
+                        else:
+                            fireware = Firmware.objects.all()
+                    else:
+                        fireware = ''
+            except Exception as e:
+                print(e)
+                fireware = ''
         else:
             fireware = ''
         content = dict(
