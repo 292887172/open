@@ -144,6 +144,7 @@ def get_config_funs(developer_id, app_category_detail):
             for data_id in device_conf_list:
                 if data_id not in new_data:
                     new_data.append(data_id)
+            # new_data = new_data.sort(key=lambda x: int(x.get("id")))
             return new_data
     except Exception as e:
         print(e)

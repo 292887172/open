@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<link rel="stylesheet" href="jqueryui/style.css">
     <style>
         html, body {
         width: 100%;
@@ -330,10 +331,7 @@
                                                     <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
                                                     <span class="lbl bigger-120"> 定时型</span>
                                                 </label>
-                                                <label>
-                                                    <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectEnum(this)" value="6"/>
-                                                    <span class="lbl bigger-120"> 枚举型</span>
-                                                </label>
+
                                         </div>
                                         <div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
                                             <table border=0>
@@ -379,6 +377,8 @@
                                             </table>
                                             <div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
+
+
                                         <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
                                             <table border=0>
                                                 <tr>
@@ -395,29 +395,6 @@
                                                 </tr>
                                             </table>
                                             <div id="checkTimer" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
-                                        </div>
-                                        <div id="selectEnum" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
-                                            <table border=0 style="width: 160px">
-                                                <tr>
-                                                    <td height=30px align="center">最小值</td>
-                                                    <td align="center">最大值</td>
-
-                                                </tr>
-                                                <tr style="border-top:1px solid #ccc">
-                                                    <td width=80px>
-                                                        <input ng-disabled='{[{ disabled }]}' id="minTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkEnum()">
-                                                    </td>
-                                                    <td width=80px align="right">
-                                                        <input ng-disabled='{[{ disabled }]}' id="maxTimer" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" onblur="checkEnum()">
-                                                    </td>
-
-
-                                                </tr>
-                                                <tr>
-
-                                                </tr>
-                                            </table>
-                                            <div id="selectEnum" style="margin-left:-10px;color:red;display:none;left: 513px;top: 77px;position:absolute"></div>
                                         </div>
                                 </div>
                             </div>
@@ -514,7 +491,7 @@
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/common/js/jquery.sortable.js"></script>
-    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
+
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
@@ -590,14 +567,7 @@
                                 }
                         }
                     });
-                    $(".bootbox-body div").click(function () {
-                        if ($(this).hasClass("common_dp-checked")){
-                            $(this).removeClass("common_dp-checked");
-                        }
-                        else {
-                            $(this).addClass("common_dp-checked");
-                        }
-                    });
+
                     $(".modal-body").css("height","auto");
                     $(".modal-dialog").css("width","600px");
                 },
@@ -986,9 +956,11 @@
                 corpName:edit_data["corpName"],
                 corpMark:edit_data["corpMark"],
                 mxs:edit_data["mxs"],
+                step:edit_data["step"],
                 mxsLength:edit_data["mxsLength"],
                 time:edit_data["time"]};
                 loadData(obj);
+                console.log('obj',obj)
                 mxs=obj.mxs;
         }
         else{
@@ -1041,6 +1013,8 @@
         else if(d.paramType==4){
             $('#minInt').val(d.min);
             $('#maxInt').val(d.max);
+            $('#amount').val(d.step)
+            cccc()
             document.getElementsByName('paramType')[2].checked=true;
             selectInt();
         }
@@ -1084,6 +1058,9 @@
         else{$(".form-horizontal")[1].reset();}
     }
     function selectInt(){
+
+        cccc()
+        console.log('int')
         SetDisplay("selectInt");
     }
     function selectError(){
@@ -1368,6 +1345,7 @@
             maxValue = Math.pow(2,length)-1;
             $("#minInt").val(0);
             $("#maxInt").val(maxValue);
+            cccc()
             return true
         }
     }
@@ -1443,4 +1421,20 @@
             return "";
         }
     }
+    function cccc() {
+        console.log('测试value');
+        var maxed = $.trim($('#maxInt').val());
+        var valuess = $.trim($('#amount').val());
+        console.log(valuess);
+            $( "#slider" ).slider({
+              value:valuess,
+              min: 1,
+              max: maxed,
+              step: 1,
+              slide: function( event, ui ) {
+                $( "#amount" ).val( ui.value );
+              }
+            });
+            $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+          };
     </script>
