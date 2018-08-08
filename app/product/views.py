@@ -693,6 +693,7 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
+                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -701,6 +702,7 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
+                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
@@ -1263,20 +1265,28 @@ def party(request):
         if action == 'del':
             title_list = ''
             if obj:
-                for i in obj:
-                    title_list = json.loads(i.responsible_party)
-                for j in title_list:
-                    if data_list in j.values():
-                        title_list.remove(j)
-                if title_list:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
-                else:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
-                Message.objects.create(message_content='产品负责方更新', message_type=int(5),
-                                       message_handler_type=int(5), is_read=1,
-                                       device_key=key, message_sender=user1, message_target=user1,
-                                       create_date=datetime.datetime.utcnow(),
-                                       update_date=datetime.datetime.utcnow())
+                try:
+                    for i in obj:
+                        title_list = json.loads(i.responsible_party)
+                    for j in title_list:
+                        if data_list in j.values():
+                            title_list.remove(j)
+                        else:
+                            return HttpResponse(json.dumps({"code": 1}))
+                    if title_list:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
+                    else:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
+                    Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                           message_handler_type=int(5), is_read=1,
+                                           device_key=key, message_sender=user1, message_target=user1,
+                                           create_date=datetime.datetime.utcnow(),
+                                           update_date=datetime.datetime.utcnow())
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+            else:
+                return HttpResponse(json.dumps({"code": 1}))
             return HttpResponse(json.dumps({"code": 0}))
         else:
             list = json.loads(info_list)
