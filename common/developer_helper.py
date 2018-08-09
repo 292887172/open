@@ -63,6 +63,13 @@ def create_developer(company, company_url, company_address, company_scale, conta
                     a.save()
                 except Exception as e:
                     pass
+            if contact_email:
+                try:
+                    a = Account.objects.get(account_id=user)
+                    a.account_email = contact_email
+                    a.save()
+                except Exception as e:
+                    pass
             d = Developer.objects.get(developer_account=user)
             if d:
                 d.developer_inc = company
