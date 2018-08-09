@@ -114,8 +114,8 @@
         width: 170px;
         position: relative;
         display: inline-block;
-        background: #D0EEFF;
-        border: 1px solid #99D3F5;
+
+        border: 1px solid #ddd;
         border-radius: 4px;
         padding: 4px 12px;
         overflow: hidden;
@@ -129,8 +129,8 @@
         width: 170px;
         position: relative;
         display: inline-block;
-        background: #D0EEFF;
-        border: 1px solid #99D3F5;
+
+        border: 1px solid #ddd;
         border-radius: 4px;
         padding: 4px 12px;
         overflow: hidden;
@@ -333,18 +333,25 @@
         <th>名称</th>
         <th>屏幕尺寸</th>
         <th >版本</th>
-        <th >url</th>
-        <th >time</th>
+        <th >路径</th>
+        <th >时间</th>
         <th>操作</th>
 
     </tr>
     </thead>
     <tbody >
     <tr ng-repeat="x in responsess" >
-        <th style="font-family: 黑体" >{[{x.name}]}</th>
-        <th style="font-family: 黑体" ng-if="x.size==1">6.8寸</th>
-        <th style="font-family: 黑体" ng-if="x.size==2">4.3寸/5寸</th>
-        <th style="font-family: 黑体" >{[{x.version}]}</th>
+        <th style="font-family: 黑体" ><input type="text" value="{[{x.name}]}" data="{[{x.id}]}" onblur="Saves(this,1)"></th>
+        <th style="font-family: 黑体" ng-if="x.size==1" data="{[{x.id}]}" onchange="Saves(this,2)"><select name="size" id="sizes">
+            <option value="1" selected="selected">6.8寸</option>
+            <option value="2">5/4.3</option>
+        </select></th>
+        <th style="font-family: 黑体" ng-if="x.size==2" data="{[{x.id}]}" onchange="Saves(this,2)"><select name="size" id="sizes">
+            <option value="1" >6.8寸</option>
+            <option value="2" selected="selected">5/4.3</option>
+        </select></th>
+
+        <th style="font-family: 黑体" ><input type="text" data="{[{x.id}]}" value="{[{x.version}]}" onblur="Saves(this,3)"></th>
         <th style="font-family: 黑体" ><a href="{[{x.url}]}" >下载</a></th>
         <th style="font-family: 黑体" >{[{x.time}]}</th>
         <th><button class="btn " ng-click="Del(x.id)" style="background-color: red!important;color: white">删除</button></th>
@@ -356,7 +363,52 @@
 </div>
 
 <script>
+    function Saves(that,values) {
+        var ids = parseInt(that.attributes['data'].nodeValue)
+        if (values =='2'){
+            var value_data = that.getElementsByTagName("select")[0].value
+            $.ajax({
+            url: '/center/doc_firmware',
+            type: "POST",
+            data:{"action":"update","id":ids,"value":value_data,"cid":values},
+            success:function (data) {
+                data = JSON.parse(data)
+                if (data['code']==1){
+                    layer.msg('修改失败', {icon: 5,time:2000});
+                }
+            }
+        })
+        }else if(values =='1'){
+            var value_data = that.value
+            $.ajax({
+            url: '/center/doc_firmware',
+            type: "POST",
+            data:{"action":"update","id":ids,"value":value_data,"cid":values},
+            success:function (data) {
+                data = JSON.parse(data)
+                if (data['code']==1){
+                    layer.msg('修改失败', {icon: 5,time:2000});
+                }
+            }
+        })
+        }else {
+            var value_data = that.value
+            $.ajax({
+            url: '/center/doc_firmware',
+            type: "POST",
+            data:{"action":"update","id":ids,"value":value_data,"cid":values},
+            success:function (data) {
+                data = JSON.parse(data)
+                if (data['code']==1){
+                    layer.msg('修改失败', {icon: 5,time:2000});
+                }
+            }
+        })
+        }
 
+
+
+    }
 
 
     function doUploadFile() {

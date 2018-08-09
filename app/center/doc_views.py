@@ -219,16 +219,39 @@ def doc_firmware(request):
         Fobj = Firmware.objects.all().order_by("-firmware_update_date")
         temps = []
         for i in Fobj:
-
             time = i.firmware_create_date + datetime.timedelta(hours=8)
             times = time.strftime("%Y-%m-%d")
-            temps.append({"id":i.firmware_id,"size":i.firmware_size,"url": i.firmware_url,"name": i.firmware_name,"time": times,"version": i.firmware_version})
+            temps.append({"id": i.firmware_id, "size": i.firmware_size, "url": i.firmware_url, "name": i.firmware_name,
+                          "time": times, "version": i.firmware_version})
         return HttpResponse(json.dumps(temps))
     if request.method == "POST":
-        ids = request.GET.get('id','')
-        print(ids)
+        ids = request.GET.get('id', '')
+        action = request.POST.get('action', '')
+        # data: {"action": "update", "id": ids, "value": value_data, "cid": values},
+        if action == 'update':
+            update_id = request.POST.get('id', '')
+            update_value = request.POST.get('value', '')
+            update_cid = request.POST.get('cid', '')
+            if update_cid == str(1):
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_name=update_value)
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
+            elif update_cid == str(2):
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_size=int(update_value))
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
+            else:
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_version=update_value)
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
         Firmware.objects.filter(firmware_id=int(ids)).delete()
-        return HttpResponse(json.dumps({"code":0}))
+        return HttpResponse(json.dumps({"code": 0}))
 
 
 def action_doc_menu_view(request):

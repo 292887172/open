@@ -291,7 +291,7 @@ def product_controldown(request):
         if Uobj:
             try:
                 for i in Uobj:
-                    if i.account_email in ['rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
+                    if i.account_email in ['gaowei@53iq.com','guoyh@53iq.com','rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
                         if not unpublished_apps:
                             fireware = ''
                         else:
