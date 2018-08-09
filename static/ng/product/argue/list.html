@@ -334,7 +334,6 @@
                                                     <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
                                                     <span class="lbl bigger-120"> 定时型</span>
                                                 </label>
-
                                         </div>
                                         <div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
                                             <table border=0>
@@ -380,8 +379,6 @@
                                             </table>
                                             <div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
-
-
                                         <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
                                             <table border=0>
                                                 <tr>
@@ -570,7 +567,14 @@
                                 }
                         }
                     });
-
+                    $(".bootbox-body div").click(function () {
+                        if ($(this).hasClass("common_dp-checked")){
+                            $(this).removeClass("common_dp-checked");
+                        }
+                        else {
+                            $(this).addClass("common_dp-checked");
+                        }
+                    });
                     $(".modal-body").css("height","auto");
                     $(".modal-dialog").css("width","600px");
                 },
@@ -963,7 +967,6 @@
                 mxsLength:edit_data["mxsLength"],
                 time:edit_data["time"]};
                 loadData(obj);
-                console.log('obj',obj)
                 mxs=obj.mxs;
         }
         else{

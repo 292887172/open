@@ -399,22 +399,22 @@
                                 <div>
 
                                     {% if app.check_status == 0 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_screen_size|category_detail1 }}
                                         最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                             style="color:#2980b9">
                                         编辑</a></p>
                                     {% elif app.check_status == 1 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_screen_size|category_detail1 }}
                                         最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                             style="color:#2980b9">
                                         编辑</a></p>
                                     {% elif app.check_status == 2 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_screen_size|category_detail1 }}
                                         最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                             style="color:#2980b9">
                                         编辑</a></p>
                                     {% elif app.check_status == -1 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_screen_size|category_detail1 }}
                                         最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                             style="color:#2980b9">
                                         编辑</a></p>
@@ -436,7 +436,7 @@
                 </div>
                     <div>
 
-                    <div class="goods-list" style="margin-left: 20px;text-align:left;width: 500px;height: auto">
+                    <div class="goods-list" style="padding-bottom: 20px;margin-left: 20px;text-align:left;width: 500px;height: auto">
 
                                 <div class="col-md-6" style="padding-bottom: 20px">
                                      <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px">6.8寸长条屏固件</p>

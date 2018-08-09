@@ -24,10 +24,15 @@ angular.module('Product.app', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                 // 获取前端接收到的数据
+                console.log(response.length)
+                if (response.length>0){
+                     $scope.response = response;
+                    $scope.sss = 1;
+                }else {
+                    console.log($scope.response)
+                }
 
-                $scope.response = response;
-                $scope.sss = 1;
-                console.log($scope.response)
+
             })
 
 
