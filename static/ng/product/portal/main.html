@@ -218,9 +218,14 @@
                 <dd style="margin-left: 0px">
                     <div style="margin-bottom: 14px"><span style="font-size: 16px;margin-left: 5px;">快速体验</span></div>
                 </dd>
-                <dd style="margin-left: 0px">
-                    <div style=""><a href="/static/sdk/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+
+                <dd style="margin-left: 0px" >
+
+                    <div ng-if="app_device_name != '洗碗机' && app_device_name != '蒸烤箱'" style=""><a href="/static/sdk/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div ng-if="app_device_name=='洗碗机'" style=""><a href="/static/sdk/xiwanji/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载4.3寸屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div ng-if="app_device_name=='蒸烤一体机'" style=""><a href="/static/sdk/zkx/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载5寸蒸烤箱屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
+
                 <dd style="display: none">
                     <div><a onclick="export_parameter()"  style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 16px;margin-left: 5px;">导出{[{app_device_name}]}控制协议</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
