@@ -33,6 +33,25 @@
             padding-top: 10px;
             margin-bottom: 0;
         }
+        .del-btn{
+            float: left;
+            line-height: 38px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .del-btn:hover{
+            color: #ff0000;
+        }
+        .popup-open{
+            font-size: 0;
+        }
+        .popup-open .layui-form-checkbox{
+            margin: 5px 1px;
+        }
+        .btn-active{
+            display: inline-block;
+            margin-left: 7px;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +61,7 @@
 </fieldset>
 <form class="layui-form layui-form-pane" action="">
   <div class="layui-input-inline" style="margin-bottom: 20px">
-          <select name="quiz1">
+          <select n ame="quiz1">
               <option value="" selected>MCU到屏端</option>
           </select>
   </div>
@@ -64,7 +83,8 @@
 
   <div class="layui-form-item">
       <label class="layui-form-label edit-btn">数据域<p class="add-btn">+</p></label>
-      <button class="layui-btn  layui-btn-warm">编辑</button>
+      <p class="layui-btn  layui-btn-warm edits">编辑</p>
+      <div class="btn-active"></div>
   </div>
 
   <div class="layui-form-item">
@@ -130,8 +150,8 @@
       <div class="layui-input-inline">
           <input type="text" name="title" autocomplete="off" placeholder="请输入传输值" class="layui-input">
       </div>
+      <div class="del-btn">删除</div>
   </div>
-
   <div class="layui-form-item">
     <button class="layui-btn" lay-submit="" lay-filter="demo2">跳转式提交</button>
   </div>
@@ -197,6 +217,7 @@
             "      <div class=\"layui-input-inline\">\n" +
             "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"请输入传输值\" class=\"layui-input\">\n" +
             "      </div>\n" +
+            "      <div class=\"del-btn\">删除</div>"
             "  </div>";
 
        $(this).parents(".layui-form-item").append(found_list);
@@ -205,6 +226,60 @@
             form.render('select');
         });
     })
+    
+    $(".layui-form-item").on("click",'.del-btn',function () {
+        $(this).parents(".new-colum").remove();
+    })
+
+    //复选框参数
+    var checkbox_data = [
+        { name: "写作",content:true, },
+        { name: "发呆",content:true, },
+        { name: "音乐",content:false, },
+        { name: "运动",content:false, },
+    ];
+
+    //编辑弹出层
+    $(".edits").click(function () {
+        //处理复选框参数
+        var check_content = "";
+        for ( i in checkbox_data){
+            if (checkbox_data[i].content){
+                check_content = check_content + '<input type="checkbox" name="" value="'+ checkbox_data[i].name +'" title="'+ checkbox_data[i].name +'" lay-skin="primary" checked>'
+            }else {
+                check_content = check_content + '<input type="checkbox" name="" value="'+ checkbox_data[i].name +'" title="'+ checkbox_data[i].name +'" lay-skin="primary">'
+            }
+        }
+
+        layer.open({
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '260px'], //宽高
+            content: '<form class="layui-form popup-open" action="">\n' +
+                check_content +
+            '    </form>',
+            yes:function (index,layero) {
+                //清空内容
+                $(".btn-active").empty();
+                //获取复选框值
+                var is_value = $(".popup-open").find(".layui-form-checkbox");
+                //var is_list = [];
+                is_value.each(function () {
+                    if ($(this).hasClass("layui-form-checked")){
+                        //is_list.push($(this).prev().val())
+                        $(".btn-active").append("<span>"+ $(this).prev().val() +" </span>")
+                    }
+                })
+
+                layer.close(index);
+            }
+        });
+        layui.use('form', function () {
+            var form2 = layui.form;
+            form2.render('checkbox');
+        });
+    })
+
+    
 </script>
 </body>
 </html>
