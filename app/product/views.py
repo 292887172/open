@@ -291,7 +291,7 @@ def product_controldown(request):
         if Uobj:
             try:
                 for i in Uobj:
-                    if i.account_email in ['Zhangjian@53iq.com','Taosheng@53iq.com','Dev@53iq.com','Yangxy@53iq.com','292887172@qq.com']:
+                    if i.account_email in ['rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
                         if not unpublished_apps:
                             fireware = ''
                         else:
@@ -403,11 +403,6 @@ def product_add(request):
         app_group = request.POST.get("product_group", "")
         device_conf = get_config_funs(developer_id, app_category_detail)
         app_logo = get_app_default_logo(app_category_detail)
-        print('developer_id',developer_id)
-        print('app_name',app_name)
-        print('app_category_detail',app_category_detail)
-        print('app_command',app_command)
-        print('app_group',app_group)
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"

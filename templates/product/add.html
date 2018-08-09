@@ -220,7 +220,7 @@
                                         <select name="product_category_detail2" id="product_category_detail2"
                                                 class="sel2">
                                             <option value="0">请选择屏幕尺寸</option>
-                                            <option value="3">6.8寸</option>
+                                            <option value="3">6.8寸长条屏</option>
                                             <option value="2">5寸</option>
                                             <option value="1">4.3寸</option>
                                         </select>
@@ -280,20 +280,20 @@
                                     选择技术方案 <span class="f12">（后期可进行方案的自由切换）</span>
                                 </h4>
                                 <div class="scheme">
-
+                                    <dl class="cur plan" onclick="selectScheme(this, 3)" id="f3" >
+                                        <dt><img src="{% static 'image/product/wifiscreen.png' %}"><i class="icon-selected"></i></dt>
+                                        <dd>WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</dd>
+                                    </dl>
                                     <dl class="plan" onclick="selectScheme(this, 2)" id="f3">
                                         <dt><img src="{% static 'image/product/wifi.png' %}"><i class="icon-selected"></i></dt>
                                         <dd>WiFi方案要求设备支持5V供电，两路串口，适用于集成灶，油烟机</dd>
                                     </dl>
 
-                                    <dl onclick="selectScheme(this, 1)" id="f1" class="plan">
+                                    <dl onclick="selectScheme(this, 1)" id="f1" class="plan" >
                                         <dt><img src="{% static 'image/product/android.png' %}"><i class="icon-selected"></i></dt>
                                         <dd>Android屏方案要求设备支持5V供电，一路串口，适用于烤箱，冰箱</dd>
                                     </dl>
-                                    <dl class="cur plan" onclick="selectScheme(this, 3)" id="f2" style="padding: 0px">
-                                        <dt><img src="{% static 'image/product/wifiscreen.png' %}"><i class="icon-selected"></i></dt>
-                                        <dd>WiFi屏方案要求电控支持5V供电，一路串口，适用于烤箱，洗碗机</dd>
-                                    </dl>
+
                                 </div>
                                 <span class="tips-error hiden" id="productPlanTips" style="text-align: center;"></span>
 
