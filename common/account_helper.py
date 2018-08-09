@@ -190,11 +190,11 @@ def add_team_email(user_account, app_id, email):
             ug = UserGroup(group=g1, user_account=j.get("email"), create_date=datetime.datetime.utcnow(),
                            update_date=datetime.datetime.utcnow())
             ug.save()
-        try:
-            add_team_user_account(email)
-        except Exception as e:
-            pass
-        return team_info
+    try:
+        add_team_user_account(email)
+    except Exception as e:
+        pass
+    return team_info
 
 
 def del_team_email(user_account, app_id, email):
