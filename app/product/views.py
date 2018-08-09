@@ -257,7 +257,8 @@ def product_controldown(request):
                 "app_create_source": app.app_create_source,
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
-                "is_share": 0
+                "is_share": 0,
+                "app_screen_size": app.app_screen_size
 
             }
             tmp_apps.append(tmp)
@@ -279,7 +280,8 @@ def product_controldown(request):
                     "app_create_source": j.app_create_source,
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
-                    "is_share": 1
+                    "is_share": 1,
+                    "app_screen_size": j.app_screen_size
                 }
                 tmp_apps.append(tmp)
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
@@ -1008,8 +1010,10 @@ def app(request):
             app_dict['time'] = tis
             app_dict['remarks'] = i.remarks
             app_list.append(app_dict)
+        return HttpResponse(json.dumps(app_list))
+    else:
+        return HttpResponse("")
 
-    return HttpResponse(json.dumps(app_list))
 
 
 @csrf_exempt
