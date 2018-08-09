@@ -8,6 +8,31 @@
         .layui-form-pane .layui-form-label{
             margin-right: 11px;
         }
+        .layui-form-item{
+            margin-bottom: 20px;
+        }
+        .edit-btn{
+            overflow: visible !important;
+            position: relative;
+        }
+        .add-btn{
+            display: none;
+            margin: 0 auto;
+            font-size: 12px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12px;
+            width: 50px;
+            height: 12px;
+            line-height: 12px;
+            color: #fff;
+            background-color: #777f87;
+        }
+        .new-colum{
+            padding-top: 10px;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -19,11 +44,10 @@
   <div class="layui-input-inline" style="margin-bottom: 20px">
           <select name="quiz1">
               <option value="" selected>MCU到屏端</option>
-
           </select>
   </div>
   <div class="layui-form-item">
-      <label class="layui-form-label">帧头</label>
+      <label class="layui-form-label edit-btn">帧头<p class="add-btn">+</p></label>
       <div class="layui-input-inline">
           <select name="quiz1">
               <option value="" selected>请选择长度</option>
@@ -39,11 +63,12 @@
   </div>
 
   <div class="layui-form-item">
-      <label class="layui-form-label">数据域</label><button class="layui-btn  layui-btn-warm">编辑</button>
+      <label class="layui-form-label edit-btn">数据域<p class="add-btn">+</p></label>
+      <button class="layui-btn  layui-btn-warm">编辑</button>
   </div>
 
   <div class="layui-form-item">
-      <label class="layui-form-label">校验</label>
+      <label class="layui-form-label edit-btn">校验<p class="add-btn">+</p></label>
       <div class="layui-input-inline">
           <select name="quiz1">
               <option value="" selected>选择算法</option>
@@ -81,6 +106,7 @@
               <option value="3">4Byte</option>
           </select>
       </div>
+
 
   </div>
 
@@ -136,6 +162,48 @@
         else{
             alert('请输入示例帧')
         }
+    })
+
+    var being = true;
+    $(".edit-btn").mouseenter(function () {
+        if (being) {
+            $(this).children(".add-btn").fadeIn(200,function () {
+                 being = false
+            })
+        }
+    }).mouseleave(function () {
+        $(this).children(".add-btn").fadeOut(0,function () {
+            being = true;
+        })
+    })
+
+    $(".add-btn").click(function () {
+        var found_list = "<div class=\"layui-form-item new-colum\">\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"名称\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"标识\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <select name=\"quiz1\">\n" +
+            "              <option value=\"\" selected>请选择长度</option>\n" +
+            "              <option value=\"1\">1Byte</option>\n" +
+            "              <option value=\"2\">2Byte</option>\n" +
+            "              <option value=\"3\">3Byte</option>\n" +
+            "              <option value=\"3\">4Byte</option>\n" +
+            "          </select>\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"请输入传输值\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "  </div>";
+
+       $(this).parents(".layui-form-item").append(found_list);
+       layui.use('form', function () {
+            var form = layui.form;
+            form.render('select');
+        });
     })
 </script>
 </body>
