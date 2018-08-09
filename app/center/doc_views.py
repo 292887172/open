@@ -3,6 +3,7 @@
 import copy
 import logging
 import json
+import datetime
 
 from base.connection import RedisBaseHandler, Redis3
 from django.contrib.auth.decorators import login_required
@@ -10,7 +11,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as simplejson
-from common.doc_helper import DocBll, execute_menu,save_device_menu
+from common.doc_helper import DocBll, execute_menu, save_device_menu
 from common.code import ResponseCode
 from conf.commonconf import CLOUD_TOKEN
 from conf.docconfig import DOC_RET_MSG
@@ -18,8 +19,11 @@ from model.center.api import Api
 from model.center.doc import Doc
 from model.center.doc_menu import DocMenu
 from model.center.device_menu import DeviceMenu
+from model.center.firmware import Firmware
 from util.jsonutil import MyEncoder
+
 _code = ResponseCode()
+
 
 @csrf_exempt
 @login_required
@@ -198,16 +202,56 @@ def doc_device(request):
                     "name": i.menu_name,
                     "url": i.menu_url,
                     "device_key": i.device_key,
-                    "sort":i.device_type
+                    "sort": i.device_type
                 })
                 ret.append(dm)
             ret = json.dumps(ret)
-            r.set(r_key,ret)
+            r.set(r_key, ret)
         else:
             ret = r_value.decode("utf-8")
             ret = json.loads(ret)
         return HttpResponse(json.dumps(ret))
 
+
+@csrf_exempt
+def doc_firmware(request):
+    if request.method == "GET":
+        Fobj = Firmware.objects.all().order_by("-firmware_update_date")
+        temps = []
+        for i in Fobj:
+            time = i.firmware_create_date + datetime.timedelta(hours=8)
+            times = time.strftime("%Y-%m-%d")
+            temps.append({"id": i.firmware_id, "size": i.firmware_size, "url": i.firmware_url, "name": i.firmware_name,
+                          "time": times, "version": i.firmware_version})
+        return HttpResponse(json.dumps(temps))
+    if request.method == "POST":
+        ids = request.GET.get('id', '')
+        action = request.POST.get('action', '')
+        # data: {"action": "update", "id": ids, "value": value_data, "cid": values},
+        if action == 'update':
+            update_id = request.POST.get('id', '')
+            update_value = request.POST.get('value', '')
+            update_cid = request.POST.get('cid', '')
+            if update_cid == str(1):
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_name=update_value)
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
+            elif update_cid == str(2):
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_size=int(update_value))
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
+            else:
+                obj = Firmware.objects.filter(firmware_id=int(update_id)).update(firmware_version=update_value)
+                if obj:
+                    return HttpResponse(json.dumps({"code": 0}))
+                else:
+                    return HttpResponse(json.dumps({"code": 1}))
+        Firmware.objects.filter(firmware_id=int(ids)).delete()
+        return HttpResponse(json.dumps({"code": 0}))
 
 
 def action_doc_menu_view(request):

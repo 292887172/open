@@ -137,7 +137,7 @@
 
                                 <p class="info" style="margin-top: 10px;font-size: 14px">1. <b>如何使用开发平台</b>
                                 </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px">- 设计电源板以外部分，控制逻辑和UI界面都由53iq开发</p>
+                                <p class="info" style="margin-top: 10px;font-size: 14px">- 设计电源板,控制逻辑和UI界面都由53iq开发</p>
                                     <p class="info" style="margin-top: 10px;font-size: 14px"><a href="http://doc.53iq.com/#/Protocol/README" target="_blank">- 使用引导</a>
                                 </p>
                             </div>
@@ -383,7 +383,89 @@
                     </div>
                 {% endif %}
 
-                {% for app in unpublished_apps %}
+                {% if fireware %}
+                    <div class="col-md-6">
+                    {% for app in unpublished_apps %}
+                        <div class="goods-list" style="text-align:left;width: 600px;margin-right: 20px">
+                    <dl>
+
+                        <dd style="width: 500px;margin-left: 0px">
+
+
+                                <div class="goods-title">
+                                    <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal" style="text-decoration: none">{{ forloop.counter }}. {{ app.app_name }}{% if app.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
+                                </div>
+                                 <div class="product-info-div">
+                                <div>
+
+                                    {% if app.check_status == 0 %}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            style="color:#2980b9">
+                                        编辑</a></p>
+                                    {% elif app.check_status == 1 %}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            style="color:#2980b9">
+                                        编辑</a></p>
+                                    {% elif app.check_status == 2 %}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            style="color:#2980b9">
+                                        编辑</a></p>
+                                    {% elif app.check_status == -1 %}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            style="color:#2980b9">
+                                        编辑</a></p>
+                                    {% else %}
+                                        <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                        最后编辑：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                            style="color:#2980b9">
+                                        编辑</a></p>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </dd>
+                    </dl>
+                </div>
+                    {% endfor %}
+                </div>
+                    <div>
+
+                    <div class="goods-list" style="margin-left: 20px;text-align:left;width: 500px;height: auto">
+
+                                <div class="col-md-6" style="padding-bottom: 20px">
+                                     <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px">6.8寸长条屏固件</p>
+                                    {% for foos in fireware %}
+                                        {% if foos.firmware_size == 1 %}
+
+                                            <p style="height: 30px;font-size: 14px;padding-top: 10px"><a href="/product/download?url={{ foos.firmware_url }}&name=DCIOT.pkg" >{{ foos.firmware_name }}</a></p>
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                                <div class="col-md-6">
+                                     <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px"> 4.3寸、5寸屏固件</p>
+                                    {% for foos in fireware %}
+
+                                        {% if foos.firmware_size == 2 %}
+
+                                            <p style="height: 30px;font-size: 14px;padding-top: 10px"><a href="/product/download?url={{ foos.firmware_url }}&name=DCIOT.pkg" >{{ foos.firmware_name }}</a></p>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+
+
+                </div>
+                </div>
+                {% else %}
+                    {% for app in unpublished_apps %}
                     <div class="goods-list" style="text-align:left ">
                         <dl>
 
@@ -407,7 +489,7 @@
                                                 style="color:#2980b9">
                                             编辑</a></p>
                                         {% elif app.check_status == 2 %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }} 
+                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
                                             最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
                                                 style="color:#2980b9">
                                             编辑</a></p>
@@ -432,6 +514,10 @@
                     </div>
 
                 {% endfor %}
+                {% endif %}
+
+
+
 
             </div>
 
@@ -536,7 +622,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
     <script src="/static/js/check-ie.js"></script>
-    <script src="/static/js/product/fast_create.js"> </script>
+    <script src="/static/js/product/fast_create.js?v={{ version_code }}"> </script>
     <script>
         //判断ie浏览器版本是否低于9
         if (lessIE9()) {

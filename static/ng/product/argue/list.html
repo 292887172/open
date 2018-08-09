@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<link rel="stylesheet" href="jqueryui/style.css">
     <style>
         html, body {
         width: 100%;
@@ -189,6 +190,9 @@
         .hl-help{
             font-size: 16px;
         }
+        .ui-sortable{
+            overflow: auto;
+        }
     </style>
     <link rel="stylesheet" href="/static/css/product/jquery-ui-1.8.16.custom.css">
     <div class="main-container box2">
@@ -330,6 +334,7 @@
                                                     <input ng-disabled='{[{ disabled }]}' name="paramType" type="radio" class="ace input-lg" onclick="selectTimer(this)" value="5"/>
                                                     <span class="lbl bigger-120"> 定时型</span>
                                                 </label>
+
                                         </div>
                                         <div id="selectBool" style="background-color:#fff;display:block;margin-left:10px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
                                             <table border=0>
@@ -353,11 +358,12 @@
                                             <input ng-disabled='{[{ disabled }]}' id="errorValue" type="text" style="border:none;width:100%;text-align:center;">
                                             <div id="checkError" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
-                                        <div id="selectInt" style="background-color:#fff;display:none;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px">
+                                        <div id="selectInt" style="background-color:#fff;display:none;margin-left:160px;margin-top:5px;border:1px solid #ccc;width:280px;padding:5px 10px">
                                             <table border=0>
                                                 <tr>
                                                     <td height=30px align="center">最小值</td>
                                                     <td align="center">最大值</td>
+                                                    <td align="center"> 间距</td>
                                                 </tr>
                                                 <tr style="border-top:1px solid #ccc">
                                                     <td width=80px>
@@ -366,10 +372,16 @@
                                                     <td width=80px align="right">
                                                         <input ng-disabled='{[{ disabled }]}' id="maxInt" type="text" style="border:none;width:76px;text-align:center;border-bottom:1px solid #ccc" value=1 onblur="checkInt()">
                                                     </td>
+                                                    <td width=80px >
+                                                         <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;width: 80px;text-align: center">
+                                                        <div id="slider" style="width: 80px"></div>
+                                                    </td>
                                                 </tr>
                                             </table>
                                             <div id="checkInt" style="margin-left:-10px;color:red;display:none;left: 228px;top: 77px;position:absolute"></div>
                                         </div>
+
+
                                         <div id="selectTimer" style="background-color:#fff;display:none;margin-left:290px;margin-top:5px;border:1px solid #ccc;width:180px;padding:5px 10px;">
                                             <table border=0>
                                                 <tr>
@@ -482,7 +494,7 @@
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/common/js/jquery.sortable.js"></script>
-    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
+
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
@@ -558,14 +570,7 @@
                                 }
                         }
                     });
-                    $(".bootbox-body div").click(function () {
-                        if ($(this).hasClass("common_dp-checked")){
-                            $(this).removeClass("common_dp-checked");
-                        }
-                        else {
-                            $(this).addClass("common_dp-checked");
-                        }
-                    });
+
                     $(".modal-body").css("height","auto");
                     $(".modal-dialog").css("width","600px");
                 },
@@ -954,9 +959,11 @@
                 corpName:edit_data["corpName"],
                 corpMark:edit_data["corpMark"],
                 mxs:edit_data["mxs"],
+                step:edit_data["step"],
                 mxsLength:edit_data["mxsLength"],
                 time:edit_data["time"]};
                 loadData(obj);
+                console.log('obj',obj)
                 mxs=obj.mxs;
         }
         else{
@@ -1009,6 +1016,8 @@
         else if(d.paramType==4){
             $('#minInt').val(d.min);
             $('#maxInt').val(d.max);
+            $('#amount').val(d.step)
+            cccc()
             document.getElementsByName('paramType')[2].checked=true;
             selectInt();
         }
@@ -1052,6 +1061,9 @@
         else{$(".form-horizontal")[1].reset();}
     }
     function selectInt(){
+
+        cccc()
+        console.log('int')
         SetDisplay("selectInt");
     }
     function selectError(){
@@ -1336,6 +1348,7 @@
             maxValue = Math.pow(2,length)-1;
             $("#minInt").val(0);
             $("#maxInt").val(maxValue);
+            cccc()
             return true
         }
     }
@@ -1411,4 +1424,20 @@
             return "";
         }
     }
+    function cccc() {
+        console.log('测试value');
+        var maxed = $.trim($('#maxInt').val());
+        var valuess = $.trim($('#amount').val());
+        console.log(valuess);
+            $( "#slider" ).slider({
+              value:valuess,
+              min: 1,
+              max: maxed,
+              step: 1,
+              slide: function( event, ui ) {
+                $( "#amount" ).val( ui.value );
+              }
+            });
+            $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+          };
     </script>

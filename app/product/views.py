@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
-from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, get_mod_funs
+from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
+    get_mod_funs,get_config_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -31,11 +32,12 @@ from model.center.app import App
 
 from model.center.protocol import Protocol
 from model.center.doc_ui import DocUi
-
+from model.center.firmware import Firmware
 from model.center.app_version import AppVersion
 from model.center.app_info import AppInfo
 from model.center.group import Group
 from model.center.user_group import UserGroup
+from model.center.account import Account
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
 from util.email.send_email_code import send_product_process_email
@@ -134,7 +136,8 @@ def product_list(request):
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
                 "is_share": 0,
-                "has_version": has_version
+                "has_version": has_version,
+                "app_screen_size": app.app_screen_size
 
             }
             tmp_apps.append(tmp)
@@ -158,7 +161,8 @@ def product_list(request):
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
                     "is_share": 1,
-                    "has_version": has_version
+                    "has_version": has_version,
+                    "app_screen_size":j.app_screen_size
 
                 }
                 tmp_apps.append(tmp)
@@ -281,11 +285,30 @@ def product_controldown(request):
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
         unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
+        print(request.COOKIES['COOKIE_USER_ACCOUNT'])
+        users = request.COOKIES['COOKIE_USER_ACCOUNT']
+        Uobj = Account.objects.filter(account_id=users)
+        if Uobj:
+            try:
+                for i in Uobj:
+                    if i.account_email in ['gaowei@53iq.com','guoyh@53iq.com','rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
+                        if not unpublished_apps:
+                            fireware = ''
+                        else:
+                            fireware = Firmware.objects.all()
+                    else:
+                        fireware = ''
+            except Exception as e:
+                print(e)
+                fireware = ''
+        else:
+            fireware = ''
         content = dict(
             keyword=keyword,
             developer=developer,
             unpublished_apps=unpublished_apps,
             default_apps=default_apps,
+            fireware=fireware
 
         )
 
@@ -355,7 +378,7 @@ def product_add(request):
         developer_id = request.POST.get("developer_id", "")
         app_name = request.POST.get("product_name", "")
         app_category = request.POST.get("product_category", "厨房类")
-        app_category_detail = request.POST.get("product_category_detail", 0)
+        app_category_detail = request.POST.get("product_category_detail", 0)  # 产品类型
         app_category_detail2 = request.POST.get("product_category_detail2", 0)
         app_product_fast = request.POST.get("product_fast", 0)
 
@@ -378,11 +401,8 @@ def product_add(request):
         app_model = request.POST.get("product_model", "")
         app_command = request.POST.get("product_command", "")
         app_group = request.POST.get("product_group", "")
-
-        device_conf = gen_app_default_conf(app_category_detail)
-
+        device_conf = get_config_funs(developer_id, app_category_detail)
         app_logo = get_app_default_logo(app_category_detail)
-
         if not developer_id:
             ret["code"] = 100001
             ret["msg"] = "missing developer_id"
@@ -397,6 +417,7 @@ def product_add(request):
                 ret["msg"] = "invalid app_id"
                 ret["message"] = "无效的APP_ID"
                 return HttpResponse(json.dumps(ret, separators=(",", ':')))
+            #  根据创建者和产品类型判断用户是否创建过此类型产品
 
             app_id = create_app(developer_id, app_name, app_model, app_category, app_category_detail, app_command,
                                 device_conf, app_factory_id, app_group, app_logo, app_product_fast, 0,
@@ -693,6 +714,7 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
+                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -701,6 +723,7 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
+                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
@@ -945,19 +968,18 @@ def portal(request):
         times = []
         for i in t:
             zy = i.app_appid[-8:]
-            timess = Message.objects.filter(device_key=zy).order_by("-update_date")[0:3]
+            timess = Message.objects.filter(device_key=zy, is_read=0).order_by("-update_date")[0:3]
             for i in timess:
                 i.update_date = i.update_date + datetime.timedelta(hours=8)
-                tis = i.update_date.strftime("%Y-%m-%d %H:%M:%S")
+                tis = i.update_date.strftime("%Y-%m-%d")
                 times.append({"time": tis, "message": i.message_content})
-
 
         return HttpResponse(json.dumps(times))
     elif request.method == 'POST':
         action = request.POST.get("action", "")
         app_id = request.POST.get("app_id", "")
         email = request.POST.get("email", "")
-        user_account = request.user
+        user_account = request.user.account_id
 
         if action == 'submitEmail':
             # 先判断这个用户对这个产品有没有创建过分组，如果没有则创建分组，自动继承默认分组的成员,更新产品所属组信息，添加新成员
@@ -984,6 +1006,7 @@ def app(request):
             date = i.create_date
             tis = date.strftime("%Y-%m-%d %H:%M:%S")
             app_dict['time'] = tis
+            app_dict['remarks'] = i.remarks
             app_list.append(app_dict)
 
     return HttpResponse(json.dumps(app_list))
@@ -992,18 +1015,17 @@ def app(request):
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
+
         key = request.GET.get('key', '')
         sapp_id = ''
         appobj = App.objects.filter(app_appid__endswith=key)
         for i in appobj:
-            print('ff',i.app_id)
             sapp_id = i.app_id
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
         try:
             li_ui = DocUi.objects.filter(ui_key=key)
             if li_ui:
-                print('yyy')
                 id_list = []
 
                 for i in li_ui:
@@ -1014,12 +1036,21 @@ def schedule(request):
                     update_dict['plan'] = i.ui_plan
                     id_list.append(i.ui_upload_id)
                     try:
-                        url = eval(i.ui_content)
+                        if i.ui_content:
+                            url = eval(i.ui_content)
+                        else:
+                            url = ''
                     except Exception as e:
-                        url = [i.ui_content]
+                        url = ''
                     if not isinstance(url, list):
                         url = [url]
+                    print('url',url)
                     update_dict['url'] = url
+
+                    if len(str(url)) > int(10):
+                        update_dict['show_url'] = 1
+                    else:
+                        update_dict['show_url'] = 0
                     update_dict['ack'] = i.ui_ack
                     update_dict['time_stemp'] = i.ui_time_stemp
 
@@ -1044,16 +1075,37 @@ def schedule(request):
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
                                          ui_content='', ui_type='')
-
+                return HttpResponse(json.dumps(update_list))
         except Exception as e:
             print(e)
             return HttpResponse(json.dumps(update_list))
+
     if request.method == "POST":
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
         key = request.POST.get('key', '')
         num = request.POST.get('num', '')
         location = request.POST.get('location', '')
-        # data:{"key":keysss,"del":"del","del_id":b,"del_url":del_url}
         action = request.POST.get('action', '')
+        data = request.POST.get('data', '')
+        if data:
+            key = request.GET.get('key', '')
+            data1 = json.loads(data)
+            for i in range(len(data1)):
+                ids = int(i)+1
+                Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=int(data1[i]))
+                for i in Dobj:
+                    try:
+                        Dobj.update(ui_upload_id=int(ids*100))
+                    except Exception as e:
+                        print(e)
+            Orders = DocUi.objects.filter(ui_key=key)
+            list_up_id = []
+            for i in Orders:
+                list_up_id.append(i.ui_upload_id)
+            for isd in list_up_id:
+                DocUi.objects.filter(ui_key=key,ui_upload_id=int(isd)).update(ui_upload_id=int(isd/100))
+            return HttpResponse(json.dumps({"code":0}))
+
         if action == 'del':
             # 删除下载链接
             del_id = request.POST.get('del_id', '')
@@ -1062,6 +1114,11 @@ def schedule(request):
                 if del_id:
                     del_id = int(del_id)
                 remove_up_url(key, del_id, del_filename)
+                Message.objects.create(message_content='产品计划书上传文件删除', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1078,15 +1135,19 @@ def schedule(request):
                         if int(i.ui_upload_id) > int(del_xu_id):
                             DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
                                 ui_upload_id=int(i.ui_upload_id) - 1)
+                Message.objects.create(message_content='产品计划删除', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'get_detail_plan':
-            detail_id = request.POST.get('id','')
-            detail_obj = DocUi.objects.filter(ui_key=key,ui_upload_id=detail_id)
-            print(detail_id)
-            detail_obj_dict={}
+            detail_id = request.POST.get('id', '')
+            detail_obj = DocUi.objects.filter(ui_key=key, ui_upload_id=detail_id)
+            detail_obj_dict = {}
             if detail_obj:
                 for i in detail_obj:
                     detail_obj_dict['remark'] = i.ui_remark  # 备注
@@ -1095,29 +1156,30 @@ def schedule(request):
                     detail_obj_dict['ack'] = i.ui_ack  # ack
                     detail_obj_dict['time_stemp'] = i.ui_time_stemp  # 时间戳
                     detail_obj_dict['content'] = i.ui_content  # url
-                    print(i.ui_content,type(i.ui_content))
                     detail_obj_dict['party'] = i.ui_party  # 责任
 
                 return HttpResponse(json.dumps(detail_obj_dict))
         elif action == 'save_plan':
-            #data: {'key': keysss, "action": "save_plan", "num": that},
-            m = DocUi.objects.filter(ui_key=key,ui_upload_id=num).update(ui_ack=int(1))
+            # data: {'key': keysss, "action": "save_plan", "num": that},
+            m = DocUi.objects.filter(ui_key=key, ui_upload_id=num).update(ui_ack=int(1))
             if m:
-                print(m)
+                Message.objects.create(message_content='产品计划书更新', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(json.dumps({"code": 0}))
             else:
-                print(num)
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'save':
             pass
-            #data: {"key": keysss, "num": idd, "plans_name": plans_name, "plans_time": plans_time,
+            # data: {"key": keysss, "num": idd, "plans_name": plans_name, "plans_time": plans_time,
             #      "plans_user": plans_user, "plans_remarks": plans_remarks},
-            plans_name = request.POST.get('plans_name','')
-            plans_time = request.POST.get('plans_time','')
-            plans_user = request.POST.get('plans_user','')
-            plans_remarks = request.POST.get('plans_remarks','')
-            Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=num)
-            print(plans_name,plans_time,plans_user,plans_remarks)
+            plans_name = request.POST.get('plans_name', '')
+            plans_time = request.POST.get('plans_time', '')
+            plans_user = request.POST.get('plans_user', '')
+            plans_remarks = request.POST.get('plans_remarks', '')
+            Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
             try:
                 if Dobj:
                     # 存在，更新
@@ -1125,12 +1187,14 @@ def schedule(request):
                     url_list = ''
                     for i in Dobj:
                         url_list = i.ui_content
-                    print(url_list)
-                    Dobj.update(ui_content=url_list,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name,update_date=datetime.datetime.utcnow())
+                    Dobj.update(ui_content=url_list, ui_remark=plans_remarks, ui_party=plans_user,
+                                ui_time_stemp=plans_time, ui_plan=plans_name, update_date=datetime.datetime.utcnow())
                 else:
                     # 新增
-                    print('xx')
-                    DocUi.objects.create(ui_content='',create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow(),ui_key=key,ui_upload_id=num,ui_remark=plans_remarks,ui_party=plans_user,ui_time_stemp=plans_time,ui_plan=plans_name)
+                    DocUi.objects.create(ui_content='', create_date=datetime.datetime.utcnow(),
+                                         update_date=datetime.datetime.utcnow(), ui_key=key, ui_upload_id=num,
+                                         ui_remark=plans_remarks, ui_party=plans_user, ui_time_stemp=plans_time,
+                                         ui_plan=plans_name)
                 return HttpResponse(json.dumps({"code": 0}))
             except Exception as e:
                 print(e)
@@ -1165,13 +1229,11 @@ def schedule(request):
             group_id = ''
             for i in a:
                 app_name = i.app_name
-                print('组id', i.group_id)
                 group_id = i.group_id
             ack_name = app_name + '第' + num + '步操作确认通知'
             try:
                 b = UserGroup.objects.filter(group__group_id=group_id)
                 for i in b:
-                    print(i.user_account)
                     email_list.append(i.user_account)
             except Exception as e:
                 print(e)
@@ -1213,41 +1275,58 @@ def schedule(request):
 @csrf_exempt
 def party(request):
     if request.method == "POST":
-        ap_id = request.POST.get('app_id','')
-        info_list = request.POST.get('listed','')
-
-
+        user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+        ap_id = request.POST.get('app_id', '')
+        info_list = request.POST.get('listed', '')
+        key = request.POST.get('keysss', '')
         obj = AppInfo.objects.filter(app_id=int(ap_id))
-        action = request.POST.get('action','')
-        #data: {"key": keysss, "app_id": app_id1, "datas": rr},
-        data_list = request.POST.get('datas','')
+        action = request.POST.get('action', '')
+        # data: {"key": keysss, "app_id": app_id1, "datas": rr},
+        data_list = request.POST.get('datas', '')
         if action == 'del':
-            title_list =''
+            title_list = ''
             if obj:
-                for i in obj:
-                    title_list = json.loads(i.responsible_party)
-
-                print('list',title_list)
-                for j in title_list:
-                    if data_list in j.values():
-                        title_list.remove(j)
-                print('lists',title_list)
-                if title_list:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
-                else:
-                    AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
-            return HttpResponse(json.dumps({"code":0}))
+                try:
+                    for i in obj:
+                        title_list = json.loads(i.responsible_party)
+                    for j in title_list:
+                        if data_list in j.values():
+                            title_list.remove(j)
+                        else:
+                            return HttpResponse(json.dumps({"code": 1}))
+                    if title_list:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party=json.dumps(title_list))
+                    else:
+                        AppInfo.objects.filter(app_id=int(ap_id)).update(responsible_party='')
+                    Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                           message_handler_type=int(5), is_read=1,
+                                           device_key=key, message_sender=user1, message_target=user1,
+                                           create_date=datetime.datetime.utcnow(),
+                                           update_date=datetime.datetime.utcnow())
+                except Exception as e:
+                    print(e)
+                    return HttpResponse(json.dumps({"code": 1}))
+            else:
+                return HttpResponse(json.dumps({"code": 1}))
+            return HttpResponse(json.dumps({"code": 0}))
         else:
             list = json.loads(info_list)
             try:
                 if obj:
                     obj.update(responsible_party=json.dumps(list))
+
                 else:
-                    AppInfo.objects.create(app_id=int(ap_id),responsible_party=json.dumps(list))
+                    AppInfo.objects.create(app_id=int(ap_id), responsible_party=json.dumps(list))
+                Message.objects.create(message_content='产品负责方更新', message_type=int(5),
+                                       message_handler_type=int(5), is_read=1,
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
             except Exception as e:
                 print(e)
             return HttpResponse(json.dumps({"code": 0}))
         # data: {"key": keysss, "app_id": app_id1, "list": aa},
+
 
 @csrf_exempt
 def upload_file(request):
@@ -1277,7 +1356,7 @@ def upload_file(request):
         action = request.POST.get('action', '')
         app_ids = request.POST.get('app_id', '')
         app_version = request.POST.get('app_version', '')
-
+        appversion_remark = request.POST.get('app_remark', '')
         if action == 'ui_upload':
             try:
                 store = EbStore(CLOUD_TOKEN)
@@ -1299,10 +1378,30 @@ def upload_file(request):
                 url_list = rr['data']
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
-                                          update_date=datetime.datetime.utcnow())
+                                          update_date=datetime.datetime.utcnow(),remarks=appversion_remark)
+                Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
                 return HttpResponse(
                     json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
-
+        elif action == 'firmware':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            sizes = request.POST.get('sizes','')
+            fobj = Firmware.objects.create(firmware_size=int(sizes),firmware_name=appversion_remark,firmware_version=app_version,firmware_url=rr['data'],firmware_create_date=datetime.datetime.utcnow(),firmware_update_date=datetime.datetime.utcnow())
+            if fobj:
+                return HttpResponse(json.dumps({"code": 0}))
+            else:
+                return HttpResponse(json.dumps({"code": 2}))
         else:
             t = int(id) + int(1)
             user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
@@ -1336,10 +1435,10 @@ def upload_file(request):
                         print(e)
                         return HttpResponse(json.dumps({"code": 1}))
                     list_url = rr['data']
-                    print("user1",user1)
-                    print("filename",file.name)
-                    datas = get_ui_static_conf(key, list_url,id,file.name,user1)
-                    print('异步返回的数据',datas)
+                    print("user1", user1)
+                    print("filename", file.name)
+                    datas = get_ui_static_conf(key, list_url, id, file.name, user1)
+                    print('异步返回的数据', datas)
                     product_name = app_name + '上传更新提示'
                     if t >= 9:
                         next_stemp = "量产阶段"
@@ -1445,9 +1544,8 @@ def download(request):
             filename = os.path.basename(url)
         response = HttpResponse(r.content,
                                 content_type='APPLICATION/OCTET-STREAM')  # 设定文件头，这种设定可以让任意文件都能正确下载，而且已知文本文件不是本地打开
-        response['Content-Disposition'] = 'attachment; filename='+filename+''  # 设定传输给客户端的文件名称
+        response['Content-Disposition'] = 'attachment; filename=' + filename + ''  # 设定传输给客户端的文件名称
         response['Content-Length'] = r.headers['content-length']  # 传输给客户端的文件大小
         return response
     else:
         return HttpResponse("no")
-

@@ -1,5 +1,7 @@
 <style>
-
+    body{
+        line-height: 1;
+    }
     #successImg{
         width: 58px;
         height: 58px;
@@ -12,7 +14,7 @@
         left: 0px;
         top: 0px;
         width: 86px;
-        height: 48px;
+        height: 65px;
         background: inherit;
         background-color: rgba(255, 255, 255, 1);
         box-sizing: border-box;
@@ -28,7 +30,7 @@
     .u209 {
         margin-top: 7px;
         width: 196px;
-        height: 48px;
+        height: 65px;
         border-width: 1px;
         border-style: solid;
         border-color: rgba(121, 121, 121, 1);
@@ -153,8 +155,8 @@
     .delete {
         width: 15px;
         height: 15px;
-        top: 0px;
-        margin-left: 96px;
+
+        margin-left: 98px;
         border-radius: 15px;
         position: absolute;
         z-index: 1;
@@ -229,7 +231,7 @@
     .ui-data-domain {
         border: 1px solid #ccc;
         width: 550px;
-        height: 77px;
+        height: 85px;
         overflow-x: scroll;
         top: -8px;
         left: 50px;
@@ -254,6 +256,7 @@
         border-bottom: 1px solid #ccc;
         position: relative;
         top: 1px;
+        height: 100%;
     }
     td {
         border: 1px solid #ccc;
@@ -576,13 +579,13 @@
     <div class="" style="margin-left: 50px">
         <div class="col-md-4" style="display: inline;margin-left: 50px;padding-left:0px">
             <input type="radio" name="xx" class="standard protocol-choose" value="standard" id="standard-item"
-                   ng-click="BzProtocol()">
-            <p style="font-size: 20px;margin-left: 25px">标准协议</p>
+                   ng-click="BzProtocol()" style="float: left">
+            <p style="font-size: 20px;margin-left: 13px;float: left;margin-top: 10px">标准协议</p>
         </div>
         <div class="" style="display: inline;margin-left: 50px">
             <input type="radio" name="xx" class="custom protocol-choose" value="custom" id="custom-item"
-                   ng-click="ZdyProtocol()">
-            <p style="font-size: 20px;margin-left: 420px">自定义协议</p>
+                   ng-click="ZdyProtocol()" style="float: left">
+            <p style="font-size: 20px;margin-left: 375px;margin-top: -4px">自定义协议</p>
         </div>
 
     </div>
@@ -605,13 +608,13 @@
             <div class="num-val">{[{x.val}]}</div>
         </div>
     </div>
-    <div style="display: block;height: 5px;margin: 20px 100px 0px;font-size: larger">编码规则</div>
-    <select disabled="disabled" style="display: block;margin-top: 4px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333;margin-bottom: 50px"
+    <div style="display: block;margin: 20px 100px 0px;font-size: larger">编码规则</div>
+    <select disabled="disabled" style="display: block;margin-top: 4px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333;margin-bottom: 10px"
             name="condition" id="select_id_1" class="bianji">
         <option value="0" id="s_x_e" ng-selected="response.endian_type=='0'">小端</option>
         <option value="1" id="x_x_e" ng-selected="response.endian_type=='1'">大端</option>
     </select>
-    <div class="x1x" id="protocolx{[{ x.number }]}x" style="margin-top: 15px;margin-left: 100px;height: 100px"
+    <div class="x1x" id="protocolx{[{ x.number }]}x" style="margin-top: 15px;margin-left: 100px;height: 100%;min-height: 100px"
          ng-repeat="x in response.frame_content" id='div_add' data-name="{[{ x.name }]}"
          ng-if="x.is_enable==true || x.is_enable=='true'">
 
@@ -622,16 +625,15 @@
         <input type="checkbox" class="ids taf" style="margin-left: 30px;display: none"
                ng-if="x.is_enable==false || x.is_enable=='false'">
         <span class="ids" style="display: none">启用</span>
-        <br>
-        <br>
+
         <div id="x5x">
             <div class="u208 col-md-2">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">序号</span>
+                <span style="display: block;margin-top: 11px;margin-left: 15px;">序号</span>
                 <input id='input_1' class="bianji" disabled="disabled" placeholder="0" style="margin-left: 24px"
                        value="{[{ x.number }]}">
             </div>
             <div class="u208 col-md-2 " style="margin-left: 10px">
-                <span style="display: block;margin-top: 11px;margin-left: 15px;width: 74px">长度</span>
+                <span style="display: block;margin-top: 11px;margin-left: 15px;">长度</span>
                 <input ng-if="x.name=='data_domain'" disabled="" id="data_domain_length" data-length="{[{ frame_length/8 }]}" value="{[{ frame_length/8 }]}Byte">
                 <select ng-if="x.name!='data_domain'" style="display: block;margin-top: 7px;height: 25px;width: 70px"
                         disabled="disabled" class="bianji" name="checkout_length" id="select_length"
@@ -705,7 +707,7 @@
 
             <div ng-if="x.title == '帧数据类型' " class="ids" id="x4x">
                 <!--<img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;" id="new_add" onclick="New_add(this)">-->
-                <img src="/static/image/product/add.png" alt="" style="margin-top: 5px;margin-left: 22px;width: 48px;"
+                <img src="/static/image/product/add.png" alt="" style="margin-top: 15px;margin-left: 22px;width: 48px;"
                      id="new_add" onclick="New_add_title(this)">
             </div>
 
@@ -714,7 +716,7 @@
 
     </div>
 
-    <div style="margin-left: 90px;margin-top: 60px;height: 70px" id="x3x">
+    <div style="margin-left: 90px;margin-top: 85px;height: 70px" id="x3x">
         <div class="u208 col-md-2" id="x2x" style="margin-left: 10px">
             <span style="display: block;margin-top: 11px;margin-left: 5px;width: 74px">校验算法</span>
             <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji"
@@ -738,7 +740,7 @@
 
         </div>
     </div>
-    <div style="margin-top: 0px;text-align: center">
+    <div style="margin-top: 15px;text-align: center">
 
         <button type="submit" id="newpro" class="btn-s-xs btnn ids" style="display: none">新增协议
         </button>
@@ -875,7 +877,7 @@
         var newDiv = document.createElement("div");
         newDiv.className = "x11x";
         newDiv.setAttribute("id", 'x11x');
-        newDiv.style = "margin-top:50px;margin-left:100px;";
+        newDiv.style = "margin-left:100px;";
         newDiv.innerHTML =
             '<input style="margin-left: 0px;text-align:left;font-size: larger;width: 800px" placeholder="自定义协议名称" value="">\n' +
 
@@ -893,8 +895,8 @@
             '            </div>\n' +
             '<img src="/static/image/product/delete.png" class="delete" id="delete" onclick="Iclose(this)"/>' +
             '            <div class="u208 col-md-2 " id="keyven" style="margin-left: 10px">\n' +
-            '                <input style="display: block;width: 70px;margin-top:3px;margin-left:0px" placeholder="自定义参数">\n' +
-            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 20px;margin-top:0px" value="">\n' +
+            '                <input style="display: block;width: 70px;margin-top:10px;margin-left:0px" placeholder="自定义参数">\n' +
+            '                <input id=\'input_1\' class="bianji" placeholder="0" style="margin-left: 20px;margin-top:10px" value="">\n' +
             '            </div>\n' +
 
             '\n' +

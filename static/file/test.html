@@ -3,102 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <title>示例</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
     <style>
-        .pre-item{
-            width: 70px;
-            border: 1px solid #ccc;
-            text-align: center;
+        .layui-form-pane .layui-form-label{
+            margin-right: 11px;
+        }
+        .layui-form-item{
+            margin-bottom: 20px;
+        }
+        .edit-btn{
+            overflow: visible !important;
+            position: relative;
+        }
+        .add-btn{
+            display: none;
+            margin: 0 auto;
+            font-size: 12px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12px;
+            width: 50px;
+            height: 12px;
+            line-height: 12px;
+            color: #fff;
+            background-color: #777f87;
+        }
+        .new-colum{
+            padding-top: 10px;
+            margin-bottom: 0;
+        }
+        .del-btn{
             float: left;
+            line-height: 38px;
+            display: inline-block;
+            cursor: pointer;
         }
-        .pre-item p{
-            margin: 0;
+        .del-btn:hover{
+            color: #ff0000;
         }
-        .pre-item p:first-child{
-            border-bottom: 1px solid #ccc;
+        .popup-open{
+            font-size: 0;
         }
-        #frame-pre{
-            height: 90px;
-            border: 1px solid #ccc;
+        .popup-open .layui-form-checkbox{
+            margin: 5px 1px;
         }
-        #submit{
-            width: 100px;
-
-            margin-top: 33px;
+        .btn-active{
+            display: inline-block;
+            margin-left: 7px;
         }
     </style>
 </head>
 <body>
 <div style="padding: 3%">
-    <div class="row col-md-12" style="margin-bottom: 30px">
-        <select name="frame-item" id="frame-item" class="form-control" style="width: 15%">
-        <option value="downstream">云端到MCU</option>
-        <option value="upstream">MCU到云端</option>
-    </select>
-    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+  <legend>协议帧定义</legend>
+</fieldset>
+<form class="layui-form layui-form-pane" action="">
+  <div class="layui-input-inline" style="margin-bottom: 20px">
+          <select n ame="quiz1">
+              <option value="" selected>MCU到屏端</option>
+          </select>
+  </div>
+  <div class="layui-form-item">
+      <label class="layui-form-label edit-btn">帧头<p class="add-btn">+</p></label>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>请选择长度</option>
+              <option value="1">1Byte</option>
+              <option value="2">2Byte</option>
+              <option value="3">3Byte</option>
+              <option value="3">4Byte</option>
+          </select>
+      </div>
+      <div class="layui-input-inline">
+          <input type="text" name="title" autocomplete="off" placeholder="请输入传输值" class="layui-input">
+      </div>
+  </div>
 
-    <div class="row">
-        <div class="form-group col-md-4">
+  <div class="layui-form-item">
+      <label class="layui-form-label edit-btn">数据域<p class="add-btn">+</p></label>
+      <p class="layui-btn  layui-btn-warm edits">编辑</p>
+      <div class="btn-active"></div>
+  </div>
 
-            <input type="text" class="form-control col-md-6" id="exampleInputName2" placeholder="请输入协议示例帧">
-        </div>
-        <div class="form-group col-md-2">
+  <div class="layui-form-item">
+      <label class="layui-form-label edit-btn">校验<p class="add-btn">+</p></label>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>选择算法</option>
+              <option value="sum">SUM和校验</option>
+              <option value="crc-16">CRC16</option>
 
-            <select name="frame-type" id="frame-type" class="form-control">
-            <option value="frame-head">帧头</option>
-            <option value="frame-number">流水号</option>
-            <option value="frame-type">数据类型</option>
-            <option value="frame-length">帧长</option>
-            <option value="frame-data">数据域</option>
-            <option value="frame-check">校验</option>
-            </select>
-        </div>
-        <div class="form-group col-md-2">
+          </select>
+      </div>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>请选择长度</option>
+              <option value="1">1Byte</option>
+              <option value="2">2Byte</option>
+              <option value="3">3Byte</option>
+              <option value="3">4Byte</option>
+          </select>
+      </div>
 
-            <select name="frame-length" id="frame-length" class="form-control">
-            <option value="1">1Byte</option>
-            <option value="2">2Byte</option>
-            <option value="3">3Byte</option>
-            <option value="4">4Byte</option>
-            <option value="5">5Byte</option>
-            <option value="6">6Byte</option>
-            </select>
-        </div>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>请选择校验开始位</option>
+              <option value="1">1Byte</option>
+              <option value="2">2Byte</option>
+              <option value="3">3Byte</option>
+              <option value="3">4Byte</option>
+          </select>
+      </div>
 
-        <button class="btn btn-default" id="Sure">确认</button>
-    </div>
-    <div class="row form-group col-md-9">
-        <div class="col-md-3">
-            <label for="">校验算法</label>
-            <select name="checkout-algorithm" id="checkout-algorithm" class="form-control">
-            <option value="sum">SUM(和校验)</option>
-            <option value="crc-8">CRC-8</option>
-            <option value="crc-16">CRC-16</option>
-
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="">校验起始位</label>
-            <input type="text" class="form-control col-md-3" id="checkStartNum" placeholder="校验开始位">
-
-        </div>
-        <div class="col-md-3">
-            <label for="">校验停止位</label>
-            <input type="text" class="form-control col-md-3" id="checkEndNum" placeholder="校验停止位">
-        </div>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>请选择校验结束位</option>
+              <option value="1">1Byte</option>
+              <option value="2">2Byte</option>
+              <option value="3">3Byte</option>
+              <option value="3">4Byte</option>
+          </select>
+      </div>
 
 
-    </div>
-    <br><br><br><br><br>
-    <div id="frame-pre">
-        <p>预览</p>
-
-    </div>
+  </div>
 
 
-    <button class="btn btn-default" id="submit">提交</button>
+  <div class="layui-form-item">
+      <div class="layui-input-inline">
+          <input type="text" name="title" autocomplete="off" placeholder="名称" class="layui-input">
+      </div>
+      <div class="layui-input-inline">
+          <input type="text" name="title" autocomplete="off" placeholder="标识" class="layui-input">
+      </div>
+      <div class="layui-input-inline">
+          <select name="quiz1">
+              <option value="" selected>请选择长度</option>
+              <option value="1">1Byte</option>
+              <option value="2">2Byte</option>
+              <option value="3">3Byte</option>
+              <option value="3">4Byte</option>
+          </select>
+      </div>
+      <div class="layui-input-inline">
+          <input type="text" name="title" autocomplete="off" placeholder="请输入传输值" class="layui-input">
+      </div>
+      <div class="del-btn">删除</div>
+  </div>
+  <div class="layui-form-item">
+    <button class="layui-btn" lay-submit="" lay-filter="demo2">跳转式提交</button>
+  </div>
+</form>
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 <script>
     $("#Sure").click(function () {
         var frame = $("#exampleInputName2").val();
@@ -123,6 +183,103 @@
             alert('请输入示例帧')
         }
     })
+
+    var being = true;
+    $(".edit-btn").mouseenter(function () {
+        if (being) {
+            $(this).children(".add-btn").fadeIn(200,function () {
+                 being = false
+            })
+        }
+    }).mouseleave(function () {
+        $(this).children(".add-btn").fadeOut(0,function () {
+            being = true;
+        })
+    })
+
+    $(".add-btn").click(function () {
+        var found_list = "<div class=\"layui-form-item new-colum\">\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"名称\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"标识\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <select name=\"quiz1\">\n" +
+            "              <option value=\"\" selected>请选择长度</option>\n" +
+            "              <option value=\"1\">1Byte</option>\n" +
+            "              <option value=\"2\">2Byte</option>\n" +
+            "              <option value=\"3\">3Byte</option>\n" +
+            "              <option value=\"3\">4Byte</option>\n" +
+            "          </select>\n" +
+            "      </div>\n" +
+            "      <div class=\"layui-input-inline\">\n" +
+            "          <input type=\"text\" name=\"title\" autocomplete=\"off\" placeholder=\"请输入传输值\" class=\"layui-input\">\n" +
+            "      </div>\n" +
+            "      <div class=\"del-btn\">删除</div>"
+            "  </div>";
+
+       $(this).parents(".layui-form-item").append(found_list);
+       layui.use('form', function () {
+            var form = layui.form;
+            form.render('select');
+        });
+    })
+    
+    $(".layui-form-item").on("click",'.del-btn',function () {
+        $(this).parents(".new-colum").remove();
+    })
+
+    //复选框参数
+    var checkbox_data = [
+        { name: "写作",content:true, },
+        { name: "发呆",content:true, },
+        { name: "音乐",content:false, },
+        { name: "运动",content:false, },
+    ];
+
+    //编辑弹出层
+    $(".edits").click(function () {
+        //处理复选框参数
+        var check_content = "";
+        for ( i in checkbox_data){
+            if (checkbox_data[i].content){
+                check_content = check_content + '<input type="checkbox" name="" value="'+ checkbox_data[i].name +'" title="'+ checkbox_data[i].name +'" lay-skin="primary" checked>'
+            }else {
+                check_content = check_content + '<input type="checkbox" name="" value="'+ checkbox_data[i].name +'" title="'+ checkbox_data[i].name +'" lay-skin="primary">'
+            }
+        }
+
+        layer.open({
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '260px'], //宽高
+            content: '<form class="layui-form popup-open" action="">\n' +
+                check_content +
+            '    </form>',
+            yes:function (index,layero) {
+                //清空内容
+                $(".btn-active").empty();
+                //获取复选框值
+                var is_value = $(".popup-open").find(".layui-form-checkbox");
+                //var is_list = [];
+                is_value.each(function () {
+                    if ($(this).hasClass("layui-form-checked")){
+                        //is_list.push($(this).prev().val())
+                        $(".btn-active").append("<span>"+ $(this).prev().val() +" </span>")
+                    }
+                })
+
+                layer.close(index);
+            }
+        });
+        layui.use('form', function () {
+            var form2 = layui.form;
+            form2.render('checkbox');
+        });
+    })
+
+    
 </script>
 </body>
 </html>

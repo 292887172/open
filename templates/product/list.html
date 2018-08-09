@@ -625,12 +625,13 @@
                         <div class="product-info-div">
 
                             <p class="product-info-p" style="margin-left: -45px;display: block">
-                                分类：{{ app.app_device_type| category_detail}} {{ app.app_create_source|category_detail1 }}
+                                分类：{{ app.app_device_type| category_detail}}
 
                                 {% if app.app_group == 1 %}
-                                    <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
-                                    <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
-                                           class="fa fa-rss"></label>{% endif %}
+                                    <label style="margin-left: 18px;margin-top: -5px" >普通屏</label>{% elif app.app_group == 2 %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >单WiFi无屏</label>{% elif app.app_group == 3 %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >{{ app.app_screen_size|category_detail1 }}</label>
+                                {% endif %}
 
                             </p >
                                     {% if app.check_status == 0 %}
@@ -697,15 +698,16 @@
                         </div>
                     <div class="product-info-div" >
 
-                        <p class="product-info-p" >
-                            分类：{{ app1.app_device_type| category_detail}}
+                         <p class="product-info-p" style="margin-left: -45px;display: block">
+                                分类：{{ app1.app_device_type| category_detail}}
 
-                            {% if app1.app_group == 1 %}
-                                <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
-                                <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
-                                       class="fa fa-rss"></label>{% endif %}
+                                {% if app1.app_group == 1 %}
+                                    <label style="margin-left: 18px;margin-top: -5px" >普通屏</label>{% elif app1.app_group == 2 %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >单WiFi无屏</label>{% elif app1.app_group == 3 %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >{{ app1.app_screen_size|category_detail1 }}</label>
+                                {% endif %}
 
-                        </p>
+                            </p >
                                 {% if app1.check_status == 0 %}
                                         <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
                                 style="margin-left: 8%;color: #333">未发布</label></p>
@@ -766,16 +768,16 @@
                             </div>
                             <div class="product-info-div">
 
-                                <p class="product-info-p">
-                                    分类：{{ app1.app_device_type| category_detail}}
+                                 <p class="product-info-p" style="margin-left: -45px;display: block">
+                                分类：{{ app1.app_device_type| category_detail}}
 
+                                {% if app1.app_group == 1 %}
+                                    <label style="margin-left: 18px;margin-top: -5px" >普通屏</label>{% elif app1.app_group == 2 %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >单WiFi无屏</label>{% else %}
+                                    <label style="margin-left:15px;margin-top: -5px;" >{{ app1.app_screen_size|category_detail1 }}</label>
+                                {% endif %}
 
-                                    {% if app1.app_group == 1 %}
-                                        <label style="margin-left: 18px;margin-top: -5px" class="fa fa-android"></label>{% else %}
-                                        <label style="margin-left:15px;margin-top: -5px;transform: rotate(-43deg);"
-                                               class="fa fa-rss"></label>{% endif %}
-
-                                </p>
+                            </p >
                                 {% if app1.check_status == 0 %}
                                         <p class="product-info-p">更新于：{{ app1.app_update_date| utc2local }}<label
                                 style="margin-left: 8%;color: #333">未发布</label></p>
@@ -831,7 +833,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="{% static "js/product/page_product_list.js" %}"></script>
     <script src="/static/js/check-ie.js"></script>
-    <script src="/static/js/product/fast_create.js"> </script>
+    <script src="/static/js/product/fast_create.js?v={{ version_code }}"> </script>
         <script>
 
         //判断ie浏览器版本是否低于9

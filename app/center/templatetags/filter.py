@@ -4,11 +4,14 @@ from django.db import models
 from django import template
 from conf.message import BOOK
 from model.center.doc_ui import DocUi
+
 register = template.Library()
 '''自定义django模板过滤器'''
-def xxxx(obj,key):
+
+
+def xxxx(key):
     try:
-        print(obj)
+
         vv = ''
         obj = DocUi.objects.filter(ui_key=key)
         if not obj:
@@ -20,14 +23,23 @@ def xxxx(obj,key):
                     pass
                 else:
                     ack_list.append(i.ui_upload_id)
+
+            if not ack_list:
+                return "等待上线"
             num = sorted(ack_list)[0]
             for i in obj.filter(ui_upload_id=num):
                 vv = i.ui_plan
+            if vv:
 
-            return vv
+                return vv
+            else:
+                return "制定计划书"
     except Exception as e:
         print(e)
+
+
 register.filter(xxxx)
+
 
 def utc2local(obj):
     """
@@ -82,7 +94,7 @@ register.filter(cover_str)
 
 
 def num_app(app):
-    return len(app)-1
+    return len(app) - 1
 
 
 register.filter(num_app)
@@ -91,17 +103,20 @@ register.filter(num_app)
 def category_detail(obj):
     try:
         type = str(obj)
-        category = {'31':'洗碗机','1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱','21':"蒸烤箱", '20': '蒸箱', '25': ' 电压力锅', '26': '电饭煲', '27': '台式小烤箱', '30':'微蒸烤','0': '其他'}
+        category = {'31': '洗碗机', '1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '21': "蒸烤箱", '20': '蒸箱', '25': ' 电压力锅',
+                    '26': '电饭煲', '27': '台式小烤箱', '30': '微蒸烤', '0': '其他'}
         return category[type]
     except Exception as e:
         print(e)
 
 
 register.filter(category_detail)
+
+
 def category_detail1(obj):
     try:
         type = str(obj)
-        category = {'0':'','1':'(标准型)'}
+        category = {'':' ','0': '', '1': '4.3寸屏', '2': '5寸屏', '3': '6.8寸长条屏'}
         return category[type]
     except Exception as e:
         print(e)
@@ -139,24 +154,23 @@ def create_menu(context, cur=0, username=None):
         if username:
             menu = [
 
-                    {"url": "/product/console/", "title": "控制台"},
-                    {"url": "/product/list/", "title": "厨电开发"},
-                    {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
-                    {"url": "/product/community/", "title": "厨房社区"},
+                {"url": "/product/console/", "title": "控制台"},
+                {"url": "/product/list/", "title": "厨电开发"},
+                {"url": "/product/kitchen/", "title": "厨电方案"},
+                {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                {"url": "/product/community/", "title": "厨房社区"},
 
-                    ]
+            ]
 
         else:
             menu = [
-                    {"url": "/", "title": "首页"},
-                    {"url": "/product/console/", "title": "控制台"},
-                    {"url": "/product/kitchen/", "title": "厨电方案"},
-                    {"url": "/SmartRecipe/", "title": "智能菜谱"},
-                    {"url": "/product/community/", "title": "厨房社区"},
+                {"url": "/", "title": "首页"},
+                {"url": "/product/console/", "title": "控制台"},
+                {"url": "/product/kitchen/", "title": "厨电方案"},
+                {"url": "/SmartRecipe/", "title": "智能菜谱"},
+                {"url": "/product/community/", "title": "厨房社区"},
 
-
-                    ]
+            ]
         ret["menu"] = menu
     return ret
 
@@ -219,15 +233,18 @@ def check_isphone_mail(val, type):
             return val
     return ''
 
+
 register.filter(check_isphone_mail)
 
 
-def check_first_child(menus,id):
+def check_first_child(menus, id):
     for m in menus:
         if int(m["menu_parent_id"]) == int(id):
-            print(id,m["menu_parent_id"])
+            print(id, m["menu_parent_id"])
             return m["menu_id"]
     return id
+
+
 register.filter(check_first_child)
 
 
@@ -243,6 +260,8 @@ def cover_product_key(val):
         return s2
     except:
         return ""
+
+
 register.filter(cover_product_key)
 
 

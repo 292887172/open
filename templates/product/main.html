@@ -283,7 +283,7 @@
                             <ul>
                                 <li id="appMenu" class="jsNavItem" data-id="appMenu" ng-click="nav.selected('appMenu')">
                                     <a href="#/app">
-                                        <i class="fa fa-desktop " ></i>UI编辑
+                                        <i class="fa fa-desktop " ></i>UI
                                     </a>
                                 </li>
                             </ul>
@@ -351,21 +351,23 @@
 {% endblock %}
 
 {% block end_fixed_script %}
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="//apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script src="//apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="/static/layui/layui.all.js" charset="utf-8"></script>
-    <script src="{% static "ng/product/app.js" %}"></script>
-    <script src="{% static "ng/product/controller.js" %}"></script>
-    <script src="{% static "ng/product/portal/controller.js" %}"></script>
-    <script src="{% static "ng/product/info/controller.js" %}"></script>
-    <script src="{% static "ng/product/app/controller.js" %}"></script>
-    <script src="{% static "ng/product/argue/controller.js" %}"></script>
-    <script src="{% static "ng/product/edit/controller.js" %}"></script>
-    <script src="{% static "ng/product/device/controller.js" %}"></script>
-    <script src="{% static "ng/product/content/controller.js" %}"></script>
-    <script src="{% static "ng/product/oven/controller.js" %}"></script>
-    <script src="{% static "ng/product/protocol/controller.js" %}"></script>
-    <script src="{% static "ng/product/schedule/controller.js" %}"></script>
+    <script src="/static/js/product/nb.js"></script>
+    <script src="{% static "ng/product/app.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/portal/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/info/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/app/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/argue/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/edit/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/device/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/content/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/oven/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/protocol/controller.js" %}?v={{ version_code }}"></script>
+    <script src="{% static "ng/product/schedule/controller.js" %}?v={{ version_code }}"></script>
     <script src="/static/js/product/bootbox.js"></script>
 
 
@@ -391,7 +393,7 @@
         angular.module('Product.base', ['ngRoute'])
                 .controller('ProductBaseCtrl', ['$scope', function ($scope) {
                     // 应用信息
-                    $scope.app_currversion = "{{ app.app_currversion | xxxx:key }}";
+                    $scope.app_currversion = "{{ key|xxxx }}";
                     $scope.app_check_remarks = "{{ app.check_remarks }}";
                     $scope.visible =
                             "{% if app.check_status == 1 or app.check_status == 2 or app.check_status == 3 %}true{% else %}false{% endif %}";

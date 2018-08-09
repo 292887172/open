@@ -51,7 +51,6 @@ class App(models.Model):
     # 设备型号
     app_model = models.CharField(max_length=64, null=True, db_column='ebf_app_model')
     # 项目进程
-
     #app_prot = models.CharField(max_length=64,default='提交详细技术功能规划书',db_column='ebf_app_prot')
     # 应用等级
     app_level = models.IntegerField(max_length=3, default=0, db_column='ebf_app_level')

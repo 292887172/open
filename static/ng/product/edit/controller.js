@@ -17,6 +17,7 @@ angular.module('Product.edit', ['ngRoute'])
         $scope.min=0;
         $scope.max=0;
         $scope.mxsNum=0;
+
         /**
          * 提交配置信息表单
          * @constructor
@@ -92,6 +93,8 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				$scope.min=parseInt($.trim($('#minInt').val()));
 				$scope.max=parseInt($.trim($('#maxInt').val()));
+				$scope.step=parseInt($.trim($('#amount').val()));
+				//
 			}
 			else if (types[3].checked) {
 				var msg=checkTimer();
@@ -134,6 +137,7 @@ angular.module('Product.edit', ['ngRoute'])
 
 			}else if(types[2].checked){
 				indata.paramType=4;//整数
+				indata.step = $scope.step
 			}
 			else if(types[3].checked){
 				indata.paramType=5;//定时型

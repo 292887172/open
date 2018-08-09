@@ -18,29 +18,31 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 #my-plans .view-plans-left{
     background-color: #fff;
     float: left;
-    width: 60%;
-    padding: 10px 14px;
+    width: 59%;
+    padding: 10px 0px 0;
 }
 #my-plans .task-detail{
     margin-left: 0.6%;
     float: left;
-    width: 39.4%;
+    width: 40.4%;
     min-height: 200px;
+    max-height: 500px;
     background-color: #fff;
     padding: 10px 14px;
+    overflow-y: auto;
 }
 #my-plans .plans-head{
     overflow: hidden;
     font-size: 14px;
     border-bottom: 1px solid #d0d0d0;
-    padding:0 8px 10px;
+    padding:0 22px 10px;
 }
 #my-plans .plans-head p{
     cursor: pointer;
 }
 .new-plan{
     float: left;
-    padding: 4px 8px;
+    padding: 5px 10px;
     color: #fff;
     border-radius: 5px;
     background-color: #fe6109;
@@ -61,7 +63,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin-top: -2px;
 }
 #plans-list{
-    margin: 0px 0 10px;
+    margin: 0px 0 5px;
+    height: 500px;
+    overflow-y: auto;
 }
 .div-flex{
     display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
@@ -78,18 +82,57 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     white-space: nowrap;
 }
 #plans-list li {
+    position: relative;
     list-style: none;
-    border-bottom: 1px solid #d0d0d0;
-    padding: 10px 8px;
+    /*border-bottom: 1px solid #d0d0d0;*/
+    padding: 10px 22px;
     font-size: 14px;
     line-height: 21px;
     cursor: pointer;
     justify-content: space-between;
 }
+#plans-list li:after{
+    content: "";
+    display: block;
+    width: 96%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: #d0d0d0;
+}
+.plans_before{
+    background-color: #f8f8f8;
+}
+.plans_before:before{
+    content: "";
+    display: block;
+    width: 3px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #338fe5;
+}
+#plans-list li.plans_before:after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: #d0d0d0;
+}
 #plans-list li:hover{
     background-color: #f8f8f8;
 }
 #plans-list .name{
+    overflow: hidden;
     width: 100px;
     margin-left: 3%;
     position: relative;
@@ -103,12 +146,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-radius: 5px;
 }
 #plans-list .file-info{
-    width: 450px;
+    width: 300px;
     margin-left: 6%;
 }
 #plans-list .file-info span{
     display: inline-block;
-    max-width: 380px;
+    max-width: 270px;
     vertical-align: bottom;
 }
 #plans-list .file-info img{
@@ -171,6 +214,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 0 12px;
     font-size:14px;
     align-items:flex-end;
+    cursor: pointer;
 }
 .task-user-info .name{
     background-color: #f0f3f8;
@@ -221,12 +265,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: space-between;
 }
 .file-list .file-box .file-name{
-    width: 170px;
+    width: 150px;
     color: #2385ff;
 }
 .file-list .file-box .file-user{
     width: 90px;
     color: #ababab;
+    margin-right: 10px;
 }
 .file-list .file-box .file-time{
     color: #ababab;
@@ -419,4 +464,39 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 ::-webkit-scrollbar-track {
     background-color: rgba(50,50,50,0.05);
+}
+.plans-tab{
+    padding: 5px 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+.plans-tab p{
+    text-align: center;
+}
+.plans-tab .se_num{
+    width: 50px;
+    margin-left: 11px;
+}
+.plans-tab .se_user{
+    margin-left: 10px;
+}
+.plans-tab .se_name{
+    margin-left: 77px;
+}
+.plan_over_time{
+    width: 110px;
+}
+.plans-tab .se_time{
+    margin-left: 250px;
+}
+#ul_id li:last-child:after{
+    content: "";
+    display: block;
+    width: 96%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: transparent !important;
 }
