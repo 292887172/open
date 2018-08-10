@@ -1,5 +1,4 @@
 # coding=utf-8
-
 import zipfile
 import os
 import re
@@ -7,7 +6,8 @@ from pathlib import Path
 import shutil
 import logging
 import pprint
-from collections import OrderedDict
+
+logging.basicConfig(level=logging.INFO)
 
 
 def del_output(project_path):
@@ -18,7 +18,6 @@ def del_output(project_path):
 
 
 def unzip_project(project_path):
-    # project_path = os.path.join(os.getcwd(), project_name)
     if os.path.isdir(os.path.splitext(project_path)[0]):
         return
     else:
@@ -31,7 +30,7 @@ def unzip_project(project_path):
 
 def zip_project(folder_path, new_name):
     base_path = os.path.split(folder_path)[0]
-    zip_file = zipfile.ZipFile(os.path.join(base_path, new_name) + '.zip', 'w', zipfile.ZIP_DEFLATED)
+    zip_file = zipfile.ZipFile(os.path.join(base_path, new_name) , 'w', zipfile.ZIP_DEFLATED)
     for folder, subfolder, file in os.walk(folder_path):
         for item in file:
             file_path = os.path.join(folder, item)
@@ -43,30 +42,22 @@ def zip_project(folder_path, new_name):
     zip_file.close()
 
 
-def replace_config(data: str, config_name: str, new_config: str) -> str:
+def replace_config(data: str, config_name: str, new_config: str) -> 'str or false':
     rule = "(-- start {0} config)([\s\S]+)(-- end {0} config)".format(config_name)
-    # print(re.search(rule, data, re.M).groups())  # test 输出匹配到的数据
+    logging.info('匹配规则 ' + rule)
+    # logging.info('匹配到的数据 ', end='')
+    # logging.info(re.search(rule, data, re.M).groups())
     try:
         data = re.sub(rule, new_config, data, re.M)
         return data
     except Exception as e:
-        logging.error(str(e))
-        return '替换错误'
+        logging.error('格式转换出现错误 ' + str(e))
+        return False
 
 
 def get_personal_project(project_name, key, device_function, device_protocol_config):
-    """根据原始的项目文件生成自定义用户key的用户项目，生成过程中
-    在解压后的项目文件夹中替换main.lua中的key，替换后删除output文件夹下所有文件，并压缩成zip文件
-
-    :param project_name: 项目文件夹压缩包的名字（WiFiIot）
-    :param new_key: 用户的 key （keyqwerty）
-    :return: 以 (项目名_用户的key.zip) 形式的压缩包名 （WiFiIot_keyqwerty.zip）
-    """
-
     project_path = os.path.join(os.getcwd(), project_name) + '.zip'
-
     unzip_project(project_path)
-
     personal_name = project_name + '_' + key + '.zip'
     project_folder = os.path.splitext(project_path)[0]
     main_lua = os.path.join(project_folder, 'main.lua')
@@ -92,7 +83,13 @@ def get_personal_project(project_name, key, device_function, device_protocol_con
 
     zip_project(project_folder, personal_name)
 
-    return os.path.join(os.getcwd(), personal_name)
+    personal_file_path = os.path.join(os.getcwd(), personal_name)
+    logging.info('生成文件路径 ' + personal_file_path)
+
+    if os.path.isfile(personal_file_path):
+        return personal_file_path
+    else:
+        return False
 
 
 def config_change(config):
@@ -127,11 +124,31 @@ def change_test(config):
 
 if __name__ == '__main__':
     """使用说明
-    main.lua 使用utf-8编码进行存储
-    更新项目时 删除 WiFiIot.zip 以及 WiFiIot文件夹 
-    以 项目名_key 形式存放的文件属于临时文件可以进行删除
-    ls WiFiIot_*zip
-    rm WiFiIot_*zip
+    
+    - 初始准备，在此方法的同目录下放置项目文件其中
+        - 格式 zip
+        - main.lua 中需要替换的项使用   -- start xxx config    -- end xxx config 包裹，
+    - 解压生成
+        - 项目默认解压在同目录下
+        - 解压后 拷贝 main.lua 为 main.origin.lua
+        - 生成的文件 main.lua 中的配置会替换，main.origin.lua 也会打包进项目中
+    - 打包
+        - 打包后文件名 prject_name + '_' + new_key.zip 
+        
+    - 调用
+        project_path = get_personal_project(project_name, key, device_function, device_protocol_config)
+        
+        project_name: 项目名  (例如 WiFiIot 代表同目录下 WiFiIot.zip)
+        ket: 新的key  (str) 
+        device_function:    dict
+        device_protocol_config  dict    
+    - 其他
+        - main.lua 使用utf-8编码进行存储
+        - 更新项目时 删除 WiFiIot.zip 以及 WiFiIot文件夹 
+        - 以 项目名_key 形式存放的文件属于临时文件可以进行删除
+            - ls WiFiIot_*zip
+            - rm WiFiIot_*zip
+        - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
 
     # print(os.path.join(os.getcwd(), 'WiFiIot.zip'))  # /home/am/deployment/open/static/sdk/WiFiIot.zip
@@ -166,8 +183,7 @@ if __name__ == '__main__':
         ]
     }
 
-    # print(config_change(device_function))
-    # print(config_change(device_protocol_config))
+    logging.info(config_change(device_function))
+    logging.info(config_change(device_protocol_config))
 
-    result = get_personal_project('WiFiIot', 'new_key_123', device_function, device_protocol_config)
-    print(result)
+    print(get_personal_project('WiFiIot', 'new_key_123', device_function, device_protocol_config))
