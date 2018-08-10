@@ -25,7 +25,20 @@ def get_device_function(key):
     return device_function
 
 
+name_map = {
+    'frame_head': 'head',
+    'frame_type': 'type',
+    'frame_length': 'length',
+    'data_domain': 'data'
+}
+
+
 def get_device_protocol_config(key):
+    """
+
+    :param key:
+    :return:  list  [0]
+    """
     protocols = Protocol.objects.filter(protocol_device_key=key)
 
     items = []
@@ -45,6 +58,7 @@ def get_device_protocol_config(key):
             for frame_content in config['frame_content']:
                 _item = {}
                 _item['name'] = frame_content['name']
+                if _item['name'] in name_map.keys(): _item['name'] = name_map[_item['name']]
                 try:
                     _item['length'] = int(frame_content['length'])
                 except KeyError:
@@ -68,7 +82,7 @@ def get_device_protocol_config(key):
                     pass
             item['length'] = _sum
 
-            items.append(item)
+            items.insert(0, item)
         else:
             item = {}
             item['endian_type'] = int(config['endian_type'])
@@ -80,6 +94,7 @@ def get_device_protocol_config(key):
             for frame_content in config['frame_content']:
                 _item = {}
                 _item['name'] = frame_content['name']
+                if _item['name'] in name_map.keys(): _item['name'] = name_map[_item['name']]
                 try:
                     _item['length'] = int(frame_content['length'])
                 except KeyError:
