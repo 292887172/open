@@ -555,12 +555,12 @@
         if (document.getElementById("x_x").selected) {
             console.log('下行')
 
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("textarea")[0].val = "发送码"
         }
         if (document.getElementById("s_x").selected) {
             console.log('上行')
 
-            document.getElementsByClassName("code-item")[0].getElementsByTagName("span")[0].innerText = "发送码"
+            document.getElementsByClassName("code-item")[0].getElementsByTagName("textarea")[0].val = "发送码"
         }
        var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
 
@@ -597,8 +597,9 @@
     <hr>
     <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
             name="condition" id="select_id" class="bianji">
-        <option value="0" id="s_x" ng-selected="response.protocol_type=='0'">MCU到云端</option>
-        <option value="1" id="x_x" ng-selected="response.protocol_type=='1'">云端到MCU</option>
+        <option value="0" id="x_x" ng-selected="response.protocol_type==0">屏端到MCU</option>
+        <option value="1" id="s_x" ng-selected="response.protocol_type==1">MCU到屏端</option>
+
     </select>
 
     <div class="protocol-pre" style="display: flex;flex-wrap:wrap;">
@@ -675,7 +676,7 @@
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
-                    <span style="display: block;margin-top: 11px;width: 198px;text-align: center"> {[{ c.desc}]}</span>
+                    <textarea cols="1" rows="1" style="display: block;margin-top: 6px;width: 84px;text-align: center;margin-left: 50px;height: 20px">{[{ c.desc }]}</textarea>
                     <input type="text" disabled="disabled" class="xinput bblchk"
                            value="{[{ c.value.split('')[0]+c.value.split('')[1]}]}"><input type="text"
                                                                                            disabled="disabled"
@@ -696,7 +697,7 @@
                      ng-repeat="c in x.code" ng-if="c.value" data-type="{[{ c.type}]}">
                     <img src="/static/image/product/delete.png" class="delete1 ids" id="delete1"
                          onclick="Iclose1(this)"/>
-                    <span style="display: block;margin-top: 11px;width: 84px;text-align: center"> {[{ c.desc}]}</span>
+                    <textarea cols="1" rows="1" style="display: block;margin-top: 11px;width: 84px;text-align: center;margin-left: 0;height: 20px">{[{ c.desc}]}</textarea>
                     <input id='input_1' class="bianji" disabled="disabled" placeholder="0"
                            style="margin-left: 21px;text-align: center"
                            value="{[{ c.value }]}">

@@ -174,9 +174,9 @@ if __name__ == '__main__':
     # print(os.path.basename(project_path))  # WiFiIot.zip
     # print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
-    device_function = [{'length': 1, 'name': 'fan1', 'title': '大风'},
-                       {'length': 2, 'name': 'fan2', 'title': '大风'},
-                       {'length': 3, 'name': 'fan3', 'title': '大风'}]
+    device_function = [{'length': 1, 'name': 'fan1', 'title': '大3风'},
+                       {'length': 2, 'name': 'fan2', 'title': '大2风'},
+                       {'length': 3, 'name': 'fan3', 'title': '大1风'}]
 
     device_protocol_config = {
         'endian_type': 0,
@@ -204,6 +204,6 @@ if __name__ == '__main__':
     logging.info(config_change(device_protocol_config))
 
     key = 'new_key_123'
-    project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
+    project_path = '/home/rdy/Downloads/WiFiIot.zip'
     logging.info('传入项目的路径 ' + project_path)
     logging.info(get_personal_project(project_path, key, device_function, device_protocol_config))

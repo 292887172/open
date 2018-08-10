@@ -334,7 +334,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 dict_1["length"] = $(select_1).children("option:selected").val();
                 console.log(dict_1)
                 for (var k = 0; k < codeItem.length; k++) {
-                    var tmp = {"type": $(codeItem[k]).data('type'), "desc": $(codeItem[k]).children("span").text()};
+                    var tmp = {"type": $(codeItem[k]).data('type'), "desc": $(codeItem[k]).children("textarea").val()};
                     var lengtt = codeItem[k].getElementsByTagName("input").length;
                     console.log(lengtt)
                     if (lengtt) {
@@ -419,7 +419,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 //new add data list
                 var new_data_list = response1.frame_content[2]["code"];
                 console.log(new_data_list)
-                if (response1.protocol_type == 1) {
+                if (response1.protocol_type == 0) {
                     // 下行被选中
                     document.getElementById("x_x").selected = true;
 
@@ -518,7 +518,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
                 console.log(dict_1)
                 for (var k = 0; k < codeItem.length; k++) {
-                    var tmp = {"type": $(codeItem[k]).data('type'), "desc": $(codeItem[k]).children("span").text()};
+                    var tmp = {"type": $(codeItem[k]).data('type'), "desc": $(codeItem[k]).children("textarea").val()};
                     var lengtt = codeItem[k].getElementsByTagName("input").length;
                     console.log(lengtt)
                     if (lengtt) {
@@ -620,7 +620,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 //new add data list
                 var new_data_list = response1.frame_content[2]["code"];
                 console.log(new_data_list)
-                if (response1.protocol_type == 1) {
+                if (response1.protocol_type == 0) {
                     // 下行被选中
                     document.getElementById("x_x").selected = true;
 
