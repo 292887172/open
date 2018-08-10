@@ -98,13 +98,14 @@ def get_personal_project(project_path, key, device_function, device_protocol_con
         logging.error('压缩失败 ' + str(e))
         return project_path
 
-    personal_file_path = os.path.join(os.getcwd(), personal_name)
+    personal_file_path = os.path.split(project_path)[0]
+    personal_file_path = os.path.join(personal_file_path, personal_name)
 
-    if os.path.isfile(personal_file_path):
-        logging.info('最终返回的下载文件路径 ' + personal_file_path)
+    if os.path.exists(personal_file_path):
+        logging.info('最终返回的下载文件路径1 ' + personal_file_path)
         return personal_file_path
     else:
-        logging.info('最终返回的下载文件路径 ' + project_path)
+        logging.info('最终返回的下载文件路径2 ' + project_path)
         return project_path
 
 
@@ -119,9 +120,11 @@ def config_change(config):
         .replace(':', '=') \
         .replace('[', '{') \
         .replace(']', '}') \
-        .replace('None', 'nil')
+        .replace('"None"', 'nil')
 
     data = re.sub(r'(")([\w]+)("=)', r'\2=', data)
+
+    data = re.sub(r'("{)(\d)(}")', r'[\2]', data)
 
     if change_test(data):
         return data
@@ -174,9 +177,56 @@ if __name__ == '__main__':
     # print(os.path.basename(project_path))  # WiFiIot.zip
     # print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
-    device_function = [{'length': 1, 'name': 'fan1', 'title': '大风'},
-                       {'length': 2, 'name': 'fan2', 'title': '大风'},
-                       {'length': 3, 'name': 'fan3', 'title': '大风'}]
+    # test config
+    # device_function = [{'length': 1, 'name': 'fan1', 'title': '大风'},
+    #                    {'length': 2, 'name': 'fan2', 'title': '大风'},
+    #                    {'length': 3, 'name': 'fan3', 'title': '大风'}]
+    #
+    # device_protocol_config = {
+    #     'endian_type': 0,
+    #     'length': 9,
+    #     'length_offset': "None",
+    #     'check_type': 'crc16',
+    #     'check_data_start': 0,
+    #     'check_data_end': -2,
+    #     'structs': [
+    #         {'name': 'head', 'length': 1, 'value': [0x11, 0xA5, 0x5A, 0x01]},
+    #         {'name': "version", 'length': 1, 'value': [0x01]},
+    #         {'name': "category", 'length': 1, 'value': [0x01]},
+    #         {'name': 'data', 'length': 4, 'value': [
+    #             {'length': 1, 'name': 'fan1', 'title': '大风'},
+    #             {'length': 2, 'name': 'test_fan', 'title': '大风风'},
+    #             {'length': 3, 'name': 'test_fan', 'title': '大风风'},
+    #             {'length': 4, 'name': 'test_fan', 'title': '大风风'},
+    #             {'length': 5, 'name': 'test_fan', 'title': '大风风'}
+    #         ]},
+    #         {'name': 'check', 'length': 2, 'value': [{'length': 1, 'name': 'fan2', 'title': '小风'}]}
+    #     ]
+    # }
+
+    # actual config
+    device_function = [
+        {'length': 1, 'name': 'Fan3', 'title': '大风',
+         'controls': {'Main': 113}, 'triggers': {'[1]': {'Power': 1, 'Fan1': 0, 'Fan2': 0}}},
+        {'length': 1, 'name': 'Fan2', 'title': '中风'},
+        {'length': 1, 'name': 'Fan1', 'title': '小风'},
+        {'length': 1, 'name': 'Wash', 'title': '清洗'},
+        {'length': 1, 'name': 'Light', 'title': '清洗'},
+        {'length': 1, 'name': 'Down', 'title': '降'},
+        {'length': 1, 'name': 'Up', 'title': '升'},
+        {'length': 1, 'name': 'Lamp', 'title': 'Lamp'},
+        {'length': 1, 'name': 'Power', 'title': '电源',
+         'value': 1, 'controls': {'Main': 101}},
+        # 'value': 1, 'controls': {'Main': 101}, 'triggers': {'[0]': {'All': 0}, '[1]': {'Fan2': 1}}},
+        {'length': 1, 'name': 'Fire', 'title': '火焰型号'},
+        {'length': 1, 'name': 'LeftGas', 'title': '左灶'},
+        {'length': 2, 'name': 'Beep', 'title': '蜂鸣'},
+        {'length': 1, 'name': 'Dry', 'title': '烘干'},
+        {'length': 1, 'name': 'Disinfectants', 'title': '消毒'},
+        {'length': 1, 'name': 'Aux', 'title': 'Aux'},
+        {'length': 8, 'name': 'Temp', 'title': '烟道温度'},
+        {'length': 8, 'name': 'Fault', 'title': '故障报警'}
+    ]
 
     device_protocol_config = {
         'endian_type': 0,
@@ -186,24 +236,18 @@ if __name__ == '__main__':
         'check_data_start': 0,
         'check_data_end': -2,
         'structs': [
-            {'name': 'head', 'length': 1, 'value': [0x11, 0xA5, 0x5A, 0x01]},
+            {'name': 'head', 'length': 1, 'value': [0xA5]},
             {'name': "version", 'length': 1, 'value': [0x01]},
             {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4, 'value': [
-                {'length': 1, 'name': 'fan1', 'title': '大风'},
-                {'length': 2, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 3, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 4, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 5, 'name': 'test_fan', 'title': '大风风'}
-            ]},
-            {'name': 'check', 'length': 2, 'value': [{'length': 1, 'name': 'fan2', 'title': '小风'}]}
+            {'name': 'data', 'length': 4},
+            {'name': 'check', 'length': 2}
         ]
     }
 
     logging.info(config_change(device_function))
     logging.info(config_change(device_protocol_config))
 
-    key = 'new_key_123'
+    key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
     logging.info('传入项目的路径 ' + project_path)
     logging.info(get_personal_project(project_path, key, device_function, device_protocol_config))
