@@ -21,16 +21,20 @@ def unzip_project(project_path):
     if os.path.isdir(os.path.splitext(project_path)[0]):
         return
     else:
+        extract_path = os.path.splitext(project_path)[0]
+        extract_path = os.path.split(extract_path)[0]
         with zipfile.ZipFile(project_path, 'r') as file:
             for item in file.namelist():
-                extracted_path = Path(file.extract(item))
-                extracted_path.rename(item.encode('cp437').decode('gbk'))
+                file.extract(item, extract_path)
+                old_name = os.path.join(extract_path, item)
+                new_name = old_name.encode('cp437').decode('gbk')
+                os.rename(old_name, new_name)
         del_output(project_path)
 
 
 def zip_project(folder_path, new_name):
     base_path = os.path.split(folder_path)[0]
-    zip_file = zipfile.ZipFile(os.path.join(base_path, new_name) , 'w', zipfile.ZIP_DEFLATED)
+    zip_file = zipfile.ZipFile(os.path.join(base_path, new_name), 'w', zipfile.ZIP_DEFLATED)
     for folder, subfolder, file in os.walk(folder_path):
         for item in file:
             file_path = os.path.join(folder, item)
@@ -55,9 +59,14 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
         return False
 
 
-def get_personal_project(project_name, key, device_function, device_protocol_config):
-    project_path = os.path.join(os.getcwd(), project_name) + '.zip'
-    unzip_project(project_path)
+def get_personal_project(project_path, key, device_function, device_protocol_config):
+    project_name = os.path.splitext(os.path.basename(project_path))[0]
+    try:
+        unzip_project(project_path)
+    except Exception as e:
+        logging.error('解压失败 返回原始文件 错误内容 ' + str(e))
+        return project_path
+
     personal_name = project_name + '_' + key + '.zip'
     project_folder = os.path.splitext(project_path)[0]
     main_lua = os.path.join(project_folder, 'main.lua')
@@ -75,21 +84,28 @@ def get_personal_project(project_name, key, device_function, device_protocol_con
         "device_protocol_config": 'local device_protocol_config={0}'.format(config_change(device_protocol_config))
     }
 
-    for config in configs:
-        data = replace_config(data, config, configs[config])
+    try:
+        for config in configs:
+            data = replace_config(data, config, configs[config])
+        with open(main_lua, 'w+', encoding='utf-8') as file:
+            file.write(data)
+    except Exception as e:
+        logging.error('替换失败 ' + str(e))
 
-    with open(main_lua, 'w+', encoding='utf-8') as file:
-        file.write(data)
-
-    zip_project(project_folder, personal_name)
+    try:
+        zip_project(project_folder, personal_name)
+    except Exception as e:
+        logging.error('压缩失败 ' + str(e))
+        return project_path
 
     personal_file_path = os.path.join(os.getcwd(), personal_name)
-    logging.info('生成文件路径 ' + personal_file_path)
 
     if os.path.isfile(personal_file_path):
+        logging.info('最终返回的下载文件路径 ' + personal_file_path)
         return personal_file_path
     else:
-        return False
+        logging.info('最终返回的下载文件路径 ' + project_path)
+        return project_path
 
 
 def config_change(config):
@@ -154,6 +170,7 @@ if __name__ == '__main__':
     # print(os.path.join(os.getcwd(), 'WiFiIot.zip'))  # /home/am/deployment/open/static/sdk/WiFiIot.zip
     # print(os.path.split(project_path))  # ('/home/am/deployment/open/static/sdk', 'WiFiIot.zip')
     # print(os.path.splitext(project_path))  # ('/home/am/deployment/open/static/sdk/WiFiIot', '.zip')
+    # print(os.path.splitext('WiFiIot.zip'))  # ('WiFiIot', '.zip')
     # print(os.path.basename(project_path))  # WiFiIot.zip
     # print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
@@ -186,4 +203,7 @@ if __name__ == '__main__':
     logging.info(config_change(device_function))
     logging.info(config_change(device_protocol_config))
 
-    print(get_personal_project('WiFiIot', 'new_key_123', device_function, device_protocol_config))
+    key = 'new_key_123'
+    project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
+    logging.info('传入项目的路径 ' + project_path)
+    logging.info(get_personal_project(project_path, key, device_function, device_protocol_config))
