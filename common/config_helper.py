@@ -9,8 +9,8 @@ from model.center.app import App
 from model.center.protocol import Protocol
 
 
-def get_device_function(key='53zzqa8Qq6HAXF6nMz'):
-    app = App.objects.get(app_appid=key)
+def get_device_function(key='q8qG3tq7'):
+    app = App.objects.get(app_appid__contains=key)
     configs = json.loads(app.device_conf)
     device_function = []
     for config in configs:
@@ -22,7 +22,7 @@ def get_device_function(key='53zzqa8Qq6HAXF6nMz'):
     return device_function
 
 
-def get_device_protocol_config(key='5yUHe7fk'):
+def get_device_protocol_config(key='q8qG3tq7'):
     protocol = Protocol.objects.get(protocol_device_key=key)
     protocol_type = protocol.protocol_factory_type
     protocol_content = protocol.protocol_factory_content
