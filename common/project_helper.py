@@ -59,7 +59,7 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
         return False
 
 
-def get_personal_project(project_path, key, device_function, device_protocol_config):
+def get_personal_project(project_path, key, device_function, device_protocol_config, device_protocol_response_config):
     project_name = os.path.splitext(os.path.basename(project_path))[0]
     try:
         unzip_project(project_path)
@@ -81,7 +81,9 @@ def get_personal_project(project_path, key, device_function, device_protocol_con
     configs = {
         "product_key": 'local product_key="{0}"'.format(key),
         "device_function": 'local device_function={0}'.format(config_change(device_function)),
-        "device_protocol_config": 'local device_protocol_config={0}'.format(config_change(device_protocol_config))
+        "device_protocol_config": 'local device_protocol_config={0}'.format(config_change(device_protocol_config)),
+        "device_protocol_response_config": 'local device_protocol_response_config={0}'.format(
+            config_change(device_protocol_response_config)),
     }
 
     try:
@@ -244,10 +246,27 @@ if __name__ == '__main__':
         ]
     }
 
+    device_protocol_response_config = {
+        'endian_type': 0,
+        'length': 9,
+        'length_offset': "None",
+        'check_type': 'crc16',
+        'check_data_start': 0,
+        'check_data_end': -2,
+        'structs': [
+            {'name': 'head', 'length': 1, 'value': [0xA5]},
+            {'name': "version", 'length': 1, 'value': [0x01]},
+            {'name': "category", 'length': 1, 'value': [0x01]},
+            {'name': 'data', 'length': 4},
+            {'name': 'check', 'length': 2}
+        ]
+    }
     logging.info(config_change(device_function))
     logging.info(config_change(device_protocol_config))
+    logging.info(config_change(device_protocol_response_config))
 
     key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
     logging.info('传入项目的路径 ' + project_path)
-    logging.info(get_personal_project(project_path, key, device_function, device_protocol_config))
+    logging.info(get_personal_project(project_path, key, device_function,
+                                      device_protocol_config, device_protocol_response_config))
