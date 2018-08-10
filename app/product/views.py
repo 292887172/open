@@ -828,6 +828,9 @@ def protocol(request):
         device_key = request.GET.get('key', '')
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
+        if action == "get_project":
+            time.sleep(3)
+            return JsonResponse({"code": 0, "url": "http://www.53iq.com"})
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
             dc = json.loads(app.device_conf)
