@@ -13,6 +13,7 @@ def get_device_function(key):
     try:
         app = App.objects.get(app_appid__contains=key)
     except Exception as e:
+        print(e)
         pass
     configs = json.loads(app.device_conf)
     device_function = []

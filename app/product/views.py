@@ -18,10 +18,12 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
+from common.config_helper import get_device_protocol_config, get_device_function
 
 from common.device_online import device_online
 from base.const import StatusCode, DefaultProtocol, DefaultSchedule
 from base.const import ConventionValue
+from common.project_helper import get_personal_project
 from common.smart_helper import *
 from common.message_helper import save_user_message
 from common.device_fun_helper import add_device_fun
@@ -40,6 +42,7 @@ from model.center.user_group import UserGroup
 from model.center.account import Account
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
+from open.settings import BASE_DIR
 from util.email.send_email_code import send_product_process_email
 
 import hashlib
@@ -829,8 +832,16 @@ def protocol(request):
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
         if action == "get_project":
-            time.sleep(3)
-            return JsonResponse({"code": 0, "url": "http://www.53iq.com"})
+
+            p = get_device_protocol_config(device_key)
+
+            p0 = p[0]
+            p1 = p[1]
+            d = get_device_function(device_key)
+            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
+            pth = get_personal_project(project_path, device_key, d, p0, p1)
+            pt = pth.replace(BASE_DIR, 'http://'+request.META['HTTP_HOST'])
+            return JsonResponse({"code": 0, "url": pt})
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
             dc = json.loads(app.device_conf)

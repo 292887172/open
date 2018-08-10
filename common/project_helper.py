@@ -7,6 +7,8 @@ import shutil
 import logging
 import pprint
 
+from common.config_helper import get_device_protocol_config, get_device_function
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -207,66 +209,10 @@ if __name__ == '__main__':
     # }
 
     # actual config
-    device_function = [
-        {'length': 1, 'name': 'Fan3', 'title': '大风',
-         'controls': {'Main': 113}, 'triggers': {'[1]': {'Power': 1, 'Fan1': 0, 'Fan2': 0}}},
-        {'length': 1, 'name': 'Fan2', 'title': '中风'},
-        {'length': 1, 'name': 'Fan1', 'title': '小风'},
-        {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'length': 1, 'name': 'Light', 'title': '清洗'},
-        {'length': 1, 'name': 'Down', 'title': '降'},
-        {'length': 1, 'name': 'Up', 'title': '升'},
-        {'length': 1, 'name': 'Lamp', 'title': 'Lamp'},
-        {'length': 1, 'name': 'Power', 'title': '电源',
-         'value': 1, 'controls': {'Main': 101}},
-        # 'value': 1, 'controls': {'Main': 101}, 'triggers': {'[0]': {'All': 0}, '[1]': {'Fan2': 1}}},
-        {'length': 1, 'name': 'Fire', 'title': '火焰型号'},
-        {'length': 1, 'name': 'LeftGas', 'title': '左灶'},
-        {'length': 2, 'name': 'Beep', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'Dry', 'title': '烘干'},
-        {'length': 1, 'name': 'Disinfectants', 'title': '消毒'},
-        {'length': 1, 'name': 'Aux', 'title': 'Aux'},
-        {'length': 8, 'name': 'Temp', 'title': '烟道温度'},
-        {'length': 8, 'name': 'Fault', 'title': '故障报警'}
-    ]
-
-    device_protocol_config = {
-        'endian_type': 0,
-        'length': 9,
-        'length_offset': "None",
-        'check_type': 'crc16',
-        'check_data_start': 0,
-        'check_data_end': -2,
-        'structs': [
-            {'name': 'head', 'length': 1, 'value': [0xA5]},
-            {'name': "version", 'length': 1, 'value': [0x01]},
-            {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4},
-            {'name': 'check', 'length': 2}
-        ]
-    }
-
-    device_protocol_response_config = {
-        'endian_type': 0,
-        'length': 9,
-        'length_offset': "None",
-        'check_type': 'crc16',
-        'check_data_start': 0,
-        'check_data_end': -2,
-        'structs': [
-            {'name': 'head', 'length': 1, 'value': [0xA5]},
-            {'name': "version", 'length': 1, 'value': [0x01]},
-            {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4},
-            {'name': 'check', 'length': 2}
-        ]
-    }
-    logging.info(config_change(device_function))
-    logging.info(config_change(device_protocol_config))
-    logging.info(config_change(device_protocol_response_config))
-
-    key = 'AABBCCDD'
-    project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
+    key = 'q8qG3tq7'
+    p0 = get_device_protocol_config(key)[0]
+    p1 = get_device_protocol_config(key)[1]
+    d = get_device_function(key)
+    project_path = '/home/rdy/git-workspace/oschina/open/static/sdk/WiFiIot.zip'
     logging.info('传入项目的路径 ' + project_path)
-    logging.info(get_personal_project(project_path, key, device_function,
-                                      device_protocol_config, device_protocol_response_config))
+    logging.info(get_personal_project(project_path, key, d, p0, p1))
