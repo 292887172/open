@@ -15,7 +15,7 @@ def get_device_function(key='53zzqa8Qq6HAXF6nMz'):
     device_function = []
     for config in configs:
         item = {}
-        item['length'] = config['mxsLength']
+        item['length'] = int(config['mxsLength'])
         item['name'] = config['Stream_ID']
         item['title'] = config['name']
         device_function.append(item)
