@@ -33,6 +33,18 @@ name_map = {
 }
 
 
+def get_data_length(key):
+    try:
+        app = App.objects.get(app_appid__contains=key)
+    except Exception as e:
+        pass
+    configs = json.loads(app.device_conf)
+    data_len = 0
+    for config in configs:
+        data_len += int(config['mxsLength'])
+    return int(data_len / 8)
+
+
 def get_device_protocol_config(key):
     """
 
@@ -60,9 +72,13 @@ def get_device_protocol_config(key):
                 _item['name'] = frame_content['name']
                 if _item['name'] in name_map.keys(): _item['name'] = name_map[_item['name']]
                 try:
-                    _item['length'] = int(frame_content['length'])
+                    if frame_content['name'] == 'data_domain':
+                        _item['length'] = get_data_length(key)
+                    else:
+                        _item['length'] = int(frame_content['length'])
                 except KeyError:
                     pass
+
                 _item['value'] = []
                 if len(frame_content['code']) > 0:
                     for code in frame_content['code']:
@@ -96,7 +112,10 @@ def get_device_protocol_config(key):
                 _item['name'] = frame_content['name']
                 if _item['name'] in name_map.keys(): _item['name'] = name_map[_item['name']]
                 try:
-                    _item['length'] = int(frame_content['length'])
+                    if frame_content['name'] == 'data_domain':
+                        _item['length'] = get_data_length(key)
+                    else:
+                        _item['length'] = int(frame_content['length'])
                 except KeyError:
                     pass
                 _item['value'] = []
@@ -123,10 +142,11 @@ def get_device_protocol_config(key):
 
 
 if __name__ == '__main__':
-    device_function = get_device_function(key='q8qG3tq7')
+    device_function = get_device_function(key='vUN5MyX2')
     pprint.pprint(device_function)
 
     print('\n')
 
-    device_protocol_config = get_device_protocol_config(key='q8qG3tq7')
-    pprint.pprint(device_protocol_config, width=200)
+    device_protocol_config = get_device_protocol_config(key='vUN5MyX2')
+    pprint.pprint(device_protocol_config[0], width=200)
+    pprint.pprint(device_protocol_config[1], width=200)
