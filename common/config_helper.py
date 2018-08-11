@@ -22,6 +22,10 @@ def get_device_function(key):
         item['length'] = int(config['mxsLength'])
         item['name'] = config['Stream_ID']
         item['title'] = config['name']
+
+        if config['Stream_ID'] == 'Fan3':
+            item['controls'] = {'Main': 113}
+
         device_function.append(item)
     return device_function
 
