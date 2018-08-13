@@ -35,7 +35,7 @@ from common.smart_helper import check_user_password, check_factory_uuid, get_fac
 from util.email.send_email_code import send_mail
 from common.validate_code import create_validate_code
 from util.email.email_code import create_eamil_code
-from common.developer_helper import create_developer, update_group_info
+from common.developer_helper import create_developer, update_group_info,delete_group_info
 from django.db.models import Q
 from base.connection import MyAdapter
 from util.sms.verify_code import verify_sms_code
@@ -130,8 +130,12 @@ def home(request):
             update_group_info(user, team_info)
             return HttpResponse(json.dumps({"status": "ok"}))
         elif action == 'delete_email':
-            update_group_info(user, team_info)
-            return HttpResponse(json.dumps({"status": "ok"}))
+            print(user,team_info)
+            code = delete_group_info(user, team_info)
+            if code == 0:
+                return HttpResponse(json.dumps({"code": 0}))
+            else:
+                return HttpResponse(json.dumps({"code": 1}))
         r = RedisBaseHandler().client
         try:
             # e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
