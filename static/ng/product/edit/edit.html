@@ -476,9 +476,9 @@
                 group += '	<div class="col-sm-2 col-xs-2">';
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
+                group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -562,9 +562,9 @@
         group+='	<div class="col-sm-1 col-xs-2">';
         group+='		<input type="text" style="width:130px" class="checkDatas" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
-        group+='	<div class="col-sm-2 col-xs-2" style="padding-top:6px">';
+        group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="display:none;padding-left: 30px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
@@ -621,6 +621,7 @@
     function select_trigger(ths) {
         value = $(ths.parentNode.parentNode.children[1].children).val();
         name = $(ths.parentNode.parentNode.children[2].children).val();
+        console.log('value',value,name);
         if(value==""||name==""){
             $('#checkArgue1').css("display","block");
             $('#checkArgue1').html("请填写数据说明和传送数据");
@@ -643,6 +644,7 @@
             </thead>\
            <tbody class="tbody" id="addFunc">';
         trig = [];
+        console.log('mxs',mxs)
         for (var j = 0; j < mxs.length; j++) {
             if (mxs[j].data == value) {
                 dataVal = j;
@@ -650,6 +652,7 @@
                 bool = true;
                 if (data.trigger && data.trigger[0] != null) {
                     temp = data.trigger;
+                    console.log('temp',temp)
                     for (var k = 0; k < temp.length; k++) {
                         table += '<tr>';
                         table += '<th>' + temp[k].name + '</th>';

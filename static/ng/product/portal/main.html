@@ -201,7 +201,12 @@
                     <div class="product-info-div" style="">
 
                         <p class="product-info-p" style="">
-                            分类： {[{app_device_name}]} {[{ app_create_source }]}<label style="margin-left: 18px;transform: rotate(-43deg)" class="fa fa-rss"></label>
+                            分类： {[{app_device_name}]} {[{ app_create_source }]}
+
+                                    <label ng-if="app_group==1" style="margin-left: 18px;margin-top: -5px" >普通屏</label>
+                                    <label ng-if="app_group==2" style="margin-left:15px;margin-top: -5px;" >单WiFi无屏</label>
+                                    <label ng-if="app_group==3" style="margin-left:15px;margin-top: -5px;" >{[{app_screen}]}</label>
+
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Key：{[{key}]}
                   </p>
 
@@ -221,9 +226,9 @@
 
                 <dd style="margin-left: 0px" >
 
-                    <div ng-if="app_device_name != '洗碗机' && app_device_name != '蒸烤箱'" style=""><a href="/static/sdk/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
-                    <div ng-if="app_device_name=='洗碗机'" style=""><a href="/static/sdk/xiwanji/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载4.3寸屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
-                    <div ng-if="app_device_name=='蒸烤一体机'" style=""><a href="/static/sdk/zkx/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载5寸蒸烤箱屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div ng-if="app_device_name != '洗碗机' && app_device_name != '蒸箱'" style=""><a href="/static/sdk/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div ng-if="app_device_name=='洗碗机'" style=""><a href="/static/sdk/xiwanji/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载4.3寸洗碗机屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
+                    <div ng-if="app_device_name=='蒸箱'" style=""><a href="/static/sdk/zkx/DCIOT.PKG" target="_blank" style="cursor:pointer;" id="export-protocol" class=""><span style="font-size: 14px;margin-left: 5px;">- 下载5寸蒸箱屏端固件烧录到厨电屏上体验</span><i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a> <a target="_blank" href="http://doc.53iq.com/#/Protocol/README"><i class="ace-icon fa fa-question-circle bigger-120"></i></a></div>
                 </dd>
 
                 <dd style="display: none">
@@ -257,7 +262,8 @@
                     <span style="font-size: 16px">电控部分开发</span>
                 </div>
                 <div  class="protocol-info-main">
-                    <p style="margin-top: 10px;font-size: 14px;cursor: pointer"><a onclick="export_parameter()" target="_blank"> - 导出油烟机控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;<a target="_blank" href=" http://doc.53iq.com/#/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87
+
+                    <p style="margin-top: 10px;font-size: 14px;cursor: pointer"><a onclick="export_parameter()" target="_blank"> - 导出控制协议<i class="ace-icon fa fa-arrow-circle-o-down bigger-120"></i></a>&nbsp;&nbsp;<a target="_blank" href=" http://doc.53iq.com/#/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87
 " style="color: #bfbfbf">示例?</a></p>
                     <p style="margin-top: 20px;font-size: 14px"> - 电控程序开发实现、烧录</p>
                     <p style="margin-top: 30px;font-size: 14px">- 连接硬件（WiFi屏+电控板),测试调试 <a href="http://doc.53iq.com/#/function" target="_blank" style="color: #bfbfbf">  图解</a><a href="http://doc.53iq.com/#/debug_helper" target="_blank" style="color: #bfbfbf">  调试方法?</a></p>
