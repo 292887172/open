@@ -159,6 +159,17 @@
         right: 10px;
         top: 5px;
     }
+    #my_tips{
+        position: absolute;
+        margin: 0 auto;
+        top: 150px;
+        left: 0;
+        right: 0;
+        font-size: 16px;
+        text-align: center;
+        color: #bdb8b8;
+        display: none;
+    }
 </style>
 
 <div class="modal fade" id="user_address" tabindex="-1" role="dialog" aria-hidden="true">
@@ -335,6 +346,7 @@
         <ul id="ul_id_party">
 
         </ul>
+        <div id="my_tips">暂无负责人，请添加</div>
     </div>
     <div class="user-btn-keep">
         <button onclick="Save_Party()">保存</button>
@@ -454,6 +466,12 @@
         my_mask.attr('id', 'mask-box');
         my_mask.appendTo("body");
         $("#plans-user-list").fadeIn();
+        let items = $("#ul_id_party").children().length;
+        if (items == 0){
+            $("#my_tips").css("display","block");
+        }else{
+            $("#my_tips").css("display","none");
+        }
     }
 
     //关闭计划弹窗
@@ -723,6 +741,7 @@
 
     //添加负责人
     $(".plans-user-add").click(function () {
+        $("#my_tips").css("display","none");
         var len = $("#ul_id_party li input").length;
         if (len==0){
             let myuser_add = $("<li><input type='text' value=''><button class='my-user-del' onclick=\"Del_Party(this)\">删除</button></li>");
@@ -755,32 +774,40 @@
 
     // 删除负责方
     function Del_Party(that) {
-        console.log(that)
-
         var rr = that.parentNode.firstElementChild.value
         console.log(rr)
         if (rr){
              $.ajax({
-            url: '/product/party',
-            type: "POST",
-            data: {"key": keysss, "app_id": app_id1, "datas": rr, "action": 'del'},
-            success: function (data) {
-                console.log(data)
-                data = JSON.parse(data)
-                if (data['code']==0){
-                    that.parentNode.remove()
-                }else if(data['code']==1){
-                    that.parentNode.remove()
-                    console.log('此数据不在数据库中')
-                }else{
-                    console.log('error')
-                }
+                url: '/product/party',
+                type: "POST",
+                data: {"key": keysss, "app_id": app_id1, "datas": rr, "action": 'del'},
+                success: function (data) {
+                    console.log(data)
+                    data = JSON.parse(data)
+                    if (data['code']==0){
+                        that.parentNode.remove()
+                    }else if(data['code']==1){
+                        that.parentNode.remove()
+                        console.log('此数据不在数据库中')
+                    }else{
+                        console.log('error')
+                    }
 
-            }
-        })
+                }
+            })
         }else {
             that.parentNode.remove()
         }
+        //判断是否为最后一个
+        setTimeout(function () {
+            let items = $("#ul_id_party").children().length;
+            if (items == 0){
+                $("#my_tips").css("display","block");
+            }else{
+                $("#my_tips").css("display","none");
+            }
+            console.log(items)
+        },100)
 
 
     }
