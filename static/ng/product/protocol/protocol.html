@@ -1,0 +1,317 @@
+<link rel="stylesheet" href="/static/layui/css/layui.css">
+<style>
+    body {
+        line-height: 1;
+    }
+    .mt20{
+        overflow: visible;
+    }
+    .layui-form-pane .layui-form-label {
+        margin-right: 11px;
+    }
+
+    .layui-form-item {
+        margin-bottom: 7px;
+    }
+
+    .edit-btn {
+        overflow: visible !important;
+        position: relative;
+    }
+
+    .add-btn {
+        display: none;
+        margin: 0 auto;
+        font-size: 12px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -16px;
+        width: 50px;
+        height: 15px;
+        line-height: 15px;
+        color: #fff;
+        background-color: #777f87;
+    }
+
+    .new-colum {
+        padding-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .del-btn {
+        float: left;
+        line-height: 38px;
+        display: inline-block;
+        cursor: pointer;
+        text-indent: initial;
+    }
+
+    .del-btn:hover {
+        color: #ff0000;
+    }
+
+    .popup-open {
+        font-size: 0;
+    }
+
+    .popup-open .layui-form-checkbox {
+        margin: 5px 1px;
+    }
+
+    .btn-active {
+        display: inline-block;
+        margin-left: 7px;
+        margin-bottom: 18px;
+    }
+
+    .layui-input, .layui-select, .layui-textarea {
+        background-color: #fff !important;
+        color: initial !important;
+    }
+
+    .layui-field-title {
+
+        border-width: 0px 0 1px;
+        padding-top: 10px;
+    }
+
+    .layui-elem-field legend {
+        margin-left: 0;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    legend {
+        width: initial;
+        border-bottom: 0;
+    }
+
+    .layui-form-item .layui-input-inline {
+        width: 160px;
+    }
+
+    .layui-form-select dl dd.layui-this {
+        background-color: #f35019;
+    }
+
+    .layui-btn-warm {
+        background-color: #f35019;
+    }
+
+    .layui-form-pane .layui-input-block {
+        margin-left: 0;
+    }
+
+    .layui-form-radio > i:hover, .layui-form-radioed > i {
+        color: #f35019;
+    }
+    .layui-badge{
+        height: 37px;
+        line-height: 37px;
+        margin-right: 10px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+    .layui-tab-title .layui-this:after{
+        height: 40px;
+    }
+    .algorithm-tips{
+        color: #2980b9;
+        margin-top: 10px;
+        line-height: 18px;
+        display: none;
+    }
+    .frame-val-tips{
+        padding-top: 5px;
+        color: #2980b9;
+        display: none;
+    }
+    .layui-form-pane .layui-input{
+        margin-bottom: 18px;
+    }
+</style>
+
+<div style="padding: 10px 3%;min-height: 500px" ng-controller="ProtocolCtrl">
+
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>协议帧定义</legend>
+    </fieldset>
+    <div class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="radio" name="protocol" value="1" title="标准协议" ng-checked="!protocol_zdy" lay-filter="protocol_zdy">
+                <input type="radio" name="protocol" value="2" title="自定义协议" ng-checked="protocol_zdy" lay-filter="protocol_zdy">
+
+
+            </div>
+        </div>
+
+        <div class="layui-tab" lay-filter="demo">
+          <ul class="layui-tab-title">
+            <li class="layui-this">屏端到MCU</li>
+            <li>MCU到屏端</li>
+
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+              1. 定义屏端到电控端（下行）通信协议;<br>
+              <br>2. 鼠标移到协议上可添加新协议类型；<br><br>
+                3. 数据域内容，点击编辑动态添加，上下行数据域内容不一样需要分开定义。
+            </div>
+            <div class="layui-tab-item">1. 定义电控端到屏端（上行）通信协议；<br><br>
+                2. 电控到屏端和屏端到电控通信协议一样，可不用修改，默认一样。
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
+            <label ng-mouseenter="editMouseOn($event)" ng-mouseleave="editMouseLeave($event)" class="layui-form-label edit-btn" ng-click="addFrameData($event)">{[{ f.title }]}<p class="add-btn">+</p></label>
+            <p ng-if="f.name=='data'" class="layui-btn  layui-btn-warm edits" ng-click="editData()">编辑</p>
+            <div ng-if="f.name=='data'" class="btn-active">
+                <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
+            </div>
+            <div class="layui-input-inline" ng-if="f.name=='check'">
+                <select name="quiz1" lay-filter="check-rel" id="check_algorithm">
+                    <option value="" selected>选择算法</option>
+                    <option ng-repeat="a in Algorithm" value="{[{ a.name }]}" ng-if="a.name==f.value.check_algorithm" selected>{[{ a.title }]}</option>
+                    <option ng-repeat="a in Algorithm" value="{[{ a.name }]}" ng-if="a.name!=f.value.check_algorithm">{[{ a.title }]}</option>
+
+                </select>
+                <p class="algorithm-tips">SUM校验和取低8位</p>
+            </div>
+
+            <div ng-if="f.name!='data'"  class="layui-input-inline">
+                <select name="quiz1-{[{ f.name }]}" id="frame-id-{[{ f.id }]}" lay-filter="frame-length">
+                    <option value="" selected>请选择长度</option>
+
+                    <option ng-repeat="l in frame_length" value="{[{ l }]}" ng-if="f.length==l" selected>{[{ l }]}Byte</option>
+                    <option ng-repeat="l in frame_length" value="{[{ l }]}" ng-if="f.length!=l">{[{ l }]}Byte</option>
+
+                </select>
+            </div>
+            <div ng-if="f.name!='data' && f.name!='check'" class="layui-input-inline">
+                <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
+                <p class="frame-val-tips">请填写{[{ f.length }]}个字节传输值</p>
+            </div>
+            <div ng-if="f.name=='check'" class="layui-input-inline">
+                <select name="quiz-check-start" id="check_start" lay-filter="check-rel">
+                    <option value="" selected>请选择校验开始位</option>
+                    <option ng-repeat="d in frame_data" value="{[{ d.id }]}" ng-if="d.id==f.value.check_start" selected>{[{ d.title }]}</option>
+                    <option ng-repeat="d in frame_data" value="{[{ d.id }]}" ng-if="d.id!=f.value.check_start" >{[{ d.title }]}</option>
+
+                </select>
+            </div>
+
+            <div ng-if="f.name=='check'" class="layui-input-inline">
+                <select name="quiz-check-end" id="check_end" lay-filter="check-rel">
+                    <option value="" selected>请选择校验结束位</option>
+                    <option ng-repeat="d in frame_data" value="{[{ d.id }]}" ng-if="d.id==f.value.check_end" selected>{[{ d.title }]}</option>
+                    <option ng-repeat="d in frame_data" value="{[{ d.id }]}" ng-if="d.id!=f.value.check_end" >{[{ d.title }]}</option>
+                </select>
+            </div>
+        </div>
+    <button class="layui-btn layui-btn-lg layui-btn-warm" ng-click="SubmitData()" ng-if="protocol_zdy">确认</button>
+    </div>
+
+</div>
+
+<script src="/static/layui/layui.all.js" charset="utf-8"></script>
+<script src="/static/js/ejs.js" charset="utf-8"></script>
+<script>
+    var config = {
+        "url":{
+            'frame': '/static/tpl/frame_sel.ejs'
+        }
+
+    };
+
+    layui.use('element', function(){
+          var element = layui.element;
+          //一些事件监听
+          element.on('tab(demo)', function(data){
+               // console.log(this); //当前Tab标题所在的原始DOM元素
+              console.log(data.index); //得到当前Tab的所在下标
+              //console.log(data.elem); //得到当前的Tab大容器
+              //通过controller来获取Angular应用
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+              //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            $scope.protocol_type = data.index;
+
+              $scope.getFrameData(data.index, $scope.protocol_zdy)
+              //$scope.$apply();
+          });
+        });
+    layui.use('form', function(){
+      var form = layui.form;
+
+      //各种基于事件的操作，下面会有进一步介绍
+        form.on('select(check-rel)', function(data){
+            //通过controller来获取Angular应用
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+              //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            var dataid = data.elem.id;
+          //console.log(data.elem); //得到select原始DOM对象
+          //console.log(data.value); //得到被选中的值
+          //console.log(data.othis); //得到美化后的DOM对象
+            for (var j=0;j<$scope.frame_data.length;j++){
+                if($scope.frame_data[j].name=='check'){
+                    $scope.frame_data[j].value[dataid]=data.value;
+                    $scope.$apply()
+                }
+            }
+            if(data.value=='sum'){
+                $(".algorithm-tips").text("Tips:将需要校验的数据累加，取低8位的一个字节").show()
+            }
+            else if(data.value=='crc16'){
+                $(".algorithm-tips").text("Tips:CRC-16码由两个字节构成，是16位").show()
+            }
+            else{
+                $(".algorithm-tips").hide()
+            }
+        });
+        form.on('select(frame-length)', function(data){
+            //通过controller来获取Angular应用
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+              //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            var frame_id = data.elem.id.split("-")[2];
+            console.log(data.elem.id);
+            console.log(data.value);
+
+            for (var j=0;j<$scope.frame_data.length;j++){
+                console.log($scope.frame_data[j].id, frame_id);
+                if(String($scope.frame_data[j].id) == frame_id){
+                    if(data.value){
+                        $scope.frame_data[j].length = parseInt(data.value);
+                        $scope.$apply()
+                    }
+                }
+            }
+        });
+        form.on('radio(protocol_zdy)', function(data){
+          console.log(data.elem); //得到radio原始DOM对象
+          console.log(data.value); //被点击的radio的value值
+            //通过controller来获取Angular应用
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+              //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            if(data.value==2){
+                // 请求自定义协议
+                $scope.getFrameData(0, 1);
+                $scope.protocol_zdy=1
+            }
+            else{
+                $scope.getFrameData(0, '');
+                $scope.protocol_zdy=0
+            }
+        });
+
+    });
+
+
+</script>

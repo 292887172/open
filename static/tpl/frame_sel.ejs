@@ -1,0 +1,32 @@
+<div class="layui-form-item new-frame-item" id="item-<%= id%>" data-name="<%= data_name%>">
+    <div class="layui-input-inline">
+        <select name="quiz-<%= id%>" id="new-frame-title-<%= id%>">
+            <option value="" selected>请选择名称</option>
+            <option value="serial">流水号</option>
+            <option value="category">数据类型</option>
+            <option value="length">帧长</option>
+            <option value="response_code">响应码</option>
+            <option value="footer">帧尾</option>
+            <option value="other">其他</option>
+        </select>
+    </div>
+    <div class="layui-input-inline" style="display:none" id="new-frame-name-<%= id%>">
+        <input type="text" name="title" placeholder="名称" class="layui-input">
+    </div>
+    <div class="layui-input-inline" style="display:none" id="id="new-frame-bs-<%= id%>"">
+        <input type="text" name="title" placeholder="标识" class="layui-input">
+    </div>
+    <div class="layui-input-inline">
+        <select name="quiz-<%= id%>" id="new-frame-length-<%= id%>">
+            <option value="" selected>请选择长度</option>
+            <option value="1">1Byte</option>
+            <option value="2">2Byte</option>
+            <option value="3">3Byte</option>
+            <option value="4">4Byte</option>
+        </select>
+    </div>
+    <div class="layui-input-inline">
+        <input type="text" name="title" placeholder="请输入传输值" class="layui-input" value="00" id="new-frame-value-<%= id%>">
+    </div>
+    <div class="del-btn">删除</div>
+</div>

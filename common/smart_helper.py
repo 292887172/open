@@ -218,7 +218,7 @@ def get_factory_info(user_id):
     return ''
 
 
-def select_protocol(device_key,zdy):
+def select_protocol(device_key, zdy):
     # m = Protocol.objects.all().filter(protocol_device_key=key)
     # if m:
     #     for i in m:
@@ -226,17 +226,17 @@ def select_protocol(device_key,zdy):
     #         res_ = json.loads(res_)
     #         return res_
     # else:
-    if zdy == 1 or zdy == 0:
-        mm = Protocol.objects.filter(protocol_factory_type=zdy,protocol_device_key=device_key)
+    if zdy == '1' or zdy == '0':
+        mm = Protocol.objects.filter(protocol_factory_type=zdy, protocol_device_key=device_key)
         if mm.count() > 0:
             for i in mm:
-                res_ = i.protocol_factory_type
+                res_ = i.protocol_factory_content
                 res_ = json.loads(res_)
                 return res_
             else:
                 return None
     else:
-        mm = Protocol.objects.filter(protocol_factory_type=0,protocol_device_key=device_key)
+        mm = Protocol.objects.filter(protocol_factory_type=0, protocol_device_key=device_key)
         if mm.count() > 0:
             for i in mm:
                 res_ = i.protocol_factory_content
@@ -246,8 +246,8 @@ def select_protocol(device_key,zdy):
             return None
 
 
-def update_protocol(list_key, data_sql_update,protocol_type,cook_ies):
-    t = Protocol.objects.filter(protocol_device_key=list_key,protocol_factory_type=protocol_type)
+def update_protocol(list_key, data_sql_update,protocol_type, cook_ies):
+    t = Protocol.objects.filter(protocol_device_key=list_key, protocol_factory_type=protocol_type)
 
     if not t:
 
