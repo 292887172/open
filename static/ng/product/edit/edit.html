@@ -783,8 +783,30 @@
             return "error";
         }
         else if(mods.indexOf(data)>-1){
-            $('#checkID').html("该功能参数已经存在！");
-            $('#checkID').css("display", "block");
+            var stream_value = $("#Stream_ID").val()
+            console.log('x',stream_value[stream_value.length-1]);
+            console.log('y',stream_value.substr(0,stream_value.length-1));
+            var tag = stream_value[stream_value.length-1];
+            try {
+
+                tag = parseInt(tag)
+                if (isNaN(tag)){
+                     var tag = stream_value[stream_value.length-1];
+                }else {
+                    tag = parseInt(tag)
+                }
+            }
+            catch (e) {
+                tag = tag
+                console.log(e)
+            }
+            if (typeof(tag)=="number"){
+                var nums = parseInt(tag) + parseInt(1);
+                var vales = stream_value.substr(0,stream_value.length-1)
+                $("#Stream_ID").val(vales + nums)
+            }else {
+                $("#Stream_ID").val($("#Stream_ID").val() + "1")
+            }
             return "repeat"
         }
         else {
