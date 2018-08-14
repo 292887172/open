@@ -597,8 +597,8 @@
     <hr>
     <select disabled="disabled" style="display: block;margin-top: 7px;margin-left:100px;height: 40px;color: #333;width: 110px;border-color:#333"
             name="condition" id="select_id" class="bianji">
-        <option value="0" id="x_x" ng-selected="response.protocol_type==0">屏端到MCU</option>
-        <option value="1" id="s_x" ng-selected="response.protocol_type==1">MCU到屏端</option>
+        <option value="0" id="x_x" ng-selected="response.protocol_type=='0'">屏端到MCU</option>
+        <option value="1" id="s_x" ng-selected="response.protocol_type=='1'">MCU到屏端</option>
 
     </select>
 
@@ -723,8 +723,8 @@
             <select style="display: block;margin-top: 7px;height: 25px;width: 70px" disabled="disabled" class="bianji"
                     name="checkout_algorithm" id="select_option">
                 <option value="sum">SUM(加和效验)</option>
-                <option value="crc-8" ng-selected="response.checkout_algorithm=='crc-8'">CRC-8</option>
-                <option value="crc-16" ng-selected="response.checkout_algorithm=='crc-16'">CRC-16</option>
+                <option value="crc8" ng-selected="response.checkout_algorithm=='crc8'">CRC-8</option>
+                <option value="crc16" ng-selected="response.checkout_algorithm=='crc16'">CRC-16</option>
             </select>
 
         </div>

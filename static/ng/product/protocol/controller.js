@@ -236,7 +236,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     //new add data list
                     var new_data_list = response.data.frame_content[2]["code"];
                     console.log(new_data_list)
-                    if (response.protocol_type == 1) {
+                    if (parseInt(response.protocol_type) == 0) {
                         // 下行被选中
                         document.getElementById("x_x").selected = true;
                         $scope.response.frame_content[0]['code'] = [{
@@ -248,6 +248,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                     else {
                         //上行被选中
+
                         document.getElementById("s_x").selected = true;
                         $scope.response.frame_content[0]['code'] = [{"desc": "发送码", "value": "A55A", "type": "send"}]
 
@@ -419,14 +420,16 @@ angular.module('Product.protocol', ['ngRoute'])
                 //new add data list
                 var new_data_list = response1.frame_content[2]["code"];
                 console.log(new_data_list)
-                if (response1.protocol_type == 0) {
+                if (parseInt(response1.protocol_type) == 0) {
                     // 下行被选中
+
                     document.getElementById("x_x").selected = true;
 
 
                 }
                 else {
                     //上行被选中
+
                     document.getElementById("s_x").selected = true;
 
 
@@ -620,7 +623,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 //new add data list
                 var new_data_list = response1.frame_content[2]["code"];
                 console.log(new_data_list)
-                if (response1.protocol_type == 0) {
+                if (parseInt(response1.protocol_type) == 0) {
                     // 下行被选中
                     document.getElementById("x_x").selected = true;
 

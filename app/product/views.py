@@ -840,7 +840,9 @@ def protocol(request):
             d = get_device_function(device_key)
             project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
             pth = get_personal_project(project_path, device_key, d, p0, p1)
-            pt = pth.replace(BASE_DIR, 'http://'+request.META['HTTP_HOST'])
+            logging.getLogger('').info(pth)
+            pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/WiFiIot_'+device_key+'.zip'
+            logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
