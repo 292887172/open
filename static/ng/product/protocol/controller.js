@@ -274,8 +274,11 @@ angular.module('Product.protocol', ['ngRoute'])
                         $scope.frame_data=response['data']['frame_content'];
                         //$scope.$apply();
                         console.log($scope.frame_data, '-------')
-                        for(var i=0;i<$scope.data_menu.length;i++){
+                        console.log($scope.protocol_zdy)
+                            for(var i=0;i<$scope.data_menu.length;i++){
                             if (!$scope.protocol_zdy){
+                                // 非自定义
+                                console.log("1111111")
                                 $scope.data_menu[i].content=true;
                                 for(var j=0;j<$scope.frame_data.length;j++){
                                     if ($scope.frame_data[j].name=='data'){
@@ -284,7 +287,15 @@ angular.module('Product.protocol', ['ngRoute'])
                                     }
                                 }
                             }
+                            else{
+                                // 自定义协议
+                                for(var i=0;i<$scope.data_menu.length;i++){
+                                    $scope.data_menu[i].content=false;
+                                }
+                            }
                         }
+
+
                     }
 
 
