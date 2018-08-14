@@ -22,12 +22,13 @@ angular.module('Product.edit', ['ngRoute'])
          * 提交配置信息表单
          * @constructor
          */
-		$scope.save_mxs = function (paramDatas,paramDescs,isdefault) {
+		$scope.save_mxs = function (paramDatas,paramDescs,paramUI,isdefault) {
 			for(var i=0;i<paramDatas.length;i++){
 				var data=$.trim(paramDatas[i].value);
 				var desc=$.trim(paramDescs[i].value);
+				var control=$.trim(paramUI[i].value);
 				var role=/^[0-9]*$/;
-				if(desc=="" || data==""){
+				if(desc=="" || data=="" || control==""){
 					$scope.errorType=1;
 					break;
 				}
@@ -47,7 +48,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				else if ($scope.flag == 'error'){}
 				var trig = getTrigger(data);
-				$scope.mxs.push({data:data,desc:desc,trigger:trig});
+				$scope.mxs.push({data:data,desc:desc,trigger:trig,control:control});
 			}
         };
         $scope.Save = function () {
@@ -69,8 +70,10 @@ angular.module('Product.edit', ['ngRoute'])
 			var types=document.getElementsByName("paramType");
 			var paramDatas=document.getElementsByName("paramData");
 			var paramDescs=document.getElementsByName("paramDesc");
+			var paramUI=document.getElementsByName("paramUI");
 			var paramDatas1=document.getElementsByName("paramData1");
 			var paramDescs1=document.getElementsByName("paramDesc1");
+			var paramUI1=document.getElementsByName("paramUI1");
 
 			if(types[0].checked){
 				var msg = checkBool();
@@ -104,8 +107,8 @@ angular.module('Product.edit', ['ngRoute'])
 				$scope.min=parseInt($.trim($('#minTimer').val()));
 				$scope.max=parseInt($.trim($('#maxTimer').val()));
 			}
-			$scope.save_mxs(paramDatas,paramDescs,true);
-			$scope.save_mxs(paramDatas1,paramDescs1,false);
+			$scope.save_mxs(paramDatas,paramDescs,paramUI,true);
+			$scope.save_mxs(paramDatas1,paramDescs1,paramUI1,false);
 			$scope.mxsNum=$scope.mxs.length+"";
 			if($scope.errorType==1){
 				$('#checkArgue1').css("display","block");

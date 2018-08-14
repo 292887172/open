@@ -64,7 +64,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 #plans-list{
     margin: 0px 0 5px;
-    height: 500px;
+    min-height: 300px;
+    max-height: 500px;
     overflow-y: auto;
 }
 .div-flex{

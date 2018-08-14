@@ -1,6 +1,7 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 import math
+from django.utils.http import urlquote
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -11,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
-    get_mod_funs,get_config_funs
+    get_mod_funs, get_config_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -19,10 +20,12 @@ from common.app_helper import off_app
 from common.app_helper import update_app_info
 from common.app_helper import update_app_config
 from common.app_helper import reset_app_secret
+from common.config_helper import get_device_protocol_config, get_device_function
 
 from common.device_online import device_online
 from base.const import StatusCode, DefaultProtocol, DefaultSchedule
 from base.const import ConventionValue
+from common.project_helper import get_personal_project
 from common.smart_helper import *
 from common.message_helper import save_user_message
 from common.device_fun_helper import add_device_fun
@@ -41,6 +44,7 @@ from model.center.user_group import UserGroup
 from model.center.account import Account
 from base.connection import Redis3
 from common.mysql_helper import get_ui_static_conf, remove_up_url
+from open.settings import BASE_DIR
 from util.email.send_email_code import send_product_process_email
 
 import hashlib
@@ -163,7 +167,7 @@ def product_list(request):
                     "app_update_date": j.app_update_date,
                     "is_share": 1,
                     "has_version": has_version,
-                    "app_screen_size":j.app_screen_size
+                    "app_screen_size": j.app_screen_size
 
                 }
                 tmp_apps.append(tmp)
@@ -294,7 +298,8 @@ def product_controldown(request):
         if Uobj:
             try:
                 for i in Uobj:
-                    if i.account_email in ['gaowei@53iq.com','guoyh@53iq.com','rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
+                    if i.account_email in ['gaowei@53iq.com', 'guoyh@53iq.com', 'rendy@53iq.com', 'zhangjian@53iq.com',
+                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com']:
                         if not unpublished_apps:
                             fireware = ''
                         else:
@@ -638,6 +643,12 @@ def product_main(request):
                 fun_name = data[1].get("name")
                 is_standa = data[1].get("standa_or_define", None)
                 opera_data.pop(i)
+                for j in range(len(opera_data)):
+                    opera_data[j]['id'] = str(int(j) + int(1))
+                c_data = opera_data[:len(opera_data)]
+                c_data.sort(key=lambda x: int(x.get("id")))
+                c_data.extend(opera_data[len(opera_data):])
+                opera_data = c_data
                 replace_fun_id(opera_data, id, is_standa)
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
@@ -717,7 +728,6 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
-                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -726,7 +736,6 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
-                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
@@ -830,6 +839,20 @@ def protocol(request):
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
         protocol_type = request.GET.get('protocol_type', '0')
+        if action == "get_project":
+
+            p = get_device_protocol_config(device_key)
+
+            p0 = p[0]
+            p1 = p[1]
+            d = get_device_function(device_key)
+            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
+            pth = get_personal_project(project_path, device_key, d, p0, p1)
+            logging.getLogger('').info(pth)
+            pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/WiFiIot_'+device_key+'.zip'
+            logging.getLogger('').info(pt)
+            return JsonResponse({"code": 0, "url": pt})
+
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
             dc = json.loads(app.device_conf)
@@ -1047,7 +1070,6 @@ def app(request):
         return HttpResponse("")
 
 
-
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
@@ -1127,11 +1149,11 @@ def schedule(request):
             key = request.GET.get('key', '')
             data1 = json.loads(data)
             for i in range(len(data1)):
-                ids = int(i)+1
-                Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=int(data1[i]))
+                ids = int(i) + 1
+                Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(data1[i]))
                 for i in Dobj:
                     try:
-                        Dobj.update(ui_upload_id=int(ids*100))
+                        Dobj.update(ui_upload_id=int(ids * 100))
                     except Exception as e:
                         print(e)
             Orders = DocUi.objects.filter(ui_key=key)
@@ -1139,8 +1161,8 @@ def schedule(request):
             for i in Orders:
                 list_up_id.append(i.ui_upload_id)
             for isd in list_up_id:
-                DocUi.objects.filter(ui_key=key,ui_upload_id=int(isd)).update(ui_upload_id=int(isd/100))
-            return HttpResponse(json.dumps({"code":0}))
+                DocUi.objects.filter(ui_key=key, ui_upload_id=int(isd)).update(ui_upload_id=int(isd / 100))
+            return HttpResponse(json.dumps({"code": 0}))
 
         if action == 'del':
             # 删除下载链接
@@ -1414,7 +1436,7 @@ def upload_file(request):
                 url_list = rr['data']
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
-                                          update_date=datetime.datetime.utcnow(),remarks=appversion_remark)
+                                          update_date=datetime.datetime.utcnow(), remarks=appversion_remark)
                 Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=cook_ies, message_target=cook_ies,
@@ -1432,8 +1454,11 @@ def upload_file(request):
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
-            sizes = request.POST.get('sizes','')
-            fobj = Firmware.objects.create(firmware_size=int(sizes),firmware_name=appversion_remark,firmware_version=app_version,firmware_url=rr['data'],firmware_create_date=datetime.datetime.utcnow(),firmware_update_date=datetime.datetime.utcnow())
+            sizes = request.POST.get('sizes', '')
+            fobj = Firmware.objects.create(firmware_size=int(sizes), firmware_name=appversion_remark,
+                                           firmware_version=app_version, firmware_url=rr['data'],
+                                           firmware_create_date=datetime.datetime.utcnow(),
+                                           firmware_update_date=datetime.datetime.utcnow())
             if fobj:
                 return HttpResponse(json.dumps({"code": 0}))
             else:
@@ -1471,10 +1496,7 @@ def upload_file(request):
                         print(e)
                         return HttpResponse(json.dumps({"code": 1}))
                     list_url = rr['data']
-                    print("user1", user1)
-                    print("filename", file.name)
                     datas = get_ui_static_conf(key, list_url, id, file.name, user1)
-                    print('异步返回的数据', datas)
                     product_name = app_name + '上传更新提示'
                     if t >= 9:
                         next_stemp = "量产阶段"
@@ -1580,7 +1602,7 @@ def download(request):
             filename = os.path.basename(url)
         response = HttpResponse(r.content,
                                 content_type='APPLICATION/OCTET-STREAM')  # 设定文件头，这种设定可以让任意文件都能正确下载，而且已知文本文件不是本地打开
-        response['Content-Disposition'] = 'attachment; filename=' + filename + ''  # 设定传输给客户端的文件名称
+        response['Content-Disposition'] = 'attachment; filename=' + urlquote(filename) # 设定传输给客户端的文件名称
         response['Content-Length'] = r.headers['content-length']  # 传输给客户端的文件大小
         return response
     else:

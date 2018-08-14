@@ -250,7 +250,7 @@ def update_protocol(list_key, data_sql_update,protocol_type, cook_ies):
     t = Protocol.objects.filter(protocol_device_key=list_key, protocol_factory_type=protocol_type)
 
     if not t:
-        print('rr')
+
         Protocol.objects.create(protocol_device_key=list_key,protocol_factory_content=data_sql_update,protocol_factory_type=protocol_type,protocol_create_date=datetime.datetime.utcnow(),protocol_update_date=datetime.datetime.utcnow())
         Message.objects.create(message_content='协议更新',message_type=int(2),message_handler_type=int(2),device_key=list_key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
 
