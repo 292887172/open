@@ -1,5 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+from django.utils.http import urlquote
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -1563,7 +1564,7 @@ def download(request):
             filename = os.path.basename(url)
         response = HttpResponse(r.content,
                                 content_type='APPLICATION/OCTET-STREAM')  # 设定文件头，这种设定可以让任意文件都能正确下载，而且已知文本文件不是本地打开
-        response['Content-Disposition'] = 'attachment; filename=' + filename + ''  # 设定传输给客户端的文件名称
+        response['Content-Disposition'] = 'attachment; filename=' + urlquote(filename) # 设定传输给客户端的文件名称
         response['Content-Length'] = r.headers['content-length']  # 传输给客户端的文件大小
         return response
     else:
