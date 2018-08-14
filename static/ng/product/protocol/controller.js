@@ -71,11 +71,12 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.editData=function () {
             //处理复选框参数
             var check_content = "";
+            console.log($scope.data_menu, $scope.frame_data);
             for(var i=0;i<$scope.frame_data.length;i++){
                 if($scope.frame_data[i]['name']=='data'){
                     for(var j=0; j< $scope.data_menu.length;j++){
                         for (var z=0;z<$scope.frame_data[i]['value'].length;z++){
-                            if($scope.data_menu[j]['id']== $scope.frame_data[i]['value'][z].id){
+                            if($scope.data_menu[j]['id']== $scope.frame_data[i]['value'][z].id && $scope.frame_data[i]['value'][z].content){
                                 $scope.data_menu[j]['content'] = true
                             }
 
@@ -84,7 +85,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 }
             }
-            console.log($scope.data_menu, $scope.frame_data);
+
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
                     check_content = check_content + '<input lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
@@ -153,7 +154,7 @@ angular.module('Product.protocol', ['ngRoute'])
                             $scope.frame_data[z].value=$scope.data_menu
                         }
                     }
-                    console.log($scope.data_menu, '------1');
+                    console.log($scope.data_menu, $scope.frame_data,'------1');
                     layer.close(index);
                 }
             });
@@ -273,7 +274,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     if(response['data']!=""){
                         $scope.frame_data=response['data']['frame_content'];
                         //$scope.$apply();
-                        console.log($scope.frame_data, '-------')
+                        console.log($scope.frame_data, '-------');
                         console.log($scope.protocol_zdy)
                             for(var i=0;i<$scope.data_menu.length;i++){
                             if (!$scope.protocol_zdy){
