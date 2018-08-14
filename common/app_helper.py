@@ -140,9 +140,11 @@ def get_config_funs(developer_id, app_category_detail):
                 config_data = json.loads(i.device_conf)
                 for ii in config_data:
                     device_conf_list.append(ii)
+            new_data1 = []
             new_data = []
             for data_id in device_conf_list:
-                if data_id not in new_data:
+                if data_id['Stream_ID'] not in new_data1:
+                    new_data1.append(data_id['Stream_ID'])
                     new_data.append(data_id)
             # new_data = new_data.sort(key=lambda x: int(x.get("id")))
             for i in range(len(new_data)):
