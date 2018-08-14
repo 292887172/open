@@ -1,0 +1,60 @@
+local device_function={
+	{name="Fan3", length=1, title="大风", controls={Main=113}, triggers={
+		[1]={Power=1, Fan1=0, Fan2=0}
+	}},
+	{name="Fan2", length=1, title="中风", controls={Main=112}, triggers={
+		[1]={Power=1, Fan1=0, Fan3=0}
+	}},
+	{name="Fan1", length=1, title="小风", controls={Main=111}, triggers={
+		[1]={Power=1, Fan2=0, Fan3=0}
+	}},
+	{name="Wash", length=1, title="清洗"},
+	{name="Light", length=1, title="照明", controls={Main=102}, triggers={
+		[1]={Power=1}
+	}},
+	{name="Down", length=1, title="降"},
+	{name="Up", length=1, title="升"},
+	{name="Lamp", length=1, title="Lamp"},
+
+	{name="Power", length=1, title="电源", value=1, controls={Main=101}, triggers={
+		[0]={All=0},
+		[1]={Fan2=1}
+	}},
+	{name="Fire", length=1, title="火焰信号"},
+	{name="LeftGas", length=1, title="左灶"},
+	{name="Beep", length=2, title="蜂鸣"},
+	{name="Dry", length=1, title="烘干", controls={114}, triggers={
+		[1]={Power=1, Disinfectants=0}
+	}},
+	{name="Disinfectants", length=1, title="消毒", controls=115, triggers={
+		[1]={Power=1, Dry=0}
+	}},
+	{name="Aux", length=1, title="Aux"},
+
+	{name="Temp", length=8, title="烟道温度", controls=110},
+	{name="Fault", length=8, title="故障报警"}
+}
+
+
+
+
+
+
+
+local device_protocol_config={
+	endian_type=0,
+
+	length=9,
+	length_offset=nil,
+
+	check_type='crc16',
+	check_data_start=0,
+	check_data_end=-2,
+	structs={	
+		{name='head', length=1, value={0xA5}},
+		{name="version", length=1, value={0x01}},
+		{name="category", length=1, value={0x01}},
+		{name='data', length=4},
+		{name='check', length=2}
+	}
+}

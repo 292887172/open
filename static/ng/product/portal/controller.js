@@ -79,7 +79,7 @@ function delTeamEmail(item) {
          success: function(data){
             console.log(data);
             $(item).parent('p').remove();
-             bootbox.alert('删除成功');
+             layer.msg('删除成功', {icon: 1, time: 2000});
           }
      });
       }

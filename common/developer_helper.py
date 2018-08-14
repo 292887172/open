@@ -311,6 +311,26 @@ def update_group_info(user_account, team_info):
         pass
 
 
+def delete_group_info(user_account, team_info):
+    # 主账号下关联的邮箱自动创建账号可以登录，默认密码123456
+
+    try:
+        ac = Account.objects.get(account_id=user_account)
+        if ac:
+            m = json.loads(ac.relate_account)
+            t = json.loads(team_info)
+            if t[0] in m:
+                m.remove(t[0])
+                Account.objects.filter(account_id=user_account).update(relate_account=json.dumps(m))
+            return 0
+        else:
+            return 1
+    except Exception as e:
+        print(e, '没有相关账户信息')
+        return 1
+
+
+
 def create_team_account(user_id):
     """
     默认创建团队成员账号密码初始密码123456

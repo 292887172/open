@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from base.util import gen_app_default_conf, get_app_default_logo
 from common.account_helper import add_team_email, del_team_email
 from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
-    get_mod_funs,get_config_funs
+    get_mod_funs, get_config_funs
 from common.app_helper import del_app, save_app, check_cloud
 from common.app_helper import release_app
 from common.app_helper import cancel_release_app
@@ -162,7 +162,7 @@ def product_list(request):
                     "app_update_date": j.app_update_date,
                     "is_share": 1,
                     "has_version": has_version,
-                    "app_screen_size":j.app_screen_size
+                    "app_screen_size": j.app_screen_size
 
                 }
                 tmp_apps.append(tmp)
@@ -249,6 +249,7 @@ def product_controldown(request):
         tmp_apps = []
         #  默认三款产品类型 unpublished_apps
         default_apps = App.objects.filter(developer=DEFAULT_USER).filter(check_status=_convention.APP_DEFAULT)
+        print('app', default_apps)
         for app in user_apps:
             tmp = {
                 "app_id": app.app_id,
@@ -257,7 +258,8 @@ def product_controldown(request):
                 "app_create_source": app.app_create_source,
                 "check_status": app.check_status,
                 "app_update_date": app.app_update_date,
-                "is_share": 0
+                "is_share": 0,
+                "app_screen_size": app.app_screen_size
 
             }
             tmp_apps.append(tmp)
@@ -279,7 +281,8 @@ def product_controldown(request):
                     "app_create_source": j.app_create_source,
                     "check_status": j.check_status,
                     "app_update_date": j.app_update_date,
-                    "is_share": 1
+                    "is_share": 1,
+                    "app_screen_size": j.app_screen_size
                 }
                 tmp_apps.append(tmp)
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
@@ -291,7 +294,8 @@ def product_controldown(request):
         if Uobj:
             try:
                 for i in Uobj:
-                    if i.account_email in ['gaowei@53iq.com','guoyh@53iq.com','rendy@53iq.com','zhangjian@53iq.com','taosheng@53iq.com','dev@53iq.com','yangxy@53iq.com','292887172@qq.com']:
+                    if i.account_email in ['gaowei@53iq.com', 'guoyh@53iq.com', 'rendy@53iq.com', 'zhangjian@53iq.com',
+                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com']:
                         if not unpublished_apps:
                             fireware = ''
                         else:
@@ -311,7 +315,7 @@ def product_controldown(request):
             fireware=fireware
 
         )
-
+        print('content', content)
         return render(request, template, content)
 
     def post():
@@ -635,6 +639,12 @@ def product_main(request):
                 fun_name = data[1].get("name")
                 is_standa = data[1].get("standa_or_define", None)
                 opera_data.pop(i)
+                for j in range(len(opera_data)):
+                    opera_data[j]['id'] = str(int(j) + int(1))
+                c_data = opera_data[:len(opera_data)]
+                c_data.sort(key=lambda x: int(x.get("id")))
+                c_data.extend(opera_data[len(opera_data):])
+                opera_data = c_data
                 replace_fun_id(opera_data, id, is_standa)
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
@@ -714,7 +724,6 @@ def product_main(request):
             if indata["id"]:
                 # 编辑参数信息
                 data = find(indata['id'], opera_data)
-                print('data',data)
                 data[1].update(indata)
                 message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
                 tt = "modify_success"
@@ -723,7 +732,6 @@ def product_main(request):
                 # 添加一条参数信息需要申请审核
                 indata = add_fun_id(opera_data, indata)
                 add_device_fun(app.app_appid, indata)
-                print('indata',indata)
                 opera_data.append(indata)
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
@@ -826,6 +834,9 @@ def protocol(request):
         device_key = request.GET.get('key', '')
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
+        if action == "get_project":
+            time.sleep(3)
+            return JsonResponse({"code": 0, "url": "http://www.53iq.com"})
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
             dc = json.loads(app.device_conf)
@@ -888,12 +899,12 @@ def protocol(request):
                 data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
                 data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
                 data_sql['endian_type'] = data_protocol_list.get('endian_type')
-                print("data_sql", data_protocol_list.get('endian_type'))
+
                 data_sql['frame_content'] = list_t
                 data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
                 data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
                 data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
-                print("data_sql", data_sql)
+
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
@@ -901,14 +912,18 @@ def protocol(request):
                 if types == "change":
                     ## 上下行  切换
                     if protocol_type == "0":
+                        # 下行数据
+
                         update_protocol(list_key, data_sql_update, 1, cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=0)
                     else:
+
                         update_protocol(list_key, data_sql_update, 0, cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                               protocol_factory_type=1)
                 else:
+
                     update_protocol(list_key, data_sql_update, protocol_type, cook_ies)
                     mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
                                                           protocol_factory_type=protocol_type)
@@ -1008,8 +1023,9 @@ def app(request):
             app_dict['time'] = tis
             app_dict['remarks'] = i.remarks
             app_list.append(app_dict)
-
-    return HttpResponse(json.dumps(app_list))
+        return HttpResponse(json.dumps(app_list))
+    else:
+        return HttpResponse("")
 
 
 @csrf_exempt
@@ -1044,7 +1060,7 @@ def schedule(request):
                         url = ''
                     if not isinstance(url, list):
                         url = [url]
-                    print('url',url)
+                    print('url', url)
                     update_dict['url'] = url
 
                     if len(str(url)) > int(10):
@@ -1091,11 +1107,11 @@ def schedule(request):
             key = request.GET.get('key', '')
             data1 = json.loads(data)
             for i in range(len(data1)):
-                ids = int(i)+1
-                Dobj = DocUi.objects.filter(ui_key=key,ui_upload_id=int(data1[i]))
+                ids = int(i) + 1
+                Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(data1[i]))
                 for i in Dobj:
                     try:
-                        Dobj.update(ui_upload_id=int(ids*100))
+                        Dobj.update(ui_upload_id=int(ids * 100))
                     except Exception as e:
                         print(e)
             Orders = DocUi.objects.filter(ui_key=key)
@@ -1103,8 +1119,8 @@ def schedule(request):
             for i in Orders:
                 list_up_id.append(i.ui_upload_id)
             for isd in list_up_id:
-                DocUi.objects.filter(ui_key=key,ui_upload_id=int(isd)).update(ui_upload_id=int(isd/100))
-            return HttpResponse(json.dumps({"code":0}))
+                DocUi.objects.filter(ui_key=key, ui_upload_id=int(isd)).update(ui_upload_id=int(isd / 100))
+            return HttpResponse(json.dumps({"code": 0}))
 
         if action == 'del':
             # 删除下载链接
@@ -1378,7 +1394,7 @@ def upload_file(request):
                 url_list = rr['data']
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
-                                          update_date=datetime.datetime.utcnow(),remarks=appversion_remark)
+                                          update_date=datetime.datetime.utcnow(), remarks=appversion_remark)
                 Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=cook_ies, message_target=cook_ies,
@@ -1396,8 +1412,11 @@ def upload_file(request):
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
-            sizes = request.POST.get('sizes','')
-            fobj = Firmware.objects.create(firmware_size=int(sizes),firmware_name=appversion_remark,firmware_version=app_version,firmware_url=rr['data'],firmware_create_date=datetime.datetime.utcnow(),firmware_update_date=datetime.datetime.utcnow())
+            sizes = request.POST.get('sizes', '')
+            fobj = Firmware.objects.create(firmware_size=int(sizes), firmware_name=appversion_remark,
+                                           firmware_version=app_version, firmware_url=rr['data'],
+                                           firmware_create_date=datetime.datetime.utcnow(),
+                                           firmware_update_date=datetime.datetime.utcnow())
             if fobj:
                 return HttpResponse(json.dumps({"code": 0}))
             else:
