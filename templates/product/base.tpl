@@ -45,7 +45,7 @@
             .footer{
                 position: relative;
                 padding: 20px;
-                z-index: -1;
+                z-index: 0;
             }
             .footer > p {
                 margin-top: 0;

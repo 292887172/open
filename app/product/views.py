@@ -1,5 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import math
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -828,6 +829,7 @@ def protocol(request):
         device_key = request.GET.get('key', '')
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
+        protocol_type = request.GET.get('protocol_type', '0')
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)
             dc = json.loads(app.device_conf)
@@ -836,38 +838,42 @@ def protocol(request):
                 tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength']}
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
-        try:
-            if zdy == "0" or zdy == "1":
-
-                mlist = Protocol.objects.all().filter(protocol_device_key=device_key, protocol_factory_type=zdy)
-
+        elif action == 'get_frame_data':
+            # 帧结构数据
+            try:
+                mlist = Protocol.objects.all().filter(protocol_device_key=device_key)
                 if len(mlist) == 0:
-                    p = DefaultProtocol().DEFAULT_DATA_ZDY
-                    data = {"code": 2, "data": p, "protocol_type": zdy}
+                    # 没有定义过，返回标准协议，若请求自定义协议，则返回默认标准自定义协议
+                    if zdy == '1':
+                        p = DefaultProtocol().DEFAULT_DATA_ZDY
+                        data = {"code": 1, "data": p, "protocol_type": protocol_type}
+                    else:
+                        p = DefaultProtocol().DEFAULT_DATA
+                        data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     return HttpResponse(json.dumps(data))
                 else:
-                    print('xxxxx')
+                    # 根据请求，返回定义的上下行数据
                     for iii in mlist:
                         res_list_data = iii.protocol_factory_content
                         protocol_type1 = iii.protocol_factory_type
                         res_list_data1 = json.loads(res_list_data)
-                        res_list_data1['protocol_type'] = protocol_type1
-                        data = {"code": 1, "data": res_list_data1, "protocol_type": zdy}
-                        return HttpResponse(json.dumps(data))
-        except Exception as e:
-            print(e)
-            logging.getLogger('').info("传入的参数zdy出错", str(e))
-            data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
-            return HttpResponse(json.dumps(data))
-        r = select_protocol(device_key, zdy)
 
-        if r is None:
-            rr = DefaultProtocol().DEFAULT_DATA
-            print('eee')
-            data = {"code": 2, "data": rr, "protocol_type": 0}
-        else:
-            data = {"code": 1, "data": r, "protocol_type": 0}
-        return HttpResponse(json.dumps(data))
+                        res_list_data1['protocol_type'] = protocol_type1
+
+                        if str(protocol_type1) == str(protocol_type):
+
+                            data = {"code": 1, "data": res_list_data1, "protocol_type": protocol_type}
+                            return HttpResponse(json.dumps(data))
+                    # 请求的数据暂时未定义，比如自定义了上行数据，请求下行数据，或者自定义了下行数据，请求上行数据
+                    # 返回空， 前端不处理
+                    data = {"code": 1, "data": "", "protocol_type": protocol_type}
+                    return HttpResponse(json.dumps(data))
+            except Exception as e:
+                print(e)
+                logging.getLogger('').info("传入的参数zdy出错", str(e))
+                data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
+                return HttpResponse(json.dumps(data))
+
     if request.method == "POST":
         r = DefaultProtocol().DEFAULT_DATA_ZDY
 
@@ -878,30 +884,56 @@ def protocol(request):
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
                 protocol_type = data_protocol_list.get('protocol_type', 0)
-                list_fivechoose = data_protocol_list.get('fivechoose', '')
+
                 list_t = data_protocol_list.get('frame_content', '')
                 list_key = data_protocol_list.get('key', '')
-                data_sql['is_single_instruction'] = list_fivechoose[0]
-                data_sql['support_response_frame'] = list_fivechoose[1]
-                data_sql['support_serial'] = list_fivechoose[2]
-                data_sql['active_heartbeat'] = list_fivechoose[3]
-                data_sql['support_repeat'] = list_fivechoose[4]
-                data_sql['heart_rate'] = data_protocol_list.get('heart_rate')
-                data_sql['repeat_rate'] = data_protocol_list.get('repeat_rate')
-                data_sql['repeat_count'] = data_protocol_list.get('repeat_count')
-                data_sql['endian_type'] = data_protocol_list.get('endian_type')
-                print("data_sql", data_protocol_list.get('endian_type'))
-                data_sql['frame_content'] = list_t
-                data_sql['checkout_algorithm'] = data_protocol_list.get('checkout_algorithm')
-                data_sql['start_check_number'] = data_protocol_list.get('start_check_number')
-                data_sql['end_check_number'] = data_protocol_list.get('end_check_number')
+                data_sql['is_single_instruction'] = True
+                data_sql['support_response_frame'] = True
+                data_sql['support_serial'] = True
+                data_sql['active_heartbeat'] = True
+                data_sql['support_repeat'] = True
+                data_sql['heart_rate'] = "500"
+                data_sql['repeat_rate'] = "500"
+                data_sql['repeat_count'] = "3"
+                data_sql['endian_type'] = "1"   # 1:大端编码， 0：小端编码， 默认大端编码
+
+                tmp_list_t = []
+                for i in list_t:
+                    tmp_f = {
+                        "id": i.get("id"),
+                        "length": i.get("length"),
+                        "name": i.get("name"),
+                        "title": i.get("title"),
+                        "value": i.get("value")
+                    }
+                    if i.get("name") == "data":
+                        # 处理数据域
+                        l = 0
+                        tmp_d = []
+                        for j in i.get("value"):
+                            if j.get('content'):
+                                l += int(j.get('length'))
+                                tmp_d.append(j)
+                        tmp_f['length'] = math.ceil(l/8)
+                        tmp_f['value'] = tmp_d
+                    elif i.get("name") == "check":
+                        # 处理校验
+                        tmp_f['value'] = {"check_algorithm": i.get('value').get("check_algorithm"),
+                                          "check_start": i.get('value').get("check_start"),
+                                          "check_end": i.get('value').get("check_end")}
+                        data_sql['checkout_algorithm'] = i.get('value').get("check_algorithm")
+                        data_sql['start_check_number'] = i.get('value').get("check_start")
+                        data_sql['end_check_number'] = i.get('value').get("check_end")
+                    tmp_list_t.append(tmp_f)
+                data_sql['frame_content'] = tmp_list_t
+
                 print("data_sql", data_sql)
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')
 
                 if types == "change":
-                    ## 上下行  切换
+                    # 上下行  切换
                     if protocol_type == "0":
                         update_protocol(list_key, data_sql_update, 1, cook_ies)
                         mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
