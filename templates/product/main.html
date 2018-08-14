@@ -415,6 +415,8 @@
                     $scope.app_device_type = "{% if app.app_device_type %}{{ app.app_device_type }}{% endif %}";
                     $scope.app_group = "{{ app.app_group|safe|linebreaksbr }}";
                     $scope.band_name = "{{ band_name }}";
+                    $scope.app_screen = "{{ app.app_screen_size|category_detail1 }}";
+
                     $scope.app_factory_uid = "{{ app.app_factory_uid }}";
                     $scope.key = "{{ key }}";
                     $scope.teams = {{ teams|safe|linebreaksbr }};

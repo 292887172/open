@@ -189,11 +189,43 @@
         .hl-help{
             font-size: 16px;
         }
-        .ui-sortable{
+    .modal-body{
+        height: auto;
+    }
+    .modal-dialog{
+        width: auto;
+    }
+    caption, th{
+        padding: 5px 5px 5px 60px;
+    }
+    .float-left,.form-control.float-left{
+        float: left;
+    }
+    .modal-dialog {
+        width: 800px;
+    }
+    .btn-success {
+        background-color: #5cb85c !important;
+        border-color: #5cb85c;
+        margin-left: 30px;
+        width: 55px;
+        height: auto;
+        padding: 2px;
+    }
+    .btn-success:hover,.btn-success:focus,.btn-success:active {
+        background-color: #629B58 !important;
+        border-color: #629B58;
+    }
+    .ui-sortable{
             overflow: auto;
         }
+        .popover.left{
+            top: -30px !important;
+        }
+        .popover.left>.arrow{
+            top:50% !important;
+        }
     </style>
-    <link rel="stylesheet" href="/static/css/product/jquery-ui-1.8.16.custom.css">
     <div class="main-container box2">
         <div class="hl-help" style="display: none">
             <span class="linkBlue">定义产品功能</span>&nbsp;&nbsp;&nbsp;
@@ -487,10 +519,11 @@
 </div>
 <div style="display: none"><input type="text" id="vid"></div>
     <!-- page specific plugin scripts -->
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/static/assets/js/grid.locale-en.js"></script>
     <script src="/static/common/js/jquery.sortable.js"></script>
-
+    <script src="/static/common/js/jquery-ui-1.10.3.custom.min.js"></script>
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
@@ -1046,7 +1079,7 @@
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';

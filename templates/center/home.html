@@ -506,6 +506,7 @@
 {% endblock %}
 
 {% block end_script %}
+    <script src="/static/layui/layui.all.js" charset="utf-8"></script>
     <script type="text/javascript" language="JavaScript" src="{% static 'js/center/devApp.js' %}"
             charset="utf-8"></script>
     <script src="/static/js/product/bootbox.js"></script>
@@ -542,7 +543,7 @@
             $(".item-team-user1").find("input").removeAttr('disabled').removeClass('ui-edit-disable')
 
             $(".ui-del-item").show();
-            $(".item-team-user1").show()
+            //$(".item-team-user1").show()
         }
         $(function () {
             $(".btn-edit").click(function () {
@@ -628,12 +629,48 @@
             });
             $("#item-team-control").delegate(".ui-del-item", "click", function () {
                 var that = this
-                    // 页面上多余一个的team成员框才可以删除
-                bootbox.confirm("确定删除该项目成员?", function (result) {
-                  if(result){
-                      $(that).parent().remove()
-                  }
+                layer.confirm('确定删除计划？', {
+                btn: ['确定', '取消'] //按钮
+                },
+                function (index) {
+                layer.close(index);
+                console.log('xxxx',that)
+                // 页面上多余一个的team成员框才可以删除
+                var tmp = {
+                            "name": $($(that).parent().find("input")[0]).val(),
+                            "job": $($(that).parent().find("input")[1]).val(),
+                            "email": $($(that).parent().find("input")[2]).val()
+                        };
+                console.log('xx',tmp)
+                var data = []
+                data.push(tmp)
+                var data_item = {
+                    "action": "delete_email",
+                    "user": user_account,
+                    "team_info": JSON.stringify(data)
+
+                };
+                $.ajax({
+                    url: location.href,
+                    type: "POST",
+                    data: data_item,
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        if (data['code'] == 0) {
+                            $(that).parent().remove()
+                            layer.msg('删除成功', {icon: 1, time: 2000});
+                        } else {
+                            layer.msg('删除失败', {icon: 5, time: 2000});
+                        }
+                    }
                 })
+
+            },
+                function () {
+                console.log("取消");
+            })
+
+                                                              ``
             });
             $("#addTeamSubmit").click(function () {
                 // 团队邮箱信息提交
@@ -648,7 +685,7 @@
                             "job": $($(this).find("input")[1]).val(),
                             "email": $($(this).find("input")[2]).val()
                         };
-                        if (tmp['email'].indexOf("@")>1){
+                        if (tmp['email'].indexOf("@")>0){
                             data.push(tmp)
                         }
 
@@ -678,7 +715,7 @@
                         response = jQuery.parseJSON(response);
                         console.log(response);
                         if (response['status'] == 'ok') {
-                            bootbox.alert("提交成功");
+                            layer.msg('提交成功', {icon: 1, time: 2000});
                             $(".item-tmp-team").remove();
                             $("#item-team-control").find(".item-team-user").remove();
                             $(".ui-no-team").hide()
@@ -702,7 +739,7 @@
 
                 });
                 }else{
-                    bootbox.alert('请完善团队邮箱信息')
+                    layer.msg('请完善团队邮箱信息', {icon: 6, time: 2000});
                 }
 
             })
