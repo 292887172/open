@@ -1468,10 +1468,7 @@ def upload_file(request):
                         print(e)
                         return HttpResponse(json.dumps({"code": 1}))
                     list_url = rr['data']
-                    print("user1", user1)
-                    print("filename", file.name)
                     datas = get_ui_static_conf(key, list_url, id, file.name, user1)
-                    print('异步返回的数据', datas)
                     product_name = app_name + '上传更新提示'
                     if t >= 9:
                         next_stemp = "量产阶段"

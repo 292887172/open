@@ -287,6 +287,7 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup"></div>
@@ -297,6 +298,7 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
 
@@ -474,7 +476,10 @@
                 group += '		<input ng-disabled="'+flag + '" onblur="check_paramData(this)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].data + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-2 col-xs-2">';
-                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
+                group += '		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
+                group += '	</div>';
+                group += '	<div class="col-sm-2 col-xs-2">';
+                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -560,7 +565,10 @@
         group+='		<input type="text" style="width:130px" class="checkData" id="checkData" onblur="check_paramData(this)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-1 col-xs-2">';
-        group+='		<input type="text" style="width:130px" class="checkDatas" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group+='		<input type="text" style="width:130px" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group+='	</div>';
+        group+='	<div class="col-sm-1 col-xs-2">';
+        group+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -603,7 +611,7 @@
         value = $(ths).val();
 
         if(value==''|| value==null){
-            $('#checkArgue1').html("请填写数据说明和传送数据");
+            $('#checkArgue1').html("请填写数据说明、传送数据和UI控件ID");
             $('#checkArgue1').css("display","block");
         }
         else if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && value<=100){
@@ -618,6 +626,11 @@
         $(".advice").css("display","none");
         p = $(ths).parent().parent().children(".advice").css("display",'block');
     }
+    function check_paramUI(ths) {
+        $(".advice").css("display","none");
+        p = $(ths).parent().parent().children(".advice").css("display",'block');
+    }
+    // 触发器
     function select_trigger(ths) {
         value = $(ths.parentNode.parentNode.children[1].children).val();
         name = $(ths.parentNode.parentNode.children[2].children).val();
