@@ -164,6 +164,7 @@ angular.module('Product.protocol', ['ngRoute'])
             });
         };
         $scope.editMouseOn=function ($event) {
+            console.log("0n", $event)
             if ($scope.being) {
                 $($event.target).children(".add-btn").fadeIn(200, function () {
                     $scope.being = false
@@ -171,6 +172,7 @@ angular.module('Product.protocol', ['ngRoute'])
             }
         };
         $scope.editMouseLeave=function ($event) {
+            console.log("0ff", $event)
             $($event.target).children(".add-btn").fadeOut(200, function () {
                 $scope.being = true
             })
