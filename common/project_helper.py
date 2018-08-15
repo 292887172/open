@@ -77,13 +77,14 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
         return data
 
 
-def get_personal_project(project_path, key, device_function, device_protocol_config, device_protocol_response_config):
+def get_personal_project(project_path, key, device_function,
+                         device_protocol_config=False, device_protocol_response_config=False):
     """根据自定义配置生成自定义的项目包
-    :param project_path: 项目原始文件的路径
-    :param key: 自定义的key
-    :param device_function: 自定义的设备功能列表
-    :param device_protocol_config: 自定义的上行帧格式
-    :param device_protocol_response_config: 自定义的应答帧格式
+    :param project_path: 项目原始文件的路径 必须
+    :param key: 自定义的key 必须
+    :param device_function: 自定义的设备功能列表 必须
+    :param device_protocol_config: 自定义的上行帧格式 可选
+    :param device_protocol_response_config: 自定义的应答帧格式  可选
     :return: 自定义转换成功 -> 自定义项目的下载地址  ， 自定义转换失败 -> 原始项目的下载地址  （下载地址为绝对路径）
     """
 
