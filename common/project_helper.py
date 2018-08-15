@@ -64,7 +64,7 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
     :param data: 需要替换的字符串
     :param config_name: 需要替换的配置名
     :param new_config: 新的配置
-    :return: 成功-》 替换皮质后的data ，  失败 -》 原始的data
+    :return: 成功-> 替换皮质后的data ，  失败 -> 原始的data
     """
     rule = "(-- start {0} config)([\s\S]+)(-- end {0} config)".format(config_name)
     logging.info('匹配规则 ' + rule)
@@ -84,7 +84,7 @@ def get_personal_project(project_path, key, device_function, device_protocol_con
     :param device_function: 自定义的设备功能列表
     :param device_protocol_config: 自定义的上行帧格式
     :param device_protocol_response_config: 自定义的应答帧格式
-    :return: 自定义转换成功 -》 自定义项目的下载地址  ， 自定义转换失败 -》 原始项目的下载地址  （下载地址为绝对路径）
+    :return: 自定义转换成功 -> 自定义项目的下载地址  ， 自定义转换失败 -> 原始项目的下载地址  （下载地址为绝对路径）
     """
 
     project_name = os.path.splitext(os.path.basename(project_path))[0]
@@ -198,75 +198,40 @@ def test_os():
     print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
 
-def test_config_change_1():
-    device_function = [{'length': 1, 'name': 'fan1', 'title': '大风'},
-                       {'length': 2, 'name': 'fan2', 'title': '大风'},
-                       {'length': 3, 'name': 'fan3', 'title': '大风'}]
-
-    device_protocol_config = {
-        'endian_type': 0,
-        'length': 9,
-        'length_offset': "None",
-        'check_type': 'crc16',
-        'check_data_start': 0,
-        'check_data_end': -2,
-        'structs': [
-            {'name': 'head', 'length': 1, 'value': [0x11, 0xA5, 0x5A, 0x01]},
-            {'name': "version", 'length': 1, 'value': [0x01]},
-            {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4, 'value': [
-                {'length': 1, 'name': 'fan1', 'title': '大风'},
-                {'length': 2, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 3, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 4, 'name': 'test_fan', 'title': '大风风'},
-                {'length': 5, 'name': 'test_fan', 'title': '大风风'}
-            ]},
-            {'name': 'check', 'length': 2, 'value': [{'length': 1, 'name': 'fan2', 'title': '小风'}]}
-        ]
-    }
-
-    logging.info(config_change(device_function))
-    logging.info(config_change(device_protocol_config))
-
-
-def test_config_change_2():
+def test_config_change():
     device_function = [
-        {'length': 1, 'name': 'Fan3', 'title': '大风',
-         'controls': {'Main': 113}, 'triggers': {'[1]': {'Power': 1, 'Fan1': 0, 'Fan2': 0}}},
-        {'length': 1, 'name': 'Fan2', 'title': '中风'},
-        {'length': 1, 'name': 'Fan1', 'title': '小风'},
+        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
+        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
+        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
+        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
+        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
+        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
+        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
+        {'length': 1, 'name': 'Fan3', 'title': '快档'},
+        {'length': 1, 'name': 'Fan2', 'title': '中档'},
+        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
         {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'length': 1, 'name': 'Light', 'title': '清洗'},
-        {'length': 1, 'name': 'Down', 'title': '降'},
-        {'length': 1, 'name': 'Up', 'title': '升'},
-        {'length': 1, 'name': 'Lamp', 'title': 'Lamp'},
-        {'length': 1, 'name': 'Power', 'title': '电源',
-         # 'value': 1, 'controls': {'Main': 101}},
-         'value': 1, 'controls': {'Main': 101}, 'triggers': {'[0]': {'All': 0}, '[1]': {'Fan2': 1}}},
-        {'length': 1, 'name': 'Fire', 'title': '火焰型号'},
-        {'length': 1, 'name': 'LeftGas', 'title': '左灶'},
-        {'length': 2, 'name': 'Beep', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'Dry', 'title': '烘干'},
-        {'length': 1, 'name': 'Disinfectants', 'title': '消毒'},
-        {'length': 1, 'name': 'Aux', 'title': 'Aux'},
-        {'length': 8, 'name': 'Temp', 'title': '烟道温度'},
-        {'length': 8, 'name': 'Fault', 'title': '故障报警'}
-    ]
+        {'controls': [101, 102],
+         'length': 1,
+         'name': 'lamp',
+         'title': '照明',
+         'triggers': {'[0]': {'jiang': 0, 'shen': 1},
+                      '[1]': {'jiang': 1, 'shen': 0}}},
+        {'length': 1, 'name': 'jiang', 'title': '降'},
+        {'length': 1, 'name': 'shen', 'title': '升'},
+        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}]
 
     device_protocol_config = {
-        'endian_type': 0,
-        'length': 9,
-        'length_offset': "None",
-        'check_type': 'crc16',
-        'check_data_start': 0,
         'check_data_end': -2,
-        'structs': [
-            {'name': 'head', 'length': 1, 'value': [0xA5]},
-            {'name': "version", 'length': 1, 'value': [0x01]},
-            {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4},
-            {'name': 'check', 'length': 2}
-        ]
+        'check_data_start': 1,
+        'check_type': 'crc16',
+        'endian_type': 1,
+        'length': 9,
+        'length_offset': 'None',
+        'structs': [{'length': 1, 'name': 'head', 'value': [165]},
+                    {'length': 2, 'name': 'category', 'value': [0, 1]},
+                    {'length': 4, 'name': 'data'},
+                    {'length': 2, 'name': 'check'}]
     }
 
     logging.info(config_change(device_function))
@@ -275,42 +240,38 @@ def test_config_change_2():
 
 def test_get_personal_project():
     device_function = [
-        {'length': 1, 'name': 'Fan3', 'title': '大风',
-         'controls': {'Main': 113}, 'triggers': {'[1]': {'Power': 1, 'Fan1': 0, 'Fan2': 0}}},
-        {'length': 1, 'name': 'Fan2', 'title': '中风'},
-        {'length': 1, 'name': 'Fan1', 'title': '小风'},
+        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
+        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
+        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
+        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
+        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
+        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
+        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
+        {'length': 1, 'name': 'Fan3', 'title': '快档'},
+        {'length': 1, 'name': 'Fan2', 'title': '中档'},
+        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
         {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'length': 1, 'name': 'Light', 'title': '清洗'},
-        {'length': 1, 'name': 'Down', 'title': '降'},
-        {'length': 1, 'name': 'Up', 'title': '升'},
-        {'length': 1, 'name': 'Lamp', 'title': 'Lamp'},
-        {'length': 1, 'name': 'Power', 'title': '电源',
-         'value': 1, 'controls': {'Main': 101}},
-        # 'value': 1, 'controls': {'Main': 101}, 'triggers': {'[0]': {'All': 0}, '[1]': {'Fan2': 1}}},
-        {'length': 1, 'name': 'Fire', 'title': '火焰型号'},
-        {'length': 1, 'name': 'LeftGas', 'title': '左灶'},
-        {'length': 2, 'name': 'Beep', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'Dry', 'title': '烘干'},
-        {'length': 1, 'name': 'Disinfectants', 'title': '消毒'},
-        {'length': 1, 'name': 'Aux', 'title': 'Aux'},
-        {'length': 8, 'name': 'Temp', 'title': '烟道温度'},
-        {'length': 8, 'name': 'Fault', 'title': '故障报警'}
-    ]
+        {'controls': [101, 102],
+         'length': 1,
+         'name': 'lamp',
+         'title': '照明',
+         'triggers': {'[0]': {'jiang': 0, 'shen': 1},
+                      '[1]': {'jiang': 1, 'shen': 0}}},
+        {'length': 1, 'name': 'jiang', 'title': '降'},
+        {'length': 1, 'name': 'shen', 'title': '升'},
+        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}]
 
     device_protocol_config = {
-        'endian_type': 0,
-        'length': 9,
-        'length_offset': "None",
-        'check_type': 'crc16',
-        'check_data_start': 0,
         'check_data_end': -2,
-        'structs': [
-            {'name': 'head', 'length': 1, 'value': [0xA5]},
-            {'name': "version", 'length': 1, 'value': [0x01]},
-            {'name': "category", 'length': 1, 'value': [0x01]},
-            {'name': 'data', 'length': 4},
-            {'name': 'check', 'length': 2}
-        ]
+        'check_data_start': 1,
+        'check_type': 'crc16',
+        'endian_type': 1,
+        'length': 9,
+        'length_offset': 'None',
+        'structs': [{'length': 1, 'name': 'head', 'value': [165]},
+                    {'length': 2, 'name': 'category', 'value': [0, 1]},
+                    {'length': 4, 'name': 'data'},
+                    {'length': 2, 'name': 'check'}]
     }
     device_protocol_response_config = device_protocol_config
     key = 'AABBCCDD'
@@ -350,5 +311,4 @@ if __name__ == '__main__':
     """
 
     # test_get_personal_project()
-
-    test_config_change_2()
+    test_config_change()
