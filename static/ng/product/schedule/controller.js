@@ -168,7 +168,7 @@ angular.module('Product.schedule', ['ngRoute'])
                             var addtr = $(
                                 "<div class=\"file-list\">\n" +
                                 "                    <div class=\"div-flex file-box\">\n" +
-                                "                        <a class=\"file-name text-ellipsis\" href=\"/product/download?url=" + dd[i]['urll'] + "&name=" + dd[i]['filename'] + "\">" + dd[i]['filename'] + "</a>\n" +
+                                "                        <a class=\"file-name text-ellipsis\" href=\"" + dd[i]['urll'] +  "\">" + dd[i]['filename'] + "</a>\n" +
                                 "                        <p class=\"file-user text-ellipsis\">" + dd[i]['user'] + "</p>\n" +
                                 "                        <p class=\"file-time\">" + dd[i]['date'] + "</p>\n" +
                                 "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
@@ -245,7 +245,7 @@ angular.module('Product.schedule', ['ngRoute'])
                             var addtr = $(
                                 "<div class=\"file-list\">\n" +
                                 "                    <div class=\"div-flex file-box\">\n" +
-                                "                        <a class=\"file-name text-ellipsis\" href=\"/product/download?url=" + dd[i]['urll'] + "&name=" + dd[i]['filename'] + "\">" + dd[i]['filename'] + "</a>\n" +
+                                "                        <a class=\"file-name text-ellipsis\" href=\"" + dd[i]['urll'] +  "\">" + dd[i]['filename'] + "</a>\n" +
                                 "                        <p class=\"file-user text-ellipsis\">" + dd[i]['user'] + "</p>\n" +
                                 "                        <p class=\"file-time\">" + dd[i]['date'] + "</p>\n" +
                                 "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
