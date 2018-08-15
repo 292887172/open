@@ -277,7 +277,16 @@ angular.module('Product.protocol', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                     $scope.data_menu = response;
-                    layer.msg('保存成功', {icon: 6, time: 2000});
+                    // layer.msg('保存成功', {icon: 6, time: 2000});
+                    var c = '<div id="" class="layui-layer-padding lay-confirm"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3"></i>协议定义完成，是否生成工程包？</div>' +
+                        '<div class="layui-progress lay-my-progress" lay-filter="progress-filter" lay-showPercent="true"><div class="layui-progress-bar" lay-percent="0%"></div></div>' +
+                        '<div class="down-control-item"><a class="down-a">下载工程</a><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="getProject()">生成工程</button>' +
+                        '<button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="cancelF()">取消</button></div>';
+                    layer.open({
+                      type: 1,
+                      area: ['420px', '240px'], //宽高
+                      content: c
+                    });
 
             });
         };
@@ -376,4 +385,43 @@ function checkData() {
 function editFunction() {
     layer.closeAll('page');
     window.location.href='#/argue'
+}
+function getProject() {
+    $(".lay-my-progress").show();
+     var p = 10;
+    layui.use('element', function(){
+      var element = layui.element;
+      var t = setInterval(function () {
+        p = p+5+Math.round(Math.random()*10);
+        if (p>90){
+            clearInterval(t);
+            return true
+        }
+        element.progress('progress-filter', p+"%");
+    }, 300);
+         $.ajax({
+             type: "GET",
+             url: '/product/protocol/?action=get_project&key='+keysss,
+             dataType: "json",
+             success: function(data){
+                 console.log(data);
+                if(data['code']==0){
+                    $(".down-a").attr('href', data['url']).show();
+                    clearInterval(t);
+                    element.progress('progress-filter', "100%");
+                $(".progress-bar").css("width", "100%");
+
+
+                }
+                else{
+                    $(".down-a").hide();
+                    $(".item-tips").show()
+                }
+             }
+         });
+    });
+
+}
+function cancelF() {
+    layer.closeAll('page');
 }

@@ -842,9 +842,11 @@ def protocol(request):
         if action == "get_project":
 
             p = get_device_protocol_config(device_key)
-
-            p0 = p[0]
-            p1 = p[1]
+            if p:
+                p0 = p[0]
+                p1 = p[1]
+            else:
+                p0, p1 = False, False
             d = get_device_function(device_key)
             project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
             pth = get_personal_project(project_path, device_key, d, p0, p1)
