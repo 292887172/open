@@ -168,17 +168,20 @@ def get_device_protocol_config(key: str):
         except Exception as e:
             logging.error(str(e))
 
-    return configs
+    if len(configs) == 1:
+        return configs * 2
+    else:
+        return configs
 
 
 def test_get_device_function():
     # 5yUHe7fk test　success
-    device_function = get_device_function(key='xN6C2bCr')
+    device_function = get_device_function(key='nzammHmF')
     pprint.pprint(device_function)
 
 
 def test_get_device_protocol_config():
-    device_protocol_config = get_device_protocol_config(key='xN6C2bCr')
+    device_protocol_config = get_device_protocol_config(key='nzammHmF')
     pprint.pprint(device_protocol_config, width=80, indent=4)
 
 

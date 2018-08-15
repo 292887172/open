@@ -77,13 +77,14 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
         return data
 
 
-def get_personal_project(project_path, key, device_function, device_protocol_config, device_protocol_response_config):
+def get_personal_project(project_path, key, device_function,
+                         device_protocol_config=False, device_protocol_response_config=False):
     """根据自定义配置生成自定义的项目包
-    :param project_path: 项目原始文件的路径
-    :param key: 自定义的key
-    :param device_function: 自定义的设备功能列表
-    :param device_protocol_config: 自定义的上行帧格式
-    :param device_protocol_response_config: 自定义的应答帧格式
+    :param project_path: 项目原始文件的路径 必须
+    :param key: 自定义的key 必须
+    :param device_function: 自定义的设备功能列表 必须
+    :param device_protocol_config: 自定义的上行帧格式 可选
+    :param device_protocol_response_config: 自定义的应答帧格式  可选
     :return: 自定义转换成功 -> 自定义项目的下载地址  ， 自定义转换失败 -> 原始项目的下载地址  （下载地址为绝对路径）
     """
 
@@ -108,10 +109,19 @@ def get_personal_project(project_path, key, device_function, device_protocol_con
     configs = {
         "product_key": 'local product_key="{0}"'.format(key),
         "device_function": 'local device_function={0}'.format(config_change(device_function)),
-        "device_protocol_config": 'local device_protocol_config={0}'.format(config_change(device_protocol_config)),
-        "device_protocol_response_config": 'local device_protocol_response_config={0}'.format(
-            config_change(device_protocol_response_config)),
     }
+
+    if device_protocol_config:
+        configs["device_protocol_config"] = 'local device_protocol_config={0}'.format(
+            config_change(device_protocol_config))
+    else:
+        configs["device_protocol_config"] = 'local device_protocol_config'
+
+    if device_protocol_response_config:
+        configs["device_protocol_response_config"] = 'local device_protocol_response_config={0}'.format(
+            config_change(device_protocol_response_config))
+    else:
+        configs["device_protocol_response_config"] = 'local device_protocol_response_config'
 
     try:
         for config in configs:
@@ -273,6 +283,7 @@ def test_get_personal_project():
                     {'length': 4, 'name': 'data'},
                     {'length': 2, 'name': 'check'}]
     }
+    device_protocol_config = False
     device_protocol_response_config = device_protocol_config
     key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
@@ -310,5 +321,5 @@ if __name__ == '__main__':
         - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
 
-    # test_get_personal_project()
-    test_config_change()
+    # test_config_change()
+    test_get_personal_project()
