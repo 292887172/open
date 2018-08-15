@@ -137,6 +137,9 @@
         float: left;
         margin-top: 15px;
     }
+    .layui-form-pane .layui-form-label{
+        width: 140px;
+    }
 </style>
 
 <div style="padding: 10px 3%;min-height: 500px" ng-controller="ProtocolCtrl">
@@ -172,10 +175,41 @@
 
           </div>
         </div>
+        <!-- 标准协议-->
+        <div ng-if="!protocol_zdy" class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
+            <label class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" >+</p></label>
+            <p ng-if="f.name=='data' && protocol_zdy" class="layui-btn  layui-btn-warm edits" ng-click="editData()" >编辑</p>
+            <div ng-if="f.name=='data'" class="btn-active">
+                <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
+            </div>
+            <div class="layui-input-inline" ng-if="f.name=='check'">
+                <label class="layui-form-label edit-btn" ng-repeat="a in Algorithm" ng-if="a.name==f.value.check_algorithm">算法({[{ a.title }]})</label>
+
+            </div>
+
+            <div ng-if="f.name!='data'"  class="layui-input-inline">
+                <label class="layui-form-label edit-btn" >长度({[{ f.length }]}Byte)</label>
+
+            </div>
+            <div ng-if="f.name!='data' && f.name!='check'" class="layui-input-inline">
+                <label class="layui-form-label edit-btn" style="overflow:hidden!important;">{[{ f.value }]}</label>
 
 
-        <div class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
-            <label ng-mouseenter="editMouseOn($event)" ng-mouseleave="editMouseLeave($event)" class="layui-form-label edit-btn" ng-click="addFrameData($event)">{[{ f.title }]}<p class="add-btn">+</p></label>
+            </div>
+            <div ng-if="f.name=='check'" class="layui-input-inline">
+                <label class="layui-form-label edit-btn" ng-repeat="d in frame_data" ng-if="d.id==f.value.check_start" >校验开始位({[{ d.title }]})</label>
+
+            </div>
+
+            <div ng-if="f.name=='check'" class="layui-input-inline">
+                <label class="layui-form-label edit-btn" ng-repeat="d in frame_data" ng-if="d.id==f.value.check_end" >校验结束位({[{ d.title }]})</label>
+
+            </div>
+        </div>
+
+        <!-- 自定义协议-->
+        <div ng-if="protocol_zdy" class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
+            <label ng-mouseenter="editMouseOn($event)" ng-mouseleave="editMouseLeave($event)" class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" ng-click="addFrameData($event)">+</p></label>
             <p ng-if="f.name=='data' && protocol_zdy" class="layui-btn  layui-btn-warm edits" ng-click="editData()" >编辑</p>
             <div ng-if="f.name=='data'" class="btn-active">
                 <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
@@ -200,7 +234,7 @@
                 </select>
             </div>
             <div ng-if="f.name!='data' && f.name!='check'" class="layui-input-inline">
-                <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
+                <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input layui-disabled" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
                 <p class="frame-val-tips">请填写{[{ f.length }]}个字节传输值</p>
             </div>
             <div ng-if="f.name=='check'" class="layui-input-inline">

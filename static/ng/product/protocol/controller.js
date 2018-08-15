@@ -59,6 +59,7 @@ angular.module('Product.protocol', ['ngRoute'])
             });
         $scope.$on("ngRepeatFinished", function () {
             // 监听angular页面渲染完成
+
             layui.use('form', function () {
                 var form = layui.form;
                 form.render('select');
@@ -101,9 +102,9 @@ angular.module('Product.protocol', ['ngRoute'])
                 content: '<form class="layui-form popup-open" action="">\n' +
                 check_content +
                 '    </form>',
+                btn: ['确认', '功能不匹配?'],
                 success: function(layero, index){
                     // 弹出成功后回调，
-                    console.log(layero, index);
                     layui.use('form', function() {
                         var form = layui.form;
                         // 监听checkbox选择状态
@@ -156,6 +157,9 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                     console.log($scope.data_menu, $scope.frame_data,'------1');
                     layer.close(index);
+                },
+                btn2:function () {
+                    window.location.href='#/argue'
                 }
             });
             layui.use('form', function () {
@@ -164,7 +168,7 @@ angular.module('Product.protocol', ['ngRoute'])
             });
         };
         $scope.editMouseOn=function ($event) {
-            console.log("0n", $event)
+           // console.log("0n", $event)
             if ($scope.being) {
                 $($event.target).children(".add-btn").fadeIn(200, function () {
                     $scope.being = false
@@ -172,7 +176,7 @@ angular.module('Product.protocol', ['ngRoute'])
             }
         };
         $scope.editMouseLeave=function ($event) {
-            console.log("0ff", $event)
+            //console.log("0ff", $event)
             $($event.target).children(".add-btn").fadeOut(200, function () {
                 $scope.being = true
             })
