@@ -193,7 +193,7 @@
         <!-- 标准协议-->
         <div ng-if="!protocol_zdy" class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
             <label class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" >+</p></label>
-            <p ng-if="f.name=='data' && protocol_zdy" class="layui-btn  layui-btn-warm edits" ng-click="editData()" >编辑</p>
+            <p ng-if="f.name=='data' && protocol_zdy" class="layui-btn  edits" style="color: #F35019;background-color:white;border:solid 1px #f35019" ng-click="editData()" >编辑</p>
             <div ng-if="f.name=='data'" class="btn-active">
                 <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
             </div>
@@ -225,7 +225,7 @@
         <!-- 自定义协议-->
         <div ng-if="protocol_zdy" class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
             <label ng-mouseenter="editMouseOn($event)" ng-mouseleave="editMouseLeave($event)" class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" ng-click="addFrameData($event)">+</p></label>
-            <p ng-if="f.name=='data' && protocol_zdy" class="layui-btn  layui-btn-warm edits" ng-click="editData()" >编辑</p>
+            <p ng-if="f.name=='data' && protocol_zdy" style="color: #F35019;background-color:white;border:solid 1px #f35019" class="layui-btn  edits" ng-click="editData()" >编辑</p>
             <div ng-if="f.name=='data'" class="btn-active">
                 <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
             </div>
