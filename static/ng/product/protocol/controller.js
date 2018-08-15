@@ -68,8 +68,20 @@ angular.module('Product.protocol', ['ngRoute'])
                 var form = layui.form;
                 form.render('radio');
             });
+             $(".layui-form-item").delegate('.del-btn',"click", function () {
+                 var item_name = $(this).parents(".ui-frame-item").attr('id').split("-")[1];
+                 for(var i=0;i<$scope.frame_data.length;i++){
+                     if($scope.frame_data[i].name == item_name){
+                         $scope.frame_data.splice(i, 1)
+                     }
+                 }
+                $(this).parents(".ui-frame-item").remove();
+            });
         });
         $scope.editData=function () {
+            tmp_checked_id = [];
+            tmp_unchecked_id = [];
+            var is_check_all = true;  // 默认全选， 只要有一个选项不选中则置为false
             //处理复选框参数
             var check_content = "";
             console.log($scope.data_menu, $scope.frame_data);
@@ -89,20 +101,27 @@ angular.module('Product.protocol', ['ngRoute'])
 
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
-                    check_content = check_content + '<input lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
+                    check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
                 } else {
-                    check_content = check_content + '<input lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary">'
+                    is_check_all = false
+                    check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary">'
                 }
             }
-            var tmp_checked_id = [];
-            var tmp_unchecked_id = [];
-            layer.open({
+            if(is_check_all){
+               var check_all_content = '<input type="checkbox" name="" title="全选" lay-filter="click_all" lay-skin="primary" checked>'
+            }
+            else{
+                check_all_content = '<input type="checkbox" name="" title="全选" lay-filter="click_all" lay-skin="primary">'
+            }
 
+            layer.open({
+                type:1,
                 area: ['420px', '260px'], //宽高
-                content: '<form class="layui-form popup-open" action="">\n' +
+                content: '<div class="data-content-item"><form class="layui-form popup-open" action="">\n' +
                 check_content +
-                '    </form>',
-                btn: ['确认', '功能不匹配?'],
+                '    </form></div><div class="data-all-item"> <form class="layui-form" action="">' + check_all_content +
+                '</form></div><div class="data-control-item"><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="checkData()">确认</button><button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="editFunction()">功能不匹配?</button></div>',
+
                 success: function(layero, index){
                     // 弹出成功后回调，
                     layui.use('form', function() {
@@ -130,42 +149,30 @@ angular.module('Product.protocol', ['ngRoute'])
                             console.log(tmp_checked_id, tmp_unchecked_id)
 
                         });
+                        form.on('checkbox(click_all)',function (data) {
+                            console.log("全选");
+                            tmp_checked_id = [];
+                            tmp_unchecked_id = [];
+                            $(".data-checkbox").each(function () {
+                                this.checked = data.elem.checked;
+                                if(data.elem.checked){
+                                    tmp_checked_id.push(this.value)
+                                }
+                                else{tmp_unchecked_id.push(this.value)}
+
+                            });
+                            form.render('checkbox');
+                        })
+
                     })
                   },
-                yes: function (index, layero) {
-                    //清空内容
-                    $(".btn-active").empty();
-                    for(var j =0;j<$scope.data_menu.length;j++ ){
-                        console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
-                        if (tmp_unchecked_id.indexOf(String($scope.data_menu[j].id))>-1) {
-                            $scope.data_menu[j].content = false;
-                        }
 
-                        else if(tmp_checked_id.indexOf(String($scope.data_menu[j].id))>-1){
-                            $scope.data_menu[j].content=true;
-
-                        }
-                        if($scope.data_menu[j].content==true){
-                             $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>")
-                        }
-
-                    }
-                    for(var z=0;z<$scope.frame_data.length;z++){
-                        if($scope.frame_data[z].name=='data'){
-                            $scope.frame_data[z].value=$scope.data_menu
-                        }
-                    }
-                    console.log($scope.data_menu, $scope.frame_data,'------1');
-                    layer.close(index);
-                },
-                btn2:function () {
-                    window.location.href='#/argue'
-                }
             });
             layui.use('form', function () {
                 var form2 = layui.form;
                 form2.render('checkbox');
             });
+
         };
         $scope.editMouseOn=function ($event) {
            // console.log("0n", $event)
@@ -226,12 +233,13 @@ angular.module('Product.protocol', ['ngRoute'])
                         "length": t_length,
                         "name": t_name,
                         "title": t_title,
-                        "value": t_val
+                        "value": t_val,
+                        "is_enable": true
                     };
                    tmp_frame_data[data_name].push(tmp_s);
                    // $scope.frame_data.push(tmp_s)
                 });
-                console.log(tmp_frame_data);
+                console.log(tmp_frame_data, "______tmp_frame_data");
                 for (var i=0;i <$scope.frame_data.length;i++){
                     var d = tmp_frame_data[$scope.frame_data[i].name];
                     if(d){
@@ -248,6 +256,16 @@ angular.module('Product.protocol', ['ngRoute'])
                             var form = layui.form;
                             form.render('select');
                         });
+                    // 删除按钮绑定事件
+                    $(".layui-form-item").delegate('.del-btn',"click", function () {
+                         var item_name = $(this).parents(".ui-frame-item").attr('id').split("-")[1];
+                         for(var i=0;i<$scope.frame_data.length;i++){
+                             if($scope.frame_data[i].name == item_name){
+                                 $scope.frame_data.splice(i, 1)
+                             }
+                         }
+                        $(this).parents(".ui-frame-item").remove();
+                    });
                 }, 500)
 
             }
@@ -259,7 +277,16 @@ angular.module('Product.protocol', ['ngRoute'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                     $scope.data_menu = response;
-                    layer.msg('保存成功', {icon: 6, time: 2000});
+                    // layer.msg('保存成功', {icon: 6, time: 2000});
+                    var c = '<div id="" class="layui-layer-padding lay-confirm"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3"></i>协议定义完成，是否生成工程包？</div>' +
+                        '<div class="layui-progress lay-my-progress" lay-filter="progress-filter" lay-showPercent="true"><div class="layui-progress-bar" lay-percent="0%"></div></div>' +
+                        '<div class="down-control-item"><a class="down-a">下载工程</a><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="getProject()">生成工程</button>' +
+                        '<button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="cancelF()">取消</button></div>';
+                    layer.open({
+                      type: 1,
+                      area: ['420px', '240px'], //宽高
+                      content: c
+                    });
 
             });
         };
@@ -321,3 +348,80 @@ angular.module('Product.protocol', ['ngRoute'])
             }
         };
     });
+var tmp_checked_id = [];
+var tmp_unchecked_id = [];
+function checkData() {
+
+    //通过controller来获取Angular应用
+    var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+      //获取$scope变量
+    var $scope = angular.element(appElement).scope();
+    console.log(tmp_checked_id, tmp_unchecked_id, '++++++');
+    //清空内容
+    $(".btn-active").empty();
+    for(var j =0;j<$scope.data_menu.length;j++ ){
+        console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
+        if (tmp_unchecked_id.indexOf(String($scope.data_menu[j].id))>-1) {
+            $scope.data_menu[j].content = false;
+        }
+
+        else if(tmp_checked_id.indexOf(String($scope.data_menu[j].id))>-1){
+            $scope.data_menu[j].content=true;
+
+        }
+        if($scope.data_menu[j].content==true){
+             $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>")
+        }
+
+    }
+    for(var z=0;z<$scope.frame_data.length;z++){
+        if($scope.frame_data[z].name=='data'){
+            $scope.frame_data[z].value=$scope.data_menu
+        }
+    }
+    console.log($scope.data_menu, $scope.frame_data,'------1');
+    layer.closeAll('page');
+}
+function editFunction() {
+    layer.closeAll('page');
+    window.location.href='#/argue'
+}
+function getProject() {
+    $(".lay-my-progress").show();
+     var p = 10;
+    layui.use('element', function(){
+      var element = layui.element;
+      var t = setInterval(function () {
+        p = p+5+Math.round(Math.random()*10);
+        if (p>90){
+            clearInterval(t);
+            return true
+        }
+        element.progress('progress-filter', p+"%");
+    }, 300);
+         $.ajax({
+             type: "GET",
+             url: '/product/protocol/?action=get_project&key='+keysss,
+             dataType: "json",
+             success: function(data){
+                 console.log(data);
+                if(data['code']==0){
+                    $(".down-a").attr('href', data['url']).show();
+                    clearInterval(t);
+                    element.progress('progress-filter', "100%");
+                $(".progress-bar").css("width", "100%");
+
+
+                }
+                else{
+                    $(".down-a").hide();
+                    $(".item-tips").show()
+                }
+             }
+         });
+    });
+
+}
+function cancelF() {
+    layer.closeAll('page');
+}

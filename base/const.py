@@ -203,11 +203,11 @@ class DefaultProtocol(object):
     DEFAULT_DATA_ZDY = {"is_single_instruction": "true", "support_response_frame": "true", "support_serial": "true",
                         "active_heartbeat": "true", "heart_rate": 500, "support_repeat": "true", "repeat_rate": 500,
                         "repeat_count": 3, "frame_content":
-                            [{"name": "head", "title": "帧头", "is_enable": "true", "id": 1, "length": 2,
+                            [{"name": "head", "title": "帧头", "id": 1, "length": 2,
                               "value": "A55A"},
-                             {"name": "data", "title": "数据域", "is_enable": "true",
+                             {"name": "data", "title": "数据域",
                               "id": 2, "length": "8*N", "value": []},
-                             {"name": "check", "title": "校验", "is_enable": "true",
+                             {"name": "check", "title": "校验",
                               "id": 3, "length": 1, "value":
                                   {"check_algorithm": "sum", "check_start": 1, "check_end": 2}}
                              ],

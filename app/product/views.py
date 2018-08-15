@@ -842,9 +842,11 @@ def protocol(request):
         if action == "get_project":
 
             p = get_device_protocol_config(device_key)
-
-            p0 = p[0]
-            p1 = p[1]
+            if p:
+                p0 = p[0]
+                p1 = p[1]
+            else:
+                p0, p1 = False, False
             d = get_device_function(device_key)
             project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
             pth = get_personal_project(project_path, device_key, d, p0, p1)
@@ -922,13 +924,23 @@ def protocol(request):
 
                 tmp_list_t = []
                 for i in list_t:
-                    tmp_f = {
-                        "id": i.get("id"),
-                        "length": i.get("length"),
-                        "name": i.get("name"),
-                        "title": i.get("title"),
-                        "value": i.get("value")
-                    }
+                    if i.get("is_enable", None):
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value"),
+                            "is_enable": i.get("is_enable")
+                        }
+                    else:
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value")
+                        }
                     if i.get("name") == "data":
                         # 处理数据域
                         l = 0
