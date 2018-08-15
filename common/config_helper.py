@@ -88,14 +88,17 @@ def get_check_data_location(check_id, frame_contents, position):
     if isinstance(check_id, str):
         check_id = int(check_id)
 
-    length_sum, length_position = 0, 0
+    length_sum, length_position, length_check_id = 0, 0, 0
+
     for frame_content in frame_contents:
         length_sum += int(frame_content['length'])
+        if int(frame_content['id']) == check_id:
+            length_check_id = int(frame_content['length'])
         if int(frame_content['id']) <= check_id:
             length_position += int(frame_content['length'])
 
     if position == 'start':
-        return length_position
+        return length_position - length_check_id
     elif position == 'end':
         return length_position - length_sum
 
