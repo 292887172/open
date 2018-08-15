@@ -90,7 +90,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 14px;
     line-height: 21px;
     cursor: pointer;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 #plans-list li:after{
     content: "";
@@ -109,13 +109,16 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .plans_before:before{
     content: "";
-    display: block;
-    width: 3px;
-    height: 40px;
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
+    width: 3px;
+    height: 40px;
     background-color: #338fe5;
+}
+.confirm-info{
+    margin-left: 90px;
 }
 #plans-list li.plans_before:after{
     content: "";
