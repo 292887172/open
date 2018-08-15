@@ -108,10 +108,19 @@ def get_personal_project(project_path, key, device_function, device_protocol_con
     configs = {
         "product_key": 'local product_key="{0}"'.format(key),
         "device_function": 'local device_function={0}'.format(config_change(device_function)),
-        "device_protocol_config": 'local device_protocol_config={0}'.format(config_change(device_protocol_config)),
-        "device_protocol_response_config": 'local device_protocol_response_config={0}'.format(
-            config_change(device_protocol_response_config)),
     }
+
+    if device_protocol_config:
+        configs["device_protocol_config"] = 'local device_protocol_config={0}'.format(
+            config_change(device_protocol_config))
+    else:
+        configs["device_protocol_config"] = 'local device_protocol_config'
+
+    if device_protocol_response_config:
+        configs["device_protocol_response_config"] = 'local device_protocol_response_config={0}'.format(
+            config_change(device_protocol_response_config))
+    else:
+        configs["device_protocol_response_config"] = 'local device_protocol_response_config'
 
     try:
         for config in configs:
@@ -273,6 +282,7 @@ def test_get_personal_project():
                     {'length': 4, 'name': 'data'},
                     {'length': 2, 'name': 'check'}]
     }
+    device_protocol_config = False
     device_protocol_response_config = device_protocol_config
     key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
@@ -310,5 +320,5 @@ if __name__ == '__main__':
         - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
 
-    # test_get_personal_project()
-    test_config_change()
+    # test_config_change()
+    test_get_personal_project()
