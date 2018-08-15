@@ -194,8 +194,8 @@
             <li id="default-app-id">
                  <div class="dropdown" id="dropdown">
                     <p id="dropdownMenu1"
-                        data-toggle="dropdown">
-                        {{ app.app_name }}
+                        data-toggle="dropdown"><a href="?ID={{ app.app_id }}#/portal" >{{ app.app_name }}</a>
+
                         <span class="caret"></span>
                     </p>
                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -216,7 +216,7 @@
                 <div class="dropdown" id="dropdown">
                     <p id="dropdownMenu1"
                         data-toggle="dropdown">
-                        {{ app.app_name }}
+                       <a href="?ID={{ app.app_id }}#/portal" >{{ app.app_name }}</a>
                         <span class="caret"></span>
                     </p>
                         {% if all_app|num_app %}
