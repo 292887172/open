@@ -104,9 +104,24 @@
     .layui-form-pane .layui-input-block {
         margin-left: 0;
     }
-
+    .layui-form-radio>i{
+        font-size: 30px;
+    }
+    .layui-form-radio *{
+        font-size: 16px;
+    }
+    .layui-tab-title li{
+        font-size: 16px;
+    }
     .layui-form-radio > i:hover, .layui-form-radioed > i {
         color: #f35019;
+
+    }
+    .layui-tab{
+        margin: 20px 0;
+    }
+    .layui-tab-content{
+        padding: 25px 10px;
     }
     .layui-badge{
         height: 37px;
@@ -144,7 +159,7 @@
 
 <div style="padding: 10px 3%;min-height: 500px" ng-controller="ProtocolCtrl">
 
-    <fieldset class="layui-elem-field layui-field-title">
+    <fieldset class="layui-elem-field layui-field-title" style="display: none">
         <legend>协议帧定义</legend>
     </fieldset>
     <div class="layui-form layui-form-pane">
@@ -234,7 +249,7 @@
                 </select>
             </div>
             <div ng-if="f.name!='data' && f.name!='check'" class="layui-input-inline">
-                <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input layui-disabled" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
+                <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
                 <p class="frame-val-tips">请填写{[{ f.length }]}个字节传输值</p>
             </div>
             <div ng-if="f.name=='check'" class="layui-input-inline">
