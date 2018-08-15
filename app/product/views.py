@@ -922,13 +922,23 @@ def protocol(request):
 
                 tmp_list_t = []
                 for i in list_t:
-                    tmp_f = {
-                        "id": i.get("id"),
-                        "length": i.get("length"),
-                        "name": i.get("name"),
-                        "title": i.get("title"),
-                        "value": i.get("value")
-                    }
+                    if i.get("is_enable", None):
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value"),
+                            "is_enable": i.get("is_enable")
+                        }
+                    else:
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value")
+                        }
                     if i.get("name") == "data":
                         # 处理数据域
                         l = 0

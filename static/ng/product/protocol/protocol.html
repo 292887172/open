@@ -155,6 +155,25 @@
     .layui-form-pane .layui-form-label{
         width: 140px;
     }
+    .data-content-item{
+        position: relative;
+    padding: 20px;
+    line-height: 24px;
+    word-break: break-all;
+    overflow: hidden;
+    font-size: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 160px;
+    }
+    .data-all-item{
+        float: left;
+        padding: 15px;
+    }
+    .data-control-item{
+        float: right;
+        padding: 3px 15px;
+    }
 </style>
 
 <div style="padding: 10px 3%;min-height: 500px" ng-controller="ProtocolCtrl">
@@ -252,6 +271,7 @@
                 <input type="text" name="title-{[{ f.name }]}"  placeholder="请输入{[{ f.length }]}个字节传输值" maxlength="{[{ f.length*2 }]}" class="layui-input" value="{[{ f.value }]}" ng-keyup="valueKeyUp($event)">
                 <p class="frame-val-tips">请填写{[{ f.length }]}个字节传输值</p>
             </div>
+            <div class="del-btn" ng-if="f.is_enable">删除</div>
             <div ng-if="f.name=='check'" class="layui-input-inline">
                 <select name="quiz-check-start" id="check_start" lay-filter="check-rel">
                     <option value="" selected>请选择校验开始位</option>
