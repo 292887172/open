@@ -49,7 +49,10 @@ def get_device_function(key: str) -> list:
                         _item[trigger['func']] = int(trigger['val'])
                     item['triggers'][data] = _item
             if not item['triggers']: del item['triggers']
-            if not item['controls']: del item['controls']
+            if not item['controls']:
+                del item['controls']
+            else:
+                item['controls'] = list(set(item['controls']))
             device_function.append(item)
         return device_function
     except Exception as e:
