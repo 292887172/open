@@ -1288,6 +1288,7 @@
             if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].name, funcs)==-1)
                 msg += "<option value="+funs[i].Stream_ID+">"+funs[i].name+"</option>"
         }
+        msg += "<option value=\"All\">all</option>";
         msg += '</select></div>';
         msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
         msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
