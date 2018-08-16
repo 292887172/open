@@ -984,7 +984,8 @@
         var dataVal = 0;
         var Text='';
         function init() {
-        count++;
+        console.log(count)
+
         if(flag == false){
             var obj={
                 id:id,
@@ -1066,13 +1067,24 @@
             selectTimer();
         }
         if(count<=1) {
+            var del_remove = document.getElementsByClassName("ddd")
+
+            if(del_remove.length>0){
+                for (var i =0,del_length = del_remove.length;i<del_length;i++){
+                    del_remove[0].remove()
+                }
+            }
+            else {
+                console.log('无数据')
+            }
             for (var i = 0; i < d.mxs.length; i++) {
                 var group = '';
                 flag = false;
+
                 if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && d.mxs[i].data<=100) {
                     flag = true;
                 }
-                group += '<div class="form-group">';
+                group += '<div class="form-group ddd">';
                 group += '	<div class="col-sm-2 col-xs-2"></div>';
                 group += '	<div class="col-sm-2 col-xs-3">';
                 group += '		<input ng-disabled="'+flag + '" onblur="check_paramData(this)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].data + '"/>';
