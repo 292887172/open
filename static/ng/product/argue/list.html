@@ -1291,8 +1291,8 @@
         msg += '</select></div>';
         msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
         msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
-        msg += '<div class="col-xs-4"><span class="float-left" >默认值: </span><input id="defaultVal" style="width:50px" step="1" placeholder="" class="form-control float-left">';
-        msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button></div></div>';
+        msg += '<div class="col-xs-4"><span class="float-left" >默认值: </span><input id="defaultVal" value="0" style="width:50px" step="1" placeholder="" onblur="checkvalued(this)"  class="form-control float-left">';
+        msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button><p class="show_title" style="display:none;color:red">请填写参数范围内的值</p></div></div>';
         bootbox.dialog({
             title:"添加触发器",
             message:msg+table,
@@ -1337,6 +1337,19 @@
             $("#selectFunc option[value=" + func + "]").remove();
         }
     }
+    function checkvalued(ths) {
+       var checked_min =  $("#minDefault").val();
+       var checked_max = $("#maxDefault").val();
+       value = $(ths).val();
+       if (parseInt(value) >= parseInt(checked_min) && parseInt(value) <= parseInt(checked_max)){
+           console.log('true')
+           $('.show_title').css("display","none");
+       }else {
+           $('.show_title').css("display","block");
+       }
+    }
+
+
 
     function delFunc(ths,name) {
         opt = "<option value="+name+">"+name+"</option>";
