@@ -79,7 +79,7 @@ angular.module('Product.argue', ['ngRoute'])
 			}
         };
         $scope.Save = function () {
-
+			console.log('xxxttttttt')
 			if($.trim($('#mxsLength').val())==''){
 				$('#checkLength').html("长度不能为空!!");
 				$('#checkLength').css("display","block");

@@ -28,7 +28,7 @@ angular.module('Product.edit', ['ngRoute'])
 				var desc=$.trim(paramDescs[i].value);
 				var control=$.trim(paramUI[i].value);
 				var role=/^[0-9]*$/;
-				if(desc=="" || data=="" || control==""){
+				if(desc=="" || data=="" ){
 					$scope.errorType=1;
 					break;
 				}
@@ -193,7 +193,11 @@ angular.module('Product.edit', ['ngRoute'])
 					var p = tt.split("#/")[1];
 					console.log(p)
 					if (p == "argue"){
-						location.reload()
+						$("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
+						document.getElementsByClassName("main-container")[1].style.display='none'
+            			document.getElementsByClassName("main-container")[0].style.display=''
 					}else{
 						location.replace("#/argue")
 					}

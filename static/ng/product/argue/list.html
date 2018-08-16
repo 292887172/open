@@ -123,6 +123,7 @@
     input[type=checkbox].ace.ace-switch.ace-switch-5+.lbl::before{
         cursor: not-allowed;
     }
+
     .common_dp-btn{
         display: inline-block;
         height: 36px;
@@ -310,14 +311,14 @@
                              <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name"  placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name" autocomplete="off" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" onblur="checkName()"/>
                                     <br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID" style="text-align:right"> <span class="must-choose">*</span>功能标识符 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据点及其参数传输时的变量名，支持英文字母、数字和下划线，以英文字母开头。" title="">?</span></label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <input type="text" id="Stream_ID"  placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
+                                    <input type="text" id="Stream_ID" autocomplete="off" placeholder="由大小写字母、数字或下划线组成，以字母开头且不能重复" class="col-xs-10 col-sm-5" onblur="checkID()"/>
                                     <br><br><div id="checkID" style="color:red;margin-top:15px;display:none;"></div>
                                 </div>
                             </div>
@@ -326,7 +327,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength" style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="数据域和结果码的长度，单位是bit，例如（开关：1bit）" title="">?</span></label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <input ng-disabled='{[{ disabled }]}' type="text"  id="mxsLength"  placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
+                                    <input ng-disabled='{[{ disabled }]}' type="text" autocomplete="off" id="mxsLength"  placeholder="数据域和结果码的长度，如：8（bits）" class="col-xs-10 col-sm-5" onblur="checkLength()"/>
                                     <br><br><div id="checkLength" style="color:red;margin-top:15px;display:none"></div>
                                 </div>
                             </div>
@@ -591,7 +592,10 @@
                                     if (add_mod.length!=0){
                                         add_mod = JSON.stringify(add_mod);
                                         SendPostData({'name':'add_mod',"funs":add_mod},"添加标准功能")
-                                        location.reload()
+                                        //location.reload()
+                                        $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
                                     }
                                 }
                             },
@@ -761,7 +765,10 @@
                 async :false,
                 success: function (data) {
                         console.log(types, "更新成功")
-                        location.reload()
+                        //location.reload()
+                        $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
                     },
                 error:function (data) {
                     console.log(types, "更新失败");
@@ -1176,7 +1183,7 @@
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
@@ -1206,7 +1213,7 @@
     }
     function check_paramData(ths) {
         value = $(ths).val();
-
+        console.log(value)
         if(value==''|| value==null){
             $('#checkArgue1').html("请填写数据说明和传送数据");
             $('#checkArgue1').css("display","block");
@@ -1224,9 +1231,10 @@
         p = $(ths).parent().parent().children(".advice").css("display",'block');
     }
     function check_paramUI(ths) {
-
+        console.log('xxxxxx')
     }
     function select_trigger(ths) {
+            console.log('yyyyy')
         value = $(ths.parentNode.parentNode.children[1].children).val();
         name = $(ths.parentNode.parentNode.children[2].children).val();
         if(value==""||name==""){
@@ -1245,7 +1253,7 @@
                  <th class="td-5">最小值</th>\
                  <th class="td-6">最大值\
                 </th>\
-                <th class="td-7">默认值</th>\
+                <th class="td-7">触发值</th>\
                 \<th class="td-7">操作</th>\
             </tr>\
             </thead>\
@@ -1287,11 +1295,12 @@
             if(funs[i].Stream_ID != edit_data.Stream_ID && funcs && $.inArray(funs[i].name, funcs)==-1)
                 msg += "<option value="+funs[i].Stream_ID+">"+funs[i].name+"</option>"
         }
+        msg += "<option value=\"All\">all</option>";
         msg += '</select></div>';
-        msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" id="minDefault" class="form-control float-left" value="0">';
-        msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
-        msg += '<div class="col-xs-4"><span class="float-left" >默认值: </span><input id="defaultVal" style="width:50px" step="1" placeholder="" class="form-control float-left">';
-        msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button></div></div>';
+        msg += '<div class="col-xs-4"><span class="float-left" >参数值范围: </span><input style="width:50px" step="1" disabled=disabled id="minDefault" class="form-control float-left" value="0">';
+        msg += '<span class="float-left"> - </span><input style="width:50px" id="maxDefault" disabled=disabled step="1" class="form-control float-left" autocomplete="off" value="50"></div>';
+        msg += '<div class="col-xs-4"><span class="float-left" >触发值: </span><input id="defaultVal" value="0" style="width:50px" step="1" placeholder="" onblur="checkvalued(this)"  class="form-control float-left">';
+        msg += '<button type="button" class="btn btn-success" onclick=addToList()>添加</button><p class="show_title" style="display:none;color:red">请填写参数范围内的值</p></div></div>';
         bootbox.dialog({
             title:"添加触发器",
             message:msg+table,
@@ -1336,12 +1345,25 @@
             $("#selectFunc option[value=" + func + "]").remove();
         }
     }
+    function checkvalued(ths) {
+       var checked_min =  $("#minDefault").val();
+       var checked_max = $("#maxDefault").val();
+       value = $(ths).val();
+       if (parseInt(value) >= parseInt(checked_min) && parseInt(value) <= parseInt(checked_max)){
+           console.log('true')
+           $('.show_title').css("display","none");
+       }else {
+           $('.show_title').css("display","block");
+       }
+    }
+
+
 
     function delFunc(ths,name) {
         opt = "<option value="+name+">"+name+"</option>";
         $(ths.parentNode.parentNode).remove();
         for(var i=0;i<trig.length;i++) {
-            if(trig[i].func==name){
+            if(trig[i].name==name){
                 trig.splice(i,1);
             }
         }
@@ -1350,6 +1372,7 @@
 
     function SelectFunc(ths) {
         var name = $(ths).val();
+        console.log('xxxx',name)
         for(var i=0;i<funs.length;i++){
             if(funs[i].Stream_ID==name){
                 $("#minDefault").val(funs[i].min);
@@ -1358,8 +1381,10 @@
                     $("#defaultVal").val(funs[i].mxs[0].data);
                 }
                 else{
-                    $("#defaultVal").val('')
+                    $("#defaultVal").val('0')
                 }
+            }else {
+
             }
         }
     }
