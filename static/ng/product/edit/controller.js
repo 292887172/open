@@ -28,7 +28,7 @@ angular.module('Product.edit', ['ngRoute'])
 				var desc=$.trim(paramDescs[i].value);
 				var control=$.trim(paramUI[i].value);
 				var role=/^[0-9]*$/;
-				if(desc=="" || data=="" || control==""){
+				if(desc=="" || data=="" ){
 					$scope.errorType=1;
 					break;
 				}
