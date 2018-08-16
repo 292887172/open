@@ -1176,7 +1176,7 @@
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
         group+='		<a href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="display: none;padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
@@ -1365,6 +1365,7 @@
 
     function SelectFunc(ths) {
         var name = $(ths).val();
+        console.log('xxxx',name)
         for(var i=0;i<funs.length;i++){
             if(funs[i].Stream_ID==name){
                 $("#minDefault").val(funs[i].min);
@@ -1373,8 +1374,12 @@
                     $("#defaultVal").val(funs[i].mxs[0].data);
                 }
                 else{
-                    $("#defaultVal").val('')
+                    $("#defaultVal").val('0')
                 }
+            }else {
+                 $("#minDefault").val('0');
+                 $("#maxDefault").val('100');
+                 $("#defaultVal").val('0')
             }
         }
     }
