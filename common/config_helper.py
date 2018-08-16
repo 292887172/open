@@ -41,7 +41,11 @@ def get_device_function(key: str) -> list:
             item['triggers'], item['controls'] = {}, []
             for mxs in config['mxs']:
                 if mxs.get('control'):
-                    item['controls'].append(int(mxs['control']))
+                    if '=' in mxs['control']:
+                        _key, _value = mxs['control'].split('=')
+                        item['controls'].append({_key: int(_value)})
+                    else:
+                        item['controls'].append(int(mxs['control']))
                 data = "[%s]" % mxs['data']
                 if mxs.get('trigger') and len(mxs.get('trigger')):
                     _item = {}
@@ -52,7 +56,13 @@ def get_device_function(key: str) -> list:
             if not item['controls']:
                 del item['controls']
             else:
-                item['controls'] = list(set(item['controls']))
+                _control_dict, _controls_set = [], set()
+                for control in item['controls']:
+                    if isinstance(control, dict):
+                        _control_dict.append(control)
+                    if isinstance(control, int):
+                        _controls_set.add(control)
+                item['controls'] = _control_dict + list(_controls_set)
             device_function.append(item)
         return device_function
     except Exception as e:
