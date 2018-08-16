@@ -761,7 +761,11 @@
                 async :false,
                 success: function (data) {
                         console.log(types, "更新成功")
-                        location.reload()
+                        //location.reload()
+                        $("#grid-table").jqGrid({
+                            postData:{"name": "list"}
+,
+                        }).trigger("reloadGrid")
                     },
                 error:function (data) {
                     console.log(types, "更新失败");
@@ -1377,9 +1381,7 @@
                     $("#defaultVal").val('0')
                 }
             }else {
-                 $("#minDefault").val('0');
-                 $("#maxDefault").val('100');
-                 $("#defaultVal").val('0')
+
             }
         }
     }

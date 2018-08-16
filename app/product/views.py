@@ -597,6 +597,7 @@ def product_main(request):
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
+            print('data',data)
             return JsonResponse(data)
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
@@ -649,7 +650,8 @@ def product_main(request):
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(opera_data):])
                 opera_data = c_data
-                replace_fun_id(opera_data, id, is_standa)
+                # 排序？？？？？？
+                #replace_fun_id(opera_data, id, is_standa)
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
