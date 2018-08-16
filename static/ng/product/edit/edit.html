@@ -335,6 +335,17 @@
 
 
 <script type="text/javascript">
+
+
+    var url=location.href;
+    var num=url.indexOf('?id');
+    var str=url.substring(num+1);
+    var id = str.split("=")[1];
+    var count=0;
+    var mxs = [];
+    var trig=[];
+    var dataVal = 0;
+    var Text='';
     $(document).ready(function() {
         var group1='';
         group1+='<div class="form-group ppp">';
@@ -354,6 +365,7 @@
         group1+='	</div>';
         group1+='</div>';
         $("#addGroup1").before(group1);
+        mxs.push({"data":'0',"desc":'关'});
         var group2='';
         group2+='<div class="form-group ppp">';
         group2+='	<div class="col-sm-2 col-xs-2"></div>';
@@ -372,6 +384,7 @@
         group2+='	</div>';
         group2+='</div>';
         $("#addGroup1").before(group2);
+        mxs.push({"data":'1',"desc":'开'});
         $('input[type=radio][name=paramType]').change(function() {
             console.log(this.value)
             if (this.value == '1') {
@@ -386,7 +399,9 @@
                 else {
                     console.log('无数据1')
                     $("#addGroup1").before(group1);
+                    mxs.push({"data":'0',"desc":'关'});
                     $("#addGroup1").before(group2);
+                    mxs.push({"data":'1',"desc":'开'});
                 }
             }
             else {
@@ -403,17 +418,6 @@
             }
         });
     });
-
-    var url=location.href;
-    var num=url.indexOf('?id');
-    var str=url.substring(num+1);
-    var id = str.split("=")[1];
-    var count=0;
-    var mxs = [];
-    var trig=[];
-    var dataVal = 0;
-    var Text='';
-
     $.ajax({
         url:location.href,
         type: "POST",
@@ -753,6 +757,7 @@
             }
         }
         if(bool==false){    //新增加group
+            console.log('xxxxt')
             dataVal = mxs.length-1;
             mxs[dataVal].data = value;
             mxs[dataVal].desc = name;
