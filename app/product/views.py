@@ -909,7 +909,7 @@ def protocol(request):
             if data_protocol_list.get('action', '') == 'update_protocol':
                 data_sql = {}
                 protocol_type = data_protocol_list.get('protocol_type', 0)
-
+                protocol_endian = data_protocol_list.get("protocol_endian", 1)
                 list_t = data_protocol_list.get('frame_content', '')
                 list_key = data_protocol_list.get('key', '')
                 data_sql['is_single_instruction'] = True
@@ -920,7 +920,7 @@ def protocol(request):
                 data_sql['heart_rate'] = "500"
                 data_sql['repeat_rate'] = "500"
                 data_sql['repeat_count'] = "3"
-                data_sql['endian_type'] = "1"   # 1:大端编码， 0：小端编码， 默认大端编码
+                data_sql['endian_type'] = protocol_endian   # 1:大端编码， 0：小端编码， 默认大端编码
 
                 tmp_list_t = []
                 for i in list_t:
@@ -962,7 +962,6 @@ def protocol(request):
                     tmp_list_t.append(tmp_f)
                 data_sql['frame_content'] = tmp_list_t
 
-                print("data_sql", data_sql)
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
 
                 types = data_protocol_list.get('typesss', '')

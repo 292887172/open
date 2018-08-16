@@ -14,6 +14,8 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.Algorithm = [{"name": "sum", "title": "SUM和校验"}, {"title": "CRC16校验", "name": "crc16"}]; //站位用的长度范围
         $scope.protocol_zdy = false;
         $scope.protocol_type = 0;   // 协议类型， 0：下行， 1：上行
+        $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
+        $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
         $scope.being = true;    // “+”号是否显示标记
         $scope.frame_data = [
             {"id": 1,"name": "head", "title": "帧头", "length":1, "value": "A5"},
@@ -30,13 +32,13 @@ angular.module('Product.protocol', ['ngRoute'])
                 if(response['code']==2){
                     // 标准协议
                     $scope.protocol_zdy=false;
-
                 }
                 else{
                     $scope.protocol_zdy=true;
                 }
                 console.log(response);
-                $scope.frame_data=response['data']['frame_content']
+                $scope.frame_data=response['data']['frame_content'];
+                $scope.protocol_endian = response['data']['endian_type']
             });
         $http({
             method: "GET",
@@ -51,7 +53,6 @@ angular.module('Product.protocol', ['ngRoute'])
                         for(var j=0;j<$scope.frame_data.length;j++){
                             if ($scope.frame_data[j].name=='data'){
                                 $scope.frame_data[j].value=$scope.data_menu;
-
                             }
                         }
                     }
@@ -92,9 +93,7 @@ angular.module('Product.protocol', ['ngRoute'])
                             if($scope.data_menu[j]['id']== $scope.frame_data[i]['value'][z].id && $scope.frame_data[i]['value'][z].content){
                                 $scope.data_menu[j]['content'] = true
                             }
-
                         }
-
                     }
                 }
             }
@@ -190,11 +189,15 @@ angular.module('Product.protocol', ['ngRoute'])
 
         };
         $scope.addFrameData=function ($event) {
+            if($scope.cur_frame_type_length==''){
+                $scope.cur_frame_type_length= $(".ui-frame-item").length + $(".new-frame-item").length
+            }
             var data_name = $($event.target).parents(".layui-form-item").attr('id').split("-")[1];
-            var length = $(".ui-frame-item").length + $(".new-frame-item").length+1;
+            var length = $scope.cur_frame_type_length+1;
             var found_list = new EJS({url: config.url["frame"]}).render({"id": length, "data_name": data_name});
             // console.log(found_list);
             $($event.target).parents(".layui-form-item").append(found_list);
+            $scope.cur_frame_type_length+=1;
             layui.use('form', function () {
                 var form = layui.form;
                 form.render('select');
@@ -224,8 +227,13 @@ angular.module('Product.protocol', ['ngRoute'])
                        tmp_frame_data[data_name] = [];
                    }
 
-                   var t_title =  $('#new-frame-title-'+t_id).find("option:selected").text();
-                   var t_name =  $('#new-frame-title-'+t_id).val();
+                   var t_title =  $('#new-frame-title-'+t_id).find("option:selected").text();      // 中文名称
+                   var t_name =  $('#new-frame-title-'+t_id).val();     // 英文标识
+                   if(t_name=='other'){
+                       t_title = $('#new-frame-tmptitle-'+t_id).children('input').val();
+                       t_name = $('#new-frame-bs-'+t_id).children('input').val()
+                   }
+
                    var t_length = parseInt($("#new-frame-length-"+t_id).val());
                    var t_val = $("#new-frame-value-"+t_id).val();
                    var tmp_s = {
@@ -273,7 +281,9 @@ angular.module('Product.protocol', ['ngRoute'])
             $http({
                 method: "POST",
                 url: "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key,
-                data: {"action": "update_protocol", "protocol_type": $scope.protocol_type, "key": $scope.$parent.$parent.key, "frame_content":$scope.frame_data},
+                data: {"action": "update_protocol", "protocol_type": $scope.protocol_type,
+                    "protocol_endian": $scope.protocol_endian, "key": $scope.$parent.$parent.key,
+                    "frame_content":$scope.frame_data},
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                     $scope.data_menu = response;

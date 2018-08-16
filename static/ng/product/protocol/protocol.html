@@ -235,6 +235,17 @@
 
           </div>
         </div>
+        <div class="layui-form-item" >
+             <div class="layui-input-inline">
+                <select name="quiz-endian" id="endian-type" lay-filter="endian">
+                    <option value="" >请选择编码规则</option>
+                    <option value="1" ng-if="protocol_endian==1" selected>大端编码</option>
+                    <option value="1" ng-if="protocol_endian!=1">大端编码</option>
+                    <option value="0" ng-if="protocol_endian==0" selected>小端编码</option>
+                    <option value="0" ng-if="protocol_endian!=0">小端编码</option>
+                </select>
+            </div>
+        </div>
         <!-- 标准协议-->
         <div ng-if="!protocol_zdy" class="layui-form-item ui-frame-item" ng-repeat="f in frame_data" on-finish-render-filters id="item-{[{ f.name }]}">
             <label class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" >+</p></label>
@@ -327,7 +338,6 @@
         "url":{
             'frame': '/static/tpl/frame_sel.ejs'
         }
-
     };
 
     layui.use('element', function(){
@@ -396,8 +406,8 @@
             }
         });
         form.on('radio(protocol_zdy)', function(data){
-          console.log(data.elem); //得到radio原始DOM对象
-          console.log(data.value); //被点击的radio的value值
+         // console.log(data.elem); //得到radio原始DOM对象
+         // console.log(data.value); //被点击的radio的value值
             //通过controller来获取Angular应用
             var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
               //获取$scope变量
@@ -412,8 +422,38 @@
                 $scope.protocol_zdy=0
             }
         });
+        form.on('select(endian)', function(data){
+            // 监听编码规则选择
+         // console.log(data.elem); //得到radio原始DOM对象
+          //console.log(data.value); //被点击的radio的value值
+            //通过controller来获取Angular应用
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+              //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            $scope.protocol_endian = parseInt(data.value)
+        });
+        form.on('select(new_frame)', function(data){
+            // 监听新建帧类型选择
+            if(data.value=='other'){
+                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
+                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
+                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
+
+            }
+        });
 
     });
+    function pinyin(item){
+
+        var nameDish = $(item).val();
+        var t_id = $(item).parent('div').attr('id').split("-")[3];
+        var str = "";
+        for(var i=0; i< nameDish.length; i++) {
+            var nameDish2 = codefans_net_CC2PY(nameDish.charAt(i));
+            str += nameDish2;
+        }
+        $("#new-frame-bs-"+t_id).children('input').val(str);
+    }
 
 
 </script>
