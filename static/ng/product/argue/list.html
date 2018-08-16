@@ -1206,7 +1206,7 @@
     }
     function check_paramData(ths) {
         value = $(ths).val();
-
+        console.log(value)
         if(value==''|| value==null){
             $('#checkArgue1').html("请填写数据说明和传送数据");
             $('#checkArgue1').css("display","block");
@@ -1224,9 +1224,10 @@
         p = $(ths).parent().parent().children(".advice").css("display",'block');
     }
     function check_paramUI(ths) {
-
+        console.log('xxxxxx')
     }
     function select_trigger(ths) {
+            console.log('yyyyy')
         value = $(ths.parentNode.parentNode.children[1].children).val();
         name = $(ths.parentNode.parentNode.children[2].children).val();
         if(value==""||name==""){
