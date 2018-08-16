@@ -119,6 +119,10 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '5', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '6', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
         ]
     stove = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -158,6 +162,10 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '12', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '12', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
 
     oven = [
@@ -319,6 +327,10 @@ def gen_app_default_conf(val):
             "corpName": "",
             "Stream_ID": "System_Status"
         },
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '20', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
     steam = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 3,
@@ -470,6 +482,10 @@ def gen_app_default_conf(val):
             "corpName": "",
             "Stream_ID": "System_Status"
         },
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '18', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
     fridge = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -502,6 +518,10 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '10', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '11', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
     small_oven = [
     {
@@ -731,6 +751,10 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '9', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '10', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
 ]
     mini_steam = [
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
@@ -1219,7 +1243,12 @@ def gen_app_default_conf(val):
         "min": 0,
         "corpMark": "s",
         "widget": "input"
-}]
+},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '21', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
+    ]
     oven_xwj = [
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -1390,6 +1419,10 @@ def gen_app_default_conf(val):
                     "data":"1"
                 }],
          'mxsLength': '8', 'id': '17', 'Stream_ID': 'ERROR', 'toSwitch': '0', 'isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '18', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
     oven_zkx = [
         {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
@@ -1744,7 +1777,8 @@ def gen_app_default_conf(val):
                     "data":"8"
                 }
             ], 'corpName': '', 'paramType': 4,
-         'mxsLength': '8', 'id': '15', 'Stream_ID': 'System_Status', 'toSwitch': '0', 'isFunction': '1'},{'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'mxsLength': '8', 'id': '15', 'Stream_ID': 'System_Status', 'toSwitch': '0', 'isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
          'name': '故障', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '6', 'mxs': [
                 {
@@ -1791,6 +1825,10 @@ def gen_app_default_conf(val):
                 }
             ], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '16', 'Stream_ID': 'ERROR', 'toSwitch': '0', 'isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '17', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
     other = [
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '开关', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
@@ -1799,6 +1837,10 @@ def gen_app_default_conf(val):
         {'isControl': 1, 'state': 1, 'isDisplay':1,'isCloudMenu':0,'isShow':0, 'time': '2017-08-01 09:20:19', 'name': '工作状态', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
          'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
          'mxsLength': '8', 'id': '2', 'Stream_ID': 'STATE', 'toSwitch': '0','isFunction': '1'},
+        {'isControl': 1, 'state': 1, 'isDisplay': 1, 'isCloudMenu': 0, 'isShow': 0, 'time': '2017-08-01 09:20:19',
+         'name': '蜂鸣器', 'corpMark': '', 'widget': 'button', 'min': 0, 'max': 255,
+         'mxsNum': '2', 'mxs': [{'desc': '关', 'data': '0'}, {'desc': '开', 'data': '1'}], 'corpName': '', 'paramType': 4,
+         'mxsLength': '4', 'id': '3', 'Stream_ID': 'Beep', 'toSwitch': '0', 'isFunction': '1'},
     ]
 
     if val == 1:
