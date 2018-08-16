@@ -56,6 +56,7 @@ def get_device_function(key: str) -> list:
             if not item['controls']:
                 del item['controls']
             else:
+                # 去除重复项
                 _control_dict, _controls_set = [], set()
                 for control in item['controls']:
                     if isinstance(control, dict):
@@ -101,14 +102,15 @@ def get_check_data_location(check_id, frame_contents, position):
     if isinstance(check_id, str):
         check_id = int(check_id)
 
-    length_sum, length_position, length_check_id = 0, 0, 0
+    length_sum = sum([int(frame_content['length']) for frame_content in frame_contents])
+
+    length_position, length_check_id = 0, 0
 
     for frame_content in frame_contents:
-        length_sum += int(frame_content['length'])
+        length_position += int(frame_content['length'])
         if int(frame_content['id']) == check_id:
             length_check_id = int(frame_content['length'])
-        if int(frame_content['id']) <= check_id:
-            length_position += int(frame_content['length'])
+            break
 
     if position == 'start':
         return length_position - length_check_id
@@ -133,10 +135,8 @@ def get_device_protocol_config(key: str):
 
     configs = []
     for protocol in protocols:
-
         protocol_type = protocol.protocol_factory_type
         protocol_content = protocol.protocol_factory_content
-        # print(protocol_content)
         try:
             config = json.loads(protocol_content)
         except Exception as e:
@@ -199,24 +199,30 @@ def test_get_device_protocol_config():
 
 
 def test_get_check_data_location():
-    protocols = Protocol.objects.filter(protocol_device_key='xN6C2bCr')
+    protocols = Protocol.objects.filter(protocol_device_key='2hqa5HF5')
     for protocol in protocols:
         protocol_content = protocol.protocol_factory_content
         config = json.loads(protocol_content)
+        pprint.pprint(config)
+        print()
         frame_contents = config['frame_content']
 
         check_start = config['start_check_number']
-        print('check_start_id = ', check_start)
-        print('check_location = ', get_check_data_location(check_start, frame_contents, 'start'))
+        print('check_start_id = ', check_start, end='\t\t')
+        _location = get_check_data_location(check_start, frame_contents, 'start')
+        print('check_location = ' + str(_location))
 
         check_end = config['end_check_number']
-        print('check_end_id = ', check_end)
-        print('check_location = ', get_check_data_location(check_end, frame_contents, 'end'))
+        print('check_end_id = ', check_end, end='\t\t')
+        _location = get_check_data_location(check_end, frame_contents, 'end')
+        print('check_location = ' + str(_location))
+
+        print('-' * 99)
 
 
 if __name__ == '__main__':
-    test_get_device_function()
-    print('-' * 99)
-    test_get_device_protocol_config()
+    # test_get_device_function()
     # print('-' * 99)
-    # test_get_check_data_location()
+    # test_get_device_protocol_config()
+    # print('-' * 99)
+    test_get_check_data_location()

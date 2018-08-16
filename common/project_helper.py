@@ -78,27 +78,37 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
 
 
 def get_personal_project(project_path, key, device_function,
-                         device_protocol_config=False, device_protocol_response_config=False):
+                         device_protocol_config=False, device_protocol_response_config=False, return_type='zip'):
     """根据自定义配置生成自定义的项目包
     :param project_path: 项目原始文件的路径 必须
     :param key: 自定义的key 必须
     :param device_function: 自定义的设备功能列表 必须
     :param device_protocol_config: 自定义的上行帧格式 可选
     :param device_protocol_response_config: 自定义的应答帧格式  可选
-    :return: 自定义转换成功 -> 自定义项目的下载地址  ， 自定义转换失败 -> 原始项目的下载地址  （下载地址为绝对路径）
+    :param return_type: 最终获取的 文件类型  'zip'->project.zip  'lua'->main.lua 默认 'zip'
+    :return: 自定义转换成功 -> 返回绝对路径下载地址  ， 自定义转换失败 -> 原始绝对路径下载地址
     """
 
-    project_name = os.path.splitext(os.path.basename(project_path))[0]
+    project_name = os.path.splitext(os.path.basename(project_path))[0]  # 'WiFiIot'
+    project_location = os.path.split(project_path)[0]  # '/home/am/deployment/open/static/sdk'
+    project_folder = os.path.splitext(project_path)[0]  # '/home/am/deployment/open/static/sdk/WiFiIot'
+    main_lua = os.path.join(project_folder, 'main.lua')  # '/home/am/deployment/open/static/sdk/WiFiIot/main.lua'
+    main_origin_lua = os.path.join(project_folder, 'main.origin.lua')
+    # '/home/am/deployment/open/static/sdk/WiFiIot/main.origin.lua'
+
     try:
         unzip_project(project_path)
     except Exception as e:
         logging.error('解压失败 返回原始文件 错误内容 ' + str(e))
         return project_path
 
-    personal_name = project_name + '_' + key + '.zip'
-    project_folder = os.path.splitext(project_path)[0]
-    main_lua = os.path.join(project_folder, 'main.lua')
-    main_origin_lua = os.path.join(project_folder, 'main.origin.lua')
+    if return_type == 'zip':
+        personal_name = project_name + '_' + key + '.zip'
+    elif return_type == 'lua':
+        personal_name = 'main' + '_' + key + '.lua'
+    else:
+        logging.error('传入返回类型错误，return_type=' + return_type)
+        return False
 
     if not os.path.isfile(main_origin_lua):
         shutil.copy(main_lua, main_origin_lua)
@@ -131,14 +141,24 @@ def get_personal_project(project_path, key, device_function,
     except Exception as e:
         logging.error('替换失败 ' + str(e))
 
-    try:
-        zip_project(project_folder, personal_name)
-    except Exception as e:
-        logging.error('压缩失败 ' + str(e))
-        return project_path
-
-    personal_file_path = os.path.split(project_path)[0]
-    personal_file_path = os.path.join(personal_file_path, personal_name)
+    if return_type == 'zip':
+        try:
+            zip_project(project_folder, personal_name)
+        except Exception as e:
+            logging.error('压缩失败 ' + str(e))
+            return project_path
+        personal_file_path = os.path.split(project_path)[0]
+        personal_file_path = os.path.join(personal_file_path, personal_name)
+    elif return_type == 'lua':
+        personal_file_path = os.path.join(project_location, personal_name)
+        try:
+            shutil.copy(main_lua, personal_file_path)
+        except Exception as e:
+            logging.error('生成 {0} 失败 {1}'.format(personal_file_path, str(e)))
+            return main_lua
+    else:
+        logging.error('传入返回类型错误，return_type=' + return_type)
+        return False
 
     if os.path.exists(personal_file_path):
         logging.info('最终返回的自定义项目下载文件路径 ' + personal_file_path)
@@ -289,7 +309,7 @@ def test_get_personal_project():
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
     logging.info('传入项目的路径 ' + project_path)
     logging.info(get_personal_project(project_path, key, device_function,
-                                      device_protocol_config, device_protocol_response_config))
+                                      device_protocol_config, device_protocol_response_config, 'lua'))
 
 
 if __name__ == '__main__':
