@@ -335,7 +335,74 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        var group1='';
+        group1+='<div class="form-group ppp">';
+        group1+='	<div class="col-sm-2 col-xs-2"></div>';
+        group1+='	<div class="col-sm-2 col-xs-3">';
+        group1+='		<input type="text" style="width:130px" value="0" class="checkData" id="checkData" onblur="check_paramData(this)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group1+='	</div>';
+        group1+='	<div class="col-sm-1 col-xs-2">';
+        group1+='		<input type="text" style="width:130px" value="关" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group1+='	</div>';
+        group1+='	<div class="col-sm-1 col-xs-2">';
+        group1+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group1+='	</div>';
+        group1+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
+        group1+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group1+= '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group1+='	</div>';
+        group1+='</div>';
+        $("#addGroup1").before(group1);
+        var group2='';
+        group2+='<div class="form-group ppp">';
+        group2+='	<div class="col-sm-2 col-xs-2"></div>';
+        group2+='	<div class="col-sm-2 col-xs-3">';
+        group2+='		<input type="text" style="width:130px" value="1" class="checkData" id="checkData" onblur="check_paramData(this)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group2+='	</div>';
+        group2+='	<div class="col-sm-1 col-xs-2">';
+        group2+='		<input type="text" style="width:130px" value="开" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group2+='	</div>';
+        group2+='	<div class="col-sm-1 col-xs-2">';
+        group2+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
+        group2+='	</div>';
+        group2+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
+        group2+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group2 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group2+='	</div>';
+        group2+='</div>';
+        $("#addGroup1").before(group2);
+        $('input[type=radio][name=paramType]').change(function() {
+            console.log(this.value)
+            if (this.value == '1') {
+                 var del_remove = document.getElementsByClassName("ppp")
 
+                if(del_remove.length>1){
+                    for (var i =0,del_length = del_remove.length;i<del_length;i++){
+                        del_remove[0].remove()
+                    }
+
+                }
+                else {
+                    console.log('无数据1')
+                    $("#addGroup1").before(group1);
+                    $("#addGroup1").before(group2);
+                }
+            }
+            else {
+                 var del_remove = document.getElementsByClassName("ppp")
+
+                if(del_remove.length>1){
+                    for (var i =0,del_length = del_remove.length;i<del_length;i++){
+                        del_remove[0].remove()
+                    }
+                }
+                else {
+                    console.log('无数据1')
+                }
+            }
+        });
+    });
 
     var url=location.href;
     var num=url.indexOf('?id');
@@ -500,6 +567,7 @@
         else{$(".form-horizontal")[1].reset();}
     }
     function selectInt(){
+        $('#checkArgue1').css("display","none");
         console.log('int')
         cccc()
         if ($("#noshow").val()){
@@ -509,6 +577,7 @@
         SetDisplay("selectInt");
     }
     function selectError(){
+        $('#checkArgue1').css("display","none");
         if ($("#noshow").val()){
             var value_show = $("#noshow").val();
         $("#mxsLength").val(value_show);
@@ -516,13 +585,14 @@
         SetDisplay("selectError");
     }
     function selectBool(){
+        $('#checkArgue1').css("display","none");
         var vales_noshow =  $("#mxsLength").val();
         $("#noshow").val(vales_noshow);
         $("#mxsLength").val(1);
-        add()
         SetDisplay("selectBool")
     }
     function selectTimer(){
+        $('#checkArgue1').css("display","none");
         if ($("#noshow").val()){
             var value_show = $("#noshow").val();
         $("#mxsLength").val(value_show);
@@ -560,7 +630,7 @@
     function add(){
         flag = true;
         var group='';
-        group+='<div class="form-group">';
+        group+='<div class="form-group ppp">';
         group+='	<div class="col-sm-2 col-xs-2"></div>';
         group+='	<div class="col-sm-2 col-xs-3">';
         group+='		<input type="text" style="width:130px" class="checkData" id="checkData" onblur="check_paramData(this)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
@@ -612,7 +682,7 @@
         value = $(ths).val();
 
         if(value==''|| value==null){
-            $('#checkArgue1').html("请填写数据说明、传送数据和UI控件ID");
+            $('#checkArgue1').html("请填写数据说明、传送数据");
             $('#checkArgue1').css("display","block");
         }
         else if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && value<=100){
