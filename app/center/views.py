@@ -824,7 +824,7 @@ def callback(request):
                 if ac.is_developer:
                     response = HttpResponseRedirect('/product/console')
                 else:
-                    create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
+                    # create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
                     response = HttpResponseRedirect('/product/console')
                 response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
                 response.set_cookie(AUTO_LOGIN, token, expires=dt)
@@ -833,13 +833,13 @@ def callback(request):
                 logging.getLogger('').info("微信登录设置登录cookie出错" + str(e))
             try:
                 Account.objects.create_wx_user(username, '123', openid, nickname)
-                create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
+                #create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
                 logging.getLogger('').info('创建微信账号出错' + str(e), "  nickname:", nickname)
                 return HttpResponse('登录失败，请尝试其他方式登录')
             user_obj = authenticate(username=username, password='123')
             django.contrib.auth.login(request, user_obj)
-            response = HttpResponseRedirect('/product/controldown')
+            response = HttpResponseRedirect('/product/console')
             response.set_cookie(COOKIE_USER_ACCOUNT, username, expires=dt)
             response.set_cookie(AUTO_LOGIN, token, expires=dt)
             return response
