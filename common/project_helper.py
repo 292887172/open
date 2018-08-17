@@ -85,7 +85,9 @@ def replace_config(data: str, config_name: str, new_config: str) -> str or 'fals
         return data
 
 
-def get_personal_project(project_path: str, key: str, device_function: dict,
+def get_personal_project(project_path: str,
+                         key: str,
+                         device_function: dict,
                          device_protocol_config: dict or 'false' = False,
                          device_protocol_response_config: dict or 'false' = False,
                          return_type: 'zip or lua' = 'zip'):

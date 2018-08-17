@@ -13,8 +13,6 @@ django.setup()
 from model.center.app import App
 from model.center.protocol import Protocol
 
-from project_helper import config_change
-
 """
 默认使用Django的ORM进行数据查询，单独运行此py文件时，在pycharm中配置
 PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=open.settings
@@ -46,7 +44,6 @@ def get_device_function(key: str) -> list or 'false':
             item['triggers'], item['controls'] = {}, []
             for mxs in config['mxs']:
                 if mxs.get('control'):
-                    print(mxs['control'])
                     # 3种类型UI绑定 main=111 or 111
                     # Main={id=103,weight="time_button,params={value={1,2,3},progress=104}}
                     if '=' in mxs['control']:
@@ -229,9 +226,6 @@ def test_get_device_function():
 
     print('-' * 99)
 
-    device_function = config_change(device_function)
-    print(device_function)
-
 
 def test_get_device_protocol_config():
     device_protocol_config = get_device_protocol_config(key='nzammHmF')
@@ -261,18 +255,16 @@ def test_get_check_data_location():
 
 
 def test_config_change():
+    # 'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
-    # print(config_change_lua(data))
     data = lua.decode(data)
-    print(data)
-    print(type(data))
+    print(data, type(data))
 
 
 if __name__ == '__main__':
     test_get_device_function()
     # print('-' * 99)
-    # test_get_device_protocol_config()
+    test_get_device_protocol_config()
     # print('-' * 99)
     # test_get_check_data_location()
     # test_config_change()
-    'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
