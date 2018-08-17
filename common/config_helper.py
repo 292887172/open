@@ -3,6 +3,8 @@ import django
 import json
 import pprint
 import logging
+import re
+from slpp import slpp as lua
 
 logging.basicConfig(level=logging.INFO)
 
@@ -11,22 +13,25 @@ django.setup()
 from model.center.app import App
 from model.center.protocol import Protocol
 
+from project_helper import config_change
+
 """
 默认使用Django的ORM进行数据查询，单独运行此py文件时，在pycharm中配置
 PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=open.settings
 """
 
 
-def get_device_function(key: str) -> list:
-    """获取用户定义的帧协议
+def get_device_function(key: str) -> list or 'false':
+    """
+    获取用户定义的帧协议
+
     :param key: 用户的key
     :return: 成功 -> 用户定义的帧协议  ，  失败 -> false
     """
     try:
         app = App.objects.get(app_appid__contains=key)
     except Exception as e:
-        logging.error('查询数据失败 key=%s' % key)
-        logging.error(str(e))
+        logging.error('查询数据失败 key={} \n {}'.format(key, str(e)))
         return False
     try:
         configs = json.loads(app.device_conf)
@@ -41,11 +46,20 @@ def get_device_function(key: str) -> list:
             item['triggers'], item['controls'] = {}, []
             for mxs in config['mxs']:
                 if mxs.get('control'):
+                    print(mxs['control'])
+                    # 3种类型UI绑定 main=111 or 111
+                    # Main={id=103,weight="time_button,params={value={1,2,3},progress=104}}
                     if '=' in mxs['control']:
-                        _key, _value = mxs['control'].split('=')
-                        item['controls'].append({_key: int(_value)})
+                        _key, _value = mxs['control'].split('=', 1)
+                        try:
+                            item['controls'].append({_key: int(_value)})
+                        except Exception as e:
+                            _lua = "{{{}}}".format(mxs['control'])
+                            _lua = lua.decode(_lua)
+                            item['controls'].append(_lua)
                     else:
                         item['controls'].append(int(mxs['control']))
+                # 触发器示例如下 'triggers': {'[1]': {'Fast': 0, 'Slow': 0}}
                 data = "[%s]" % mxs['data']
                 if mxs.get('trigger') and len(mxs.get('trigger')):
                     _item = {}
@@ -57,13 +71,15 @@ def get_device_function(key: str) -> list:
                 del item['controls']
             else:
                 # 去除重复项
-                _control_dict, _controls_set = [], set()
+                _control_page_num, _controls_num = [], set()
                 for control in item['controls']:
                     if isinstance(control, dict):
-                        _control_dict.append(control)
+                        _control_page_num.append(control)
                     if isinstance(control, int):
-                        _controls_set.add(control)
-                item['controls'] = _control_dict + list(_controls_set)
+                        _controls_num.add(control)
+                item['controls'] = _control_page_num + list(_controls_num)
+                if len(item['controls']) == 1:
+                    item['controls'] = item['controls'][0]
             device_function.append(item)
         return device_function
     except Exception as e:
@@ -71,7 +87,7 @@ def get_device_function(key: str) -> list:
         return False
 
 
-def get_data_length(key: str) -> int:
+def get_data_length(key: str) -> int or 'false':
     """
     根据用户定义的功能列表，计算自定义帧协议中 data_domain 的数据长度
     :param key: 用户的Key
@@ -89,23 +105,38 @@ def get_data_length(key: str) -> int:
         return False
 
 
-def change_value(value):
+def change_value(value: hex) -> list or 'false':
+    """
+    数据之间的转换  `0011` (hex) -> [0,17]   '01' -> [1]
+
+    :param value: 需要转换的十六进制数
+    :return: 十进制数组成的数组
+    """
     if len(value) == 4:
         return [int(value[0:2], 16), int(value[2:4], 16)]
     elif len(value) == 2:
         return [int(value, 16)]
     else:
-        return ['Get Value False']
+        logging.error(['Get Value False'])
+        return False
 
 
 def get_check_data_location(check_id, frame_contents, position):
+    """
+    解析帧，获取帧的起始校验码位置和结束校验码位置，
+    校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量
+
+    :param check_id: 需要校验数据的ID
+    :param frame_contents: 所有的帧协议数据
+    :param position: 获取校验起始位，或结束位
+    :return: 校验数据的位置
+    """
     if isinstance(check_id, str):
         check_id = int(check_id)
 
     length_sum = sum([int(frame_content['length']) for frame_content in frame_contents])
 
     length_position, length_check_id = 0, 0
-
     for frame_content in frame_contents:
         length_position += int(frame_content['length'])
         if int(frame_content['id']) == check_id:
@@ -118,8 +149,12 @@ def get_check_data_location(check_id, frame_contents, position):
         return length_position - length_sum
 
 
-def get_device_protocol_config(key: str):
+def get_device_protocol_config(key: str) -> list or 'false':
     """
+    获取自定义协议解析的规则
+    解析成功返回 [上行规则，下行规则]
+    如果只有上行规则或下行规则返回 [规则]*2
+
     :param key: 用户的key
     :return: 成功 > 用户的自定义协议配置  ，  失败 > False
     """
@@ -189,8 +224,13 @@ def get_device_protocol_config(key: str):
 
 def test_get_device_function():
     # 5yUHe7fk test　success
-    device_function = get_device_function(key='nzammHmF')
+    device_function = get_device_function(key='2hqa5HF5')
     pprint.pprint(device_function)
+
+    print('-' * 99)
+
+    device_function = config_change(device_function)
+    print(device_function)
 
 
 def test_get_device_protocol_config():
@@ -220,9 +260,19 @@ def test_get_check_data_location():
         print('-' * 99)
 
 
+def test_config_change():
+    data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
+    # print(config_change_lua(data))
+    data = lua.decode(data)
+    print(data)
+    print(type(data))
+
+
 if __name__ == '__main__':
-    # test_get_device_function()
+    test_get_device_function()
     # print('-' * 99)
     # test_get_device_protocol_config()
     # print('-' * 99)
-    test_get_check_data_location()
+    # test_get_check_data_location()
+    # test_config_change()
+    'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
