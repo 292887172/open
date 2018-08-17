@@ -193,6 +193,7 @@ angular.module('Product.edit', ['ngRoute'])
 					var p = tt.split("#/")[1];
 					console.log(p)
 					if (p == "argue"){
+
 						$("#grid-table").jqGrid({
                             postData:{"name": "list"},
                         }).trigger("reloadGrid")
@@ -202,7 +203,7 @@ angular.module('Product.edit', ['ngRoute'])
 						location.replace("#/argue")
 					}
 
-					$(".notification-container").html(msg_notice);
+					layer.msg('编辑成功', {icon: 6, time: 2000});
 
 				}
 				else if(data=="add_success"){
