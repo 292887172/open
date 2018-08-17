@@ -856,6 +856,22 @@ def protocol(request):
             pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/WiFiIot_'+device_key+'.zip'
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
+        if action == "get_projects":
+
+            p = get_device_protocol_config(device_key)
+            if p:
+                p0 = p[0]  # 上行
+                p1 = p[1]  # 下行
+            else:
+                p0, p1 = False, False
+            d = get_device_function(device_key)
+            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
+            #pth = get_personal_project(project_path, device_key, d, p0, p1)
+            pth = get_personal_project(project_path, device_key, d, p0, p1,'lua')
+            logging.getLogger('').info(pth)
+            pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/main_'+device_key+'.lua'
+            logging.getLogger('').info(pt)
+            return JsonResponse({"code": 0, "url": pt})
 
         if action == 'get_data_content':
             app = App.objects.get(app_appid__endswith=device_key)

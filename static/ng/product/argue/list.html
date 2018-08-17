@@ -1085,6 +1085,7 @@
             else {
                 console.log('无数据')
             }
+             var sss_list=[]
             for (var i = 0; i < d.mxs.length; i++) {
                 var group = '';
                 flag = false;
@@ -1092,6 +1093,23 @@
                 if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && d.mxs[i].data<=100) {
                     flag = true;
                 }
+                var sss = d.mxs[i].control
+
+                try {
+                     if (sss.indexOf("\"")>0){
+
+                        sss_list.push(sss)
+                    }else {
+                        sss = sss
+                        sss_list.push(sss)
+                    }
+                }catch (e) {
+                    console.log(e)
+                    sss_list.push(sss)
+                }
+
+
+
                 group += '<div class="form-group ddd">';
                 group += '	<div class="col-sm-2 col-xs-2"></div>';
                 group += '	<div class="col-sm-2 col-xs-3">';
@@ -1100,8 +1118,8 @@
                 group += '	<div class="col-sm-2 col-xs-2">';
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-2 col-xs-2">';
-                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].control + '"/>';
+                group += '	<div class="col-sm-3 col-xs-2">';
+                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value=""/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
@@ -1114,10 +1132,16 @@
 
                 if(edit_data.standa_or_define) {
                     $("#addGroup1").before(group);
+
                 }
                 else{
                     $("#addGroup").before(group);
+
                 }
+
+            }
+            for (var is=0,i_length = sss_list.length;is<i_length;is++ ){
+                document.getElementsByClassName("values")[is].value=sss_list[is]
             }
             // 初始化数据
             var contorl_data = document.getElementsByName("paramUI");
