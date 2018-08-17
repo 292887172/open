@@ -887,6 +887,7 @@
             // 删除产品的某一功能后，该功能的后续的功能对应id和位置向前移动一位
 
             RePosition(id,1);
+            layer.msg('编辑成功', {icon: 6, time: 2000});
             if(isIE()){
                 document.getElementById(id).removeNode(true);
             }
