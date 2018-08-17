@@ -10,9 +10,9 @@ logging.basicConfig(level=logging.INFO)
 
 
 def del_output(project_path):
-    """ 在项目中删除output文件夹下所有文件
+    """
+    在解压后的项目中删除output文件夹下所有文件
     :param project_path: 项目绝对路径
-    :return: None
     """
     output_path = os.path.join(os.path.splitext(project_path)[0], 'output')
     if os.path.isdir(output_path):
@@ -21,10 +21,13 @@ def del_output(project_path):
 
 
 def unzip_project(project_path):
-    """ 解压缩一个文件
-    :param project_path: 压缩文件的绝对路径
-    :return: None
     """
+    解压项目文件，并删除解压后文件夹下 output 文件夹
+    存在解压文件夹后直接返回，项目在更新时，在替换项目原始文件后，也要删除对应的解压后的文件夹
+
+    :param project_path: 压缩文件的绝对路径
+    """
+
     if os.path.isdir(os.path.splitext(project_path)[0]):
         return
     else:
@@ -34,16 +37,18 @@ def unzip_project(project_path):
             for item in file.namelist():
                 file.extract(item, extract_path)
                 old_name = os.path.join(extract_path, item)
+                # 中文字符编码转换
                 new_name = old_name.encode('cp437').decode('gbk')
                 os.rename(old_name, new_name)
         del_output(project_path)
 
 
 def zip_project(folder_path, new_name):
-    """压缩文件夹
+    """
+    压缩文件夹成 zip压缩包
+
     :param folder_path: 待压缩的文件夹
     :param new_name: 文件夹压缩后的名字
-    :return: None
     """
     base_path = os.path.split(folder_path)[0]
     zip_file = zipfile.ZipFile(os.path.join(base_path, new_name), 'w', zipfile.ZIP_DEFLATED)
@@ -58,8 +63,11 @@ def zip_project(folder_path, new_name):
     zip_file.close()
 
 
-def replace_config(data: str, config_name: str, new_config: str) -> 'str or false':
-    """ 基于制定格式的进行正则表达式替换
+def replace_config(data: str, config_name: str, new_config: str) -> str or 'false':
+    """
+    基于指定格式的进行正则表达式替换，
+
+    替换 [-- start xxx config] [...old...] [--end xxx config] 成 [...new...]
 
     :param data: 需要替换的字符串
     :param config_name: 需要替换的配置名
@@ -77,9 +85,13 @@ def replace_config(data: str, config_name: str, new_config: str) -> 'str or fals
         return data
 
 
-def get_personal_project(project_path, key, device_function,
-                         device_protocol_config=False, device_protocol_response_config=False, return_type='zip'):
-    """根据自定义配置生成自定义的项目包
+def get_personal_project(project_path: str, key: str, device_function: dict,
+                         device_protocol_config: dict or 'false' = False,
+                         device_protocol_response_config: dict or 'false' = False,
+                         return_type: 'zip or lua' = 'zip'):
+    """
+    根据自定义配置生成自定义的项目包
+
     :param project_path: 项目原始文件的路径 必须
     :param key: 自定义的key 必须
     :param device_function: 自定义的设备功能列表 必须
@@ -203,10 +215,12 @@ def config_change(config: dict):
         return False
 
 
-def change_validation(config):
-    """验证转换的正确性
-    转换后的配置生成 一个 test.lua 内容为  local item=config
-    在lua5.1环境中进行测试，能返回制定结果代表转换后正确
+def change_validation(config: str) -> bool:
+    """
+    验证dict->lua table转换后数据的正确性
+    使用转换后的的内容生成 一个 test.lua 内容为  local item=config
+    在lua5.1环境中进行测试，能返回指定结果代表转换后正确
+
     :param config:转换后的配置文件
     :return: true 转换成功，false 转换失败
     """
