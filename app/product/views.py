@@ -597,7 +597,7 @@ def product_main(request):
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
-            print('data',data)
+            print('data', data)
             return JsonResponse(data)
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
@@ -651,7 +651,7 @@ def product_main(request):
                 c_data.extend(opera_data[len(opera_data):])
                 opera_data = c_data
                 # 排序？？？？？？
-                #replace_fun_id(opera_data, id, is_standa)
+                # replace_fun_id(opera_data, id, is_standa)
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
@@ -853,7 +853,7 @@ def protocol(request):
             project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
             pth = get_personal_project(project_path, device_key, d, p0, p1)
             logging.getLogger('').info(pth)
-            pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/WiFiIot_'+device_key+'.zip'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/WiFiIot_' + device_key + '.zip'
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
         if action == "get_projects":
@@ -866,10 +866,10 @@ def protocol(request):
                 p0, p1 = False, False
             d = get_device_function(device_key)
             project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
-            #pth = get_personal_project(project_path, device_key, d, p0, p1)
-            pth = get_personal_project(project_path, device_key, d, p0, p1,'lua')
+            # pth = get_personal_project(project_path, device_key, d, p0, p1)
+            pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
             logging.getLogger('').info(pth)
-            pt = 'http://'+request.META['HTTP_HOST']+'/static/sdk/main_'+device_key+'.lua'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
 
@@ -904,7 +904,6 @@ def protocol(request):
                         res_list_data1['protocol_type'] = protocol_type1
 
                         if str(protocol_type1) == str(protocol_type):
-
                             data = {"code": 1, "data": res_list_data1, "protocol_type": protocol_type}
                             return HttpResponse(json.dumps(data))
                     # 请求的数据暂时未定义，比如自定义了上行数据，请求下行数据，或者自定义了下行数据，请求上行数据
@@ -938,7 +937,7 @@ def protocol(request):
                 data_sql['heart_rate'] = "500"
                 data_sql['repeat_rate'] = "500"
                 data_sql['repeat_count'] = "3"
-                data_sql['endian_type'] = protocol_endian   # 1:大端编码， 0：小端编码， 默认大端编码
+                data_sql['endian_type'] = protocol_endian  # 1:大端编码， 0：小端编码， 默认大端编码
 
                 tmp_list_t = []
                 for i in list_t:
@@ -967,7 +966,7 @@ def protocol(request):
                             if j.get('content'):
                                 l += int(j.get('length'))
                                 tmp_d.append(j)
-                        tmp_f['length'] = math.ceil(l/8)
+                        tmp_f['length'] = math.ceil(l / 8)
                         tmp_f['value'] = tmp_d
                     elif i.get("name") == "check":
                         # 处理校验
@@ -1111,7 +1110,7 @@ def schedule(request):
         update_list = []
         bb = AppInfo.objects.filter(app_id=sapp_id)
         try:
-            li_ui = DocUi.objects.filter(ui_key=key)
+            li_ui = DocUi.objects.filter(ui_key=key).order_by("-create_date")
             if li_ui:
                 id_list = []
 
@@ -1125,13 +1124,13 @@ def schedule(request):
                     try:
                         if i.ui_content:
                             url = eval(i.ui_content)
+                            url = sorted(url, key=lambda a: a['date'], reverse=True)
                         else:
                             url = ''
                     except Exception as e:
                         url = ''
                     if not isinstance(url, list):
                         url = [url]
-                    print('url',url)
                     update_dict['url'] = url
 
                     if len(str(url)) > int(10):
@@ -1145,7 +1144,6 @@ def schedule(request):
                     if bb:
                         party_list = ''
                         for i in bb:
-                            print(i.responsible_party)
                             if i.responsible_party:
                                 party_list = json.loads(i.responsible_party)
                             update_dict['partys'] = party_list
@@ -1233,7 +1231,7 @@ def schedule(request):
                 return HttpResponse(json.dumps({"code": 1}))
         elif action == 'get_detail_plan':
             detail_id = request.POST.get('id', '')
-            detail_obj = DocUi.objects.filter(ui_key=key, ui_upload_id=detail_id)
+            detail_obj = DocUi.objects.filter(ui_key=key, ui_upload_id=detail_id).order_by("-create_date")
             detail_obj_dict = {}
             if detail_obj:
                 for i in detail_obj:
@@ -1242,13 +1240,58 @@ def schedule(request):
                     detail_obj_dict['id'] = i.ui_upload_id  # id
                     detail_obj_dict['ack'] = i.ui_ack  # ack
                     detail_obj_dict['time_stemp'] = i.ui_time_stemp  # 时间戳
-                    detail_obj_dict['content'] = i.ui_content  # url
+                    try:
+                        if i.ui_content:
+                            url = eval(i.ui_content)
+                            url = sorted(url, key=lambda a: a['date'], reverse=True)
+                        else:
+                            url = ''
+                    except Exception as e:
+                        url = ''
+                    if not isinstance(url, list):
+                        url = [url]
+                    url = json.dumps(url)
+                    detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
 
                 return HttpResponse(json.dumps(detail_obj_dict))
         elif action == 'save_plan':
             # data: {'key': keysss, "action": "save_plan", "num": that},
+            location = request.POST.get('location', '')
             m = DocUi.objects.filter(ui_key=key, ui_upload_id=num).update(ui_ack=int(1))
+            modele = DocUi.objects.filter(ui_key=key, ui_upload_id=num)
+            a = App.objects.filter(app_appid__endswith=key)  # 获取产品信息
+            t = int(num) + int(1)
+            app_name = ''  # 1
+            user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+            email_list = []
+            group_id = ''
+            for i in a:
+                app_name = i.app_name
+                group_id = i.group_id
+            ack_name = app_name + '第' + num + '步操作确认通知'
+            try:
+                b = UserGroup.objects.filter(group__group_id=group_id)
+                for i in b:
+                    email_list.append(i.user_account)
+            except Exception as e:
+                print(e)
+                print('没有成员')
+            if DocUi.objects.filter(ui_key=key, ui_upload_id=t):
+                next_stemp = [str(i.ui_plan) for i in
+                              DocUi.objects.filter(ui_key=key, ui_upload_id=t)][0]
+            else:
+                next_stemp = '该产品即将量化'
+            try:
+                send_product_process_email(ack_name, app_name, BOOK[num], next_stemp, user1, email_list, location,
+                                           'confirm')
+                Message.objects.create(message_content=BOOK[num] + '已完成', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=user1, message_target=user1,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+            except Exception as e:
+                print(e)
             if m:
                 Message.objects.create(message_content='产品计划书更新', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
@@ -1527,13 +1570,16 @@ def upload_file(request):
                     list_url = rr['data']
                     datas = get_ui_static_conf(key, list_url, id, file.name, user1)
                     product_name = app_name + '上传更新提示'
-                    if t >= 9:
-                        next_stemp = "量产阶段"
+                    # 需要修改
+                    print('id', t)
+                    if DocUi.objects.filter(ui_key=key, ui_upload_id=t):
+                        next_stemp = [str(i.ui_plan) for i in
+                                      DocUi.objects.filter(ui_key=key, ui_upload_id=t)][0]
                     else:
-                        next_stemp = BOOK[str(t)]
+                        next_stemp = '该产品即将量化'
                     # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
                     try:
-                        send_product_process_email(product_name, app_name, BOOK[id], next_stemp, user1, email_list,
+                        send_product_process_email(product_name, app_name, file.name, next_stemp, user1, email_list,
                                                    location, "submit")
                         Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
                                                message_handler_type=int(4),
@@ -1631,7 +1677,7 @@ def download(request):
             filename = os.path.basename(url)
         response = HttpResponse(r.content,
                                 content_type='APPLICATION/OCTET-STREAM')  # 设定文件头，这种设定可以让任意文件都能正确下载，而且已知文本文件不是本地打开
-        response['Content-Disposition'] = 'attachment; filename=' + urlquote(filename) # 设定传输给客户端的文件名称
+        response['Content-Disposition'] = 'attachment; filename=' + urlquote(filename)  # 设定传输给客户端的文件名称
         response['Content-Length'] = r.headers['content-length']  # 传输给客户端的文件大小
         return response
     else:

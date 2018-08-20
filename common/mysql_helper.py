@@ -239,7 +239,7 @@ def get_ui_static_conf(key, file_path, id=0, filename='',
                     print('1')
                     url_list_now = json.loads(i.ui_content)
                     url_dict = {"urll": file_path, "filename": filename, "user": user,
-                                "date": time.strftime("%Y-%m-%d")}
+                                "date": time.strftime("%Y-%m-%d %H:%M:%S")}
                     url_list_now.append(url_dict)
                     url_list_now = json.dumps(url_list_now)
                     ui_obj.update(ui_content=url_list_now, ui_type='UI',
@@ -248,7 +248,7 @@ def get_ui_static_conf(key, file_path, id=0, filename='',
                     print('2')
                     url_list1 = []
                     url_dict = {"urll": file_path, "filename": filename, "user": user,
-                                "date": time.strftime("%Y-%m-%d")}
+                                "date": time.strftime("%Y-%m-%d %H:%M:%S")}
                     url_list1.append(url_dict)
                     url_list1 = json.dumps(url_list1)
                     ui_obj.update(ui_content=url_list1, ui_type='UI',
@@ -258,7 +258,7 @@ def get_ui_static_conf(key, file_path, id=0, filename='',
         else:
             print('3')
             url_list1 = [{"urll": file_path, "filename": filename, "user": user,
-                          "date": time.strftime("%Y-%m-%d")}]
+                          "date": time.strftime("%Y-%m-%d %H:%M:%S")}]
             url_list1 = json.dumps(url_list1)
             DocUi.objects.create(ui_upload_id=id, ui_key=key, ui_content=url_list1, ui_type='UI',
                                  update_date=datetime.datetime.utcnow())
