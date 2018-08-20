@@ -170,7 +170,7 @@ angular.module('Product.schedule', ['ngRoute'])
                                 "                    <div class=\"div-flex file-box\">\n" +
                                 "                        <a class=\"file-name text-ellipsis\" href=\"" + dd[i]['urll'] +  "\">" + dd[i]['filename'] + "</a>\n" +
                                 "                        <p class=\"file-user text-ellipsis\">" + dd[i]['user'] + "</p>\n" +
-                                "                        <p class=\"file-time\">" + dd[i]['date'] + "</p>\n" +
+                                "                        <p class=\"file-time\">" + dd[i]['date'].substring(0, 10) + "</p>\n" +
                                 "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
                                 "                    </div>\n" +
                                 "                </div>"
@@ -190,7 +190,7 @@ angular.module('Product.schedule', ['ngRoute'])
              $scope.focus = 0;
         $scope.Show_Detail_Plan = function (that,i_index) {
              $scope.focus = i_index;
-
+             console.log($scope.focus)
              $(".upfile").empty()
              $(".file").empty()
              document.getElementsByClassName("task-ack-name")[0].innerHTML = ''
@@ -247,7 +247,7 @@ angular.module('Product.schedule', ['ngRoute'])
                                 "                    <div class=\"div-flex file-box\">\n" +
                                 "                        <a class=\"file-name text-ellipsis\" href=\"" + dd[i]['urll'] +  "\">" + dd[i]['filename'] + "</a>\n" +
                                 "                        <p class=\"file-user text-ellipsis\">" + dd[i]['user'] + "</p>\n" +
-                                "                        <p class=\"file-time\">" + dd[i]['date'] + "</p>\n" +
+                                "                        <p class=\"file-time\">" + dd[i]['date'].substring(0, 10) + "</p>\n" +
                                 "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
                                 "                    </div>\n" +
                                 "                </div>"

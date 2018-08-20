@@ -641,7 +641,7 @@
                             "                </div>"
                         )
                         addtr.appendTo(file_list)
-
+                        $scope.Show_Detail_Plan(parseInt(idd),idimg)
                     } else {
                         document.getElementsByClassName("close")[0].click();
                         layer.msg('上传失败，文件格式不支持', {icon: 5, time: 2000});

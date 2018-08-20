@@ -1250,7 +1250,6 @@ def schedule(request):
                         url = ''
                     if not isinstance(url, list):
                         url = [url]
-                    print('url',url)
                     url = json.dumps(url)
                     detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
