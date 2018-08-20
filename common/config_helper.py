@@ -227,11 +227,6 @@ def test_get_device_function():
     device_function = get_device_function(key='2hqa5HF5')
     pprint.pprint(device_function)
 
-    print('-' * 99)
-
-    device_function = config_change(device_function)
-    print(device_function)
-
 
 def test_get_device_protocol_config():
     device_protocol_config = get_device_protocol_config(key='nzammHmF')
@@ -261,17 +256,16 @@ def test_get_check_data_location():
 
 
 def test_config_change():
+    # 'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
-    # print(config_change_lua(data))
     data = lua.decode(data)
-    print(data)
-    print(type(data))
+    print(data, type(data))
 
 
 if __name__ == '__main__':
     test_get_device_function()
     # print('-' * 99)
-    # test_get_device_protocol_config()
+    test_get_device_protocol_config()
     # print('-' * 99)
     # test_get_check_data_location()
     # test_config_change()
