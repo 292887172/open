@@ -4,7 +4,8 @@ import json
 import pprint
 import logging
 import re
-from slpp import slpp as lua
+
+from package.slpp_23.slpp import slpp as lua
 
 logging.basicConfig(level=logging.INFO)
 
@@ -263,10 +264,10 @@ def test_config_change():
 
 
 if __name__ == '__main__':
-    test_get_device_function()
+    # test_get_device_function()
     # print('-' * 99)
-    test_get_device_protocol_config()
+    # test_get_device_protocol_config()
     # print('-' * 99)
     # test_get_check_data_location()
-    # test_config_change()
+    test_config_change()
     'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
