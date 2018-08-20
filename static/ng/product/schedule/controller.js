@@ -278,7 +278,7 @@ angular.module('Product.schedule', ['ngRoute'])
                 $.ajax({
                     type: "POST",
                     url: '/product/schedule',
-                    data: {'key': keysss, "action": "save_plan", "num": that},
+                    data: {'key': keysss, "action": "save_plan", "num": that,"location.href":location.href},
                     success:function () {
                         layer.msg('已确认', {icon: 1,time:2000});
                         for(var i=0;i<$scope.response.length;i++){
