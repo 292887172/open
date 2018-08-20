@@ -40,27 +40,82 @@
             
   <div class="section" id="id1">
 <h1>主要模块<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>开发者中心前台展示页面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre>├── api
+│
+├── app
+│   ├── center
+│   │
+│   ├── debug
+│   │
+│   ├── home
+│   │
+│   ├── product
+│   │
+│   └── wiki
+│
+├── base
+│
+├── common
+│
+├── conf
+│
+├── doc
+│
+├── idl
+├── log
+├── model
+│
+├── open
+├── static
+│   ├── angular
+│   │
+│   ├── common
+│   │
+│   ├── css
+│   │
+│   ├── image
+│   │
+│   ├── js
+│   │
+│   ├── layui
+│   │
+│   ├── ng
+│   │   ├── admin
+│   │   │
+│   │   └── product
+│   │
+│   ├── sdk
+│   │
+│   └── tpl
+├── templates
+│   ├── admin
+│   ├── center
+│   ├── component
+│   ├── debug
+│   ├── home
+│   ├── product
+│   ├── UI
+│   └── wiki
+│
+├── test
+│
+└── util
+</pre></div>
 </div>
-<div class="section" id="oauth2-0access-token">
-<h2>授权逻辑(OAuth2.0、Access_token)<a class="headerlink" href="#oauth2-0access-token" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id3">
-<h2>应用管理页面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id4">
-<h2>接口文档<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id5">
-<h2>调试工具<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="faq">
-<h2>faq常见问题解答<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id6">
-<h2>建议与反馈<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-</div>
+<ol class="arabic simple">
+<li>api 主要存放纯接口部分内容，例如：获取UI配置，保存邮寄地址等</li>
+<li>app 主要是页面相关全部路由表和具体实现，包括管理后台和开发平台</li>
+<li>base 主要是基础通用部分内容，包括数据库连接器，静态固定变量定义，标准默认模板等</li>
+<li>common 通用部分内容，数据库具体读写操作封装， 异步任务，发送邮件短信服务，生成lua脚本文件替换</li>
+<li>conf 配置文件存放路径</li>
+<li>doc 项目相关文档存放路径</li>
+<li>idl 服务配置存放路径，例如：设备在线状态</li>
+<li>log 项目运行日志</li>
+<li>model 数据库模型文件</li>
+<li>static 项目使用的静态资源文件路径，包括angularjs文件，bootstrap文件,markdown编辑器文件，layui框架文件，sdk文件存放，ejs模板存放</li>
+<li>templates 前端页面模板存放，主要是django前端模板存放路径，包括管理后台页面</li>
+<li>util 通用工具类封装，邮件发送，短信发送等</li>
+</ol>
 </div>
 
 
@@ -71,20 +126,6 @@
         <div class="sphinxsidebarwrapper">
     <a id="sidebar-anchor"></a>
     
-
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">主要模块</a><ul>
-<li><a class="reference internal" href="#id2">开发者中心前台展示页面</a></li>
-<li><a class="reference internal" href="#oauth2-0access-token">授权逻辑(OAuth2.0、Access_token)</a></li>
-<li><a class="reference internal" href="#id3">应用管理页面</a></li>
-<li><a class="reference internal" href="#id4">接口文档</a></li>
-<li><a class="reference internal" href="#id5">调试工具</a></li>
-<li><a class="reference internal" href="#faq">faq常见问题解答</a></li>
-<li><a class="reference internal" href="#id6">建议与反馈</a></li>
-</ul>
-</li>
-</ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="tech.html"

@@ -13,7 +13,7 @@ django.setup()
 from model.center.app import App
 from model.center.protocol import Protocol
 
-from project_helper import config_change
+
 
 """
 默认使用Django的ORM进行数据查询，单独运行此py文件时，在pycharm中配置
