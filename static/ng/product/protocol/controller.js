@@ -302,10 +302,10 @@ angular.module('Product.protocol', ['ngRoute'])
         };
         $scope.getFrameData=function (data_type, frame_zdy) {
             if(frame_zdy){
-                var url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
+                var url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
             }
             else{
-                url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
+                url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
             }
             $http({
                 method: "GET",
