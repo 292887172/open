@@ -17,6 +17,9 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
         $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
         $scope.being = true;    // “+”号是否显示标记
+        $scope.tips = [];
+        $scope.td = '';
+        $scope.tf = '';
         $scope.frame_data = [
             {"id": 1,"name": "head", "title": "帧头", "length":1, "value": "A5"},
             {"id": 2, "name": "data", "title": "数据域", "length": 4, "value": [{"id": 1, "length":1, "title": "大风"},{"id":2, "length":2, "title":"电源"}]},
@@ -32,12 +35,17 @@ angular.module('Product.protocol', ['ngRoute'])
                 if(response['code']==2){
                     // 标准协议
                     $scope.protocol_zdy=false;
+
                 }
                 else{
                     $scope.protocol_zdy=true;
+
+
                 }
-                console.log(response);
+                console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
+                $scope.td=$scope.frame_data[0]['value'];
+                $scope.frame_dataed=response['data']['frame_content'];
                 $scope.protocol_endian = response['data']['endian_type']
             });
         $http({
@@ -48,19 +56,22 @@ angular.module('Product.protocol', ['ngRoute'])
         }).success(function (response) {
                 $scope.data_menu = response;
                 for(var i=0;i<$scope.data_menu.length;i++){
+                    //$scope.tips.push({"ke":$scope.data_menu[i]['length']})
                     if (!$scope.protocol_zdy){
                         $scope.data_menu[i].content=true;
                         for(var j=0;j<$scope.frame_data.length;j++){
+
                             if ($scope.frame_data[j].name=='data'){
                                 $scope.frame_data[j].value=$scope.data_menu;
                             }
                         }
                     }
                 }
+                $scope.tf = $scope.frame_data[2]['length']
             });
+
         $scope.$on("ngRepeatFinished", function () {
             // 监听angular页面渲染完成
-
             layui.use('form', function () {
                 var form = layui.form;
                 form.render('select');
@@ -82,22 +93,27 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.editData=function () {
             tmp_checked_id = [];
             tmp_unchecked_id = [];
+            var tmp_length_data = [];
+            var tmp_length_frame = [];
             var is_check_all = true;  // 默认全选， 只要有一个选项不选中则置为false
             //处理复选框参数
             var check_content = "";
-            console.log($scope.data_menu, $scope.frame_data);
+            console.log('data',$scope.data_menu, $scope.frame_data);
             for(var i=0;i<$scope.frame_data.length;i++){
+                tmp_length_frame.push($scope.frame_data[i]['length'])
                 if($scope.frame_data[i]['name']=='data'){
                     for(var j=0; j< $scope.data_menu.length;j++){
+                        tmp_length_data.push($scope.data_menu[j].length)
                         for (var z=0;z<$scope.frame_data[i]['value'].length;z++){
                             if($scope.data_menu[j]['id']== $scope.frame_data[i]['value'][z].id && $scope.frame_data[i]['value'][z].content){
                                 $scope.data_menu[j]['content'] = true
+
                             }
                         }
                     }
                 }
             }
-
+            console.log(tmp_length_data, tmp_length_frame)
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
@@ -135,7 +151,10 @@ angular.module('Product.protocol', ['ngRoute'])
                                 tmp_checked_id.push(data.value);
                                 var index = tmp_unchecked_id.indexOf(data.value);
                                 if(index>=0){
-                                    tmp_unchecked_id.splice(index, 1)
+                                    tmp_unchecked_id.splice(index, 1);
+                                    tmp_length_data.splice(index, 1)
+
+
                                 }
                             }
                             else{
@@ -143,10 +162,11 @@ angular.module('Product.protocol', ['ngRoute'])
                                 var index = tmp_checked_id.indexOf(data.value);
                                 if(index>=0){
                                     tmp_checked_id.splice(index, 1)
+                                    tmp_length_data.splice(index, 1)
                                 }
                             }
-                            console.log(tmp_checked_id, tmp_unchecked_id)
 
+                            console.log(tmp_checked_id, tmp_unchecked_id)
                         });
                         form.on('checkbox(click_all)',function (data) {
                             console.log("全选");
@@ -209,11 +229,14 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.valueKeyUp=function ($event) {
             var n = $($event.target).attr('name').split("-")[1];
             console.log(n, $($event.target).attr('name'), $($event.target).val());
+            $scope.td=$($event.target).val();
+            console.log('value',$scope.td)
             for (var j = 0; j < $scope.frame_data.length; j++) {
                     if($scope.frame_data[j].name==n){
                         $scope.frame_data[j].value=$($event.target).val();
                     }
                 }
+
         };
         $scope.SubmitData=function () {
 
@@ -288,13 +311,14 @@ angular.module('Product.protocol', ['ngRoute'])
             }).success(function (response) {
                     $scope.data_menu = response;
                     // layer.msg('保存成功', {icon: 6, time: 2000});
-                    var c = '<div id="" class="layui-layer-padding lay-confirm"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3"></i>协议定义完成，是否生成工程包？</div>' +
+                    var c = '<div id="" class="layui-layer-padding lay-confirm" style="padding-left: 120px;padding-top: 50px"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3" style="margin-left: 60px;margin-top: 26px"></i>协议定义完成，是否生成工程包？</div>' +
                         '<div class="layui-progress lay-my-progress" lay-filter="progress-filter" lay-showPercent="true"><div class="layui-progress-bar" lay-percent="0%"></div></div>' +
                         '<div class="down-control-item"><a class="down-a">下载工程</a><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="getProject()">生成工程</button>' +
-                        '<button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="cancelF()">取消</button></div>';
+                        '<button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="cancelF()" style="margin-right: 100px">取消生成</button></div>';
                     layer.open({
+                      title:false,
                       type: 1,
-                      area: ['420px', '240px'], //宽高
+                      area: ['420px', '200px'], //宽高
                       content: c
                     });
 
@@ -369,6 +393,9 @@ function checkData() {
     console.log(tmp_checked_id, tmp_unchecked_id, '++++++');
     //清空内容
     $(".btn-active").empty();
+    $(".btn-activess").empty();
+    var lets=[]
+    $scope.td = $scope.frame_data[0]['value']
     for(var j =0;j<$scope.data_menu.length;j++ ){
         console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
         if (tmp_unchecked_id.indexOf(String($scope.data_menu[j].id))>-1) {
@@ -379,18 +406,26 @@ function checkData() {
             $scope.data_menu[j].content=true;
 
         }
+
         if($scope.data_menu[j].content==true){
-             $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>")
+             $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>");
+             lets.push({"ke":$scope.data_menu[j].length})
+
         }
 
     }
+    $scope.tf = $scope.frame_data[2]['length'];
+    $scope.tips = lets;
+
     for(var z=0;z<$scope.frame_data.length;z++){
         if($scope.frame_data[z].name=='data'){
+            console.log('bug',$scope.data_menu)
             $scope.frame_data[z].value=$scope.data_menu
         }
     }
-    console.log($scope.data_menu, $scope.frame_data,'------1');
+    console.log($scope.frame_data,'------1');
     layer.closeAll('page');
+    $scope.$apply()
 }
 function editFunction() {
     layer.closeAll('page');
