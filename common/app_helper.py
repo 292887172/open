@@ -13,9 +13,9 @@ from base.convert import utctime2localtime
 from base.convert import date2ymdhms
 from base.util import gen_app_app_id
 from base.util import gen_app_app_secret, gen_app_default_conf
-from base.connection import Redis3
+from base.connection import Redis3, ReleaseApiRedisHandler
 from base.const import ConventionValue
-from common.api_helper import create_sandbox_api_app
+from common.api_helper import create_sandbox_api_app, delete_app_access_token
 from common.api_helper import create_release_api_app
 from common.api_helper import delete_release_api_app
 from common.api_helper import delete_api_app
@@ -378,6 +378,10 @@ def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_log
             app = App.objects.get(app_id=int(app_id))
             message_content = '"' + app.app_name + '"' + UPDATE_APP
             save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            try:
+                delete_app_access_token(app.app_appid)
+            except Exception as e:
+                logging.getLogger('').info('删除appaccess_token出错'+str(e))
             return True
         else:
             return False

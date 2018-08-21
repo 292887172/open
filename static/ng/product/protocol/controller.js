@@ -38,14 +38,10 @@ angular.module('Product.protocol', ['ngRoute'])
                 if(response['code']==2){
                     // 标准协议
                     $scope.protocol_zdy=false;
-
                 }
                 else{
                     $scope.protocol_zdy=true;
-
-
                 }
-                console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
                 $scope.data_id='';
                 for (var t = 0,t_length =$scope.frame_data.length;t<t_length;t++ ){
@@ -140,12 +136,12 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 }
             }
-            console.log(tmp_length_data, tmp_length_frame)
+            console.log(tmp_length_data, tmp_length_frame);
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
                 } else {
-                    is_check_all = false
+                    is_check_all = false;
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary">'
                 }
             }
@@ -376,10 +372,10 @@ angular.module('Product.protocol', ['ngRoute'])
         };
         $scope.getFrameData=function (data_type, frame_zdy) {
             if(frame_zdy){
-                var url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
+                var url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
             }
             else{
-                url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
+                url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
             }
             $http({
                 method: "GET",

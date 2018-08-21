@@ -351,3 +351,17 @@ def reset_api_app_secret(app_id, new_app_secret,):
         return True
     except Exception as e:
         logging.getLogger("").error(e)
+
+
+def delete_app_access_token(app_id):
+    r = ReleaseApiRedisHandler().client
+    # k:ap
+    if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
+        d = r.hget(gen_cache_key(_cache_key.AUTH_APP_ID, app_id), "access_token")
+        if d:
+            d = d.decode('utf-8')
+            r.delete(gen_cache_key(_cache_key.AUTH_ACCESS_TOKEN, d))
+            return True
+
+if __name__ == "__main__":
+    delete_app_access_token("532NOuoHWy56Ot19Uc11")
