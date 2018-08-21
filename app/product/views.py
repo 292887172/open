@@ -892,7 +892,7 @@ def protocol(request):
                         data = {"code": 1, "data": p, "protocol_type": protocol_type}
                     else:
                         p = DefaultProtocol().DEFAULT_DATA
-                        data = {"code": 2, "data": p, "protocol_type": protocol_type}
+                        data = {"code": 1, "data": p, "protocol_type": protocol_type}
                     return HttpResponse(json.dumps(data))
                 else:
                     # 根据请求，返回定义的上下行数据
