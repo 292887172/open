@@ -335,19 +335,25 @@
         </div>
 
         <label class="layui-form-label" style="margin-top: 20px;background-color:white;border:solid 1px green">数据预览</label>
-        <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-top: 20px;margin-right: 0px;padding-right: 0px;padding-left: 0px" >{[{td}]}</span>
+        <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-top: 20px;margin-right: 0px;padding-right: 0px;padding-left: 0px" title="帧头" >{[{td}]}</span>
+         <p ng-repeat="t in tdd" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据">{[{t.ke}]}</span>
+        </p>
         <p class="" ng-repeat="f in tips" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
 
 
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='1'">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='2'">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='16'">0000</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='8'">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='4'">00</span>
+            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='1'" title="数据">00</span>
+            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='2'" title="数据">00</span>
+            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='16'" title="数据">0000</span>
+            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='8'" title="数据">00</span>
+            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='4'" title="数据">00</span>
 
 
         </p>
-        <span  class="layui-badge layui-bg-gray" style="margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">{[{tf}]}</span>
+        <p ng-repeat="tf in tff" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据">{[{tf.ke}]}</span>
+        </p>
+        <span  class="layui-badge layui-bg-gray" style="margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" title="校验">{[{tf}]}</span>
 
     </div>
 
@@ -431,8 +437,10 @@
             var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
               //获取$scope变量
             var $scope = angular.element(appElement).scope();
+            console.log('data',data)
             var frame_id = data.elem.id.split("-")[2];
-            console.log(data.elem.id);
+            console.log(frame_id,'xx');
+            console.log(data.elem.id,'yy');
             console.log(data.value);
 
             for (var j=0;j<$scope.frame_data.length;j++){
