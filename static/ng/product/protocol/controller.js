@@ -35,14 +35,10 @@ angular.module('Product.protocol', ['ngRoute'])
                 if(response['code']==2){
                     // 标准协议
                     $scope.protocol_zdy=false;
-
                 }
                 else{
                     $scope.protocol_zdy=true;
-
-
                 }
-                console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
                 $scope.td=$scope.frame_data[0]['value'];
                 $scope.frame_dataed=response['data']['frame_content'];
@@ -113,12 +109,12 @@ angular.module('Product.protocol', ['ngRoute'])
                     }
                 }
             }
-            console.log(tmp_length_data, tmp_length_frame)
+            console.log(tmp_length_data, tmp_length_frame);
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
                 } else {
-                    is_check_all = false
+                    is_check_all = false;
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary">'
                 }
             }

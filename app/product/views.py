@@ -747,7 +747,7 @@ def product_main(request):
             return HttpResponse(tt)
 
         # 获取设备列表
-        if post_data == 'device_table':
+        elif post_data == 'device_table':
             r5 = Redis3(rdb=5).client
             key = app.app_appid
             key = key[-8:]
