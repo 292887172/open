@@ -18,8 +18,11 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
         $scope.being = true;    // “+”号是否显示标记
         $scope.tips = [];
-        $scope.td = '';
-        $scope.tf = '';
+        $scope.td = ''; // 帧头预览
+        $scope.tf = ''; // 帧尾预览
+        $scope.tdd = []; // 帧头-帧数据新增预览
+        $scope.tff = []; // 帧数据-帧尾新增预览
+
         $scope.frame_data = [
             {"id": 1,"name": "head", "title": "帧头", "length":1, "value": "A5"},
             {"id": 2, "name": "data", "title": "数据域", "length": 4, "value": [{"id": 1, "length":1, "title": "大风"},{"id":2, "length":2, "title":"电源"}]},
@@ -44,6 +47,28 @@ angular.module('Product.protocol', ['ngRoute'])
                 }
                 console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
+                $scope.data_id='';
+                for (var t = 0,t_length =$scope.frame_data.length;t<t_length;t++ ){
+                    if ($scope.frame_data[t]['name']=='data'){
+                        console.log(t)
+                        $scope.data_id=t
+                    }
+                    if ($scope.frame_data[t]['name']=='check'){
+                        console.log(t)
+                        $scope.tf=$scope.frame_data[t]['length']
+                    }
+
+                }
+                for (var tt= 1,tt_length =$scope.frame_data.length;tt<parseInt($scope.data_id);tt++){
+                    $scope.tdd.push({"ke":$scope.frame_data[tt]['length']})
+                }
+                for (var ttt = parseInt($scope.data_id) + 1,ttt_length =$scope.frame_data.length;ttt<ttt_length;ttt++){
+                    if ($scope.frame_data[ttt]['name']!='check'){
+                        $scope.tff.push({"ke":$scope.frame_data[ttt]['length']})
+                    }
+
+                }
+
                 $scope.td=$scope.frame_data[0]['value'];
                 $scope.frame_dataed=response['data']['frame_content'];
                 $scope.protocol_endian = response['data']['endian_type']
@@ -63,11 +88,13 @@ angular.module('Product.protocol', ['ngRoute'])
 
                             if ($scope.frame_data[j].name=='data'){
                                 $scope.frame_data[j].value=$scope.data_menu;
+                            }else if($scope.frame_data[j].name=='check'){
+                                $scope.tf = $scope.frame_data[j]['length']
                             }
                         }
                     }
                 }
-                $scope.tf = $scope.frame_data[2]['length']
+
             });
 
         $scope.$on("ngRepeatFinished", function () {
@@ -193,6 +220,9 @@ angular.module('Product.protocol', ['ngRoute'])
             });
 
         };
+
+
+
         $scope.editMouseOn=function ($event) {
            // console.log("0n", $event)
             if ($scope.being) {
@@ -208,16 +238,31 @@ angular.module('Product.protocol', ['ngRoute'])
             })
 
         };
+
         $scope.addFrameData=function ($event) {
             if($scope.cur_frame_type_length==''){
+                // 新增之后的数据长度，新增的数据 new-frame-item
                 $scope.cur_frame_type_length= $(".ui-frame-item").length + $(".new-frame-item").length
             }
             var data_name = $($event.target).parents(".layui-form-item").attr('id').split("-")[1];
             var length = $scope.cur_frame_type_length+1;
+            console.log('new add',data_name,length)
             var found_list = new EJS({url: config.url["frame"]}).render({"id": length, "data_name": data_name});
-            // console.log(found_list);
+            console.log('valid',found_list);
             $($event.target).parents(".layui-form-item").append(found_list);
             $scope.cur_frame_type_length+=1;
+            if (data_name=='check'||data_name=='data'){
+                //需要在数据域后面追加
+                var tff_value = $("#new-frame-length-"+length+"")[0].value
+                console.log(tff_value)
+                $scope.tff.push({"ke":tff_value})
+            }else{
+                //在数据域前面增加
+                var tdd_value = $("#new-frame-length-"+length+"")[0].value
+                console.log(tdd_value)
+                $scope.tdd.push({"ke":tdd_value})
+
+            }
             layui.use('form', function () {
                 var form = layui.form;
                 form.render('select');
@@ -226,10 +271,15 @@ angular.module('Product.protocol', ['ngRoute'])
                 $(this).parents(".new-frame-item").remove();
             });
         };
+
         $scope.valueKeyUp=function ($event) {
             var n = $($event.target).attr('name').split("-")[1];
-            console.log(n, $($event.target).attr('name'), $($event.target).val());
-            $scope.td=$($event.target).val();
+            console.log(n,'n', $($event.target).attr('name'), $($event.target).val());
+            if (n=='head'){
+                 $scope.td=$($event.target).val();
+            }else if (n=='')
+
+
             console.log('value',$scope.td)
             for (var j = 0; j < $scope.frame_data.length; j++) {
                     if($scope.frame_data[j].name==n){
@@ -414,7 +464,7 @@ function checkData() {
         }
 
     }
-    $scope.tf = $scope.frame_data[2]['length'];
+
     $scope.tips = lets;
 
     for(var z=0;z<$scope.frame_data.length;z++){
