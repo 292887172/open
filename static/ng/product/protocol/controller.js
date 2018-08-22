@@ -13,6 +13,8 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.frame_length = [1, 2,3,4]; //站位用的长度范围
         $scope.Algorithm = [{"name": "sum", "title": "SUM和校验"}, {"title": "CRC16校验", "name": "crc16"}]; //站位用的长度范围
         $scope.protocol_zdy = false;
+        $scope.zzz = 1;
+
         $scope.protocol_type = 0;   // 协议类型， 0：下行， 1：上行
         $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
         $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
@@ -32,7 +34,7 @@ angular.module('Product.protocol', ['ngRoute'])
         }).success(function (response) {
                 if(response['code']==2){
                     // 标准协议
-                    $scope.protocol_zdy=false;
+                    $scope.protocol_zdy=true;
 
                 }
                 else{

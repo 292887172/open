@@ -889,10 +889,10 @@ def protocol(request):
                     # 没有定义过，返回标准协议，若请求自定义协议，则返回默认标准自定义协议
                     if zdy == '1':
                         p = DefaultProtocol().DEFAULT_DATA_ZDY
-                        data = {"code": 1, "data": p, "protocol_type": protocol_type}
+                        data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     else:
                         p = DefaultProtocol().DEFAULT_DATA
-                        data = {"code": 1, "data": p, "protocol_type": protocol_type}
+                        data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     return HttpResponse(json.dumps(data))
                 else:
                     # 根据请求，返回定义的上下行数据
@@ -904,7 +904,7 @@ def protocol(request):
                         res_list_data1['protocol_type'] = protocol_type1
 
                         if str(protocol_type1) == str(protocol_type):
-                            data = {"code": 1, "data": res_list_data1, "protocol_type": protocol_type}
+                            data = {"code": 2, "data": res_list_data1, "protocol_type": protocol_type}
                             return HttpResponse(json.dumps(data))
                     # 请求的数据暂时未定义，比如自定义了上行数据，请求下行数据，或者自定义了下行数据，请求上行数据
                     # 返回空， 前端不处理
