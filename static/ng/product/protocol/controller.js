@@ -209,18 +209,7 @@ angular.module('Product.protocol', ['ngRoute'])
             console.log('valid',found_list);
             $($event.target).parents(".layui-form-item").append(found_list);
             $scope.cur_frame_type_length+=1;
-            if (data_name=='check'||data_name=='data'){
-                //需要在数据域后面追加
-                var tff_value = $("#new-frame-length-"+length+"")[0].value
-                console.log(tff_value)
-                $scope.tff.push({"ke":tff_value})
-            }else{
-                //在数据域前面增加
-                var tdd_value = $("#new-frame-length-"+length+"")[0].value
-                console.log(tdd_value)
-                $scope.tdd.push({"ke":tdd_value})
 
-            }
             layui.use('form', function () {
                 var form = layui.form;
                 form.render('select');
@@ -233,12 +222,6 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.valueKeyUp=function ($event) {
             var n = $($event.target).attr('name').split("-")[1];
             console.log(n,'n', $($event.target).attr('name'), $($event.target).val());
-            if (n=='head'){
-                 $scope.td=$($event.target).val();
-            }else if (n=='')
-
-
-            console.log('value',$scope.td)
             for (var j = 0; j < $scope.frame_data.length; j++) {
                     if($scope.frame_data[j].name==n){
                         $scope.frame_data[j].value=$($event.target).val();
@@ -401,9 +384,6 @@ function checkData() {
     console.log(tmp_checked_id, tmp_unchecked_id, '++++++');
     //清空内容
     $(".btn-active").empty();
-    $(".btn-activess").empty();
-    var lets=[]
-    $scope.td = $scope.frame_data[0]['value']
     for(var j =0;j<$scope.data_menu.length;j++ ){
         console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
         if (tmp_unchecked_id.indexOf(String($scope.data_menu[j].id))>-1) {
@@ -417,13 +397,9 @@ function checkData() {
 
         if($scope.data_menu[j].content==true){
              $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>");
-             lets.push({"ke":$scope.data_menu[j].length})
-
         }
 
     }
-
-    $scope.tips = lets;
 
     for(var z=0;z<$scope.frame_data.length;z++){
         if($scope.frame_data[z].name=='data'){
