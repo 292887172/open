@@ -65,10 +65,6 @@
         margin-left: 7px;
         margin-bottom: 18px;
     }
-    .btn-actives {
-        display: inline-block;
-        margin-bottom: 18px;
-    }
 
     .layui-input, .layui-select, .layui-textarea {
         background-color: #fff !important;
@@ -211,7 +207,7 @@
     <fieldset class="layui-elem-field layui-field-title" style="display: none">
         <legend>协议帧定义</legend>
     </fieldset>
-    <div class="layui-form layui-form-pane">
+    <div class="layui-form layui-form-pane" >
         <div class="layui-form-item" style="display: none">
             <div class="layui-input-block">
                 <input type="radio" name="protocol" value="1" title="标准协议" ng-checked="!protocol_zdy" lay-filter="protocol_zdy">
@@ -287,7 +283,7 @@
             <label ng-mouseenter="editMouseOn($event)" ng-mouseleave="editMouseLeave($event)" class="layui-form-label edit-btn" >{[{ f.title }]}<p class="add-btn" ng-click="addFrameData($event)">+</p></label>
             <p ng-if="f.name=='data' && protocol_zdy" style="color: #F35019;background-color:white;border:solid 1px #f35019" class="layui-btn  edits" ng-click="editData()" >编辑</p>
             <div ng-if="f.name=='data'" class="btn-active">
-                <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content" data-add="d.length">{[{ d.title }]} </span>
+                <span class="layui-badge layui-bg-gray" ng-repeat="d in f.value" ng-if="d.content">{[{ d.title }]} </span>
             </div>
             <div class="layui-input-inline" ng-if="f.name=='check'">
                 <select name="quiz1" lay-filter="check-rel" id="check_algorithm">
@@ -330,33 +326,36 @@
                 </select>
             </div>
         </div>
-        <div class="layui-anim" >
-            <button class="layui-btn layui-btn-lg layui-btn-warm" ng-click="SubmitData()" ng-if="protocol_zdy">确认</button>
-        </div>
-
-        <label class="layui-form-label" style="margin-top: 20px;background-color:white;border:solid 1px green">数据预览</label>
-        <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-top: 20px;margin-right: 0px;padding-right: 0px;padding-left: 0px" title="帧头" >{[{td}]}</span>
-         <p ng-repeat="t in tdd" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据">{[{t.ke}]}</span>
-        </p>
-        <p class="" ng-repeat="f in tips" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
-
-
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='1'" title="数据">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='2'" title="数据">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='16'" title="数据">0000</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='8'" title="数据">00</span>
-            <span  class="layui-badge layui-bg-gray" data-add="d.length" style="margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.ke=='4'" title="数据">00</span>
-
-
-        </p>
-        <p ng-repeat="tf in tff" style="width: 30px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据">{[{tf.ke}]}</span>
-        </p>
-        <span  class="layui-badge layui-bg-gray" style="margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" title="校验">{[{tf}]}</span>
 
     </div>
+    <div class="layui-anim" >
+        <button class="layui-btn layui-btn-lg layui-btn-warm" ng-click="SubmitData()" ng-if="protocol_zdy">确认</button>
+    </div>
 
+    <label class="layui-form-label" style="margin-top: 20px;background-color:white;border:solid 1px green;width: 90px">数据预览</label>
+    <p ng-repeat="t in frame_data_yulan" style="display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="帧头" ng-if="t.name=='head' ">{[{t.value}]}</span>
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.length}]}</span>
+            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据" ng-if="t.name=='data' &&  t.value.length>0">
+                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='8'" title="数据域">
+                    00
+                </span>
+                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='16'" title="数据域">
+                    0000
+                </span>
+                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='4'" title="数据域">
+                    00
+                </span>
+                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='2'" title="数据域">
+                    00
+                </span>
+                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='1'" title="数据域">
+                    00
+                </span>
+            </span>
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="校验" ng-if="t.name=='check'">{[{t.length}]}</span>
+
+        </p>
 </div>
 
 <script src="/static/layui/layui.all.js" charset="utf-8"></script>
@@ -418,6 +417,7 @@
             }
             else if(data.value=='crc16'){
                 $(".algorithm-tips").text("Tips:CRC-16码由两个字节构成，是16位").show()
+                $(".algorithm-tips").text("Tips:CRC-16码由两个字节构成，是16位").show()
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[1].selected=false;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].selected=true;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[3].selected=false;
@@ -437,10 +437,8 @@
             var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
               //获取$scope变量
             var $scope = angular.element(appElement).scope();
-            console.log('data',data)
             var frame_id = data.elem.id.split("-")[2];
-            console.log(frame_id,'xx');
-            console.log(data.elem.id,'yy');
+            console.log(data.elem.id);
             console.log(data.value);
 
             for (var j=0;j<$scope.frame_data.length;j++){
@@ -482,6 +480,55 @@
         });
         form.on('select(new_frame)', function(data){
             // 监听新建帧类型选择
+
+            var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+            //获取$scope变量
+            var $scope = angular.element(appElement).scope();
+            var frame_id = data.elem.id.split("-")[2];
+            var frame_ids = data.elem.id.split("-")[1];
+
+            console.log($($(data.elem).parents()[2]).attr('id'))
+            // 新增加的id
+            var new_id = $($(data.elem).parents()[2]).attr('id').split("-")[1]
+            console.log('id',new_id)
+            console.log('fff',$scope.frame_data)
+            for (var i =0,i_length=$scope.frame_data_yulan.length;i<i_length;i++){
+                if($scope.frame_data_yulan[i]['name']==new_id){
+                    var idss = i
+                    console.log(idss,'i')
+                    var yulan_id =  $scope.frame_data_yulan.length
+                    var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
+                    var new_datas={"id":yulan_id+1,"name":data.value,"value":"00","title":Data_dict[data.value]}
+                    console.log(new_datas)
+                    //$scope.frame_data_yulan.push(new_datas)
+
+                }
+            }
+
+            console.log('ddddd',$scope.frame_data_yulan)
+            console.log('ppp',$scope.frame_data)
+            if(data.value=='other'){
+                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
+                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
+                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
+            }
+        });
+        form.on('select(new_frame_value)', function(data){
+            // 监听新建帧类型选择
+            console.log('yyy',data.value)
+            // 新增加的id
+            var new_id = $($(data.elem).parents()[2]).attr('id').split("-")[1]
+            console.log('id',new_id)
+            if(data.value=='other'){
+                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
+                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
+                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
+
+            }
+        });
+        form.on('input(new_frame_input)', function(data){
+            // 监听新建帧类型选择
+            console.log('zzz',data.value)
             if(data.value=='other'){
                 var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
                 $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
@@ -492,6 +539,7 @@
 
     });
     function pinyin(item){
+
         var nameDish = $(item).val();
         var t_id = $(item).parent('div').attr('id').split("-")[3];
         var str = "";

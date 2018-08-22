@@ -17,17 +17,12 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
         $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
         $scope.being = true;    // “+”号是否显示标记
-        $scope.tips = [];
-        $scope.td = ''; // 帧头预览
-        $scope.tf = ''; // 帧尾预览
-        $scope.tdd = []; // 帧头-帧数据新增预览
-        $scope.tff = []; // 帧数据-帧尾新增预览
-
         $scope.frame_data = [
             {"id": 1,"name": "head", "title": "帧头", "length":1, "value": "A5"},
             {"id": 2, "name": "data", "title": "数据域", "length": 4, "value": [{"id": 1, "length":1, "title": "大风"},{"id":2, "length":2, "title":"电源"}]},
             {"id": 3, "name": "check", "title": "校验", "length": 2, "value": {"check_algorithm": "sum", "check_start": 1,"check_end": 2}}
         ];
+        $scope.frame_data_yulan=[];
         $scope.data_menu = '';
         $http({
             method: "GET",
@@ -38,35 +33,16 @@ angular.module('Product.protocol', ['ngRoute'])
                 if(response['code']==2){
                     // 标准协议
                     $scope.protocol_zdy=false;
+
                 }
                 else{
                     $scope.protocol_zdy=true;
+
+
                 }
+                console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
-                $scope.data_id='';
-                for (var t = 0,t_length =$scope.frame_data.length;t<t_length;t++ ){
-                    if ($scope.frame_data[t]['name']=='data'){
-                        console.log(t)
-                        $scope.data_id=t
-                    }
-                    if ($scope.frame_data[t]['name']=='check'){
-                        console.log(t)
-                        $scope.tf=$scope.frame_data[t]['length']
-                    }
-
-                }
-                for (var tt= 1,tt_length =$scope.frame_data.length;tt<parseInt($scope.data_id);tt++){
-                    $scope.tdd.push({"ke":$scope.frame_data[tt]['length']})
-                }
-                for (var ttt = parseInt($scope.data_id) + 1,ttt_length =$scope.frame_data.length;ttt<ttt_length;ttt++){
-                    if ($scope.frame_data[ttt]['name']!='check'){
-                        $scope.tff.push({"ke":$scope.frame_data[ttt]['length']})
-                    }
-
-                }
-
-                $scope.td=$scope.frame_data[0]['value'];
-                $scope.frame_dataed=response['data']['frame_content'];
+                $scope.frame_data_yulan=response['data']['frame_content'];
                 $scope.protocol_endian = response['data']['endian_type']
             });
         $http({
@@ -77,22 +53,16 @@ angular.module('Product.protocol', ['ngRoute'])
         }).success(function (response) {
                 $scope.data_menu = response;
                 for(var i=0;i<$scope.data_menu.length;i++){
-                    //$scope.tips.push({"ke":$scope.data_menu[i]['length']})
                     if (!$scope.protocol_zdy){
                         $scope.data_menu[i].content=true;
                         for(var j=0;j<$scope.frame_data.length;j++){
-
                             if ($scope.frame_data[j].name=='data'){
                                 $scope.frame_data[j].value=$scope.data_menu;
-                            }else if($scope.frame_data[j].name=='check'){
-                                $scope.tf = $scope.frame_data[j]['length']
                             }
                         }
                     }
                 }
-
             });
-
         $scope.$on("ngRepeatFinished", function () {
             // 监听angular页面渲染完成
             layui.use('form', function () {
@@ -116,32 +86,27 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.editData=function () {
             tmp_checked_id = [];
             tmp_unchecked_id = [];
-            var tmp_length_data = [];
-            var tmp_length_frame = [];
             var is_check_all = true;  // 默认全选， 只要有一个选项不选中则置为false
             //处理复选框参数
             var check_content = "";
-            console.log('data',$scope.data_menu, $scope.frame_data);
+            console.log($scope.data_menu, $scope.frame_data);
             for(var i=0;i<$scope.frame_data.length;i++){
-                tmp_length_frame.push($scope.frame_data[i]['length'])
                 if($scope.frame_data[i]['name']=='data'){
                     for(var j=0; j< $scope.data_menu.length;j++){
-                        tmp_length_data.push($scope.data_menu[j].length)
                         for (var z=0;z<$scope.frame_data[i]['value'].length;z++){
                             if($scope.data_menu[j]['id']== $scope.frame_data[i]['value'][z].id && $scope.frame_data[i]['value'][z].content){
                                 $scope.data_menu[j]['content'] = true
-
                             }
                         }
                     }
                 }
             }
-            console.log(tmp_length_data, tmp_length_frame);
+
             for (var i=0;i<$scope.data_menu.length;i++) {
                 if ($scope.data_menu[i].content) {
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary" checked>'
                 } else {
-                    is_check_all = false;
+                    is_check_all = false
                     check_content = check_content + '<input class="data-checkbox" lay-filter="data-domain" type="checkbox" name="" value="' + $scope.data_menu[i].id + '" title="' + $scope.data_menu[i].title + '" lay-skin="primary">'
                 }
             }
@@ -174,10 +139,7 @@ angular.module('Product.protocol', ['ngRoute'])
                                 tmp_checked_id.push(data.value);
                                 var index = tmp_unchecked_id.indexOf(data.value);
                                 if(index>=0){
-                                    tmp_unchecked_id.splice(index, 1);
-                                    tmp_length_data.splice(index, 1)
-
-
+                                    tmp_unchecked_id.splice(index, 1)
                                 }
                             }
                             else{
@@ -185,11 +147,11 @@ angular.module('Product.protocol', ['ngRoute'])
                                 var index = tmp_checked_id.indexOf(data.value);
                                 if(index>=0){
                                     tmp_checked_id.splice(index, 1)
-                                    tmp_length_data.splice(index, 1)
                                 }
                             }
 
                             console.log(tmp_checked_id, tmp_unchecked_id)
+
                         });
                         form.on('checkbox(click_all)',function (data) {
                             console.log("全选");
@@ -372,10 +334,10 @@ angular.module('Product.protocol', ['ngRoute'])
         };
         $scope.getFrameData=function (data_type, frame_zdy) {
             if(frame_zdy){
-                var url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
+                var url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type+"&zdy="+frame_zdy
             }
             else{
-                url = "/product/protocol/?key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
+                url = "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data&protocol_type="+data_type
             }
             $http({
                 method: "GET",
