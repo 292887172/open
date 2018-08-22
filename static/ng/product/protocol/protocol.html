@@ -335,7 +335,7 @@
     <label class="layui-form-label" style="margin-top: 20px;background-color:white;border:solid 1px green;width: 90px">数据预览</label>
     <p ng-repeat="t in frame_data_yulan" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
             <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='head' ">{[{t.value}]}</span>
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.length}]}</span>
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.value}]}</span>
             <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据" ng-if="t.name=='data' &&  t.value.length>0">
                 <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='8'" title="{[{f.title}]}">
                     00
@@ -554,29 +554,10 @@
                 var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
                 $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
                 //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
-            }
-        });
-        form.on('select(new_frame_value)', function(data){
-            // 监听新建帧类型选择
-            console.log('yyy',data.value)
-            // 新增加的id
-            var new_id = $($(data.elem).parents()[2]).attr('id').split("-")[1]
-            console.log('id',new_id)
-            if(data.value=='other'){
-                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
-                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
-                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
 
-            }
-        });
-        form.on('input(new_frame_input)', function(data){
-            // 监听新建帧类型选择
-            console.log('zzz',data.value)
-            if(data.value=='other'){
+            }else{
                 var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
-                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
-                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
-
+                $("#new-frame-tmptitle-"+n_id).hide();
             }
         });
 
