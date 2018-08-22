@@ -512,15 +512,42 @@
                 if($scope.frame_data_yulan[i]['name']==new_id){
                     var idss = i
                     console.log(idss,'i')
-                    var yulan_id =  $scope.frame_data_yulan.length
-                    var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
-                    var new_datas={"id":yulan_id+1,"name":data.value,"value":"00","title":Data_dict[data.value]}
-                    console.log(new_datas)
-                    //$scope.frame_data_yulan.push(new_datas)
+
 
                 }
             }
+            var yulan_id =  $scope.frame_data_yulan.length
+            var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
+            var new_datas={"id":yulan_id+1,"name":data.value,"value":"00","length":1,"title":Data_dict[data.value]}
+            console.log(new_datas)
 
+            if ($scope.zzz==1){
+                console.log('ca1')
+                $scope.frame_data_yulan=[]
+
+
+                for (var ids=0,id_length=$scope.frame_data.length;ids<id_length;ids++){
+                     $scope.frame_data_yulan.push($scope.frame_data[ids])
+                }
+                if (idss==0){
+                    $scope.frame_data_yulan.splice(idss+parseInt(1),0,new_datas)
+                }else {
+                    $scope.frame_data_yulan.splice(idss,0,new_datas)
+                }
+
+                $scope.zzz = 2
+            }else {
+                console.log('xxx2')
+                if (idss==0){
+                    $scope.frame_data_yulan.splice(idss+parseInt(1),0,new_datas)
+                }else {
+                    $scope.frame_data_yulan.splice(idss,0,new_datas)
+                }
+            }
+
+
+
+            $scope.$digest()
             console.log('ddddd',$scope.frame_data_yulan)
             console.log('ppp',$scope.frame_data)
             if(data.value=='other'){
