@@ -217,7 +217,7 @@
             </div>
         </div>
 
-        <div class="layui-tab" lay-filter="demo">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
           <ul class="layui-tab-title">
             <li class="layui-this">屏端到MCU</li>
             <li>MCU到屏端</li>
@@ -332,28 +332,40 @@
         <button class="layui-btn layui-btn-lg layui-btn-warm" ng-click="SubmitData()" ng-if="protocol_zdy">确认</button>
     </div>
 
-    <label class="layui-form-label" style="margin-top: 20px;background-color:white;border:solid 1px green;width: 90px">数据预览</label>
-    <p ng-repeat="t in frame_data_yulan" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px">
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='head' ">{[{t.value}]}</span>
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.value}]}</span>
-            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="数据" ng-if="t.name=='data' &&  t.value.length>0">
-                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='8'" title="{[{f.title}]}">
-                    00
+
+    <label class="layui-form-label " style="margin-top: 20px;background-color:white;border:solid 1px green;width: 90px" >数据预览</label>
+    <div class="yulandata" style="display: none">
+        <p ng-repeat="t in frame_data_yulan" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
+            <span  class="layui-badge layui-bg-gray {[{t.name}]}"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' ">{[{t.value}]}</span>
+            <span  class="layui-badge layui-bg-gray {[{t.name}]}"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.value}]}</span>
+            <span  class="layui-badge layui-bg-gray database"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data' &&  t.value.length>0">
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='8'" title="{[{f.title}]}">
+                    00000000
                 </span>
-                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='16'" title="{[{f.title}]}">
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='16'" title="{[{f.title}]}">
+                    0000000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray{[{f.name}]} " data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='4'" title="{[{f.title}]}">
                     0000
                 </span>
-                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='4'" title="{[{f.title}]}">
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='2'" title="{[{f.title}]}">
                     00
                 </span>
-                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='2'" title="{[{f.title}]}">
-                    00
-                </span>
-                <span class="layui-badge layui-bg-gray" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='1'" title="{[{f.title}]}">
-                    00
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='1'" title="{[{f.title}]}">
+                    0
                 </span>
             </span>
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'">{[{t.length}]}</span>
+            <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'">{[{t.length}]}</span>
+
+        </p>
+    </div>
+    <p ng-repeat="t in jinzhishow" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' ">{[{t.values}]}</span>
+            <span  class="layui-badge layui-bg-gray "  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.values}]}</span>
+            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'">{[{t.values}]}
+
+            </span>
+            <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'">{[{t.values}]}</span>
 
         </p>
 </div>
@@ -366,11 +378,13 @@
             'frame': '/static/tpl/frame_sel.ejs'
         }
     };
-
+    function Change(){
+        console.log('gaibian')
+    }
     layui.use('element', function(){
           var element = layui.element;
           //一些事件监听
-          element.on('tab(demo)', function(data){
+          element.on('tab(docDemoTabBrief)', function(data){
                // console.log(this); //当前Tab标题所在的原始DOM元素
               console.log(data.index); //得到当前Tab的所在下标
               //console.log(data.elem); //得到当前的Tab大容器
@@ -409,11 +423,11 @@
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[3].selected=false;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].selected=false;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[1].selected=true;
-                console.log('j',$scope.frame_data_yulan)
-                for (var it =0,lengt = $scope.frame_data_yulan.length;it<lengt;it++){
-                    if ($scope.frame_data_yulan[it]['name']=='check'){
+                console.log('j',$scope.jinzhishow)
+                for (var it =0,lengt = $scope.jinzhishow.length;it<lengt;it++){
+                    if ($scope.jinzhishow[it]['name']=='check'){
                         console.log('xxxxxxx')
-                        $scope.frame_data_yulan[it]['length']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[1].value
+                        $scope.jinzhishow[it]['values']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[1].value
                         $scope.$apply()
                     }
                 }
@@ -429,12 +443,12 @@
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].selected=true;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[3].selected=false;
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[4].selected=false;
-                console.log('jj',$scope.frame_data_yulan)
-                for (var i =0,leng = $scope.frame_data_yulan.length;i<leng;i++){
-                    if ($scope.frame_data_yulan[i]['name']=='check'){
-                        console.log(document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value)
-                        $scope.frame_data_yulan[i]['length']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value
-                        console.log('..',$scope.frame_data_yulan)
+                console.log('jj',$scope.jinzhishow)
+                for (var i =0,leng = $scope.jinzhishow.length;i<leng;i++){
+                    if ($scope.jinzhishow[i]['name']=='check'){
+                        //console.log(document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value)
+                        $scope.jinzhishow[i]['values']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value
+                        console.log('..',$scope.jinzhishow)
                         $scope.$apply()
                     }
                 }

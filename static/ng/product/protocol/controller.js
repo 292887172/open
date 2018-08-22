@@ -19,6 +19,7 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
         $scope.cur_frame_type_length = '';  // 当前页面上 帧组成部分的个数，比如帧包含 帧头，数据域，校验，则该值为3，主要用于标记新增时候编号累加
         $scope.being = true;    // “+”号是否显示标记
+        $scope.jinzhishow = [];    // 预览正式
         $scope.frame_data = [
             {"id": 1,"name": "head", "title": "帧头", "length":1, "value": "A5"},
             {"id": 2, "name": "data", "title": "数据域", "length": 4, "value": [{"id": 1, "length":1, "title": "大风"},{"id":2, "length":2, "title":"电源"}]},
@@ -45,6 +46,39 @@ angular.module('Product.protocol', ['ngRoute'])
                 console.log('iii',response);
                 $scope.frame_data=response['data']['frame_content'];
                 $scope.frame_data_yulan=response['data']['frame_content'];
+                for (var old_i =0,old_length = response['data']['frame_content'].length;old_i<old_length;old_i++){
+                    console.log('th')
+                    if(response['data']['frame_content'][old_i]['name']=='head'){
+                        // 添加head
+                        console.log('xxx')
+                        $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":"head"})
+                        for (var old_ii=0,old_lengths=response['data']['frame_content'][old_i]['value'].length;old_ii<old_lengths;old_ii++){
+
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['value'][old_ii]['title'],"values":response['data']['frame_content'][old_i]['value'][old_ii]})
+                        }
+                    }else if(response['data']['frame_content'][old_i]['name']=='check'){
+                          console.log('xrt')
+                          $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['length'],"name":"check"})
+                          // $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
+                    }else if (response['data']['frame_content'][old_i]['name']=='data'){
+                        var isds = parseInt(0)
+                        for (var idataid=0,idata_length=response['data']['frame_content'][old_i]['value'].length;idataid<idata_length;idataid++){
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"","name":"data"})
+                            isds += parseInt(response['data']['frame_content'][old_i]['value'][idataid]['length'])
+                        }
+                        console.log('ids',isds);
+                        if (isds%8===0){
+                            console.log('格式正确');
+                            var lengsts = isds/8;
+                            for (var ile=0,ile_length=lengsts;ile<ile_length;ile++){
+                                $scope.jinzhishow.push({"title":"功能","values":"00","name":"data"})
+                            }
+                        }else {
+                            console.log('格式错误')
+                        }
+                    }
+
+                }
                 $scope.protocol_endian = response['data']['endian_type']
             });
         $http({
@@ -304,7 +338,7 @@ angular.module('Product.protocol', ['ngRoute'])
             }).success(function (response) {
                     $scope.data_menu = response;
                     // layer.msg('保存成功', {icon: 6, time: 2000});
-                    var c = '<div id="" class="layui-layer-padding lay-confirm" style="padding-left: 120px;padding-top: 50px"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3" style="margin-left: 60px;margin-top: 26px"></i>协议定义完成，是否生成工程包？</div>' +
+                    var c = '<div id="" class="layui-layer-padding lay-confirm" style="padding-left: 120px;padding-top: 50px"><i class="layui-layer-ico layui-layer-ico3 lay-confirm-icon3" style="margin-left: 60px;margin-top: 26px"></i>协议定义已保存，是否生成工程包？</div>' +
                         '<div class="layui-progress lay-my-progress" lay-filter="progress-filter" lay-showPercent="true"><div class="layui-progress-bar" lay-percent="0%"></div></div>' +
                         '<div class="down-control-item"><a class="down-a">下载工程</a><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="getProject()">生成工程</button>' +
                         '<button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="cancelF()" style="margin-right: 100px">取消生成</button></div>';
@@ -386,8 +420,9 @@ function checkData() {
     console.log(tmp_checked_id, tmp_unchecked_id, '++++++');
     //清空内容
     $(".btn-active").empty();
+    var titles=[]
     for(var j =0;j<$scope.data_menu.length;j++ ){
-        console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
+        //console.log(tmp_unchecked_id, tmp_checked_id, $scope.data_menu[j].id);
         if (tmp_unchecked_id.indexOf(String($scope.data_menu[j].id))>-1) {
             $scope.data_menu[j].content = false;
         }
@@ -399,6 +434,7 @@ function checkData() {
 
         if($scope.data_menu[j].content==true){
              $(".btn-active").append("<span class='layui-badge layui-bg-gray'>" + $scope.data_menu[j].title + " </span>");
+             titles.push($scope.data_menu[j].title)
         }
 
     }
@@ -410,8 +446,60 @@ function checkData() {
         }
     }
     console.log($scope.frame_data,'------1');
+    console.log($scope.frame_data_yulan,'------2');
     layer.closeAll('page');
-    $scope.$apply()
+    $scope.$digest()
+    //拿到功能全部数据
+    try {
+        var list_1 =''
+        var title = $(".yulandata .database span")
+            //[0].innerHTML.replace(/(^\s+)|(\s+$)/g,"")
+        console.log('tt',title.length)
+        for (var i=0,i_length = title.length;i<i_length;i++){
+            list_1+=title[i].innerHTML.replace(/(^\s+)|(\s+$)/g,"")
+        }
+        console.log(list_1,list_1.length)
+    }catch (e) {
+        console.log('no change')
+    }
+    console.log('tou',titles)
+    //进制转换
+    // 先判断格式是否正确
+    if (parseInt(list_1.length)%8===0){
+        console.log('格式正确')
+        var ils = 0
+        console.log('5',$scope.jinzhishow)
+        var lies_list=[]
+        for (var lei=0,le_length=$scope.jinzhishow.length;lei<le_length;lei++){
+            console.log('vv',$scope.jinzhishow[lei])
+            if($scope.jinzhishow[lei]['name']=='data'){
+                //$scope.jinzhishow.splice(lei,1)
+                lies_list.push(lei)
+            }
+        }
+        for (var iii=0,i_le=lies_list.length;iii<i_le;iii++){
+            $scope.jinzhishow.splice(1,1)
+        }
+        console.log('6',$scope.jinzhishow)
+        for (var il=0,ileng = list_1.length;il<ileng;il=il+8){
+            var lens = (parseInt(list_1.slice(il,il+8),2)).toString(16);
+
+            if (lens.length<2){
+                lens = "0"+lens
+                $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
+            }else {
+                lens = lens
+                $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
+            }
+            ils++
+
+        }
+        console.log('sssssssss',$scope.jinzhishow)
+    }else {
+        console.log('格式错误')
+    }
+    //
+
 }
 function editFunction() {
     layer.closeAll('page');
