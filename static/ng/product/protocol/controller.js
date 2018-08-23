@@ -59,7 +59,11 @@ angular.module('Product.protocol', ['ngRoute'])
                         }
                     }else if(response['data']['frame_content'][old_i]['name']=='check'){
                           console.log('xrt')
-                          $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['length'],"name":"check"})
+                          if (response['data']['frame_content'][old_i]['length']==1){
+                               $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"00","name":"check"})
+                          }else {
+                                $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"0000","name":"check"})
+                          }
                           // $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
                     }else if (response['data']['frame_content'][old_i]['name']=='data'){
                         var isds = parseInt(0)

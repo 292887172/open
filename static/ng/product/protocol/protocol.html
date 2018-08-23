@@ -466,7 +466,7 @@
                 for (var it =0,lengt = $scope.jinzhishow.length;it<lengt;it++){
                     if ($scope.jinzhishow[it]['name']=='check'){
                         console.log('xxxxxxx')
-                        $scope.jinzhishow[it]['values']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[1].value
+                        $scope.jinzhishow[it]['values']="00"
                         $scope.$apply()
                     }
                 }
@@ -486,7 +486,7 @@
                 for (var i =0,leng = $scope.jinzhishow.length;i<leng;i++){
                     if ($scope.jinzhishow[i]['name']=='check'){
                         //console.log(document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value)
-                        $scope.jinzhishow[i]['values']=document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value
+                        $scope.jinzhishow[i]['values']="0000"
                         console.log('..',$scope.jinzhishow)
                         $scope.$apply()
                     }
