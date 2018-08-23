@@ -27,6 +27,7 @@ angular.module('Product.protocol', ['ngRoute'])
         ];
         $scope.frame_data_yulan=[];
         $scope.data_menu = '';
+        $scope.check = '';
         $http({
             method: "GET",
             url: "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key + "&action=get_frame_data",
@@ -470,13 +471,21 @@ function checkData() {
         var ils = 0
         console.log('5',$scope.jinzhishow)
         var lies_list=[]
+
         for (var lei=0,le_length=$scope.jinzhishow.length;lei<le_length;lei++){
             console.log('vv',$scope.jinzhishow[lei])
             if($scope.jinzhishow[lei]['name']=='data'){
                 //$scope.jinzhishow.splice(lei,1)
                 lies_list.push(lei)
+            }else if($scope.jinzhishow[lei]['name']=='check'){
+
+                $scope.checked =  $scope.jinzhishow[lei]
+                $scope.jinzhishow.splice(lei,1)
             }
+
         }
+
+        console.log($scope.jinzhishow,'last')
         for (var iii=0,i_le=lies_list.length;iii<i_le;iii++){
             $scope.jinzhishow.splice(1,1)
         }
@@ -494,9 +503,16 @@ function checkData() {
             ils++
 
         }
+        console.log('check',$scope.checked)
+        $scope.jinzhishow.push($scope.checked)
         console.log('sssssssss',$scope.jinzhishow)
+        $scope.$apply()
     }else {
-        console.log('格式错误')
+        layer.open({
+          title:'功能帧提示',
+          content: '功能帧拼接错误',
+          scrollbar: false
+        });
     }
     //
 
