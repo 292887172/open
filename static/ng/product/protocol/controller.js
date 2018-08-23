@@ -77,6 +77,9 @@ angular.module('Product.protocol', ['ngRoute'])
                         }else {
                             console.log('格式错误')
                         }
+                    }else {
+                         $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":response['data']['frame_content'][old_i]['name']})
+
                     }
 
                 }
