@@ -218,7 +218,7 @@
         </div>
 
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-          <ul class="layui-tab-title">
+          <ul class="layui-tab-title" >
             <li class="layui-this">屏端到MCU</li>
             <li>MCU到屏端</li>
           </ul>
@@ -362,7 +362,7 @@
     <p ng-repeat="t in jinzhishow" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
             <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' " onmouseover="Func(this)">{[{t.values}]}</span>
             <span  class="layui-badge layui-bg-gray "  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'" onmouseover="Func(this)">{[{t.values}]}</span>
-            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'" onmouseover="Func(this)">{[{t.values}]}
+            <span  class="layui-badge layui-bg-orange"  style="background-color: #F35019!important;width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'" onmouseover="Func(this)">{[{t.values}]}
 
             </span>
             <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'" onmouseover="Func(this)">{[{t.values}]}</span>

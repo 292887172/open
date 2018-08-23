@@ -891,7 +891,8 @@ def protocol(request):
                         p = DefaultProtocol().DEFAULT_DATA_ZDY
                         data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     else:
-                        p = DefaultProtocol().DEFAULT_DATA
+                        #p = DefaultProtocol().DEFAULT_DATA
+                        p = DefaultProtocol().DEFAULT_DATA_ZDY
                         data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     return HttpResponse(json.dumps(data))
                 else:
