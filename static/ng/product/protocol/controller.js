@@ -259,9 +259,9 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.valueKeyUp=function ($event) {
             var n = $($event.target).attr('name').split("-")[1];
             console.log(n,'n', $($event.target).attr('name'), $($event.target).val());
-            for (var j = 0; j < $scope.frame_data.length; j++) {
-                    if($scope.frame_data[j].name==n){
-                        $scope.frame_data[j].value=$($event.target).val();
+            for (var j = 0; j < $scope.jinzhishow.length; j++) {
+                    if($scope.jinzhishow[j]['name']==n){
+                        $scope.jinzhishow[j].values=$($event.target).val();
                     }
                 }
 
