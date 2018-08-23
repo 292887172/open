@@ -378,6 +378,15 @@
             'frame': '/static/tpl/frame_sel.ejs'
         }
     };
+    function in_array(stringToSearch, arrayToSearch) {
+         for (s = 0; s < arrayToSearch.length; s++) {
+          thisEntry = arrayToSearch[s].toString();
+          if (thisEntry == stringToSearch) {
+           return true;
+          }
+         }
+         return false;
+    }
     function Click(that) {
         console.log('xx')
         var title_id = $(that).attr('id').split("-")[3]
@@ -546,46 +555,57 @@
             var $scope = angular.element(appElement).scope();
             var frame_id = data.elem.id.split("-")[2];
             var frame_ids = data.elem.id.split("-")[1];
-
-            console.log($($(data.elem).parents()[2]).attr('id'))
+            //console.log($($(data.elem).parents()[2]).attr('id'))
             // 新增加的id
             var new_id = $($(data.elem).parents()[2]).attr('id').split("-")[1]
-            console.log('id',new_id)
-            console.log('fff',$scope.jinzhishow)
-            for (var i =0,i_length=$scope.jinzhishow.length;i<i_length;i++){
+            //console.log('id',new_id)
+            //console.log('fff',$scope.jinzhishow)
+            var len = parseInt(0)
+            var name_list=[]
+            for(var io=0,io_length=$scope.frame_data.length;io<io_length;io++){
+                name_list.push($scope.frame_data[io]['name'])
+            }
+            //console.log('1',name_list,$scope.frame_data,data.value)
+            if (in_array(data.value,name_list)){
+                     layer.open({
+                      title:'添加提示',
+                      content: '该功能已存在！',
+                      scrollbar: false
+                    });
+                }else {
+                    console.log('buggggg')
+                    for (var i =0,i_length=$scope.jinzhishow.length;i<i_length;i++){
                 if($scope.jinzhishow[i]['name']==new_id){
                     var idss = i
-                    console.log(idss,'i')
+
 
 
                 }
             }
-            var yulan_id =  $scope.jinzhishow.length
-            var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
-            var new_datas={"name":data.value,"values":"00","title":Data_dict[data.value]}
-            console.log(new_datas)
+                    var yulan_id =  $scope.jinzhishow.length
+                    var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
+                    var new_datas={"name":data.value,"values":"00","title":Data_dict[data.value]};
+                    console.log(new_datas)
+                    if (idss==0){
+                        $scope.jinzhishow.splice(idss+parseInt(1)+$scope.zzz,0,new_datas)
+                        $scope.zzz+=1
+                    }else {
+                        $scope.jinzhishow.splice(idss+$scope.zzz,0,new_datas)
+                        $scope.zzz+=1
+                    }
+                    $scope.$digest()
+                    console.log('ppp',$scope.jinzhishow)
+                    if(data.value=='other'){
+                        var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
+                        $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
+                        //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
 
+                    }else{
+                        var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
+                        $("#new-frame-tmptitle-"+n_id).hide();
+                    }
+                }
 
-            if (idss==0){
-                $scope.jinzhishow.splice(idss+parseInt(1),0,new_datas)
-            }else {
-                $scope.jinzhishow.splice(idss,0,new_datas)
-            }
-
-
-
-
-            $scope.$digest()
-            console.log('ppp',$scope.jinzhishow)
-            if(data.value=='other'){
-                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
-                $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
-                //$("#new-frame-bs-"+n_id).show();  // 自定义标识符
-
-            }else{
-                var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
-                $("#new-frame-tmptitle-"+n_id).hide();
-            }
         });
 
     });

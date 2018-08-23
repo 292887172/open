@@ -13,7 +13,7 @@ angular.module('Product.protocol', ['ngRoute'])
         $scope.frame_length = [1, 2,3,4]; //站位用的长度范围
         $scope.Algorithm = [{"name": "sum", "title": "SUM和校验"}, {"title": "CRC16校验", "name": "crc16"}]; //站位用的长度范围
         $scope.protocol_zdy = false;
-        $scope.zzz = 1;
+        $scope.zzz = 0;
 
         $scope.protocol_type = 0;   // 协议类型， 0：下行， 1：上行
         $scope.protocol_endian = 1;   // 编码规则  1：大端编码，0：小端编码，默认大端编码
@@ -246,7 +246,7 @@ angular.module('Product.protocol', ['ngRoute'])
             var length = $scope.cur_frame_type_length+1;
             console.log('new add',data_name,length)
             var found_list = new EJS({url: config.url["frame"]}).render({"id": length, "data_name": data_name});
-            console.log('valid',found_list);
+            //console.log('valid',found_list);
             $($event.target).parents(".layui-form-item").append(found_list);
             $scope.cur_frame_type_length+=1;
 
