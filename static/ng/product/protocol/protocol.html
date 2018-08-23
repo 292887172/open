@@ -378,8 +378,38 @@
             'frame': '/static/tpl/frame_sel.ejs'
         }
     };
-    function Change(){
+    function Click(that) {
+        console.log('xx')
+        var title_id = $(that).attr('id').split("-")[3]
+        var length_name = "new-frame-length-"+title_id
+        var length_value = $("#"+length_name)[0].value
+        var tips_name = "new-frame-tips-"+title_id
+        layer.tips('请输入长度为'+length_value+'的16进制数', '#'+tips_name, {
+          tips: [1, '#0FA6D8'] //还可配置颜色
+        });
+    }
+    function UpperCase(that){
+        var appElement = document.querySelector('[ng-controller=ProtocolCtrl]');
+        //获取$scope变量
+        var $scope = angular.element(appElement).scope();
         console.log('gaibian')
+
+        console.log(that.value)
+        var title_id = $(that).attr('id').split("-")[3]
+        console.log(title_id)
+        var title_name = "new-frame-title-"+title_id
+        var length_name = "new-frame-length-"+title_id
+        var title_value = $("#"+title_name)[0].value
+        if (title_value!=''){
+            for (var xx=0,xx_length=$scope.jinzhishow.length;xx<xx_length;xx++){
+                if ($scope.jinzhishow[xx]['name']==title_value){
+                    $scope.jinzhishow[xx]['values']=that.value
+                }
+            }
+        }
+        $scope.$apply()
+        console.log($scope.jinzhishow)
+
     }
     layui.use('element', function(){
           var element = layui.element;
@@ -521,49 +551,32 @@
             // 新增加的id
             var new_id = $($(data.elem).parents()[2]).attr('id').split("-")[1]
             console.log('id',new_id)
-            console.log('fff',$scope.frame_data)
-            for (var i =0,i_length=$scope.frame_data_yulan.length;i<i_length;i++){
-                if($scope.frame_data_yulan[i]['name']==new_id){
+            console.log('fff',$scope.jinzhishow)
+            for (var i =0,i_length=$scope.jinzhishow.length;i<i_length;i++){
+                if($scope.jinzhishow[i]['name']==new_id){
                     var idss = i
                     console.log(idss,'i')
 
 
                 }
             }
-            var yulan_id =  $scope.frame_data_yulan.length
+            var yulan_id =  $scope.jinzhishow.length
             var Data_dict= {"serial":"流水号","category":"数据类型","length":"帧长","response_code":"响应码","footer":"帧尾"}
-            var new_datas={"id":yulan_id+1,"name":data.value,"value":"00","length":1,"title":Data_dict[data.value]}
+            var new_datas={"name":data.value,"values":"00","title":Data_dict[data.value]}
             console.log(new_datas)
 
-            if ($scope.zzz==1){
-                console.log('ca1')
-                $scope.frame_data_yulan=[]
 
-
-                for (var ids=0,id_length=$scope.frame_data.length;ids<id_length;ids++){
-                     $scope.frame_data_yulan.push($scope.frame_data[ids])
-                }
-                if (idss==0){
-                    $scope.frame_data_yulan.splice(idss+parseInt(1),0,new_datas)
-                }else {
-                    $scope.frame_data_yulan.splice(idss,0,new_datas)
-                }
-
-                $scope.zzz = 2
+            if (idss==0){
+                $scope.jinzhishow.splice(idss+parseInt(1),0,new_datas)
             }else {
-                console.log('xxx2')
-                if (idss==0){
-                    $scope.frame_data_yulan.splice(idss+parseInt(1),0,new_datas)
-                }else {
-                    $scope.frame_data_yulan.splice(idss,0,new_datas)
-                }
+                $scope.jinzhishow.splice(idss,0,new_datas)
             }
 
 
 
+
             $scope.$digest()
-            console.log('ddddd',$scope.frame_data_yulan)
-            console.log('ppp',$scope.frame_data)
+            console.log('ppp',$scope.jinzhishow)
             if(data.value=='other'){
                 var n_id = $(data.elem).attr('id').split("-")[3]; // 取到新增编号
                 $("#new-frame-tmptitle-"+n_id).show();  // 自定义名称
