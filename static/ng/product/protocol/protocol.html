@@ -360,12 +360,12 @@
         </p>
     </div>
     <p ng-repeat="t in jinzhishow" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
-            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' ">{[{t.values}]}</span>
-            <span  class="layui-badge layui-bg-gray "  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'">{[{t.values}]}</span>
-            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'">{[{t.values}]}
+            <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' " onmouseover="Func(this)">{[{t.values}]}</span>
+            <span  class="layui-badge layui-bg-gray "  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'" onmouseover="Func(this)">{[{t.values}]}</span>
+            <span  class="layui-badge layui-bg-gray"  style="width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'" onmouseover="Func(this)">{[{t.values}]}
 
             </span>
-            <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'">{[{t.values}]}</span>
+            <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'" onmouseover="Func(this)">{[{t.values}]}</span>
 
         </p>
 </div>
@@ -378,6 +378,13 @@
             'frame': '/static/tpl/frame_sel.ejs'
         }
     };
+    function Func(that) {
+        console.log(that)
+        console.log($(that).attr('title'))
+         layer.tips($(that).attr('title'), that, {
+          tips: [1, '#0FA6D8'] //还可配置颜色
+        });
+    }
     function in_array(stringToSearch, arrayToSearch) {
          for (s = 0; s < arrayToSearch.length; s++) {
           thisEntry = arrayToSearch[s].toString();
