@@ -539,12 +539,12 @@
 
                     {% endif %}
                 {% endfor %}
-            <li style="padding-left: 60px"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
+            <li style="padding-left: 60px;display: none"> <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/demo/{{ app.app_name }}">开发示例</a></li>
             {% if user.developer.developer_id %}
-                <span style="color:#ff6202;cursor:pointer;font-size: 16px" data-toggle="modal"
+                <span style="color:#ff6202;cursor:pointer;font-size: 16px;margin-left: 60px" data-toggle="modal"
                  data-target="#user_address">申请样品 </span>
             {% else %}
-                 <span style="color:#ff6202;cursor:pointer;font-size: 16px"
+                 <span style="color:#ff6202;cursor:pointer;font-size: 16px;margin-left: 60px"
                          onclick="javascript:void(dont_develop())">申请样品 </span>
 
             {% endif %}
