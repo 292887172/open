@@ -257,6 +257,7 @@ angular.module('Product.protocol', ['ngRoute'])
         };
 
         $scope.valueKeyUp=function ($event) {
+            console.log('----1')
             var n = $($event.target).attr('name').split("-")[1];
             console.log(n,'n', $($event.target).attr('name'), $($event.target).val());
             for (var j = 0; j < $scope.jinzhishow.length; j++) {

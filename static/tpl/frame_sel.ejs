@@ -26,7 +26,8 @@
         </select>
     </div>
     <div class="layui-input-inline">
-        <input type="text" name="title" placeholder="请输入传输值" class="layui-input" value="00" id="new-frame-value-<%= id%>"lay-filter="new_frame_input">
+        <p id="new-frame-tips-<%= id%>"></p>
+        <input type="text" name="title" placeholder="请输入传输值" class="layui-input" value="00" id="new-frame-value-<%= id%>"lay-filter="new_frame_input" onclick="Click(this)" onblur="UpperCase(this)">
     </div>
     <div class="del-btn">删除</div>
 </div>
