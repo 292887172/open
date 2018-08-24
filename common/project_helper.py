@@ -119,7 +119,7 @@ def get_personal_project(project_path: str,
     if return_type == 'zip':
         personal_name = project_name + '_' + key + '.zip'
     elif return_type == 'lua':
-        personal_name = 'main' + '_' + key + '.lua'
+        personal_name = 'main.lua'
     else:
         logging.error('传入返回类型错误，return_type=' + return_type)
         return False

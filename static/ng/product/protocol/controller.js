@@ -272,6 +272,11 @@ angular.module('Product.protocol', ['ngRoute'])
                         $scope.jinzhishow[j].values=$($event.target).val();
                     }
                 }
+            for (var jj = 0; jj < $scope.frame_data.length; jj++) {
+                if($scope.frame_data[jj]['name']==n){
+                    $scope.frame_data[jj].value=$($event.target).val();
+                }
+            }
 
         };
         $scope.SubmitData=function () {
@@ -336,7 +341,7 @@ angular.module('Product.protocol', ['ngRoute'])
                 }, 500)
 
             }
-            console.log($scope.frame_data);
+            console.log('data',$scope.frame_data);
             $http({
                 method: "POST",
                 url: "/product/protocol/" + '?' + "key=" + $scope.$parent.$parent.key,
@@ -499,8 +504,9 @@ function checkData() {
         }
         console.log('6',$scope.jinzhishow)
         for (var il=0,ileng = list_1.length;il<ileng;il=il+8){
+            console.log('lists',list_1.slice(il,il+8))
             var lens = (parseInt(list_1.slice(il,il+8),2)).toString(16);
-
+            console.log('data',lens)
             if (lens.length<2){
                 lens = "0"+lens
                 $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
@@ -518,7 +524,7 @@ function checkData() {
     }else {
         layer.open({
           title:'功能帧提示',
-          content: '功能帧拼接错误',
+          content: '数据域部分不是完整的字节(8的整数倍),请核对！',
           scrollbar: false
         });
     }

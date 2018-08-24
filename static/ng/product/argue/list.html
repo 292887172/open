@@ -288,8 +288,9 @@
     <div class="main-container ace-save-state box2" id="main-container" style="display: none">
     <div class="hl-help">
 
-    <span class="linkBlue">添加新功能</span>
-    <span class="linkBlue" style="float: right;cursor: pointer;margin-right: 25px" onclick="func2()">返回</span>
+
+    <button  style="width: 40px;height:30px;border: 1px solid black" onclick="func2()">返回</button>
+    <span class="linkBlue " style="position: relative;margin-left: 40%">添加新功能</span>
         <input id="device_type" type="hidden" value="{[{ app_device_type}]}">
         <input id="ididid" type="hidden" value="">
 
@@ -1337,6 +1338,8 @@
                         if(mxs!=null){
                             mxs[dataVal].trigger=trig;
                         }
+                        console.log('xxx')
+
                     }
                 },
                 "cancel" : {
@@ -1345,16 +1348,17 @@
                 }
             }
         })
+
     }
     function addToList() {
         var ofRow={};
         msg = '<tr>';
         name = $("#selectFunc").find("option:selected").text();
-        func = $("#selectFunc").val();
+        funcff = $("#selectFunc").val();
         min = $("#minDefault").val();
         max = $("#maxDefault").val();
         val = $("#defaultVal").val();
-        if(func && func!=0) {
+        if(funcff && funcff!=0) {
             msg += '<th>' + name + '</th>';
             msg += '<th>' + min + '</th>';
             msg += '<th>' + max + '</th>';
@@ -1365,9 +1369,9 @@
             ofRow['min']=min;
             ofRow['max']=max;
             ofRow['val']=val;
-            ofRow["func"]= func;
+            ofRow["func"]= funcff;
             trig.push((ofRow));
-            $("#selectFunc option[value=" + func + "]").remove();
+            $("#selectFunc option[value=" + funcff + "]").remove();
         }
     }
     function checkvalued(ths) {

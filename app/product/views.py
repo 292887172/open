@@ -869,7 +869,7 @@ def protocol(request):
             # pth = get_personal_project(project_path, device_key, d, p0, p1)
             pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main.lua'
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
 
@@ -878,7 +878,7 @@ def protocol(request):
             dc = json.loads(app.device_conf)
             data = []
             for i in dc:
-                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength']}
+                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength'],'mxs':i['mxs']}
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
         elif action == 'get_frame_data':
@@ -978,6 +978,7 @@ def protocol(request):
                         data_sql['start_check_number'] = i.get('value').get("check_start")
                         data_sql['end_check_number'] = i.get('value').get("check_end")
                     tmp_list_t.append(tmp_f)
+                print('list',tmp_list_t)
                 data_sql['frame_content'] = tmp_list_t
 
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
