@@ -235,7 +235,7 @@
 
           </div>
         </div>
-        <div class="layui-form-item" >
+        <div class="layui-form-item" style="display: none">
              <div class="layui-input-inline">
                 <select name="quiz-endian" id="endian-type" lay-filter="endian">
                     <option value="" >请选择编码规则</option>
@@ -333,7 +333,7 @@
     </div>
 
 
-    <label class="layui-form-label " style="margin-top: 20px;background-color:white;border:solid 1px green;width: 90px" >数据预览</label>
+    <label class="layui-form-label " style="margin-top: 20px;background-color:white;padding-left: 0px;width: 90px" >数据预览</label>
     <div class="yulandata" style="display: none">
         <p ng-repeat="t in frame_data_yulan" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
             <span  class="layui-badge layui-bg-gray {[{t.name}]}"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' ">{[{t.value}]}</span>
@@ -342,8 +342,41 @@
                 <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='8'" title="{[{f.title}]}">
                     00000000
                 </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='7'" title="{[{f.title}]}">
+                    0000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='6'" title="{[{f.title}]}">
+                    000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='5'" title="{[{f.title}]}">
+                    00000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 10px;padding-right: 0px;padding-left: 0px" ng-if="f.content==true && f.length=='3'" title="{[{f.title}]}">
+                    000
+                </span>
                 <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='16'" title="{[{f.title}]}">
                     0000000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='15'" title="{[{f.title}]}">
+                    000000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='14'" title="{[{f.title}]}">
+                    00000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='13'" title="{[{f.title}]}">
+                    0000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='12'" title="{[{f.title}]}">
+                    000000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='11'" title="{[{f.title}]}">
+                    00000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='10'" title="{[{f.title}]}">
+                    0000000000
+                </span>
+                <span class="layui-badge layui-bg-gray {[{f.name}]}" data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='9'" title="{[{f.title}]}">
+                    000000000
                 </span>
                 <span class="layui-badge layui-bg-gray{[{f.name}]} " data="{[{f.name}]}" ng-repeat="f in t.value" style="width:auto;margin-right: 0px;padding-right: 10px;padding-left: 0px" ng-if="f.content==true && f.length=='4'" title="{[{f.title}]}">
                     0000
@@ -362,7 +395,7 @@
     <p ng-repeat="t in jinzhishow" style="margin-left: 20px;display: inline-block;margin-right: 0px;padding-right: 0px;padding-left: 0px;margin-top: 20px" >
             <span  class="layui-badge layui-bg-gray"  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name=='head' " onmouseover="Func(this)">{[{t.values}]}</span>
             <span  class="layui-badge layui-bg-gray "  style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" data="{[{t.name}]}" ng-if="t.name!='data' && t.name!='check'&& t.name!='head'" onmouseover="Func(this)">{[{t.values}]}</span>
-            <span  class="layui-badge layui-bg-orange"  style="background-color: #F35019!important;width:auto;margin-right: 0px;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'" onmouseover="Func(this)">{[{t.values}]}
+            <span  class="layui-badge layui-bg-orange"  style="background-color: #fbd3c6!important;width:auto;margin-right: 0px;color: #666!important;padding-right: 0px;padding-left: 0px"  data="database" title="数据" ng-if="t.name=='data'" onmouseover="Func(this)">{[{t.values}]}
 
             </span>
             <span  class="layui-badge layui-bg-gray {[{t.name}]}" style="margin-right: 0px;padding-right: 0px;padding-left: 0px"  title="{[{t.title}]}" ng-if="t.name=='check'" onmouseover="Func(this)">{[{t.values}]}</span>
@@ -455,12 +488,14 @@
           //console.log(data.elem); //得到select原始DOM对象
           //console.log(data.value); //得到被选中的值
           //console.log(data.othis); //得到美化后的DOM对象
+            console.log('xxxxx')
             for (var j=0;j<$scope.frame_data.length;j++){
                 if($scope.frame_data[j].name=='check'){
                     $scope.frame_data[j].value[dataid]=data.value;
                     $scope.$apply()
                 }
             }
+            console.log('xxxxx',$scope.frame_data)
             if(data.value=='sum'){
                 $(".algorithm-tips").text("Tips:将需要校验的数据累加，取低8位的一个字节").show()
                 document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[4].selected=false;
@@ -475,7 +510,14 @@
                         $scope.$apply()
                     }
                 }
-
+                for (var ii =0,lengs = $scope.frame_data.length;ii<lengs;ii++){
+                    if ($scope.frame_data[ii]['name']=='check'){
+                        //console.log(document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value)
+                        $scope.frame_data[ii]['length']=1
+                        console.log('..',$scope.frame_data)
+                        $scope.$apply()
+                    }
+                }
                 layui.use('form', function () {
                     var form = layui.form;
                     form.render('select');
@@ -496,7 +538,14 @@
                         $scope.$apply()
                     }
                 }
-
+                for (var ii =0,lengs = $scope.frame_data.length;ii<lengs;ii++){
+                    if ($scope.frame_data[ii]['name']=='check'){
+                        //console.log(document.getElementsByName("quiz1-check")[0].getElementsByTagName("option")[2].value)
+                        $scope.frame_data[ii]['length']=2
+                        console.log('..',$scope.frame_data)
+                        $scope.$apply()
+                    }
+                }
                 layui.use('form', function () {
                     var form = layui.form;
                     form.render('select');

@@ -786,6 +786,9 @@
                     "callback":function () {
                         if(mxs!=null){
                             mxs[dataVal].trigger=trig;
+                            $("#grid-table").jqGrid({
+                                postData:{"name": "list"},
+                            }).trigger("reloadGrid")
                         }
                     }
                 },

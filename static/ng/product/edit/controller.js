@@ -193,12 +193,11 @@ angular.module('Product.edit', ['ngRoute'])
 					var p = tt.split("#/")[1];
 					console.log(p)
 					if (p == "argue"){
-
+						document.getElementsByClassName("main-container")[1].style.display='none'
+            			document.getElementsByClassName("main-container")[0].style.display=''
 						$("#grid-table").jqGrid({
                             postData:{"name": "list"},
                         }).trigger("reloadGrid")
-						document.getElementsByClassName("main-container")[1].style.display='none'
-            			document.getElementsByClassName("main-container")[0].style.display=''
 					}else{
 						location.replace("#/argue")
 					}
