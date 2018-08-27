@@ -289,8 +289,8 @@
     <div class="hl-help">
 
 
-    <button  style="width: 40px;height:30px;border: 1px solid black" onclick="func2()">返回</button>
-    <span class="linkBlue " style="position: relative;margin-left: 40%">添加新功能</span>
+    <button  class="btn-default btn" style="padding: 0px;width: 50px;height:30px;" onclick="func2()">返回</button>
+    <span class="linkBlue " style="position: relative;margin-left: 5%;color: black!important;">编辑</span>
         <input id="device_type" type="hidden" value="{[{ app_device_type}]}">
         <input id="ididid" type="hidden" value="">
 
@@ -481,7 +481,10 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
+                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                </label>
+
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup"></div>
@@ -493,7 +496,9 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
+                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup1"></div>
@@ -521,6 +526,16 @@
         </div>
     </div><!-- /.main-content -->
 </div>
+<div id="xxxx" style="display: none">
+    <p style="height: 10px;margin-top: 10px">UI界面工程中对应 该功能的控件 ID值，</p>
+    <p style="height: 10px;margin-top: 10px" >如：大风在UI界面上对应是ID 113，当点击113 控件时发送的是对应大风开和关数据。</p>
+    <img src="/static/image/helpeds.jpg" alt="">
+</div>
+<div id="xxxx1" style="display: none">
+    <p style="height: 10px;margin-top: 10px">配置对应功能数据的触发事件，</p>
+    <p style="height: 10px;margin-top: 10px" >如：大风在开状态（值为1）时，对应是功能中风和小风同时为关（值为0）的状态。</p>
+    <img src="/static/image/helpeds.jpg" alt="">
+</div>
 <div style="display: none"><input type="text" id="vid"></div>
     <!-- page specific plugin scripts -->
     <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
@@ -531,8 +546,31 @@
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
-
-
+        // ui示例弹窗
+        function Show() {
+            layer.tab({
+              area:['600px','360px'],
+              title:false,
+              type:1,
+              shade:false,
+              content:$('#xxxx'),
+              cancel: function(){
+                 document.getElementById("xxxx").style.display='none';
+              }
+            });
+        }
+        function Show1() {
+            layer.tab({
+              area:['600px','360px'],
+              title:false,
+              type:1,
+              shade:false,
+              content:$('#xxxx1'),
+              cancel: function(){
+                 document.getElementById("xxxx1").style.display='none';
+              }
+            });
+        }
         function setCookie(name, value) {
             var Days = 30;
             var exp = new Date();
@@ -666,6 +704,7 @@
 
                                 group += '<thead ><tr style="height: 30px"><th >传送数据 </th><th >数据说明</th></tr></thead><tbody style="word-break: break-all;">'
                                 trans_data = rowObject.mxs;
+                                console.log(trans_data,'data')
                                 for (var i = 0; i < trans_data.length; i++) {
                                     group += '<tr><td >' + trans_data[i].data + '</td><td >' + trans_data[i].desc + '</td></tr>'
                                 }
@@ -1094,20 +1133,20 @@
                 if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && d.mxs[i].data<=100) {
                     flag = true;
                 }
-                //var sss = d.mxs[i].control
+                var sss = d.mxs[i].control
 
-                //try {
-                //     if (sss.indexOf("\"")>0){
+                try {
+                     if (sss.indexOf("\"")>0){
 
-                //        sss_list.push(sss)
-                 //   }else {
-                 //       sss = sss
-                 //       sss_list.push(sss)
-                 //   }
-                //}catch (e) {
-                 //   console.log(e)
-                 //   sss_list.push(sss)
-                //}
+                        sss_list.push(sss)
+                    }else {
+                        sss = sss
+                        sss_list.push(sss)
+                    }
+                }catch (e) {
+                    console.log(e)
+                    sss_list.push(sss)
+                }
 
 
 
@@ -1119,12 +1158,13 @@
                 group += '	<div class="col-sm-2 col-xs-2">';
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-3 col-xs-2">';
-                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].control.replace(/\"/g,"'") + '"/>';
+                group += '	<div class="col-sm-3 col-xs-2" style="width:174px">';
+                group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value=""/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
+                group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+                group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -1141,9 +1181,9 @@
                 }
 
             }
-            //for (var is=0,i_length = sss_list.length;is<i_length;is++ ){
-             //   document.getElementsByClassName("values")[is].value=sss_list[is]
-            //}
+            for (var is=0,i_length = sss_list.length;is<i_length;is++ ){
+                document.getElementsByClassName("values")[is].value=sss_list[is]
+            }
             // 初始化数据
             var contorl_data = document.getElementsByName("paramUI");
             for (var i =0,contorl_length=contorl_data.length;i<contorl_length;i++){
@@ -1204,14 +1244,17 @@
         group+='	<div class="col-sm-2 col-xs-3">';
         group+='		<input type="text" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
-        group+='	<div class="col-sm-2 col-xs-3">';
-        group+='		<input type="text" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
-        group+='	</div>';
-        group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-        group+='		<a href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 30px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
-        group+='	</div>';
-        group+='</div>';
+        group += '	<div class="col-sm-3 col-xs-2" style="width:174px">';
+        group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].control.replace(/\"/g,"'") + '"/>';
+        group += '	</div>';
+        group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
+        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+        group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '	</div>';
+
+
+
         $("#addGroup1").before(group);
         $('[data-rel=popover]').popover({container:'body'});
 

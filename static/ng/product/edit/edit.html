@@ -287,7 +287,9 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID
+                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup"></div>
@@ -298,7 +300,9 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID
+                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
 
@@ -331,12 +335,44 @@
         </div>
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
-
+<div id="xxxx" style="display: none">
+    <p style="height: 10px;margin-top: 10px">UI界面工程中对应 该功能的控件 ID值，</p>
+    <p style="height: 10px;margin-top: 10px" >如：大风在UI界面上对应是ID 113，当点击113 控件时发送的是对应大风开和关数据。</p>
+    <img src="/static/image/helpeds.jpg" alt="">
+</div>
+<div id="xxxx1" style="display: none">
+    <p style="height: 10px;margin-top: 10px">配置对应功能数据的触发事件，</p>
+    <p style="height: 10px;margin-top: 10px" >如：大风在开状态（值为1）时，对应是功能中风和小风同时为关（值为0）的状态。</p>
+    <img src="/static/image/helpeds.jpg" alt="">
+</div>
 
 
 <script type="text/javascript">
-
-
+    // ui示例弹窗
+    function Show() {
+            layer.tab({
+              area:['600px','360px'],
+              title:false,
+              type:1,
+              shade:false,
+              content:$('#xxxx'),
+              cancel: function(){
+                 document.getElementById("xxxx").style.display='none';
+              }
+            });
+        }
+    function Show1() {
+            layer.tab({
+              area:['600px','360px'],
+              title:false,
+              type:1,
+              shade:false,
+              content:$('#xxxx1'),
+              cancel: function(){
+                 document.getElementById("xxxx1").style.display='none';
+              }
+            });
+        }
     var url=location.href;
     var num=url.indexOf('?id');
     var str=url.substring(num+1);
@@ -359,11 +395,12 @@
         group1+='	<div class="col-sm-1 col-xs-2">';
         group1+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group1+='	</div>';
-        group1+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-        group1+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group1+= '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
-        group1+='	</div>';
-        group1+='</div>';
+        group1 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
+        group1 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group1 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+        group1 += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group1 += '	</div>';
+
         $("#addGroup1").before(group1);
         mxs.push({"data":'0',"desc":'关'});
         var group2='';
@@ -378,11 +415,11 @@
         group2+='	<div class="col-sm-1 col-xs-2">';
         group2+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group2+='	</div>';
-        group2+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-        group2+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group2 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
-        group2+='	</div>';
-        group2+='</div>';
+        group2 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
+        group2 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group2 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
+        group2 += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group2 += '	</div>';
         $("#addGroup1").before(group2);
         mxs.push({"data":'1',"desc":'开'});
         $('input[type=radio][name=paramType]').change(function() {
