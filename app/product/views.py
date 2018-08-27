@@ -878,7 +878,7 @@ def protocol(request):
             dc = json.loads(app.device_conf)
             data = []
             for i in dc:
-                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength'],'mxs':i['mxs']}
+                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength'], 'mxs': i['mxs']}
                 data.append(tmp)
             return HttpResponse(json.dumps(data))
         elif action == 'get_frame_data':
@@ -891,7 +891,7 @@ def protocol(request):
                         p = DefaultProtocol().DEFAULT_DATA_ZDY
                         data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     else:
-                        #p = DefaultProtocol().DEFAULT_DATA
+                        # p = DefaultProtocol().DEFAULT_DATA
                         p = DefaultProtocol().DEFAULT_DATA_ZDY
                         data = {"code": 2, "data": p, "protocol_type": protocol_type}
                     return HttpResponse(json.dumps(data))
@@ -978,7 +978,7 @@ def protocol(request):
                         data_sql['start_check_number'] = i.get('value').get("check_start")
                         data_sql['end_check_number'] = i.get('value').get("check_end")
                     tmp_list_t.append(tmp_f)
-                print('list',tmp_list_t)
+                print('list', tmp_list_t)
                 data_sql['frame_content'] = tmp_list_t
 
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)
@@ -1083,10 +1083,25 @@ def portal(request):
 @csrf_exempt
 def app(request):
     ids = request.GET.get('id', '')
+    num = request.GET.get('num', '')
     m = AppVersion.objects.filter(app_id=ids).order_by("-create_date")
-    if m:
+    if m and num == '1':
         app_list = []
-        for i in m:
+        mm = m.filter(upload_type=int(1))
+        for i in mm:
+            app_dict = {}
+            app_dict['url'] = i.download_url
+            app_dict['version'] = i.version_name
+            date = i.create_date
+            tis = date.strftime("%Y-%m-%d %H:%M:%S")
+            app_dict['time'] = tis
+            app_dict['remarks'] = i.remarks
+            app_list.append(app_dict)
+        return HttpResponse(json.dumps(app_list))
+    elif m and num == '2':
+        app_list = []
+        mm = m.filter(upload_type=int(2))
+        for i in mm:
             app_dict = {}
             app_dict['url'] = i.download_url
             app_dict['version'] = i.version_name
@@ -1511,6 +1526,36 @@ def upload_file(request):
                 AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
                                           version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
                                           update_date=datetime.datetime.utcnow(), remarks=appversion_remark)
+                Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender=cook_ies, message_target=cook_ies,
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+                return HttpResponse(
+                    json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
+        elif action == 'ui_upload_1':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            mobj = App.objects.filter(app_id=int(app_ids))
+            print(mobj)
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version)
+
+            if t:
+                return HttpResponse(json.dumps({"code": 2}))
+            else:
+
+                url_list = rr['data']
+                AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
+                                          version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
+                                          update_date=datetime.datetime.utcnow(), remarks=appversion_remark,
+                                          upload_type=int(2))
                 Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
                                        message_handler_type=int(5),
                                        device_key=key, message_sender=cook_ies, message_target=cook_ies,

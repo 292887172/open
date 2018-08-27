@@ -12,14 +12,37 @@ angular.module('Product.app', ['ngRoute'])
      .controller('AppCtrl', ['$scope', "$http", function ($scope, $http) {
 
          $scope.nav.selected("appMenu");
+         var x = 0;
          var xx = 0;
          $scope.sss = 0;
          console.log('s')
+         if (x == 0) {
+            console.log(x)
+            $http({
+                method: "GET",
+                url: "/product/app/"+ '?' + "num=2&id=" + $scope.$parent.app_id,
+
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function (response) {
+                // 获取前端接收到的数据
+                console.log(response.length)
+                if (response.length>0){
+                     $scope.responses = response;
+                    $scope.sssed = 1;
+                }else {
+                    console.log($scope.responses)
+                }
+
+
+            })
+
+
+        }
          if (xx == 0) {
             console.log(xx)
             $http({
                 method: "GET",
-                url: "/product/app/"+ '?' + "id=" + $scope.$parent.app_id,
+                url: "/product/app/"+ '?' + "num=1&id=" + $scope.$parent.app_id,
 
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
