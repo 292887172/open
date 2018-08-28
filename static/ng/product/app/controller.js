@@ -78,5 +78,29 @@ angular.module('Product.app', ['ngRoute'])
                 console.log("请求失败！");
                 location.href="https://oven.53iq.com/static/html/move.html?id="+$scope.app_appid+".html";
              });
+         };
+         $scope.Deletes = function (a,b,c) {
+             console.log(a,b,$(c.target).parent().parent())
+             console.log(location.href.split("=")[1].split("#")[0])
+             var ids = location.href.split("=")[1].split("#")[0];
+             if (a=='1'){
+                 $http({
+                     method: "POST",
+                     url: "/product/app/"+ '?' + "num=1&version=" +b+"&action=del&id="+ids,
+
+                 }).success(function (responses) {
+                    $(c.target).parent().parent().remove()
+
+                 })
+             }else {
+                 $http({
+                     method: "POST",
+                     url: "/product/app/"+ '?' + "num=2&version=" +b+"&action=del&id="+ids,
+                 }).success(function (responsess) {
+
+                    $(c.target).parent().parent().remove()
+
+                 })
+             }
          }
      }]);

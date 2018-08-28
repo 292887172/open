@@ -408,7 +408,7 @@
                         <p style="font-size: 16px;float: left">屏端工程包历史版本</p>
                         <p ng-if="sssed==1" style="display: inline-block;margin-left:80px;font-size: 14px;"></p>
                     </div>
-                    <div class="col-md-12 ui-item-version" ng-repeat="x in responses">
+                    <div class="col-md-12 ui-item-version0" ng-repeat="x in responses">
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
@@ -421,18 +421,14 @@
                             {[{x.remarks}]}
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-3">
-                            <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                            <p style="display: inline-block;margin-left: 10px">{[{x.time}]}</p>
+                            <img src="/static/image/product/delete.png" alt="" style="width: 16px;height: 16px" ng-click="Deletes(2,x.version,$event)">
+                            
                         </div>
-
                     </div>
 
                 </div>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
                 <br>
                 <br>
                 <br>
@@ -448,7 +444,7 @@
                                 href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
                                 style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
-                    <div class="col-md-12 ui-item-version" ng-repeat="x in response">
+                    <div class="col-md-12 ui-item-version1" ng-repeat="x in response">
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
@@ -461,7 +457,8 @@
                             {[{x.remarks}]}
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-3">
-                            <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                            <p style="display: inline-block;margin-left: 10px">{[{x.time}]}</p>
+                            <img src="/static/image/product/delete.png" alt="" style="width: 16px;height: 16px" ng-click="Deletes(1,x.version,$event)">
                         </div>
 
                     </div>
