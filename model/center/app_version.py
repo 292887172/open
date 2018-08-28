@@ -36,6 +36,8 @@ class AppVersion(models.Model):
     av_type = models.IntegerField(max_length=3, default=0, db_column='ebf_av_type')
     # 最小版本
     min_version = models.IntegerField(max_length=11, default=0, db_column='ebf_min_version')
+    # 上传类型  固件为1 工程包为2
+    upload_type = models.IntegerField(max_length=2,default=1,db_column='ebf_upload_type')
     # 更新时间，auto_now_add,为添加时的时间，更新对象时不会有变动,auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间
     update_date = models.DateTimeField(auto_now=True, default=datetime.datetime.utcnow, db_column='ebf_av_updatedate')
     # 创建时间
