@@ -316,6 +316,15 @@ def delete_group_info(user_account, team_info):
 
     try:
         ac = Account.objects.get(account_id=user_account)
+        # 根据group_id 来删除
+        group = Group.objects.get(create_user=user_account,relate_project=int(0))
+        if group:
+            group_user_list = UserGroup.objects.filter(group__group_id=group.group_id)
+            team_infos = json.loads(team_info)
+            for i in group_user_list:
+                if team_infos[0]['email'] == i.user_account:
+                    group_user_list.filter(user_account=i.user_account).delete()
+
         if ac:
             m = json.loads(ac.relate_account)
             t = json.loads(team_info)
