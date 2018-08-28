@@ -482,7 +482,7 @@
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
-                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
 
                                 <div id="checkArgue" style="color:red;display:none"></div>
@@ -497,7 +497,7 @@
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
                                 <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
-                                    <p style="margin-left: 80px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show()">示例帮助</p>
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
@@ -527,13 +527,15 @@
     </div><!-- /.main-content -->
 </div>
 <div id="xxxx" style="display: none">
-    <p style="height: 10px;margin-top: 10px">UI界面工程中对应 该功能的控件 ID值，</p>
-    <p style="height: 10px;margin-top: 10px" >如：大风在UI界面上对应是ID 113，当点击113 控件时发送的是对应大风开和关数据。</p>
+    <p style="height: 10px;margin-top: 10px">UI界面工程中对应 该功能的控件ID值，</p>
+    <p style="height: 10px;margin-top: 10px" >如：大风在UI界面上对应的ID是113，当点击113控件时发送的是对应大风开和关数据。</p>
+    <p style="height: 10px"></p>
     <img src="/static/image/helpeds.jpg" alt="">
 </div>
 <div id="xxxx1" style="display: none">
     <p style="height: 10px;margin-top: 10px">配置对应功能数据的触发事件，</p>
     <p style="height: 10px;margin-top: 10px" >如：大风在开状态（值为1）时，对应是功能中风和小风同时为关（值为0）的状态。</p>
+    <p style="height: 10px"></p>
     <img src="/static/image/helpeds.jpg" alt="">
 </div>
 <div style="display: none"><input type="text" id="vid"></div>
@@ -549,7 +551,7 @@
         // ui示例弹窗
         function Show() {
             layer.tab({
-              area:['600px','360px'],
+              area:['600px','370px'],
               title:false,
               type:1,
               shade:false,
@@ -561,7 +563,7 @@
         }
         function Show1() {
             layer.tab({
-              area:['600px','360px'],
+              area:['600px','370px'],
               title:false,
               type:1,
               shade:false,
@@ -1164,7 +1166,7 @@
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
                 group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-                group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
+                group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -1245,12 +1247,12 @@
         group+='		<input type="text" name="paramDesc1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group += '	<div class="col-sm-3 col-xs-2" style="width:174px">';
-        group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].control.replace(/\"/g,"'") + '"/>';
+        group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI1" placeholder="" class="col-xs-12 col-sm-12" value=""/>';
         group += '	</div>';
         group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
         group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
         group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-        group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #e0e0e0;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
         group += '	</div>';
 
 

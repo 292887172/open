@@ -26,6 +26,7 @@ angular.module('Product.edit', ['ngRoute'])
 			for(var i=0;i<paramDatas.length;i++){
 				var data=$.trim(paramDatas[i].value);
 				var desc=$.trim(paramDescs[i].value);
+				console.log('xx',data,desc)
 				var control=$.trim(paramUI[i].value);
 				var role=/^[0-9]*$/;
 				if(desc=="" || data=="" ){
