@@ -80,8 +80,6 @@ angular.module('Product.app', ['ngRoute'])
              });
          };
          $scope.Deletes = function (a,b,c) {
-             console.log(a,b,$(c.target).parent().parent())
-             console.log(location.href.split("=")[1].split("#")[0])
              var ids = location.href.split("=")[1].split("#")[0];
              if (a=='1'){
                  $http({

@@ -1082,7 +1082,7 @@ def portal(request):
 
 @csrf_exempt
 def app(request):
-    if request.method=='GET':
+    if request.method == 'GET':
         ids = request.GET.get('id', '')
         num = request.GET.get('num', '')
         m = AppVersion.objects.filter(app_id=ids).order_by("-create_date")
@@ -1117,14 +1117,14 @@ def app(request):
     if request.method == "POST":
         ids = request.GET.get('id', '')
         num = request.GET.get('num', '')
-        action = request.GET.get("action",'')
+        action = request.GET.get("action", '')
         version = request.GET.get('version', '')
-        print(action,version,num,ids,'xx')
-        if action=='del':
-            print(action)
-            AppVersion.objects.filter(app_id=ids,upload_type=int(num),version_code=version).delete()
+        if action == 'del':
+            AppVersion.objects.filter(app_id=ids, upload_type=int(num), version_code=version).delete()
             return HttpResponse(json.dumps({"code": 0}))
         return HttpResponse(json.dumps({"code": 1}))
+
+
 @csrf_exempt
 def schedule(request):
     if request.method == "GET":
@@ -1526,7 +1526,8 @@ def upload_file(request):
                 return HttpResponse(json.dumps({"code": 1}))
             mobj = App.objects.filter(app_id=int(app_ids))
             print(mobj)
-            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,upload_type=int(1))
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,
+                                          upload_type=int(1))
 
             if t:
                 return HttpResponse(json.dumps({"code": 2}))
@@ -1555,7 +1556,8 @@ def upload_file(request):
                 return HttpResponse(json.dumps({"code": 1}))
             mobj = App.objects.filter(app_id=int(app_ids))
             print(mobj)
-            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,upload_type=int(2))
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,
+                                          upload_type=int(2))
 
             if t:
                 return HttpResponse(json.dumps({"code": 2}))
