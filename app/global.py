@@ -15,7 +15,7 @@ def set_version(request):
         is_debug = "true"
     else:
         is_debug = "false"
-    return {'version_code': "563846523449", "is_debug": is_debug}
+    return {'version_code': "563846523450", "is_debug": is_debug}
 
 
 if __name__ == "__main__":

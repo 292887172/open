@@ -27,23 +27,35 @@
 
 <div class="box2 relative">
     <div class="hl-help">
-
-        <a href="http://doc.53iq.com/#/debug_helper" target="_blank"><span class="linkBlue" style="cursor:pointer;font-size: 16px;margin-left: 5px;color: black">调试帮助</span></a>
-        <a href="/static/sdk/ComMonitor.exe" target="_blank"><span class="linkBlue" style="display: inline-block;margin-left: 100px;cursor:pointer;font-size: 16px;color: black">串口调试工具</span></a>
+        <span style="cursor:pointer;font-size: 16px;margin-left: 5px;color: black">工具包生成</span>
+        <!--<a href="http://doc.53iq.com/#/debug_helper" target="_blank"><span class="linkBlue" style="cursor:pointer;font-size: 16px;margin-left: 5px;color: black">调试帮助</span></a>
+        <a href="/static/sdk/ComMonitor.exe" target="_blank"><span class="linkBlue" style="display: inline-block;margin-left: 100px;cursor:pointer;font-size: 16px;color: black">串口调试工具</span></a>-->
     </div>
 	<div class="mt20">
-        <button class="btn btn-primary btn-product-item" ng-click="get_product()">生成工程包</button>
-        <button class="btn btn-primary btn-product-item" ng-click="get_products()">生成脚本文件</button>
-
-        <a style="display: none" target="_blank" class="item-download" href="">下载标准工程文件</a>
-        <span class="item-tips" style="color: #f35019;display: none">下载失败，请重试</span>
-        <div class="progress" style="display: none">
-          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-            <span class="sr-only">{[{ process }]}</span>
-          </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary btn-product-item" ng-click="get_product()">生成工程包</button>
+            <p style="margin-top: 5px;color: #bfbfbf">包含标准UI界面</p>
         </div>
-        <div class="boxInfo">
-            <h3 class="tit5">设备管理表</h3>
+        <div class="col-md-10" >
+             <button class="btn btn-primary btn-product-item" ng-click="get_products()" style="margin-left: 200px">生成脚本文件</button>
+             <p style="margin-left: 27%;margin-top: 5px;color: #bfbfbf">仅生成main.lua脚本文件</p>
+        </div>
+        <div style="margin-top: 80px">
+
+            <span class="item-tips" style="color: #f35019;display: none">下载失败，请重试</span>
+            <div class="progress" style="display: none;margin-top: 30px">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                <span class="sr-only">{[{ process }]}</span>
+              </div>
+
+            </div>
+            <a style="display: none;top:30px;margin-left: 5px" target="_blank" class="item-download" href="">下载标准工程文件</a>
+        </div>
+
+        <div class="boxInfo" style="border-top: 1px solid #ccc;margin-top: 30px;padding-top: 20px">
+            <span class="linkBlue" style="cursor:pointer;font-size: 16px;color: black">调试(云端与屏端通信)</span>
+            <a href="/static/sdk/ComMonitor.exe" target="_blank"><span class="linkBlue" style="display: inline-block;margin-left: 23%;cursor:pointer;font-size: 16px;">调试帮助</span></a>
+            <h3 class="tit5" style="margin-top: 10px">设备管理表</h3>
 
                 <div class="loading" style="text-align: center;">
                     <p style="font-size: 16px"><i class="fa fa-spin fa-spinner"></i> 正在做加载中，请稍后...</p>
@@ -55,6 +67,11 @@
                 </div>
                  <div class="row" id="barcon">
                 </div>
+        </div>
+        <div class="boxInfo" style="border-top: 1px solid #ccc;padding-top: 20px">
+             <span class="linkBlue" style="cursor:pointer;font-size: 16px;color: black">调试(屏端与MCU通信)</span>
+             <a href="/static/sdk/ComMonitor.exe" target="_blank"><span class="linkBlue" style="cursor:pointer;font-size: 16px;margin-left: 70px;">串口调试工具下载</span></a>
+             <a href="http://doc.53iq.com/#/debug_helper?id=%E8%BD%AF%E4%BB%B6" target="_blank"><span class="linkBlue" style="display: inline-block;margin-left: 74px;cursor:pointer;font-size: 16px;">串口调试工具使用</span></a>
         </div>
     </div>
 </div>
@@ -88,7 +105,7 @@
         if(state>=1){
             $("td a").css({'pointer-events':'none'});
         }
-        goPage(1,20);
+
         console.log(document.getElementById('current-page'));
         // 分页显示
     }

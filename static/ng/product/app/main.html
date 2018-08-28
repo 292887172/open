@@ -101,6 +101,20 @@
         color: #004974;
         text-decoration: none;
     }
+    .files input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .files:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
 
     .btn {
         width: initial;
@@ -204,6 +218,19 @@
     }
 
     .file {
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+    .files {
         position: relative;
         display: inline-block;
         background: #D0EEFF;
@@ -328,8 +355,8 @@
                 </div>
                 <div class="modal-body">
 
-                    <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
-                    <input class="file" id="file" name="file" style="display: none" type="file" accept=".pkg"/>
+                    <label for="files" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
+                    <input class="files" id="files" name="files" style="display: none" type="file" >
                     <div style="overflow: hidden;">
                         <span>版本：</span><input type="text" id="ui_info1" class="xxx" placeholder="请输入版本号">
                     </div>
@@ -381,26 +408,30 @@
                         <p style="font-size: 16px;float: left">屏端工程包历史版本</p>
                         <p ng-if="sssed==1" style="display: inline-block;margin-left:80px;font-size: 14px;"></p>
                     </div>
-                    <div class="col-md-12 ui-item-version" ng-repeat="x in responses">
+                    <div class="col-md-12 ui-item-version0" ng-repeat="x in responses">
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
 
                         <div style="padding-left: 0px" class="col-md-3">
-                            <a href="/product/download?url={[{x.url}]}&name=DCIOT.pkg" target="_blank">下载{[{app_device_name}]}屏端固件<i
+                            <a href="url={[{x.url}]}" target="_blank">下载{[{app_device_name}]}屏端工程包<i
                                     class="ace-icon fa fa-arrow-circle-o-down"></i></a>
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-4 col-md-offset-0">
                             {[{x.remarks}]}
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-3">
-                            <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                            <p style="display: inline-block;margin-left: 10px">{[{x.time}]}</p>
+                            <img src="/static/image/product/delete.png" alt="" style="width: 16px;height: 16px" ng-click="Deletes(2,x.version,$event)">
+                            
                         </div>
-
                     </div>
 
                 </div>
 
+                <br>
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>
@@ -413,7 +444,7 @@
                                 href="http://doc.53iq.com/#/env?id=%E5%9B%BA%E4%BB%B6%E7%83%A7%E5%BD%95" target="_blank"
                                 style="color: #b4b2b1;cursor: pointer">如何屏端固件烧录到厨电屏上体验？</a></p>
                     </div>
-                    <div class="col-md-12 ui-item-version" ng-repeat="x in response">
+                    <div class="col-md-12 ui-item-version1" ng-repeat="x in response">
                         <div style="margin-top: 4px;width: 50px" class="col-md-2 col-md-offset-0">
                             {[{x.version}]}
                         </div>
@@ -426,7 +457,8 @@
                             {[{x.remarks}]}
                         </div>
                         <div style="height: 30px;margin-top: 4px" class="col-md-3">
-                            <p style="display: inline-block;margin-left: 50px">{[{x.time}]}</p>
+                            <p style="display: inline-block;margin-left: 10px">{[{x.time}]}</p>
+                            <img src="/static/image/product/delete.png" alt="" style="width: 16px;height: 16px" ng-click="Deletes(1,x.version,$event)">
                         </div>
 
                     </div>
@@ -509,7 +541,7 @@
         }else {
             console.log('xx')
             var formDatas = new FormData();
-            formDatas.append("file", document.getElementById("file").files[0]);
+            formDatas.append("file", document.getElementById("files").files[0]);
             formDatas.append("name", 'upload');
             formDatas.append("key", document.getElementById("keys").value);
             formDatas.append("app_version", document.getElementById("ui_info1").value);
@@ -518,7 +550,7 @@
             formDatas.append("app_id", app_id1);
             formDatas.append("action", 'ui_upload_1');
             console.log(formDatas,'dddd')
-            if (document.getElementById("file").files[0]) {
+            if (document.getElementById("files").files[0]) {
             $.ajax({
                 url: '/product/upload_file',
                 type: "POST",
@@ -574,6 +606,14 @@
     var upto_file = $("#file");
     var upto_text = $(".modal-name");
     upto_file.on('change', function (e) {
+        let upto_name = e.currentTarget.files[0].name;
+        upto_text.text(upto_name);
+        upto_text.attr('title', upto_name);
+        $(".my_container").slideDown();
+    })
+    var upto_files = $("#files");
+    var upto_text = $(".modal-name");
+    upto_files.on('change', function (e) {
         let upto_name = e.currentTarget.files[0].name;
         upto_text.text(upto_name);
         upto_text.attr('title', upto_name);
