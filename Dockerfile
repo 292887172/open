@@ -3,6 +3,7 @@ FROM python:3.4.1
 COPY requirements.txt /tmp/requirements.txt
 
 RUN apt-get update \
+    && apt-get install -y libfreetype6-dev \
     && apt-get autoremove -y \
     && apt-get purge -y --auto-remove \
     && apt-get clean \
