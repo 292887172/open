@@ -6,7 +6,50 @@
     首页
 {% endblock %}
 {% block style %}
+    <link rel="stylesheet" href="{% static 'css/product/video-js.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}"/>
     <style>
+         .m {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 204px;
+            z-index: 101;
+        }
+
+        .my-video-dimensions {
+            width: 680px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .close-video {
+            position: relative;
+            right: -324px;
+            line-height: 26px;
+            width: 33px;
+            height: 26px;
+            top: 26px;
+            color: #fff;
+            margin: auto;
+            z-index: 102;
+            cursor: pointer;
+            background-color: gray;
+        }
+
+        .left-dv4 {
+            width: 125px;
+            transform: skewX(-1deg);
+            margin-top: 0px;
+            height: 127px;
+            margin-right: 2px;
+        }
+
+        .left-dv4:hover {
+            opacity: 0.85;
+            cursor: pointer;
+        }
+
         .wrapper {
             width: 1200px;
             padding: 0;
@@ -150,11 +193,17 @@
 
                         </a>
                     {% else %}
-                        <a href="/center/login" class="btn btn-s-lg btn-success">
+                        <a href="/center/login" class="btn btn-s-lg btn-success" style="margin-left: 35%">
                             <span class="show-control">立即智能化</span>
                         </a>
+                        <div class="left-dv4" id="WiFi-oven-demo" style="margin-right: 35%;width:auto;height: 47px;float: right">
+                            <img src="/static/image/product/ico-video.png" style="width: 32px;height: 32px">
+                            <p style="display: inline-block;text-align: center;margin-left: 5px;margin-top: 20px;color: #fff4eb;font-weight: normal">WiFi屏厨电开发</p>
+                        </div>
                     {% endif %}
                 </div>
+
+                <div class="markLayout"></div>
                 <div class="n-step">
                     <ul class="cl">
                         <li class="p-list2" style="">
@@ -222,6 +271,24 @@
                     </li>
                 </ul>
             </div>
+            <div class="m" style="display: none">
+        <div class="close-video"><i class="fa fa-times"></i></div>
+        <video id="my-video" class="video-js" controls preload="auto" width="680" height="400"
+               poster="m.png" data-setup="{}">
+            <source src="/static/sdk/home.mp4" type="video/mp4">
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+        <script src="/static/js/product/video.min.js"></script>
+        <script type="text/javascript">
+            var myPlayer = videojs('my-video');
+            videojs("my-video").ready(function () {
+                myPlayer = this;
+            });
+        </script>
+    </div>
         </div>
 
     </div>
@@ -237,5 +304,6 @@
 {% endblock %}
 
 {% block script %}
-
+     <script src="/static/js/product/bootbox.js"></script>
+     <script src="/static/js/product/fast_create.js"></script>
 {% endblock %}
