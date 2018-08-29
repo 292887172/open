@@ -162,7 +162,7 @@
     }
     .off-btn{
         position: absolute;
-        right: 65px;
+        right: 116px;
         bottom: -55px;
         z-index: 1;
     }
@@ -170,9 +170,25 @@
         background-color: #327AB7;
         position: absolute;
         top: 6px;
-        right: 36px;
+        right: 80px;
         height: 27px;
         line-height: 20px;
+    }
+    .del_1{
+        background-color: #327AB7;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        height: 27px;
+        line-height: 20px;
+        padding: 4px 6px;
+
+        color:#fff;
+        font-weight: 500;
+        text-decoration:none;
+        cursor:pointer;
+        border-radius: 4px;
+        font-size: 14px;
     }
     .add_btn{
         margin-left: 5px;
@@ -664,7 +680,7 @@
         }
         //select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/READMEx' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
 
-        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span> ","gridpager");
+        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <span onclick='DelAll()' class='del_1'>批量删除</span>","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({
@@ -747,7 +763,7 @@
                 altRows: true,
                 viewrecords : true,
                 pager:"#"+page,
-                multiselect: false,
+                multiselect: true,
                 multiboxonly: true,
                 caption: name,
                 gridComplete: function () {
@@ -759,11 +775,13 @@
                     });
                 },
                 loadComplete: function (rows) {
+                    // 获取原来的checked
+                    var ids=$("#grid-table").find(':checkbox:checked').map(function(){return $(this).closest('tr').attr('id')}).get().join();
+                    length_checked = ids.length
                     $('[data-rel=popover]').popover({container: 'body'});
                     document.getElementById(table).style.width = '938px';
                     tt = document.getElementsByClassName('ui-jqgrid-htable ui-common-table')[0];
                     tt.style = 'border-left:1px solid #e1e1e1;width:940px;border-right:1px solid #e1e1e1;';
-
                     if (rows.rows.length == 0) {
                         $("#"+page).css("display","none");
                         if(table=="grid-table-new"){
@@ -799,6 +817,7 @@
             $("td a").parent().css({'cursor': 'not-allowed'});
             $("td a").css({'pointer-events':'none'});
         }
+
         function SendPostData(data, types) {
             $.ajax({
                 url:location.href,
@@ -909,6 +928,42 @@
                 $('.del-info').popover('hide');
             }
         });
+        // jqgrid批量删除
+        function DelAll() {
+            var ids=$("#grid-table").find(':checkbox:checked').map(function(){return $(this).closest('tr').attr('id')}).get().join();
+            console.log(length_checked)
+            if (ids.length > length_checked){
+                layer.confirm('确定删除计划？', {
+                btn: ['确定', '取消'] //按钮
+            }, function (index) {
+
+                layer.close(index);
+                $.ajax({
+                url:location.href,
+                type:"POST",
+                data:{'name': 'del_all', 'id': ids},
+                async :false,
+                success: function (data) {
+                        console.log( "更新成功")
+                        //location.reload()
+                        $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
+                    },
+                error:function (data) {
+                    console.log("更新失败");
+                }
+            });
+
+                    }, function () {
+                        console.log("取消");
+                    }
+                )
+            }else {
+                layer.msg('请选择要删除的功能！', {icon: 2, time: 2000});
+            }
+
+        }
         function del(ths){
             // 选择是否删除产品功能
             id = $(ths).parent().parent().attr("id");
