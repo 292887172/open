@@ -554,7 +554,14 @@ def product_main(request):
             if str(opera_data[i]['id']) == id:
                 return [i, opera_data[i]]
         return []
-
+    def findname(names,opera_data):
+        names_list = eval(names)
+        names = []
+        for i in range(len(opera_data)):
+            for j in names_list:
+                if str(opera_data[i]['Stream_ID']) == j:
+                    names.append(opera_data[i]['name'])
+        return names
     def post():
         # data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
         # data_protocol_list = json.loads(request.body.decode('utf-8'))
@@ -611,8 +618,12 @@ def product_main(request):
                 add_mod_funs(opera_data, device_conf, funs, app_device_type)
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
-                message_content = '"' + app.app_name + '"' + funs + CREATE_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+                # 新增功能message
+                namess = findname(funs,opera_data)
+                print('xx',namess)
+                for i in namess:
+                    message_content = '"' + app.app_name + '"' + i + CREATE_FUN
+                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('add_mod_success')
         elif post_data == 'edit':
             # 返回编辑页面信息
