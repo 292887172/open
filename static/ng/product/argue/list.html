@@ -162,7 +162,7 @@
     }
     .off-btn{
         position: absolute;
-        right: 65px;
+        right: 116px;
         bottom: -55px;
         z-index: 1;
     }
@@ -170,9 +170,25 @@
         background-color: #327AB7;
         position: absolute;
         top: 6px;
-        right: 36px;
+        right: 80px;
         height: 27px;
         line-height: 20px;
+    }
+    .del_1{
+        background-color: #327AB7;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        height: 27px;
+        line-height: 20px;
+        padding: 4px 6px;
+
+        color:#fff;
+        font-weight: 500;
+        text-decoration:none;
+        cursor:pointer;
+        border-radius: 4px;
+        font-size: 14px;
     }
     .add_btn{
         margin-left: 5px;
@@ -664,7 +680,7 @@
         }
         //select_table("grid-table",{"name": "list"},"<span>产品功能</span>&nbsp;&nbsp;&nbsp;<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <a href='http://doc.53iq.com/#/Protocol/READMEx' target='_blank'>53IQ电控通信协议说明</a>","gridpager");
 
-        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <span onclick='DelAll()'>批量删除</span>","gridpager");
+        select_table("grid-table",{"name": "list"},"<a onclick='manageMod()' class='addButton guanli'>管理</a> <a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i><span class='add_btn'>添加</span></a> <span onclick='DelAll()' class='del_1'>批量删除</span>","gridpager");
         //select_table("grid-table-new",{"name": "list","is_standa":'1'},"<span>自定义功能</span> &nbsp;&nbsp;&nbsp;<a href='#/edit' ng-hide='{[{ visible }]}' class='addButton'><i  class='ace-icon glyphicon glyphicon-plus'></i>添加</a>","gridpager-new");
         function select_table(table,data,name,page) {
             jQuery("#"+table).jqGrid({

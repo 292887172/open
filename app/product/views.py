@@ -658,6 +658,7 @@ def product_main(request):
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('del_success')
         elif post_data =='del_all':
+            # 这里对后台发送来对数据进行筛选,重新排序 从大到小 避免勿删除操作
             id = eval(id)
             ids_list = list(set([i for i in list(id) if list(id).count(i)>1]))
             ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
