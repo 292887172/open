@@ -222,6 +222,10 @@ def send_test_device_status(did, status):
         return obj_res
 
 
+def reverse_numeric(x,y):
+    return y - x
+
+
 
 
 
