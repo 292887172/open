@@ -81,24 +81,32 @@ angular.module('Product.app', ['ngRoute'])
          };
          $scope.Deletes = function (a,b,c) {
              var ids = location.href.split("=")[1].split("#")[0];
-             if (a=='1'){
-                 $http({
-                     method: "POST",
-                     url: "/product/app/"+ '?' + "num=1&version=" +b+"&action=del&id="+ids,
+             layer.confirm('确定删除工程包？', {
+                btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                 layer.close(index);
+                 if (a == '1') {
+                     $http({
+                         method: "POST",
+                         url: "/product/app/" + '?' + "num=1&version=" + b + "&action=del&id=" + ids,
 
-                 }).success(function (responses) {
-                    $(c.target).parent().parent().remove()
+                     }).success(function (responses) {
+                         $(c.target).parent().parent().remove()
 
-                 })
-             }else {
-                 $http({
-                     method: "POST",
-                     url: "/product/app/"+ '?' + "num=2&version=" +b+"&action=del&id="+ids,
-                 }).success(function (responsess) {
+                     })
+                 } else {
+                     $http({
+                         method: "POST",
+                         url: "/product/app/" + '?' + "num=2&version=" + b + "&action=del&id=" + ids,
+                     }).success(function (responsess) {
 
-                    $(c.target).parent().parent().remove()
+                         $(c.target).parent().parent().remove()
 
-                 })
-             }
+                     })
+                 }
+             }, function () {
+                        console.log("取消");
+                    }
+             );
          }
      }]);
