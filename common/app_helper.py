@@ -436,7 +436,7 @@ def add_fun_id(opera_data, indata):
         #     else:
         indata["id"] = str(id + 1)
     else:
-        indata["id"] = '101'
+        indata["id"] = '1'
     return indata
 
 
