@@ -31,7 +31,7 @@ from common.message_helper import save_user_message
 from common.device_fun_helper import add_device_fun
 from conf.commonconf import CLOUD_TOKEN
 from ebcloudstore.client import EbStore
-from common.util import parse_response, send_test_device_status,reverse_numeric
+from common.util import parse_response, send_test_device_status, reverse_numeric
 from model.center.app import App
 
 from model.center.protocol import Protocol
@@ -554,7 +554,8 @@ def product_main(request):
             if str(opera_data[i]['id']) == id:
                 return [i, opera_data[i]]
         return []
-    def findname(names,opera_data):
+
+    def findname(names, opera_data):
         names_list = eval(names)
         names = []
         for i in range(len(opera_data)):
@@ -562,6 +563,7 @@ def product_main(request):
                 if str(opera_data[i]['Stream_ID']) == j:
                     names.append(opera_data[i]['name'])
         return names
+
     def post():
         # data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
         # data_protocol_list = json.loads(request.body.decode('utf-8'))
@@ -619,8 +621,8 @@ def product_main(request):
                 save_app(app, opera_data, cook_ies)
                 update_app_protocol(app)
                 # 新增功能message
-                namess = findname(funs,opera_data)
-                print('xx',namess)
+                namess = findname(funs, opera_data)
+                print('xx', namess)
                 for i in namess:
                     message_content = '"' + app.app_name + '"' + i + CREATE_FUN
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
@@ -668,13 +670,12 @@ def product_main(request):
                 message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                 save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
                 return HttpResponse('del_success')
-        elif post_data =='del_all':
+        elif post_data == 'del_all':
             # 这里对后台发送来对数据进行筛选,重新排序 从大到小 避免勿删除操作
             id = eval(id)
-            ids_list = list(set([i for i in list(id) if list(id).count(i)>1]))
-            ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
-            for id_i in ids_list:
-                data = find(str(id_i), opera_data)
+            # 删除一个与多个判断
+            if isinstance(id, int):
+                data = find(str(id), opera_data)
                 if data:
                     i = data[0]
                     fun_name = data[1].get("name")
@@ -692,6 +693,28 @@ def product_main(request):
                     update_app_protocol(app)
                     message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            else:
+                ids_list = list(id)
+                ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
+                for id_i in ids_list:
+                    data = find(str(id_i), opera_data)
+                    if data:
+                        i = data[0]
+                        fun_name = data[1].get("name")
+                        is_standa = data[1].get("standa_or_define", None)
+                        opera_data.pop(i)
+                        for j in range(len(opera_data)):
+                            opera_data[j]['id'] = str(int(j) + int(1))
+                        c_data = opera_data[:len(opera_data)]
+                        c_data.sort(key=lambda x: int(x.get("id")))
+                        c_data.extend(opera_data[len(opera_data):])
+                        opera_data = c_data
+                        # 排序？？？？？？
+                        # replace_fun_id(opera_data, id, is_standa)
+                        save_app(app, opera_data, cook_ies)
+                        update_app_protocol(app)
+                        message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
+                        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
 
             return HttpResponse('del_success')
 

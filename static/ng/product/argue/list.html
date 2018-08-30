@@ -930,9 +930,9 @@
         });
         // jqgrid批量删除
         function DelAll() {
-            var ids=$("#grid-table").find(':checkbox:checked').map(function(){return $(this).closest('tr').attr('id')}).get().join();
-            console.log(length_checked)
-            if (ids.length > length_checked){
+            var ids=$("#grid-table tr td:nth-child(1)").find(':checkbox:checked').map(function(){return $(this).closest('tr').attr('id')}).get().join();
+            console.log(ids.length)
+            if (ids.length > 0){
                 layer.confirm('确定删除计划？', {
                 btn: ['确定', '取消'] //按钮
             }, function (index) {
