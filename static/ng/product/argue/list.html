@@ -997,10 +997,11 @@
         }
         function update_id(item) {
             id = item.attr("id");
+            console.log(id)
             fun_name = [];
             // 重新按位置排序，并更新这一行中所有用到id的位置
             fun_name = RePosition(0,0);
-
+            console.log('name',fun_name)
             fun_name = JSON.stringify(fun_name);
             SendPostData({'name':'update','funs':fun_name}, '更新功能顺序');
         }
@@ -1031,7 +1032,7 @@
                     last.firstChild.href = "#/edit?id=" + k;
 
                     last.lastChild.id = d_id;
-                    fun_name.push(rows[i].children[1].title);
+                    fun_name.push(rows[i].children[2].title);
                 }
             }
             return fun_name;
