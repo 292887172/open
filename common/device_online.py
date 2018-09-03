@@ -22,7 +22,7 @@ def device_online(device_id):
     server = ret[randint(0, len(ret) - 1)].split(":")
     # server_addr = server[0]
     # server_port = int(server[1])
-    server_addr = "122.144.167.74"
+    server_addr = "s74.53iq.com"
     server_port = 48076
     try:
         with client_context(THRIFT_ONLINE.Device, server_addr, server_port, timeout=None,
