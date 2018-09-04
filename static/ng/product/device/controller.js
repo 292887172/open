@@ -60,6 +60,7 @@ angular.module('Product.device', ['ngRoute'])
             }).success(function (data) {
                 console.log(data);
                 if(data['code']==0){
+                    $(".item-download").attr('download','WiFiIot.zip');
                     $(".item-download").attr('href', data['url']).show();
                     clearInterval(t);
                     $scope.process = "100%";
@@ -97,6 +98,9 @@ angular.module('Product.device', ['ngRoute'])
             }).success(function (data) {
                 console.log(data);
                 if(data['code']==0){
+                    // /product/download?url={[{x.url}]}&name=DCIOT.pkg
+                    console.log('ssss',data['url'])
+                    $(".item-download").attr('download', 'main.lua').show();
                     $(".item-download").attr('href', data['url']).show();
                     clearInterval(t);
                     $scope.process = "100%";

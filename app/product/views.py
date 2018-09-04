@@ -930,7 +930,7 @@ def protocol(request):
             # pth = get_personal_project(project_path, device_key, d, p0, p1)
             pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main.lua'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
 
