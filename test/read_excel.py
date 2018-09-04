@@ -14,7 +14,7 @@ def get_main_connection():
     :return:
     """
     conn = pymysql.connect(
-        host='122.144.167.73',
+        host='s73.53iq.com',
         port=3306,
         user='root',
         passwd='53iq.com',
