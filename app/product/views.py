@@ -606,7 +606,6 @@ def product_main(request):
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
-            print('data', data)
             return JsonResponse(data)
         elif post_data in ['show_mod', "add_mod"]:
             # 显示默认模板的功能  添加模板功能
@@ -729,7 +728,6 @@ def product_main(request):
                         if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
                             opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
                 c_data = opera_data[:len(funs)]
-
                 c_data.sort(key=lambda x: int(x.get("id")))
                 c_data.extend(opera_data[len(funs):])
                 save_app(app, c_data, cook_ies)
