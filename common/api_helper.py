@@ -1,20 +1,20 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base.connection import SandboxApiMongoDBHandler
-from base.connection import SandboxApiRedisHandler
-from base.connection import ReleaseApiMongoDBHandler
-from base.connection import ReleaseApiRedisHandler
+import datetime
+import json
+import logging
+from enum import Enum
+
+import requests
+
+from base.connection import ReleaseApiRedisClient, SandboxApiMongoDBClient, \
+    ReleaseApiMongoDBClient
+from base.connection import SandboxApiRedisClient
+from base.const import CacheKeyPrefix
+from base.const import ConventionValue
 from base.util import gen_app_access_token
 from base.util import gen_cache_key
-from base.const import ConventionValue
-from base.const import CacheKeyPrefix
-
-from enum import Enum
-import json
-import requests
-import logging
-import datetime
 
 _convention = ConventionValue()
 _cache_key = CacheKeyPrefix()
@@ -154,7 +154,7 @@ def create_sandbox_api_app(api_id, app_secret):
             status=1,
             _created=datetime.datetime.utcnow()
         )
-        db = SandboxApiMongoDBHandler().db
+        db = SandboxApiMongoDBClient
         db.ebc_api_app.insert(document)
         return True
     except Exception as e:
@@ -172,12 +172,12 @@ def create_release_api_app(app_id):
         screen = dict(
             app_id=app_id
         )
-        sandbox_db = SandboxApiMongoDBHandler().db
+        sandbox_db = SandboxApiMongoDBClient
         document = sandbox_db.ebc_api_app.find_one(screen)
         del document["_id"]
         del document["app_id"]
         document["_created"] = datetime.datetime.utcnow()
-        db = ReleaseApiMongoDBHandler().db
+        db = ReleaseApiMongoDBClient
         db.ebc_api_app.update({"app_id": app_id}, {"$set": document}, upsert=True)
         return True
     except Exception as e:
@@ -196,7 +196,7 @@ def delete_sandbox_api_app(app_id):
             app_id=app_id
         )
         # 获取旧的access_token ======================
-        db = SandboxApiMongoDBHandler().db
+        db = SandboxApiMongoDBClient
         sandbox_old_access_token = ""
         document = db.ebc_api_app.find_one(screen, {"access_token": 1})
         if document:
@@ -210,7 +210,7 @@ def delete_sandbox_api_app(app_id):
         # 删除沙箱的API_APP字段 ======================
         db.ebc_api_app.remove(screen)
         # 删除沙箱的缓存 ======================
-        r = SandboxApiRedisHandler().client
+        r = SandboxApiRedisClient
         # k:ap
         if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
             r.delete(gen_cache_key(_cache_key.AUTH_APP_ID, app_id))
@@ -237,7 +237,7 @@ def delete_release_api_app(app_id):
             app_id=app_id
         )
         # 获取旧的access_token ======================
-        db = ReleaseApiMongoDBHandler().db
+        db = ReleaseApiMongoDBClient
         release_old_access_token = ""
         document = db.ebc_api_app.find_one(screen, {"access_token": 1})
         if document:
@@ -251,7 +251,7 @@ def delete_release_api_app(app_id):
         # 删除正式的API_APP字段 ======================
         db.ebc_api_app.remove(screen)
         # 删除正式的缓存 ======================
-        r = ReleaseApiRedisHandler().client
+        r = ReleaseApiRedisClient
         # k:ap
         if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
             r.delete(gen_cache_key(_cache_key.AUTH_APP_ID, app_id))
@@ -281,7 +281,7 @@ def delete_api_app(app_id):
         return False
 
 
-def reset_api_app_secret(app_id, new_app_secret,):
+def reset_api_app_secret(app_id, new_app_secret, ):
     """
     重置app_secret
     :param app_id:
@@ -294,7 +294,7 @@ def reset_api_app_secret(app_id, new_app_secret,):
         )
         new_access_token = gen_app_access_token()
         # 获取沙箱旧的 access_token
-        db = SandboxApiMongoDBHandler().db
+        db = SandboxApiMongoDBClient
         old_access_token = ""
         document = db.ebc_api_app.find_one(screen, {"access_token": 1})
         if document:
@@ -308,7 +308,7 @@ def reset_api_app_secret(app_id, new_app_secret,):
         # 更新沙箱的API_APP字段 Secret =====================
         db.ebc_api_app.update(screen, {"$set": {"app_secret": new_app_secret, "access_token": new_access_token}})
         # 更新沙箱的缓存 =====================
-        r = SandboxApiRedisHandler().client
+        r = SandboxApiRedisClient
         # k:ap
         if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
             r.hset(gen_cache_key(_cache_key.AUTH_APP_ID, app_id), "access_token", new_access_token)
@@ -322,7 +322,7 @@ def reset_api_app_secret(app_id, new_app_secret,):
                      gen_cache_key(_cache_key.AUTH_ACCESS_TOKEN, new_access_token))
             r.hset(gen_cache_key(_cache_key.AUTH_ACCESS_TOKEN, new_access_token), "access_token", new_access_token)
         # 获取正式旧的 access_token
-        db = ReleaseApiMongoDBHandler().db
+        db = ReleaseApiMongoDBClient
         old_access_token = ""
         document = db.ebc_api_app.find_one(screen, {"access_token": 1})
         if document:
@@ -335,7 +335,7 @@ def reset_api_app_secret(app_id, new_app_secret,):
         # 更新正式的API_APP字段 Secret =====================
         db.ebc_api_app.update(screen, {"$set": {"app_secret": new_app_secret, "access_token": new_access_token}})
         # 更新正式的缓存 =====================
-        r = ReleaseApiRedisHandler().client
+        r = ReleaseApiRedisClient
         # k:ap
         if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
             r.hset(gen_cache_key(_cache_key.AUTH_APP_ID, app_id), "access_token", new_access_token)
@@ -354,7 +354,7 @@ def reset_api_app_secret(app_id, new_app_secret,):
 
 
 def delete_app_access_token(app_id):
-    r = ReleaseApiRedisHandler().client
+    r = ReleaseApiRedisClient
     # k:ap
     if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
         d = r.hget(gen_cache_key(_cache_key.AUTH_APP_ID, app_id), "access_token")
@@ -362,6 +362,7 @@ def delete_app_access_token(app_id):
             d = d.decode('utf-8')
             r.delete(gen_cache_key(_cache_key.AUTH_ACCESS_TOKEN, d))
             return True
+
 
 if __name__ == "__main__":
     delete_app_access_token("532NOuoHWy56Ot19Uc11")

@@ -1,15 +1,16 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+import datetime
+import json
 import logging
 
-import pymysql
-import json
-import datetime
-from base.connection import SysMysqlHandler,MysqlHandler
+from base.connection import sys_mysql_conn_pool
 from base.crypto import md5_en
-from util.export_excel import deal_json
-from model.center.protocol import Protocol
 from model.center.message import Message
+from model.center.protocol import Protocol
+from util.export_excel import deal_json
+
 
 def check_user_password(user, password):
     """
@@ -18,7 +19,7 @@ def check_user_password(user, password):
     :param password:
     :return:
     """
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     obj = {"status": None, "result": None}
 
     try:
@@ -43,40 +44,37 @@ def check_user_password(user, password):
             obj['status'] = 'error'
             obj['result'] = 'invalid user_id'
     except Exception as e:
-        print(e)
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return obj
 
 
-
 def search_time(key):
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sqlOne = "SELECT ebf_pc_create_date FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
-
         return test
     except Exception as e:
-        print(e)
+        logging.getLogger('').exception(e)
         return ''
     finally:
         conn.close()
 
 
 def search_time1(key):
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sqlOne = "SELECT ebf_ui_update_date FROM ebt_device_page_conf WHERE ebf_device_key='{0}'".format(key)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
-        print(test)
         return test
     except Exception as e:
-        print(e)
+        logging.getLogger('').exception(e)
         return ''
     finally:
         conn.close()
@@ -89,7 +87,7 @@ def search_time11(key):
 
 
 def update_app_protocol(app):
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         re = deal_json(app)
@@ -108,7 +106,8 @@ def update_app_protocol(app):
                   "ebf_pc_create_date," \
                   "ebf_pc_secret) "
             sql += "VALUES(%s,%s,%s,%s,%s,%s,%s)"
-            args = [app.app_factory_uid, app.app_device_type, app.app_model, key_value, device_conf, app.app_create_date, app.app_appsecret]
+            args = [app.app_factory_uid, app.app_device_type, app.app_model, key_value, device_conf,
+                    app.app_create_date, app.app_appsecret]
         else:
             sql = "UPDATE ebt_protocol_conf SET ebf_pc_factory_uid=%s, ebf_pc_device_type=%s, ebf_pc_device_model=%s, ebf_pc_conf=%s, ebf_pc_create_date=%s, ebf_pc_secret=%s WHERE ebf_pc_device_key=%s"
             args = [app.app_factory_uid, app.app_device_type, app.app_model, device_conf,
@@ -117,23 +116,22 @@ def update_app_protocol(app):
         conn.commit()
         res = True
     except Exception as e:
-        print(e)
+        logging.getLogger('').exception(e)
         res = False
-        pass
     finally:
         conn.close()
     return res
 
 
 def del_protocol_conf(key):
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = "DELETE FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key)
         res = cursor.execute(sql)
         conn.commit()
     except Exception as e:
-        print(e)
+        logging.getLogger('').exception(e)
         res = False
     finally:
         conn.close()
@@ -148,7 +146,7 @@ def get_device_type(device_type):
     :return:
     """
 
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT dt_name FROM ebt_device_type WHERE dt_id="{0}"'.format(device_type)
@@ -158,8 +156,7 @@ def get_device_type(device_type):
         if re:
             return re['dt_name']
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return ''
@@ -173,11 +170,12 @@ def get_device_list(device_secret):
     :return:
     """
 
-    conn = SysMysqlHandler().conn
-    key = device_secret[len(device_secret)-8:]
+    conn = sys_mysql_conn_pool.conn
+    key = device_secret[len(device_secret) - 8:]
     try:
         cursor = conn.cursor()
-        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac FROM ebt_device WHERE ebf_device_key="{0}" order BY ebf_device_id'.format(key)
+        sql = 'SELECT ebf_device_id, ebf_device_create_date, ebf_device_mac FROM ebt_device WHERE ebf_device_key="{0}" order BY ebf_device_id'.format(
+            key)
         cursor.execute(sql)
         re = cursor.fetchall()
         if re:
@@ -186,8 +184,7 @@ def get_device_list(device_secret):
                 data['ebf_device_create_date'] = date4.strftime("%Y-%m-%d %H:%I:%S")
             return re
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return ''
@@ -198,7 +195,7 @@ def get_factory_info(user_id):
     从ebdb_smartsys的ebt_factory表中获取某厂家名称和id
     :return:
     """
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT ebf_factory_id FROM ebt_user_factory WHERE ebf_user_id="{0}"'.format(user_id)
@@ -211,8 +208,7 @@ def get_factory_info(user_id):
             result = cursor.fetchone()
             return result
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return ''
@@ -246,18 +242,23 @@ def select_protocol(device_key, zdy):
             return None
 
 
-def update_protocol(list_key, data_sql_update,protocol_type, cook_ies):
+def update_protocol(list_key, data_sql_update, protocol_type, cook_ies):
     t = Protocol.objects.filter(protocol_device_key=list_key, protocol_factory_type=protocol_type)
 
     if not t:
 
-        Protocol.objects.create(protocol_device_key=list_key,protocol_factory_content=data_sql_update,protocol_factory_type=protocol_type,protocol_create_date=datetime.datetime.utcnow(),protocol_update_date=datetime.datetime.utcnow())
-        Message.objects.create(message_content='协议更新',message_type=int(2),message_handler_type=int(2),device_key=list_key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+        Protocol.objects.create(protocol_device_key=list_key, protocol_factory_content=data_sql_update,
+                                protocol_factory_type=protocol_type, protocol_create_date=datetime.datetime.utcnow(),
+                                protocol_update_date=datetime.datetime.utcnow())
+        Message.objects.create(message_content='协议更新', message_type=int(2), message_handler_type=int(2),
+                               device_key=list_key, message_sender=cook_ies, message_target=cook_ies,
+                               create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
     else:
-        print('rrt')
         t.update(protocol_factory_content=data_sql_update)
-        Message.objects.create(message_content='协议更新',message_type=int(2),message_handler_type=int(2),device_key=list_key,message_sender=cook_ies,message_target=cook_ies,create_date=datetime.datetime.utcnow(),update_date=datetime.datetime.utcnow())
+        Message.objects.create(message_content='协议更新', message_type=int(2), message_handler_type=int(2),
+                               device_key=list_key, message_sender=cook_ies, message_target=cook_ies,
+                               create_date=datetime.datetime.utcnow(), update_date=datetime.datetime.utcnow())
 
 
 def get_factory_id(factory_name):
@@ -265,7 +266,7 @@ def get_factory_id(factory_name):
     从ebdb_smartsys的ebt_factory表中获取厂家名称对应的id
     :return:
     """
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT ebf_factory_uid  FROM ebt_factory WHERE ebf_factory_name="{0}"'.format(factory_name)
@@ -273,8 +274,7 @@ def get_factory_id(factory_name):
         result = cursor.fetchone()
         return result['ebf_factory_uid']
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return ''
@@ -285,7 +285,7 @@ def get_factory_name(factory_uid):
     从ebdb_smartsys的ebt_factory表中获取厂家名称对应的id
     :return:
     """
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT ebf_factory_name  FROM ebt_factory WHERE ebf_factory_uid="{0}"'.format(factory_uid)
@@ -293,8 +293,7 @@ def get_factory_name(factory_uid):
         result = cursor.fetchone()
         return result['ebf_factory_name']
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return '暂无品牌'
@@ -306,7 +305,7 @@ def get_factory_list():
     :return:
     """
 
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT ebf_factory_uid as brandId,ebf_factory_name as brandName FROM ebt_factory'
@@ -314,8 +313,7 @@ def get_factory_list():
         result = cursor.fetchall()
         return result
     except Exception as e:
-        print(e)
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return ''
@@ -329,11 +327,11 @@ def check_factory_uuid(factory_name, factory_uuid):
     :param factory_uuid:
     :return: status,为ok表示校验成功，false为校验失败
     """
-    conn = SysMysqlHandler().conn
+    conn = sys_mysql_conn_pool.conn
     status = 'false'
     try:
         cursor = conn.cursor()
-        sql = 'SELECT ebf_factory_uid as factory_uid FROM ebt_factory WHERE ebf_factory_name LIKE "%{0}%" LIMIT 1'\
+        sql = 'SELECT ebf_factory_uid as factory_uid FROM ebt_factory WHERE ebf_factory_name LIKE "%{0}%" LIMIT 1' \
             .format(factory_name)
 
         cursor.execute(sql)
@@ -343,10 +341,7 @@ def check_factory_uuid(factory_name, factory_uuid):
         else:
             status = 'false'
     except Exception as e:
-        print(e)
-        status = 'false'
-        pass
+        logging.getLogger('').exception(e)
     finally:
         conn.close()
     return status
-

@@ -3,16 +3,18 @@
 
 __author__ = 'achais'
 
-from django.db.models import Q
-from django.core.paginator import Paginator
-from model.center.api import Api
-from base.convert import date2ymdhms
-from base.convert import utctime2localtime
-from base.connection import get_redis_client,REDIS_DB
 import logging
+
+from django.core.paginator import Paginator
+from django.db.models import Q
+
+from base.connection import Redis3_ClientDB6
+from base.convert import date2ymdhms
 from common.code import ResponseCode
+from model.center.api import Api
 
 _cache_key = ResponseCode()
+
 
 class ApiHandler(object):
     """
@@ -179,7 +181,7 @@ def gen_group_key(*args):
 
 
 def remove_control_id(device_id):
-    r = get_redis_client(3)
+    r = Redis3_ClientDB6
     try:
         r.delete(gen_group_key(_cache_key.DEVICE_CONTROL_PREFIX, device_id.upper()))
     except Exception as e:
@@ -187,7 +189,7 @@ def remove_control_id(device_id):
 
 
 def remove_conf_prefix(key):
-    r = get_redis_client(3)
+    r = Redis3_ClientDB6
     try:
         r.delete(gen_group_key(_cache_key.DEVICE_CONF_PREFIX, key))
     except Exception as e:

@@ -1,65 +1,60 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-import math
-from django.utils.http import urlquote
-from django.views.decorators.csrf import csrf_exempt
-from django.core.urlresolvers import reverse
-from django.shortcuts import render
-from django.http.response import HttpResponse, JsonResponse
-from django.http.response import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from functools import cmp_to_key
-from base.util import gen_app_default_conf, get_app_default_logo
-from common.account_helper import add_team_email, del_team_email
-from common.app_helper import create_app, update_app_fun_widget, replace_fun_id, add_fun_id, add_mod_funs, \
-    get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud
-from common.app_helper import release_app
-from common.app_helper import cancel_release_app
-from common.app_helper import off_app
-from common.app_helper import update_app_info
-from common.app_helper import update_app_config
-from common.app_helper import reset_app_secret
-from common.config_helper import get_device_protocol_config, get_device_function
-
-from common.device_online import device_online
-from base.const import StatusCode, DefaultProtocol, DefaultSchedule
-from base.const import ConventionValue
-from common.project_helper import get_personal_project
-from common.smart_helper import *
-from common.message_helper import save_user_message
-from common.device_fun_helper import add_device_fun
-from conf.commonconf import CLOUD_TOKEN
-from ebcloudstore.client import EbStore
-from common.util import parse_response, send_test_device_status, reverse_numeric
-from model.center.app import App
-
-from model.center.protocol import Protocol
-from model.center.doc_ui import DocUi
-from model.center.firmware import Firmware
-from model.center.app_version import AppVersion
-from model.center.app_info import AppInfo
-from model.center.group import Group
-from model.center.user_group import UserGroup
-from model.center.account import Account
-from base.connection import Redis3
-from common.mysql_helper import get_ui_static_conf, remove_up_url
-from open.settings import BASE_DIR
-from util.email.send_email_code import send_product_process_email
-
 import hashlib
-import time
-import json
-import logging
+import math
 import os
-import requests
 import random
 import string
+import time
+from functools import cmp_to_key
+
+import requests
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http.response import HttpResponse, JsonResponse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render
+from django.utils.http import urlquote
+from django.views.decorators.csrf import csrf_exempt
+from ebcloudstore.client import EbStore
+
+from base.connection import Redis3_ClientDB6, Redis3_ClientDB5
+from base.const import ConventionValue
+from base.const import StatusCode, DefaultProtocol, DefaultSchedule
+from base.util import gen_app_default_conf, get_app_default_logo
+from common.account_helper import add_team_email, del_team_email
+from common.app_helper import cancel_release_app
+from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
+    get_mod_funs, get_config_funs
+from common.app_helper import del_app, save_app, check_cloud
+from common.app_helper import off_app
+from common.app_helper import release_app
+from common.app_helper import reset_app_secret
+from common.app_helper import update_app_config
+from common.app_helper import update_app_info
+from common.config_helper import get_device_protocol_config, get_device_function
+from common.device_fun_helper import add_device_fun
+from common.device_online import device_online
+from common.message_helper import save_user_message
+from common.mysql_helper import get_ui_static_conf, remove_up_url
+from common.project_helper import get_personal_project
+from common.smart_helper import *
+from common.util import parse_response, send_test_device_status, reverse_numeric
+from conf.apiconf import *
+from conf.commonconf import CLOUD_TOKEN
+from conf.message import *
 from conf.newuserconf import *
 from conf.wxconf import *
-from conf.apiconf import *
-from conf.message import *
+from model.center.account import Account
+from model.center.app import App
+from model.center.app_info import AppInfo
+from model.center.app_version import AppVersion
+from model.center.doc_ui import DocUi
+from model.center.firmware import Firmware
+from model.center.protocol import Protocol
 from model.center.user_group import UserGroup
+from open.settings import BASE_DIR
+from util.email.send_email_code import send_product_process_email
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 
@@ -203,7 +198,7 @@ def product_list(request):
                 del_protocol_conf(key)
                 ret = del_app(app_id)
                 res["data"] = ret
-                r = Redis3(rdb=6).client
+                r = Redis3_ClientDB6
                 r.delete("product_funs" + app_id)
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
         else:
@@ -341,7 +336,7 @@ def product_controldown(request):
                 del_protocol_conf(key)
                 ret = del_app(app_id)
                 res["data"] = ret
-                r = Redis3(rdb=6).client
+                r = Redis3_ClientDB6
                 r.delete("product_funs" + app_id)
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
         else:
@@ -569,12 +564,10 @@ def product_main(request):
         # data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
         cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
-        import os
-        import os.path
         post_data = request.POST.get("name")
 
         id = request.POST.get("id")
-        r = Redis3(rdb=6).client
+        r = Redis3_ClientDB6
         standa = request.POST.get("is_standa", None)  # 标准、自定义
         # 根据ID获取到数据库中的设备配置信息
         app = App.objects.get(app_id=app_id)
@@ -809,7 +802,7 @@ def product_main(request):
 
         # 获取设备列表
         elif post_data == 'device_table':
-            r5 = Redis3(rdb=5).client
+            r5 = Redis3_ClientDB5
             key = app.app_appid
             key = key[-8:]
             device_content = DEVICE + "_" + key

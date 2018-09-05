@@ -1,34 +1,32 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import datetime
 import json
+import logging
 
 from django.core.paginator import Paginator
-from model.center.app import App
-from model.center.app_history import AppHistory
-from model.center.developer import Developer
-from model.center.account import Account
-from model.center.message import Message
-from model.center.group import Group
-from base.convert import utctime2localtime
+from django.db.models import Q
+
+from base.connection import Redis3_ClientDB6
+from base.const import ConventionValue
 from base.convert import date2ymdhms
+from base.convert import utctime2localtime
 from base.util import gen_app_app_id
 from base.util import gen_app_app_secret, gen_app_default_conf
-from base.connection import Redis3, ReleaseApiRedisHandler
-from base.const import ConventionValue
-from common.api_helper import create_sandbox_api_app, delete_app_access_token
 from common.api_helper import create_release_api_app
-from common.api_helper import delete_release_api_app
+from common.api_helper import create_sandbox_api_app, delete_app_access_token
 from common.api_helper import delete_api_app
+from common.api_helper import delete_release_api_app
 from common.api_helper import reset_api_app_secret
 from common.app_api_helper import remove_conf_prefix
 from common.message_helper import save_user_message
 from conf.message import *
-
-from django.db.models import Q
-from functools import reduce
-import logging
-
-import datetime
+from model.center.account import Account
+from model.center.app import App
+from model.center.app_history import AppHistory
+from model.center.developer import Developer
+from model.center.group import Group
+from model.center.message import Message
 
 __author__ = 'achais'
 _convention = ConventionValue()
@@ -381,7 +379,7 @@ def update_app_info(app_id, app_name, app_model, app_describe, app_site, app_log
             try:
                 delete_app_access_token(app.app_appid)
             except Exception as e:
-                logging.getLogger('').info('删除appaccess_token出错'+str(e))
+                logging.getLogger('').info('删除appaccess_token出错' + str(e))
             return True
         else:
             return False
@@ -676,7 +674,7 @@ def fetch_one_app_data(serach, page, limit, order_by_names):
 
 def save_app(app, opera_data, cook_ies):
     # 保存修改后的device_config
-    r = Redis3(rdb=6).client
+    r = Redis3_ClientDB6
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
 

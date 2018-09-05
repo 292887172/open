@@ -1,11 +1,15 @@
 # !/bash/bin/env python
 # -*- coding: utf-8 -*-
+import datetime
 import json
+import logging
+import time
 
 import requests
-import logging, datetime, time
-from base.connection import ReleaseApiMongoDBHandler
+
+from base.connection import ReleaseApiMongoDBClient
 from common.app_api_helper import remove_control_id
+
 __author__ = 'rdy'
 MSG_NOTIFY_URL = "https://api.53iq.com/1/message/push?access_token=%s"
 
@@ -43,7 +47,6 @@ def send_wxlogin_data(did, openid, unionid, token, nickname):
 
 
 def deal_wxlogin_data(unionid, did):
-
     url1 = "http://wechat.53iq.com/tmp/user/info"
     res = requests.post(url1, params={'unionid': unionid,
                                       'access_token': '38DZq4MHYCA7N6qIA7Ap0MvSv7etzkAA3BKbgCrMcP8X6C458pm'
@@ -54,22 +57,22 @@ def deal_wxlogin_data(unionid, did):
         token = res['data']['token']
         topic = res['data']['mosquitto_topic']
         openid = str(topic).split("/")[-1]
-        logging.getLogger('').info("微信登录token：" + str(token)+">>openid:"+openid)
+        logging.getLogger('').info("微信登录token：" + str(token) + ">>openid:" + openid)
     else:
         token = None
         openid = ''
     if token:
-        db = ReleaseApiMongoDBHandler().db
+        db = ReleaseApiMongoDBClient
         # 保存当前该中控屏登录者关系
         c = db.devices.find_one({'_id': did})
         if c:
             db.devices.update({'_id': did}, {'$set': {'device_type': -2, 'tags': ['中控'], 'login_user': openid,
-                                                             'login_date': datetime.datetime.utcnow()}})
+                                                      'login_date': datetime.datetime.utcnow()}})
         else:
             tmp = {
                 '_id': did,
                 'device_type': -2, '_updated': datetime.datetime.utcnow(),
-                'tags': ['中控'], 'login_user':  openid, 'master':  openid,
+                'tags': ['中控'], 'login_user': openid, 'master': openid,
                 'login_date': datetime.datetime.utcnow(), 'danger': 0
             }
             db.devices.insert(tmp)

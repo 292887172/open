@@ -1,10 +1,11 @@
 # !/bash/bin/env python
 # -*- coding: utf-8 -*-
-from base.connection import Redis3
-from common.code import ResponseCode
 import json
+
 import stomp
 
+from base.connection import Redis3_ClientDB6
+from common.code import ResponseCode
 from conf.stompconf import STOMP_ADDR, STOMP_PORT, STOMP_ADDR2
 
 __author__ = 'rdy'
@@ -27,7 +28,7 @@ def parse_response(code=0, msg="", data=""):
 
 
 def deal_test_device_status(device_id, val, action):
-    r = Redis3(6).client
+    r = Redis3_ClientDB6
     default = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     try:
         if action == 'get':
@@ -139,7 +140,7 @@ def send_test_device_status(did, status):
                     default[3] = 0
                     default[7] = 0
                 else:
-                    default[2] =0
+                    default[2] = 0
             elif name == 'SMALL_WIND':
                 if value:
                     default[3] = 1
@@ -188,16 +189,16 @@ def send_test_device_status(did, status):
         if status:
             oven_model = status.get('model')
             oven_temp = status.get('temp')
-            oven_time =status.get('time')
-            oven_status =status.get('status')
-            oven_wind =status.get('wind')
-            oven_light =status.get('light')
+            oven_time = status.get('time')
+            oven_status = status.get('status')
+            oven_wind = status.get('wind')
+            oven_light = status.get('light')
             default[0] = oven_model
-            default[1] =oven_temp
-            default[2]=oven_time
-            default[3]=oven_status
-            default[4]=oven_wind
-            default[5]=oven_light
+            default[1] = oven_temp
+            default[2] = oven_time
+            default[3] = oven_status
+            default[4] = oven_wind
+            default[5] = oven_light
         deal_test_device_status(did, default, 'set')
         try:
             conn = stomp.Connection10(host_and_ports=[(STOMP_ADDR, STOMP_PORT)])
@@ -222,18 +223,5 @@ def send_test_device_status(did, status):
         return obj_res
 
 
-def reverse_numeric(x,y):
+def reverse_numeric(x, y):
     return y - x
-
-
-
-
-
-
-
-
-
-
-
-
-

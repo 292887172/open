@@ -1,7 +1,8 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
-from base.connection import RedisBaseHandler
+
+from base.connection import Redis_Clent
 from conf.redisconf import SMS_CHECK_CODE_PREFIX
 
 __author__ = 'rdy'
@@ -13,7 +14,7 @@ def verify_sms_code(user_id, code):
     :param: request:
     :return:
     """
-    r = RedisBaseHandler().client
+    r = Redis_Clent
     if code and user_id:
         save_code = r.get(SMS_CHECK_CODE_PREFIX + user_id)
         if save_code:

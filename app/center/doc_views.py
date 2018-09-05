@@ -1,24 +1,25 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 import copy
-import logging
-import json
 import datetime
+import json
+import logging
 
-from base.connection import RedisBaseHandler, Redis3
+import simplejson as simplejson
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-import simplejson as simplejson
-from common.doc_helper import DocBll, execute_menu, save_device_menu
+
+from base.connection import Redis3_Client
 from common.code import ResponseCode
+from common.doc_helper import DocBll, execute_menu, save_device_menu
 from conf.commonconf import CLOUD_TOKEN
 from conf.docconfig import DOC_RET_MSG
 from model.center.api import Api
+from model.center.device_menu import DeviceMenu
 from model.center.doc import Doc
 from model.center.doc_menu import DocMenu
-from model.center.device_menu import DeviceMenu
 from model.center.firmware import Firmware
 from util.jsonutil import MyEncoder
 
@@ -167,7 +168,7 @@ def doc_device(request):
         ret_msg = copy.deepcopy(DOC_RET_MSG)
         data = request.body.decode("utf-8")
         menu_data = json.loads(data)
-        r = Redis3().client  # 调用redis存储
+        r = Redis3_Client  # 调用redis存储
         r_key = _code.DEVICE_MENU_PREFIX
         # 处理菜单数据
         ret = save_device_menu(menu_data)
@@ -190,7 +191,7 @@ def doc_device(request):
         return JsonResponse(ret_msg)
     if request.method == "GET":
         doc_device = DeviceMenu.objects.all()
-        r = Redis3().client  # 调用redis存储
+        r = Redis3_Client  # 调用redis存储
         r_key = _code.DEVICE_MENU_PREFIX
         r_value = r.get(r_key)
 

@@ -1,50 +1,49 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import base64
+import datetime
+import hashlib
 import io
 import json
-import random
 import logging
-import base64
-import hashlib
-import datetime
+import random
 import re
 
 import django
+import requests
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
+from base.connection import MyAdapter, SandboxApiMongoDBClient
+from base.connection import Redis_Clent
 from base.const import ConventionValue
-from base.wx_login import deal_wxlogin_data
-from conf.apiconf import wx_oauth, wx_userinfo
-from conf.sessionconf import *
-from base.connection import RedisBaseHandler, SandboxApiMongoDBHandler
-from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
-from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
-from model.center.app import App
-from model.center.user_group import UserGroup
-
-from util.auth import get_auth_user
-from util.sms.SendTemplateSMS import sendTemplateSMS
-from model.center.account import Account
-from model.center.auto_login import AutoLogin
-from common.smart_helper import check_user_password, check_factory_uuid, get_factory_info
-from util.email.send_email_code import send_mail
-from common.validate_code import create_validate_code
-from util.email.email_code import create_eamil_code
-from common.developer_helper import create_developer, update_group_info,delete_group_info
-from django.db.models import Q
-from base.connection import MyAdapter
-from util.sms.verify_code import verify_sms_code
-
-from conf.commonconf import HOST_DOMAIN
 from base.crypto import md5_en
+from base.wx_login import deal_wxlogin_data
 from common.account_helper import change_user_pwd, update_user_login_data
+from common.developer_helper import create_developer, update_group_info, delete_group_info
+from common.smart_helper import check_user_password, check_factory_uuid, get_factory_info
+from common.validate_code import create_validate_code
+from conf.apiconf import wx_oauth, wx_userinfo
+from conf.commonconf import HOST_DOMAIN
+from conf.redisconf import SMS_CHECK_CODE_EXPIRE, EMAIL_CHECK_CODE_EXPIRE, EMAIL_ACTIVE_EXPIRE
+from conf.redisconf import SMS_CHECK_CODE_PREFIX, EMAIL_CHECK_CODE_PREFIX, EMAIL_ACTIVE_PREFIX
+from conf.sessionconf import *
 from conf.wxconf import APPID, APP_SECRET
-import requests
+from model.center.account import Account
+from model.center.app import App
+from model.center.auto_login import AutoLogin
+from model.center.user_group import UserGroup
+from util.auth import get_auth_user
+from util.email.email_code import create_eamil_code
+from util.email.send_email_code import send_mail
+from util.sms.SendTemplateSMS import sendTemplateSMS
+from util.sms.verify_code import verify_sms_code
 
 _convention = ConventionValue()
 
@@ -75,7 +74,7 @@ def home(request):
             team_info = None
         try:
             a = App.objects.filter(developer=request.user.developer.developer_id).order_by(
-                    "-app_update_date")
+                "-app_update_date")
             create_num = a.count()
             app_key = a[0].app_appid[8:]
             app_name = a[0].app_name
@@ -95,7 +94,7 @@ def home(request):
             a = App.objects.filter(group_id=j.group.group_id)
             cooperation_num += a.count()
 
-        db = SandboxApiMongoDBHandler().db
+        db = SandboxApiMongoDBClient
         evaluate_num = db.ebc_user_device_exEva.find({"account": {"$regex": request.user.account_id}}).count()
 
         return render(request, "center/home.html", locals())
@@ -130,13 +129,13 @@ def home(request):
             update_group_info(user, team_info)
             return HttpResponse(json.dumps({"status": "ok"}))
         elif action == 'delete_email':
-            print(user,team_info)
+            print(user, team_info)
             code = delete_group_info(user, team_info)
             if code == 0:
                 return HttpResponse(json.dumps({"code": 0}))
             else:
                 return HttpResponse(json.dumps({"code": 1}))
-        r = RedisBaseHandler().client
+        r = Redis_Clent
         try:
             # e_code = r.get(EMAIL_CHECK_CODE_PREFIX + contact_email)
             res = create_developer(company, company_url, company_address, company_scale, contact_name, contact_role,
@@ -164,7 +163,7 @@ def login(request):
             msg = "<div class='ui-error-box' ><b></b><p>请输入密码</P></div>"
             return render(request, "center/login.html", locals())
         try:
-            a = Account.objects.filter(Q(account_id=account)|Q(account_phone=account)|Q(account_email=account))
+            a = Account.objects.filter(Q(account_id=account) | Q(account_phone=account) | Q(account_email=account))
 
             for i in a:
                 account = i.account_id
@@ -357,7 +356,7 @@ def register(request):
             if code.lower() == str(request.session[SESSION_LOGIN_VALIDATE]).lower():
                 try:
                     # 将注册信息临时存在redis里面，等待激活，有效时间30分钟
-                    r = RedisBaseHandler().client
+                    r = Redis_Clent
                     r.set(EMAIL_ACTIVE_PREFIX + user_id, password, EMAIL_ACTIVE_EXPIRE)
                     request.session[SESSION_REGISTER_SUCCESS] = 'success'
                     re = {'status': 1, 'url': 'register_success?rg=email&user=' + user_id}
@@ -478,7 +477,7 @@ def send_sms(request):
             if tel:
                 code = str(random.randint(100000, 999999))
                 # 将短信验证码保存到redis中
-                r = RedisBaseHandler().client
+                r = Redis_Clent
                 r.set(SMS_CHECK_CODE_PREFIX + user_id, code, SMS_CHECK_CODE_EXPIRE)
 
                 # 发送验证短信
@@ -553,7 +552,7 @@ def send_email_code(request):
     """
     email_address = request.POST.get('email', '')
     result = 'error'
-    r = RedisBaseHandler().client
+    r = Redis_Clent
     if email_address:
         # 接收到请求发送验证码，首先检查是否已经发送过且在有效期，若在直接读取redis，否则生成再存到redis
         try:
@@ -605,7 +604,7 @@ def active(request):
     """
     user = request.GET.get('user', '')
     if user:
-        r = RedisBaseHandler().client
+        r = Redis_Clent
         try:
             # base64解密user_id
             user_b64 = base64.b64decode(user.encode(encoding='utf-8'))
@@ -663,7 +662,7 @@ def forget_pwd(request):
                         {'status': 1, 'url': '/center/forget_pwd?id=36129a68e34a0c182d4e7ad279e7bd86',
                          'error': ''}))
             else:
-                r = RedisBaseHandler().client
+                r = Redis_Clent
                 e_code = r.get(EMAIL_CHECK_CODE_PREFIX + user_id)
                 if str(e_code.decode()).lower() == str(code).lower():
                     r.delete(EMAIL_CHECK_CODE_PREFIX + user_id)
@@ -833,7 +832,7 @@ def callback(request):
                 logging.getLogger('').info("微信登录设置登录cookie出错" + str(e))
             try:
                 Account.objects.create_wx_user(username, '123', openid, nickname)
-                #create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
+                # create_developer('', '', '', 0, '', '', '', '', '', '', '', '', username, username, 2)
             except Exception as e:
                 logging.getLogger('').info('创建微信账号出错' + str(e), "  nickname:", nickname)
                 return HttpResponse('登录失败，请尝试其他方式登录')

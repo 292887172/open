@@ -6,7 +6,7 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-from base.connection import ReleaseApiMongoDBHandler, SandboxApiMongoDBHandler
+from base.connection import SandboxApiMongoDBClient, ReleaseApiMongoDBClient
 from base.const import ConventionValue
 # import markdownfrom model.center.doc_menu import DocMenu
 from common.message_helper import *
@@ -243,7 +243,7 @@ def ex(request):
             phone = request.POST.get("phone", "")
             product = request.POST.get("product", "")
             source = request.POST.get("source", "ex")
-            db = SandboxApiMongoDBHandler().db
+            db = SandboxApiMongoDBClient
             # 用户申请智能化设备的表
             db.ebc_user_device_apply.insert({
                 "create_date": datetime.datetime.utcnow(),
@@ -262,7 +262,7 @@ def ex(request):
                     data['create_date'] = datetime.datetime.utcnow()
                 if "account" not in data.keys():
                     data['account'] = request.META.get('REMOTE_ADDR', "")
-                db = SandboxApiMongoDBHandler().db
+                db = SandboxApiMongoDBClient
                 db.ebc_user_device_exEva.insert(data)
                 return JsonResponse({"code": 0, "msg": "success"})
             except Exception as e:
@@ -274,7 +274,7 @@ def ex(request):
 @csrf_exempt
 def app_user(request):
     if request.method == 'POST':
-        db = ReleaseApiMongoDBHandler().db
+        db = ReleaseApiMongoDBClient
         # page = request.POST.get('page')
         from_dict = {'ios': 'ios日记', 'zncf': '通用App', 'md': '美大厨房', 'arda': '安德厨房', 'kinde': '金帝厨房', 'app': '厨房日记'}
         phone_user = db.ebc_app_users.find({}).sort([('_updated', -1)]).skip(0).limit(30)
