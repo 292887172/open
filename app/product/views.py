@@ -294,7 +294,7 @@ def product_controldown(request):
             try:
                 for i in Uobj:
                     if i.account_email in ['gaowei@53iq.com', 'guoyh@53iq.com', 'rendy@53iq.com', 'zhangjian@53iq.com',
-                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com']:
+                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com','likuo@53iq.com']:
                         if not unpublished_apps:
                             fireware = ''
                         else:
@@ -811,7 +811,7 @@ def product_main(request):
                 device_list = json.loads(device_list.decode())
             else:
                 device_list = get_device_list(app.app_appid)
-                r5.set(device_content, json.dumps(device_list), 2 * 60)
+                r5.set(device_content, json.dumps(device_list), 1 * 60)
             for k in device_list:
                 is_online = device_online(k['ebf_device_id'])
                 k["is_online"] = is_online
