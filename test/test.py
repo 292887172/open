@@ -1,12 +1,15 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import base64
 import os
 import shutil
 
-from base.connection import mysql_conn_poll
-
+from base.connection import ReleaseApiMongoDBHandler, MysqlHandler
+from util.email.send_email_code import send_mail
+from common import device_online
 
 def test_name():
+
     root = "/Users/zhanlingjie/Documents/mypython/Git/open"
 
     for dirpath, dirnames, filenames in os.walk(root):
@@ -46,7 +49,7 @@ def test_name():
 
 
 if __name__ == "__main__":
-    conn = mysql_conn_poll.conn
+    conn = MysqlHandler().conn
     try:
         cursor = conn.cursor()
         sql = 'SELECT *  FROM ebt_doc_ui'

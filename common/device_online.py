@@ -28,6 +28,7 @@ def device_online(device_id):
         with client_context(THRIFT_ONLINE.Device, server_addr, server_port, timeout=None,
                             socket_timeout=20000) as client:
             r = client.get_status(device_id)
+        print('r',r)
         if r.get('data') == 'online':
             return 1
         else:
