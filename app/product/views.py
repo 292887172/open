@@ -1296,13 +1296,21 @@ def schedule(request):
             del_xu_id = request.POST.get('del_id', '')
             # 删除原有的id对应的数据 大于id的数据id自减1更新
             try:
-                DocUi.objects.filter(ui_key=key, ui_upload_id=del_xu_id).delete()
-                del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=del_xu_id)
+                DocUi.objects.filter(ui_key=key, ui_upload_id=int(del_xu_id)).delete()
+                del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 if del_data:
-                    for i in del_data:
-                        if int(i.ui_upload_id) > int(del_xu_id):
-                            DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
-                                ui_upload_id=int(i.ui_upload_id) - 1)
+                    l_lists=[]
+                    for issa in del_data:
+                        l_lists.append(issa)
+                    for iss in range(len(l_lists)):
+                        print('ddddd',iss)
+                        print('ssss',int(l_lists[iss].ui_upload_id) - 1)
+                        DocUi.objects.filter(ui_key=key, ui_upload_id=int(l_lists[iss].ui_upload_id)).update(
+                            ui_upload_id=int(l_lists[iss].ui_upload_id) - 1)
+                    # for i in del_data:
+                    #     if int(i.ui_upload_id) > int(del_xu_id):
+                    #         DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
+                    #             ui_upload_id=int(i.ui_upload_id) - 1)
                 Message.objects.create(message_content='产品计划删除', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
@@ -1336,8 +1344,10 @@ def schedule(request):
                     url = json.dumps(url)
                     detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
-
+                print('x',detail_obj_dict)
                 return HttpResponse(json.dumps(detail_obj_dict))
+            else:
+                return HttpResponse(json.dumps({'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1, 'time_stemp': '', 'ack': 0, 'content': '[""]'}))
         elif action == 'save_plan':
             # data: {'key': keysss, "action": "save_plan", "num": that},
             location = request.POST.get('location', '')
