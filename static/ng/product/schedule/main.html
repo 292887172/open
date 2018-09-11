@@ -830,6 +830,7 @@
                         layer.msg('删除成功', {icon: 6, time: 2000});
                         var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
                         var $scope = angular.element(appElement).scope();
+
                         for (var i = 0; i < $scope.response.length; i++) {
                             if ($scope.response[i]['id'] == idd) {
                                 $scope.response.splice(i, 1);
@@ -837,18 +838,21 @@
                                 $scope.$apply()
                             }
                             try {
+
+                                console.log('ierd',parseInt($scope.response[i]['id']),parseInt(idd))
                                 if (parseInt($scope.response[i]['id']) > parseInt(idd)) {
-                                    console.log($scope.response[i]['id'], idd)
+                                    console.log('ttttttttt',$scope.response[i]['id'], idd)
                                     $scope.response[i]['id'] = parseInt($scope.response[i]['id']) - 1
                                     $scope.$apply()
-                                    $scope.Show_Detail_Plan(parseInt(idd))
+
                                 }
                             } catch (e) {
+                                console.log('xxxxxxxxxxxxxxx')
                                 $scope.Show_Detail_Plan(parseInt(idd) - 1)
                             }
 
                         }
-
+                        $scope.Show_Detail_Plan(parseInt(idd))
                     } else {
                         layer.msg('删除失败', {icon: 1, time: 2000});
 
