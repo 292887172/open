@@ -1298,19 +1298,12 @@ def schedule(request):
             try:
                 DocUi.objects.filter(ui_key=key, ui_upload_id=int(del_xu_id)).delete()
                 del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
-                if del_data:
-                    l_lists=[]
-                    for issa in del_data:
-                        l_lists.append(issa)
-                    for iss in range(len(l_lists)):
-                        print('ddddd',iss)
-                        print('ssss',int(l_lists[iss].ui_upload_id) - 1)
-                        DocUi.objects.filter(ui_key=key, ui_upload_id=int(l_lists[iss].ui_upload_id)).update(
-                            ui_upload_id=int(l_lists[iss].ui_upload_id) - 1)
-                    # for i in del_data:
-                    #     if int(i.ui_upload_id) > int(del_xu_id):
-                    #         DocUi.objects.filter(ui_key=key, ui_upload_id=i.ui_upload_id).update(
-                    #             ui_upload_id=int(i.ui_upload_id) - 1)
+                for id_i in del_data:
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(ui_upload_id=int(id_i.ui_upload_id)*100)
+                Orders = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
+                for i in Orders:
+                    is_gt = i.ui_upload_id
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100)-1)
                 Message.objects.create(message_content='产品计划删除', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
