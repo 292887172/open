@@ -7,7 +7,7 @@
         margin: 0;
         overflow:auto;
       }
-      .modal-content{
+      .conte .modal-content{
           width: 500px;
           margin-left: 150px;
       }
@@ -801,12 +801,23 @@
                                 $("#"+table).children('tbody').sortable({
                                 update: function (event, ui) {
                                     var item = ui.item;
-                                    bootbox.confirm("确定交换两者位置?", function (result) {
+
+                                    bootbox.confirm({
+                                        message:"确定交换两者位置?",
+                                        className:"conte",
+                                        callback:function(result){
                                         if (result)
+
                                             update_id(item);
                                         else
                                             $("#"+table).children('tbody').sortable('cancel');
+                                        }
                                     })
+
+                                    /*bootbox.confirm("确定交换两者位置?", function () {
+
+
+                                    })*/
                                 }
                             });
                         }
