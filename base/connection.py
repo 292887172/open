@@ -58,7 +58,7 @@ Redis3_ClientDB6 = Redis3(rdb=6).client
 
 
 class MySqlConnPoll(object):
-    def __init__(self, min_cached=3, max_cached=40, max_shared=0, max_connections=50, blocking=False,
+    def __init__(self, min_cached=2, max_cached=5, max_shared=0, max_connections=10, blocking=False,
                  max_usage=None, set_session=None, reset=True, failures=None, ping=1, *args, **kwargs):
         """
 
