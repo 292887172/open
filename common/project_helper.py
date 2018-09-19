@@ -21,8 +21,8 @@ def del_output(project_path):
 
 
 def unzip_project(project_path):
-    """
-    解压项目文件，并删除解压后文件夹下 output 文件夹
+    """ 解压项目文件，并删除解压后文件夹下 output 文件夹
+
     存在解压文件夹后直接返回，项目在更新时，在替换项目原始文件后，也要删除对应的解压后的文件夹
 
     :param project_path: 压缩文件的绝对路径
@@ -44,8 +44,7 @@ def unzip_project(project_path):
 
 
 def zip_project(folder_path, new_name):
-    """
-    压缩文件夹成 zip压缩包
+    """ 压缩文件夹成 zip压缩包
 
     :param folder_path: 待压缩的文件夹
     :param new_name: 文件夹压缩后的名字
@@ -85,112 +84,16 @@ def replace_config(data: str, config_name: str, new_config: str) -> str or 'fals
         return data
 
 
-def get_personal_project(project_path: str,
-                         key: str,
-                         device_function: dict,
-                         device_protocol_config: dict or 'false' = False,
-                         device_protocol_response_config: dict or 'false' = False,
-                         return_type: 'zip or lua' = 'zip'):
-    """
-    根据自定义配置生成自定义的项目包
-
-    :param project_path: 项目原始文件的路径 必须
-    :param key: 自定义的key 必须
-    :param device_function: 自定义的设备功能列表 必须
-    :param device_protocol_config: 自定义的上行帧格式 可选
-    :param device_protocol_response_config: 自定义的应答帧格式  可选
-    :param return_type: 最终获取的 文件类型  'zip'->project.zip  'lua'->main.lua 默认 'zip'
-    :return: 自定义转换成功 -> 返回绝对路径下载地址  ， 自定义转换失败 -> 原始绝对路径下载地址
-    """
-
-    project_name = os.path.splitext(os.path.basename(project_path))[0]  # 'WiFiIot'
-    project_location = os.path.split(project_path)[0]  # '/home/am/deployment/open/static/sdk'
-    project_folder = os.path.splitext(project_path)[0]  # '/home/am/deployment/open/static/sdk/WiFiIot'
-    main_lua = os.path.join(project_folder, 'main.lua')  # '/home/am/deployment/open/static/sdk/WiFiIot/main.lua'
-    main_origin_lua = os.path.join(project_folder, 'main.origin.lua')
-    # '/home/am/deployment/open/static/sdk/WiFiIot/main.origin.lua'
-
-    try:
-        unzip_project(project_path)
-    except Exception as e:
-        logging.error('解压失败 返回原始文件 错误内容 ' + str(e))
-        return project_path
-
-    if return_type == 'zip':
-        personal_name = project_name + '_' + key + '.zip'
-    elif return_type == 'lua':
-        personal_name = 'main' + '_' + key + '.lua'
-    else:
-        logging.error('传入返回类型错误，return_type=' + return_type)
-        return False
-
-    if not os.path.isfile(main_origin_lua):
-        shutil.copy(main_lua, main_origin_lua)
-
-    with open(main_origin_lua, encoding='utf-8') as file:
-        data = "".join(file.readlines())
-
-    configs = {
-        "product_key": 'local product_key="{0}"'.format(key),
-        "device_function": 'local device_function={0}'.format(config_change(device_function)),
-    }
-
-    if device_protocol_config:
-        configs["device_protocol_config"] = 'local device_protocol_config={0}'.format(
-            config_change(device_protocol_config))
-    else:
-        configs["device_protocol_config"] = 'local device_protocol_config'
-
-    if device_protocol_response_config:
-        configs["device_protocol_response_config"] = 'local device_protocol_response_config={0}'.format(
-            config_change(device_protocol_response_config))
-    else:
-        configs["device_protocol_response_config"] = 'local device_protocol_response_config'
-
-    try:
-        for config in configs:
-            data = replace_config(data, config, configs[config])
-        with open(main_lua, 'w+', encoding='utf-8') as file:
-            file.write(data)
-    except Exception as e:
-        logging.error('替换失败 ' + str(e))
-
-    if return_type == 'zip':
-        try:
-            zip_project(project_folder, personal_name)
-        except Exception as e:
-            logging.error('压缩失败 ' + str(e))
-            return project_path
-        personal_file_path = os.path.split(project_path)[0]
-        personal_file_path = os.path.join(personal_file_path, personal_name)
-    elif return_type == 'lua':
-        personal_file_path = os.path.join(project_location, personal_name)
-        try:
-            shutil.copy(main_lua, personal_file_path)
-        except Exception as e:
-            logging.error('生成 {0} 失败 {1}'.format(personal_file_path, str(e)))
-            return main_lua
-    else:
-        logging.error('传入返回类型错误，return_type=' + return_type)
-        return False
-
-    if os.path.exists(personal_file_path):
-        logging.info('最终返回的自定义项目下载文件路径 ' + personal_file_path)
-        return personal_file_path
-    else:
-        logging.info('最终返回的下载文件路径 ' + project_path)
-        return project_path
-
-
 def config_change(config: dict):
     """ 将 python 的 dict 转换成 lua 的 table
     替换规则
-        :           =
-        [           {
-        ]           }
-        "None"      nil
-        "item"=     item
-        "{1}"       [1]
+        :           =       \n
+        [           {       \n
+        ]           }       \n
+        "None"      nil     \n
+        "item"=     item    \n
+        "{1}"       [1]     \n
+
     :param config: 需要转换的数据
     :return: 转换成功 -> 转换后的数据，转换失败 -> false
     """
@@ -218,8 +121,8 @@ def config_change(config: dict):
 
 
 def change_validation(config: str) -> bool:
-    """
-    验证dict->lua table转换后数据的正确性
+    """ 验证dict->lua table转换后数据的正确性
+
     使用转换后的的内容生成 一个 test.lua 内容为  local item=config
     在lua5.1环境中进行测试，能返回指定结果代表转换后正确
 
@@ -234,6 +137,113 @@ def change_validation(config: str) -> bool:
         return False
 
 
+def get_personal_project(project_path: str,
+                         key: str,
+                         device_function: dict,
+                         device_protocol_config: dict or 'false' = False,
+                         device_protocol_response_config: dict or 'false' = False,
+                         return_type: 'zip or lua' = 'zip'):
+    """
+    根据自定义配置生成自定义的项目包
+
+    :param project_path: 项目原始文件的路径 必须
+    :param key: 自定义的key 必须
+    :param device_function: 自定义的设备功能列表 必须
+    :param device_protocol_config: 自定义的上行帧格式 可选
+    :param device_protocol_response_config: 自定义的应答帧格式  可选
+    :param return_type: 最终获取的 文件类型  'zip'->project.zip  'lua'->main.lua 默认 'zip'
+    :return: 自定义转换成功 -> 返回绝对路径下载地址  ， 自定义转换失败 -> 原始绝对路径下载地址
+    """
+
+    def _replace(main_key_lua):
+        with open(main_key_lua, encoding='utf-8') as file:
+            data = "".join(file.readlines())
+
+        configs = {
+            "product_key": 'local product_key="{0}"'.format(key),
+            "device_function": 'local device_function={0}'.format(config_change(device_function)),
+        }
+
+        if device_protocol_config:
+            configs["device_protocol_config"] = 'local device_protocol_config={0}'.format(
+                config_change(device_protocol_config))
+        else:
+            configs["device_protocol_config"] = 'local device_protocol_config'
+
+        if device_protocol_response_config:
+            configs["device_protocol_response_config"] = 'local device_protocol_response_config={0}'.format(
+                config_change(device_protocol_response_config))
+        else:
+            configs["device_protocol_response_config"] = 'local device_protocol_response_config'
+
+        try:
+            for config in configs:
+                data = replace_config(data, config, configs[config])
+        except Exception as e:
+            logging.error('替换失败 ' + str(e))
+
+        with open(main_key_lua, 'w+', encoding='utf-8') as file:
+            file.write(data)
+
+    # project_path '/home/am/deployment/open/static/sdk/WiFiIot.zip'
+    project_name = os.path.splitext(os.path.basename(project_path))[0]  # 'WiFiIot'
+    project_location = os.path.split(project_path)[0]  # '/home/am/deployment/open/static/sdk'
+    project_folder = os.path.splitext(project_path)[0]  # '/home/am/deployment/open/static/sdk/WiFiIot'
+    main_lua = os.path.join(project_folder, 'main.lua')  # '/home/am/deployment/open/static/sdk/WiFiIot/main.lua'
+    main_origin_lua = os.path.join(project_folder, 'main.origin.lua')
+    # '/home/am/deployment/open/static/sdk/WiFiIot/main.origin.lua'
+
+    personal_zip_name = project_name + '_' + key + '.zip'  # 'WiFiIot_dnZj13MV.zip'
+    personal_main_name = 'main_' + key + '.lua'  # 'main_dnZj13MV.lua'
+
+    if not project_path:
+        logging.error('没有 project_path')
+        return False
+    if not key:
+        logging.error('没有 key')
+        return False
+    if not device_function:
+        logging.error('没有 device_function')
+        return False
+    if not return_type:
+        logging.error('没有 return_type')
+        return False
+
+    try:
+        unzip_project(project_path)
+    except Exception as e:
+        logging.error('解压失败 错误内容 ' + str(e))
+
+    if not os.path.isfile(main_origin_lua):
+        shutil.copy(main_lua, main_origin_lua)
+
+    project_key_zip = os.path.join(project_location, personal_zip_name)
+    main_key_lua = os.path.join(project_location, personal_main_name)
+
+    shutil.copy(main_origin_lua, main_key_lua)
+
+    _replace(main_key_lua)
+
+    if return_type == 'zip':
+        try:
+            shutil.copy(main_key_lua, main_lua)
+            zip_project(project_folder, personal_zip_name)
+            logging.info('最终返回的自定义项目下载文件路径 ' + project_key_zip)
+            return project_key_zip
+        except Exception as e:
+            logging.error('压缩失败 ' + str(e))
+            logging.info('最终返回的下载文件路径 ' + project_path)
+            return project_path
+
+    elif return_type == 'lua':
+        if os.path.exists(main_key_lua):
+            logging.info('最终返回的自定义文件下载文件路径 ' + main_key_lua)
+        else:
+            shutil.copy(main_origin_lua, main_key_lua)
+            logging.info('最终返回的下载文件路径 ' + main_key_lua)
+        return main_key_lua
+
+
 def test_os():
     project_path = os.path.join(os.getcwd(), 'WiFiIot.zip')  # /home/am/deployment/open/static/sdk/WiFiIot.zip
     print(project_path)
@@ -244,86 +254,16 @@ def test_os():
     print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
 
-def test_config_change():
-    device_function = [
-        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
-        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
-        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
-        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
-        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
-        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
-        {'length': 1, 'name': 'Fan3', 'title': '快档'},
-        {'length': 1, 'name': 'Fan2', 'title': '中档'},
-        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
-        {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'controls': [101, 102],
-         'length': 1,
-         'name': 'lamp',
-         'title': '照明',
-         'triggers': {'[0]': {'jiang': 0, 'shen': 1},
-                      '[1]': {'jiang': 1, 'shen': 0}}},
-        {'length': 1, 'name': 'jiang', 'title': '降'},
-        {'length': 1, 'name': 'shen', 'title': '升'},
-        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}]
-
-    device_protocol_config = {
-        'check_data_end': -2,
-        'check_data_start': 1,
-        'check_type': 'crc16',
-        'endian_type': 1,
-        'length': 9,
-        'length_offset': 'None',
-        'structs': [{'length': 1, 'name': 'head', 'value': [165]},
-                    {'length': 2, 'name': 'category', 'value': [0, 1]},
-                    {'length': 4, 'name': 'data'},
-                    {'length': 2, 'name': 'check'}]
-    }
-
-    logging.info(config_change(device_function))
-    logging.info(config_change(device_protocol_config))
+def test_config_change(device_function, device_protocol_config):
+    pprint.pprint(config_change(device_function))
+    pprint.pprint(config_change(device_protocol_config))
 
 
-def test_get_personal_project():
-    device_function = [
-        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
-        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
-        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
-        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
-        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
-        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
-        {'length': 1, 'name': 'Fan3', 'title': '快档'},
-        {'length': 1, 'name': 'Fan2', 'title': '中档'},
-        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
-        {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'controls': [101, 102],
-         'length': 1,
-         'name': 'lamp',
-         'title': '照明',
-         'triggers': {'[0]': {'jiang': 0, 'shen': 1},
-                      '[1]': {'jiang': 1, 'shen': 0}}},
-        {'length': 1, 'name': 'jiang', 'title': '降'},
-        {'length': 1, 'name': 'shen', 'title': '升'},
-        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}]
-
-    device_protocol_config = {
-        'check_data_end': -2,
-        'check_data_start': 1,
-        'check_type': 'crc16',
-        'endian_type': 1,
-        'length': 9,
-        'length_offset': 'None',
-        'structs': [{'length': 1, 'name': 'head', 'value': [165]},
-                    {'length': 2, 'name': 'category', 'value': [0, 1]},
-                    {'length': 4, 'name': 'data'},
-                    {'length': 2, 'name': 'check'}]
-    }
-    device_protocol_config = False
-    device_protocol_response_config = device_protocol_config
+def test_get_personal_project(device_function, device_protocol_config):
     key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
-    logging.info('传入项目的路径 ' + project_path)
+    device_protocol_response_config = False
+
     logging.info(get_personal_project(project_path, key, device_function,
                                       device_protocol_config, device_protocol_response_config, 'lua'))
 
@@ -357,5 +297,39 @@ if __name__ == '__main__':
         - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
 
-    # test_config_change()
+    device_function = [
+        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
+        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
+        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
+        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
+        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
+        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
+        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
+        {'length': 1, 'name': 'Fan3', 'title': '快档'},
+        {'length': 1, 'name': 'Fan2', 'title': '中档'},
+        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
+        {'length': 1, 'name': 'Wash', 'title': '清洗'},
+        {'controls': [101, 102], 'length': 1, 'name': 'lamp', 'title': '照明',
+         'triggers': {
+             '[0]': {'jiang': 0, 'shen': 1},
+             '[1]': {'jiang': 1, 'shen': 0}}},
+        {'length': 1, 'name': 'jiang', 'title': '降'},
+        {'length': 1, 'name': 'shen', 'title': '升'},
+        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}
+    ]
+
+    device_protocol_config = {
+        'check_data_end': -2,
+        'check_data_start': 1,
+        'check_type': 'crc16',
+        'endian_type': 1,
+        'length': 9,
+        'length_offset': 'None',
+        'structs': [
+            {'length': 1, 'name': 'head', 'value': [165]},
+            {'length': 2, 'name': 'category', 'value': [0, 1]},
+            {'length': 4, 'name': 'data'},
+            {'length': 2, 'name': 'check'}
+        ]}
+
     test_get_personal_project()

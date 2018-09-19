@@ -14,17 +14,15 @@ django.setup()
 from model.center.app import App
 from model.center.protocol import Protocol
 
-
-
 """
 默认使用Django的ORM进行数据查询，单独运行此py文件时，在pycharm中配置
-PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=open.settings
+PYTHONUNBUFFERED=1;
+DJANGO_SETTINGS_MODULE=open.settings
 """
 
 
 def get_device_function(key: str) -> list or 'false':
-    """
-    获取用户定义的帧协议
+    """ 获取用户定义的帧协议
 
     :param key: 用户的key
     :return: 成功 -> 用户定义的帧协议  ，  失败 -> false
@@ -47,7 +45,6 @@ def get_device_function(key: str) -> list or 'false':
             item['triggers'], item['controls'] = {}, []
             for mxs in config['mxs']:
                 if mxs.get('control'):
-                    print(mxs['control'])
                     # 3种类型UI绑定 main=111 or 111
                     # Main={id=103,weight="time_button,params={value={1,2,3},progress=104}}
                     if '=' in mxs['control']:
@@ -88,68 +85,6 @@ def get_device_function(key: str) -> list or 'false':
         return False
 
 
-def get_data_length(key: str) -> int or 'false':
-    """
-    根据用户定义的功能列表，计算自定义帧协议中 data_domain 的数据长度
-    :param key: 用户的Key
-    :return: 成功 数据域长度  失败 false
-    """
-    try:
-        app = App.objects.get(app_appid__contains=key)
-        configs = json.loads(app.device_conf)
-        data_len = 0
-        for config in configs:
-            data_len += int(config['mxsLength'])
-        return int(data_len / 8)
-    except Exception as e:
-        logging.error(str(e))
-        return False
-
-
-def change_value(value: hex) -> list or 'false':
-    """
-    数据之间的转换  `0011` (hex) -> [0,17]   '01' -> [1]
-
-    :param value: 需要转换的十六进制数
-    :return: 十进制数组成的数组
-    """
-    if len(value) == 4:
-        return [int(value[0:2], 16), int(value[2:4], 16)]
-    elif len(value) == 2:
-        return [int(value, 16)]
-    else:
-        logging.error(['Get Value False'])
-        return False
-
-
-def get_check_data_location(check_id, frame_contents, position):
-    """
-    解析帧，获取帧的起始校验码位置和结束校验码位置，
-    校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量
-
-    :param check_id: 需要校验数据的ID
-    :param frame_contents: 所有的帧协议数据
-    :param position: 获取校验起始位，或结束位
-    :return: 校验数据的位置
-    """
-    if isinstance(check_id, str):
-        check_id = int(check_id)
-
-    length_sum = sum([int(frame_content['length']) for frame_content in frame_contents])
-
-    length_position, length_check_id = 0, 0
-    for frame_content in frame_contents:
-        length_position += int(frame_content['length'])
-        if int(frame_content['id']) == check_id:
-            length_check_id = int(frame_content['length'])
-            break
-
-    if position == 'start':
-        return length_position - length_check_id
-    elif position == 'end':
-        return length_position - length_sum
-
-
 def get_device_protocol_config(key: str) -> list or 'false':
     """
     获取自定义协议解析的规则
@@ -160,9 +95,73 @@ def get_device_protocol_config(key: str) -> list or 'false':
     :return: 成功 > 用户的自定义协议配置  ，  失败 > False
     """
 
+    def get_data_length(key: str) -> int or 'false':
+        """
+        根据用户定义的功能列表，计算自定义帧协议中 data_domain 的数据长度
+        :param key: 用户的Key
+        :return: 成功 数据域长度  失败 false
+        """
+        try:
+            app = App.objects.get(app_appid__contains=key)
+            configs = json.loads(app.device_conf)
+            data_len = 0
+            for config in configs:
+                data_len += int(config['mxsLength'])
+            return int(data_len / 8)
+        except Exception as e:
+            logging.error(str(e))
+            return False
+
+    def get_check_data_location(check_id, frame_contents, position):
+        """
+        解析帧，获取帧的起始校验码位置和结束校验码位置，
+        校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量
+
+        :param check_id: 需要校验数据的ID
+        :param frame_contents: 所有的帧协议数据
+        :param position: 获取校验起始位，或结束位
+        :return: 校验数据的位置
+        """
+
+        if isinstance(check_id, str):
+            check_id = int(check_id)
+
+        length_sum = sum([int(frame_content['length']) for frame_content in frame_contents])
+
+        length_position, length_check_id = 0, 0
+        for frame_content in frame_contents:
+            length_position += int(frame_content['length'])
+            if int(frame_content['id']) == check_id:
+                length_check_id = int(frame_content['length'])
+                break
+
+        if position == 'start':
+            return length_position - length_check_id
+        elif position == 'end':
+            return length_position - length_sum
+
+    def change_value(value: hex) -> list or 'false':
+        """ 数据之间的转换
+
+        '0011' (hex) -> [0,17]
+
+        '01' -> [1]
+
+        :param value: 需要转换的十六进制数
+        :return: 十进制数组成的数组
+        """
+        if len(value) == 4:
+            return [int(value[0:2], 16), int(value[2:4], 16)]
+        elif len(value) == 2:
+            return [int(value, 16)]
+        else:
+            logging.error(['Get Value False'])
+            return False
+
     try:
         protocols = Protocol.objects.filter(protocol_device_key=key)
     except Exception as e:
+        protocols = []
         logging.error('key=' + key + ' ' + str(e))
 
     if not protocols:
@@ -224,50 +223,25 @@ def get_device_protocol_config(key: str) -> list or 'false':
 
 
 def test_get_device_function():
-    # 5yUHe7fk test　success
-    device_function = get_device_function(key='2hqa5HF5')
-    pprint.pprint(device_function)
+    # 标准集成灶 BTO9ciBr
+    device_function = get_device_function(key='BTO9ciBr')
+    pprint.pprint(device_function, width=300)
 
 
 def test_get_device_protocol_config():
-    device_protocol_config = get_device_protocol_config(key='nzammHmF')
+    device_protocol_config = get_device_protocol_config(key='BTO9ciBr')
     pprint.pprint(device_protocol_config, width=80, indent=4)
 
 
-def test_get_check_data_location():
-    protocols = Protocol.objects.filter(protocol_device_key='2hqa5HF5')
-    for protocol in protocols:
-        protocol_content = protocol.protocol_factory_content
-        config = json.loads(protocol_content)
-        pprint.pprint(config)
-        print()
-        frame_contents = config['frame_content']
-
-        check_start = config['start_check_number']
-        print('check_start_id = ', check_start, end='\t\t')
-        _location = get_check_data_location(check_start, frame_contents, 'start')
-        print('check_location = ' + str(_location))
-
-        check_end = config['end_check_number']
-        print('check_end_id = ', check_end, end='\t\t')
-        _location = get_check_data_location(check_end, frame_contents, 'end')
-        print('check_location = ' + str(_location))
-
-        print('-' * 99)
-
-
 def test_config_change():
-    # 'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = lua.decode(data)
     print(data, type(data))
 
 
 if __name__ == '__main__':
-    # test_get_device_function()
-    # print('-' * 99)
-    # test_get_device_protocol_config()
-    # print('-' * 99)
-    # test_get_check_data_location()
+    test_get_device_function()
+    print('\n' + '-' * 99, end='\n\n')
+    test_get_device_protocol_config()
+    print('\n' + '-' * 99, end='\n\n')
     test_config_change()
-    'Main={id=103,weight="time_button",params={value={1,2,3},progress=104}}'
