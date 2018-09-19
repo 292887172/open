@@ -113,8 +113,8 @@ def get_device_protocol_config(key: str) -> list or 'false':
             return False
 
     def get_check_data_location(check_id, frame_contents, position):
-        """
-        解析帧，获取帧的起始校验码位置和结束校验码位置，
+        """ 解析帧，获取帧的起始校验码位置和结束校验码位置，
+
         校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量
 
         :param check_id: 需要校验数据的ID
@@ -241,7 +241,10 @@ def test_config_change():
 
 if __name__ == '__main__':
     test_get_device_function()
-    print('\n' + '-' * 99, end='\n\n')
+    print('\n' + '-' * 40 + '   test_get_device_function   ' + '-' * 40, end='\n\n')
+
     test_get_device_protocol_config()
-    print('\n' + '-' * 99, end='\n\n')
+    print('\n' + '-' * 40 + '   test_get_device_protocol_config   ' + '-' * 40, end='\n\n')
+
     test_config_change()
+    print('\n' + '-' * 40 + '   test_config_change   ' + '-' * 40, end='\n\n')

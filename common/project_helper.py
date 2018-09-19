@@ -9,19 +9,24 @@ import pprint
 logging.basicConfig(level=logging.INFO)
 
 
-def del_output(project_path):
+def del_output_dciot_build(project_path):
     """
-    在解压后的项目中删除output文件夹下所有文件
+    在解压后的项目中删除output dciot_build文件夹下所有文件
     :param project_path: 项目绝对路径
     """
     output_path = os.path.join(os.path.splitext(project_path)[0], 'output')
+    dciot_build_path = os.path.join(os.path.splitext(project_path)[0], 'dciot_build')
+
     if os.path.isdir(output_path):
         shutil.rmtree(output_path)
-    os.makedirs(output_path)
+        os.makedirs(output_path)
+    if os.path.isdir(dciot_build_path):
+        shutil.rmtree(dciot_build_path)
+        os.makedirs(dciot_build_path)
 
 
 def unzip_project(project_path):
-    """ 解压项目文件，并删除解压后文件夹下 output 文件夹
+    """ 解压项目文件，并删除解压后文件夹下 output dciot_build 文件夹
 
     存在解压文件夹后直接返回，项目在更新时，在替换项目原始文件后，也要删除对应的解压后的文件夹
 
@@ -40,24 +45,47 @@ def unzip_project(project_path):
                 # 中文字符编码转换
                 new_name = old_name.encode('cp437').decode('gbk')
                 os.rename(old_name, new_name)
-        del_output(project_path)
+        del_output_dciot_build(project_path)
 
 
-def zip_project(folder_path, new_name):
+# def zip_project(folder_path, new_name):
+#     """ 压缩文件夹成 zip压缩包
+#
+#     :param folder_path: 待压缩的文件夹
+#     :param new_name: 文件夹压缩后的名字
+#     """
+#     base_path = os.path.split(folder_path)[0]
+#     zip_file = zipfile.ZipFile(os.path.join(base_path, new_name), 'w', zipfile.ZIP_DEFLATED)
+#     for folder, subfolder, file in os.walk(folder_path):
+#         for item in file:
+#             file_path = os.path.join(folder, item)
+#             file_name = file_path.replace(base_path, '')
+#             zip_file.write(file_path, file_name)
+#         if len(file) == 0:
+#             file_path = folder.replace(base_path, '')
+#             zip_file.write(folder, file_path)
+#     zip_file.close()
+
+
+def zip_project(folder_path, new_name, main_key_lua):
     """ 压缩文件夹成 zip压缩包
 
     :param folder_path: 待压缩的文件夹
     :param new_name: 文件夹压缩后的名字
+    :param main_key_lua: 替换配置之后的main.lua文件绝对路径
     """
-    base_path = os.path.split(folder_path)[0]
+    base_path = os.path.split(folder_path)[0]  # /home/am/deployment/open/static/sdk
     zip_file = zipfile.ZipFile(os.path.join(base_path, new_name), 'w', zipfile.ZIP_DEFLATED)
     for folder, subfolder, file in os.walk(folder_path):
         for item in file:
-            file_path = os.path.join(folder, item)
-            file_name = file_path.replace(base_path, '')
-            zip_file.write(file_path, file_name)
+            file_path = os.path.join(folder, item)  # /home/am/deployment/open/static/sdk/WiFiIot/main.lua
+            file_name = file_path.replace(base_path, '')  # /WiFiIot/main.lua
+            if os.path.basename(file_name) == 'main.lua':
+                zip_file.write(main_key_lua, file_name)
+            else:
+                zip_file.write(file_path, file_name)
         if len(file) == 0:
-            file_path = folder.replace(base_path, '')
+            file_path = folder.replace(base_path, '')  # /WiFiIot/Waves
             zip_file.write(folder, file_path)
     zip_file.close()
 
@@ -193,8 +221,8 @@ def get_personal_project(project_path: str,
     main_origin_lua = os.path.join(project_folder, 'main.origin.lua')
     # '/home/am/deployment/open/static/sdk/WiFiIot/main.origin.lua'
 
-    personal_zip_name = project_name + '_' + key + '.zip'  # 'WiFiIot_dnZj13MV.zip'
-    personal_main_name = 'main_' + key + '.lua'  # 'main_dnZj13MV.lua'
+    personal_zip_name = '{project_name}_{key}.zip'.format(project_name=project_name, key=key)  # 'WiFiIot_dnZj13MV.zip'
+    personal_main_name = 'main_{key}.lua'.format(key=key)  # 'main_dnZj13MV.lua'
 
     if not project_path:
         logging.error('没有 project_path')
@@ -218,7 +246,9 @@ def get_personal_project(project_path: str,
         shutil.copy(main_lua, main_origin_lua)
 
     project_key_zip = os.path.join(project_location, personal_zip_name)
+    # '/home/am/deployment/open/static/sdk/WiFiIot_dnZj13MV.zip'
     main_key_lua = os.path.join(project_location, personal_main_name)
+    # '/home/am/deployment/open/static/sdk/main_dnZj13MV.lua'
 
     shutil.copy(main_origin_lua, main_key_lua)
 
@@ -226,8 +256,7 @@ def get_personal_project(project_path: str,
 
     if return_type == 'zip':
         try:
-            shutil.copy(main_key_lua, main_lua)
-            zip_project(project_folder, personal_zip_name)
+            zip_project(project_folder, personal_zip_name, main_key_lua)
             logging.info('最终返回的自定义项目下载文件路径 ' + project_key_zip)
             return project_key_zip
         except Exception as e:
@@ -239,9 +268,8 @@ def get_personal_project(project_path: str,
         if os.path.exists(main_key_lua):
             logging.info('最终返回的自定义文件下载文件路径 ' + main_key_lua)
         else:
-            shutil.copy(main_origin_lua, main_key_lua)
-            logging.info('最终返回的下载文件路径 ' + main_key_lua)
-        return main_key_lua
+            logging.info('最终返回的下载文件路径 ' + main_lua)
+        return main_lua
 
 
 def test_os():
@@ -254,18 +282,58 @@ def test_os():
     print(os.path.split('/home/am/deployment/open/static/sdk'))  # ('/home/am/deployment/open/static', 'sdk')
 
 
+def test_zip():
+    unzip_project('/home/am/deployment/open/static/sdk/WiFiIot.zip')
+
+    zip_project('/home/am/deployment/open/static/sdk/WiFiIot', 'WiFiIot_dnZj13MV.zip',
+                '/home/am/deployment/open/static/sdk/main_dnZj13MV.lua')
+
+
 def test_config_change(device_function, device_protocol_config):
     pprint.pprint(config_change(device_function))
     pprint.pprint(config_change(device_protocol_config))
 
 
-def test_get_personal_project(device_function, device_protocol_config):
+def test_get_personal_project():
     key = 'AABBCCDD'
     project_path = '/home/am/deployment/open/static/sdk/WiFiIot.zip'
+    device_function = [
+        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
+        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
+        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
+        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
+        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
+        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
+        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
+        {'length': 1, 'name': 'Fan3', 'title': '快档'},
+        {'length': 1, 'name': 'Fan2', 'title': '中档'},
+        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
+        {'length': 1, 'name': 'Wash', 'title': '清洗'},
+        {'controls': [101, 102], 'length': 1, 'name': 'lamp', 'title': '照明',
+         'triggers': {
+             '[0]': {'jiang': 0, 'shen': 1},
+             '[1]': {'jiang': 1, 'shen': 0}}},
+        {'length': 1, 'name': 'jiang', 'title': '降'},
+        {'length': 1, 'name': 'shen', 'title': '升'},
+        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}
+    ]
+    device_protocol_config = {
+        'check_data_end': -2,
+        'check_data_start': 1,
+        'check_type': 'crc16',
+        'endian_type': 1,
+        'length': 9,
+        'length_offset': 'None',
+        'structs': [
+            {'length': 1, 'name': 'head', 'value': [165]},
+            {'length': 2, 'name': 'category', 'value': [0, 1]},
+            {'length': 4, 'name': 'data'},
+            {'length': 2, 'name': 'check'}
+        ]}
     device_protocol_response_config = False
 
     logging.info(get_personal_project(project_path, key, device_function,
-                                      device_protocol_config, device_protocol_response_config, 'lua'))
+                                      device_protocol_config, device_protocol_response_config, 'zip'))
 
 
 if __name__ == '__main__':
@@ -296,40 +364,5 @@ if __name__ == '__main__':
             - rm WiFiIot_*zip
         - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
-
-    device_function = [
-        {'length': 8, 'name': 'BaoLiu1', 'title': '保留1'},
-        {'length': 8, 'name': 'BaoLiu2', 'title': '保留2'},
-        {'length': 4, 'name': 'BaoLiu3', 'title': '保留3'},
-        {'length': 1, 'name': 'FengMing', 'title': '蜂鸣'},
-        {'length': 1, 'name': 'XiaoDu', 'title': '消毒'},
-        {'length': 1, 'name': 'HongGan', 'title': '烘干'},
-        {'length': 1, 'name': 'AUX', 'title': 'AUX'},
-        {'length': 1, 'name': 'Fan3', 'title': '快档'},
-        {'length': 1, 'name': 'Fan2', 'title': '中档'},
-        {'length': 1, 'name': 'Fan1', 'title': '慢档'},
-        {'length': 1, 'name': 'Wash', 'title': '清洗'},
-        {'controls': [101, 102], 'length': 1, 'name': 'lamp', 'title': '照明',
-         'triggers': {
-             '[0]': {'jiang': 0, 'shen': 1},
-             '[1]': {'jiang': 1, 'shen': 0}}},
-        {'length': 1, 'name': 'jiang', 'title': '降'},
-        {'length': 1, 'name': 'shen', 'title': '升'},
-        {'length': 1, 'name': 'LAMP1', 'title': 'LAMP'}
-    ]
-
-    device_protocol_config = {
-        'check_data_end': -2,
-        'check_data_start': 1,
-        'check_type': 'crc16',
-        'endian_type': 1,
-        'length': 9,
-        'length_offset': 'None',
-        'structs': [
-            {'length': 1, 'name': 'head', 'value': [165]},
-            {'length': 2, 'name': 'category', 'value': [0, 1]},
-            {'length': 4, 'name': 'data'},
-            {'length': 2, 'name': 'check'}
-        ]}
 
     test_get_personal_project()
