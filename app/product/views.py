@@ -60,7 +60,6 @@ from util.netutil import verify_push_url
 
 _code = StatusCode()
 _convention = ConventionValue()
-logger = logging.getLogger('')
 
 
 @login_required
@@ -288,25 +287,34 @@ def product_controldown(request):
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
         unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
-        users = request.COOKIES.get('COOKIE_USER_ACCOUNT')
+        print(request.COOKIES['COOKIE_USER_ACCOUNT'])
+        users = request.COOKIES['COOKIE_USER_ACCOUNT']
         Uobj = Account.objects.filter(account_id=users)
-        fireware = ''
         if Uobj:
             try:
                 for i in Uobj:
                     if i.account_email in ['gaowei@53iq.com', 'guoyh@53iq.com', 'rendy@53iq.com', 'zhangjian@53iq.com',
-                                           'guodl@53iq.com', 'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com',
-                                           '292887172@qq.com', 'likuo@53iq.com']:
-                        if unpublished_apps:
+                                           'guodl@53iq.com',
+                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com',
+                                           'likuo@53iq.com']:
+                        if not unpublished_apps:
+                            fireware = ''
+                        else:
                             fireware = Firmware.objects.all()
+                    else:
+                        fireware = ''
             except Exception as e:
-                logger.exception(e)
+                print(e)
+                fireware = ''
+        else:
+            fireware = ''
         content = dict(
             keyword=keyword,
             developer=developer,
             unpublished_apps=unpublished_apps,
             default_apps=default_apps,
             fireware=fireware
+
         )
 
         return render(request, template, content)
@@ -774,12 +782,7 @@ def product_main(request):
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
             indata["isDisplay"] = 1
-            # 改版 多态处理 类型转换
-
-            print(indata['mxs'])
-            new_mxs_data(indata['mxs'])
-
-
+            new_mxs_data(indata['control'])
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
@@ -899,7 +902,7 @@ def protocol(request):
         protocol_type = request.GET.get('protocol_type', '0')
         if action == "get_project":
             screen = request.GET.get('screen', '')
-            print(screen, 'screen')
+            print(screen,'screen')
             p = get_device_protocol_config(device_key)
             if p:
                 p0 = p[0]
@@ -1243,10 +1246,10 @@ def schedule(request):
                 schedule_key = DefaultSchedule().DEFAULT_SCHEDULE_CHOOSE + key
                 if r6.exists(schedule_key):
                     update_list = DocUi.objects.filter(ui_key=key).order_by("-create_date")
-                    print('---', update_list)
+                    print('---',update_list)
                 else:
                     update_list = DefaultSchedule().DEFAULT_SCHEDULE
-                    r6.set(schedule_key, json.dumps(update_list))
+                    r6.set(schedule_key,json.dumps(update_list))
                 for i in update_list:
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
@@ -1307,12 +1310,11 @@ def schedule(request):
                 DocUi.objects.filter(ui_key=key, ui_upload_id=int(del_xu_id)).delete()
                 del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for id_i in del_data:
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(
-                        ui_upload_id=int(id_i.ui_upload_id) * 100)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(ui_upload_id=int(id_i.ui_upload_id)*100)
                 Orders = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for i in Orders:
                     is_gt = i.ui_upload_id
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100) - 1)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100)-1)
                 Message.objects.create(message_content='产品计划删除', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
@@ -1346,13 +1348,10 @@ def schedule(request):
                     url = json.dumps(url)
                     detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
+                print('x',detail_obj_dict)
                 return HttpResponse(json.dumps(detail_obj_dict))
             else:
-                return HttpResponse(
-                    json.dumps({
-                        'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1,
-                        'time_stemp': '', 'ack': 0, 'content': '[""]'
-                    }))
+                return HttpResponse(json.dumps({'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1, 'time_stemp': '', 'ack': 0, 'content': '[""]'}))
         elif action == 'save_plan':
             # data: {'key': keysss, "action": "save_plan", "num": that},
             location = request.POST.get('location', '')
