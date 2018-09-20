@@ -685,6 +685,40 @@ def save_app(app, opera_data, cook_ies):
     r.set("product_funs" + str(app.app_id), json.dumps(data), 3600 * 24 * 3)
 
 
+def new_mxs_data(data):
+    for i in data:
+        indata_mxs_new = {}
+        control_data = json.loads(i['control'])
+        print('=====', control_data)
+        try:
+            if ',' in control_data['Main']:
+                main_list = control_data['Main'].split(",")
+                print('ddd', main_list)
+            else:
+                print(control_data['Main'],list(control_data['Main']))
+                main_list = list(str(control_data['Main']))
+        except Exception as e:
+            logging.info("xxx", e)
+
+            main_list = ''
+            print(e)
+        try:
+            if ',' in control_data['params']:
+                params_list = control_data['params'].split(",")
+            else:
+                params_list = list(str(control_data['params']))
+        except Exception as e:
+            logging.info("xxx", e)
+            params_list = ''
+
+            print(e)
+        indata_mxs_new['Main'] = main_list
+        indata_mxs_new['wegdit'] = control_data['wegdit']
+        indata_mxs_new['parmas'] = params_list
+        print(json.dumps(indata_mxs_new))
+        i['control'] = json.dumps(indata_mxs_new)
+
+
 def check_cloud(opera_data):
     # 检查功能是否被设为云菜谱可控
     flag = 0

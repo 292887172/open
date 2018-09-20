@@ -18,6 +18,7 @@ angular.module('Product.edit', ['ngRoute'])
         $scope.max=0;
         $scope.mxsNum=0;
 
+
         /**
          * 提交配置信息表单
          * @constructor
@@ -26,8 +27,9 @@ angular.module('Product.edit', ['ngRoute'])
 			for(var i=0;i<paramDatas.length;i++){
 				var data=$.trim(paramDatas[i].value);
 				var desc=$.trim(paramDescs[i].value);
-				console.log('xx',data,desc)
-				var control=$.trim(paramUI[i].value);
+				console.log('xx',i,'xxa',paramUI,paramUI[i])
+				var control= paramUI[i].getAttribute("data-type");
+				console.log('------',control)
 				var role=/^[0-9]*$/;
 				if(desc=="" || data=="" ){
 					$scope.errorType=1;
@@ -41,18 +43,13 @@ angular.module('Product.edit', ['ngRoute'])
 					$scope.errorType=-3;
 					break;
 				}
-				if($scope.flag == 'int'){
-					if(parseInt(data) < $scope.min || parseInt(data) > $scope.max){
-						$scope.errorType=0;
-						break;
-					}
+				if ($scope.flag == 'error'){}
+					var trig = getTrigger(data);
+					$scope.mxs.push({data:data,desc:desc,trigger:trig,control:control});
 				}
-				else if ($scope.flag == 'error'){}
-				var trig = getTrigger(data);
-				$scope.mxs.push({data:data,desc:desc,trigger:trig,control:control});
-			}
-        };
+			};
         $scope.Save = function () {
+        	console.log('xxxx')
         	var state = checkID();
 			if (state !='correct' || !checkName()){
 				return;
@@ -71,10 +68,10 @@ angular.module('Product.edit', ['ngRoute'])
 			var types=document.getElementsByName("paramType");
 			var paramDatas=document.getElementsByName("paramData");
 			var paramDescs=document.getElementsByName("paramDesc");
-			var paramUI=document.getElementsByName("paramUI");
+			var paramUI=document.getElementsByName("paramcontrol");
 			var paramDatas1=document.getElementsByName("paramData1");
 			var paramDescs1=document.getElementsByName("paramDesc1");
-			var paramUI1=document.getElementsByName("paramUI1");
+			var paramUI1=document.getElementsByName("paramcontrol1");
 
 			if(types[0].checked){
 				var msg = checkBool();
@@ -116,11 +113,7 @@ angular.module('Product.edit', ['ngRoute'])
 				$('#checkArgue1').html("请填写数据说明和传送数据");
 				return;
 			}
-			if($scope.errorType==0){
-				$('#checkArgue1').css("display","block");
-				$('#checkArgue1').html("传输数据必须位于最小值"+$scope.min+"和最大值"+$scope.max+"之间!!");
-				return;
-			}
+
 			if($scope.errorType==-2){
 				$('#checkArgue1').css("display","block");
 				$('#checkArgue1').html("传输数据必须是数字！！");
@@ -151,6 +144,7 @@ angular.module('Product.edit', ['ngRoute'])
 			}
 			indata.min=$scope.min;
 			indata.max=$scope.max;
+			console.log('------',$scope.mxs)
 			indata.mxs=$scope.mxs;
 			indata.mxsNum=$scope.mxsNum;
 			if(!edit_data){
@@ -199,8 +193,13 @@ angular.module('Product.edit', ['ngRoute'])
 						$("#grid-table").jqGrid({
                             postData:{"name": "list"},
                         }).trigger("reloadGrid")
+						location.reload()
 					}else{
+						console.log('ssß111111')
 						location.replace("#/argue")
+						$("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
 					}
 
 					layer.msg('编辑成功', {icon: 6, time: 2000});

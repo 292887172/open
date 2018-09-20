@@ -26,7 +26,7 @@ from common.account_helper import add_team_email, del_team_email
 from common.app_helper import cancel_release_app
 from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
     get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud
+from common.app_helper import del_app, save_app, check_cloud,new_mxs_data
 from common.app_helper import off_app
 from common.app_helper import release_app
 from common.app_helper import reset_app_secret
@@ -774,6 +774,12 @@ def product_main(request):
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
             indata["isDisplay"] = 1
+            # 改版 多态处理 类型转换
+
+            print(indata['mxs'])
+            new_mxs_data(indata['mxs'])
+
+
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
@@ -852,9 +858,11 @@ def product_main(request):
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo,
                                       app_command, app_group, app_factory_uid)
+                logging.getLogger('').info("ss_ret" + str(ret))
                 if ret:
                     update_app_protocol(app)
                 res["data"] = ret
+                logging.getLogger('').info("data" + str(res))
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
                 # 更新配置信息
@@ -890,7 +898,8 @@ def protocol(request):
         action = request.GET.get('action', '')
         protocol_type = request.GET.get('protocol_type', '0')
         if action == "get_project":
-
+            screen = request.GET.get('screen', '')
+            print(screen, 'screen')
             p = get_device_protocol_config(device_key)
             if p:
                 p0 = p[0]
@@ -1230,7 +1239,14 @@ def schedule(request):
 
                 return HttpResponse(json.dumps(update_list))
             else:
-                update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                r6 = Redis3_ClientDB5
+                schedule_key = DefaultSchedule().DEFAULT_SCHEDULE_CHOOSE + key
+                if r6.exists(schedule_key):
+                    update_list = DocUi.objects.filter(ui_key=key).order_by("-create_date")
+                    print('---', update_list)
+                else:
+                    update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                    r6.set(schedule_key, json.dumps(update_list))
                 for i in update_list:
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
@@ -1253,11 +1269,11 @@ def schedule(request):
             for i in range(len(data1)):
                 ids = int(i) + 1
                 Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(data1[i]))
-                for i in Dobj:
-                    try:
-                        Dobj.update(ui_upload_id=int(ids * 100))
-                    except Exception as e:
-                        print(e)
+
+                try:
+                    Dobj.update(ui_upload_id=int(ids * 100))
+                except Exception as e:
+                    print(e)
             Orders = DocUi.objects.filter(ui_key=key)
             list_up_id = []
             for i in Orders:

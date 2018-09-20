@@ -356,8 +356,13 @@ def reset_api_app_secret(app_id, new_app_secret, ):
 def delete_app_access_token(app_id):
     r = ReleaseApiRedisClient
     # k:ap
+    logging.getLogger('').info('============='+str(r))
+    print('d', gen_cache_key(_cache_key.AUTH_APP_ID, app_id))
+
+    logging.getLogger('').info('============='+str(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)))
     if r.exists(gen_cache_key(_cache_key.AUTH_APP_ID, app_id)):
         d = r.hget(gen_cache_key(_cache_key.AUTH_APP_ID, app_id), "access_token")
+
         if d:
             d = d.decode('utf-8')
             r.delete(gen_cache_key(_cache_key.AUTH_ACCESS_TOKEN, d))

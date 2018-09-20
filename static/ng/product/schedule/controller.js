@@ -23,8 +23,7 @@ angular.module('Product.schedule', ['ngRoute'])
             }).success(function (response) {
                 // 获取前端接收到的数据
                 $scope.response = response;
-
-
+                console.log('-----',$scope.response)
                 var aaa = []
 
                 var file = $("#plans-users")
@@ -54,7 +53,6 @@ angular.module('Product.schedule', ['ngRoute'])
                     var form = layui.form;
                     form.render('select');
                 });
-
                 $("#ul_id").sortable({update:function (event,ui) {
 
                         layer.confirm('确认提交计划？', {
@@ -105,9 +103,6 @@ angular.module('Product.schedule', ['ngRoute'])
                         )
 
                     }});
-
-
-
                 $("#ul_id").disableSelection();
 
             })

@@ -245,6 +245,9 @@
         .popover.left>.arrow{
             top:50% !important;
         }
+    .fork_show{
+        display: none;
+    }
     </style>
     <div class="main-container box2">
         <div class="hl-help" style="display: none">
@@ -499,10 +502,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
+                                <label class="col-sm-2 col-xs-3 no-padding-right" > 数据说明 </label>
+
+                                <label class="col-sm-2 col-xs-3 no-padding-right" > 多态预览
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
+
 
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
@@ -514,10 +519,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right" style="margin-left: 77px"> UI控件ID
+                                <label class="col-sm-2 col-xs-3 no-padding-right" > 数据说明 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right" > 多态预览
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
+
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup1"></div>
@@ -731,6 +737,9 @@
                                 }
                                 group += '</tbody></table></div>';
                                 return group;
+                                $("#grid-table").jqGrid({
+                                    postData:{"name": "list"},
+                                }).trigger("reloadGrid")
                             }
                         }
                     },
@@ -1088,10 +1097,17 @@
                 mods = data11['mods'];
 
                 if(!edit_data){
+                    console.log('ttttt')
                     flag = true;
                 }
-                else{flag = false;}
+                else{
+                    flag = false;
+                    console.log('ffffff')
+                }
                 init()
+                $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
                 })
         }
         var url=location.href;
@@ -1102,6 +1118,7 @@
         var mxs = [];
         var trig=[];
         var dataVal = 0;
+        var dataint = 0;
         var Text='';
         function init() {
         console.log(count)
@@ -1224,7 +1241,7 @@
 
                 group += '<div class="form-group ddd">';
                 group += '	<div class="col-sm-2 col-xs-2"></div>';
-                group += '	<div class="col-sm-2 col-xs-3">';
+                group += '	<div class="col-sm-1 col-xs-3">';
                 group += '		<input ng-disabled="'+flag + '" onblur="check_paramData(this)" type="text" name="paramData" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].data + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-2 col-xs-2">';
@@ -1235,8 +1252,9 @@
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
                 group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" name="paramcontrol" onclick="select_params(this)" data-type=' + d.mxs[i].control + ' class="addButton" >多态</a>';
                 group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-                group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+                group += '<p style="margin-left: 206px;margin-top: -8px;width:86px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
                 group += '	</div>';
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -1244,12 +1262,18 @@
                 group += '</div>';
 
                 if(edit_data.standa_or_define) {
+                    console.log('reifhoasddiou')
                     $("#addGroup1").before(group);
-
+                     $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
                 }
                 else{
+                    console.log('saasfadjsaa')
                     $("#addGroup").before(group);
-
+                     $("#grid-table").jqGrid({
+                            postData:{"name": "list"},
+                        }).trigger("reloadGrid")
                 }
 
             }
@@ -1310,7 +1334,7 @@
         var group='';
         group+='<div class="form-group">';
         group+='	<div class="col-sm-2 col-xs-2"></div>';
-        group+='	<div class="col-sm-2 col-xs-3">';
+        group+='	<div class="col-sm-1 col-xs-3">';
         group+='		<input type="text" id="checkData" onblur="check_paramData(this)" onkeypress="return onKeyPress(event)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-2 col-xs-3">';
@@ -1321,8 +1345,9 @@
         group += '	</div>';
         group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
         group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
+        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" name="paramcontrol1" onclick="select_params(this)" data-type="" class="addButton" >多态</a>';
         group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-        group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '<p style="margin-left: 206px;margin-top: -8px;width：86px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
         group += '	</div>';
 
 
@@ -1374,6 +1399,84 @@
     function check_paramUI(ths) {
         console.log('xxxxxx')
     }
+    function select_params(ths) {
+
+        var value = $(ths.parentNode.parentNode.children[1].children).val();
+        var name = $(ths.parentNode.parentNode.children[2].children).val();
+        var name_control = $(ths.parentNode.parentNode.children[3].children).val();
+        if(value==""||name==""){
+            $('#checkArgue1').css("display","block");
+            $('#checkArgue1').html("请填写数据说明和传送数据");
+            return;
+        }
+        $('#checkArgue1').css("display","none");
+        var funcs=[];
+        var data;
+        var bool = false;
+
+        trig = [];
+
+
+
+        var msg = '<div class="col-xs-4"><span class="float-left" >多态预览: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)"  class="form-control float-left"></div>';
+        msg += '<div class="col-xs-4">';
+        msg += '<select id="select_id" onchange="Select_Onchange(this)">'
+        msg += '<option value="Button" >Button选择</option>'
+        msg += '<option value="TimeButton" >TimeButton</option>'
+        msg += '<option value="AnimationStatusButton" >AnimationStatusButton</option>'
+        msg += '</select></div>'
+        msg += '<div class="col-xs-4 fork_show"><span class="float-left" >params: </span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>';
+
+        bootbox.dialog({
+            title:"参数添加",
+            message:msg,
+            buttons:{
+                "success": {
+                    "label": "<i class='icon-info'></i> 确定",
+                    "className": "btn-primary",
+                    "callback":function () {
+                        if(mxs!=null){
+                            console.log('trig',)
+                            var contrals={}
+                            contrals['Main']=$("#defaultUID").val()
+
+                            if ($("#select_id").val()=='button'){
+                                contrals['wegdit']=''
+                                contrals['params']=''
+                            }else {
+                                contrals['wegdit']=$("#select_id").val()
+                                contrals['params']=$("#defaultPAM").val()
+                            }
+                            console.log('0000',mxs)
+                            console.log('1111',mxs[dataint])
+                            mxs[dataint]['control']=contrals;
+                            console.log('sss',JSON.stringify(contrals))
+                            ths.setAttribute("data-type",JSON.stringify(contrals));
+                            console.log('2222',mxs[dataint])
+                        }
+                        console.log('xxx')
+
+                    }
+                },
+                "cancel" : {
+                    "label": "<i class='icon-ok'></i> 取消",
+                    "className": "btn-default"
+                }
+            }
+        })
+
+    }
+    function Select_Onchange(that){
+         var selected=$(that).children('option:selected').val()
+           if(selected=="Button"){
+               //document.getElementById("search_content_id").
+               $(".fork_show")[0].style.display="none"
+           }else {
+               $(".fork_show")[0].style.display="block"
+           }
+    }
+
+
     function select_trigger(ths) {
             console.log('yyyyy')
         value = $(ths.parentNode.parentNode.children[1].children).val();
@@ -1451,6 +1554,7 @@
                     "className": "btn-primary",
                     "callback":function () {
                         if(mxs!=null){
+                            console.log('dssdsasdasda',trig,mxs[dataVal])
                             mxs[dataVal].trigger=trig;
                         }
                         console.log('xxx')
@@ -1488,6 +1592,22 @@
             trig.push((ofRow));
             $("#selectFunc option[value=" + funcff + "]").remove();
         }
+    }
+    function checkvalued_params(ths,params_id) {
+       console.log('id---------',params_id)
+        // 根据params_id 来判断哪个input传过来的数值
+        // id=1
+
+       value = $(ths).val();
+
+       if(params_id=='1'){
+           console.log('1',value)
+       }else if (params_id=='2'){
+           console.log('2',value)
+       }else {
+           console.log('3',value)
+       }
+
     }
     function checkvalued(ths) {
        var checked_min =  $("#minDefault").val();

@@ -239,3 +239,5 @@ class DefaultSchedule(object):
         {'remark': '', 'url': '', 'time_stemp': '', 'party': '', 'plan': '整机联调、老化测试', 'ack': 0,
          'id': 9},
     ]
+    DEFAULT_SCHEDULE_REMOVE = []
+    DEFAULT_SCHEDULE_CHOOSE = "schedule"
