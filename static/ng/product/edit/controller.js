@@ -241,5 +241,34 @@ angular.module('Product.edit', ['ngRoute'])
          * 提交重置AppSecret表单
          * @constructor
          */
+		var xx = 0;
+    	console.log('==============')
+    	if (xx=='0'){
 
+    		console.log('--------sss')
+		}
+		if (xx == '0') {
+
+            $http({
+                method: "get",
+                url:"/product/get_version/" + '?' + "action=get_version&key=" + $scope.$parent.key ,
+
+
+            }).success(function (data) {
+				if (data=='1'){
+					console.log('1111')
+
+				}else {
+					console.log('xxxx')
+					$(".ui-jqgrid-view").css({'pointer-events':'none'});
+					layer.msg('旧版功能数据赞支持编辑！', {icon: 5, time: 2000});
+					$(".markLayout").css({'display':'block'})
+					setTimeout(function(){
+						$(".markLayout").css({'display':'none'})
+					}
+						,2000
+					);
+				}
+            })
+		}
        }]);

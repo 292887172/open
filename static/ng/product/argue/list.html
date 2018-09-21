@@ -719,7 +719,6 @@
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
                     {name: 'Stream_ID', align: 'center', width: 143, formatter: function (cellvalue, options,rowObject) {
-                        console.log(cellvalue,'------------')
                         if(rowObject.standa_or_define=='1'){
                             return cellvalue+"<span class='self-define'>自定义</span>"
                         }
