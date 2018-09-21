@@ -139,11 +139,15 @@ def get_device_function(key: str) -> list or 'false':
     device_functions = []
     for config in configs:
         function = {}
-        function['name'] = config['Stream_ID']
+        try:
+            function['name'] = config['Stream_ID']
+        except Exception:
+            # 处理 {veriosn :2 } 这种类型字段
+            continue
+
         function['length'] = int(config['mxsLength'])
         function['title'] = config['name']
         function['triggers'], function['controls'] = {}, {}
-
         # 功能定义中的UI关联与控制器
         if config.get('control'):
             ids = config['control']['uid']
