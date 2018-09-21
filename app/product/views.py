@@ -26,7 +26,7 @@ from common.account_helper import add_team_email, del_team_email
 from common.app_helper import cancel_release_app
 from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
     get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud,new_mxs_data
+from common.app_helper import del_app, save_app, check_cloud,new_mxs_data,save_control,fk_opera_data
 from common.app_helper import off_app
 from common.app_helper import release_app
 from common.app_helper import reset_app_secret
@@ -37,7 +37,7 @@ from common.device_fun_helper import add_device_fun
 from common.device_online import device_online
 from common.message_helper import save_user_message
 from common.mysql_helper import get_ui_static_conf, remove_up_url
-from common.project_helper import get_personal_project
+from common.project_helper import get_personal_project,get_personal_project_by_key
 from common.smart_helper import *
 from common.util import parse_response, send_test_device_status, reverse_numeric
 from conf.apiconf import *
@@ -552,6 +552,15 @@ def product_main(request):
                 return [i, opera_data[i]]
         return []
 
+    def findd(opera_data):
+            if len(opera_data) > 1:
+                for iosa in opera_data:
+
+                    if len(str(iosa)) < 20:
+                        opera_data.remove(iosa)
+                return opera_data
+
+
     def findname(names, opera_data):
         names_list = eval(names)
         names = []
@@ -575,9 +584,13 @@ def product_main(request):
         app = App.objects.get(app_id=app_id)
         device_conf = gen_app_default_conf(app.app_device_type)
         opera_data = []
+        opera_data_new = []
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
+                opera_data_new = opera_data
+                old_or_new = fk_opera_data(opera_data_new)
+                opera_data = findd(opera_data)
                 opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
@@ -593,10 +606,14 @@ def product_main(request):
                 data = r.get("product_funs" + app_id)
                 data = json.loads(data.decode())
                 opera_data = data["rows"]
+
+                opera_data = findd(opera_data)
+                # 做判断 区分是否为老产品 根据是否有control来区分
+
             for line in opera_data:
                 # if str(line.get("standa_or_define")) == str(standa):
                 temp.append(line)
-            data = {'rows': opera_data, 'check_state': app.check_status}
+            data = {'rows': opera_data, 'check_state': app.check_status,'old_or_new':old_or_new}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
@@ -627,13 +644,12 @@ def product_main(request):
             if len(id) > 3:
                 id = id.split("#")[0]
 
-            edit_data = find(id, opera_data)
+            edit_data = findd(opera_data)
+            edit_data = find(id, edit_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
-            data = find(id, opera_data)
-
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
@@ -782,7 +798,10 @@ def product_main(request):
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
             indata["isDisplay"] = 1
-            new_mxs_data(indata['control'])
+            try:
+                indata['control'] = new_mxs_data(indata['control'])
+            except Exception as e:
+                print(e)
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
@@ -799,6 +818,8 @@ def product_main(request):
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "modify_success"
+            # 版本区别,在新版本加{"version":"1"} # 区分方法control
+            opera_data = save_control(opera_data)
             save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)
@@ -903,33 +924,19 @@ def protocol(request):
         if action == "get_project":
             screen = request.GET.get('screen', '')
             print(screen,'screen')
-            p = get_device_protocol_config(device_key)
-            if p:
-                p0 = p[0]
-                p1 = p[1]
-            else:
-                p0, p1 = False, False
-            d = get_device_function(device_key)
-            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
-            pth = get_personal_project(project_path, device_key, d, p0, p1)
+            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+            pth = get_personal_project_by_key(project_path, device_key, 'zip')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/WiFiIot_' + device_key + '.zip'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
         if action == "get_projects":
 
-            p = get_device_protocol_config(device_key)
-            if p:
-                p0 = p[0]  # 上行
-                p1 = p[1]  # 下行
-            else:
-                p0, p1 = False, False
-            d = get_device_function(device_key)
-            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
-            # pth = get_personal_project(project_path, device_key, d, p0, p1)
-            pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
+            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+            pth = get_personal_project_by_key(project_path, device_key, 'lua')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
+
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
 

@@ -248,6 +248,7 @@
     .show_control{
         margin-top: -15px;
     }
+
     .fork_show{
         display: none;
     }
@@ -493,14 +494,14 @@
                             <div class="form-group" id="fun_control" style="padding-top: 20px">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" data-type="" style="text-align:right"> 多态 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)"  class="form-control float-left"></div>
+                                    <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder=""  onblur="checkvalued_params(this,1)"  class="form-control float-left"></div>
                                     <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
                                     <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
                                         <option value="Button" >Button选择</option>
                                         <option value="TimeButton" >TimeButton</option>
                                         <option value="AnimationStatusButton" >AnimationStatusButton</option>
                                         </select></div>
-                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >params: </span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
+                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >params: </span><input id="defaultPAM" value=""  style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
                                 </div>
                             </div>
                         </form><!-- PAGE CONTENT ENDS -->
@@ -718,6 +719,7 @@
                 colModel: [
                     {name: 'id', width: 107, align: 'center'},
                     {name: 'Stream_ID', align: 'center', width: 143, formatter: function (cellvalue, options,rowObject) {
+                        console.log(cellvalue,'------------')
                         if(rowObject.standa_or_define=='1'){
                             return cellvalue+"<span class='self-define'>自定义</span>"
                         }
@@ -1170,16 +1172,27 @@
         $('#corpName').val(d.corpName);
         $('#corpMark').val(d.corpMark);
         $('#mxsLength').val(d.mxsLength);
-
+        // 初始化数据//清空缓存
+        $("#select_id").val('Button');
+        $("#defaultUID").val('');
+        $("#defaultPAM").val('')
+        $("#defaultPAM").parent().addClass("fork_show")
         try {
-            $("#defaultUID").val(d.control['Main'])
-            if (d.control['wegdit']==''){
-                $("#select_id").val('')
+            console.log('eee',d.control)
+            var data_control = d.control
+            console.log('xxxx',data_control)
+
+            $("#defaultUID").val(data_control['uid'])
+            if (data_control['wedgit']==''){
+                $("#select_id").val('Button')
                 $("#defaultPAM").val('')
              }else {
+
+                $("#select_id").val(data_control['wedgit'])
+                var ccc=data_control['params']
+                console.log('ss',ccc)
+                $("#defaultPAM").val(ccc)
                 $("#defaultPAM").parent().removeClass("fork_show")
-                $("#select_id").val(d.control['wegdit'])
-                $("#defaultPAM").val(d.control['params'])
             }
         }catch (e) {
             console.log(e)
@@ -1245,22 +1258,6 @@
                 if(edit_data["Stream_ID"]=="MODEL" && $("#device_type").val()==11 && d.mxs[i].data<=100) {
                     flag = true;
                 }
-                var sss = d.mxs[i].control
-
-                try {
-                     if (sss.indexOf("\"")>0){
-
-                        sss_list.push(sss)
-                    }else {
-                        sss = sss
-                        sss_list.push(sss)
-                    }
-                }catch (e) {
-                    console.log(e)
-                    sss_list.push(sss)
-                }
-
-
 
                 group += '<div class="form-group ddd">';
                 group += '	<div class="col-sm-2 col-xs-2"></div>';
@@ -1316,6 +1313,7 @@
            if(selected=="Button"){
                //document.getElementById("search_content_id").
                $("#defaultPAM").parent().addClass("fork_show")
+               console.log('ssadgskd')
                $("#defaultPAM").val('')
            }else {
                $("#defaultPAM").parent().removeClass("fork_show")
@@ -1549,10 +1547,9 @@
 
        value = $(ths).val();
 
-       if(params_id=='1'){
-           console.log('1',value)
-       }else if (params_id=='2'){
-           console.log('2',value)
+       if(!params_id=='2' && value){
+           console.log('非下拉框',value)
+
        }else {
            console.log('3',value)
        }

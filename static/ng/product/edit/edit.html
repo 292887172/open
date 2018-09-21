@@ -551,12 +551,12 @@
 
         try {
             $("#defaultUID").val(d.control['Main'])
-            if (d.control['wegdit']==''){
+            if (d.control['wedgit']==''){
                 $("#select_id").val('')
                 $("#defaultPAM").val('')
              }else {
                 $("#defaultPAM").parent().removeClass("fork_show")
-                $("#select_id").val(d.control['wegdit'])
+                $("#select_id").val(d.control['wedgit'])
                 $("#defaultPAM").val(d.control['params'])
             }
         }catch (e) {

@@ -675,9 +675,9 @@ def fetch_one_app_data(serach, page, limit, order_by_names):
 def save_app(app, opera_data, cook_ies):
     # 保存修改后的device_config
     r = Redis3_ClientDB6
+
     app.device_conf = json.dumps(opera_data)
     key = app.app_appid[-8:]
-
     remove_conf_prefix(key)
     app.app_update_date = datetime.datetime.utcnow()
     app.save()
@@ -685,37 +685,73 @@ def save_app(app, opera_data, cook_ies):
     r.set("product_funs" + str(app.app_id), json.dumps(data), 3600 * 24 * 3)
 
 
-def new_mxs_data(control_data):
+def save_control(opera_data):
+    for iosa in opera_data:
+        if len(str(iosa)) < 20 and iosa.has_key('version'):
+            return opera_data
+        break
+    true_list = []
+    for i in opera_data:
+        if 'control' in i.keys():
+            # 新版数据
+            true_list.append('1')
+    if '1' in true_list:
 
-    indata_mxs_new={}
-    print('=====', control_data)
+        opera_data.append({"version": "2"})
+        return opera_data
+    else:
+        return opera_data
+        # 旧版数据 数据操作待定
+        # if len(opera_data)>1:
+        #     for i in opera_data:
+        #         if len(i)>20:
+        #             if opera_data.has_key('control'):
+        #                 print('sss', json.dumps(opera_data))
+
+
+def fk_opera_data(opera_data_new):
+    if 'version' in str(opera_data_new):
+        return 1
+    else:
+        return 0
+
+
+def new_mxs_data(control_data):
+    indata_mxs_new = {}
     try:
-        if ',' in control_data['Main']:
-            main_list = control_data['Main'].split(",")
-            print('ddd', main_list)
+        if ',' in control_data['uid']:
+            main_list = control_data['uid'].split(",")
         else:
-            print(control_data['Main'],list(control_data['Main']))
-            main_list = list(str(control_data['Main']))
+            lists1 = []
+
+            if control_data['uid'] == '':
+                main_list = lists1
+            else:
+                lists1.append(control_data['uid'])
+                main_list = lists1
     except Exception as e:
         logging.info("xxx", e)
-
         main_list = ''
         print(e)
     try:
         if ',' in control_data['params']:
             params_list = control_data['params'].split(",")
         else:
-            params_list = list(str(control_data['params']))
+            list2 = []
+            if control_data['params'] == '':
+                params_list = list2
+            else:
+                list2.append(control_data['params'])
+                params_list = list2
     except Exception as e:
         logging.info("xxx", e)
         params_list = ''
 
         print(e)
-    indata_mxs_new['Main'] = main_list
-    indata_mxs_new['wegdit'] = control_data['wegdit']
-    indata_mxs_new['parmas'] = params_list
-    print(json.dumps(indata_mxs_new))
-    control_data = json.dumps(indata_mxs_new)
+    indata_mxs_new['uid'] = main_list
+    indata_mxs_new['wedgit'] = control_data['wedgit']
+    indata_mxs_new['params'] = params_list
+    return indata_mxs_new
 
 
 def check_cloud(opera_data):

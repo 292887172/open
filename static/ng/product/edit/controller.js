@@ -179,14 +179,14 @@ angular.module('Product.edit', ['ngRoute'])
 				indata.isFunction=0;//属性按钮
 			}
 			// 保存
-            contrals['Main']=$("#defaultUID").val()
+            contrals['uid']=$("#defaultUID").val()
 
-            // contrals['Main']=$("#defaultUID").val()
-            if ($("#select_id").val()=='button'){
-                    contrals['wegdit']=''
+
+            if ($("#select_id").val()=='Button'){
+                    contrals['wedgit']=''
                     contrals['params']=''
                 }else {
-                    contrals['wegdit']=$("#select_id").val()
+                    contrals['wedgit']=$("#select_id").val()
                     contrals['params']=$("#defaultPAM").val()
                 }
 
