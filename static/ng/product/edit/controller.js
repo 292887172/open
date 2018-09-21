@@ -27,7 +27,7 @@ angular.module('Product.edit', ['ngRoute'])
 				var data=$.trim(paramDatas[i].value);
 				var desc=$.trim(paramDescs[i].value);
 				console.log('xx',data,desc)
-				var control=$.trim(paramUI[i].value);
+
 				var role=/^[0-9]*$/;
 				if(desc=="" || data=="" ){
 					$scope.errorType=1;
@@ -49,7 +49,7 @@ angular.module('Product.edit', ['ngRoute'])
 				}
 				else if ($scope.flag == 'error'){}
 				var trig = getTrigger(data);
-				$scope.mxs.push({data:data,desc:desc,trigger:trig,control:control});
+				$scope.mxs.push({data:data,desc:desc,trigger:trig});
 			}
         };
         $scope.Save = function () {
@@ -132,6 +132,7 @@ angular.module('Product.edit', ['ngRoute'])
 				return;
 			}
 			var indata={};
+			var contrals={};
 			indata.Stream_ID=$.trim($('#Stream_ID').val());
 			indata.name=$.trim($('#name').val());
 			if(types[0].checked){
@@ -177,7 +178,21 @@ angular.module('Product.edit', ['ngRoute'])
 			else{
 				indata.isFunction=0;//属性按钮
 			}
-			indata.corpName=$.trim($('#corpName').val());
+			// 保存
+            contrals['uid']=$("#defaultUID").val()
+
+
+            if ($("#select_id").val()=='Button'){
+                    contrals['wedgit']=''
+                    contrals['params']=''
+                }else {
+                    contrals['wedgit']=$("#select_id").val()
+                    contrals['params']=$("#defaultPAM").val()
+                }
+
+            console.log('---',contrals)
+            indata.control=contrals;
+    		indata.corpName=$.trim($('#corpName').val());
 			indata.corpMark=$.trim($('#corpMark').val());
 			indata.mxsLength=$.trim($('#mxsLength').val());
 

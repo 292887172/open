@@ -382,6 +382,7 @@ angular.module('Product.protocol', ['ngRoute'])
                     if(response['data']!=""){
                         $scope.frame_data=response['data']['frame_content'];
                         //$scope.$apply();
+
                         console.log($scope.frame_data, '-------');
                         console.log($scope.protocol_zdy)
                             for(var i=0;i<$scope.data_menu.length;i++){
@@ -395,12 +396,101 @@ angular.module('Product.protocol', ['ngRoute'])
 
                                     }
                                 }
+
+                                $scope.frame_data_yulan=response['data']['frame_content'];
+                                $scope.jinzhishow=[];
+                                for (var old_i =0,old_length = response['data']['frame_content'].length;old_i<old_length;old_i++){
+                    console.log('th')
+                    if(response['data']['frame_content'][old_i]['name']=='head'){
+                        // 添加head
+                        console.log('xxx')
+                        ç.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":"head"})
+                        for (var old_ii=0,old_lengths=response['data']['frame_content'][old_i]['value'].length;old_ii<old_lengths;old_ii++){
+
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['value'][old_ii]['title'],"values":response['data']['frame_content'][old_i]['value'][old_ii]})
+                        }
+                    }else if(response['data']['frame_content'][old_i]['name']=='check'){
+                          console.log('xrt')
+                          if (response['data']['frame_content'][old_i]['length']==1){
+                               $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"00","name":"check"})
+                          }else {
+                                $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"0000","name":"check"})
+                          }
+                          // $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
+                    }else if (response['data']['frame_content'][old_i]['name']=='data'){
+                        var isds = parseInt(0)
+                        for (var idataid=0,idata_length=response['data']['frame_content'][old_i]['value'].length;idataid<idata_length;idataid++){
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"","name":"data"})
+                            isds += parseInt(response['data']['frame_content'][old_i]['value'][idataid]['length'])
+                        }
+                        console.log('ids',isds);
+                        if (isds%8===0){
+                            console.log('格式正确');
+                            var lengsts = isds/8;
+                            for (var ile=0,ile_length=lengsts;ile<ile_length;ile++){
+                                $scope.jinzhishow.push({"title":"功能","values":"00","name":"data"})
+                            }
+                        }else {
+                            console.log('格式错误')
+                        }
+                    }else {
+                         $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":response['data']['frame_content'][old_i]['name']})
+
+                    }
+
+                }
+                                $scope.protocol_endian = response['data']['endian_type']
+
                             }
                             else{
+                                console.log("222222")
                                 // 自定义协议
                                 for(var i=0;i<$scope.data_menu.length;i++){
                                     $scope.data_menu[i].content=false;
                                 }
+                                $scope.jinzhishow=[];
+                                $scope.frame_data_yulan=response['data']['frame_content'];
+                                for (var old_i =0,old_length = response['data']['frame_content'].length;old_i<old_length;old_i++){
+                    console.log('th')
+                    if(response['data']['frame_content'][old_i]['name']=='head'){
+                        // 添加head
+                        console.log('xxx')
+                        $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":"head"})
+                        for (var old_ii=0,old_lengths=response['data']['frame_content'][old_i]['value'].length;old_ii<old_lengths;old_ii++){
+
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['value'][old_ii]['title'],"values":response['data']['frame_content'][old_i]['value'][old_ii]})
+                        }
+                    }else if(response['data']['frame_content'][old_i]['name']=='check'){
+                          console.log('xrt')
+                          if (response['data']['frame_content'][old_i]['length']==1){
+                               $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"00","name":"check"})
+                          }else {
+                                $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"0000","name":"check"})
+                          }
+                          // $scope.jinzhishow.push({"title":titles[ils],"values":lens,"name":"data"})
+                    }else if (response['data']['frame_content'][old_i]['name']=='data'){
+                        var isds = parseInt(0)
+                        for (var idataid=0,idata_length=response['data']['frame_content'][old_i]['value'].length;idataid<idata_length;idataid++){
+                            //$scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":"","name":"data"})
+                            isds += parseInt(response['data']['frame_content'][old_i]['value'][idataid]['length'])
+                        }
+                        console.log('ids',isds);
+                        if (isds%8===0){
+                            console.log('格式正确');
+                            var lengsts = isds/8;
+                            for (var ile=0,ile_length=lengsts;ile<ile_length;ile++){
+                                $scope.jinzhishow.push({"title":"功能","values":"00","name":"data"})
+                            }
+                        }else {
+                            console.log('格式错误')
+                        }
+                    }else {
+                         $scope.jinzhishow.push({"title":response['data']['frame_content'][old_i]['title'],"values":response['data']['frame_content'][old_i]['value'],"name":response['data']['frame_content'][old_i]['name']})
+
+                    }
+
+                }
+                                $scope.protocol_endian = response['data']['endian_type']
                             }
                         }
 

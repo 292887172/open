@@ -26,7 +26,7 @@ from common.account_helper import add_team_email, del_team_email
 from common.app_helper import cancel_release_app
 from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
     get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud
+from common.app_helper import del_app, save_app, check_cloud,new_mxs_data,save_control,fk_opera_data
 from common.app_helper import off_app
 from common.app_helper import release_app
 from common.app_helper import reset_app_secret
@@ -37,7 +37,7 @@ from common.device_fun_helper import add_device_fun
 from common.device_online import device_online
 from common.message_helper import save_user_message
 from common.mysql_helper import get_ui_static_conf, remove_up_url
-from common.project_helper import get_personal_project
+from common.project_helper import get_personal_project,get_personal_project_by_key
 from common.smart_helper import *
 from common.util import parse_response, send_test_device_status, reverse_numeric
 from conf.apiconf import *
@@ -60,7 +60,6 @@ from util.netutil import verify_push_url
 
 _code = StatusCode()
 _convention = ConventionValue()
-logger = logging.getLogger('')
 
 
 @login_required
@@ -288,25 +287,34 @@ def product_controldown(request):
         tmp_apps = sorted(tmp_apps, key=lambda a: a['app_update_date'], reverse=True)
         unpublished_apps = tmp_apps[:5]
         template = "product/controldown.html"
-        users = request.COOKIES.get('COOKIE_USER_ACCOUNT')
+        print(request.COOKIES['COOKIE_USER_ACCOUNT'])
+        users = request.COOKIES['COOKIE_USER_ACCOUNT']
         Uobj = Account.objects.filter(account_id=users)
-        fireware = ''
         if Uobj:
             try:
                 for i in Uobj:
                     if i.account_email in ['gaowei@53iq.com', 'guoyh@53iq.com', 'rendy@53iq.com', 'zhangjian@53iq.com',
-                                           'guodl@53iq.com', 'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com',
-                                           '292887172@qq.com', 'likuo@53iq.com']:
-                        if unpublished_apps:
+                                           'guodl@53iq.com',
+                                           'taosheng@53iq.com', 'dev@53iq.com', 'yangxy@53iq.com', '292887172@qq.com',
+                                           'likuo@53iq.com']:
+                        if not unpublished_apps:
+                            fireware = ''
+                        else:
                             fireware = Firmware.objects.all()
+                    else:
+                        fireware = ''
             except Exception as e:
-                logger.exception(e)
+                print(e)
+                fireware = ''
+        else:
+            fireware = ''
         content = dict(
             keyword=keyword,
             developer=developer,
             unpublished_apps=unpublished_apps,
             default_apps=default_apps,
             fireware=fireware
+
         )
 
         return render(request, template, content)
@@ -544,6 +552,15 @@ def product_main(request):
                 return [i, opera_data[i]]
         return []
 
+    def findd(opera_data):
+            if len(opera_data) > 1:
+                for iosa in opera_data:
+
+                    if len(str(iosa)) < 20:
+                        opera_data.remove(iosa)
+                return opera_data
+
+
     def findname(names, opera_data):
         names_list = eval(names)
         names = []
@@ -567,9 +584,13 @@ def product_main(request):
         app = App.objects.get(app_id=app_id)
         device_conf = gen_app_default_conf(app.app_device_type)
         opera_data = []
+        opera_data_new = []
         try:
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
+                opera_data_new = opera_data
+                old_or_new = fk_opera_data(opera_data_new)
+                opera_data = findd(opera_data)
                 opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
@@ -585,10 +606,14 @@ def product_main(request):
                 data = r.get("product_funs" + app_id)
                 data = json.loads(data.decode())
                 opera_data = data["rows"]
+
+                opera_data = findd(opera_data)
+                # 做判断 区分是否为老产品 根据是否有control来区分
+
             for line in opera_data:
                 # if str(line.get("standa_or_define")) == str(standa):
                 temp.append(line)
-            data = {'rows': opera_data, 'check_state': app.check_status}
+            data = {'rows': opera_data, 'check_state': app.check_status,'old_or_new':old_or_new}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
@@ -619,13 +644,12 @@ def product_main(request):
             if len(id) > 3:
                 id = id.split("#")[0]
 
-            edit_data = find(id, opera_data)
+            edit_data = findd(opera_data)
+            edit_data = find(id, edit_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
             mods_name = list(set(mods_name))
-            data = find(id, opera_data)
-
             if edit_data:
                 edit_data = edit_data[1]
                 mods_name.remove(edit_data["Stream_ID"])
@@ -774,6 +798,10 @@ def product_main(request):
             indata["time"] = dt
             indata["widget"] = update_app_fun_widget(indata)
             indata["isDisplay"] = 1
+            try:
+                indata['control'] = new_mxs_data(indata['control'])
+            except Exception as e:
+                print(e)
             fun_name = indata['name']
             if indata["id"]:
                 # 编辑参数信息
@@ -790,6 +818,8 @@ def product_main(request):
                 opera_data.sort(key=lambda x: int(x.get("id")))
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "modify_success"
+            # 版本区别,在新版本加{"version":"1"} # 区分方法control
+            opera_data = save_control(opera_data)
             save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)
@@ -852,9 +882,11 @@ def product_main(request):
                 # 更新基本信息
                 ret = update_app_info(app_id, app_name, app_model, app_describe, app_site, app_logo,
                                       app_command, app_group, app_factory_uid)
+                logging.getLogger('').info("ss_ret" + str(ret))
                 if ret:
                     update_app_protocol(app)
                 res["data"] = ret
+                logging.getLogger('').info("data" + str(res))
                 return HttpResponse(json.dumps(res, separators=(",", ":")))
             elif action == "update_config":
                 # 更新配置信息
@@ -890,34 +922,21 @@ def protocol(request):
         action = request.GET.get('action', '')
         protocol_type = request.GET.get('protocol_type', '0')
         if action == "get_project":
-
-            p = get_device_protocol_config(device_key)
-            if p:
-                p0 = p[0]
-                p1 = p[1]
-            else:
-                p0, p1 = False, False
-            d = get_device_function(device_key)
-            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
-            pth = get_personal_project(project_path, device_key, d, p0, p1)
+            screen = request.GET.get('screen', '')
+            print(screen,'screen')
+            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+            pth = get_personal_project_by_key(project_path, device_key, 'zip')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/WiFiIot_' + device_key + '.zip'
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
         if action == "get_projects":
 
-            p = get_device_protocol_config(device_key)
-            if p:
-                p0 = p[0]  # 上行
-                p1 = p[1]  # 下行
-            else:
-                p0, p1 = False, False
-            d = get_device_function(device_key)
-            project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
-            # pth = get_personal_project(project_path, device_key, d, p0, p1)
-            pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
+            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+            pth = get_personal_project_by_key(project_path, device_key, 'lua')
             logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
+
+            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
 
@@ -1230,7 +1249,14 @@ def schedule(request):
 
                 return HttpResponse(json.dumps(update_list))
             else:
-                update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                r6 = Redis3_ClientDB5
+                schedule_key = DefaultSchedule().DEFAULT_SCHEDULE_CHOOSE + key
+                if r6.exists(schedule_key):
+                    update_list = DocUi.objects.filter(ui_key=key).order_by("-create_date")
+                    print('---',update_list)
+                else:
+                    update_list = DefaultSchedule().DEFAULT_SCHEDULE
+                    r6.set(schedule_key,json.dumps(update_list))
                 for i in update_list:
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
@@ -1253,11 +1279,11 @@ def schedule(request):
             for i in range(len(data1)):
                 ids = int(i) + 1
                 Dobj = DocUi.objects.filter(ui_key=key, ui_upload_id=int(data1[i]))
-                for i in Dobj:
-                    try:
-                        Dobj.update(ui_upload_id=int(ids * 100))
-                    except Exception as e:
-                        print(e)
+
+                try:
+                    Dobj.update(ui_upload_id=int(ids * 100))
+                except Exception as e:
+                    print(e)
             Orders = DocUi.objects.filter(ui_key=key)
             list_up_id = []
             for i in Orders:
@@ -1291,12 +1317,11 @@ def schedule(request):
                 DocUi.objects.filter(ui_key=key, ui_upload_id=int(del_xu_id)).delete()
                 del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for id_i in del_data:
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(
-                        ui_upload_id=int(id_i.ui_upload_id) * 100)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(ui_upload_id=int(id_i.ui_upload_id)*100)
                 Orders = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for i in Orders:
                     is_gt = i.ui_upload_id
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100) - 1)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100)-1)
                 Message.objects.create(message_content='产品计划删除', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
@@ -1330,13 +1355,10 @@ def schedule(request):
                     url = json.dumps(url)
                     detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
+                print('x',detail_obj_dict)
                 return HttpResponse(json.dumps(detail_obj_dict))
             else:
-                return HttpResponse(
-                    json.dumps({
-                        'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1,
-                        'time_stemp': '', 'ack': 0, 'content': '[""]'
-                    }))
+                return HttpResponse(json.dumps({'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1, 'time_stemp': '', 'ack': 0, 'content': '[""]'}))
         elif action == 'save_plan':
             # data: {'key': keysss, "action": "save_plan", "num": that},
             location = request.POST.get('location', '')

@@ -14,6 +14,9 @@ angular.module('Product.device', ['ngRoute'])
     .controller('deviceCtrl', ['$scope', "$http", function ($scope, $http) {
         $scope.nav.selected("deviceMenu");
         $scope.process="0%";
+        $scope.screena=$scope.app_screen;
+        $scope.groups=$scope.app_group;
+
         $http({
                 method: "POST",
                 url: location.href,
@@ -54,7 +57,7 @@ angular.module('Product.device', ['ngRoute'])
             }, 500);
             $http({
                 method: "GET",
-                url: '/product/protocol/?action=get_project&key='+$scope.key,
+                url: '/product/protocol/?action=get_project&key='+$scope.key+'&screen='+$scope.app_screen,
                 data: $.param({'action': 'get_product'}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {

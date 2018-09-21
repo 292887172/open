@@ -93,8 +93,15 @@
         margin-top: 20px;
         margin-bottom: 0px;
     }
-
-
+     .show_control{
+        margin-top: -15px;
+    }
+    .fork_show{
+        display: none;
+    }
+    .noshows{
+        display: none;
+    }
 </style>
 <div class="main-container ace-save-state box2" id="main-container">
     <div class="hl-help">
@@ -268,6 +275,19 @@
                                         </div>
                                 </div>
                             </div>
+                            <div class="form-group" id="fun_control" style="padding-top: 20px">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" data-type="" style="text-align:right"> 多态 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)"  class="form-control float-left"></div>
+                                    <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
+                                    <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
+                                        <option value="Button" >Button选择</option>
+                                        <option value="TimeButton" >TimeButton</option>
+                                        <option value="AnimationStatusButton" >AnimationStatusButton</option>
+                                        </select></div>
+                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >params: </span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
+                                </div>
+                            </div>
                         </form><!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -287,7 +307,7 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID
+                                <label class="col-sm-2 col-xs-3 no-padding-right noshows"> UI控件ID
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
@@ -300,7 +320,7 @@
                                 <label class="col-sm-2 col-xs-2 no-padding-right">  </label>
                                 <label class="col-sm-1 col-xs-2 no-padding-right"> 传送数据 </label>&nbsp;&nbsp;&nbsp;
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
-                                <label class="col-sm-2 col-xs-3 no-padding-right"> UI控件ID
+                                <label class="col-sm-2 col-xs-3 no-padding-right noshows"> UI控件ID
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
@@ -394,7 +414,7 @@
         group1+='	<div class="col-sm-1 col-xs-2">';
         group1+='		<input type="text" style="width:130px" value="关" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group1+='	</div>';
-        group1+='	<div class="col-sm-1 col-xs-2">';
+        group1+='	<div class="col-sm-1 col-xs-2 noshows">';
         group1+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group1+='	</div>';
         group1 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
@@ -411,10 +431,10 @@
         group2+='	<div class="col-sm-2 col-xs-3">';
         group2+='		<input type="text" style="width:130px" value="1" class="checkData" id="checkData" onblur="check_paramData(this)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group2+='	</div>';
-        group2+='	<div class="col-sm-1 col-xs-2">';
+        group2+='	<div class="col-sm-1 col-xs-2 ">';
         group2+='		<input type="text" style="width:130px" value="开" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group2+='	</div>';
-        group2+='	<div class="col-sm-1 col-xs-2">';
+        group2+='	<div class="col-sm-1 col-xs-2 noshows">';
         group2+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group2+='	</div>';
         group2 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
@@ -485,6 +505,7 @@
                 name:edit_data["name"],
                 isControl:edit_data["isControl"],
                 isFunction:edit_data["isFunction"],
+                control:edit_data["control"],
                 min:edit_data["min"],max:edit_data["max"],
                 errorData:edit_data["errorData"],
                 paramType:edit_data["paramType"],
@@ -526,6 +547,24 @@
         $('#corpName').val(d.corpName);
         $('#corpMark').val(d.corpMark);
         $('#mxsLength').val(d.mxsLength);
+
+
+        try {
+            $("#defaultUID").val(d.control['Main'])
+            if (d.control['wedgit']==''){
+                $("#select_id").val('')
+                $("#defaultPAM").val('')
+             }else {
+                $("#defaultPAM").parent().removeClass("fork_show")
+                $("#select_id").val(d.control['wedgit'])
+                $("#defaultPAM").val(d.control['params'])
+            }
+        }catch (e) {
+            console.log(e)
+        }
+
+
+
         if (edit_data.standa_or_define != 1){
             $("#Stream_ID").attr("disabled",true);
         }
@@ -588,7 +627,7 @@
                 group += '	<div class="col-sm-2 col-xs-2">';
                 group += '		<input ng-disabled="{[{ disabled }]}" type="text" name="paramDesc" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-2 col-xs-2">';
+                group += '	<div class="col-sm-2 col-xs-2 noshows">';
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
@@ -670,6 +709,18 @@
         if(e.offsetParent!=null) offset+=getLeft(e.offsetParent);
         return offset;
     }
+
+    function Select_Onchange(that){
+         var selected=$(that).children('option:selected').val()
+           if(selected=="Button"){
+               //document.getElementById("search_content_id").
+               $("#defaultPAM").parent().addClass("fork_show")
+               $("#defaultPAM").val('')
+           }else {
+               $("#defaultPAM").parent().removeClass("fork_show")
+           }
+    }
+
     function add(){
         flag = true;
         var group='';
@@ -681,12 +732,12 @@
         group+='	<div class="col-sm-1 col-xs-2">';
         group+='		<input type="text" style="width:130px" class="checkDatas" name="paramDesc1" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
-        group+='	<div class="col-sm-1 col-xs-2">';
+        group+='	<div class="col-sm-1 col-xs-2 noshows">';
         group+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
-        group+='	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
+        group+='	<div class="col-sm-3 col-xs-2" style="padding-left:0px">';
         group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px;" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+        group += '      <a ng-hide="{[{ visible }]}" onclick="select_trigger(this)" class="addButton">触发器管理</a><p style="margin-left: 130px;margin-top:-10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
@@ -721,6 +772,24 @@
 
         }
     }
+
+    function checkvalued_params(ths,params_id) {
+       console.log('id---------',params_id)
+        // 根据params_id 来判断哪个input传过来的数值 数值校验
+        // id=1
+
+       value = $(ths).val();
+
+       if(params_id=='1'){
+           console.log('1',value)
+       }else if (params_id=='2'){
+           console.log('2',value)
+       }else {
+           console.log('3',value)
+       }
+
+    }
+
     function check_paramData(ths) {
         value = $(ths).val();
 

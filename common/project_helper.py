@@ -393,4 +393,4 @@ if __name__ == '__main__':
 
     test_config_change_by_key("MCKjIJWI")
 
-    get_personal_project_by_key('/home/am/deployment/open/static/sdk/wifi_68.zip', 'MCKjIJWI', 'lua')
+    get_personal_project_by_key('/Users/liuwu/work_napa/open_oven/static/sdk/static/sdk/wifi_68.zip', 'MCKjIJWI', 'lua')

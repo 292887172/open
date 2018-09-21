@@ -88,14 +88,17 @@ def search_time11(key):
 
 def update_app_protocol(app):
     conn = sys_mysql_conn_pool.conn
+    logging.getLogger('').info("conn" + str(conn))
     try:
         cursor = conn.cursor()
+        logging.getLogger('').info("cursor" + str(cursor))
         re = deal_json(app)
         device_conf = json.dumps(re['j_data'])
         key_value = re['j_data']['key']
         sqlOne = "SELECT ebf_pc_device_key FROM ebt_protocol_conf WHERE ebf_pc_device_key='{0}'".format(key_value)
         cursor.execute(sqlOne)
         test = cursor.fetchone()
+        logging.getLogger('').info("test" + str(test))
         if not test:
             sql = "INSERT INTO ebt_protocol_conf(" \
                   "ebf_pc_factory_uid, " \
