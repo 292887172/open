@@ -17,9 +17,11 @@ urlpatterns = patterns(
     url(r"^portal", "portal", name="portal"),
     url(r"^app", "app", name="app"),
     url(r"^party", "party", name="party"),
+    url(r"^get_version", "get_version", name="get_version"),
     url(r"^schedule", "schedule", name="schedule"),
     url(r"^upload_file", "upload_file", name="upload_file"),
     url(r'^wx_code', "wx_scan_code", name='product/wx_code'),
     url(r"^uiconf/(?P<device_key>\w{8})$", "ui_conf_main", name="uiconf"),
+
     url(r"^download", "download")
 )

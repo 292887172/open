@@ -589,7 +589,7 @@ def product_main(request):
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
                 opera_data_new = opera_data
-                old_or_new = fk_opera_data(opera_data_new)
+
                 opera_data = findd(opera_data)
                 opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
@@ -613,7 +613,7 @@ def product_main(request):
             for line in opera_data:
                 # if str(line.get("standa_or_define")) == str(standa):
                 temp.append(line)
-            data = {'rows': opera_data, 'check_state': app.check_status,'old_or_new':old_or_new}
+            data = {'rows': opera_data, 'check_state': app.check_status}
             r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
@@ -1506,6 +1506,20 @@ def schedule(request):
             return HttpResponse('ok')
 
 
+@csrf_exempt
+def get_version(request):
+    pass
+    if request.method== "GET":
+        key = request.GET.get('key', '')
+        app = App.objects.get(app_appid__endswith=key)
+        try:
+            if app.device_conf:
+                opera_data = json.loads(app.device_conf)
+                old_or_new = fk_opera_data(opera_data)
+                return HttpResponse(old_or_new)
+        except Exception as e:
+            print(e)
+            return HttpResponse(0)
 @csrf_exempt
 def party(request):
     if request.method == "POST":

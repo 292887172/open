@@ -9,6 +9,7 @@ angular.module('Product.argue', ['ngRoute'])
         });
     }])
     .controller('argueCtrl', ['$scope', "$http", function ($scope, $http) {
+
         $scope.dis = true;
 
         // if(device_type == 20 || device_type == 27 || device_type == 11 ){
@@ -25,6 +26,7 @@ angular.module('Product.argue', ['ngRoute'])
          * 提交配置信息表单
          * @constructor
          */
+
         function checkID(){
         var role=/^[a-zA-Z][a-zA-Z0-9_]*$/;
         var data=$.trim($('#Stream_ID').val());
@@ -224,6 +226,10 @@ angular.module('Product.argue', ['ngRoute'])
          * 提交重置AppSecret表单
          * @constructor
          */
+		// 新老产品区分，老产品不可编辑
+
+
+
 
     }])
 
