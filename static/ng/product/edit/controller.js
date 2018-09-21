@@ -260,14 +260,14 @@ angular.module('Product.edit', ['ngRoute'])
 
 				}else {
 					console.log('xxxx')
-					$(".ui-jqgrid-view").css({'pointer-events':'none'});
-					layer.msg('旧版功能数据赞支持编辑！', {icon: 5, time: 2000});
-					$(".markLayout").css({'display':'block'})
-					setTimeout(function(){
-						$(".markLayout").css({'display':'none'})
-					}
-						,2000
-					);
+					// $(".ui-jqgrid-view").css({'pointer-events':'none'});
+					// layer.msg('旧版功能数据暂不支持编辑！', {icon: 5, time: 2000});
+					// $(".markLayout").css({'display':'block'})
+					// setTimeout(function(){
+					// 	$(".markLayout").css({'display':'none'})
+					// }
+					// 	,2000
+					// );
 				}
             })
 		}
