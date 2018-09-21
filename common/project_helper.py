@@ -6,6 +6,9 @@ import shutil
 import logging
 import pprint
 
+from common.config_helper import get_device_function
+from common.config_helper import get_device_protocol_config
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -136,6 +139,9 @@ def config_change(config: dict):
         .replace('[', '{') \
         .replace(']', '}') \
         .replace('"None"', 'nil')
+
+    data = re.sub(r'(\")(\w+=)(\",)', r'\2', data)  # "main=",    ->   main=
+
     data = re.sub(r'(")([\w]+)("=)', r'\2=', data)
     data = re.sub(r'("{)(\d)(}")', r'[\2]', data)
 
@@ -267,9 +273,30 @@ def get_personal_project(project_path: str,
     elif return_type == 'lua':
         if os.path.exists(main_key_lua):
             logging.info('最终返回的自定义文件下载文件路径 ' + main_key_lua)
+            return main_key_lua
         else:
             logging.info('最终返回的下载文件路径 ' + main_lua)
-        return main_lua
+            return main_lua
+
+
+def get_personal_project_by_key(project_path, key, return_type):
+    """ 通过 项目绝对路径, key, 返回类型 生成自定义项目
+
+    :param project_path: 使用项目的绝对路径   eg:/home/am/deployment/open/static/sdk/WiFiIot.zip
+    :param key: 用户的 key eg:MCKjIJWI
+    :param return_type: 需要生成的类型 eg:zip
+    :return: 生成后的文件的绝对路径
+    """
+
+    device_function = get_device_function(key)
+    device_protocol_config, device_protocol_response_config = get_device_protocol_config(key)
+
+    location_path = get_personal_project(project_path, key,
+                                         device_function,
+                                         device_protocol_config,
+                                         device_protocol_response_config,
+                                         return_type)
+    return location_path
 
 
 def test_os():
@@ -336,6 +363,11 @@ def test_get_personal_project():
                                       device_protocol_config, device_protocol_response_config, 'zip'))
 
 
+def test_config_change_by_key(key):
+    device_function = get_device_function(key)
+    print(config_change(device_function))
+
+
 if __name__ == '__main__':
     """使用说明
     
@@ -348,21 +380,17 @@ if __name__ == '__main__':
         - 生成的文件 main.lua 中的配置会替换，main.origin.lua 也会打包进项目中
     - 打包
         - 打包后文件名 prject_name + '_' + new_key.zip 
-        
     - 调用
-        project_path = get_personal_project(project_name, key, device_function, device_protocol_config)
-        
-        project_name: 项目名  (例如 WiFiIot 代表同目录下 WiFiIot.zip)
-        ket: 新的key  (str) 
-        device_function:    dict
-        device_protocol_config  dict    
+         get_personal_project()        
     - 其他
         - main.lua 使用utf-8编码进行存储
-        - 更新项目时 删除 WiFiIot.zip 以及 WiFiIot文件夹 
+        - 更新原始项目包时 删除 WiFiIot.zip 以及 WiFiIot文件夹 
         - 以 项目名_key 形式存放的文件属于临时文件可以进行删除
             - ls WiFiIot_*zip
             - rm WiFiIot_*zip
         - 格式转换基于文本的替换，并且转换后的数据会使用 lua5.1 模拟运行
     """
 
-    test_get_personal_project()
+    test_config_change_by_key("MCKjIJWI")
+
+    get_personal_project_by_key('/home/am/deployment/open/static/sdk/wifi_68.zip', 'MCKjIJWI', 'lua')

@@ -21,18 +21,10 @@ DJANGO_SETTINGS_MODULE=open.settings
 """
 
 
-def get_device_function(key: str) -> list or 'false':
-    """ 获取用户定义的帧协议
-
-    :param key: 用户的key
-    :return: 成功 -> 用户定义的帧协议  ，  失败 -> false
-    """
+def get_all_device_function(key: str):
+    device_function = {}
     try:
         app = App.objects.get(app_appid__contains=key)
-    except Exception as e:
-        logging.error('查询数据失败 key={} \n {}'.format(key, str(e)))
-        return False
-    try:
         configs = json.loads(app.device_conf)
         device_function = []
         for config in configs:
@@ -41,55 +33,150 @@ def get_device_function(key: str) -> list or 'false':
             item['name'] = config['Stream_ID']
             item['length'] = int(config['mxsLength'])
             item['title'] = config['name']
-            # 功能定义中的UI关联与控制器
-            item['triggers'], item['controls'] = {}, []
+            item['values'] = []
             for mxs in config['mxs']:
-                if mxs.get('control'):
-                    # 3种类型UI绑定 main=111 or 111
-                    # Main={id=103,weight="time_button,params={value={1,2,3},progress=104}}
-                    if '=' in mxs['control']:
-                        _key, _value = mxs['control'].split('=', 1)
-                        try:
-                            item['controls'].append({_key: int(_value)})
-                        except Exception as e:
-                            _lua = "{{{}}}".format(mxs['control'])
-                            _lua = lua.decode(_lua)
-                            item['controls'].append(_lua)
-                    else:
-                        item['controls'].append(int(mxs['control']))
-                # 触发器示例如下 'triggers': {'[1]': {'Fast': 0, 'Slow': 0}}
-                data = "[%s]" % mxs['data']
-                if mxs.get('trigger') and len(mxs.get('trigger')):
-                    _item = {}
-                    for trigger in mxs['trigger']:
-                        _item[trigger['func']] = int(trigger['val'])
-                    item['triggers'][data] = _item
-            if not item['triggers']: del item['triggers']
-            if not item['controls']:
-                del item['controls']
-            else:
-                # 去除重复项
-                _control_page_num, _controls_num = [], set()
-                for control in item['controls']:
-                    if isinstance(control, dict):
-                        _control_page_num.append(control)
-                    if isinstance(control, int):
-                        _controls_num.add(control)
-                item['controls'] = _control_page_num + list(_controls_num)
-                if len(item['controls']) == 1:
-                    item['controls'] = item['controls'][0]
+                item['values'].append({'data': mxs['data'], 'desc': mxs['desc']})
             device_function.append(item)
-        return device_function
+        device_function = ('{"function":' + str(device_function).replace("'", '"') + "}")
+
     except Exception as e:
-        logging.error(str(e))
+        print(str(e))
+    finally:
+        print(pprint.pformat(json.loads(device_function), width=200).replace("'", '"'))
+        # print(json.dumps(json.loads(device_function), indent=4, ensure_ascii=False))
+
+
+def get_device_function(key: str) -> list or 'false':
+    """ 获取用户定义的帧协议
+
+    :param key: 用户的key
+    :return: 成功 -> 用户定义的帧协议  ，  失败 -> false
+    """
+
+    def get_ids(ids):
+        new_ids = []
+        for item in ids:
+            if item.isdigit():
+                new_ids.append(int(item))
+            elif ':' in item:
+                key, value = item.split(':')
+                if value.isdigit():
+                    new_ids.append({key: int(value)})
+                else:
+                    new_ids.append({key: value})
+        return new_ids
+
+    def get_params(params):
+        new_params = []
+        for item in params:
+            _new_params = []
+            if item.isdigit():
+                _new_params.append(int(item))
+            elif ':' in item:
+                values = item.split(':')
+                for value in values:
+                    if value.isdigit():
+                        _new_params.append(int(value))
+                    else:
+                        _new_params.append(value)
+            new_params.append(_new_params)
+        return new_params
+
+    def get_control_items(ids, wedgit, params):
+        if not ids:
+            return []
+        if ids and not wedgit:
+            return get_ids(ids)
+        if ids and wedgit:
+            controls = []
+            params = get_params(params)
+            for item in get_ids(ids):
+                if isinstance(item, int):
+                    if not params:
+                        controls.append({'id': item, 'wedgit': wedgit})
+                    else:
+                        controls.append({'id': item, 'wedgit': wedgit, 'params': params})
+
+                elif isinstance(item, dict):
+                    for k, v in item.items():
+                        if not params:
+                            controls.append(k + '=')
+                            controls.append({'id': v, 'wedgit': wedgit})
+                        else:
+                            controls.append(k + '=')
+                            controls.append({'id': v, 'wedgit': wedgit, 'params': params})
+            return controls
+
+    def get_triggers(triggers):
+        new_triggers = {}
+        for key, value in triggers.items():
+            if value == {}:
+                continue
+            print(key, value)
+            _item = {}
+            for k, v in value.items():
+                if v.isdigit():
+                    _item[k] = int(v)
+            new_triggers[key] = _item
+        return new_triggers
+
+    try:
+        app = App.objects.get(app_appid__contains=key)
+    except Exception as e:
+        logging.error('查询数据失败 key={} \n {}'.format(key, str(e)))
         return False
+
+    configs = json.loads(app.device_conf)
+
+    ## 输出原始的配置信息
+    # try:
+    #     _configs = ('{"function":' + str(configs) + "}").replace("'", '"')
+    #     _configs = json.loads(_configs)
+    #     print(pprint.pformat(_configs))
+    # except:
+    #     print(configs, end='\n\n')
+
+    device_functions = []
+    for config in configs:
+        function = {}
+        function['name'] = config['Stream_ID']
+        function['length'] = int(config['mxsLength'])
+        function['title'] = config['name']
+        function['triggers'], function['controls'] = {}, {}
+
+        # 功能定义中的UI关联与控制器
+        if config.get('control'):
+            ids = config['control']['uid']
+            wedgit = config['control']['wedgit']
+            params = config['control']['params']
+
+            function['controls'] = get_control_items(ids, wedgit, params)
+
+        # 获取前的触发器示例 'triggers': {'[1]': {'Fast': 0, 'Slow': 0}}
+        for mxs in config['mxs']:
+            data = "[{0}]".format(mxs['data'])
+            value = {}
+            if mxs.get('trigger'):
+                for trigger in mxs['trigger']:
+                    value[trigger['func']] = trigger['val']
+            function['triggers'][data] = value
+
+        function['triggers'] = get_triggers(function['triggers'])
+        device_functions.append(function)
+
+        if not function['triggers']:
+            del function['triggers']
+        if not function['controls']:
+            del function['controls']
+
+    return device_functions
 
 
 def get_device_protocol_config(key: str) -> list or 'false':
     """
-    获取自定义协议解析的规则
-    解析成功返回 [上行规则，下行规则]
-    如果只有上行规则或下行规则返回 [规则]*2
+    获取自定义协议解析的规则 \n
+    解析成功返回 [上行规则，下行规则] \n
+    如果只有上行规则或下行规则返回 [规则]*2 \n
 
     :param key: 用户的key
     :return: 成功 > 用户的自定义协议配置  ，  失败 > False
@@ -225,26 +312,42 @@ def get_device_protocol_config(key: str) -> list or 'false':
 def test_get_device_function():
     # 标准集成灶 BTO9ciBr
     device_function = get_device_function(key='BTO9ciBr')
-    pprint.pprint(device_function, width=300)
+
+    # js = json.dumps(device_function, indent=4, ensure_ascii=False)
+    # print(js)
+
+    pprint.pprint(device_function, width=100, indent=4)
+    print('\n' + '-' * 40 + '   test_get_device_function   ' + '-' * 40, end='\n\n')
 
 
 def test_get_device_protocol_config():
     device_protocol_config = get_device_protocol_config(key='BTO9ciBr')
     pprint.pprint(device_protocol_config, width=80, indent=4)
+    print('\n' + '-' * 40 + '   test_get_device_protocol_config   ' + '-' * 40, end='\n\n')
 
 
 def test_config_change():
     data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = lua.decode(data)
     print(data, type(data))
+    print('\n' + '-' * 40 + '   test_config_change   ' + '-' * 40, end='\n\n')
+
+
+def test_change_device_function(device_function):
+    from common.project_helper import config_change
+    print(config_change(device_function))
 
 
 if __name__ == '__main__':
-    test_get_device_function()
-    print('\n' + '-' * 40 + '   test_get_device_function   ' + '-' * 40, end='\n\n')
+    # test_get_device_function()
 
-    test_get_device_protocol_config()
-    print('\n' + '-' * 40 + '   test_get_device_protocol_config   ' + '-' * 40, end='\n\n')
+    # test_get_device_protocol_config()
 
-    test_config_change()
-    print('\n' + '-' * 40 + '   test_config_change   ' + '-' * 40, end='\n\n')
+    # test_config_change()
+
+    device_function = get_device_function("MCKjIJWI")
+
+    if device_function:
+        pprint.pprint(device_function)
+        print('-' * 100)
+        test_change_device_function(device_function)
