@@ -715,6 +715,11 @@ def fk_opera_data(opera_data_new):
     else:
         return 0
 
+def save_version(app,opera_data):
+    opera_data.append({"version": "2"})
+    app.app_update_date = datetime.datetime.utcnow()
+    app.device_conf = json.dumps(opera_data)
+    app.save()
 
 def new_mxs_data(control_data):
     indata_mxs_new = {}

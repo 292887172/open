@@ -26,7 +26,7 @@ from common.account_helper import add_team_email, del_team_email
 from common.app_helper import cancel_release_app
 from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
     get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud,new_mxs_data,save_control,fk_opera_data
+from common.app_helper import del_app, save_app, check_cloud,new_mxs_data,save_control,fk_opera_data,save_version
 from common.app_helper import off_app
 from common.app_helper import release_app
 from common.app_helper import reset_app_secret
@@ -429,6 +429,15 @@ def product_add(request):
                                 app_category_detail2)
             from common.celerytask import add
             add.delay(app_id)
+            # 创建app版本号
+
+            app = App.objects.get(app_id=app_id)
+            try:
+                if app.device_conf:
+                    opera_data = json.loads(app.device_conf)
+                    save_version(app,opera_data)
+            except Exception as e:
+                print(e)
 
             if app_product_fast:
                 return HttpResponse(json.dumps({"code": 0, "appid": app_id}, separators=(",", ':')))
