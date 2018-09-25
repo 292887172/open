@@ -222,7 +222,7 @@ def doc_firmware(request):
         for i in Fobj:
             time = i.firmware_create_date + datetime.timedelta(hours=8)
             times = time.strftime("%Y-%m-%d")
-            temps.append({"id": i.firmware_id, "size": i.firmware_size, "url": i.firmware_url, "name": i.firmware_name,
+            temps.append({"id": i.firmware_id, "size": i.firmware_size, "url": i.firmware_url, "name": i.firmware_name,"image":i.firmware_image,
                           "time": times, "version": i.firmware_version})
         return HttpResponse(json.dumps(temps))
     if request.method == "POST":

@@ -1,4 +1,10 @@
 <style>
+    .one{
+        color:red;
+        border:1px solid blue;
+        cursor:hand;
+    }
+
     body {
         line-height: 1;
     }
@@ -273,6 +279,7 @@
     }
     .sel2{ border:1px solid #dddddd; padding:5px 5px 5px 2px; height:32px; width: 168px; background-color:#fff;}
 </style>
+<link rel="stylesheet" href="/static/layui/css/layui.css">
 <header class="header bg-light dk">
     <p>屏端固件管理</p>
 </header>
@@ -296,6 +303,7 @@
 
                     <label for="file" class="modal-label">上传文件：<span class="modal-name">点击选择</span></label>
                     <input class="file" id="file" name="file" style="display: none" type="file" accept=".pkg"/>
+                    <input class="files" id="files" name="files" type="file" >
                     <div style="overflow: hidden;">
                         <span>版本：</span><input type="text" id="ui_info" class="xxx" placeholder="请输入版本号">
                     </div>
@@ -334,6 +342,7 @@
         <th>屏幕尺寸</th>
         <th >版本</th>
         <th >路径</th>
+        <th>预览图片</th>
         <th >时间</th>
         <th>操作</th>
 
@@ -353,6 +362,8 @@
 
         <th style="font-family: 黑体" ><input type="text" data="{[{x.id}]}" value="{[{x.version}]}" onblur="Saves(this,3)"></th>
         <th style="font-family: 黑体" ><a href="{[{x.url}]}" >下载</a></th>
+        <th style="font-family: 黑体" ><img src="{[{x.image}]}" alt="" style="width: 100px;height: 100px"></th>
+
         <th style="font-family: 黑体" >{[{x.time}]}</th>
         <th><button class="btn " ng-click="Del(x.id)" style="background-color: red!important;color: white">删除</button></th>
 
@@ -363,6 +374,30 @@
 </div>
 
 <script>
+    function showPic(e,sUrl){
+                            var x,y;
+                            x = e.clientX;
+                            y = e.clientY;
+                            document.getElementById("Layer1").style.left = x+2+'px';
+                            document.getElementById("Layer1").style.top = y+2+'px';
+                            document.getElementById("Layer1").innerHTML = "<img border='0' src=\"" + sUrl + "\">";
+                            document.getElementById("Layer1").style.display = "";
+                            }
+                            function hiddenPic(){
+                            document.getElementById("Layer1").innerHTML = "";
+                            document.getElementById("Layer1").style.display = "none";
+                        }
+
+
+    function func2(){
+
+    }
+    function func1(){
+
+    }
+
+
+
     function Saves(that,values) {
         var ids = parseInt(that.attributes['data'].nodeValue)
         if (values =='2'){
@@ -416,6 +451,7 @@
 
         var formData = new FormData();
         formData.append("file", document.getElementById("file").files[0]);
+        formData.append("files", document.getElementById("files").files[0]);
         formData.append("name", 'firmware_update');
         formData.append("app_version", document.getElementById("ui_info").value);
         formData.append("action", 'firmware');

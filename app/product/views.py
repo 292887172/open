@@ -26,7 +26,7 @@ from common.account_helper import add_team_email, del_team_email
 from common.app_helper import cancel_release_app
 from common.app_helper import create_app, update_app_fun_widget, add_fun_id, add_mod_funs, \
     get_mod_funs, get_config_funs
-from common.app_helper import del_app, save_app, check_cloud,new_mxs_data,save_control,fk_opera_data,save_version
+from common.app_helper import del_app, save_app, check_cloud, new_mxs_data, save_control, fk_opera_data, save_version
 from common.app_helper import off_app
 from common.app_helper import release_app
 from common.app_helper import reset_app_secret
@@ -37,7 +37,7 @@ from common.device_fun_helper import add_device_fun
 from common.device_online import device_online
 from common.message_helper import save_user_message
 from common.mysql_helper import get_ui_static_conf, remove_up_url
-from common.project_helper import get_personal_project,get_personal_project_by_key
+from common.project_helper import get_personal_project, get_personal_project_by_key
 from common.smart_helper import *
 from common.util import parse_response, send_test_device_status, reverse_numeric
 from conf.apiconf import *
@@ -435,7 +435,7 @@ def product_add(request):
             try:
                 if app.device_conf:
                     opera_data = json.loads(app.device_conf)
-                    save_version(app,opera_data)
+                    save_version(app, opera_data)
             except Exception as e:
                 print(e)
 
@@ -562,13 +562,12 @@ def product_main(request):
         return []
 
     def findd(opera_data):
-            if len(opera_data) > 1:
-                for iosa in opera_data:
+        if len(opera_data) > 1:
+            for iosa in opera_data:
 
-                    if len(str(iosa)) < 20:
-                        opera_data.remove(iosa)
-                return opera_data
-
+                if len(str(iosa)) < 20:
+                    opera_data.remove(iosa)
+            return opera_data
 
     def findname(names, opera_data):
         names_list = eval(names)
@@ -932,7 +931,7 @@ def protocol(request):
         protocol_type = request.GET.get('protocol_type', '0')
         if action == "get_project":
             screen = request.GET.get('screen', '')
-            print(screen,'screen')
+            print(screen, 'screen')
             project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
             pth = get_personal_project_by_key(project_path, device_key, 'zip')
             logging.getLogger('').info(pth)
@@ -940,7 +939,6 @@ def protocol(request):
             logging.getLogger('').info(pt)
             return JsonResponse({"code": 0, "url": pt})
         if action == "get_projects":
-
             project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
             pth = get_personal_project_by_key(project_path, device_key, 'lua')
             logging.getLogger('').info(pth)
@@ -1262,10 +1260,10 @@ def schedule(request):
                 schedule_key = DefaultSchedule().DEFAULT_SCHEDULE_CHOOSE + key
                 if r6.exists(schedule_key):
                     update_list = DocUi.objects.filter(ui_key=key).order_by("-create_date")
-                    print('---',update_list)
+                    print('---', update_list)
                 else:
                     update_list = DefaultSchedule().DEFAULT_SCHEDULE
-                    r6.set(schedule_key,json.dumps(update_list))
+                    r6.set(schedule_key, json.dumps(update_list))
                 for i in update_list:
                     DocUi.objects.create(ui_key=key, ui_ack=0, ui_upload_id=i['id'], ui_plan=i['plan'], ui_party='',
                                          ui_remark='', ui_time_stemp='',
@@ -1326,11 +1324,12 @@ def schedule(request):
                 DocUi.objects.filter(ui_key=key, ui_upload_id=int(del_xu_id)).delete()
                 del_data = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for id_i in del_data:
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(ui_upload_id=int(id_i.ui_upload_id)*100)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(id_i.ui_upload_id)).update(
+                        ui_upload_id=int(id_i.ui_upload_id) * 100)
                 Orders = DocUi.objects.filter(ui_key=key, ui_upload_id__gt=int(del_xu_id))
                 for i in Orders:
                     is_gt = i.ui_upload_id
-                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100)-1)
+                    DocUi.objects.filter(ui_key=key, ui_upload_id=int(is_gt)).update(ui_upload_id=int(is_gt / 100) - 1)
                 Message.objects.create(message_content='产品计划删除', message_type=int(5),
                                        message_handler_type=int(5), is_read=1,
                                        device_key=key, message_sender=user1, message_target=user1,
@@ -1364,10 +1363,12 @@ def schedule(request):
                     url = json.dumps(url)
                     detail_obj_dict['content'] = url  # url
                     detail_obj_dict['party'] = i.ui_party  # 责任
-                print('x',detail_obj_dict)
+                print('x', detail_obj_dict)
                 return HttpResponse(json.dumps(detail_obj_dict))
             else:
-                return HttpResponse(json.dumps({'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1, 'time_stemp': '', 'ack': 0, 'content': '[""]'}))
+                return HttpResponse(json.dumps(
+                    {'remark': '', 'party': '', 'plan': '提交详细技术功能规划书', 'id': 1, 'time_stemp': '', 'ack': 0,
+                     'content': '[""]'}))
         elif action == 'save_plan':
             # data: {'key': keysss, "action": "save_plan", "num": that},
             location = request.POST.get('location', '')
@@ -1518,7 +1519,7 @@ def schedule(request):
 @csrf_exempt
 def get_version(request):
     pass
-    if request.method== "GET":
+    if request.method == "GET":
         key = request.GET.get('key', '')
         app = App.objects.get(app_appid__endswith=key)
         try:
@@ -1529,6 +1530,8 @@ def get_version(request):
         except Exception as e:
             print(e)
             return HttpResponse(0)
+
+
 @csrf_exempt
 def party(request):
     if request.method == "POST":
@@ -1676,17 +1679,27 @@ def upload_file(request):
                 return HttpResponse(
                     json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
         elif action == 'firmware':
+            files = request.FILES.get("files", '')
+            print(file, files)
             try:
+                # 处理上传的pkg文件
                 store = EbStore(CLOUD_TOKEN)
                 rr = store.upload(file.read(), file.name, file.content_type)
                 rr = json.loads(rr)
                 r = rr['code']
                 print(rr)
+                # 处理上传的图片
+                stores = EbStore(CLOUD_TOKEN)
+                rp = stores.upload(files.read(), files.name, files.content_type)
+                rp = json.loads(rp)
+                rpp = rp['code']
+                print(rpp)
             except Exception as e:
                 print(e)
                 return HttpResponse(json.dumps({"code": 1}))
             sizes = request.POST.get('sizes', '')
             fobj = Firmware.objects.create(firmware_size=int(sizes), firmware_name=appversion_remark,
+                                           firmware_image=rp['data'],
                                            firmware_version=app_version, firmware_url=rr['data'],
                                            firmware_create_date=datetime.datetime.utcnow(),
                                            firmware_update_date=datetime.datetime.utcnow())
