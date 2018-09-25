@@ -32,6 +32,12 @@
 
 </head>
 <style>
+     .image_ss{
+
+            width: 100px;
+            height: 100px;
+
+            }
     .sign_out a:hover{
         color: #ff0000 !import;
     }

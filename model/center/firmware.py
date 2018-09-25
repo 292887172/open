@@ -17,6 +17,8 @@ class Firmware(models.Model):
     firmware_version = models.CharField(null=True,max_length=8,db_column='ebf_firmware_version')
     # 屏幕尺寸 1 6.8 2 5/4.3
     firmware_size = models.IntegerField(null=True,max_length=4,db_column='ebf_firmware_size')
+    # 预览图片url
+    firmware_image = models.TextField(null=True, max_length=4,default='',db_column='ebf_firmware_image')
     # 创建时间
     firmware_create_date = models.DateTimeField(null=True, db_column='ebf_firmware_create_time')
     # 更新时间
