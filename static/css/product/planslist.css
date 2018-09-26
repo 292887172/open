@@ -118,7 +118,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: #338fe5;
 }
 .confirm-info{
-    margin-left: 90px;
+    margin-left: 60px;
+}
+.confirm-info p{
+    width: 56px;
+    text-align: center;
 }
 #plans-list li.plans_before:after{
     content: "";
@@ -490,7 +494,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     width: 110px;
 }
 .plans-tab .se_time{
-    margin-left: 250px;
+    margin-left: 243px;
 }
 #ul_id li:last-child:after{
     content: "";
