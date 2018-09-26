@@ -375,13 +375,13 @@
         // 负责方添加
         //设置负责方
         // 负责方信息
-        var aa = []
+        var aa = [];
         $("#ul_id_party input[type='text']").each(function () {
                 aa.push({"title": $(this).val()})
         });
 
-        console.log(app_id1)
-        console.log(aa)
+        console.log(app_id1);
+        console.log(aa);
 
         var json_a = JSON.stringify(aa);
         var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
@@ -391,23 +391,23 @@
             type: "POST",
             data: {"key": keysss, "app_id": app_id1, "listed": json_a},
             success: function (data) {
-                data = JSON.parse(data)
-                console.log(data)
+                data = JSON.parse(data);
+                console.log(data);
 
-                var file = $(".layui-anim-upbit")[0]
-                $("#plans-users").empty()
-                var attrrs = $("<option value=\"\">请选择负责方</option>")
-                attrrs.appendTo("#plans-users")
-                console.log('长度设定', aa.length)
+                var file = $(".layui-anim-upbit")[0];
+                $("#plans-users").empty();
+                var attrrs = $("<option value=\"\">请选择负责方</option>");
+                attrrs.appendTo("#plans-users");
+                console.log('长度设定', aa.length);
                 for (var ii = 0, a_l = aa.length; ii < a_l; ii++) {
                     var attrr = $("<option value=\"" + aa[ii]['title'] + "\">" + aa[ii]['title'] + "</option>");
                     attrr.appendTo("#plans-users")
                 }
 
                 for (var is_id = 0,is_leng = $scope.response.length;is_id<is_leng;is_id++){
-                    $scope.response[is_id]['partys']=[]
+                    $scope.response[is_id]['partys']=[];
                     for (var ii = 0, a_l = aa.length; ii < a_l; ii++) {
-                        console.log('xxxxxxx')
+                        console.log('xxxxxxx');
 
                         $scope.response[is_id]['partys'].push({"title":aa[ii]['title']})
                 }
@@ -430,7 +430,7 @@
         if (val == 'new') {
             $("#newplans-window").fadeIn();
             var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1;
-            document.getElementById("hides").value = num
+            document.getElementById("hides").value = num;
             //清空计划
             $("#news-plan-name").val("");  //获取计划名称
             $("#plans-users").val("");     //获取负责人名称
@@ -446,7 +446,7 @@
                 console.log('yy', document.getElementsByClassName("task-action")[0])
             }
 
-            console.log(ifnot)
+            console.log(ifnot);
             document.getElementById("news-plan-name").value = document.getElementsByClassName("task-plan-name")[0].innerHTML;
             document.getElementById("news-plan-remarks").value = document.getElementsByClassName("remarks")[0].innerHTML.split("：")[1];
             document.getElementById("hides").value = document.getElementsByClassName("task-id-name")[0].innerHTML;
@@ -456,7 +456,7 @@
                 var form = layui.form;
                 form.render('select');
             });
-            console.log(document.getElementsByClassName("times-text")[0].innerHTML)
+            console.log(document.getElementsByClassName("times-text")[0].innerHTML);
             ontimes(document.getElementsByClassName("times-text")[0].innerHTML)
         }
     }
@@ -488,7 +488,7 @@
         var plans_remarks = $("#news-plan-remarks").val();  //获取备注
 
 
-        console.log(plans_name, plans_user, plans_time, plans_remarks)
+        console.log(plans_name, plans_user, plans_time, plans_remarks);
         if (plans_name == "") {
             layer.msg('请填写计划名称', {icon: 5, time: 2000});
             return
@@ -497,8 +497,8 @@
             layer.msg('请填写负责方', {icon: 5, time: 2000});
             return
         }
-        var idd = document.getElementById("hides").value
-        console.log(idd, plans_user, plans_remarks, plans_time, plans_name)
+        var idd = document.getElementById("hides").value;
+        console.log(idd, plans_user, plans_remarks, plans_time, plans_name);
         $.ajax({
             url: '/product/schedule',
             type: "POST",
@@ -512,8 +512,8 @@
                 "plans_remarks": plans_remarks
             },
             success: function (data) {
-                var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1
-                console.log(num)
+                var num = document.getElementById("ul_id").getElementsByTagName("li").length + 1;
+                console.log(num);
                 if (parseInt(idd) < parseInt(num)) {
 
                     document.getElementsByClassName("task-plan-name")[0].innerHTML = $("#news-plan-name").val();
@@ -521,14 +521,14 @@
                     document.getElementsByClassName("times-text")[0].innerHTML = $("#test15").val();
                     document.getElementsByClassName("remarks")[0].innerHTML = "备注：" + $("#news-plan-remarks").val();
 
-                    var edit_id = parseInt(idd) - parseInt(1)
+                    var edit_id = parseInt(idd) - parseInt(1);
 
                     //计划名称
                     console.log(edit_id)
-                    var plan_name = $("#news-plan-name").val()
-                    var names = $("#plans-users").val()
+                    var plan_name = $("#news-plan-name").val();
+                    var names = $("#plans-users").val();
 
-                    console.log(plan_name, names)
+                    console.log(plan_name, names);
                     $("#ul_id li:eq(" + edit_id + ") .text-ellipsis")[1].innerHTML = plan_name
                     // 负责方
                     $("#ul_id li:eq(" + edit_id + ") .text-ellipsis span")[0].innerHTML = names;
@@ -569,13 +569,13 @@
     // 上传一系列
     function doUploadFile() {
         // 时间戳
-        var idd = document.getElementsByClassName("task-id-name")[0].innerHTML
+        var idd = document.getElementsByClassName("task-id-name")[0].innerHTML;
         var formData = new FormData();
         formData.append("file", document.getElementById("file").files[0]);
         formData.append("name", 'upload');
         formData.append("key", keysss);
         formData.append("id", idd);
-        var thref = location.href
+        var thref = location.href;
         formData.append("location", thref);
 
         if (document.getElementById("file").files[0]) {
@@ -586,7 +586,7 @@
                 contentType: false,
                 processData: false,
                 xhr: function () {
-                    console.log("开始上传")
+                    console.log("开始上传");
                     var myXhr = $.ajaxSettings.xhr();
                     if (myXhr.upload) {
                         myXhr.upload.addEventListener('progress', progressHandlingFunction, false)
@@ -594,19 +594,19 @@
                     return myXhr
                 },
                 success: function (data) {
-                    console.log("上传成功")
-                    data = JSON.parse(data)
+                    console.log("上传成功");
+                    data = JSON.parse(data);
                     if (data['code'] == 0) {
                         var appElement = document.querySelector('[ng-controller=ScheduleCtrl]');
                         var $scope = angular.element(appElement).scope();
                         document.getElementsByClassName("close")[0].click();
-                        console.log('iddd', idd)
-                        var idimg = parseInt(idd) - 1
-                        var imgs = $("#ul_id li:eq(" + idimg + ") .file-info")[0]
-                        var img_length = $("#ul_id li:eq(" + idimg + ") .file-info img").length
+                        console.log('iddd', idd);
+                        var idimg = parseInt(idd) - 1;
+                        var imgs = $("#ul_id li:eq(" + idimg + ") .file-info")[0];
+                        var img_length = $("#ul_id li:eq(" + idimg + ") .file-info img").length;
                         var input_img = $(
                             "<img ng-if=\"x.show_url==1\" src=\"http://storage.56iq.net/group1/M00/47/45/CgoKQ1thRrOAUQJIAAAET_wItzE030.png\" class=\"ng-scope\">"
-                        )
+                        );
                         if ($scope.response[idimg]['url'] == 0) {
                             $scope.response[idimg]['url'] = [{
                                 "urll": data['url'],
@@ -629,7 +629,7 @@
                         } else {
                             input_img.appendTo(imgs)
                         }
-                        var file_list = $(".upfile")[0]
+                        var file_list = $(".upfile")[0];
                         var addtr = $(
                             "<div class=\"file-list\">\n" +
                             "                    <div class=\"div-flex file-box\">\n" +
@@ -639,8 +639,8 @@
                             "                        <p class=\"file-dell\" onclick='Deleted(this)'>删除</p>\n" +
                             "                    </div>\n" +
                             "                </div>"
-                        )
-                        addtr.appendTo(file_list)
+                        );
+                        addtr.appendTo(file_list);
                         $scope.Show_Detail_Plan(parseInt(idd),idimg)
                     } else {
                         document.getElementsByClassName("close")[0].click();
