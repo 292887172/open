@@ -568,7 +568,8 @@ def product_main(request):
                 if len(str(iosa)) < 20:
                     opera_data.remove(iosa)
             return opera_data
-
+        else:
+            return opera_data
     def findname(names, opera_data):
         names_list = eval(names)
         names = []
@@ -597,9 +598,13 @@ def product_main(request):
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
                 opera_data_new = opera_data
-
+                print('----',opera_data)
                 opera_data = findd(opera_data)
-                opera_data.sort(key=lambda x: int(x.get("id")))
+                print('xxx',opera_data)
+                if len(opera_data) <2:
+                    pass
+                else:
+                    opera_data.sort(key=lambda x: int(x.get("id")))
         except Exception as e:
             logging.info("读取数据库中设备配置信息失败", e)
             print(e)
