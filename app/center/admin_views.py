@@ -557,6 +557,13 @@ def application_detail_modal(request):
     :param request:
     :return:
     """
+    def findd(opera_data):
+        if len(opera_data) > 1:
+            for iosa in opera_data:
+
+                if len(str(iosa)) < 20:
+                    opera_data.remove(iosa)
+            return opera_data
 
     def get():
         app_id = request.GET.get("id", "")
@@ -622,6 +629,7 @@ def application_detail_modal(request):
                 app_device_conf = '<ul style="list-style:none;padding-left: 0;">'
                 if devices:
                     devices = json.loads(devices)
+                    devices = findd(devices)
                     devices.sort(key=lambda x: int(x.get("id")))
                 else:
                     devices = []
