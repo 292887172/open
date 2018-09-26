@@ -15,7 +15,7 @@
 {% endblock %}
 {% block menu %}
     {% if user.account_id %}
-    {% create_menu 0 user.account_id %}
+        {% create_menu 0 user.account_id %}
     {% else %}
         {% create_menu 1 user.account_id %}
     {% endif %}
@@ -23,514 +23,581 @@
 {% endblock %}
 {% block content %}
 
-<div>
+    <div>
 
 
-    <div class="title">
-        <div class="wrapper">
-            <ol class="breadcrumb" style="width: 36%;float: left">
+        <div class="title">
+            <div class="wrapper">
+                <ol class="breadcrumb" style="width: 36%;float: left">
 
-                <li style="color: #ff6202;font-size: 18px;margin-left: 50px ">控制台</li>
-            </ol>
+                    <li style="color: #ff6202;font-size: 18px;margin-left: 50px ">控制台</li>
+                </ol>
 
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper mt20" style="text-align: center;padding: 0 40px;">
-        {% fast_create_product  user.developer.developer_id  %}
-         <div class="title-sub" style="height: 30px;padding-top: 10px">
+        <div class="wrapper mt20" style="text-align: center;padding: 0 40px;">
+            {% fast_create_product user.developer.developer_id %}
+            <div class="title-sub" style="height: 30px;padding-top: 10px">
 
 
-                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer;color: red" onclick="F_C0(this)" id="click0" class="style_title">快速入门</p></div>
-                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" onclick="F_C1(this)" id="click1" class="style_title">电控开发</p></div>
-                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click2" onclick="F_C2(this)" class="style_title">UI开发</p></div>
-                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click3" onclick="F_C3(this)" class="style_title">彩屏程序开发</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer;color: red" onclick="F_C0(this)"
+                                          id="click0" class="style_title">快速入门</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" onclick="F_C1(this)" id="click1"
+                                          class="style_title">电控开发</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click2" onclick="F_C2(this)"
+                                          class="style_title">UI开发</p></div>
+                <div class="col-md-3 "><p style="font-size: 16px;cursor: pointer" id="click3" onclick="F_C3(this)"
+                                          class="style_title">彩屏程序开发</p></div>
 
-        </div>
-        <p style="float: right;margin-top: 0px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
-        <div class="title-sub show_neww" style="position: relative;">
-            <img src="/static/image/product/down1.png" onclick="close_new()" id="close111" alt="" style="width: 16px;position: absolute;top: 13px;right: -7px;z-index: 1;cursor: pointer">
-            <div class="" style="text-align: center;background-color: white;height: 120px;padding-left: 0px">
-                <div class="www">
-                    <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left;padding-left: 24px;width: 159px">
-                        <li class="item">
+            </div>
+            <p style="float: right;margin-top: 0px;display: none" id="new_yindao" onclick="show_new()">新手引导</p>
+            <div class="title-sub show_neww" style="position: relative;">
+                <img src="/static/image/product/down1.png" onclick="close_new()" id="close111" alt=""
+                     style="width: 16px;position: absolute;top: 13px;right: -7px;z-index: 1;cursor: pointer">
+                <div class="" style="text-align: center;background-color: white;height: 120px;padding-left: 0px">
+                    <div class="www">
+                        <div class="protocol-info-main col-md-2"
+                             style="background-color: white;text-align: left;padding-left: 24px;width: 159px">
+                            <li class="item">
 
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
 
-                                <p class="info" style="margin-top: 10px;font-size: 14px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">
                                         1. <b>开发环境准备</b>
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                        href="http://doc.53iq.com/#/start/env?id=%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87" target="_blank">- 硬件(WiFi屏)</a></p>
-                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a href="http://doc.53iq.com/#/start/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87" target="_blank">- 软件</a>
-                                </p>
-                            </div>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/start/env?id=%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"
+                                            target="_blank">- 硬件(WiFi屏)</a></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/start/env?id=%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"
+                                            target="_blank">- 软件</a>
+                                    </p>
+                                </div>
 
-                        </li>
-                    </div>
-                    <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left;padding-left: 24px">
-                        <li class="item">
+                            </li>
+                        </div>
+                        <div class="protocol-info-main col-md-2"
+                             style="background-color: white;text-align: left;padding-left: 24px">
+                            <li class="item">
 
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
 
-                                <p class="info" style="margin-top: 10px;font-size: 14px"> 2. <b>创建智能产品</b>
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px"><a href="http://doc.53iq.com/#/start/quickly?id=平台创建产品" target="_blank">- 用标准模版一键创建</a>
-                                </p>
-                            </div>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"> 2. <b>创建智能产品</b>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/start/quickly?id=平台创建产品" target="_blank">-
+                                        用标准模版一键创建</a>
+                                    </p>
+                                </div>
 
-                        </li>
-                    </div>
+                            </li>
+                        </div>
 
-                    <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left">
-                    <li class="item">
+                        <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left">
+                            <li class="item">
 
-                        <div class="info-list" style="margin-top: 15px">
-                            <p class="info" style="font-size: 14px"><b><b>3. </b>定义产品功能</b></p>
-                             <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                     href="http://doc.53iq.com/#/start/quickly?id=定义通信协议" target="_blank">- 定义控制功能和通信协议</a></p>
-                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 修改界面
-                                </p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 14px"><b><b>3. </b>定义产品功能</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/start/quickly?id=定义通信协议" target="_blank">-
+                                        定义控制功能和通信协议</a></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 修改界面
+                                    </p>
 
+
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="protocol-info-main col-md-2 "
+                             style="background-color: white;text-align: left;width: 200px;">
+                            <li class="item">
+
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><b>4. 电控开发、厨电开发</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/protocol/readme" target="_blank">- 电控对接协议</a>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/sdk/readme" target="_blank">- 屏端开发</a></p>
+                                </div>
+                            </li>
 
                         </div>
-                    </li>
-                </div>
+                        <div class="protocol-info-main col-md-2"
+                             style="background-color: white;text-align: left;padding: 0">
+                            <li class="item">
 
-                    <div class="protocol-info-main col-md-2 "
-                 style="background-color: white;text-align: left;width: 200px;">
-                <li class="item">
-
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>4. 电控开发、厨电开发</b></p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/protocol/readme" target="_blank">- 电控对接协议</a></p>
-                            <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/sdk/readme" target="_blank">- 屏端开发</a></p>
-                    </div>
-                </li>
-
-            </div>
-                    <div class="protocol-info-main col-md-2" style="background-color: white;text-align: left;padding: 0">
-                <li class="item">
-
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>5. 调试</b></p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="http://doc.53iq.com/#/other/debug_helper?id=%E6%8E%A5%E7%BA%BF%E4%B8%8E%E8%B0%83%E8%AF%95" target="_blank">- 电控和屏端联合调试</a></p>
-                            <p class="info" style="margin-top: 10px;font-size: 14px">- 厨电整机调试</p>
-                    </div>
-                </li>
-
-            </div>
-                    <div class="protocol-info-main col-md-2"><a href="http://storage.56iq.net/group1/M00/45/26/CgoKQ1tMhJuAMWo5ABJXJ8Oj7_0330.mp4" target="_blank"><img style="width: 50px;margin-top: 30px" src="/static/image/vide01.png" alt=""></a></div>
-                </div>
-            </div>
-        </div>
-        <div class="title-sub" style="position: relative;display: none">
-            <div class="" style="text-align: center;background-color: white;height: 125px;padding-left: 0px">
-                <div class="www">
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px;">
-                        <li class="item">
-
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
-
-                                <p class="info" style="margin-top: 10px;font-size: 14px">1. <b>如何使用开发平台</b>
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px">- 设计电源板,控制逻辑和UI界面都由53iq开发</p>
-                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a href="http://doc.53iq.com/#/Protocol/README" target="_blank">- 使用引导</a>
-                                </p>
-                            </div>
-
-                        </li>
-                    </div>
-
-
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
-                    <li class="item">
-
-                        <div class="info-list" style="margin-top: 15px">
-                            <p class="info" style="font-size: 14px"><b>2. 开始对接厨电要智能化，我需要做什么 </b></p>
-                             <p class="info" style="margin-top: 10px;font-size: 14px">- 硬件设计</p>
-                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 制定协议
-                                </p>
-
-
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><b>5. 调试</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/other/debug_helper?id=%E6%8E%A5%E7%BA%BF%E4%B8%8E%E8%B0%83%E8%AF%95"
+                                            target="_blank">- 电控和屏端联合调试</a></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 厨电整机调试</p>
+                                </div>
+                            </li>
 
                         </div>
-                    </li>
-                </div>
-
-                    <div class="protocol-info-main col-md-4 "
-                 style="background-color: white;text-align: left;">
-                <li class="item">
-
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><b>3. 我的哪些传统厨电可以智能化</b></p>
-                        <p class="info" style="margin-top: 10px;font-size: 14px">- 希望把哪些设备接入</p>
-
+                        <div class="protocol-info-main col-md-2"><a
+                                href="http://storage.56iq.net/group1/M00/45/26/CgoKQ1tMhJuAMWo5ABJXJ8Oj7_0330.mp4"
+                                target="_blank"><img style="width: 50px;margin-top: 30px" src="/static/image/vide01.png"
+                                                     alt=""></a></div>
                     </div>
-                </li>
-
-            </div>
                 </div>
             </div>
-        </div>
-        <div class="title-sub" style="position: relative;display: none">
-            <div class="" style="text-align: center;background-color: white;height: 100px;padding-left: 0px">
-                <div class="www">
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px;">
-                        <li class="item">
+            <div class="title-sub" style="position: relative;display: none">
+                <div class="" style="text-align: center;background-color: white;height: 125px;padding-left: 0px">
+                    <div class="www">
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-left: 24px;">
+                            <li class="item">
 
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
 
-                                <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>如何使用开发平台</b>
-                                </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">1. <b>如何使用开发平台</b>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">-
+                                        设计电源板,控制逻辑和UI界面都由53iq开发</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/Protocol/README" target="_blank">- 使用引导</a>
+                                    </p>
+                                </div>
 
-                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a href="http://doc.53iq.com/#/quickly_start">- 使用引导</a>
-                                </p>
-                            </div>
+                            </li>
+                        </div>
 
-                        </li>
-                    </div>
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
-                        <li class="item">
 
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
+                        <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                            <li class="item">
 
-                                <p class="info" style="margin-top: 10px;font-size: 14px">  <b>2.如何和平台其他人员协助开发智能厨电</b>
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px">- 协助屏端开发工程师
-                                </p>
-                            </div>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 14px"><b>2. 开始对接厨电要智能化，我需要做什么 </b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 硬件设计</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 制定协议
+                                    </p>
 
-                        </li>
-                    </div>
 
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
-                    <li class="item">
+                                </div>
+                            </li>
+                        </div>
 
-                        <div class="info-list" style="margin-top: 15px">
-                            <p class="info" style="font-size: 14px"><b> 3.我需要做什么</b></p>
-                             <p class="info" style="margin-top: 10px;font-size: 14px">- 提供UI切图</p>
-                                 <p class="info" style="margin-top: 10px;font-size: 14px">- 提供开发工程
-                                </p>
+                        <div class="protocol-info-main col-md-4 "
+                             style="background-color: white;text-align: left;">
+                            <li class="item">
 
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><b>3. 我的哪些传统厨电可以智能化</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 希望把哪些设备接入</p>
+
+                                </div>
+                            </li>
 
                         </div>
-                    </li>
-                </div>
-
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="title-sub" style="position: relative;display: none">
-            <div class="" style="text-align: center;background-color: white;height: 135px;padding-left: 0px">
-                <div class="www">
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
-                        <li class="item">
+            <div class="title-sub" style="position: relative;display: none">
+                <div class="" style="text-align: center;background-color: white;height: 100px;padding-left: 0px">
+                    <div class="www">
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-left: 24px;">
+                            <li class="item">
 
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
 
-                                <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>我如何使用开发平台</b>
-                                </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>如何使用开发平台</b>
+                                    </p>
+
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/quickly_start">- 使用引导</a>
+                                    </p>
+                                </div>
+
+                            </li>
+                        </div>
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-left: 24px">
+                            <li class="item">
+
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><b>2.如何和平台其他人员协助开发智能厨电</b>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 协助屏端开发工程师
+                                    </p>
+                                </div>
+
+                            </li>
+                        </div>
+
+                        <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                            <li class="item">
+
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 14px"><b> 3.我需要做什么</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 提供UI切图</p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 提供开发工程
+                                    </p>
+
+
+                                </div>
+                            </li>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="title-sub" style="position: relative;display: none">
+                <div class="" style="text-align: center;background-color: white;height: 135px;padding-left: 0px">
+                    <div class="www">
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-left: 24px">
+                            <li class="item">
+
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"> 1. <b>我如何使用开发平台</b>
+                                    </p>
 
                                     <p class="info" style="margin-top: 10px;font-size: 14px">- 使用引导
-                                </p>
-                            </div>
-
-                        </li>
-                    </div>
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left;padding-left: 24px">
-                        <li class="item">
-
-                            <div class="info-list" style="margin-top: 15px;text-align: left">
-
-                                <p class="info" style="margin-top: 10px;font-size: 14px"><b>2. 如何和平台其他人协助开发智能厨电</b>
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px">- 协助UI开发工程师
-                                </p>
-                                <p class="info" style="margin-top: 10px;font-size: 14px">- 协助电控开发工程师
-                                </p>
-                            </div>
-
-                        </li>
-                    </div>
-
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
-                    <li class="item">
-
-                        <div class="info-list" style="margin-top: 15px">
-                            <p class="info" style="font-size: 14px"><b> 3. 我需要做什么</b></p>
-                             <p class="info" style="margin-top: 10px;font-size: 14px">- 明确需求和进度计划表</p>
-
-                            <p class="info" style="margin-top: 10px;font-size: 14px">- 业务实现具体功能和逻辑，对接协议
-                                </p>
-                            <p class="info" style="margin-top: 10px;font-size: 14px">- 协助电控联调
-                                </p>
-
-                        </div>
-                    </li>
-                </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="title-sub" style="display: none">
-            <div class="" style="text-align: center;background-color: white;height: 153px;padding-left: 0px">
-                <div class="www">
-
-
-                    <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
-                    <li class="item">
-                        <p style="height: 30px;margin-top: 20px;font-size: 18px">WiFi屏开发</p>
-                        <div class="info-list" style="margin-top: 15px">
-                            <p class="info" style="font-size: 14px"><b><a href="http://doc.53iq.com/#/quickly_start"
-                                                                          target="_blank"> <b>- </b> 快速入门指南</a></b></p>
-                            <p class="info" style="margin-top: 10px;font-size: 14px;color: black"><a
-                                    href="http://doc.53iq.com/#/SDK/README"
-                                    target="_blank"><b>- </b> WiFi屏开发手册</a></p>
-                            <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
-                            <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                    href="http://doc.53iq.com/#/Protocol/README"
-                                    target="_blank"><b>- </b> WiFi屏与53iq智能云通信协议</a></p>
-
-
-                        </div>
-                    </li>
-                </div>
-
-                    <div class="protocol-info-main col-md-4"
-                 style="background-color: white;text-align: left;padding-right: 0px;">
-                <li class="item">
-                    <p style="height: 30px;margin-top: 20px;font-size: 18px">开发示例</p>
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="/static/sdk/COOKEING-Hood.rar" target="_blank"> <b>- </b> 下载WiFi屏开发示例（油烟机）</a></p>
-                    </div>
-                </li>
-
-            </div>
-                    <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left">
-                <li class="item">
-                    <p style="height: 30px;margin-top: 20px;font-size: 18px">资源工具</p>
-                    <div class="info-list" style="margin-top: 15px">
-                        <p class="info" style="margin-top: 10px;font-size: 14px"><a
-                                href="/static/sdk/ComMonitor.exe" target="_blank"><b>- </b> 串口调试工具 </a></p>
-                    </div>
-                </li>
-
-            </div>
-                </div>
-            </div>
-        </div>
-        <div class="title-sub"></div>
-        <div class="title-sub" style="margin-top: 0px;padding-bottom: 10px;overflow: hidden;">
-            {% if unpublished_apps %}
-                <span class="old" style="color: #000;border-left:3px solid #000">最新编辑产品</span>
-            {% endif %}
-
-
-            <ol style="width: 550px;float: right;" class="new-app">
-                <li style="color: #c6c6c6;">一键创建：</li>
-                {% for app in default_apps %}
-
-                    <li>
-                    {% if app.app_device_type == 11 %}
-                        <a style="color: #ff6202" href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
-                    {% else %}
-                        <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
-                    {% endif %}
-                    </li>
-                    {% if forloop.counter == 1 %}
-                        <li><a
-                               href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}">WiFi屏洗碗机</a>
-                        </li>
-
-                    {% endif %}
-                {% endfor %}
-            </ol>
-            <div style="margin-top: 0px;width: 300px">
-                {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
-                    <a href="
-
-                            {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
-                       class="">
-                        <i class="fa fa-plus"></i>
-                        <span>创建产品 </span>
-                    </a>
-                {% endif %}
-            </div>
-
-
-            <div id="loadingDiv"
-                 style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none">
-                <div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">
-                    页面加载中，请等待...
-                </div>
-            </div>
-
-            <div class="goodsBox" style=" margin-top: 20px;text-align: center;width: 1200px;">
-                {% if  not unpublished_apps and not keyword %}
-                    <div style="text-align: center;margin-top: 100px">
-                         <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
-                <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
-                <a href="{% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}" class="btn btn-s-lg btn-success">
-                    <i class="fa fa-plus"></i>
-                    <span class="text">创建产品</span>
-                </a>
-                    </div>
-                {% endif %}
-
-                {% if fireware %}
-                    <div class="col-md-6" style="padding-left: 0px;">
-                    {% for app in unpublished_apps %}
-                        <div class="goods-list" style="text-align:left;width: 600px;margin-right: 20px">
-                    <dl>
-
-                        <dd style="width: 500px;margin-left: 0px">
-
-
-                                <div class="goods-title">
-                                    <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal" style="text-decoration: none">{{ forloop.counter }}. {{ app.app_name }}{% if app.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
-                                </div>
-                                 <div class="product-info-div">
-                                <div>
-
-                                    {% if app.check_status == 0 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
-                                        最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                            style="color:#2980b9">
-                                        编辑</a></p>
-                                    {% elif app.check_status == 1 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
-                                        最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                            style="color:#2980b9">
-                                        编辑</a></p>
-                                    {% elif app.check_status == 2 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
-                                        最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                            style="color:#2980b9">
-                                        编辑</a></p>
-                                    {% elif app.check_status == -1 %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
-                                        最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                            style="color:#2980b9">
-                                        编辑</a></p>
-                                    {% else %}
-                                        <p>分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_create_source|category_detail1 }}
-                                        最后编辑：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                            style="color:#2980b9">
-                                        编辑</a></p>
-                                    {% endif %}
-
+                                    </p>
                                 </div>
 
-                            </div>
+                            </li>
+                        </div>
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-left: 24px">
+                            <li class="item">
 
-                        </dd>
-                    </dl>
+                                <div class="info-list" style="margin-top: 15px;text-align: left">
+
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><b>2. 如何和平台其他人协助开发智能厨电</b>
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 协助UI开发工程师
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 协助电控开发工程师
+                                    </p>
+                                </div>
+
+                            </li>
+                        </div>
+
+                        <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                            <li class="item">
+
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 14px"><b> 3. 我需要做什么</b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 明确需求和进度计划表</p>
+
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 业务实现具体功能和逻辑，对接协议
+                                    </p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px">- 协助电控联调
+                                    </p>
+
+                                </div>
+                            </li>
+                        </div>
+
+                    </div>
                 </div>
+            </div>
+
+            <div class="title-sub" style="display: none">
+                <div class="" style="text-align: center;background-color: white;height: 153px;padding-left: 0px">
+                    <div class="www">
+
+
+                        <div class="protocol-info-main col-md-4" style="background-color: white;text-align: left">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 20px;font-size: 18px">WiFi屏开发</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="font-size: 14px"><b><a
+                                            href="http://doc.53iq.com/#/quickly_start"
+                                            target="_blank"> <b>- </b> 快速入门指南</a></b></p>
+                                    <p class="info" style="margin-top: 10px;font-size: 14px;color: black"><a
+                                            href="http://doc.53iq.com/#/SDK/README"
+                                            target="_blank"><b>- </b> WiFi屏开发手册</a></p>
+                                    <!--<p class="info" style="margin-top: 10px;font-size: 16px"><b><a href="javascript:void(alert('暂未开放'))" target="_self">WiFi屏示例工程</a></b></p>-->
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="http://doc.53iq.com/#/Protocol/README"
+                                            target="_blank"><b>- </b> WiFi屏与53iq智能云通信协议</a></p>
+
+
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="protocol-info-main col-md-4"
+                             style="background-color: white;text-align: left;padding-right: 0px;">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 20px;font-size: 18px">开发示例</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="/static/sdk/COOKEING-Hood.rar" target="_blank"> <b>- </b>
+                                        下载WiFi屏开发示例（油烟机）</a></p>
+                                </div>
+                            </li>
+
+                        </div>
+                        <div class="protocol-info-main col-md-3" style="background-color: white;text-align: left">
+                            <li class="item">
+                                <p style="height: 30px;margin-top: 20px;font-size: 18px">资源工具</p>
+                                <div class="info-list" style="margin-top: 15px">
+                                    <p class="info" style="margin-top: 10px;font-size: 14px"><a
+                                            href="/static/sdk/ComMonitor.exe" target="_blank"><b>- </b> 串口调试工具 </a></p>
+                                </div>
+                            </li>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-sub"></div>
+            <div class="title-sub" style="margin-top: 0px;padding-bottom: 10px;overflow: hidden;">
+                {% if unpublished_apps %}
+                    <span class="old" style="color: #000;border-left:3px solid #000">最新编辑产品</span>
+                {% endif %}
+
+
+                <ol style="width: 550px;float: right;" class="new-app">
+                    <li style="color: #c6c6c6;">一键创建：</li>
+                    {% for app in default_apps %}
+
+                        <li>
+                            {% if app.app_device_type == 11 %}
+                                <a style="color: #ff6202"
+                                   href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
+                            {% else %}
+                                <a href="javascript:{% if user.developer.developer_id %}void(create_product('{{ app.app_device_type }}')){% else %}void(dont_develop()){% endif %}">{{ app.app_name }}</a>
+                            {% endif %}
+                        </li>
+                        {% if forloop.counter == 1 %}
+                            <li><a
+                                    href="javascript:{% if user.developer.developer_id %}void(create_product(31,'wifi')){% else %}void(dont_develop()){% endif %}">WiFi屏洗碗机</a>
+                            </li>
+
+                        {% endif %}
                     {% endfor %}
-                </div>
-                    <div>
+                </ol>
+                <div style="margin-top: 0px;width: 300px">
+                    {% if published_apps or publishing_apps or failed_apps or unpublished_apps %}
+                        <a href="
 
-                    <div class="goods-list" style="padding-bottom: 20px;margin-left: 20px;text-align:left;width: 500px;height: auto">
+
+                                {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
+                           class="">
+                            <i class="fa fa-plus"></i>
+                            <span>创建产品 </span>
+                        </a>
+                    {% endif %}
+                </div>
+
+
+                <div id="loadingDiv"
+                     style="position:absolute;left:45%;width:100%;top:40%;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;display: none">
+                    <div style="position: absolute; cursor1: wait; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(/static/image/product/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">
+                        页面加载中，请等待...
+                    </div>
+                </div>
+
+                <div class="goodsBox" style=" margin-top: 20px;text-align: center;width: 1200px;">
+                    {% if  not unpublished_apps and not keyword %}
+                        <div style="text-align: center;margin-top: 100px">
+                            <p style="font-size: 20px;color: black"><b>简单几步即可拥有属于你的智能家电产品</b></p>
+                            <p style="color: #868586;margin: 10px">数百种APP界面随意挑选组合</p>
+                            <a href="
+                                    {% if user.developer.developer_id %}{% url "product/add" %}{% else %}javascript:void(dont_develop()){% endif %}"
+                               class="btn btn-s-lg btn-success">
+                                <i class="fa fa-plus"></i>
+                                <span class="text">创建产品</span>
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if fireware %}
+                        <div class="col-md-6" style="padding-left: 0px;">
+                            {% for app in unpublished_apps %}
+                                <div class="goods-list" style="text-align:left;width: 600px;margin-right: 20px">
+                                    <dl>
+
+                                        <dd style="width: 500px;margin-left: 0px">
+
+
+                                            <div class="goods-title">
+                                                <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                   style="text-decoration: none">{{ forloop.counter }}.
+                                                    {{ app.app_name }}{% if app.is_share %}
+                                                        <span class="ui-cooperation-text">协作</span>{% endif %}</a>
+                                            </div>
+                                            <div class="product-info-div">
+                                                <div>
+
+                                                    {% if app.check_status == 0 %}
+                                                        <p>
+                                                            分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
+                                                            最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                    {% elif app.check_status == 1 %}
+                                                        <p>
+                                                            分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
+                                                            最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                    {% elif app.check_status == 2 %}
+                                                        <p>
+                                                            分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
+                                                            最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                    {% elif app.check_status == -1 %}
+                                                        <p>
+                                                            分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_screen_size|category_detail1 }}
+                                                            最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                    {% else %}
+                                                        <p>
+                                                            分类: {{ app.app_device_type| category_detail }}&nbsp;&nbsp;{{ app.app_create_source|category_detail1 }}
+                                                            最后编辑：{{ app.app_update_date| utc2local }} 未知 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                    {% endif %}
+
+                                                </div>
+
+                                            </div>
+
+                                        </dd>
+                                    </dl>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div>
+
+                            <div class="goods-list"
+                                 style="padding-bottom: 20px;margin-left: 20px;text-align:left;width: 500px;height: auto">
 
                                 <div class="col-md-6" style="padding-bottom: 20px">
-                                     <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px;position: relative;">6.8寸长条屏固件</p>
+                                    <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px;">
+                                        6.8寸长条屏固件</p>
                                     {% for foos in fireware %}
                                         {% if foos.firmware_size == 1 %}
 
-                                            <p style="height: 30px;font-size: 14px;padding-top: 15px"><a href="/product/download?url={{ foos.firmware_url }}&name=DCIOT.pkg" >{{ foos.firmware_name }}</a><i class="ace-icon fa fa-question-circle bigger-120" onmouseover="Show(this)" onmouseout="Noshow(this)"></i>
-                                            <img src="{{ foos.firmware_image }}" class="image_ss" alt="" style="display: none"></p>
+                                            <p style="height: 30px;font-size: 14px;padding-top: 15px;position: relative;">
+                                                <a href="{{ foos.firmware_url }}">{{ foos.firmware_name }}</a>&nbsp;<a
+                                                    href="{{ foos.firmware_image }}" target="_blank"><img
+                                                    src="/static/image/product/help.png" onmouseover="Show(this)"
+                                                    onmouseout="Noshow(this)"></a>
+                                                <img src="{{ foos.firmware_image }}" class="image_ss" alt=""
+                                                     style="display: none"></p>
                                         {% endif %}
                                     {% endfor %}
 
 
                                 </div>
                                 <div class="col-md-6">
-                                     <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px"> 4.3寸、5寸屏固件</p>
+                                    <p style="height: 50px;color: #2980b9;padding-top: 20px;font-size: 16px">
+                                        4.3寸、5寸屏固件</p>
                                     {% for foos in fireware %}
 
                                         {% if foos.firmware_size == 2 %}
-
-                                            <p style="height: 30px;font-size: 14px;padding-top: 15px"><a href="/product/download?url={{ foos.firmware_url }}&name=DCIOT.pkg" >{{ foos.firmware_name }}</a><i class="ace-icon fa fa-question-circle bigger-120" onmouseover="Show(this)" onmouseout="Noshow(this)"></i>
-                                            <img src="{{ foos.firmware_image }}" class="image_ss" alt="" style="display: none"></p>
+                                             <p style="height: 30px;font-size: 14px;padding-top: 15px;position: relative;">
+                                                <a href="{{ foos.firmware_url }}">{{ foos.firmware_name }}</a>&nbsp;<a
+                                                    href="{{ foos.firmware_image }}" target="_blank"><img
+                                                    src="/static/image/product/help.png" onmouseover="Show(this)"
+                                                    onmouseout="Noshow(this)"></a>
+                                                <img src="{{ foos.firmware_image }}" class="image_ss" alt=""
+                                                     style="display: none"></p>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
 
 
+                            </div>
+                        </div>
+                    {% else %}
+                        {% for app in unpublished_apps %}
+                            <div class="goods-list" style="text-align:left ">
+                                <dl>
+
+                                    <dd style="width: 1000px;margin-left: 0px">
+
+
+                                        <div class="goods-title">
+                                            <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                               style="text-decoration: none">{{ forloop.counter }}.
+                                                {{ app.app_name }}{% if app.is_share %}
+                                                    <span class="ui-cooperation-text">协作</span>{% endif %}</a>
+                                        </div>
+                                        <div class="product-info-div">
+                                            <div>
+
+                                                {% if app.check_status == 0 %}
+                                                    <p>分类:
+                                                        {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                                        最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                {% elif app.check_status == 1 %}
+                                                    <p>分类:
+                                                        {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                                        最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                {% elif app.check_status == 2 %}
+                                                    <p>分类:
+                                                        {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                                        最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                {% elif app.check_status == -1 %}
+                                                    <p>分类:
+                                                        {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                                        最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                {% else %}
+                                                    <p>分类:
+                                                        {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
+                                                        最后编辑：{{ app.app_update_date| utc2local }} 未知 <a
+                                                                href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
+                                                                style="color:#2980b9">
+                                                            编辑</a></p>
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+
+                                    </dd>
+                                </dl>
+                            </div>
+
+                        {% endfor %}
+                    {% endif %}
+
 
                 </div>
-                </div>
-                {% else %}
-                    {% for app in unpublished_apps %}
-                    <div class="goods-list" style="text-align:left ">
-                        <dl>
 
-                            <dd style="width: 1000px;margin-left: 0px">
-
-
-                                    <div class="goods-title">
-                                        <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal" style="text-decoration: none">{{ forloop.counter }}. {{ app.app_name }}{% if app.is_share %}<span class="ui-cooperation-text">协作</span>{% endif %}</a>
-                                    </div>
-                                     <div class="product-info-div">
-                                    <div>
-
-                                        {% if app.check_status == 0 %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
-                                            最后编辑：{{ app.app_update_date| utc2local }} 未发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a></p>
-                                        {% elif app.check_status == 1 %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
-                                            最后编辑：{{ app.app_update_date| utc2local }} 待审核 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a></p>
-                                        {% elif app.check_status == 2 %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
-                                            最后编辑：{{ app.app_update_date| utc2local }} 已发布 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a></p>
-                                        {% elif app.check_status == -1 %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
-                                            最后编辑：{{ app.app_update_date| utc2local }} 审核失败 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a></p>
-                                        {% else %}
-                                            <p>分类: {{ app.app_device_type| category_detail }}{{ app.app_create_source|category_detail1 }}
-                                            最后编辑：{{ app.app_update_date| utc2local }} 未知 <a href="{% url 'product/main' %}?ID={{ app.app_id }}#/portal"
-                                                style="color:#2980b9">
-                                            编辑</a></p>
-                                        {% endif %}
-
-                                    </div>
-
-                                </div>
-
-                            </dd>
-                        </dl>
-                    </div>
-
-                {% endfor %}
-                {% endif %}
-
-
-
-
+                <div id="ie-form"></div>
+                <!-- 未发布的产品 -->
+                <div class="markLayout"></div>
             </div>
 
-             <div id="ie-form"></div>
-              <!-- 未发布的产品 -->
-            <div class="markLayout"></div>
+
         </div>
-
-
     </div>
-</div>
 
 {% endblock %}
 
@@ -538,10 +605,10 @@
     <script>
         var dev = "{{ user.developer.developer_id }}";
         setTimeout(function () {
-            if (dev.length == 0){
-                if (getCookie('notify_develop')){
+            if (dev.length == 0) {
+                if (getCookie('notify_develop')) {
                     return true
-                }else{
+                } else {
                     setCookie("notify_develop", 1);
                     dont_develop()
                 }
@@ -550,72 +617,77 @@
         }, 1500);
 
 
-    function F_C0(that) {
-        console.log('x')
-        document.getElementById('click1').style.color=""
-        document.getElementById('click2').style.color=""
-        document.getElementById('click3').style.color=""
-        document.getElementById('click0').style.color="red"
-        document.getElementsByClassName('title-sub')[4].style.display='none'
-        document.getElementsByClassName('title-sub')[1].style.display=''
-        document.getElementsByClassName('title-sub')[2].style.display='none'
-        document.getElementsByClassName('title-sub')[3].style.display='none'
-    }
-    function F_C1(that) {
-        console.log('x')
-        document.getElementById('click1').style.color="red"
-        document.getElementById('click2').style.color=""
-        document.getElementById('click3').style.color=""
-        document.getElementById('click0').style.color=""
-        document.getElementsByClassName('title-sub')[4].style.display='none'
-        document.getElementsByClassName('title-sub')[2].style.display=''
-        document.getElementsByClassName('title-sub')[1].style.display='none'
-        document.getElementsByClassName('title-sub')[3].style.display='none'
-    }
-    function F_C2(that) {
-        document.getElementById('click2').style.color="red"
-        document.getElementById('click1').style.color=""
-        document.getElementById('click3').style.color=""
-        document.getElementById('click0').style.color=""
-        document.getElementsByClassName('title-sub')[1].style.display='none'
-        document.getElementsByClassName('title-sub')[2].style.display='none'
-        document.getElementsByClassName('title-sub')[3].style.display=''
-        document.getElementsByClassName('title-sub')[4].style.display='none'
-    }
-    function F_C3(that) {
-        document.getElementById('click3').style.color="red"
-        document.getElementById('click1').style.color=""
-        document.getElementById('click2').style.color=""
-        document.getElementById('click0').style.color=""
-        document.getElementsByClassName('title-sub')[1].style.display='none'
-        document.getElementsByClassName('title-sub')[2].style.display='none'
-        document.getElementsByClassName('title-sub')[3].style.display='none'
-        document.getElementsByClassName('title-sub')[4].style.display=''
-    }
-    function close_new() {
-        document.getElementsByClassName("title-sub")[1].style.display='none';
-        document.getElementById('close111').style.display='none';
-        document.getElementById('new_yindao').style.display=''
-    }
-    function show_new(){
-        document.getElementsByClassName("show_neww")[0].style.display='';
-        document.getElementById('close111').style.display='';
-        document.getElementById('new_yindao').style.display='none'
-    }
-    $(".more1").click(function () {
-        $.ajax({
-            method:"GET",
+        function F_C0(that) {
+            console.log('x')
+            document.getElementById('click1').style.color = ""
+            document.getElementById('click2').style.color = ""
+            document.getElementById('click3').style.color = ""
+            document.getElementById('click0').style.color = "red"
+            document.getElementsByClassName('title-sub')[4].style.display = 'none'
+            document.getElementsByClassName('title-sub')[1].style.display = ''
+            document.getElementsByClassName('title-sub')[2].style.display = 'none'
+            document.getElementsByClassName('title-sub')[3].style.display = 'none'
+        }
 
-            data:{'more':'1'}
+        function F_C1(that) {
+            console.log('x')
+            document.getElementById('click1').style.color = "red"
+            document.getElementById('click2').style.color = ""
+            document.getElementById('click3').style.color = ""
+            document.getElementById('click0').style.color = ""
+            document.getElementsByClassName('title-sub')[4].style.display = 'none'
+            document.getElementsByClassName('title-sub')[2].style.display = ''
+            document.getElementsByClassName('title-sub')[1].style.display = 'none'
+            document.getElementsByClassName('title-sub')[3].style.display = 'none'
+        }
 
-        }).success(function (data) {
+        function F_C2(that) {
+            document.getElementById('click2').style.color = "red"
+            document.getElementById('click1').style.color = ""
+            document.getElementById('click3').style.color = ""
+            document.getElementById('click0').style.color = ""
+            document.getElementsByClassName('title-sub')[1].style.display = 'none'
+            document.getElementsByClassName('title-sub')[2].style.display = 'none'
+            document.getElementsByClassName('title-sub')[3].style.display = ''
+            document.getElementsByClassName('title-sub')[4].style.display = 'none'
+        }
 
-           console.log(typeof(data))
+        function F_C3(that) {
+            document.getElementById('click3').style.color = "red"
+            document.getElementById('click1').style.color = ""
+            document.getElementById('click2').style.color = ""
+            document.getElementById('click0').style.color = ""
+            document.getElementsByClassName('title-sub')[1].style.display = 'none'
+            document.getElementsByClassName('title-sub')[2].style.display = 'none'
+            document.getElementsByClassName('title-sub')[3].style.display = 'none'
+            document.getElementsByClassName('title-sub')[4].style.display = ''
+        }
+
+        function close_new() {
+            document.getElementsByClassName("title-sub")[1].style.display = 'none';
+            document.getElementById('close111').style.display = 'none';
+            document.getElementById('new_yindao').style.display = ''
+        }
+
+        function show_new() {
+            document.getElementsByClassName("show_neww")[0].style.display = '';
+            document.getElementById('close111').style.display = '';
+            document.getElementById('new_yindao').style.display = 'none'
+        }
+
+        $(".more1").click(function () {
+            $.ajax({
+                method: "GET",
+
+                data: {'more': '1'}
+
+            }).success(function (data) {
+
+                console.log(typeof(data))
 
 
-
+            })
         })
-    })
 
 
     </script>
@@ -624,7 +696,7 @@
     <script type="text/javascript" src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
     <script src="/static/js/check-ie.js"></script>
-    <script src="/static/js/product/fast_create.js?v={{ version_code }}"> </script>
+    <script src="/static/js/product/fast_create.js?v={{ version_code }}"></script>
     <script>
         //判断ie浏览器版本是否低于9
         if (lessIE9()) {
@@ -644,12 +716,25 @@
         $(".goodsBox").height($(".goodsBox").height() + 110);
 
         function Show(that) {
-           $(that).parent().find("img").css('display', 'block')
+            console.log('123', $(that).parent().parent().find("img")[1])
+            $(that).parent().parent().find("img")[1].style.display = 'block'
         }
-        function Noshow(that) {
-                   $(that).parent().find("img").css('display', 'none')
-                }
 
+        function Noshow(that) {
+            $(that).parent().parent().find("img")[1].style.display = 'none'
+        }
+
+        function Clickshow(that) {
+            console.log('123', $(that).parent().find("img"))
+            var a = $(that).parent().find("img")[1]
+            var osb = a;
+            var sb = a.src;
+            console.log(sb)
+
+            osb.href = sb;
+            osb.download = "";
+
+        }
 
         function utf16to8(str) {
             var out, i, len, c;
@@ -722,25 +807,25 @@
                 }
             });
         }
+
         // 设置cookie
-        function setCookie(name,value)
-            {
-                var Days = 30;
-                var exp = new Date();
-                exp.setTime(exp.getTime() + Days*24*60*60*1000);
-                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
-            }
+        function setCookie(name, value) {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+        }
+
         //读取cookies
-        function getCookie(name)
-            {
-                var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 
-                if(arr=document.cookie.match(reg))
+            if (arr = document.cookie.match(reg))
 
-                    return unescape(arr[2]);
-                else
-                    return null;
-            }
+                return unescape(arr[2]);
+            else
+                return null;
+        }
     </script>
 
 {% endblock %}

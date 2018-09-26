@@ -34,10 +34,10 @@
 <style>
      .image_ss{
          position: absolute;
-         top: 0;
-         left: 100%;
-         max-width: 210px;
-
+         top: 35px;
+         left: 0;
+         max-width: 130px;
+         z-index:1
      }
     .sign_out a:hover{
         color: #ff0000 !import;
