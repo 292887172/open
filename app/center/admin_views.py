@@ -564,7 +564,8 @@ def application_detail_modal(request):
                 if len(str(iosa)) < 20:
                     opera_data.remove(iosa)
             return opera_data
-
+        else:
+            return opera_data
     def get():
         app_id = request.GET.get("id", "")
         modal_title = "应用详情"
