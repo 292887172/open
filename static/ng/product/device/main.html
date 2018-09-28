@@ -33,11 +33,11 @@
     </div>
 	<div class="mt20" style="border: 0px" data-type="{[{app_screen}]}">
 
-        <div class="col-md-1" style="padding-left: 24px" ng-if="groups!='1'">
+        <div class="col-md-1" style="padding-left: 24px" ng-if="groups=='油烟机' || groups=='集成灶'">
             <button class="btn btn-primary btn-product-item" ng-click="get_product()">生成工程包</button>
             <p style="margin-top: 5px;width: 100px;color: #bfbfbf">包含标准UI界面</p>
         </div>
-        <div class="col-md-10" >
+        <div class="col-md-10" ng-if="groups=='油烟机' || groups=='集成灶'">
              <button class="btn btn-primary btn-product-item" ng-click="get_products()" style="margin-left: 100px">生成脚本文件</button>
              <p style="margin-left: 13%;margin-top: 5px;color: #bfbfbf">仅生成main.lua脚本文件</p>
         </div>
