@@ -934,22 +934,61 @@ def protocol(request):
         zdy = request.GET.get('zdy', '')
         action = request.GET.get('action', '')
         protocol_type = request.GET.get('protocol_type', '0')
+        pt = ''
+        screen = request.GET.get('screen', '')
+        device_types = request.GET.get('device_types', '')
         if action == "get_project":
-            screen = request.GET.get('screen', '')
+
             print(screen, 'screen')
-            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
-            pth = get_personal_project_by_key(project_path, device_key, 'zip')
-            logging.getLogger('').info(pth)
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
-            logging.getLogger('').info(pt)
+            if device_types == '油烟机' or device_types == '集成灶':
+                if screen == '6.8寸长条屏':
+                    print('-------')
+                    project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+                    pth = get_personal_project_by_key(project_path, device_key, 'zip')
+                    logging.getLogger('').info(pth)
+                    pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
+                    logging.getLogger('').info(pt)
+                else:
+                    print('========')
+                    p = get_device_protocol_config(device_key)
+                    if p:
+                        p0 = p[0]
+                        p1 = p[1]
+                    else:
+                        p0, p1 = False, False
+                    d = get_device_function(device_key)
+                    project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
+                    pth = get_personal_project(project_path, device_key, d, p0, p1)
+                    logging.getLogger('').info(pth)
+                    pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/WiFiIot_' + device_key + '.zip'
+                    logging.getLogger('').info(pt)
+
             return JsonResponse({"code": 0, "url": pt})
         if action == "get_projects":
-            project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
-            pth = get_personal_project_by_key(project_path, device_key, 'lua')
-            logging.getLogger('').info(pth)
 
-            pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
-            logging.getLogger('').info(pt)
+            if device_types == '油烟机' or device_types == '集成灶':
+                if screen == '6.8寸长条屏':
+                    project_path = BASE_DIR + '/static/sdk/wifi_68.zip'
+                    pth = get_personal_project_by_key(project_path, device_key, 'lua')
+                    logging.getLogger('').info(pth)
+                    pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/' + os.path.basename(pth)
+                    logging.getLogger('').info(pt)
+                else:
+                    p = get_device_protocol_config(device_key)
+                    if p:
+                        p0 = p[0]  # 上行
+                        p1 = p[1]  # 下行
+                    else:
+                        p0, p1 = False, False
+                    d = get_device_function(device_key)
+                    project_path = BASE_DIR + '/static/sdk/WiFiIot.zip'
+                    # pth = get_personal_project(project_path, device_key, d, p0, p1)
+                    pth = get_personal_project(project_path, device_key, d, p0, p1, 'lua')
+                    logging.getLogger('').info(pth)
+                    pt = 'http://' + request.META['HTTP_HOST'] + '/static/sdk/main_' + device_key + '.lua'
+                    logging.getLogger('').info(pt)
+
+
             return JsonResponse({"code": 0, "url": pt})
 
         if action == 'get_data_content':

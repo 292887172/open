@@ -54,8 +54,19 @@ angular.module('Product.edit', ['ngRoute'])
         };
         $scope.Save = function () {
         	var state = checkID();
+			var v_pam = D_PAM();
 			if (state !='correct' || !checkName()){
+
 				return;
+			}
+			if ($("#select_id").val()!='Button'){
+				if (v_pam !='true'){
+				$('.show_values').css("display","block");
+				return;
+			}else {
+
+				}
+
 			}
 			if($.trim($('#mxsLength').val())==''){
 				$('#checkLength').html("长度不能为空!!");

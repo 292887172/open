@@ -15,7 +15,7 @@ angular.module('Product.device', ['ngRoute'])
         $scope.nav.selected("deviceMenu");
         $scope.process="0%";
         $scope.screena=$scope.app_screen;
-        $scope.groups=$scope.app_group;
+        $scope.groups=$scope.app_device_name;
 
         $http({
                 method: "POST",
@@ -57,7 +57,7 @@ angular.module('Product.device', ['ngRoute'])
             }, 500);
             $http({
                 method: "GET",
-                url: '/product/protocol/?action=get_project&key='+$scope.key+'&screen='+$scope.app_screen,
+                url: '/product/protocol/?action=get_project&key='+$scope.key+'&screen='+$scope.app_screen+'&device_types='+$scope.app_device_name,
                 data: $.param({'action': 'get_product'}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {
@@ -95,7 +95,7 @@ angular.module('Product.device', ['ngRoute'])
             }, 500);
             $http({
                 method: "GET",
-                url: '/product/protocol/?action=get_projects&key='+$scope.key,
+                url: '/product/protocol/?action=get_projects&key='+$scope.key+'&screen='+$scope.app_screen+'&device_types='+$scope.app_device_name,
                 data: $.param({'action': 'get_products'}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {

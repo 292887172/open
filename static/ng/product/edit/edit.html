@@ -282,10 +282,10 @@
                                     <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
                                     <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
                                         <option value="Button" >Button选择</option>
-                                        <option value="TimeButton" >TimeButton</option>
-                                        <option value="AnimationStatusButton" >AnimationStatusButton</option>
+                                        <option value="TimeButton" >时间</option>
+                                        <option value="AnimationStatusButton" >动画</option>
                                         </select></div>
-                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >params: </span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
+                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >参数: </span><span>xxxxx</span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
                                 </div>
                             </div>
                         </form><!-- PAGE CONTENT ENDS -->
@@ -785,11 +785,22 @@
        }else if (params_id=='2'){
            console.log('2',value)
        }else {
+           $('.show_values').css("display","none");
            console.log('3',value)
        }
 
     }
-
+    
+    function D_PAM() {
+        var defaultpam_value = $("#defaultPAM").val()
+        if (defaultpam_value == ''){
+            console.log('11')
+            return 'false'
+        }else {
+            return 'true'
+        }
+    }
+    
     function check_paramData(ths) {
         value = $(ths).val();
 
