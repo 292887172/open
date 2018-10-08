@@ -1946,6 +1946,7 @@
 
                                     console.log('xxx', ui_listeds)
                                     $("#defaultPAM").val('')
+                                    $('.show_values').css("display", "none");
                                     $("#defaultPAM").val(ui_listeds)
                                 }
 
@@ -2024,7 +2025,6 @@
     }
     function check_uis(that) {
         var value_ui = $(that).val();
-        console.log('---',value_ui)
         if (value_ui == '') {
             $("#redcodes").css("display", "block");
         }else {
@@ -2033,14 +2033,12 @@
     }
 
     function checkvalued_params(ths, params_id) {
-        console.log('id---------', params_id)
         // 根据params_id 来判断哪个input传过来的数值 数值校验
         // id=1
 
-        value = $(ths).val();
+        var values = $(ths).val();
 
-        if (params_id == '2' && value) {
-            console.log('非下拉框', value)
+        if (params_id == '2' && values=='') {
             $('.show_values').css("display", "block");
 
         } else {
@@ -2050,7 +2048,7 @@
                 $('.show_values').css("display", "block");
             }
 
-            console.log('3', value)
+            console.log('3', values)
         }
 
     }
@@ -2081,7 +2079,6 @@
 
     function SelectFunc(ths) {
         var name = $(ths).val();
-        console.log('xxxx', name)
         for (var i = 0; i < funs.length; i++) {
             if (funs[i].Stream_ID == name) {
                 $("#minDefault").val(funs[i].min);
