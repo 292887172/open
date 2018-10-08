@@ -252,12 +252,9 @@ angular.module('Product.edit', ['ngRoute'])
          * 提交重置AppSecret表单
          * @constructor
          */
-		var xx = 0;
+		var xx = 1;
     	console.log('==============')
-    	if (xx=='0'){
 
-    		console.log('--------sss')
-		}
 		if (xx == '0') {
 
             $http({
