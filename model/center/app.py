@@ -15,7 +15,8 @@ class App(models.Model):
     # app编号
     app_id = models.AutoField(primary_key=True, db_column='ebf_app_id')
     # 开发者
-    developer = models.ForeignKey(Developer, null=True, db_column='ebf_developer_id', related_name='developer_related_app')
+    developer = models.ForeignKey(Developer, null=True, db_column='ebf_developer_id',
+                                  related_name='developer_related_app')
     # 应用名称
     app_name = models.CharField(max_length=64, db_column='ebf_app_name')
     # 应用包名
@@ -37,7 +38,7 @@ class App(models.Model):
     # appsecret
     app_appsecret = models.CharField(max_length=1024, db_column='ebf_app_appsecret')
     # 屏幕尺寸
-    app_screen_size = models.IntegerField(max_length=2,default=0,db_column='ebf_app_screen_size')
+    app_screen_size = models.IntegerField(max_length=2, default=0, db_column='ebf_app_screen_size')
     # 应用是否禁用 （0：未禁用，1：禁用）
     app_is_forbid = models.IntegerField(max_length=2, default=0, db_column='ebf_app_is_forbid')
     # 设备品牌
@@ -51,7 +52,7 @@ class App(models.Model):
     # 设备型号
     app_model = models.CharField(max_length=64, null=True, db_column='ebf_app_model')
     # 项目进程
-    #app_prot = models.CharField(max_length=64,default='提交详细技术功能规划书',db_column='ebf_app_prot')
+    # app_prot = models.CharField(max_length=64,default='提交详细技术功能规划书',db_column='ebf_app_prot')
     # 应用等级
     app_level = models.IntegerField(max_length=3, default=0, db_column='ebf_app_level')
     # 应用分组，1普通app，2普通电控
@@ -80,6 +81,9 @@ class App(models.Model):
     app_create_source = models.IntegerField(default=0, db_column='ebf_app_create_source')
     # 产品组id
     group_id = models.IntegerField(max_length=11, default=0, db_column='ebf_group_id')
+
+    # 定义功能的版本
+    app_device_config_version = models.IntegerField(max_length=2, default=0, db_column='ebf_app_device_config_version')
 
     class Meta:
         app_label = 'center'
