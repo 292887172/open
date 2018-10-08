@@ -481,6 +481,9 @@ def product_main(request):
             developer = ''
         else:
             developer = request.user.developer
+        # 判断该产品ID是否是此用户所有或者是协同开发
+        # 只判断了该产品是否存在！
+
         try:
             user_related_app = App.objects.filter(developer=developer)
             app_id = request.GET.get("ID", "")
@@ -493,6 +496,26 @@ def product_main(request):
             logging.getLogger('').info("应用出错", str(e))
             return HttpResponseRedirect(reverse("product/list"))
         if not user_apps:
+            return HttpResponseRedirect(reverse("product/list"))
+        # 判断该产品是否属于这个用户,该产品是否是分享过来的
+        try:
+            user_login = request.COOKIES['COOKIE_USER_ACCOUNT']
+            app_ids = request.GET.get("ID", "")
+            user_appsd = App.objects.filter(developer__developer_account=user_login,app_id=app_ids)
+            if '@' in user_login:
+                user_appss = UserGroup.objects.filter(group_id=[i.group_id for i in App.objects.filter(app_id=app_ids)][0],user_account=user_login)
+            else:
+                user_appss = UserGroup.objects.filter(group_id=[i.group_id for i in App.objects.filter(app_id=app_ids)][0],user_account=[j.account_email for j in Account.objects.filter(account_id=user_login)][0])
+            if not user_appsd:
+                if not user_appss:
+                    return HttpResponseRedirect(reverse("product/list"))
+                else:
+                    pass
+            else:
+                pass
+        except Exception as e:
+            print(e, '有问题')
+            logging.getLogger('').info("应用出错", str(e))
             return HttpResponseRedirect(reverse("product/list"))
 
         app = user_apps[0]
@@ -832,7 +855,7 @@ def product_main(request):
                 # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
                 tt = "modify_success"
             # 版本区别,在新版本加{"version":"1"} # 区分方法control
-            opera_data = save_control(opera_data)
+            #opera_data = save_control(opera_data)
             save_app(app, opera_data, cook_ies)
             update_app_protocol(app)
             return HttpResponse(tt)

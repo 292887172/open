@@ -93,6 +93,11 @@
         margin-top: 20px;
         margin-bottom: 0px;
     }
+    .tables{
+
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
      .show_control{
         margin-top: -15px;
     }
@@ -101,6 +106,12 @@
     }
     .noshows{
         display: none;
+    }
+    .show_values {
+        color: red;
+        margin-top: -15px;
+        float: right;
+
     }
 </style>
 <div class="main-container ace-save-state box2" id="main-container">
@@ -275,19 +286,7 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="fun_control" style="padding-top: 20px">
-                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" data-type="" style="text-align:right"> 多态 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
-                                <div class="col-sm-9 col-xs-9">
-                                    <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)"  class="form-control float-left"></div>
-                                    <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
-                                    <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
-                                        <option value="Button" >Button选择</option>
-                                        <option value="TimeButton" >时间</option>
-                                        <option value="AnimationStatusButton" >动画</option>
-                                        </select></div>
-                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >参数: </span><span>xxxxx</span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)"  class="form-control float-left"></div>
-                                </div>
-                            </div>
+
                         </form><!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -330,6 +329,20 @@
                             <div class="form-group">
                                 <a  style="padding-left: 165px;" ng-hide='{[{ visible }]}' href='#' onclick='add();return false' class='addButton'>
                                         <i class='ace-icon glyphicon glyphicon-plus'></i> 添加参数</a>
+                            </div>
+                            <div class="form-group" id="fun_control" style="padding-top: 20px">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction" data-type="" style="text-align:right"> 多态 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；" title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)" onclick="Edits(this,1)" class="form-control float-left"></div>
+                                    <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
+                                    <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
+                                        <option value="Button" >Button选择</option>
+                                        <option value="TimeButton" >时间</option>
+                                        <option value="AnimationStatusButton" >动画</option>
+                                        </select></div>
+                                    <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >参数: </span><span style="display: none"
+                                                                                             class="show_values">请输入参数!</span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)" onclick="Edits(this,3)" class="form-control float-left"></div>
+                                </div>
                             </div>
                             <div class="clearfix form-actions" style="margin-bottom:-15px;background-color: #fff">
                                 <div class="col-sm-2 col-xs-2"></div>
@@ -770,6 +783,250 @@
             add();
 
 
+        }
+    }
+
+    //多态
+    function Edits(that, eid) {
+        var that_values = $(that).val();
+        console.log('------', eid, that_values);
+        console.log(that_values.split(",").length);
+        if (eid == '1') {
+            var suvalue = that_values.split(",");
+            var sss_data = []
+            for (var i in suvalue) {
+
+                for (var j in suvalue[i].split(":")) {
+
+                    sss_data.push(suvalue[i].split(":")[j])
+
+                }
+            }
+            var table = '<div class="tables" style="margin-left:15%" ><table  border="1">\
+            <thead >\
+            <tr align="center">\
+                <th style="width:160px">界面名</th>\
+                 <th style="width:160px">控件ID</th>\
+                 <th style="width:160px">操作</th>\
+            </tr>\
+            </thead>\
+           <tbody id="addUI">';
+
+
+            if (sss_data.length > 1) {
+                for (var i = 0; i < sss_data.length; i = i + 2) {
+
+
+                    table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
+                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+
+                }
+            } else {
+                table += '<tr><td><input type="text" value="all"></td>\
+                <td><input type="text" value="1" class="check_values" onblur="check_ui(this)"></td>\
+                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+            }
+
+            table += '</tbody>\
+                </table></div>';
+            table += '<p id="redcode" style="color:red;display:none">请输入非空参数</p>'
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilist()">新增</button></div>';
+            bootbox.dialog({
+                title: "UI控件编辑",
+                message: table,
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-info'></i> 确定",
+                        "className": "btn-primary",
+                        "callback":
+                            function () {
+
+                                if (document.getElementById("redcode").style.display == 'block') {
+                                    console.log('11110')
+
+                                } else {
+                                    ui_listed = [];
+                                    for (var i = 0, i_len = $("#addUI tr").length; i < i_len; i++) {
+                                        if ($("#addUI tr")[i].cells[1].childNodes[0].value == '') {
+                                            return;
+                                        } else {
+                                            var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            ui_listed.push(str1);
+                                        }
+
+                                    }
+
+
+                                    console.log('xxx', ui_listed)
+                                    $("#defaultUID").val('')
+                                    $("#defaultUID").val(ui_listed)
+                                }
+
+
+                            }
+
+
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-ok'></i> 取消",
+                    "className": "btn-default"
+                }
+
+            })
+        }else if (eid == '3'){
+            var suvalues = that_values.split(",");
+            var sss_datas = []
+            for (var i in suvalues) {
+
+                for (var j in suvalues[i].split(":")) {
+
+                    sss_datas.push(suvalues[i].split(":")[j])
+
+                }
+            }
+            var table = '<div class="tables" style="margin-left:15%" ><table  border="1">\
+            <thead >\
+            <tr align="center">\
+                <th style="width:160px;padding-left: 40px">功能参数值</th>\
+                 <th style="width:160px;padding-left: 40px">动画控件ID</th>\
+                 <th style="width:160px;padding-left: 63px">操作</th>\
+            </tr>\
+            </thead>\
+           <tbody id="addUIs">';
+
+
+            if (sss_datas.length > 1) {
+                for (var i = 0; i < sss_datas.length; i = i + 2) {
+
+
+                    table += '<tr><td><input type="text" value=' + sss_datas[i] + '></td>\
+                        <td><input type="text" value=' + sss_datas[i + 1] + ' class="check_valuesd" onblur="check_uis(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+
+                }
+            } else {
+                table += '<tr><td><input type="text" value=""></td>\
+                <td><input type="text" value="" class="check_valuesd" onblur="check_uis(this)"></td>\
+                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+            }
+
+            table += '</tbody>\
+                </table></div>';
+            table += '<p id="redcodes" style="color:red;display:none">请输入非空参数</p>'
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilists()">新增</button></div>';
+            bootbox.dialog({
+                title: "参数关联",
+                message: table,
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-info'></i> 确定",
+                        "className": "btn-primary",
+                        "callback":
+                            function () {
+
+                                if (document.getElementById("redcodes").style.display == 'block') {
+                                    console.log('11110')
+
+                                } else {
+                                    ui_listeds = [];
+                                    for (var i = 0, i_len = $("#addUIs tr").length; i < i_len; i++) {
+                                        if ($("#addUIs tr")[i].cells[1].childNodes[0].value == '') {
+                                            return;
+                                        } else {
+                                            var str1 = $("#addUIs tr")[i].cells[0].childNodes[0].value + ':' + $("#addUIs tr")[i].cells[1].childNodes[0].value;
+                                            ui_listeds.push(str1);
+                                        }
+
+                                    }
+
+
+                                    console.log('xxx', ui_listeds)
+                                    $("#defaultPAM").val('')
+                                    $("#defaultPAM").val(ui_listeds)
+                                }
+
+
+                            }
+
+
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-ok'></i> 取消",
+                    "className": "btn-default"
+                }
+
+            })
+
+
+
+        }
+    }
+
+    $(".btn-primary").on("click", function () {
+        console.log('1111')
+    })
+
+    function adduilist() {
+
+        for (var i = 0, i_len = $(".check_values").length; i < i_len; i++) {
+            console.log('------', i, $(".check_values")[i].value)
+            if ($(".check_values")[i].value == '') {
+                $("#redcode").css("display", "block");
+                return;
+            } else {
+                $("#redcode").css("display", "none");
+            }
+        }
+
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_ui(this)" class="check_values" value=""</td>';
+
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUI").append(msg);
+    }
+
+
+    function adduilists() {
+
+        for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
+            console.log('------', i, $(".check_valuesd")[i].value)
+            if ($(".check_valuesd")[i].value == '') {
+                $("#redcodes").css("display", "block");
+                return;
+            } else {
+                $("#redcodes").css("display", "none");
+            }
+        }
+
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+    }
+
+    function check_ui(that) {
+        var value_ui = $(that).val();
+        if (value_ui == '') {
+            $("#redcode").css("display", "block");
+        }else {
+             $("#redcode").css("display", "none");
+        }
+    }
+    function check_uis(that) {
+        var value_ui = $(that).val();
+        console.log('---',value_ui)
+        if (value_ui == '') {
+            $("#redcodes").css("display", "block");
+        }else {
+             $("#redcodes").css("display", "none");
         }
     }
 
