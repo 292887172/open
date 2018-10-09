@@ -621,9 +621,9 @@ def product_main(request):
             if app.device_conf:
                 opera_data = json.loads(app.device_conf)
                 opera_data_new = opera_data
-                print('----',opera_data)
+
                 opera_data = findd(opera_data)
-                print('xxx',opera_data)
+
                 if len(opera_data) <2:
                     pass
                 else:
