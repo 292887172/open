@@ -1312,9 +1312,14 @@
         var num = location.href.split("#")[0].split("=")[1]
         document.getElementById("vid").value = that
         try {
-            document.getElementsByClassName("xxx")[0].remove()
-        }catch (e) {
-            console.log(e,'没有脏数据')
+                var del_removes = document.getElementsByClassName("xxx");
+                if(del_removes.length>0){
+                    for (var i =0,del_length = del_removes.length;i<del_length;i++){
+                        del_removes[0].remove()
+                    }
+                }
+            }catch (e) {
+                console.log(e,'没有脏数据')
         }
         document.getElementById('ididid').value = that
         console.log(num)
@@ -1467,6 +1472,7 @@
             $('#maxTimer').val(d.max);
             selectTimer();
         }
+
         if (count <= 1) {
             var del_remove = document.getElementsByClassName("ddd")
 
