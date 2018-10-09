@@ -431,7 +431,7 @@
                             </div>
 
 
-                            <div class="form-group" style="display: none">
+                            <div class="form-group" >
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength"
                                        style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span
                                         class="help-button" data-rel="popover" data-trigger="hover"
@@ -1311,7 +1311,11 @@
     function func(that) {
         var num = location.href.split("#")[0].split("=")[1]
         document.getElementById("vid").value = that
-
+        try {
+            document.getElementsByClassName("xxx")[0].remove()
+        }catch (e) {
+            console.log(e,'没有脏数据')
+        }
         document.getElementById('ididid').value = that
         console.log(num)
         document.getElementsByClassName("main-container")[0].style.display = 'none'
@@ -1402,9 +1406,9 @@
         $("#defaultPAM").val('')
         $("#defaultPAM").parent().addClass("fork_show")
         try {
-            console.log('eee', d.control)
+
             var data_control = d.control
-            console.log('xxxx', data_control)
+
 
             $("#defaultUID").val(data_control['uid'])
             if (data_control['wedgit'] == '') {
@@ -1601,7 +1605,7 @@
     function add() {
         flag = true;
         var group = '';
-        group += '<div class="form-group">';
+        group += '<div class="form-group xxx">';
         group += '	<div class="col-sm-2 col-xs-2"></div>';
         group += '	<div class="col-sm-1 col-xs-3">';
         group += '		<input type="text" id="checkData" onblur="check_paramData(this)" onkeypress="return onKeyPress(event)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';

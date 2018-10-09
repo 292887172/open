@@ -85,6 +85,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                           app_create_source=app_product_fast,
                           check_status=check_status,
                           group_id=group_id,
+                          app_device_config_version=int(2),
                           app_create_date=datetime.datetime.utcnow(),
                           app_update_date=datetime.datetime.utcnow()
                           )
