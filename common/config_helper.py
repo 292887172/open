@@ -1,4 +1,4 @@
- # coding=utf-8
+# coding=utf-8
 import django
 import json
 import pprint
@@ -46,7 +46,19 @@ def get_all_device_function(key: str):
         # print(json.dumps(json.loads(device_function), indent=4, ensure_ascii=False))
 
 
-def get_device_function(key: str) -> list or 'false':
+def get_device_config_virsion(key: str) -> int:
+    version = 0
+    try:
+        app = App.objects.get(app_appid__contains=key)
+        version = app.app_device_config_version
+    except Exception as e:
+        logging.error('查询数据失败 key={} \n {}'.format(key, str(e)))
+        return False
+    finally:
+        return version
+
+
+def get_device_function(key: str) -> list or bool(False):
     """ 获取用户定义的帧协议
 
     :param key: 用户的key
@@ -59,11 +71,7 @@ def get_device_function(key: str) -> list or 'false':
             if item.isdigit():
                 new_ids.append(int(item))
             elif ':' in item:
-                key, value = item.split(':')
-                if value.isdigit():
-                    new_ids.append({key: int(value)})
-                else:
-                    new_ids.append({key: value})
+                new_ids.append(item)
         return new_ids
 
     def get_params(params):
@@ -93,18 +101,18 @@ def get_device_function(key: str) -> list or 'false':
             for item in get_ids(ids):
                 if isinstance(item, int):
                     if not params:
-                        controls.append({'id': item, 'wedgit': wedgit})
+                        controls.append({'id': int(item), 'wedgit': wedgit})
                     else:
-                        controls.append({'id': item, 'wedgit': wedgit, 'params': params})
+                        controls.append({'id': int(item), 'wedgit': wedgit, 'params': params})
 
-                elif isinstance(item, dict):
-                    for k, v in item.items():
-                        if not params:
-                            controls.append(k + '=')
-                            controls.append({'id': v, 'wedgit': wedgit})
-                        else:
-                            controls.append(k + '=')
-                            controls.append({'id': v, 'wedgit': wedgit, 'params': params})
+                elif isinstance(item, str):
+                    k, v = item.split(':')
+                    if not params:
+                        controls.append(k + '=')
+                        controls.append({'id': int(v), 'wedgit': wedgit})
+                    else:
+                        controls.append(k + '=')
+                        controls.append({'id': int(v), 'wedgit': wedgit, 'params': params})
             return controls
 
     def get_triggers(triggers):
@@ -112,7 +120,6 @@ def get_device_function(key: str) -> list or 'false':
         for key, value in triggers.items():
             if value == {}:
                 continue
-            print(key, value)
             _item = {}
             for k, v in value.items():
                 if v.isdigit():
@@ -126,9 +133,12 @@ def get_device_function(key: str) -> list or 'false':
         logging.error('查询数据失败 key={} \n {}'.format(key, str(e)))
         return False
 
-    configs = json.loads(app.device_conf)
+    try:
+        configs = json.loads(app.device_conf)
+    except Exception as e:
+        logging.error('数据加载失败 key={} \n {}'.format(key, str(e)))
 
-    ## 输出原始的配置信息
+    # 输出原始的配置信息
     # try:
     #     _configs = ('{"function":' + str(configs) + "}").replace("'", '"')
     #     _configs = json.loads(_configs)
@@ -176,19 +186,64 @@ def get_device_function(key: str) -> list or 'false':
     return device_functions
 
 
-def get_device_protocol_config(key: str) -> list or 'false':
+def get_init_config_code(device_function: list):
+    """ 一些情况下对一下参数进行初始化\n
+    在使用动画多态按钮时，在生成的main.lua中的 on_init() 方法中对动画进行初始化隐藏\n
+    :param device_function: 设备的功能定义
+    :return:
+    """
+
+    def get_hide_code(visable):
+        """
+
+        :param visable:
+        :return:
+        """
+        codes = []
+        for item in visable:
+            page = item['page']
+            for id in item['id']:
+                if id == 0:
+                    continue
+                code = 'set_visiable(GetScreenID("{page}"), {id}, 0)'.format(page=page, id=id)
+                codes.append(code)
+        return codes
+
+    visable = []
+    for function in device_function:
+        item = {'page': None, 'id': []}
+        if function.get("controls"):
+            for control in function["controls"]:
+                if isinstance(control, str):
+                    item['page'] = control.strip('=')
+                elif isinstance(control, dict):
+                    buttons = ['AnimationStatusButton']
+                    if control.get('wedgit') in buttons and control.get('params'):
+                        for param in control['params']:
+                            item['id'].append(param[1])
+        if item['page'] != None:
+            visable.append(item)
+
+    if not visable:
+        return False
+    else:
+        init_code = []
+        for code in get_hide_code(visable):
+            init_code.append(str(code))
+        return '\n'.join(set(init_code))
+
+
+def get_device_protocol_config(key: str) -> list or bool(False):
     """
     获取自定义协议解析的规则 \n
     解析成功返回 [上行规则，下行规则] \n
     如果只有上行规则或下行规则返回 [规则]*2 \n
-
     :param key: 用户的key
     :return: 成功 > 用户的自定义协议配置  ，  失败 > False
     """
 
-    def get_data_length(key: str) -> int or 'false':
-        """
-        根据用户定义的功能列表，计算自定义帧协议中 data_domain 的数据长度
+    def get_data_length(key: str) -> int or bool(False):
+        """ 根据用户定义的功能列表，计算自定义帧协议中 data_domain 的数据长度 \n
         :param key: 用户的Key
         :return: 成功 数据域长度  失败 false
         """
@@ -204,10 +259,8 @@ def get_device_protocol_config(key: str) -> list or 'false':
             return False
 
     def get_check_data_location(check_id, frame_contents, position):
-        """ 解析帧，获取帧的起始校验码位置和结束校验码位置，
-
-        校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量
-
+        """ 解析帧，获取帧的起始校验码位置和结束校验码位置\n
+        校验位置计算是计算需要校验的数据在数据中的位置，并根据位置计算偏移量\n
         :param check_id: 需要校验数据的ID
         :param frame_contents: 所有的帧协议数据
         :param position: 获取校验起始位，或结束位
@@ -231,13 +284,10 @@ def get_device_protocol_config(key: str) -> list or 'false':
         elif position == 'end':
             return length_position - length_sum
 
-    def change_value(value: hex) -> list or 'false':
-        """ 数据之间的转换
-
-        '0011' (hex) -> [0,17]
-
-        '01' -> [1]
-
+    def change_value(value: hex) -> list or bool(False):
+        """ 数据之间的转换\n
+        '0011' (hex) -> [0,17] \n
+        '01' -> [1] \n
         :param value: 需要转换的十六进制数
         :return: 十进制数组成的数组
         """
@@ -313,45 +363,50 @@ def get_device_protocol_config(key: str) -> list or 'false':
         return configs
 
 
+################################################################################
+
 def test_get_device_function():
-    # 标准集成灶 BTO9ciBr
-    device_function = get_device_function(key='BTO9ciBr')
-
-    # js = json.dumps(device_function, indent=4, ensure_ascii=False)
-    # print(js)
-
+    print('\n' + '-' * 40 + '   test_get_device_function   ' + '-' * 40, end='\n\n')
+    device_function = get_device_function(key='MCKjIJWI')
+    # print(json.dumps(device_function, indent=4, ensure_ascii=False))
     pprint.pprint(device_function, width=100, indent=4)
     print('\n' + '-' * 40 + '   test_get_device_function   ' + '-' * 40, end='\n\n')
 
 
 def test_get_device_protocol_config():
+    print('\n' + '-' * 40 + '   test_get_device_protocol_config   ' + '-' * 40, end='\n\n')
     device_protocol_config = get_device_protocol_config(key='BTO9ciBr')
     pprint.pprint(device_protocol_config, width=80, indent=4)
     print('\n' + '-' * 40 + '   test_get_device_protocol_config   ' + '-' * 40, end='\n\n')
 
 
 def test_config_change():
+    print('\n' + '-' * 40 + '   test_config_change   ' + '-' * 40, end='\n\n')
     data = '{id=103,weight="time_button",params={value={1,2,3},progress=104}}'
     data = lua.decode(data)
     print(data, type(data))
     print('\n' + '-' * 40 + '   test_config_change   ' + '-' * 40, end='\n\n')
 
 
-def test_change_device_function(device_function):
-    from common.project_helper import config_change
-    print(config_change(device_function))
+def test_change_device_function():
+    print('\n' + '-' * 40 + '   test_change_device_function   ' + '-' * 40, end='\n\n')
+    from common.project_helper import change_config
+    device_function = get_device_function("MCKjIJWI")
+    print(change_config(device_function))
+    print('\n' + '-' * 40 + '   test_change_device_function   ' + '-' * 40, end='\n\n')
+
+
+def test_init_config_code():
+    print('\n' + '-' * 40 + '   test_init_config_code   ' + '-' * 40, end='\n\n')
+    device_function = get_device_function("MCKjIJWI")
+    print(get_init_config_code(device_function))
+    print('\n' + '-' * 40 + '   test_init_config_code   ' + '-' * 40, end='\n\n')
 
 
 if __name__ == '__main__':
+    pass
     # test_get_device_function()
-
     # test_get_device_protocol_config()
-
     # test_config_change()
-
-    device_function = get_device_function("MCKjIJWI")
-
-    if device_function:
-        pprint.pprint(device_function)
-        print('-' * 100)
-        test_change_device_function(device_function)
+    # test_change_device_function()
+    # test_init_config_code()
