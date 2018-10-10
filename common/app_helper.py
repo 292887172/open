@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from base.connection import Redis3_ClientDB6
-from base.const import ConventionValue
+from base.const import ConventionValue,DefaultProtocol
 from base.convert import date2ymdhms
 from base.convert import utctime2localtime
 from base.util import gen_app_app_id
@@ -27,6 +27,7 @@ from model.center.app_history import AppHistory
 from model.center.developer import Developer
 from model.center.group import Group
 from model.center.message import Message
+from common.smart_helper import update_protocol
 
 __author__ = 'achais'
 _convention = ConventionValue()
@@ -108,7 +109,8 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                                        update_date=datetime.datetime.utcnow())
                 message_content = '"' + app_name + '"' + CREATE_APP
                 save_user_message(developer_id, message_content, USER_TYPE, developer_id, app_app_id)
-
+                # 创建默认标准协议 DefaultProtocol().DEFAULT_DATA_ZDY
+                update_protocol(app_app_id[-8:], DefaultProtocol().DEFAULT_DATA_ZDY, 0, app.developer_id)
                 break
             except Exception as e:
                 del e

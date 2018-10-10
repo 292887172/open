@@ -431,13 +431,13 @@ def product_add(request):
             add.delay(app_id)
             # 创建app版本号
 
-            app = App.objects.get(app_id=app_id)
-            try:
-                if app.device_conf:
-                    opera_data = json.loads(app.device_conf)
-                    save_version(app, opera_data)
-            except Exception as e:
-                print(e)
+            #app = App.objects.get(app_id=app_id)
+            # try:
+            #     if app.device_conf:
+            #         opera_data = json.loads(app.device_conf)
+            #         # save_version(app, opera_data)
+            # except Exception as e:
+            #     print(e)
 
             if app_product_fast:
                 return HttpResponse(json.dumps({"code": 0, "appid": app_id}, separators=(",", ':')))
@@ -576,8 +576,8 @@ def product_main(request):
             device_name=device_name,
             band_name=band_name,
         )
-        return render(request, template, locals())
 
+        return render(request, template, locals())
     def find(id, opera_data):
         for i in range(len(opera_data)):
             if str(opera_data[i]['id']) == id:
@@ -1119,7 +1119,6 @@ def protocol(request):
                         data_sql['start_check_number'] = i.get('value').get("check_start")
                         data_sql['end_check_number'] = i.get('value').get("check_end")
                     tmp_list_t.append(tmp_f)
-                print('list', tmp_list_t)
                 data_sql['frame_content'] = tmp_list_t
 
                 data_sql_update = json.dumps(data_sql, ensure_ascii=False)

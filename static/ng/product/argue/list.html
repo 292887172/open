@@ -1810,7 +1810,13 @@
 
                 for (var j in suvalue[i].split(":")) {
 
-                    sss_data.push(suvalue[i].split(":")[j])
+                    if (suvalue[i].split(":").length==1){
+                        sss_data.push('----')
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }else {
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }
+
 
                 }
             }
@@ -1827,12 +1833,16 @@
 
             if (sss_data.length > 1) {
                 for (var i = 0; i < sss_data.length; i = i + 2) {
-
-
-                    table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
+                    console.log('xx',sss_data[i],sss_data[i+1])
+                    if (sss_data[i]=='----'){
+                          table += '<tr><td><input type="text" value=""></td>\
                         <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
-
+                    }else {
+                          table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
+                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }
                 }
             } else {
                 table += '<tr><td><input type="text" value="all"></td>\
@@ -1863,7 +1873,12 @@
                                         if ($("#addUI tr")[i].cells[1].childNodes[0].value == '') {
                                             return;
                                         } else {
-                                            var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            if ($("#addUI tr")[i].cells[0].childNodes[0].value==''){
+                                                var str1 = $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }else {
+                                                var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }
+
                                             ui_listed.push(str1);
                                         }
 
