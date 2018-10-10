@@ -431,7 +431,7 @@
                             </div>
 
 
-                            <div class="form-group" style="display: none">
+                            <div class="form-group" >
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="mxsLength"
                                        style="text-align:right"> <span class="must-choose">*</span>长度(单位bits) <span
                                         class="help-button" data-rel="popover" data-trigger="hover"
@@ -1311,7 +1311,16 @@
     function func(that) {
         var num = location.href.split("#")[0].split("=")[1]
         document.getElementById("vid").value = that
-
+        try {
+                var del_removes = document.getElementsByClassName("xxx");
+                if(del_removes.length>0){
+                    for (var i =0,del_length = del_removes.length;i<del_length;i++){
+                        del_removes[0].remove()
+                    }
+                }
+            }catch (e) {
+                console.log(e,'没有脏数据')
+        }
         document.getElementById('ididid').value = that
         console.log(num)
         document.getElementsByClassName("main-container")[0].style.display = 'none'
@@ -1402,9 +1411,9 @@
         $("#defaultPAM").val('')
         $("#defaultPAM").parent().addClass("fork_show")
         try {
-            console.log('eee', d.control)
+
             var data_control = d.control
-            console.log('xxxx', data_control)
+
 
             $("#defaultUID").val(data_control['uid'])
             if (data_control['wedgit'] == '') {
@@ -1463,6 +1472,7 @@
             $('#maxTimer').val(d.max);
             selectTimer();
         }
+
         if (count <= 1) {
             var del_remove = document.getElementsByClassName("ddd")
 
@@ -1601,7 +1611,7 @@
     function add() {
         flag = true;
         var group = '';
-        group += '<div class="form-group">';
+        group += '<div class="form-group xxx">';
         group += '	<div class="col-sm-2 col-xs-2"></div>';
         group += '	<div class="col-sm-1 col-xs-3">';
         group += '		<input type="text" id="checkData" onblur="check_paramData(this)" onkeypress="return onKeyPress(event)" name="paramData1" placeholder="" class="col-xs-12 col-sm-12"/>';
@@ -1800,7 +1810,13 @@
 
                 for (var j in suvalue[i].split(":")) {
 
-                    sss_data.push(suvalue[i].split(":")[j])
+                    if (suvalue[i].split(":").length==1){
+                        sss_data.push('----')
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }else {
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }
+
 
                 }
             }
@@ -1817,12 +1833,16 @@
 
             if (sss_data.length > 1) {
                 for (var i = 0; i < sss_data.length; i = i + 2) {
-
-
-                    table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
+                    console.log('xx',sss_data[i],sss_data[i+1])
+                    if (sss_data[i]=='----'){
+                          table += '<tr><td><input type="text" value=""></td>\
                         <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
-
+                    }else {
+                          table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
+                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }
                 }
             } else {
                 table += '<tr><td><input type="text" value="all"></td>\
@@ -1853,7 +1873,12 @@
                                         if ($("#addUI tr")[i].cells[1].childNodes[0].value == '') {
                                             return;
                                         } else {
-                                            var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            if ($("#addUI tr")[i].cells[0].childNodes[0].value==''){
+                                                var str1 = $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }else {
+                                                var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }
+
                                             ui_listed.push(str1);
                                         }
 

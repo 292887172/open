@@ -5,7 +5,6 @@ import json
 import logging
 import zipfile
 from django.http import HttpResponse
-from common.app_helper import update_app_fun_widget
 
 
 from util.excelutil import write_data
