@@ -24,6 +24,9 @@
     a{
         cursor: default;
     }
+    .trigger_value{
+        height: 30px!important;
+    }
     .headerH1 {
         padding: 0;
         margin: 0 8px;
@@ -309,6 +312,10 @@
                                 <label class="col-sm-2 col-xs-3 no-padding-right noshows"> UI控件ID
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
                                 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
+                                       onclick="Show()">示例帮助</p>
+                                </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
                             <div class="form-group" id="addGroup"></div>
@@ -321,6 +328,10 @@
                                 <label class="col-sm-2 col-xs-3 no-padding-right"> 数据说明 </label>
                                 <label class="col-sm-2 col-xs-3 no-padding-right noshows"> UI控件ID
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>
+                                </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
+                                       onclick="Show()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
@@ -431,9 +442,9 @@
         group1+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group1+='	</div>';
         group1 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
-        group1 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group1 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-        group1 += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group1 += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
+        group1 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group1 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
         group1 += '	</div>';
 
         $("#addGroup1").before(group1);
@@ -451,9 +462,9 @@
         group2+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group2+='	</div>';
         group2 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
-        group2 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group2 += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-        group2 += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group2 += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
+        group2 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group2 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
         group2 += '	</div>';
         $("#addGroup1").before(group2);
         mxs.push({"data":'1',"desc":'开'});
@@ -644,9 +655,10 @@
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramDesc(this)" type="text" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value="' + d.mxs[i].desc + '"/>';
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
-                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 40px" onclick="select_trigger(this)" class="addButton">触发器管理</a>';
+                group += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
+                group += '<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
                 group += '	</div>';
+
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
                 }
@@ -749,8 +761,9 @@
         group+='		<input type="text" style="width:130px" class="checkDatas" name="paramUI1" onkeypress="return onKeyPress(event)" placeholder="" class="col-xs-12 col-sm-12"/>';
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-left:0px">';
-        group+='		<a href="#" onclick="del(this);return false" class="addButton"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" onclick="select_trigger(this)" class="addButton">触发器管理</a><p style="margin-left: 130px;margin-top:-10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += ' <input style="padding-left: 0px;padding-bottom: 6px;padding-top: 6px;color:#727272;height:30px" onclick="select_trigger(this)" class="trigger_value" value="">';
+        group += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);
@@ -1185,9 +1198,13 @@
                     "callback":function () {
                         if(mxs!=null){
                             mxs[dataVal].trigger=trig;
-                            $("#grid-table").jqGrid({
-                                postData:{"name": "list"},
-                            }).trigger("reloadGrid")
+                            var trrger_val = []
+                            for (var i=0;i<trig.length;i++){
+                                trrger_val.push(trig[i].name+":"+trig[i].val)
+                            }
+
+
+                            $(".trigger_value")[dataVal].value=trrger_val;
                         }
                     }
                 },
