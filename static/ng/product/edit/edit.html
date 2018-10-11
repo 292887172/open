@@ -335,7 +335,7 @@
                                 <div class="col-sm-9 col-xs-9">
                                     <div class="col-xs-3"><span class="float-left show_control" >UI控件ID: </span><input id="defaultUID" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,1)" onclick="Edits(this,1)" class="form-control float-left"></div>
                                     <div class="col-xs-3"><span class="float-left show_control" >button类型:</span>
-                                    <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
+                                    <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px;width: 173px">
                                         <option value="Button" >Button选择</option>
                                         <option value="TimeButton" >时间</option>
                                         <option value="AnimationStatusButton" >动画</option>
@@ -798,34 +798,52 @@
 
                 for (var j in suvalue[i].split(":")) {
 
-                    sss_data.push(suvalue[i].split(":")[j])
+                    if (suvalue[i].split(":").length==1){
+                        sss_data.push('----')
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }else {
+                        sss_data.push(suvalue[i].split(":")[j])
+                    }
+
 
                 }
             }
             var table = '<div class="tables" style="margin-left:15%" ><table  border="1">\
             <thead >\
             <tr align="center">\
-                <th style="width:160px">界面名</th>\
-                 <th style="width:160px">控件ID</th>\
-                 <th style="width:160px">操作</th>\
+                <th style="width:200px">界面名</th>\
+                 <th style="width:200px">控件ID</th>\
+                 <th style="width:80px;padding-left:23px">操作</th>\
             </tr>\
             </thead>\
            <tbody id="addUI">';
 
-
-            if (sss_data.length > 1) {
+            console.log('00000',sss_data,sss_data.length)
+            if (sss_data.length > 2) {
                 for (var i = 0; i < sss_data.length; i = i + 2) {
-
-
-                    table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
-                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                    console.log('xx',sss_data[i],sss_data[i+1])
+                    if (sss_data[i]=='----'){
+                          table += '<tr><td><input type="text" value="" style="width:200px"></td>\
+                        <td><input type="text" style="width:200px" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
-
+                    }else {
+                          table += '<tr><td><input style="width:200px" type="text" value=' + sss_data[i] + '></td>\
+                        <td><input type="text" style="width:200px" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }
                 }
             } else {
-                table += '<tr><td><input type="text" value="all"></td>\
-                <td><input type="text" value="1" class="check_values" onblur="check_ui(this)"></td>\
-                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                if (sss_data[0]=='----' && sss_data[1]!=''){
+                          var alevalue = sss_data[1];
+                          table += '<tr><td><input type="text" style="width:200px" value=""></td>\
+                        <td><input type="text" style="width:200px" value=' + alevalue + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }else {
+                           table += '<tr><td><input style="width:200px" type="text" value="" placeholder="工程画面的名字 示例:Main"></td>\
+                                <td><input style="width:200px" type="text" value="" class="check_values" onblur="check_ui(this)" placeholder="控件的编号 示例:53"></td>\
+                                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }
+
             }
 
             table += '</tbody>\
@@ -843,15 +861,18 @@
                             function () {
 
                                 if (document.getElementById("redcode").style.display == 'block') {
-                                    console.log('11110')
-
                                 } else {
                                     ui_listed = [];
                                     for (var i = 0, i_len = $("#addUI tr").length; i < i_len; i++) {
                                         if ($("#addUI tr")[i].cells[1].childNodes[0].value == '') {
                                             return;
                                         } else {
-                                            var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            if ($("#addUI tr")[i].cells[0].childNodes[0].value==''){
+                                                var str1 = $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }else {
+                                                var str1 = $("#addUI tr")[i].cells[0].childNodes[0].value + ':' + $("#addUI tr")[i].cells[1].childNodes[0].value;
+                                            }
+
                                             ui_listed.push(str1);
                                         }
 
@@ -886,7 +907,7 @@
 
                 }
             }
-            var table = '<div class="tables" style="margin-left:15%" ><table  border="1">\
+            var table = '<div class="table" style="margin-left:15%" ><table  border="1">\
             <thead >\
             <tr align="center">\
                 <th style="width:160px;padding-left: 40px">功能参数值</th>\
@@ -984,12 +1005,13 @@
 
 
         msg = '<tr>';
-        msg += '<td><input type="text" value=""></td>';
-        msg += '<td><input type="text" onblur="check_ui(this)" class="check_values" value=""</td>';
+        msg += '<td><input type="text" value="" style="width:200px" placeholder="工程画面的名字 示例:Main"></td>';
+        msg += '<td><input type="text" style="width:200px" onblur="check_ui(this)" class="check_values" value="" placeholder="控件的编号 示例:53"></td>';
 
         msg += '<td><a onclick="delFunc(this)">移除</a></td>';
         $("#addUI").append(msg);
     }
+
 
 
     function adduilists() {
