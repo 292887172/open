@@ -22,7 +22,9 @@
         border-radius: 4px;
         font-size: 14px;
     }
-
+    .trigger_value{
+        height: 30px!important;
+    }
     .addButton:hover {
         color: #fff;
         text-decoration: none;
@@ -646,6 +648,10 @@
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
                                        onclick="Show()">示例帮助</p>
                                 </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
+                                       onclick="Show1()">示例帮助</p>
+                                </label>
 
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
@@ -663,6 +669,10 @@
                                 <label class="col-sm-2 col-xs-3 no-padding-right noshows"> UI控件ID
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
                                        onclick="Show()">示例帮助</p>
+                                </label>
+                                <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
+                                    <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
+                                       onclick="Show1()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
@@ -687,7 +697,7 @@
                                                                                                   onclick="Edits(this,1)">
                                     </div>
                                     <div class="col-xs-3"><span class="float-left show_control">button类型:</span>
-                                        <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px">
+                                        <select id="select_id" onchange="Select_Onchange(this)" style="height: 33px;width: 173px">
                                             <option value="Button">Button选择</option>
                                             <option value="TimeButton">时间</option>
                                             <option value="AnimationStatusButton">动画</option>
@@ -1504,10 +1514,10 @@
                 group += '	<div class="col-sm-3 col-xs-2 noshows" style="width:174px">';
                 group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI" placeholder="" class="col-xs-12 col-sm-12" value=""/>';
                 group += '	</div>';
-                group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
-                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-                group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-                group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+                group += '	<div class="col-sm-3 col-xs-2" style="padding-left:0px">';
+                group += ' <input style="padding-left: 0px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
+                group += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show()">示例帮助</p>';
+                group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
                 group += '	</div>';
                 if (d.mxs[i].advice != '' && d.mxs[i].advice != undefined) {
                     group += '<div class="advice col-sm-4 col-xs-4" style="padding-top: 19px;color:#ff6202;display:none"> *' + d.mxs[i].advice + '</div>';
@@ -1527,6 +1537,31 @@
             for (var is = 0, i_length = sss_list.length; is < i_length; is++) {
                 document.getElementsByClassName("values")[is].value = sss_list[is]
             }
+            // 触发器预览
+            try {
+                for (var j = 0; j < d.mxs.length; j++) {
+                    var trrger_value = [];
+                    if (d.mxs[j].hasOwnProperty('trigger')){
+                         console.log('000111',d.mxs[j].trigger.length)
+                        for(var z=0;z<d.mxs[j].trigger.length;z++){
+                            var strs = d.mxs[j].trigger[z].name +":"+ d.mxs[j].trigger[z].val;
+                            console.log('trrger',strs);
+                            trrger_value.push(strs)
+
+                        };
+
+                        $(".trigger_value")[j].value=trrger_value
+
+                        }else {
+                        continue;
+                    }
+
+            }
+            }catch (e) {
+                console.log(e)
+            }
+
+
             // 初始化数据
             var contorl_data = document.getElementsByName("paramUI");
             for (var i = 0, contorl_length = contorl_data.length; i < contorl_length; i++) {
@@ -1622,10 +1657,10 @@
         group += '	<div class="col-sm-3 col-xs-2 noshows" style="width:174px">';
         group += '		<input ng-disabled="{[{ disabled }]}" onblur="check_paramUI(this)" type="text" class="values" name="paramUI1" placeholder="" class="col-xs-12 col-sm-12" value=""/>';
         group += '	</div>';
-        group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
-        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150"></i></a>';
-        group += '      <a ng-hide="{[{ visible }]}" style="padding-left: 0px;color: #337ab7;background: white" onclick="select_trigger(this)" class="addButton" >触发器管理</a>';
-        group += '<p style="margin-left: 130px;margin-top: -10px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '	<div class="col-sm-3 col-xs-2" style="padding-left:0px">';
+        group += ' <input style="padding-left: 0px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
+        group += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
+        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
         group += '	</div>';
 
 
@@ -1760,7 +1795,13 @@
                     "callback": function () {
                         if (mxs != null) {
                             mxs[dataVal].trigger = trig;
+                            var trrger_val = []
+                            for (var i=0;i<trig.length;i++){
+                                trrger_val.push(trig[i].name+":"+trig[i].val)
+                            }
+                            $(".trigger_value")[dataVal].value=trrger_val
                         }
+
                         console.log('xxx')
 
                     }
@@ -1823,31 +1864,39 @@
             var table = '<div class="table" style="margin-left:15%" ><table  border="1">\
             <thead >\
             <tr align="center">\
-                <th style="width:160px">界面名</th>\
-                 <th style="width:160px">控件ID</th>\
-                 <th style="width:160px">操作</th>\
+                <th style="width:200px">界面名</th>\
+                 <th style="width:200px">控件ID</th>\
+                 <th style="width:80px;padding-left:23px">操作</th>\
             </tr>\
             </thead>\
            <tbody id="addUI">';
 
-
-            if (sss_data.length > 1) {
+            console.log('00000',sss_data,sss_data.length)
+            if (sss_data.length > 2) {
                 for (var i = 0; i < sss_data.length; i = i + 2) {
                     console.log('xx',sss_data[i],sss_data[i+1])
                     if (sss_data[i]=='----'){
-                          table += '<tr><td><input type="text" value=""></td>\
-                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                          table += '<tr><td><input type="text" value="" style="width:200px"></td>\
+                        <td><input type="text" style="width:200px" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
                     }else {
-                          table += '<tr><td><input type="text" value=' + sss_data[i] + '></td>\
-                        <td><input type="text" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
+                          table += '<tr><td><input style="width:200px" type="text" value=' + sss_data[i] + '></td>\
+                        <td><input type="text" style="width:200px" value=' + sss_data[i + 1] + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
                     }
                 }
             } else {
-                table += '<tr><td><input type="text" value="all"></td>\
-                <td><input type="text" value="1" class="check_values" onblur="check_ui(this)"></td>\
-                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                if (sss_data[0]=='----' && sss_data[1]!=''){
+                          var alevalue = sss_data[1];
+                          table += '<tr><td><input type="text" style="width:200px" value=""></td>\
+                        <td><input type="text" style="width:200px" value=' + alevalue + ' class="check_values" onblur="check_ui(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }else {
+                           table += '<tr><td><input style="width:200px" type="text" value="" placeholder="工程画面的名字 示例:Main"></td>\
+                                <td><input style="width:200px" type="text" value="" class="check_values" onblur="check_ui(this)" placeholder="控件的编号 示例:53"></td>\
+                                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }
+
             }
 
             table += '</tbody>\
@@ -1865,8 +1914,6 @@
                             function () {
 
                                 if (document.getElementById("redcode").style.display == 'block') {
-                                    console.log('11110')
-
                                 } else {
                                     ui_listed = [];
                                     for (var i = 0, i_len = $("#addUI tr").length; i < i_len; i++) {
@@ -2011,8 +2058,8 @@
 
 
         msg = '<tr>';
-        msg += '<td><input type="text" value=""></td>';
-        msg += '<td><input type="text" onblur="check_ui(this)" class="check_values" value=""</td>';
+        msg += '<td><input type="text" value="" style="width:200px" placeholder="工程画面的名字 示例:Main"></td>';
+        msg += '<td><input type="text" style="width:200px" onblur="check_ui(this)" class="check_values" value="" placeholder="控件的编号 示例:53"></td>';
 
         msg += '<td><a onclick="delFunc(this)">移除</a></td>';
         $("#addUI").append(msg);
