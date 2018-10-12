@@ -139,7 +139,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name" style="text-align:right"> <span class="must-choose">*</span>功能名称 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name" onkeyup="pinyin()" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" value="" onblur="checkName()"/>
+                                    <!--<input ng-disabled='{[{ disabled }]}' type="text" id="name" onkeyup="pinyin()" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" value="" onblur="checkName()"/>-->
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name" placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5" value="" onblur="checkName()"/>
                                     <br><br><div id="checkName" style="color:red;margin-top:15px;display:none"></div>
                                 </div>
                             </div>
@@ -548,15 +549,15 @@
         }
     }
 
-    function pinyin(){
-        var nameDish = document.getElementById("name").value;
-        var str = "";
-        for(var i=0; i< nameDish.length; i++) {
-            var nameDish2 = codefans_net_CC2PY(nameDish.charAt(i));
-            str += nameDish2;
-        }
-        $("#Stream_ID").val(str);
-    }
+    //function pinyin(){
+    //    var nameDish = document.getElementById("name").value;
+    //    var str = "";
+    //    for(var i=0; i< nameDish.length; i++) {
+    //        var nameDish2 = codefans_net_CC2PY(nameDish.charAt(i));
+    //        str += nameDish2;
+    //    }
+    //    $("#Stream_ID").val(str);
+    //}
 
     function showFun() {
         $("#fun_attr").css('display','block')
