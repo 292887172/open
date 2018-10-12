@@ -163,7 +163,7 @@ angular.module('Product.protocol', ['ngRoute'])
 
             layer.open({
                 type:1,
-                area: ['420px', '260px'], //宽高
+                area: ['420px', '360px'], //宽高
                 content: '<div class="data-content-item"><form class="layui-form popup-open" action="">\n' +
                 check_content +
                 '    </form></div><div class="data-all-item"> <form class="layui-form" action="">' + check_all_content +
