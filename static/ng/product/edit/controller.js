@@ -183,12 +183,7 @@ angular.module('Product.edit', ['ngRoute'])
 			}else{
 				indata.isControl=0;//不可控
 			}
-			if(document.getElementsByName("isFunction")[0].checked){
-				indata.isFunction=1;//功能按钮
-			}
-			else{
-				indata.isFunction=0;//属性按钮
-			}
+
 			// 保存
             contrals['uid']=$("#defaultUID").val()
 
@@ -206,6 +201,7 @@ angular.module('Product.edit', ['ngRoute'])
     		indata.corpName=$.trim($('#corpName').val());
 			indata.corpMark=$.trim($('#corpMark').val());
 			indata.mxsLength=$.trim($('#mxsLength').val());
+			indata.default_value=$.trim($('#default_value').val());
 
 			//保存操作
 			var msg_notice = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">保存成功！</div><div class="notification-action"></div></div></div>';
