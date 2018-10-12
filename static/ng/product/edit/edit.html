@@ -173,6 +173,21 @@
                                 </div>
                             </div>
 
+                            <div class="form-group" id="">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right"
+                                       style="text-align:right"> 默认参数 <span class="help-button" data-rel="popover"
+                                                                            data-trigger="hover" data-placement="bottom"
+                                                                            data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；"
+                                                                            title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="default_value"
+                                           placeholder="请输入默认值" class="col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+
+
+
+
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="paramType" style="text-align:right"><span class="must-choose">*</span>功能点类型 <span class="help-button" data-rel="popover" data-trigger="hover" data-placement="bottom" data-content="开关型(bool): 非真即假的二进制变量，如开关功能; 故障型: 专门用户统计和上报故障的功能点; 定时类型: 可选择型调节时间范围，如工作时间; 枚举型: 自定义的有限集合值，如档位的高、中、低。" title="">?</span> </label>
                                 <div class="col-sm-9 col-xs-9" id="param-type">

@@ -40,7 +40,11 @@
         word-break: break-all;
         line-height: 18px;
     }
+    td {
 
+            text-align:center;
+
+        }
     .ui-jqgrid-view > .ui-jqgrid-titlebar {
         background: #9EBEE4;
         width: 937px;
@@ -450,6 +454,32 @@
                             </div>
 
 
+
+                            <div class="form-group" id="">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right"
+                                       style="text-align:right"> 默认参数 <span class="help-button" data-rel="popover"
+                                                                            data-trigger="hover" data-placement="bottom"
+                                                                            data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；"
+                                                                            title="">?</span> </label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="default_value"
+                                           placeholder="请输入默认值" value="0" class="col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name"
+                                       style="text-align:right"> <span class="must-choose">*</span>功能名称 <span
+                                        class="help-button" data-rel="popover" data-trigger="hover"
+                                        data-placement="bottom"
+                                        data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
+                                <div class="col-sm-9 col-xs-9">
+                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name" autocomplete="off"
+                                           placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5"
+                                           onblur="checkName()"/>
+                                    <br><br>
+                                    <div id="checkName" style="color:red;margin-top:15px;display:none"></div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isControl"
                                        style="text-align:right"> 手机App<span class="help-button" data-rel="popover"
@@ -467,27 +497,6 @@
                                             <input ng-disabled='{[{ disabled }]}' name="isControl" onclick="hideFun()"
                                                    type="radio" class="ace input-lg" value="0"/>
                                             <span class="lbl bigger-120"> 不可控</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="fun_attr">
-                                <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="isFunction"
-                                       style="text-align:right"> 功能属性 <span class="help-button" data-rel="popover"
-                                                                            data-trigger="hover" data-placement="bottom"
-                                                                            data-content="功能按钮”表示该参数可以直接上报，如：“开关”；“属性按钮”表示该参数的一个特性不可直接上报，如：“温度”；"
-                                                                            title="">?</span> </label>
-                                <div class="col-sm-9 col-xs-9">
-                                    <div class="radio">
-                                        <label>
-                                            <input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio"
-                                                   class="ace input-lg" value="1" checked/>
-                                            <span class="lbl bigger-120"> 功能</span>
-                                        </label>
-                                        <label>
-                                            <input ng-disabled='{[{ disabled }]}' name="isFunction" type="radio"
-                                                   class="ace input-lg" value="0"/>
-                                            <span class="lbl bigger-120"> 属性</span>
                                         </label>
                                     </div>
                                 </div>
@@ -893,7 +902,7 @@
             postData: data,
             datatype: "json",
             mtype: "POST",
-            colNames: ['序号', '功能标识', '长度', '功能名称', '参数个数', '手机App可控', '云菜谱可控', '操作'],
+            colNames: ['序号', '功能标识', '长度', '功能名称', '参数信息', '手机App可控', '云菜谱可控', '操作'],
             colModel: [
                 {name: 'id', width: 107, align: 'center'},
                 {
@@ -931,12 +940,23 @@
                             group += '<div style="display: none"><table class="tips-tbl" cellspacing="0" cellpadding="0" style="height:100px;z-index:9999;float: left;width: 200px;' +
                                 'background: white;position: absolute;top: 45px;  border: 2px solid rgb(199, 211, 169);box-shadow:rgb(199, 211, 169) 2px 4px 6px;">'
 
-                            group += '<thead ><tr style="height: 30px"><th >传送数据 </th><th >数据说明</th></tr></thead><tbody style="word-break: break-all;">'
+                            group += '<thead ><tr style="height: 30px"><th style="padding-left: 0px;width: 60px;height: 30px;">传送数据 </th><th style="padding-left: 0px;width:70px">数据说明</th><th style="padding-left: 0px">触发器</th></tr></thead><tbody style="word-break: break-all;">'
                             trans_data = rowObject.mxs;
                             console.log(trans_data, 'data')
                             for (var i = 0; i < trans_data.length; i++) {
-                                group += '<tr><td >' + trans_data[i].data + '</td><td >' + trans_data[i].desc + '</td></tr>'
+                                var t_value = [];
+                                if (trans_data[i].hasOwnProperty('trigger')){
+                                    for (var j = 0;j<trans_data[i].trigger.length;j++){
+                                        var str = trans_data[i].trigger[j].func + '=' + trans_data[i].trigger[j].val;
+                                        t_value.push(str)
+                                    }
+                                }else {
+                                   t_value=''
+                                }
+
+                                group += '<tr><td style="text-align:center;">' + trans_data[i].data + '</td><td style="text-align:center;">' + trans_data[i].desc + '<td class="cfq_value" style="text-align:center;">'+t_value+'</td></tr>'
                             }
+
                             group += '</tbody></table></div>';
                             return group;
                         }
@@ -1374,8 +1394,37 @@
 
     function init() {
         console.log(count)
-
-        if (flag == false) {
+        try {
+             if (flag == false) {
+            var obj = {
+                id: id,
+                Stream_ID: edit_data["Stream_ID"],
+                name: edit_data["name"],
+                isControl: edit_data["isControl"],
+                isFunction: edit_data["isFunction"],
+                control: edit_data["control"],
+                min: edit_data["min"], max: edit_data["max"],
+                errorData: edit_data["errorData"],
+                paramType: edit_data["paramType"],
+                corpName: edit_data["corpName"],
+                corpMark: edit_data["corpMark"],
+                mxs: edit_data["mxs"],
+                step: edit_data["step"],
+                mxsLength: edit_data["mxsLength"],
+                default_value: edit_data["default_value"],
+                time: edit_data["time"]
+            };
+            loadData(obj);
+            mxs = obj.mxs;
+        }
+             else {
+            $(".form-horizontal")[0].reset();
+            $(".form-horizontal")[1].reset();
+            $('#mxsLength').val('8');
+            $('#default_value').val('0');
+        }
+        }catch (e) {
+            if (flag == false) {
             var obj = {
                 id: id,
                 Stream_ID: edit_data["Stream_ID"],
@@ -1396,11 +1445,14 @@
             loadData(obj);
             mxs = obj.mxs;
         }
-        else {
+            else {
             $(".form-horizontal")[0].reset();
             $(".form-horizontal")[1].reset();
             $('#mxsLength').val('8');
+            $('#default_value').val('0');
         }
+        }
+
     }
 
     function showFun() {
@@ -1418,6 +1470,7 @@
         $('#corpName').val(d.corpName);
         $('#corpMark').val(d.corpMark);
         $('#mxsLength').val(d.mxsLength);
+        $('#default_value').val(d.default_value);
         // 初始化数据//清空缓存
         $("#select_id").val('Button');
         $("#defaultUID").val('');
@@ -1454,10 +1507,13 @@
             document.getElementsByName('isControl')[1].checked = true;
             hideFun();
         }
-        if (d.isFunction == 1) {
-            document.getElementsByName('isFunction')[0].checked = true;
-        } else {
-            document.getElementsByName('isFunction')[1].checked = true;
+        //if (d.isFunction == 1) {
+        //    document.getElementsByName('isFunction')[0].checked = true;
+        //} else {
+        //    document.getElementsByName('isFunction')[1].checked = true;
+        //}
+        if (!d.default_value) {
+             $('#default_value').val('0');
         }
 
         if (d.paramType == 1) {
