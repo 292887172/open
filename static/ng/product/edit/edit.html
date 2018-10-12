@@ -315,7 +315,7 @@
                                 </label>
                                 <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
-                                       onclick="Show()">示例帮助</p>
+                                       onclick="Show1()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue" style="color:red;display:none"></div>
                             </div>
@@ -332,7 +332,7 @@
                                 </label>
                                 <label class="col-sm-2 col-xs-3 no-padding-right " style="padding-left: 0px"> 触发器
                                     <p style="margin-left: 80px;font-size: 14px;color: #cbcbcb;cursor: pointer"
-                                       onclick="Show()">示例帮助</p>
+                                       onclick="Show1()">示例帮助</p>
                                 </label>
                                 <div id="checkArgue1" style="color:red;display:none"></div>
                             </div>
@@ -444,8 +444,8 @@
         group1+='	</div>';
         group1 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
         group1 += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
-        group1 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
-        group1 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
+        group1 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer;" onclick="Show1()"></p>';
+        group1 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:180px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-5px"></i></a>';
         group1 += '	</div>';
 
         $("#addGroup1").before(group1);
@@ -464,8 +464,8 @@
         group2+='	</div>';
         group2 += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px;padding-left:0px">';
         group2 += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
-        group2 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
-        group2 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
+        group2 += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer;" onclick="Show1()"></p>';
+        group2 += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:180px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-5px"></i></a>';
         group2 += '	</div>';
         $("#addGroup1").before(group2);
         mxs.push({"data":'1',"desc":'开'});
@@ -657,7 +657,7 @@
                 group += '	</div>';
                 group += '	<div class="col-sm-3 col-xs-2" style="padding-top:6px">';
                 group += ' <input style="padding-left: 0px;height:30px;margin-top:-6px;padding-bottom: 6px;padding-top: 6px;color:#727272" onclick="select_trigger(this)" class="trigger_value" value="">';
-                group += '<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
+                group += '<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:180px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-5px"></i></a>';
                 group += '	</div>';
 
                 if(d.mxs[i].advice!='' && d.mxs[i].advice!=undefined) {
@@ -763,8 +763,8 @@
         group+='	</div>';
         group+='	<div class="col-sm-3 col-xs-2" style="padding-left:0px">';
         group += ' <input style="padding-left: 0px;padding-bottom: 6px;padding-top: 6px;color:#727272;height:30px" onclick="select_trigger(this)" class="trigger_value" value="">';
-        group += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer" onclick="Show1()">示例帮助</p>';
-        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:260px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-10px"></i></a>';
+        group += '<p style="margin-left: 200px;width:80px;margin-top: -20px;font-size: 14px;color: #cbcbcb;cursor: pointer;" onclick="Show1()"></p>';
+        group += '		<a ng-hide="{[{ visible }]}" href="#" onclick="del1(this);return false" class="addButton" style="margin-left:180px;color: #337ab7;background: white"><i class="fa fa-times-circle bigger-150" style="margin-top:-5px"></i></a>';
         group+='	</div>';
         group+='</div>';
         $("#addGroup1").before(group);

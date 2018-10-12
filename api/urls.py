@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^diy_ui_conf$', views.diy_ui_conf),
     # 保存用户邮寄地址
     url(r'^save/user/address$', views.save_user_address),
+    #====================yq-vue==============
+    url(r"^apimain/$", views.product_main),
 ]
