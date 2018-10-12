@@ -28,6 +28,8 @@ from model.center.developer import Developer
 from model.center.group import Group
 from model.center.message import Message
 from common.smart_helper import update_protocol
+from model.center.doc_ui import DocUi
+
 
 __author__ = 'achais'
 _convention = ConventionValue()
@@ -110,7 +112,7 @@ def create_app(developer_id, app_name, app_model, app_category, app_category_det
                 message_content = '"' + app_name + '"' + CREATE_APP
                 save_user_message(developer_id, message_content, USER_TYPE, developer_id, app_app_id)
                 # 创建默认标准协议 DefaultProtocol().DEFAULT_DATA_ZDY
-                update_protocol(app_app_id[-8:], DefaultProtocol().DEFAULT_DATA_ZDY, 0, app.developer_id)
+                update_protocol(app_app_id[-8:], json.dumps(DefaultProtocol().DEFAULT_DATA_ZDY), 0, app.developer_id)
                 break
             except Exception as e:
                 del e
@@ -771,3 +773,31 @@ def check_cloud(opera_data):
             flag = 1
             break
     return flag
+def get_docui(key):
+    try:
+
+        vv = ''
+        obj = DocUi.objects.filter(ui_key=key)
+        if not obj:
+            return "制定计划书"
+        else:
+            ack_list = []
+            for i in obj:
+                if i.ui_ack == int(1):
+                    pass
+                else:
+                    ack_list.append(i.ui_upload_id)
+
+            if not ack_list:
+                return "等待上线"
+            num = sorted(ack_list)[0]
+            for i in obj.filter(ui_upload_id=num):
+                vv = i.ui_plan
+            if vv:
+
+                return vv
+            else:
+                return "制定计划书"
+    except Exception as e:
+        print(e)
+        return "制定计划书"
