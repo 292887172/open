@@ -463,7 +463,8 @@
                                                                             title="">?</span> </label>
                                 <div class="col-sm-9 col-xs-9">
                                     <input ng-disabled='{[{ disabled }]}' type="text" id="default_value"
-                                           placeholder="请输入默认值" value="0" class="col-xs-10 col-sm-5"/>
+                                           placeholder="请输入默认值" value="0" class="col-xs-10 col-sm-5" onblur="checkDefault()"/>
+                                    <br><br><div id="checkDefault" style="color:red;margin-top:15px;display:none;"></div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -763,7 +764,7 @@
 </div>
 <div style="display: none"><input type="text" id="vid"></div>
 <!-- page specific plugin scripts -->
-<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script src="/static/assets/js/jquery.jqGrid.min.js"></script>
 <script src="/static/assets/js/grid.locale-en.js"></script>
 <script src="/static/common/js/jquery.sortable.js"></script>
@@ -2260,6 +2261,19 @@
             $('#checkID').css("display", "none");
             return "correct";
         }
+    }
+
+    function checkDefault() {
+         var role= new RegExp("^[0-9]*$");
+         var default_data=$.trim($('#default_value').val());
+         if (role.test(default_data) == false){
+             $('#checkDefault').html("该参数仅可以添加数字");
+             $('#checkDefault').css("display", "block");
+             return "error";
+         }else {
+             $('#checkDefault').css("display", "none");
+             return "repeat"
+         }
     }
 
     function checkName() {

@@ -54,8 +54,13 @@ angular.module('Product.edit', ['ngRoute'])
         };
         $scope.Save = function () {
         	var state = checkID();
+        	var stated = checkDefault();
 			var v_pam = D_PAM();
 			if (state !='correct' || !checkName()){
+
+				return;
+			}
+			if (stated=='error'){
 
 				return;
 			}
