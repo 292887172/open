@@ -1,15 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-from common.mysql_helper import query_data, get_ui_base_conf, query_ui_conf
-
-from model.center.account_info import AccountIfo
 from functools import cmp_to_key
-from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
-from django.http.response import HttpResponse, JsonResponse
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from base.connection import Redis3_ClientDB6, Redis3_ClientDB5
 from base.util import gen_app_default_conf
 from common.app_helper import cancel_release_app
@@ -28,13 +19,21 @@ from common.message_helper import save_user_message
 from common.smart_helper import *
 from common.util import reverse_numeric
 from conf.message import *
-from conf.newuserconf import *
-from model.center.account import Account
 from model.center.app import App
 from model.center.user_group import UserGroup
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 from base.const import ConventionValue
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http.response import HttpResponse, JsonResponse
+from common.mysql_helper import query_data, get_ui_base_conf, query_ui_conf
+import json
+import logging
+import datetime
+
+from model.center.account import Account
+from model.center.account_info import AccountIfo
 
 _convention = ConventionValue()
 
@@ -152,6 +151,17 @@ def save_user_address(request):
 
 
 @csrf_exempt
+def get_factory(request):
+    if request.method == "GET":
+        data = request.GET.get("data", "")
+        if data == "factory_list":
+            factory_list = {"data":get_factory_list()}
+
+            response = HttpResponse(json.dumps(factory_list))
+            response["Access-Control-Allow-Origin"] = "*"
+            return response
+
+@csrf_exempt
 def product_main(request):
     """
     应用详情
@@ -207,7 +217,7 @@ def product_main(request):
         #         else:
         #             pass
         #     else:
-        #         pass
+        #         pass1
         # except Exception as e:
         #     print(e, '有问题')
         #     logging.getLogger('').info("应用出错", str(e))
@@ -215,23 +225,51 @@ def product_main(request):
         app_id = request.GET.get("ID", "")
         user_apps = App.objects.filter(app_id=int(app_id))
         category = {'': ' ', '0': '', '1': '4.3寸屏', '2': '5寸屏', '3': '6.8寸长条屏'}
+        categoryed = {'31': '洗碗机', '1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '21': "蒸烤箱", '20': '蒸箱', '25': ' 电压力锅',
+                    '26': '电饭煲', '27': '台式小烤箱', '30': '微蒸烤', '0': '其他'}
+        # 应用审核状态（0:未审核, 1:审核中, 2:审核通过, -1:审核未通过）
+        check_statused = {"0": "未发布", "1": "审核中", "2": "以发布", "-1": "未通过"}
+        teams = []
+        app_infos = []
+        ug = UserGroup.objects.filter(group=user_apps[0].group_id)
+        for j in ug:
+            teams.append({"email": j.user_account})
         for a in user_apps:
+            app_infos = {
+                "app_name": a.app_name,  # 产品名称
+                "app_factory": a.app_factory_uid,  # 产品对应厂家信息 品牌
+                "app_model": a.app_model,  # 产品型号
+                "app_category": a.app_category,  # 产品类型
+                "device_category": categoryed[str(a.app_device_type)],  # 产品分类
+                "app_create_date": a.app_create_date.strftime("%Y-%m-%d"),  # 产品创建时间
+                "app_update_date": a.app_update_date.strftime("%Y-%m-%d"),  # 更新时间
+                "app_command": a.app_command,  # 指令类型 全指令：是 单指令：否
+                "app_describe": a.app_describe,  # 产品描述
+                "app_site": a.app_site,  # 产品网址
+                "app_logo": a.app_logo  # 产品图片
+
+            }
             tmp = {
                 "app_id": a.app_id,
                 "app_name": a.app_name,
-                "check_status": a.check_status,
                 "app_update_date": a.app_update_date.strftime("%Y-%m-%d"),
                 "is_share": 0,
+                "check_status": check_statused[str(a.check_status)],
                 "key": a.app_appid[-8:],  # app_screen_size
                 "app_screen": category[str(a.app_screen_size)],
-                "doc_ui": get_docui(a.app_appid[-8:])
+                "doc_ui": get_docui(a.app_appid[-8:]),
+                "device_category": categoryed[str(a.app_device_type)],
+                "teams": teams,
+                "create_user": a.developer_id,
+                "app_logo": a.app_logo,
 
             }
+        tmp["app_infod"] = app_infos
+        print(tmp)
         response = HttpResponse(json.dumps(tmp))
         response["Access-Control-Allow-Origin"] = "*"
 
         return response
-
 
     def find(id, opera_data):
         for i in range(len(opera_data)):

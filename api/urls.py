@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^save/user/address$', views.save_user_address),
     #====================yq-vue==============
     url(r"^apimain/$", views.product_main),
+    url(r"^getfactory/$", views.get_factory),
 ]
