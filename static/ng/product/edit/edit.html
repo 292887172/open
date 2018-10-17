@@ -92,9 +92,9 @@
         border-color: #629B58;
     }
     .table{
-        border-top: solid 1px #ddd;
+
         margin-top: 20px;
-        margin-bottom: 0px;
+        margin-bottom: 20px;
     }
     .tables{
 
@@ -368,6 +368,7 @@
                                         <option value="Button" >Button选择</option>
                                         <option value="TimeButton" >时间</option>
                                         <option value="AnimationStatusButton" >动画</option>
+                                        <option value="IconStatusButton">图标</option>
                                         </select></div>
                                     <div class="col-xs-3 col-xs-offset-1 fork_show "><span class="float-left show_control" >参数: </span><span style="display: none"
                                                                                              class="show_values">请输入参数!</span><input id="defaultPAM" value="" style="width:140px" step="1" placeholder="" onblur="checkvalued_params(this,3)" onclick="Edits(this,3)" class="form-control float-left"></div>
@@ -761,6 +762,7 @@
                $("#defaultPAM").val('')
            }else {
                $("#defaultPAM").parent().removeClass("fork_show")
+               $("#defaultPAM").val('')
            }
     }
 
@@ -927,7 +929,98 @@
                 }
 
             })
-        }else if (eid == '3'){
+        }else if (eid == '3' && $("#select_id").val()=='IconStatusButton'){
+            var suvalues = that_values.split(",");
+            var sss_datas = []
+            for (var i in suvalues) {
+
+                for (var j in suvalues[i].split(":")) {
+
+                    sss_datas.push(suvalues[i].split(":")[j])
+
+                }
+            }
+            var table = '<div class="table" style="margin-left:30px" ><table  border="1">\
+            <thead >\
+            <tr align="center">\
+                <th style="width:160px;padding-left: 40px">功能参数值</th>\
+                 <th style="width:160px;padding-left: 40px">动画控件ID</th>\
+                 <th style="width:160px;padding-left: 40px" class="xx">图标帧数</th>\
+                 <th style="width:160px;padding-left: 63px">操作</th>\
+            </tr>\
+            </thead>\
+           <tbody id="addUIs">';
+
+
+            if (sss_datas.length > 1) {
+                for (var i = 0; i < sss_datas.length; i = i + 3) {
+
+
+                    table += '<tr><td><input type="text" value=' + sss_datas[i] + '></td>\
+                        <td><input type="text" value=' + sss_datas[i + 1] + ' class="check_valuesd" onblur="check_uis(this)"></td>\
+                        <td><input type="text" value=' + sss_datas[i + 2] + ' class="check_icon" onblur="check_uis(this)"></td>\
+                        <td><a onclick="delFunc(this)">移除</a></td></tr>';
+
+                }
+            } else {
+                table += '<tr><td><input type="text" value=""></td>\
+                <td><input type="text" value="" class="check_valuesd" onblur="check_uis(this)"></td>\
+                <td><input type="text" value="" class="check_icon" onblur="check_uis(this)"></td>\
+                <td><a onclick="delFunc(this)">移除</a></td></tr>';
+            }
+
+            table += '</tbody>\
+                </table></div>';
+            table += '<p id="redcodes" style="color:red;display:none">请输入非空参数</p>'
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilists()">新增</button></div>';
+            bootbox.dialog({
+                title: "参数关联",
+                message: table,
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-info'></i> 确定",
+                        "className": "btn-primary",
+                        "callback":
+                            function () {
+
+                                if (document.getElementById("redcodes").style.display == 'block') {
+                                    console.log('11110')
+
+                                } else {
+                                    ui_listeds = [];
+                                    for (var i = 0, i_len = $("#addUIs tr").length; i < i_len; i++) {
+                                        if ($("#addUIs tr")[i].cells[1].childNodes[0].value == '') {
+                                            return;
+                                        } else {
+                                            var str1 = $("#addUIs tr")[i].cells[0].childNodes[0].value + ':' + $("#addUIs tr")[i].cells[1].childNodes[0].value+ ':' + $("#addUIs tr")[i].cells[2].childNodes[0].value;
+                                            ui_listeds.push(str1);
+                                        }
+
+                                    }
+
+
+                                    console.log('xxx', ui_listeds)
+                                    $("#defaultPAM").val('')
+                                    $('.show_values').css("display", "none");
+                                    $("#defaultPAM").val(ui_listeds)
+                                }
+
+
+                            }
+
+
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-ok'></i> 取消",
+                    "className": "btn-default"
+                }
+
+            })
+
+
+
+        }else {
             var suvalues = that_values.split(",");
             var sss_datas = []
             for (var i in suvalues) {
@@ -967,7 +1060,7 @@
             table += '</tbody>\
                 </table></div>';
             table += '<p id="redcodes" style="color:red;display:none">请输入非空参数</p>'
-            table += '<div><button type="button" class="btn" id="addui" onclick="adduilists()">新增</button></div>';
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilisted()">新增</button></div>';
             bootbox.dialog({
                 title: "参数关联",
                 message: table,
@@ -1021,7 +1114,7 @@
     $(".btn-primary").on("click", function () {
         console.log('1111')
     })
-
+    // ui控件id
     function adduilist() {
 
         for (var i = 0, i_len = $(".check_values").length; i < i_len; i++) {
@@ -1044,12 +1137,12 @@
     }
 
 
-
+    // 图标
     function adduilists() {
 
         for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
             console.log('------', i, $(".check_valuesd")[i].value)
-            if ($(".check_valuesd")[i].value == '') {
+            if ($(".check_valuesd")[i].value == '' || $(".check_icon")[i].value == '') {
                 $("#redcodes").css("display", "block");
                 return;
             } else {
@@ -1061,9 +1154,34 @@
         msg = '<tr>';
         msg += '<td><input type="text" value=""></td>';
         msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
-
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_icon" value=""</td>';
         msg += '<td><a onclick="delFunc(this)">移除</a></td>';
         $("#addUIs").append(msg);
+
+
+    }
+
+    // 其他
+    function adduilisted() {
+
+        for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
+            console.log('------', i, $(".check_valuesd")[i].value)
+            if ($(".check_valuesd")[i].value == '' ) {
+                $("#redcodes").css("display", "block");
+                return;
+            } else {
+                $("#redcodes").css("display", "none");
+            }
+        }
+
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+
+
     }
 
     function check_ui(that) {
