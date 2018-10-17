@@ -333,7 +333,7 @@
         <a onclick='export_parameter()' style="cursor:pointer;margin-left: 400px" id='export-protocol' class=''><i
                 class='ace-icon fa fa-arrow-circle-o-down bigger-120'></i><span
                 style="font-size: 16px;margin-left: 5px;">导出控制协议</span></a>
-        <a href='http://doc.53iq.com/#/Protocol/README' style='float: right' target='_blank'>53IQ电控通信协议说明</a>
+        <a href='http://doc.53iq.com/#/protocol/readme' style='float: right' target='_blank'>53IQ电控通信协议说明</a>
         <div style="float: right;" class="off-btn">
             <select id='selectOpen' onchange='checkToSwitch(this)' style='color: #ff6202;z-index: 1 '>
                 <option value=0>选择总开关</option>
@@ -422,7 +422,7 @@
                                     <div id="checkName" style="color:red;margin-top:15px;display:none"></div>
                                 </div>
                             </div>
-                            <div class="form-group" style="display: none">
+                            <div class="form-group" >
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="Stream_ID"
                                        style="text-align:right"> <span class="must-choose">*</span>功能标识符 <span
                                         class="help-button" data-rel="popover" data-trigger="hover"
@@ -906,11 +906,11 @@
             mtype: "POST",
             colNames: ['序号', '功能标识', '长度', '功能名称', '参数信息', '手机App可控', '云菜谱可控', '操作'],
             colModel: [
-                {name: 'id', width: 107, align: 'center'},
+                {name: 'id', width: 50, align: 'center'},
                 {
                     name: 'Stream_ID',
                     align: 'center',
-                    width: 143,
+                    width: 200,
                     formatter: function (cellvalue, options, rowObject) {
                         if (rowObject.standa_or_define == '1') {
                             return cellvalue + "<span class='self-define'>自定义</span>"
@@ -922,8 +922,8 @@
 
                     }
                 },
-                {name: 'mxsLength', width: 100, align: 'center'},
-                {name: 'name', width: 127, align: 'center'},
+                {name: 'mxsLength', width: 50, align: 'center'},
+                {name: 'name', width: 177, align: 'center'},
                 {
                     name: 'mxsNum', width: 120, align: 'center', title: false,
                     formatter: function (cellvalue, options, rowObject) {
@@ -2145,7 +2145,7 @@
             table += '</tbody>\
                 </table></div>';
             table += '<p id="redcodes" style="color:red;display:none">请输入非空参数</p>'
-            table += '<div><button type="button" class="btn" id="addui" onclick="adduilists()">新增</button></div>';
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilisted()">新增</button></div>';
             bootbox.dialog({
                 title: "参数关联",
                 message: table,
@@ -2222,7 +2222,7 @@
 
     }
 
-
+    // icon
     function adduilists() {
 
         for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
@@ -2235,20 +2235,37 @@
             }
         }
 
-        if ($("#select_id").val()=='IconStatusButton'){
-            msg = '<tr>';
-            msg += '<td><input type="text" value=""></td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_icon" value=""</td>';
-            msg += '<td><a onclick="delFunc(this)">移除</a></td>';
-            $("#addUIs").append(msg);
-        }else {
-            msg = '<tr>';
-            msg += '<td><input type="text" value=""></td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
-            msg += '<td><a onclick="delFunc(this)">移除</a></td>';
-            $("#addUIs").append(msg);
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_icon" value=""</td>';
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+
+
+    }
+
+    // 其他
+    function adduilisted() {
+
+        for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
+
+            if ($(".check_valuesd")[i].value == '' ) {
+                $("#redcodes").css("display", "block");
+                return;
+            } else {
+                $("#redcodes").css("display", "none");
+            }
         }
+
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';1
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+
 
     }
 
