@@ -149,6 +149,18 @@ def save_user_address(request):
         return JsonResponse({'code': -1, 'msg': 'error request method'})
 
 
+
+@csrf_exempt
+def get_factory(request):
+    if request.method == "GET":
+        data = request.GET.get("data", "")
+        if data == "factory_list":
+            factory_list = {"data":get_factory_list()}
+
+            response = HttpResponse(json.dumps(factory_list))
+            response["Access-Control-Allow-Origin"] = "*"
+            return response
+
 @csrf_exempt
 def product_main(request):
     """
@@ -205,7 +217,7 @@ def product_main(request):
         #         else:
         #             pass
         #     else:
-        #         pass
+        #         pass1
         # except Exception as e:
         #     print(e, '有问题')
         #     logging.getLogger('').info("应用出错", str(e))
@@ -218,10 +230,25 @@ def product_main(request):
         # 应用审核状态（0:未审核, 1:审核中, 2:审核通过, -1:审核未通过）
         check_statused = {"0": "未发布", "1": "审核中", "2": "以发布", "-1": "未通过"}
         teams = []
+        app_infos = []
         ug = UserGroup.objects.filter(group=user_apps[0].group_id)
         for j in ug:
-            teams.append(j.user_account)
+            teams.append({"email": j.user_account})
         for a in user_apps:
+            app_infos = {
+                "app_name": a.app_name,  # 产品名称
+                "app_factory": a.app_factory_uid,  # 产品对应厂家信息 品牌
+                "app_model": a.app_model,  # 产品型号
+                "app_category": a.app_category,  # 产品类型
+                "device_category": categoryed[str(a.app_device_type)],  # 产品分类
+                "app_create_date": a.app_create_date.strftime("%Y-%m-%d"),  # 产品创建时间
+                "app_update_date": a.app_update_date.strftime("%Y-%m-%d"),  # 更新时间
+                "app_command": a.app_command,  # 指令类型 全指令：是 单指令：否
+                "app_describe": a.app_describe,  # 产品描述
+                "app_site": a.app_site,  # 产品网址
+                "app_logo": a.app_logo  # 产品图片
+
+            }
             tmp = {
                 "app_id": a.app_id,
                 "app_name": a.app_name,
@@ -232,9 +259,12 @@ def product_main(request):
                 "app_screen": category[str(a.app_screen_size)],
                 "doc_ui": get_docui(a.app_appid[-8:]),
                 "device_category": categoryed[str(a.app_device_type)],
-                "teams": teams
+                "teams": teams,
+                "create_user": a.developer_id,
+                "app_logo": a.app_logo,
 
             }
+        tmp["app_infod"] = app_infos
         print(tmp)
         response = HttpResponse(json.dumps(tmp))
         response["Access-Control-Allow-Origin"] = "*"
