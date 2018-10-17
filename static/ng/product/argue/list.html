@@ -2145,7 +2145,7 @@
             table += '</tbody>\
                 </table></div>';
             table += '<p id="redcodes" style="color:red;display:none">请输入非空参数</p>'
-            table += '<div><button type="button" class="btn" id="addui" onclick="adduilists()">新增</button></div>';
+            table += '<div><button type="button" class="btn" id="addui" onclick="adduilisted()">新增</button></div>';
             bootbox.dialog({
                 title: "参数关联",
                 message: table,
@@ -2222,7 +2222,7 @@
 
     }
 
-
+    // icon
     function adduilists() {
 
         for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
@@ -2235,20 +2235,37 @@
             }
         }
 
-        if ($("#select_id").val()=='IconStatusButton'){
-            msg = '<tr>';
-            msg += '<td><input type="text" value=""></td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_icon" value=""</td>';
-            msg += '<td><a onclick="delFunc(this)">移除</a></td>';
-            $("#addUIs").append(msg);
-        }else {
-            msg = '<tr>';
-            msg += '<td><input type="text" value=""></td>';
-            msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
-            msg += '<td><a onclick="delFunc(this)">移除</a></td>';
-            $("#addUIs").append(msg);
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_icon" value=""</td>';
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+
+
+    }
+
+    // 其他
+    function adduilisted() {
+
+        for (var i = 0, i_len = $(".check_valuesd").length; i < i_len; i++) {
+
+            if ($(".check_valuesd")[i].value == '' ) {
+                $("#redcodes").css("display", "block");
+                return;
+            } else {
+                $("#redcodes").css("display", "none");
+            }
         }
+
+
+        msg = '<tr>';
+        msg += '<td><input type="text" value=""></td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+        msg += '<td><a onclick="delFunc(this)">移除</a></td>';
+        $("#addUIs").append(msg);
+
 
     }
 
