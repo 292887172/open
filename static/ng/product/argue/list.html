@@ -906,11 +906,11 @@
             mtype: "POST",
             colNames: ['序号', '功能标识', '长度', '功能名称', '参数信息', '手机App可控', '云菜谱可控', '操作'],
             colModel: [
-                {name: 'id', width: 107, align: 'center'},
+                {name: 'id', width: 50, align: 'center'},
                 {
                     name: 'Stream_ID',
                     align: 'center',
-                    width: 143,
+                    width: 200,
                     formatter: function (cellvalue, options, rowObject) {
                         if (rowObject.standa_or_define == '1') {
                             return cellvalue + "<span class='self-define'>自定义</span>"
@@ -922,8 +922,8 @@
 
                     }
                 },
-                {name: 'mxsLength', width: 100, align: 'center'},
-                {name: 'name', width: 127, align: 'center'},
+                {name: 'mxsLength', width: 50, align: 'center'},
+                {name: 'name', width: 177, align: 'center'},
                 {
                     name: 'mxsNum', width: 120, align: 'center', title: false,
                     formatter: function (cellvalue, options, rowObject) {
@@ -2262,7 +2262,7 @@
 
         msg = '<tr>';
         msg += '<td><input type="text" value=""></td>';
-        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';
+        msg += '<td><input type="text" onblur="check_uis(this)" class="check_valuesd" value=""</td>';1
         msg += '<td><a onclick="delFunc(this)">移除</a></td>';
         $("#addUIs").append(msg);
 
