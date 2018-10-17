@@ -163,14 +163,16 @@ angular.module('Product.protocol', ['ngRoute'])
 
             layer.open({
                 type:1,
-                area: ['420px', '360px'], //宽高
-                content: '<div class="data-content-item"><form class="layui-form popup-open" action="">\n' +
+                area: '420px', //宽高
+
+                content: '<div class="data-content-item" style="height: auto"><form class="layui-form popup-open" action="">\n' +
                 check_content +
                 '    </form></div><div class="data-all-item"> <form class="layui-form" action="">' + check_all_content +
                 '</form></div><div class="data-control-item"><button class="layui-layer-btn0 layui-btn layui-btn-normal" onclick="checkData()">确认</button><button class="layui-layer-btn1 layui-btn layui-btn-primary" onclick="editFunction()">功能不匹配?</button></div>',
 
                 success: function(layero, index){
                     // 弹出成功后回调，
+
                     layui.use('form', function() {
                         var form = layui.form;
                         // 监听checkbox选择状态
