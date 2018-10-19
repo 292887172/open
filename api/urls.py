@@ -14,4 +14,5 @@ urlpatterns = [
     #====================yq-vue==============
     url(r"^apimain/$", views.product_main),
     url(r"^getfactory/$", views.get_factory),
+    url(r"^upload_file/$", views.upload_file),
 ]

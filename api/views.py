@@ -24,16 +24,21 @@ from model.center.user_group import UserGroup
 from util.export_excel import date_deal
 from util.netutil import verify_push_url
 from base.const import ConventionValue
-
+from common.mysql_helper import get_ui_static_conf, remove_up_url
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import HttpResponse, JsonResponse
 from common.mysql_helper import query_data, get_ui_base_conf, query_ui_conf
+from util.email.send_email_code import send_product_process_email
 import json
 import logging
 import datetime
-
+from conf.commonconf import CLOUD_TOKEN
 from model.center.account import Account
 from model.center.account_info import AccountIfo
+from model.center.app_version import AppVersion
+from model.center.firmware import Firmware
+from model.center.doc_ui import DocUi
+from ebcloudstore.client import EbStore
 
 _convention = ConventionValue()
 
@@ -636,3 +641,187 @@ def product_main(request):
 
     elif request.method == "POST":
         return post()
+@csrf_exempt
+def upload_file(request):
+    try:
+        if len(request.FILES.dict()) >= 1:
+            f = request.FILES["productImgFile"]
+            store = EbStore(CLOUD_TOKEN)
+            r = store.upload(f.read(), f.name, f.content_type)
+            ret = json.loads(r)
+            if ret["code"] == 0:
+                print("上传成功")
+            else:
+                print(ret["msg"])
+                logging.getLogger("").info(r["msg"])
+            data = ret["data"]
+            return HttpResponse(data)
+    except Exception as e:
+        print(e)
+    if request.method == 'POST':
+
+        file = request.FILES.get("file", '')
+        post_data = request.POST.get('name', '')
+        key = request.POST.get('key', '')
+        id = request.POST.get('id', '')
+        location = request.POST.get('location', '')
+        # action 判断
+        action = request.POST.get('action', '')
+        app_ids = request.POST.get('app_id', '')
+        app_version = request.POST.get('app_version', '')
+        appversion_remark = request.POST.get('app_remark', '')
+        if action == 'ui_upload':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            mobj = App.objects.filter(app_id=int(app_ids))
+            print(mobj)
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,
+                                          upload_type=int(1))
+
+            if t:
+                return HttpResponse(json.dumps({"code": 2}))
+            else:
+
+                url_list = rr['data']
+                AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
+                                          version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
+                                          update_date=datetime.datetime.utcnow(), remarks=appversion_remark)
+                Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender='11', message_target='11',
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+                return HttpResponse(
+                    json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
+        elif action == 'ui_upload_1':
+            try:
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            mobj = App.objects.filter(app_id=int(app_ids))
+            print(mobj)
+            t = AppVersion.objects.filter(app_id_id=int(app_ids), version_code=app_version, version_name=app_version,
+                                          upload_type=int(2))
+
+            if t:
+                return HttpResponse(json.dumps({"code": 2}))
+            else:
+
+                url_list = rr['data']
+                AppVersion.objects.create(app_id=mobj[0], download_url=url_list, version_code=app_version,
+                                          version_name=app_version, av_md5='1', create_date=datetime.datetime.utcnow(),
+                                          update_date=datetime.datetime.utcnow(), remarks=appversion_remark,
+                                          upload_type=int(2))
+                Message.objects.create(message_content='屏端固件已更新', message_type=int(5),
+                                       message_handler_type=int(5),
+                                       device_key=key, message_sender='11', message_target='11',
+                                       create_date=datetime.datetime.utcnow(),
+                                       update_date=datetime.datetime.utcnow())
+                return HttpResponse(
+                    json.dumps({"code": 0, "url": rr['data'], "filename": file.name, "version": app_version}))
+        elif action == 'firmware':
+            files = request.FILES.get("files", '')
+            print(file, files)
+            try:
+                # 处理上传的pkg文件
+                store = EbStore(CLOUD_TOKEN)
+                rr = store.upload(file.read(), file.name, file.content_type)
+                rr = json.loads(rr)
+                r = rr['code']
+                print(rr)
+                # 处理上传的图片
+                stores = EbStore(CLOUD_TOKEN)
+                rp = stores.upload(files.read(), files.name, files.content_type)
+                rp = json.loads(rp)
+                rpp = rp['code']
+                print(rpp)
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({"code": 1}))
+            sizes = request.POST.get('sizes', '')
+            fobj = Firmware.objects.create(firmware_size=int(sizes), firmware_name=appversion_remark,
+                                           firmware_image=rp['data'],
+                                           firmware_version=app_version, firmware_url=rr['data'],
+                                           firmware_create_date=datetime.datetime.utcnow(),
+                                           firmware_update_date=datetime.datetime.utcnow())
+            if fobj:
+                return HttpResponse(json.dumps({"code": 0}))
+            else:
+                return HttpResponse(json.dumps({"code": 2}))
+        else:
+            t = int(id) + int(1)
+            user1 = request.COOKIES['COOKIE_USER_ACCOUNT']
+            b = UserGroup.objects.filter(group__create_user=user1)
+            a = App.objects.filter(app_appid__endswith=key)
+            email_list = []
+            app_name = ''
+            developer = ''
+            group_id = ''
+            for i in a:
+                app_name = i.app_name
+                group_id = i.group_id
+                developer = i.developer_id
+            try:
+                b = UserGroup.objects.filter(group__group_id=group_id)
+                for i in b:
+                    email_list.append(i.user_account)
+            except Exception as e:
+                print(e)
+            try:
+                # 上传UI文件
+                if post_data == 'upload':
+
+                    try:
+                        store = EbStore(CLOUD_TOKEN)
+                        rr = store.upload(file.read(), file.name, file.content_type)
+                        rr = json.loads(rr)
+                        r = rr['code']
+                        print(rr)
+                    except Exception as e:
+                        print(e)
+                        return HttpResponse(json.dumps({"code": 1}))
+                    list_url = rr['data']
+                    datas = get_ui_static_conf(key, list_url, id, file.name, user1)
+                    product_name = app_name + '上传更新提示'
+                    # 需要修改
+                    print('id', t)
+                    if DocUi.objects.filter(ui_key=key, ui_upload_id=t):
+                        next_stemp = [str(i.ui_plan) for i in
+                                      DocUi.objects.filter(ui_key=key, ui_upload_id=t)][0]
+                    else:
+                        next_stemp = '该产品即将量化'
+                    # 发送邮件通知send_product_process_email(title, product_name, process_name, next_process, handler, to_user, detail_url, action)
+                    try:
+                        send_product_process_email(product_name, app_name, file.name, next_stemp, user1, email_list,
+                                                   location, "submit")
+                        Message.objects.create(message_content=BOOK[id] + ':' + '已上传', message_type=int(4),
+                                               message_handler_type=int(4),
+                                               device_key=key, message_sender='11', message_target='11',
+                                               create_date=datetime.datetime.utcnow(),
+                                               update_date=datetime.datetime.utcnow())
+                    except Exception as e:
+                        print(e)
+                    dd = ''
+                    p = DocUi.objects.filter(ui_key=key, ui_upload_id=id)
+                    for i in p:
+                        dd = i.ui_content
+
+                    return HttpResponse(json.dumps(datas))
+                else:
+                    r = 1
+            except Exception as e:
+                r = 1
+                print(e)
+        return HttpResponse(json.dumps({"code": 0}))
