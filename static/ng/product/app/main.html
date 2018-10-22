@@ -461,7 +461,7 @@
                             <p style="display: inline-block;margin-left: 10px">{[{x.time}]}</p>
                         </div>
                         <div class="col-md-2">
-                            <p ng-click="Deletes(2,x.version,$event)" style="color: #b4b2b1">删除</p>
+                            <p ng-click="Deletes(1,x.version,$event)" style="color: #b4b2b1">删除</p>
                         </div>
 
                     </div>
@@ -509,6 +509,7 @@
             formData.append("app_id", app_id1);
             formData.append("action", 'ui_upload');
             if (document.getElementById("file").files[0]) {
+                console.log('data',formData)
             $.ajax({
                 url: '/product/upload_file',
                 type: "POST",
@@ -544,16 +545,17 @@
         }else {
             console.log('xx')
             var formDatas = new FormData();
-            formDatas.append("file", document.getElementById("files").files[0]);
-            formDatas.append("name", 'upload');
-            formDatas.append("key", document.getElementById("keys").value);
-            formDatas.append("app_version", document.getElementById("ui_info1").value);
+            formDatas.append("file", document.getElementById("files").files[0]);  // 文件
+            formDatas.append("name", 'upload');  // 写死的
+            formDatas.append("key", document.getElementById("keys").value);  // 设备key
+            formDatas.append("app_version", document.getElementById("ui_info1").value);  // 版本号
             formDatas.append("action", 'ui_upload');
-            formDatas.append("app_remark", document.getElementById("ui_remark1").value);
-            formDatas.append("app_id", app_id1);
-            formDatas.append("action", 'ui_upload_1');
-            console.log(formDatas,'dddd')
+            formDatas.append("app_remark", document.getElementById("ui_remark1").value);  // 备注信息
+            formDatas.append("app_id", app_id1);  // 序号
+            formDatas.append("action", 'ui_upload_1');  // 参数 写死的
+
             if (document.getElementById("files").files[0]) {
+            console.log(formDatas,'dddd')
             $.ajax({
                 url: '/product/upload_file',
                 type: "POST",
@@ -570,6 +572,7 @@
                 },
             }).success(function (data) {
                 data = JSON.parse(data)
+                console.log(formDatas,'dddd')
                 console.log(data)
                 if (data['code'] == '0') {
                     document.getElementsByClassName("close")[1].click();
