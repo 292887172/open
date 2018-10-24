@@ -154,7 +154,6 @@ def save_user_address(request):
         return JsonResponse({'code': -1, 'msg': 'error request method'})
 
 
-
 @csrf_exempt
 def get_factory(request):
     if request.method == "GET":
@@ -165,6 +164,146 @@ def get_factory(request):
             response = HttpResponse(json.dumps(factory_list))
             response["Access-Control-Allow-Origin"] = "*"
             return response
+
+
+@csrf_exempt
+def get_function_list(request):
+
+    def findname(names, opera_data):
+        names_list = eval(names)
+        names = []
+        for i in range(len(opera_data)):
+            for j in names_list:
+                if str(opera_data[i]['Stream_ID']) == j:
+                    names.append(opera_data[i]['name'])
+        return names
+    def find(id, opera_data):
+        for i in range(len(opera_data)):
+            if str(opera_data[i]['id']) == id:
+                return [i, opera_data[i]]
+        return []
+
+    if request.method == "GET":
+        app_id = request.GET.get("ID", "")
+        post_data = request.GET.get("name", '')
+        app = App.objects.get(app_id=app_id)
+        device_conf = gen_app_default_conf(app.app_device_type)
+
+        opera_data = []
+        if post_data == 'list':
+            # 显示所有列表信息
+            temp = []
+            try:
+                if app.device_conf:
+                    opera_data = json.loads(app.device_conf)
+                    opera_data.sort(key=lambda x: int(x.get("id")))
+            except Exception as e:
+                logging.info("读取数据库中设备配置信息失败", e)
+                print(e)
+            for line in opera_data:
+                temp.append(line)
+            data = {'rows': opera_data, 'check_state': app.check_status}
+
+            # data["records"] = len(temp)
+            return JsonResponse(data)
+        elif post_data == "show_mod":
+            app_device_type = app.app_device_type
+            mod = get_mod_funs(opera_data, device_conf, app_device_type)
+            return JsonResponse({"data": mod})
+    if request.method == "POST":
+        funs = request.POST.get("funs",'')
+        app_id = request.GET.get("ID", "")
+        post_data = request.POST.get("name", '')
+        idsd = request.POST.get("nums",'')
+        app = App.objects.get(app_id=app_id)
+        app_device_type = app.app_device_type
+        device_conf = gen_app_default_conf(app.app_device_type)
+        opera_data = []
+        try:
+            if app.device_conf:
+                opera_data = json.loads(app.device_conf)
+                opera_data.sort(key=lambda x: int(x.get("id")))
+        except Exception as e:
+            logging.info("读取数据库中设备配置信息失败", e)
+            print(e)
+        if post_data == 'add_mod':
+            add_mod_funs(opera_data, device_conf, funs, app_device_type)
+            save_app(app, opera_data, '重构')
+            update_app_protocol(app)
+            # 新增功能message
+            namess = findname(funs, opera_data)
+            for i in namess:
+                message_content = '"' + app.app_name + '"' + i + CREATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            return HttpResponse('add_mod_success')
+        elif post_data == 'del':
+            # 删除信息
+            data = find(idsd, opera_data)
+            if data:
+                i = data[0]
+                fun_name = data[1].get("name")
+                is_standa = data[1].get("standa_or_define", None)
+                opera_data.pop(i)
+                for j in range(len(opera_data)):
+                    opera_data[j]['id'] = str(int(j) + int(1))
+                c_data = opera_data[:len(opera_data)]
+                c_data.sort(key=lambda x: int(x.get("id")))
+                c_data.extend(opera_data[len(opera_data):])
+                opera_data = c_data
+                save_app(app, opera_data, '重构')
+                update_app_protocol(app)
+                message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+                return HttpResponse('del_success')
+            return HttpResponse('del_fail')
+        elif post_data == 'del_all':
+            # 这里对后台发送来对数据进行筛选,重新排序 从大到小 避免勿删除操作
+            idsd = eval(idsd)
+            # 删除一个与多个判断
+            if isinstance(idsd, int):
+                data = find(str(id), opera_data)
+                if data:
+                    i = data[0]
+                    fun_name = data[1].get("name")
+                    is_standa = data[1].get("standa_or_define", None)
+                    opera_data.pop(i)
+                    for j in range(len(opera_data)):
+                        opera_data[j]['id'] = str(int(j) + int(1))
+                    c_data = opera_data[:len(opera_data)]
+                    c_data.sort(key=lambda x: int(x.get("id")))
+                    c_data.extend(opera_data[len(opera_data):])
+                    opera_data = c_data
+                    # 排序？？？？？？
+                    # replace_fun_id(opera_data, id, is_standa)
+                    save_app(app, opera_data, '重构')
+                    update_app_protocol(app)
+                    message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
+                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            else:
+                ids_list = list(idsd)
+                ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
+                for id_i in ids_list:
+                    data = find(str(id_i), opera_data)
+                    if data:
+                        i = data[0]
+                        fun_name = data[1].get("name")
+                        is_standa = data[1].get("standa_or_define", None)
+                        opera_data.pop(i)
+                        for j in range(len(opera_data)):
+                            opera_data[j]['id'] = str(int(j) + int(1))
+                        c_data = opera_data[:len(opera_data)]
+                        c_data.sort(key=lambda x: int(x.get("id")))
+                        c_data.extend(opera_data[len(opera_data):])
+                        opera_data = c_data
+                        # 排序？？？？？？
+                        # replace_fun_id(opera_data, id, is_standa)
+                        save_app(app, opera_data, '')
+                        update_app_protocol(app)
+                        message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
+                        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+
+            return HttpResponse('del_success')
+
 
 @csrf_exempt
 def product_main(request):
@@ -230,8 +369,9 @@ def product_main(request):
         app_id = request.GET.get("ID", "")
         user_apps = App.objects.filter(app_id=int(app_id))
         category = {'': ' ', '0': '', '1': '4.3寸屏', '2': '5寸屏', '3': '6.8寸长条屏'}
-        categoryed = {'31': '洗碗机', '1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '21': "蒸烤箱", '20': '蒸箱', '25': ' 电压力锅',
-                    '26': '电饭煲', '27': '台式小烤箱', '30': '微蒸烤', '0': '其他'}
+        categoryed = {'31': '洗碗机', '1': '油烟机', '2': '集成灶', '6': '冰箱', '11': '烤箱', '21': "蒸烤箱", '20': '蒸箱',
+                      '25': ' 电压力锅',
+                      '26': '电饭煲', '27': '台式小烤箱', '30': '微蒸烤', '0': '其他'}
         # 应用审核状态（0:未审核, 1:审核中, 2:审核通过, -1:审核未通过）
         check_statused = {"0": "未发布", "1": "审核中", "2": "以发布", "-1": "未通过"}
         teams = []
@@ -305,7 +445,7 @@ def product_main(request):
         # data_protocol = json.loads(request.body.decode('utf-8')).get('key','')
         # data_protocol_list = json.loads(request.body.decode('utf-8'))
         app_id = request.GET.get("ID", "")
-        cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+        # cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
         post_data = request.POST.get("name")
 
         id = request.POST.get("id")
@@ -354,206 +494,7 @@ def product_main(request):
             data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
             return JsonResponse(data)
-        elif post_data in ['show_mod', "add_mod"]:
-            # 显示默认模板的功能  添加模板功能
-            if post_data == "show_mod":
-                app_device_type = app.app_device_type
-                mod = get_mod_funs(opera_data, device_conf, app_device_type)
-                return JsonResponse({"data": mod})
-            elif post_data == "add_mod":
-                funs = request.POST.get("funs")
-                app_device_type = app.app_device_type
-                add_mod_funs(opera_data, device_conf, funs, app_device_type)
-                save_app(app, opera_data, cook_ies)
-                update_app_protocol(app)
-                # 新增功能message
-                namess = findname(funs, opera_data)
-                print('xx', namess)
-                for i in namess:
-                    message_content = '"' + app.app_name + '"' + i + CREATE_FUN
-                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-                return HttpResponse('add_mod_success')
-        elif post_data == 'edit':
-            # 返回编辑页面信息
 
-            if len(id) > 3:
-                id = id.split("#")[0]
-
-            edit_data = findd(opera_data)
-            edit_data = find(id, edit_data)
-            mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
-            mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
-            mods_name.extend(mods_name1)
-            mods_name = list(set(mods_name))
-            if edit_data:
-                edit_data = edit_data[1]
-                mods_name.remove(edit_data["Stream_ID"])
-                message_content = '"' + app.app_name + '"' + UPDATE_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-            else:
-                edit_data = ''
-            return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
-        elif post_data == 'del':
-            # 删除信息
-            data = find(id, opera_data)
-            if data:
-                i = data[0]
-                fun_name = data[1].get("name")
-                is_standa = data[1].get("standa_or_define", None)
-                opera_data.pop(i)
-                for j in range(len(opera_data)):
-                    opera_data[j]['id'] = str(int(j) + int(1))
-                c_data = opera_data[:len(opera_data)]
-                c_data.sort(key=lambda x: int(x.get("id")))
-                c_data.extend(opera_data[len(opera_data):])
-                opera_data = c_data
-                # 排序？？？？？？
-                # replace_fun_id(opera_data, id, is_standa)
-                save_app(app, opera_data, cook_ies)
-                update_app_protocol(app)
-                message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-                return HttpResponse('del_success')
-        elif post_data == 'del_all':
-            # 这里对后台发送来对数据进行筛选,重新排序 从大到小 避免勿删除操作
-            id = eval(id)
-            # 删除一个与多个判断
-            if isinstance(id, int):
-                data = find(str(id), opera_data)
-                if data:
-                    i = data[0]
-                    fun_name = data[1].get("name")
-                    is_standa = data[1].get("standa_or_define", None)
-                    opera_data.pop(i)
-                    for j in range(len(opera_data)):
-                        opera_data[j]['id'] = str(int(j) + int(1))
-                    c_data = opera_data[:len(opera_data)]
-                    c_data.sort(key=lambda x: int(x.get("id")))
-                    c_data.extend(opera_data[len(opera_data):])
-                    opera_data = c_data
-                    # 排序？？？？？？
-                    # replace_fun_id(opera_data, id, is_standa)
-                    save_app(app, opera_data, cook_ies)
-                    update_app_protocol(app)
-                    message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                    save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-            else:
-                ids_list = list(id)
-                ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
-                for id_i in ids_list:
-                    data = find(str(id_i), opera_data)
-                    if data:
-                        i = data[0]
-                        fun_name = data[1].get("name")
-                        is_standa = data[1].get("standa_or_define", None)
-                        opera_data.pop(i)
-                        for j in range(len(opera_data)):
-                            opera_data[j]['id'] = str(int(j) + int(1))
-                        c_data = opera_data[:len(opera_data)]
-                        c_data.sort(key=lambda x: int(x.get("id")))
-                        c_data.extend(opera_data[len(opera_data):])
-                        opera_data = c_data
-                        # 排序？？？？？？
-                        # replace_fun_id(opera_data, id, is_standa)
-                        save_app(app, opera_data, cook_ies)
-                        update_app_protocol(app)
-                        message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
-                        save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-
-            return HttpResponse('del_success')
-        elif post_data == 'update':
-            funs = request.POST.get("funs")
-            funs = json.loads(funs)
-            try:
-                for j in range(len(funs)):
-                    for i in funs:
-                        if opera_data[j]['Stream_ID'] == i or opera_data[j]['Stream_ID'] == i.split("自定义")[0]:
-                            opera_data[j]['id'] = str(int(funs.index(i)) + int(1))
-                c_data = opera_data[:len(funs)]
-                c_data.sort(key=lambda x: int(x.get("id")))
-                c_data.extend(opera_data[len(funs):])
-                save_app(app, c_data, cook_ies)
-            except Exception as e:
-                print(e)
-            update_app_protocol(app)
-
-            message_content = '"' + app.app_name + '"' + "功能" + UPDATE_APP_CONFIG
-            save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-            return HttpResponse('update_success')
-        elif post_data == 'toSwitch':
-            for switch in opera_data:
-                if int(switch["id"]) == int(id):
-                    switch["toSwitch"] = 1
-                else:
-                    switch["toSwitch"] = 0
-            save_app(app, opera_data, cook_ies)
-            update_app_protocol(app)
-
-            return HttpResponse('select_success')
-        elif post_data in ['isShow', 'isControl', 'isDisplay', "isCloudMenu"]:
-            val = request.POST.get("dd")
-            data = find(id, opera_data)
-            if data:
-                data[1][post_data] = val
-                fun_name = data[1].get("name")
-                if post_data == "isCloudMenu":
-                    app.app_is_cloudmenu_device = check_cloud(opera_data)
-                save_app(app, opera_data, cook_ies)
-                update_app_protocol(app)
-                if val == str(1):
-                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
-                else:
-                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-                return HttpResponse('change_success')
-        elif post_data == "export":
-            res = date_deal(app_id)
-            # print(type(res),res)
-            return res
-        elif post_data == "save_conf":
-            if str(app.app_group) == '2':
-                res = update_app_protocol(app)
-                if res:
-                    data = {'code': 0, 'msg': 'ok'}
-                else:
-                    data = {'code': -1, 'msg': '请先完善产品功能配置信息'}
-                return JsonResponse(data)
-            else:
-                data = {'code': -1, 'msg': '该产品暂不支持调试'}
-                return JsonResponse(data)
-        elif post_data == 'save':
-            # 接收要编辑或者添加的数据
-            indata = request.POST.get('d')
-            indata = json.loads(indata)
-            dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            indata["time"] = dt
-            indata["widget"] = update_app_fun_widget(indata)
-            indata["isDisplay"] = 1
-            try:
-                indata['control'] = new_mxs_data(indata['control'])
-            except Exception as e:
-                print(e)
-            fun_name = indata['name']
-            if indata["id"]:
-                # 编辑参数信息
-                data = find(indata['id'], opera_data)
-                data[1].update(indata)
-                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
-                tt = "modify_success"
-                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
-            else:
-                # 添加一条参数信息需要申请审核
-                indata = add_fun_id(opera_data, indata)
-                add_device_fun(app.app_appid, indata)
-                opera_data.append(indata)
-                opera_data.sort(key=lambda x: int(x.get("id")))
-                # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
-                tt = "modify_success"
-            # 版本区别,在新版本加{"version":"1"} # 区分方法control
-            # opera_data = save_control(opera_data)
-            save_app(app, opera_data, cook_ies)
-            update_app_protocol(app)
-            return HttpResponse(tt)
 
         # 获取设备列表
         elif post_data == 'device_table':
@@ -641,6 +582,30 @@ def product_main(request):
 
     elif request.method == "POST":
         return post()
+
+
+@csrf_exempt
+def device_list(request):
+    app_id = request.GET.get("ID", "")
+    # cook_ies = request.COOKIES['COOKIE_USER_ACCOUNT']
+    post_data = request.POST.get("name")
+    r5 = Redis3_ClientDB5
+    app = App.objects.get(app_id=app_id)
+    key = app.app_appid
+    key = key[-8:]
+    device_content = DEVICE + "_" + key
+    if r5.exists(device_content):
+        device_list = r5.get(device_content)
+        device_list = json.loads(device_list.decode())
+    else:
+        device_list = get_device_list(app.app_appid)
+        r5.set(device_content, json.dumps(device_list), 1 * 60)
+    for k in device_list:
+        is_online = device_online(k['ebf_device_id'])
+        k["is_online"] = is_online
+    return JsonResponse({'data': device_list, 'key': key, 'check_state': app.check_status})
+
+
 @csrf_exempt
 def upload_file(request):
     try:

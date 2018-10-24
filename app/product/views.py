@@ -215,7 +215,7 @@ def product_list(request):
 @csrf_exempt
 def product_controldown(request):
     """
-    应用列表
+    产品控制台
     :param request:
     :return:
     """
@@ -585,14 +585,9 @@ def product_main(request):
         return []
 
     def findd(opera_data):
-        if len(opera_data) > 1:
-            for iosa in opera_data:
 
-                if len(str(iosa)) < 20:
-                    opera_data.remove(iosa)
-            return opera_data
-        else:
-            return opera_data
+        return opera_data
+
     def findname(names, opera_data):
         names_list = eval(names)
         names = []
@@ -622,7 +617,7 @@ def product_main(request):
                 opera_data = json.loads(app.device_conf)
                 opera_data_new = opera_data
 
-                opera_data = findd(opera_data)
+                opera_data = opera_data
 
                 if len(opera_data) <2:
                     pass
@@ -637,20 +632,10 @@ def product_main(request):
             page = int(request.POST.get("page", 1))
             rows = int(request.POST.get("rows", 10))
             temp = []
-            res_status = r.exists("product_funs" + app_id)
-            if res_status:
-                data = r.get("product_funs" + app_id)
-                data = json.loads(data.decode())
-                opera_data = data["rows"]
-
-                opera_data = findd(opera_data)
-                # 做判断 区分是否为老产品 根据是否有control来区分
-
             for line in opera_data:
                 # if str(line.get("standa_or_define")) == str(standa):
                 temp.append(line)
             data = {'rows': opera_data, 'check_state': app.check_status}
-            r.set("product_funs" + app_id, json.dumps(data), 3600 * 24 * 3)
             data["rows"] = temp[(page - 1) * rows:page * rows]
             data["total"] = len(temp) // rows + 1
             data["records"] = len(temp)
@@ -680,8 +665,8 @@ def product_main(request):
             if len(id) > 3:
                 id = id.split("#")[0]
 
-            edit_data = findd(opera_data)
-            edit_data = find(id, edit_data)
+
+            edit_data = find(id, opera_data)
             mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
             mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
             mods_name.extend(mods_name1)
@@ -1259,6 +1244,21 @@ def app(request):
         num = request.GET.get('num', '')
         action = request.GET.get("action", '')
         version = request.GET.get('version', '')
+        if action == 'del':
+            AppVersion.objects.filter(app_id=ids, upload_type=int(num), version_code=version).delete()
+            return HttpResponse(json.dumps({"code": 0}))
+        return HttpResponse(json.dumps({"code": 1}))
+
+
+@csrf_exempt
+def del_upload(request):
+    if request.method == "POST":
+        data = request.POST.get('data','')
+        print(data)
+        ids = request.POST.get('id', '')
+        num = request.POST.get('num', '')
+        action = request.POST.get("action", '')
+        version = request.POST.get('version', '')
         if action == 'del':
             AppVersion.objects.filter(app_id=ids, upload_type=int(num), version_code=version).delete()
             return HttpResponse(json.dumps({"code": 0}))

@@ -208,6 +208,11 @@ angular.module('Product.edit', ['ngRoute'])
 			indata.mxsLength=$.trim($('#mxsLength').val());
 			indata.default_value=$.trim($('#default_value').val());
 
+			if ($("#select_format").val()=='Format'){
+				console.log('----',$("#select_format").val())
+			}else {
+				indata.format=$("#select_format").val();
+			}
 			//保存操作
 			var msg_notice = '<div class="notification notification-success"><div class="notification-content" role="alert"><div class="notification-message">保存成功！</div><div class="notification-action"></div></div></div>';
 			$.ajax({

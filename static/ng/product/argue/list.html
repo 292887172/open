@@ -469,14 +469,17 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="name"
-                                       style="text-align:right"> <span class="must-choose">*</span>功能名称 <span
+                                       style="text-align:right"> <span class="must-choose">*</span>功能值格式化输出 <span
                                         class="help-button" data-rel="popover" data-trigger="hover"
                                         data-placement="bottom"
                                         data-content="在自动生成的设备模拟器和Demo App界面中显示的数据点名称，进行自定义应用开发时可以修改。" title="">?</span></label>
                                 <div class="col-sm-9 col-xs-9">
-                                    <input ng-disabled='{[{ disabled }]}' type="text" id="name" autocomplete="off"
-                                           placeholder="标识符的中文名称，显示在产品详情界面" class="col-xs-10 col-sm-5"
-                                           onblur="checkName()"/>
+                                   <select id="select_format" onchange="Select_Onchange_format(this)" style="height: 33px;width: 273px">
+                                            <option value="Format"></option>
+                                            <option value="GetModelName">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
                                     <br><br>
                                     <div id="checkName" style="color:red;margin-top:15px;display:none"></div>
                                 </div>
@@ -1414,6 +1417,7 @@
                 step: edit_data["step"],
                 mxsLength: edit_data["mxsLength"],
                 default_value: edit_data["default_value"],
+                select_format: edit_data["format"],
                 time: edit_data["time"]
             };
             loadData(obj);
@@ -1424,6 +1428,7 @@
             $(".form-horizontal")[1].reset();
             $('#mxsLength').val('8');
             $('#default_value').val('0');
+            $("#select_format").val('Format');
         }
         }catch (e) {
             if (flag == false) {
@@ -1452,6 +1457,7 @@
             $(".form-horizontal")[1].reset();
             $('#mxsLength').val('8');
             $('#default_value').val('0');
+            $("#select_format").val('Format');
         }
         }
 
@@ -1476,8 +1482,15 @@
         // 初始化数据//清空缓存
         $("#select_id").val('Button');
         $("#defaultUID").val('');
-        $("#defaultPAM").val('')
-        $("#defaultPAM").parent().addClass("fork_show")
+        $("#defaultPAM").val('');
+        $("#select_format").val('Format');
+        $("#defaultPAM").parent().addClass("fork_show");
+        try {
+            $("#select_format").val(d.select_format)
+        }catch (e) {
+            console.log(e)
+
+        }
         try {
 
             var data_control = d.control
@@ -1516,6 +1529,9 @@
         //}
         if (!d.default_value) {
              $('#default_value').val('0');
+        }
+        if (!d.select_format) {
+             $("#select_format").val('Format');
         }
 
         if (d.paramType == 1) {
@@ -1652,6 +1668,11 @@
             $("#defaultPAM").parent().removeClass("fork_show");
             $("#defaultPAM").val('')
         }
+
+    }
+    function Select_Onchange_format(that) {
+
+        console.log('next edit')
 
     }
 
@@ -1956,11 +1977,15 @@
                           table += '<tr><td><input type="text" style="width:200px" value=""></td>\
                         <td><input type="text" style="width:200px" value=' + alevalue + ' class="check_values" onblur="check_ui(this)"></td>\
                         <td><a onclick="delFunc(this)">移除</a></td></tr>';
+                    }else if(sss_data[1]!='') {
+                           table += '<tr><td><input style="width:200px" type="text" value='+sss_data[0]+' placeholder="工程画面的名字 示例:Main"></td>\
+                                <td><input style="width:200px" type="text" value='+sss_data[1]+' class="check_values" onblur="check_ui(this)" placeholder="控件的编号 示例:53"></td>\
+                                <td><a onclick="delFunc(this)">移除</a></td></tr>';
                     }else {
-                           table += '<tr><td><input style="width:200px" type="text" value="" placeholder="工程画面的名字 示例:Main"></td>\
+                        table += '<tr><td><input style="width:200px" type="text" value="" placeholder="工程画面的名字 示例:Main"></td>\
                                 <td><input style="width:200px" type="text" value="" class="check_values" onblur="check_ui(this)" placeholder="控件的编号 示例:53"></td>\
                                 <td><a onclick="delFunc(this)">移除</a></td></tr>';
-                    }
+                }
 
             }
 
@@ -1977,7 +2002,7 @@
                         "className": "btn-primary",
                         "callback":
                             function () {
-
+                                adduilist();
                                 if (document.getElementById("redcode").style.display == 'block') {
                                 } else {
                                     ui_listed = [];

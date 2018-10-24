@@ -86,11 +86,18 @@ angular.module('Product.app', ['ngRoute'])
                 }, function (index) {
                  layer.close(index);
                  if (a == '1') {
-                     $http({
-                         method: "POST",
-                         url: "/product/app/" + '?' + "num=1&version=" + b + "&action=del&id=" + ids,
+                     var dataed={
+                            "num":"1",
+                            "version":b,
+                            "action":"del",
+                            "id": ids
+                        }
+                    $.ajax({
+                        url:"/product/del_file",
+                        method:"POST",
+                        data:dataed
+                    }).success(function (responsess) {
 
-                     }).success(function (responses) {
                          $(c.target).parent().parent().remove()
 
                      })
