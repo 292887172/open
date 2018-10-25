@@ -209,7 +209,8 @@ angular.module('Product.edit', ['ngRoute'])
 			indata.default_value=$.trim($('#default_value').val());
 
 			if ($("#select_format").val()=='Format'){
-				console.log('----',$("#select_format").val())
+				console.log('----',$("#select_format").val());
+				indata.format=''
 			}else {
 				indata.format=$("#select_format").val();
 			}

@@ -17,5 +17,6 @@ urlpatterns = [
     url(r"^getfactory/$", views.get_factory),
     url(r"^upload_file/$", views.upload_file),
     url(r"^get_flist/$", views.get_function_list),
+    url(r"^get_protocol$", views.protocol),
 
 ]

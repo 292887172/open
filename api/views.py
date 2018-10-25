@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+import math
 from functools import cmp_to_key
 from base.connection import Redis3_ClientDB6, Redis3_ClientDB5
 from base.util import gen_app_default_conf
@@ -39,6 +40,8 @@ from model.center.app_version import AppVersion
 from model.center.firmware import Firmware
 from model.center.doc_ui import DocUi
 from ebcloudstore.client import EbStore
+from base.const import StatusCode, DefaultProtocol, DefaultSchedule
+
 
 _convention = ConventionValue()
 
@@ -261,7 +264,8 @@ def get_function_list(request):
             idsd = eval(idsd)
             # 删除一个与多个判断
             if isinstance(idsd, int):
-                data = find(str(id), opera_data)
+                print('1')
+                data = find(str(idsd), opera_data)
                 if data:
                     i = data[0]
                     fun_name = data[1].get("name")
@@ -280,6 +284,7 @@ def get_function_list(request):
                     message_content = '"' + app.app_name + '"' + fun_name + DEL_FUN
                     save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
             else:
+                print('2')
                 ids_list = list(idsd)
                 ids_list = sorted(ids_list, key=cmp_to_key(reverse_numeric))
                 for id_i in ids_list:
@@ -303,6 +308,259 @@ def get_function_list(request):
                         save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
 
             return HttpResponse('del_success')
+        elif post_data in ['isShow', 'isControl', 'isDisplay', "isCloudMenu"]:
+            val = request.POST.get("dd")
+            data = find(idsd, opera_data)
+            if data:
+                data[1][post_data] = val
+                fun_name = data[1].get("name")
+                if post_data == "isCloudMenu":
+                    app.app_is_cloudmenu_device = check_cloud(opera_data)
+                save_app(app, opera_data, '重构')
+                update_app_protocol(app)
+                if val == str(1):
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_OPEN
+                else:
+                    message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN_CLOSE
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+                return HttpResponse('change_success')
+        elif post_data == 'toSwitch':
+            for switch in opera_data:
+                if int(switch["id"]) == int(idsd):
+                    switch["toSwitch"] = 1
+                else:
+                    switch["toSwitch"] = 0
+            save_app(app, opera_data, '重构')
+            update_app_protocol(app)
+
+            return HttpResponse('select_success')
+        elif post_data == 'edit':
+            # 返回编辑页面信息
+
+            if len(idsd) > 3:
+                idsd = idsd.split("#")[0]
+
+
+            edit_data = find(idsd, opera_data)
+            mods_name = list(map(lambda x: x["Stream_ID"], device_conf))
+            mods_name1 = list(map(lambda x: x["Stream_ID"], opera_data))
+            mods_name.extend(mods_name1)
+            mods_name = list(set(mods_name))
+            if edit_data:
+                edit_data = edit_data[1]
+                mods_name.remove(edit_data["Stream_ID"])
+                message_content = '"' + app.app_name + '"' + UPDATE_FUN
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            else:
+                edit_data = ''
+            return JsonResponse({'data': edit_data, 'funs': opera_data, 'mods': mods_name})
+        elif post_data == 'save':
+            # 接收要编辑或者添加的数据
+            indata = request.POST.get('d')
+            indata = json.loads(indata)
+            dt = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            indata["time"] = dt
+            indata["widget"] = update_app_fun_widget(indata)
+            indata["isDisplay"] = 1
+            try:
+                indata['control'] = new_mxs_data(indata['control'])
+            except Exception as e:
+                print(e)
+            fun_name = indata['name']
+            if indata["id"]:
+                # 编辑参数信息
+                data = find(indata['id'], opera_data)
+                data[1].update(indata)
+                message_content = '"' + app.app_name + '"' + fun_name + UPDATE_FUN
+                tt = "modify_success"
+                save_user_message(app.developer_id, message_content, USER_TYPE, app.developer_id, app.app_appid)
+            else:
+                # 添加一条参数信息需要申请审核
+                indata = add_fun_id(opera_data, indata)
+                add_device_fun(app.app_appid, indata)
+                opera_data.append(indata)
+                opera_data.sort(key=lambda x: int(x.get("id")))
+                # message_content = '"' + app.app_name + '"' + fun_name + CREATE_FUN
+                tt = "modify_success"
+            # 版本区别,在新版本加{"version":"1"} # 区分方法control
+            # opera_data = save_control(opera_data)
+            save_app(app, opera_data, '重构')
+            update_app_protocol(app)
+            return HttpResponse(tt)
+        elif post_data == 'update':
+            if funs:
+                data1 = json.loads(funs)
+                for i in range(len(data1)):
+                    ids = int(i) + 1
+                    try:
+                        opera_data[int(data1[i])-1]['id'] = int(ids * 100)
+                    except Exception as e:
+                        print(e)
+                list_up_id = []
+                for i in opera_data:
+                    list_up_id.append(i)
+                for isd in list_up_id:
+                    isd['id'] = str(int(int(isd['id'])/100))
+                list_up_id.sort(key=lambda x: int(x.get("id")))
+                print('new',list_up_id)
+                save_app(app,list_up_id,'改版')
+                return HttpResponse(json.dumps({"code": 0}))
+
+
+@csrf_exempt
+def protocol(request):
+    # code说明 1 非表 2 标准 3 错误
+    if request.method == 'GET':
+        # 协议类型 1为下行 0为上行
+        device_key = request.GET.get('key', '')
+        zdy = request.GET.get('zdy', '')
+        action = request.GET.get('action', '')
+        protocol_type = request.GET.get('protocol_type', '0')
+        pt = ''
+        screen = request.GET.get('screen', '')
+        device_types = request.GET.get('device_types', '')
+
+        if action == 'get_data_content':
+            app = App.objects.get(app_appid__endswith=device_key)
+            dc = json.loads(app.device_conf)
+            data = []
+            for i in dc:
+                tmp = {'id': i['id'], 'title': i['name'], 'length': i['mxsLength'], 'mxs': i['mxs']}
+                data.append(tmp)
+            return HttpResponse(json.dumps(data))
+        elif action == 'get_frame_data':
+            # 帧结构数据
+            try:
+                mlist = Protocol.objects.all().filter(protocol_device_key=device_key)
+                if len(mlist) == 0:
+                    # 没有定义过，返回标准协议，若请求自定义协议，则返回默认标准自定义协议
+
+                    # p = DefaultProtocol().DEFAULT_DATA
+                    p = DefaultProtocol().DEFAULT_DATA_ZDY
+                    data = {"code": 2, "data": p, "protocol_type": protocol_type}
+                    return HttpResponse(json.dumps(data))
+                else:
+                    # 根据请求，返回定义的上下行数据
+                    # 如果定义过上行和下行数据，会有两条
+                    for iii in mlist:
+                        res_list_data = iii.protocol_factory_content
+                        protocol_type1 = iii.protocol_factory_type  # 库中保存的数据 protocol类型0/1
+                        res_list_data1 = json.loads(res_list_data)
+
+                        res_list_data1['protocol_type'] = protocol_type1
+
+                        if str(protocol_type1) == str(protocol_type):
+                            data = {"code": 2, "data": res_list_data1, "protocol_type": protocol_type}
+                            return HttpResponse(json.dumps(data))
+                    # 请求的数据暂时未定义，比如自定义了上行数据，请求下行数据，或者自定义了下行数据，请求上行数据
+                    # 返回空， 前端不处理
+                        else:
+                            pass
+                    data = {"code": 1, "data": "", "protocol_type": protocol_type}
+                    return HttpResponse(json.dumps(data))
+            except Exception as e:
+                print(e)
+                logging.getLogger('').info("传入的参数zdy出错", str(e))
+                data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
+                return HttpResponse(json.dumps(data))
+
+    if request.method == 'POST':
+        r = DefaultProtocol().DEFAULT_DATA_ZDY
+        action = request.POST.get("action",'')
+        try:
+            if action == 'update_protocol':
+                protocol_type = request.POST.get("protocol_type", '')
+                list_key = request.POST.get('key', '')
+                data_protocol_list = request.POST.get("data", '')
+                data_protocol_list = json.loads(data_protocol_list)
+                print('==',type(data_protocol_list))
+
+                protocol_endian = data_protocol_list.get("protocol_endian", 1)
+                list_t = data_protocol_list.get('frame_content', '')
+
+                data_sql = {}
+                data_sql['is_single_instruction'] = True
+                data_sql['support_response_frame'] = True
+                data_sql['support_serial'] = True
+                data_sql['active_heartbeat'] = True
+                data_sql['support_repeat'] = True
+                data_sql['heart_rate'] = "500"
+                data_sql['repeat_rate'] = "500"
+                data_sql['repeat_count'] = "3"
+                data_sql['endian_type'] = protocol_endian  # 1:大端编码， 0：小端编码， 默认大端编码
+
+                tmp_list_t = []
+                for i in list_t:
+                    if i.get("is_enable", None):
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value"),
+                            "is_enable": i.get("is_enable")
+                        }
+                    else:
+                        tmp_f = {
+                            "id": i.get("id"),
+                            "length": i.get("length"),
+                            "name": i.get("name"),
+                            "title": i.get("title"),
+                            "value": i.get("value")
+                        }
+                    if i.get("name") == "data":
+                        # 处理数据域
+                        l = 0
+                        tmp_d = []
+                        for j in i.get("value"):
+                            if j.get('content'):
+                                l += int(j.get('length'))
+                                tmp_d.append(j)
+                        tmp_f['length'] = math.ceil(l / 8)
+                        tmp_f['value'] = tmp_d
+                    elif i.get("name") == "check":
+                        # 处理校验
+                        tmp_f['value'] = {"check_algorithm": i.get('value').get("check_algorithm"),
+                                          "check_start": i.get('value').get("check_start"),
+                                          "check_end": i.get('value').get("check_end")}
+                        data_sql['checkout_algorithm'] = i.get('value').get("check_algorithm")
+                        data_sql['start_check_number'] = i.get('value').get("check_start")
+                        data_sql['end_check_number'] = i.get('value').get("check_end")
+                    tmp_list_t.append(tmp_f)
+                data_sql['frame_content'] = tmp_list_t
+                data_sql_update = json.dumps(data_sql, ensure_ascii=False)
+                mlist = []
+                if str(protocol_type) == '0':
+                    # 上行
+                    print('0', mlist)
+                    update_protocol(list_key, data_sql_update, protocol_type, '重构')
+                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
+                                                          protocol_factory_type=protocol_type)
+                elif str(protocol_type) == '1':
+                    # 下行
+                    print('1', mlist)
+                    update_protocol(list_key, data_sql_update, protocol_type, '重构')
+                    mlist = Protocol.objects.all().filter(protocol_device_key=list_key,
+                                                          protocol_factory_type=protocol_type)
+                else:
+                    print('2', mlist)
+                    data = {"code": 3, "data": "发送数据错误", "protocol_type": 0}
+                    return HttpResponse(json.dumps(data))
+                for ii in mlist:
+                    res_list_data = ii.protocol_factory_content
+                    protocol_type1 = ii.protocol_factory_type
+
+                    res_list_data1 = json.loads(res_list_data)
+                    res_list_data1['protocol_type'] = protocol_type1
+                    return HttpResponse(json.dumps(res_list_data1))
+
+        except Exception as e:
+            print(e)
+            logging.getLogger('').info("非保存操作", str(e))
+            data = {"code": 3, "data": DefaultProtocol().DEFAULT_DATA_ZDY, "protocol_type": 0}
+            return HttpResponse(json.dumps(data))
+        return HttpResponse(json.dumps(r))
+
 
 
 @csrf_exempt
